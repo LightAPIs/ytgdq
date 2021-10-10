@@ -3603,7 +3603,8 @@ namespace WindowsFormsApplication2
             _Ini iniSetup = new _Ini("Ttyping.ty");
             iniSetup.IniWriteValue("窗口位置", "横", tX.ToString());
             iniSetup.IniWriteValue("窗口位置", "纵", tY.ToString());
-            if (tW <= width / 2)
+            // 当宽度和高度均小于主监视器的工作区时才保存记录
+            if (tW <= width && tH <= height)
             {
                 iniSetup.IniWriteValue("窗口位置", "宽", tW.ToString());
                 iniSetup.IniWriteValue("窗口位置", "高", tH.ToString());

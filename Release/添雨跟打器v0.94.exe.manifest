@@ -50,7 +50,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>7F3HgfjYYmxf0osOZHVOu2Qi1AIVKLA+hOziFQ7H6zg=</dsig:DigestValue>
+        <dsig:DigestValue>pcLIn+En/MpQyF/2vHVKa9f1OxFI+XMPRYTr2r/V7fo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -62,7 +62,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JKRvNbm5HkstPAPey66Q7/OzfVApWc0N4g3RboiVwfQ=</dsig:DigestValue>
+        <dsig:DigestValue>zxVDyOqt81hxoTAKfCEWslUGU20hXrIw4BP+tOZl9dA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -84,13 +84,13 @@
       <dsig:DigestValue>HxVsx3vdvPzGXZPKnNMM9CyvtoiCOY3kUphIu5rare4=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="添雨跟打器v0.94.exe.config" size="240">
+  <file name="添雨跟打器v0.94.exe.config" size="231">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>LI7hJYJYqQ47lZmt7DR5dGprH8dj6AcU6OjPfz2d3Xs=</dsig:DigestValue>
+      <dsig:DigestValue>4dWAeqHbRBprsEgwq9av7D4HnxkBEIsiDFw20/jF21c=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">

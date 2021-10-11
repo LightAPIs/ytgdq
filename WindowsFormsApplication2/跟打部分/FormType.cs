@@ -1696,8 +1696,9 @@ namespace WindowsFormsApplication2
                         {
                             reTypeing = "";
                         }
-                        //回改率
-                        Glob.TextHg_ = (double)Glob.TextHgAll * 100 / Glob.TextLenAll;
+                        // 回改率
+                        // Glob.TextHg_ = (double)Glob.TextHgAll * 100 / Glob.TextLenAll;   // 这计算的是总回改率
+                        Glob.TextHg_ = (double)Glob.TextHg * 100 / Glob.TextLen;
                         //停留
                         //MessageBox.Show(stayHighTime[0,0].ToString());
 

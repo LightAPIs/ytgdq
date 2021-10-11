@@ -327,7 +327,7 @@ namespace WindowsFormsApplication2
         public void LoadSetup()
         {
             //创建表头
-            this.dataGridView1.Rows.Add("序", "时间", "段", "速度", "击键", "码长", "回改", "错字", "键数", "字数", "打词", "用时", "群");
+            this.dataGridView1.Rows.Add("序", "时间", "段", "速度", "击键", "码长", "理论", "回改", "退格", "回车", "选重", "错字", "回率", "键准", "效率", "键数", "字数", "打词", "用时", "群");
             this.dataGridView1.Rows[0].Frozen = true;
             this.dataGridView1.Rows[0].DefaultCellStyle.Font = new Font("微软雅黑", 11f);
             this.dataGridView1.Rows[0].DefaultCellStyle.BackColor = Theme.ThemeColorBG;
@@ -1619,7 +1619,7 @@ namespace WindowsFormsApplication2
                     Glob.jjAllC++;//跟打总段数
                     //错情 与 错字
                     string RightAndFault = "", RFSplit = "|"; //分隔符
-                    String fa = "";
+                    string fa = "";
                     Glob.TextCz = Glob.FWords.Count;
                     for (int i = 0; i < Glob.FWords.Count; i++)
                     {
@@ -1743,7 +1743,7 @@ namespace WindowsFormsApplication2
                         Glob.hgAllUse = Glob.TypeReport.Where(o => o.Length < 0).Sum(o => o.TotalTime);
                         sw = 0;
                         //键准
-                        this.lbl键准.Text = (键准 == 0) ? "-" : 键准 + "%";
+                        this.lbl键准.Text = (UserJz == 0) ? "-" : UserJz + "%";
                         //顺序及发送
                         string sortsend = "", qidayu = "";
                         string TotalSend = "";
@@ -1758,6 +1758,7 @@ namespace WindowsFormsApplication2
                             }
                             else if (Glob.jwMatchMoudle)
                             {
+                                // 精五比赛模式
                                 sortsend = "ABCDEGIH";
                             }
                             else
@@ -1803,10 +1804,10 @@ namespace WindowsFormsApplication2
                                         TotalSend += 回改量 + 连改;
                                         break;
 
-                                    case 'S': TotalSend += 退格; break;
-                                    case 'T': TotalSend += 回车; break;
-                                    case 'U': TotalSend += 选重; break;
-                                    case 'V': TotalSend += " 键准" + this.lbl键准.Text; break;
+                                    case 'S': TotalSend += " 退格" + UserTg; break;
+                                    case 'T': TotalSend += UserHcText; break;
+                                    case 'U': TotalSend += UserXcText; break;
+                                    case 'V': TotalSend += " 键准" + lbl键准.Text; break;
                                     case 'E': TotalSend += Cz; break;
                                     case 'F': TotalSend += FalutIns; break;
                                     case 'G': TotalSend += " 字数" + TextLen; break;
@@ -1817,7 +1818,7 @@ namespace WindowsFormsApplication2
                                                 TotalSend += " 键数" + Glob.TextJs;
                                         }
                                         break;
-                                    case 'I': TotalSend += 跟打用时; break;
+                                    case 'I': TotalSend += UserTime == "" ? " 用时" + UserTime : ""; break;
                                     case 'J': TotalSend += reTypeing; break;
                                     case 'K':
                                         //峰值
@@ -1831,7 +1832,7 @@ namespace WindowsFormsApplication2
                                         }
                                         TotalSend += MaxValue; break;
                                     case 'L': TotalSend += atypewords; break;
-                                    case 'M': TotalSend += " 回改率" + Glob.TextHg_.ToString("0.00") + "%"; break;
+                                    case 'M': TotalSend += " 回改率" + UserHgl; break;
                                     case 'N': TotalSend += stay; break;
                                     case 'O': TotalSend += awordper; break;
 
@@ -1924,42 +1925,99 @@ namespace WindowsFormsApplication2
                             if (speed_Plus > 0) dataGridView1.Rows[RowCount].Cells[3].Style.ForeColor = Color.FromArgb(253, 108, 108);
                             if (jj_Plus > 0) dataGridView1.Rows[RowCount].Cells[4].Style.ForeColor = Color.FromArgb(255, 129, 233);
                             if (mc_Plus < 0) dataGridView1.Rows[RowCount].Cells[5].Style.ForeColor = Color.FromArgb(124, 222, 255);
-                            for (int i = 0; i < 13; i++)
+                            for (int i = 0; i < 20; i++)
                             {
                                 if (i != 3 && i != 4 && i != 5)
                                 {
                                     this.dataGridView1.Rows[RowCount].Cells[i].Style.BackColor = Color.FromArgb(61, 61, 61);
                                 }
                             }
-                            //重打
-                            dataGridView1.Rows.Add("", DateTime.Now.ToLongTimeString(), Glob.Pre_Cout, Spsend1, jj.ToString("0.00"), mc.ToString("0.00"), Glob.TextHg.ToString(), Glob.TextCz.ToString(), Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, ts.ToString("0.00"), title);//增加行
+                            // 成绩栏添加重打数据行
+                            dataGridView1.Rows.Add("", DateTime.Now.ToLongTimeString(), Glob.Pre_Cout, Spsend1, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserTime, title);
                         }
                         else
                         {
-                            //新打
                             Glob.ReTypePD = false;//重打判断 为新打
-                            dataGridView1.Rows.Add(Glob.HaveTypeCount_, DateTime.Now.ToLongTimeString(), Glob.Pre_Cout, Spsend1, jj.ToString("0.00"), mc.ToString("0.00"), Glob.TextHg.ToString(), Glob.TextCz.ToString(), Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, ts.ToString("0.00"), title);//增加行
+                            // 成绩栏添加新打数据行
+                            dataGridView1.Rows.Add(Glob.HaveTypeCount_, DateTime.Now.ToLongTimeString(), Glob.Pre_Cout, Spsend1, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserTime, title);
                         }
                         Glob.TextPreCout = this.lblMatchCount.Text;//认证是不是重打
                         Glob.TextTime = DateTime.Now.ToLongTimeString();
                         //成绩信息底色黑
                         this.dataGridView1.Rows[this.dataGridView1.Rows.Count - 1].DefaultCellStyle.BackColor = Color.FromArgb(61, 61, 61);
-                        if (speed2 >= 180.00)
+                        #region 速度高亮
+                        // 使用没有惩罚错字的速度进行判定
+                        if (speed2 >= 360.00)
+                        {
+                            dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[3].Style.ForeColor = Color.FromArgb(255, 112, 67);
+                        }
+                        else if (speed2 >= 300.00)
+                        {
+                            dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[3].Style.ForeColor = Color.FromArgb(255, 167, 38);
+                        }
+                        else if (speed2 >= 240.00)
+                        {
+                            dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[3].Style.ForeColor = Color.FromArgb(255, 68, 38);
+                        }
+                        else if (speed2 >= 180.00)
                         {
                             dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[3].Style.ForeColor = Color.FromArgb(255, 175, 228);
                         }
-                        if (jj > 9.9)
+                        else if (speed2 >= 120.00)
+                        {
+                            dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[3].Style.ForeColor = Color.FromArgb(72, 178, 51);
+                        }
+                        #endregion
+                        #region 击键高亮
+                        if (jj > 11.9)
+                        {
+                            dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[4].Style.ForeColor = Color.FromArgb(233, 128, 255);
+                        }
+                        else if (jj > 9.9)
+                        {
+                            dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[4].Style.ForeColor = Color.FromArgb(255, 59, 48);
+                        }
+                        else if (jj > 7.9)
                         {
                             dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[4].Style.ForeColor = Color.FromArgb(97, 223, 255);
                         }
-                        if (mc > 1.30 && mc <= 2.00 && jj > 5.00)
+                        else if (jj > 5.9)
+                        {
+                            dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[4].Style.ForeColor = Color.FromArgb(188, 255, 3);
+                        }
+                        #endregion
+                        #region 码长高亮
+                        if (mc <= 1.80)
                         {
                             dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5].Style.ForeColor = Color.FromArgb(194, 255, 121);
                         }
+                        else if (mc <= 2.00)
+                        {
+                            dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5].Style.ForeColor = Color.FromArgb(58, 232, 113);
+                        }
+                        else if (mc <= 2.20)
+                        {
+                            dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5].Style.ForeColor = Color.FromArgb(133, 174, 187);
+                        }
+                        else if (mc <= 2.40)
+                        {
+                            dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5].Style.ForeColor = Color.FromArgb(121, 134, 203);
+                        }
+                        else if (mc <= 2.60)
+                        {
+                            dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5].Style.ForeColor = Color.FromArgb(149, 117, 205);
+                        }
+                        else if (jj > 5.00)
+                        {
+                            dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5].Style.ForeColor = Color.FromArgb(238, 6, 238);
+                        }
+                        #endregion
+                        #region 错字高亮
                         if (Glob.TextCz > 0.00)
                         {
-                            dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[7].Style.ForeColor = Color.IndianRed;
+                            dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[11].Style.ForeColor = Color.IndianRed;
                         }
+                        #endregion
                         double jjPer_ = Glob.Per_Jj / Glob.HaveTypeCount;
                         Glob.Total_Type += Glob.TextLen;
                         string dis = "00:00:00";
@@ -1968,7 +2026,8 @@ namespace WindowsFormsApplication2
                             DateTime dt = new DateTime().AddSeconds(touse);
                             dis = dt.ToString("HH:mm:ss");
                         }
-                        dataGridView1.Rows.Add("", dis, Glob.HaveTypeCount + "#", (Glob.Per_Speed / Glob.HaveTypeCount).ToString("0.00"), jjPer_.ToString("0.00"), (Glob.Per_Mc / Glob.HaveTypeCount).ToString("0.00"), "", "", "", (Glob.Total_Type / Glob.HaveTypeCount).ToString("0.00"), "", (touse / Glob.HaveTypeCount).ToString("0.00"), "");//增加行
+                        // 成绩栏总计行
+                        dataGridView1.Rows.Add("", dis, Glob.HaveTypeCount + "#", (Glob.Per_Speed / Glob.HaveTypeCount).ToString("0.00"), jjPer_.ToString("0.00"), (Glob.Per_Mc / Glob.HaveTypeCount).ToString("0.00"), "", "", "", "", "", "", "", "", "", "", (Glob.Total_Type / Glob.HaveTypeCount).ToString("0.00"), "", (touse / Glob.HaveTypeCount).ToString("0.00"), "");
                         dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
                         dataGridView1.ClearSelection();
                         DataGridViewRow dgr = dataGridView1.Rows[dataGridView1.RowCount - 1];
@@ -1982,8 +2041,11 @@ namespace WindowsFormsApplication2
                             KH.Stop();
                         }
                         catch { }
+                        #region 自动将统计结果复制到剪贴板
+                        //! 待后续增加设置项调整为可选操作
                         Clipboard.Clear();
                         ClipboardHandler.SetTextToClipboard(TotalSend);
+                        #endregion
                         if (NewSendText.发文状态)
                         {
                             if (NewSendText.是否自动)
@@ -2318,7 +2380,19 @@ namespace WindowsFormsApplication2
                 }
             }
         }
-        private string 跟打用时
+        /// <summary>
+        /// 回改率
+        /// 带百分号
+        /// </summary>
+        private string UserHgl
+        {
+            get { return Glob.TextHg_.ToString("0.00") + "%"; }
+        }
+        /// <summary>
+        /// 跟打用时
+        /// 已转换好格式
+        /// </summary>
+        private string UserTime
         {
             get
             {
@@ -2326,26 +2400,35 @@ namespace WindowsFormsApplication2
                 {
                     DateTime dt = new DateTime().AddSeconds(Glob.typeUseTime);
                     if (dt.Hour == 0)
-                        return " 用时" + dt.ToString("m:ss.fff");
-                    else
-                        return " 用时" + dt.ToString("hh:mm:ss.fff");
+                    {
+                        return dt.ToString("m:ss.fff");
+                    } else
+                    {
+                        return dt.ToString("hh:mm:ss.fff");
+                    }
                 }
-                else { return ""; }
+                else
+                {
+                    return "";
+                }
             }
         }
         private string 键法
         {
             get { if (Glob.leftHand > Glob.rightHand) return " [左" + Glob.leftHand + ":" + Glob.rightHand + "]"; else if (Glob.leftHand < Glob.rightHand) return " [右" + Glob.rightHand + ":" + Glob.leftHand + "]"; else return ""; }
         }
-        private string 回车
+        private string UserHcText
         {
             get { return " 回车" + Glob.回车; }
         }
-        private string 退格
+        /// <summary>
+        /// 退格
+        /// </summary>
+        private string UserTg
         {
-            get { return " 退格" + Math.Abs(Glob.TextBg - Glob.TextHg); }
+            get { return Math.Abs(Glob.TextBg - Glob.TextHg).ToString(); }
         }
-        private string 选重
+        private string UserXcText
         {
             get { if (Glob.选重 > 0) { return " 选重" + Glob.选重; } else { return ""; } }
         }
@@ -2361,7 +2444,7 @@ namespace WindowsFormsApplication2
         /// 键准
         /// 键准度计算方法：退格一次，相当于两次
         /// </summary>
-        private double 键准
+        private double UserJz
         {
             get
             {
@@ -2607,7 +2690,7 @@ namespace WindowsFormsApplication2
         {
             using (PicGoal_Class pgc = new PicGoal_Class())
             {
-                Clipboard.SetImage(pgc.GetPic((float)键准 / 100, this.lblTitle.Text));
+                Clipboard.SetImage(pgc.GetPic((float)UserJz / 100, this.lblTitle.Text));
             }
             SendClipBoardToQQ();
         }

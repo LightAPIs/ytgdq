@@ -327,7 +327,7 @@ namespace WindowsFormsApplication2
         public void LoadSetup()
         {
             //创建表头
-            this.dataGridView1.Rows.Add("序", "时间", "段", "速度", "击键", "码长", "理论", "回改", "退格", "回车", "选重", "错字", "回率", "键准", "效率", "键数", "字数", "打词", "用时", "群");
+            this.dataGridView1.Rows.Add("序", "时间", "段", "速度", "击键", "码长", "理论", "回改", "退格", "回车", "选重", "错字", "回改率", "键准", "效率", "键数", "字数", "打词", "打词率", "用时", "群");
             this.dataGridView1.Rows[0].Frozen = true;
             this.dataGridView1.Rows[0].DefaultCellStyle.Font = new Font("微软雅黑", 11f);
             this.dataGridView1.Rows[0].DefaultCellStyle.BackColor = Theme.ThemeColorBG;
@@ -1699,6 +1699,8 @@ namespace WindowsFormsApplication2
                         // 回改率
                         // Glob.TextHg_ = (double)Glob.TextHgAll * 100 / Glob.TextLenAll;   // 这计算的是总回改率
                         Glob.TextHg_ = (double)Glob.TextHg * 100 / Glob.TextLen;
+                        // 打词率
+                        Glob.TextDc_ = (double)Glob.aTypeWords * 100 / Glob.TextLen;
                         //停留
                         //MessageBox.Show(stayHighTime[0,0].ToString());
 
@@ -1767,7 +1769,7 @@ namespace WindowsFormsApplication2
                                 sortsend = Glob.sortSend; qidayu = "";
                             }
                         }
-                        else { sortsend = "ABDSTVCUEFGHIJKLMNOPQR"; qidayu = " 起打于" + startTime.ToLongTimeString(); } //比赛全显示
+                        else { sortsend = "ABDSTVCUEFGHIJKLWMNOPQR"; qidayu = " 起打于" + startTime.ToLongTimeString(); } //比赛全显示
                         if (sortsend.Length != 0) //用 顺序是否为空为控制 流程
                         {
                             char[] TSend = sortsend.ToArray();
@@ -1839,6 +1841,7 @@ namespace WindowsFormsApplication2
 
                                     case 'Q': TotalSend += 撤销; break;
                                     case 'R': TotalSend += 键法; break;
+                                    case 'W': TotalSend += " 打词率" + UserDcl; break;
                                     default: break;
                                 }
                             }
@@ -1934,13 +1937,13 @@ namespace WindowsFormsApplication2
                                 }
                             }
                             // 成绩栏添加重打数据行
-                            dataGridView1.Rows.Add("", DateTime.Now.ToLongTimeString(), Glob.Pre_Cout, Spsend1, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserTime, title);
+                            dataGridView1.Rows.Add("", DateTime.Now.ToLongTimeString(), Glob.Pre_Cout, Spsend1, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserDcl, UserTime, title);
                         }
                         else
                         {
                             Glob.ReTypePD = false;//重打判断 为新打
                             // 成绩栏添加新打数据行
-                            dataGridView1.Rows.Add(Glob.HaveTypeCount_, DateTime.Now.ToLongTimeString(), Glob.Pre_Cout, Spsend1, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserTime, title);
+                            dataGridView1.Rows.Add(Glob.HaveTypeCount_, DateTime.Now.ToLongTimeString(), Glob.Pre_Cout, Spsend1, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserDcl, UserTime, title);
                         }
                         Glob.TextPreCout = this.lblMatchCount.Text;//认证是不是重打
                         Glob.TextTime = DateTime.Now.ToLongTimeString();
@@ -2028,7 +2031,7 @@ namespace WindowsFormsApplication2
                             dis = dt.ToString("HH:mm:ss");
                         }
                         // 成绩栏总计行
-                        dataGridView1.Rows.Add("", dis, Glob.HaveTypeCount + "#", (Glob.Per_Speed / Glob.HaveTypeCount).ToString("0.00"), jjPer_.ToString("0.00"), (Glob.Per_Mc / Glob.HaveTypeCount).ToString("0.00"), "", "", "", "", "", "", "", "", "", "", (Glob.Total_Type / Glob.HaveTypeCount).ToString("0.00"), "", (touse / Glob.HaveTypeCount).ToString("0.00"), "");
+                        dataGridView1.Rows.Add("", dis, Glob.HaveTypeCount + "#", (Glob.Per_Speed / Glob.HaveTypeCount).ToString("0.00"), jjPer_.ToString("0.00"), (Glob.Per_Mc / Glob.HaveTypeCount).ToString("0.00"), "", "", "", "", "", "", "", "", "", "", (Glob.Total_Type / Glob.HaveTypeCount).ToString("0.00"), "", "", (touse / Glob.HaveTypeCount).ToString("0.00"), "");
                         dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
                         dataGridView1.ClearSelection();
                         DataGridViewRow dgr = dataGridView1.Rows[dataGridView1.RowCount - 1];
@@ -2388,6 +2391,14 @@ namespace WindowsFormsApplication2
         private string UserHgl
         {
             get { return Glob.TextHg_.ToString("0.00") + "%"; }
+        }
+        /// <summary>
+        /// 打词率
+        /// 带百分号
+        /// </summary>
+        private string UserDcl
+        {
+            get { return Glob.TextDc_.ToString("0.00") + "%"; }
         }
         /// <summary>
         /// 跟打用时

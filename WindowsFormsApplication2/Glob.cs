@@ -108,6 +108,7 @@ namespace WindowsFormsApplication2
         /// </summary>
         public static string TodayDate;
         public static double TextHg_ = 0;//回改率
+        public static double TextDc_ = 0; // 打词率
 
         public static string InstraPre = "";//个签
         public static string InstraPre_ = "";//是否启用了个签

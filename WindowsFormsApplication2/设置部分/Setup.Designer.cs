@@ -33,7 +33,6 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.newButton1 = new WindowsFormsApplication2.NewButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -71,6 +70,7 @@
             this.pictureBoxFalse = new System.Windows.Forms.PictureBox();
             this.pictureBoxRight = new System.Windows.Forms.PictureBox();
             this.tbxName = new System.Windows.Forms.TextBox();
+            this.checkBox31 = new System.Windows.Forms.CheckBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -135,10 +135,10 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.checkBox30 = new System.Windows.Forms.CheckBox();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.newButton2 = new WindowsFormsApplication2.NewButton();
             this.label10 = new System.Windows.Forms.Label();
+            this.newButton1 = new WindowsFormsApplication2.NewButton();
+            this.newButton2 = new WindowsFormsApplication2.NewButton();
             this.panel1.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
@@ -207,27 +207,10 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel4.Controls.Add(this.newButton1);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 8);
+            this.panel4.Location = new System.Drawing.Point(0, 22);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(302, 23);
             this.panel4.TabIndex = 1;
-            // 
-            // newButton1
-            // 
-            this.newButton1.BackColor = System.Drawing.Color.Gray;
-            this.newButton1.ForeColor = System.Drawing.Color.White;
-            this.newButton1.Location = new System.Drawing.Point(224, 3);
-            this.newButton1.Name = "newButton1";
-            this.newButton1.Size = new System.Drawing.Size(74, 16);
-            this.newButton1.SS = System.Drawing.ContentAlignment.BottomCenter;
-            this.newButton1.TabIndex = 2;
-            this.newButton1.Text = "确认";
-            this.newButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.newButton1.进入背景色 = System.Drawing.Color.Red;
-            this.newButton1.默认背景色 = System.Drawing.Color.Gray;
-            this.newButton1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel2
             // 
@@ -489,7 +472,7 @@
             this.checkBox6.Text = "回改[D]";
             this.toolTip1.SetToolTip(this.checkBox6, "回改数量(回改用时) 连续回改/连续回改长度");
             this.checkBox6.UseVisualStyleBackColor = true;
-            this.checkBox6.Click += new System.EventHandler(this.checkBox6_Click);
+            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
             // 
             // checkBox5
             // 
@@ -504,7 +487,7 @@
             this.checkBox5.Text = "码长[C]";
             this.toolTip1.SetToolTip(this.checkBox5, "每字按键数量");
             this.checkBox5.UseVisualStyleBackColor = true;
-            this.checkBox5.Click += new System.EventHandler(this.checkBox5_Click);
+            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
             // 
             // checkBox4
             // 
@@ -519,7 +502,7 @@
             this.checkBox4.Text = "击键[B]";
             this.toolTip1.SetToolTip(this.checkBox4, "每秒按键数量");
             this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.Click += new System.EventHandler(this.checkBox4_Click);
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
             // checkBoxSpeed
             // 
@@ -534,7 +517,7 @@
             this.checkBoxSpeed.Text = "速度[A]";
             this.toolTip1.SetToolTip(this.checkBoxSpeed, "速度是什么，就不用说了");
             this.checkBoxSpeed.UseVisualStyleBackColor = true;
-            this.checkBoxSpeed.Click += new System.EventHandler(this.checkBoxSpeed_Click);
+            this.checkBoxSpeed.CheckedChanged += new System.EventHandler(this.checkBoxSpeed_CheckedChanged);
             // 
             // checkBox13
             // 
@@ -583,7 +566,7 @@
             // 
             this.checkBox23.AutoSize = true;
             this.checkBox23.ForeColor = System.Drawing.Color.White;
-            this.checkBox23.Location = new System.Drawing.Point(6, 202);
+            this.checkBox23.Location = new System.Drawing.Point(6, 213);
             this.checkBox23.Name = "checkBox23";
             this.checkBox23.Size = new System.Drawing.Size(48, 16);
             this.checkBox23.TabIndex = 2;
@@ -665,13 +648,13 @@
             this.checkBox29.Text = "键准[V]";
             this.toolTip1.SetToolTip(this.checkBox29, "按键准确度(此数值乘以码长为理论码长)");
             this.checkBox29.UseVisualStyleBackColor = true;
-            this.checkBox29.Click += new System.EventHandler(this.checkBox29_Click);
+            this.checkBox29.CheckedChanged += new System.EventHandler(this.checkBox29_CheckedChanged);
             // 
             // textBox4
             // 
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox4.Font = new System.Drawing.Font("宋体", 9F);
-            this.textBox4.Location = new System.Drawing.Point(99, 7);
+            this.textBox4.Location = new System.Drawing.Point(88, 3);
             this.textBox4.MaxLength = 3;
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(98, 21);
@@ -715,6 +698,21 @@
             this.tbxName.Size = new System.Drawing.Size(190, 22);
             this.tbxName.TabIndex = 3;
             this.toolTip1.SetToolTip(this.tbxName, "用于图片成绩的昵称");
+            // 
+            // checkBox31
+            // 
+            this.checkBox31.AutoSize = true;
+            this.checkBox31.Checked = true;
+            this.checkBox31.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox31.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.checkBox31.Location = new System.Drawing.Point(143, 146);
+            this.checkBox31.Name = "checkBox31";
+            this.checkBox31.Size = new System.Drawing.Size(66, 16);
+            this.checkBox31.TabIndex = 25;
+            this.checkBox31.Text = "词率[W]";
+            this.toolTip1.SetToolTip(this.checkBox31, "打词率");
+            this.checkBox31.UseVisualStyleBackColor = true;
+            this.checkBox31.CheckedChanged += new System.EventHandler(this.checkBox31_CheckedChanged);
             // 
             // panel3
             // 
@@ -920,7 +918,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(302, 347);
+            this.tabControl1.Size = new System.Drawing.Size(302, 360);
             this.tabControl1.TabIndex = 11;
             // 
             // tabPage1
@@ -935,10 +933,10 @@
             this.tabPage1.Controls.Add(this.panel7);
             this.tabPage1.Controls.Add(this.panel5);
             this.tabPage1.Controls.Add(this.splitContainer1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 21);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(294, 322);
+            this.tabPage1.Size = new System.Drawing.Size(294, 334);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "基础设置";
             // 
@@ -1004,10 +1002,10 @@
             this.tabPage2.Controls.Add(this.panel极简模式);
             this.tabPage2.Controls.Add(this.panel10);
             this.tabPage2.Controls.Add(this.panel9);
-            this.tabPage2.Location = new System.Drawing.Point(4, 21);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(294, 322);
+            this.tabPage2.Size = new System.Drawing.Size(294, 334);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "发送格式";
             // 
@@ -1019,16 +1017,16 @@
             this.panel极简模式.Controls.Add(this.label18);
             this.panel极简模式.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel极简模式.Enabled = false;
-            this.panel极简模式.Location = new System.Drawing.Point(64, 191);
+            this.panel极简模式.Location = new System.Drawing.Point(64, 204);
             this.panel极简模式.Name = "panel极简模式";
-            this.panel极简模式.Size = new System.Drawing.Size(227, 35);
+            this.panel极简模式.Size = new System.Drawing.Size(227, 31);
             this.panel极简模式.TabIndex = 3;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(33, 13);
+            this.label18.Location = new System.Drawing.Point(29, 9);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(53, 12);
             this.label18.TabIndex = 0;
@@ -1040,9 +1038,9 @@
             this.panel10.Controls.Add(this.label9);
             this.panel10.Controls.Add(this.splitter2);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel10.Location = new System.Drawing.Point(3, 226);
+            this.panel10.Location = new System.Drawing.Point(3, 235);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(288, 93);
+            this.panel10.Size = new System.Drawing.Size(288, 96);
             this.panel10.TabIndex = 1;
             // 
             // label9
@@ -1061,13 +1059,14 @@
             this.splitter2.BackColor = System.Drawing.Color.DimGray;
             this.splitter2.Location = new System.Drawing.Point(0, 0);
             this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(61, 93);
+            this.splitter2.Size = new System.Drawing.Size(61, 96);
             this.splitter2.TabIndex = 0;
             this.splitter2.TabStop = false;
             // 
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.DimGray;
+            this.panel9.Controls.Add(this.checkBox31);
             this.panel9.Controls.Add(this.checkBox29);
             this.panel9.Controls.Add(this.checkBox27);
             this.panel9.Controls.Add(this.checkBox26);
@@ -1098,7 +1097,7 @@
             this.panel9.ForeColor = System.Drawing.Color.White;
             this.panel9.Location = new System.Drawing.Point(3, 3);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(288, 188);
+            this.panel9.Size = new System.Drawing.Size(288, 201);
             this.panel9.TabIndex = 0;
             // 
             // checkBox2
@@ -1162,7 +1161,7 @@
             this.buttonCleanAll.BackColor = System.Drawing.Color.DarkOliveGreen;
             this.buttonCleanAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCleanAll.ForeColor = System.Drawing.Color.White;
-            this.buttonCleanAll.Location = new System.Drawing.Point(196, 161);
+            this.buttonCleanAll.Location = new System.Drawing.Point(198, 172);
             this.buttonCleanAll.Name = "buttonCleanAll";
             this.buttonCleanAll.Size = new System.Drawing.Size(43, 23);
             this.buttonCleanAll.TabIndex = 14;
@@ -1175,7 +1174,7 @@
             this.buttonSelectAll.BackColor = System.Drawing.Color.IndianRed;
             this.buttonSelectAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSelectAll.ForeColor = System.Drawing.Color.Transparent;
-            this.buttonSelectAll.Location = new System.Drawing.Point(238, 161);
+            this.buttonSelectAll.Location = new System.Drawing.Point(241, 172);
             this.buttonSelectAll.Name = "buttonSelectAll";
             this.buttonSelectAll.Size = new System.Drawing.Size(44, 23);
             this.buttonSelectAll.TabIndex = 13;
@@ -1268,7 +1267,7 @@
             this.splitter1.BackColor = System.Drawing.Color.DarkGray;
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(61, 188);
+            this.splitter1.Size = new System.Drawing.Size(61, 201);
             this.splitter1.TabIndex = 0;
             this.splitter1.TabStop = false;
             // 
@@ -1278,9 +1277,9 @@
             this.tabPage3.Controls.Add(this.groupBox3);
             this.tabPage3.Controls.Add(this.groupBox2);
             this.tabPage3.Controls.Add(this.groupBox1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 21);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(294, 322);
+            this.tabPage3.Size = new System.Drawing.Size(294, 334);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "控制、验证及载入";
             // 
@@ -1294,7 +1293,7 @@
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(0, 114);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(294, 76);
+            this.groupBox3.Size = new System.Drawing.Size(294, 88);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "文段载入";
@@ -1309,7 +1308,7 @@
             this.panelTextIn.Enabled = false;
             this.panelTextIn.Location = new System.Drawing.Point(3, 17);
             this.panelTextIn.Name = "panelTextIn";
-            this.panelTextIn.Size = new System.Drawing.Size(167, 56);
+            this.panelTextIn.Size = new System.Drawing.Size(167, 68);
             this.panelTextIn.TabIndex = 4;
             // 
             // label11
@@ -1341,7 +1340,7 @@
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox2.Location = new System.Drawing.Point(0, 190);
+            this.groupBox2.Location = new System.Drawing.Point(0, 202);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(294, 132);
             this.groupBox2.TabIndex = 1;
@@ -1439,9 +1438,9 @@
             // 
             this.tabPage4.BackColor = System.Drawing.Color.DimGray;
             this.tabPage4.Controls.Add(this.tableLayoutPanel1);
-            this.tabPage4.Location = new System.Drawing.Point(4, 21);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(294, 322);
+            this.tabPage4.Size = new System.Drawing.Size(294, 334);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "高级功能";
             // 
@@ -1461,7 +1460,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(294, 322);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(294, 334);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // checkBox28
@@ -1516,6 +1515,32 @@
             this.panel12.Size = new System.Drawing.Size(302, 368);
             this.panel12.TabIndex = 13;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(3, -1);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(122, 21);
+            this.label10.TabIndex = 14;
+            this.label10.Text = "添雨跟打器设置";
+            // 
+            // newButton1
+            // 
+            this.newButton1.BackColor = System.Drawing.Color.Gray;
+            this.newButton1.ForeColor = System.Drawing.Color.White;
+            this.newButton1.Location = new System.Drawing.Point(228, 387);
+            this.newButton1.Name = "newButton1";
+            this.newButton1.Size = new System.Drawing.Size(74, 16);
+            this.newButton1.SS = System.Drawing.ContentAlignment.BottomCenter;
+            this.newButton1.TabIndex = 2;
+            this.newButton1.Text = "确认";
+            this.newButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.newButton1.进入背景色 = System.Drawing.Color.Red;
+            this.newButton1.默认背景色 = System.Drawing.Color.Gray;
+            this.newButton1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // newButton2
             // 
             this.newButton2.BackColor = System.Drawing.Color.Gray;
@@ -1531,24 +1556,14 @@
             this.newButton2.默认背景色 = System.Drawing.Color.Gray;
             this.newButton2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(3, -1);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(122, 21);
-            this.label10.TabIndex = 14;
-            this.label10.Text = "添雨跟打器设置";
-            // 
             // TSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(315, 393);
+            this.ClientSize = new System.Drawing.Size(312, 409);
+            this.Controls.Add(this.newButton1);
             this.Controls.Add(this.newButton2);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.panel12);
@@ -1567,7 +1582,6 @@
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TSetup_MouseDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel4.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
@@ -1727,5 +1741,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox tbxName;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.CheckBox checkBox31;
     }
 }

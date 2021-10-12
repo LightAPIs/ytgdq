@@ -547,6 +547,7 @@ namespace WindowsFormsApplication2
                 case 'T': return "回车[T]";
                 case 'U': return "选重[U]";
                 case 'V': return "键准[V]";
+                case 'W': return "词率[W]";
                 default: return "";
             }
         }
@@ -575,6 +576,7 @@ namespace WindowsFormsApplication2
                 case 'T': return " 回车";
                 case 'U': return " 选重";
                 case 'V': return " 键准";
+                case 'W': return " 打词率0.00% ";
                 default: return "[错误] ";
             }
         }
@@ -770,22 +772,22 @@ namespace WindowsFormsApplication2
 
         #region 各项顺利控制
         //速度
-        private void checkBoxSpeed_Click(object sender, EventArgs e)
+        private void checkBoxSpeed_CheckedChanged(object sender, EventArgs e)
         {
             Change(checkBoxSpeed);
         }
 
-        private void checkBox4_Click(object sender, EventArgs e)
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
             Change(checkBox4);
         }
 
-        private void checkBox5_Click(object sender, EventArgs e)
+        private void checkBox5_CheckedChanged(object sender, EventArgs e)
         {
             Change(checkBox5);
         }
 
-        private void checkBox6_Click(object sender, EventArgs e)
+        private void checkBox6_CheckedChanged(object sender, EventArgs e)
         {
             Change(checkBox6);
         }
@@ -876,9 +878,14 @@ namespace WindowsFormsApplication2
         }
 
 
-        private void checkBox29_Click(object sender, EventArgs e)
+        private void checkBox29_CheckedChanged(object sender, EventArgs e)
         {
             Change(checkBox29);
+        }
+
+        private void checkBox31_CheckedChanged(object sender, EventArgs e)
+        {
+            Change(checkBox31);
         }
 
         private void Change(CheckBox C) {

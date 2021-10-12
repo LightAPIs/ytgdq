@@ -3707,7 +3707,7 @@ namespace WindowsFormsApplication2
 
             if (!isShowAll)
             {
-                if (tW <= width / 2)
+                if (tW <= width && tH <= height)
                 {
                     int p11H = this.splitContainer1.Panel1.ClientSize.Height;
                     int p31H = this.splitContainer3.Panel1.ClientSize.Height;
@@ -5106,6 +5106,11 @@ namespace WindowsFormsApplication2
         }
 
         private bool isShowAll = false;
+        /// <summary>
+        /// 成绩数据表格双击处理方法
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
             if (this.splitContainer3.Panel1Collapsed)

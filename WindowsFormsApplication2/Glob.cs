@@ -29,7 +29,14 @@ namespace WindowsFormsApplication2
         public static List<List<string>> BmTips = new List<List<string>>();
 
         //控制类
-        public static bool notShowjs = false;//显示
+        /// <summary>
+        /// 不显示即时数据
+        /// </summary>
+        public static bool notShowjs = false;
+        /// <summary>
+        /// 不自动复制成绩
+        /// </summary>
+        public static bool notAutoCopy = false;
         public static bool getStyle = false;//默认鼠标
 
         /// <summary>

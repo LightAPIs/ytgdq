@@ -505,6 +505,8 @@ namespace WindowsFormsApplication2
 
             //不显示即时
             Glob.notShowjs = bool.Parse(IniRead("控制", "不显示即时", "False"));
+            // 不自动复制
+            Glob.notAutoCopy = bool.Parse(IniRead("控制", "不自动复制", "False"));
             //速度限制
             Glob.速度限制 = double.Parse(IniRead("发送", "速度限制", "0.00"));
             Glob.是否速度限制 = bool.Parse(IniRead("发送", "是否速度限制", "False"));
@@ -2046,9 +2048,12 @@ namespace WindowsFormsApplication2
                         }
                         catch { }
                         #region 自动将统计结果复制到剪贴板
-                        //! 待后续增加设置项调整为可选操作
-                        Clipboard.Clear();
-                        ClipboardHandler.SetTextToClipboard(TotalSend);
+                        if (!Glob.notAutoCopy)
+                        {
+                            //* 已设置为可选操作
+                            Clipboard.Clear();
+                            ClipboardHandler.SetTextToClipboard(TotalSend);
+                        }
                         #endregion
                         if (NewSendText.发文状态)
                         {

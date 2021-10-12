@@ -138,6 +138,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.newButton1 = new WindowsFormsApplication2.NewButton();
             this.newButton2 = new WindowsFormsApplication2.NewButton();
+            this.checkBox32 = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -1450,8 +1451,9 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 183F));
             this.tableLayoutPanel1.Controls.Add(this.checkBox28, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.numericUpDown1, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.checkBox30, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.checkBox30, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.numericUpDown1, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.checkBox32, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -1481,7 +1483,7 @@
             this.numericUpDown1.DecimalPlaces = 2;
             this.numericUpDown1.Enabled = false;
             this.numericUpDown1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.numericUpDown1.Location = new System.Drawing.Point(114, 24);
+            this.numericUpDown1.Location = new System.Drawing.Point(114, 47);
             this.numericUpDown1.Margin = new System.Windows.Forms.Padding(3, 1, 3, 3);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             600,
@@ -1496,7 +1498,7 @@
             // 
             this.checkBox30.AutoSize = true;
             this.checkBox30.ForeColor = System.Drawing.Color.White;
-            this.checkBox30.Location = new System.Drawing.Point(3, 27);
+            this.checkBox30.Location = new System.Drawing.Point(3, 50);
             this.checkBox30.Margin = new System.Windows.Forms.Padding(3, 4, 3, 3);
             this.checkBox30.Name = "checkBox30";
             this.checkBox30.Size = new System.Drawing.Size(96, 16);
@@ -1555,6 +1557,18 @@
             this.newButton2.进入背景色 = System.Drawing.Color.Green;
             this.newButton2.默认背景色 = System.Drawing.Color.Gray;
             this.newButton2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // checkBox32
+            // 
+            this.checkBox32.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.checkBox32, 2);
+            this.checkBox32.ForeColor = System.Drawing.Color.White;
+            this.checkBox32.Location = new System.Drawing.Point(3, 26);
+            this.checkBox32.Name = "checkBox32";
+            this.checkBox32.Size = new System.Drawing.Size(240, 16);
+            this.checkBox32.TabIndex = 4;
+            this.checkBox32.Text = "跟打结束后，不自动将成绩复制到剪贴板";
+            this.checkBox32.UseVisualStyleBackColor = true;
             // 
             // TSetup
             // 
@@ -1742,5 +1756,6 @@
         private System.Windows.Forms.TextBox tbxName;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.CheckBox checkBox31;
+        private System.Windows.Forms.CheckBox checkBox32;
     }
 }

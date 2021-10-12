@@ -23,6 +23,11 @@ namespace WindowsFormsApplication2
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 设置页面的读取配置方法
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Setup_Load(object sender, EventArgs e)
         {
             ShowInputLan();//显示所有的安装的输入法
@@ -101,6 +106,7 @@ namespace WindowsFormsApplication2
             this.checkBox23.Checked = Glob.simpleMoudle;
             this.textBox4.Text = Glob.simpleSplite;
             this.checkBox28.Checked = bool.Parse(IniRead("控制", "不显示即时", "False"));
+            this.checkBox32.Checked = bool.Parse(IniRead("控制", "不自动复制", "False"));
             this.checkBox30.Checked = bool.Parse(IniRead("发送", "是否速度限制", "False"));
             this.numericUpDown1.Value =  decimal.Parse(IniRead("发送", "速度限制", "0.00"));
             this.tbxName.Text = IniRead("发送", "昵称", this.tbxName.Text);
@@ -244,6 +250,17 @@ namespace WindowsFormsApplication2
             else {
                 Setupini.IniWriteValue("控制", "不显示即时", "False");
                 Glob.notShowjs = false;
+            }
+
+            if (this.checkBox32.Checked)
+            {
+                Setupini.IniWriteValue("控制", "不自动复制", "True");
+                Glob.notAutoCopy = true;
+            }
+            else
+            {
+                Setupini.IniWriteValue("控制", "不自动复制", "False");
+                Glob.notAutoCopy = false;
             }
 
             if (this.checkBox1.Checked)

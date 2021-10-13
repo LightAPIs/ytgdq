@@ -1055,9 +1055,11 @@ namespace WindowsFormsApplication2
             if (发文状态窗口 != null)
             {
                 if (发文状态窗口.IsDisposed)
+                {
                     发文状态窗口 = new SendTextStatic(this.Location, this);
-                MagneticMagnager mm = new MagneticMagnager(this, 发文状态窗口, MagneticPosition.Left);
-                发文状态窗口.Show(this);
+                    MagneticMagnager mm = new MagneticMagnager(this, 发文状态窗口, MagneticPosition.Left);
+                    发文状态窗口.Show(this);
+                }
             }
             else
             {

@@ -4832,6 +4832,10 @@ namespace WindowsFormsApplication2
                 NewSendText.已发段数 = 0;
                 NewSendText.已发字数 = 0;
                 NewSendText.标记 = 0;
+                if (发文状态窗口 != null && !发文状态窗口.IsDisposed)
+                {
+                    发文状态窗口.Close();
+                }
             }
         }
         #endregion

@@ -116,6 +116,9 @@ namespace WindowsFormsApplication2
         {
             NewSendText.发文状态 = false;
             if (NewSendText.是否周期) frm.timerTSend.Stop();
+            NewSendText.已发段数 = 0;
+            NewSendText.已发字数 = 0;
+            NewSendText.标记 = 0;
             this.Close();
         }
 

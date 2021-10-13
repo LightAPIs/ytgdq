@@ -3944,13 +3944,18 @@ namespace WindowsFormsApplication2
                         if (发文状态窗口 != null)
                         {
                             if (发文状态窗口.IsDisposed)
+                            {
                                 发文状态窗口 = new SendTextStatic(this.Location, this);
+                                MagneticMagnager mm = new MagneticMagnager(this, 发文状态窗口, MagneticPosition.Left);
+                            }
                             if (!发文状态窗口.Visible)
+                            {
                                 发文状态窗口.Show(this);
+                            }
                             this.Focus();
                         }
                         else
-                        {
+                        { //? 从逻辑上来说似乎是触发不到这个位置的
                             发文状态窗口 = new SendTextStatic(this.Location, this);
                             发文状态窗口.Show(this);
                             this.Focus();

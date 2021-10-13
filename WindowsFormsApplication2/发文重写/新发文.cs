@@ -604,6 +604,7 @@ namespace WindowsFormsApplication2
             NewSendText.是否自动 = cbxAuto.Checked;
             NewSendText.文章来源 = tabControl1.SelectedIndex;
             NewSendText.发文状态 = true;
+            NewSendText.已发字数 = 0;
             if (NewSendText.是否周期)
             {
                 frm.SendTTest();

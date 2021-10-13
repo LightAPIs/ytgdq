@@ -1936,7 +1936,7 @@ namespace WindowsFormsApplication2
                             if (speed_Plus > 0) dataGridView1.Rows[RowCount].Cells[3].Style.ForeColor = Color.FromArgb(253, 108, 108);
                             if (jj_Plus > 0) dataGridView1.Rows[RowCount].Cells[4].Style.ForeColor = Color.FromArgb(255, 129, 233);
                             if (mc_Plus < 0) dataGridView1.Rows[RowCount].Cells[5].Style.ForeColor = Color.FromArgb(124, 222, 255);
-                            for (int i = 0; i < 20; i++)
+                            for (int i = 0; i < 21; i++)
                             {
                                 if (i != 3 && i != 4 && i != 5)
                                 {

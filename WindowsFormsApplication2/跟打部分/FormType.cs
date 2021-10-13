@@ -299,7 +299,6 @@ namespace WindowsFormsApplication2
             this.TSMI3.ForeColor = FC;
             this.TSMI4.ForeColor = FC;
             this.TSMI5.ForeColor = FC;
-            this.TSMI6.ForeColor = FC;
 
             //击键评定
             this.labelJiCheck.ForeColor = FC;
@@ -543,7 +542,7 @@ namespace WindowsFormsApplication2
             this.PicSend.Checked = bool.Parse(IniRead("发送", "图片", "false"));
             this.比赛时自动打开寻找测速点ToolStripMenuItem.Checked = bool.Parse(IniRead("程序控制", "自动打开寻找", "False"));
             LblHaveTypingChange();
-            捐助ToolStripMenuItem.Visible = !(Glob.TextRecLenAll > 5000);
+
             //if (Glob.TextRecLenAll == 0)
             //{
             //    Thread tr = new Thread(new ThreadStart(dnote));
@@ -551,11 +550,6 @@ namespace WindowsFormsApplication2
             //}
         }
 
-        //private void dnote()
-        //{
-        //    捐助作者 d捐助作者 = new 捐助作者();
-        //    d捐助作者.ShowDialog();
-        //}
         /// <summary>
         /// 已跟打数据的改变
         /// </summary>
@@ -4005,7 +3999,7 @@ namespace WindowsFormsApplication2
 
         private void 关于添雨跟打器ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AboutBox about = new AboutBox();
+            About about = new About();
             about.ShowDialog(this);
         }
 
@@ -4052,11 +4046,6 @@ namespace WindowsFormsApplication2
                     sendtext(sb.ToString());
                 }
             }
-        }
-
-        private void 复制官方QQ群号ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ClipboardHandler.SetTextToClipboard("129842316");
         }
 
         #endregion
@@ -4180,14 +4169,14 @@ namespace WindowsFormsApplication2
 
 
         #region 检查更新
-        private void 检查更新情况ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void 打开下载地址ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://taliove.ys168.com");
+            System.Diagnostics.Process.Start("https://github.com/LightAPIs/tygdq/releases/latest");
         }
 
         private void 访问官方网站ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.taliove.com");
+            System.Diagnostics.Process.Start("https://github.com/LightAPIs/tygdq");
         }
         #endregion
 
@@ -5925,22 +5914,12 @@ namespace WindowsFormsApplication2
 
         private void 检查更新ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var upgrade = new UpgradePro();
-            upgrade.ShowDialog();
+            //! 待处理
+            return;
+            //var upgrade = new UpgradePro();
+            //upgrade.ShowDialog();
         }
 
         #endregion
-
-        private void 捐助作者ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            捐助作者 d捐助作者 = new 捐助作者();
-            d捐助作者.ShowDialog();
-        }
-
-        private void 捐助ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            捐助作者 d捐助作者 = new 捐助作者();
-            d捐助作者.ShowDialog();
-        }
     }
 }

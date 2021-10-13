@@ -94,12 +94,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutBox.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AboutBox.Designer.cs">
-      <DependentUpon>AboutBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="ControlExtensions.cs" />
     <Compile Include="FormTheme.cs">
       <SubType>Form</SubType>
@@ -129,11 +123,11 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Theme.cs" />
-    <Compile Include="捐助作者.cs">
+    <Compile Include="About.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="捐助作者.Designer.cs">
-      <DependentUpon>捐助作者.cs</DependentUpon>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="检查更新\UpgradeModel.cs" />
     <Compile Include="检查更新\UpgradePro.cs">
@@ -235,9 +229,6 @@
       <DependentUpon>精五成绩生成.cs</DependentUpon>
     </Compile>
     <Compile Include="跟打部分\图片成绩设计\PicGoal_Class.cs" />
-    <EmbeddedResource Include="AboutBox.resx">
-      <DependentUpon>AboutBox.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormTheme.resx">
       <DependentUpon>FormTheme.cs</DependentUpon>
     </EmbeddedResource>
@@ -253,8 +244,8 @@
     <EmbeddedResource Include="发文重写\新发文.resx">
       <DependentUpon>新发文.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="捐助作者.resx">
-      <DependentUpon>捐助作者.cs</DependentUpon>
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="检查更新\UpgradePro.resx">
       <DependentUpon>UpgradePro.cs</DependentUpon>

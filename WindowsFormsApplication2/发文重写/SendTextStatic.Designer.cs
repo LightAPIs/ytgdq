@@ -145,7 +145,7 @@
             this.btnChangePreCout.Size = new System.Drawing.Size(24, 19);
             this.btnChangePreCout.TabIndex = 30;
             this.btnChangePreCout.Text = "修";
-            this.toolTip1.SetToolTip(this.btnChangePreCout, "修改当前的段号");
+            this.toolTip1.SetToolTip(this.btnChangePreCout, "修改下一段的段号");
             this.btnChangePreCout.UseVisualStyleBackColor = true;
             this.btnChangePreCout.Click += new System.EventHandler(this.btnChangePreCout_Click);
             // 

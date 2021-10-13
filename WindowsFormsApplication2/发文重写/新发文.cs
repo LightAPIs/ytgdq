@@ -595,6 +595,7 @@ namespace WindowsFormsApplication2
                 NewSendText.字数 = int.Parse(tbxSendCount.Text);
                 NewSendText.标记 = int.Parse(tbxSendStart.Text);
                 NewSendText.起始段号 = int.Parse(this.tbxQisduan.Text);
+                Glob.Pre_Cout = NewSendText.起始段号.ToString();
             }
             catch { MessageBox.Show("请检查字数、标记或者起始段号是否设置错误？"); return; }
             NewSendText.是否周期 = checkBox1.Checked;
@@ -611,7 +612,7 @@ namespace WindowsFormsApplication2
             {
                 frm.SendAOnce();
             }
-            frm.发文状态ToolStripMenuItem.PerformClick();
+            frm.发文状态ToolStripMenuItem.PerformClick(); // 模拟点击"发文"→"发文状态"菜单项，用于显示发文状态窗口
             this.Close();
         }
         #endregion

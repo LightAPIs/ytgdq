@@ -15,7 +15,7 @@ namespace WindowsFormsApplication2
         private Point MainPos;
         private Form1 frm;
         private int AllIniCount = 0;
-        public SendTextStatic(Point pos,Form1 frm1)
+        public SendTextStatic(Point pos, Form1 frm1)
         {
             MainPos = pos;
             frm = frm1;
@@ -40,7 +40,8 @@ namespace WindowsFormsApplication2
             tbxSendC.Text = NewSendText.字数.ToString();
             lblTotalCount.Text = NewSendText.文章全文.Length.ToString();
             tbxNowStart.Text = NewSendText.标记.ToString();//当前标记
-            tbxNowStartCount.Text = NewSendText.起始段号.ToString();
+            //tbxNowStartCount.Text = NewSendText.起始段号.ToString();
+            tbxNowStartCount.Text = Glob.Pre_Cout; // 当前段号
             this.cbxSingleTest.Checked = NewSendText.是否独练;
             if (NewSendText.是否周期)
             {

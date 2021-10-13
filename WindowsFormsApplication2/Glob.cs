@@ -40,9 +40,9 @@ namespace WindowsFormsApplication2
         public static bool getStyle = false;//默认鼠标
 
         /// <summary>
-        /// 当前段
+        /// 当前段号
         /// </summary>
-        public static string Pre_Cout = "1225";//当前段号
+        public static string Pre_Cout = "1225";
         
         public static int Time = 0;
         public static string[,] GetWin = new string[40, 2];//获取的窗口

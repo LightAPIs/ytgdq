@@ -1028,6 +1028,7 @@ namespace WindowsFormsApplication2
 
         private void 发文状态后处理()
         {
+            // MessageBox.Show("调用了发文状态后处理");
             if (发文状态窗口 != null)
             {
                 if (!发文状态窗口.IsDisposed)
@@ -1051,7 +1052,9 @@ namespace WindowsFormsApplication2
         private SendTextStatic 发文状态窗口;
         private void 发文状态ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //! 注：新发文同样是采用该事件来显示发文状态窗口
             if (!NewSendText.发文状态) return;
+            // MessageBox.Show("起始段号：" + NewSendText.起始段号.ToString() + "\n Glob.Pre_Cout：" + Glob.Pre_Cout);
             if (发文状态窗口 != null)
             {
                 if (发文状态窗口.IsDisposed)

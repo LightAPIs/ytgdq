@@ -1165,6 +1165,7 @@ namespace WindowsFormsApplication2
                 Sw = 0; //控制
                 sw = 0;
                 Glob.aTypeWords = 0;//打词
+                Glob.aTypeWordsCount = 0;
                 sTime = new DateTime();
                 startTime = new DateTime();
                 Glob.MaxSpeed = 0;
@@ -1449,9 +1450,14 @@ namespace WindowsFormsApplication2
                                     else
                                     {
                                         Glob.aTypeWords++;
+                                        Glob.aTypeWordsCount += iP;
                                     } //排除符号
                                 }
-                                Glob.aTypeWords++;
+                                else
+                                {
+                                    Glob.aTypeWords++;
+                                    Glob.aTypeWordsCount += iP;
+                                }
                             } //打词记录
                         }
                         else
@@ -1701,7 +1707,7 @@ namespace WindowsFormsApplication2
                         // Glob.TextHg_ = (double)Glob.TextHgAll * 100 / Glob.TextLenAll;   // 这计算的是总回改率
                         Glob.TextHg_ = (double)Glob.TextHg * 100 / (Glob.TextLen + Glob.TextHg);
                         // 打词率
-                        Glob.TextDc_ = (double)Glob.aTypeWords * 100 / Glob.TextLen;
+                        Glob.TextDc_ = (double)Glob.aTypeWordsCount * 100 / (Glob.TextLen + Glob.TextHg);
                         //停留
                         //MessageBox.Show(stayHighTime[0,0].ToString());
 

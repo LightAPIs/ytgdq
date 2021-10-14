@@ -128,7 +128,14 @@ namespace WindowsFormsApplication2
         public static string InstraSrf = "";//输入法签名
         public static string InstraSrf_ = "";//是否启用了输入法签名
 
-        public static int aTypeWords = 0;//打词
+        /// <summary>
+        /// 打词次数
+        /// </summary>
+        public static int aTypeWords = 0;
+        /// <summary>
+        /// 打词的字数量
+        /// </summary>
+        public static int aTypeWordsCount = 0;
 
         public static Font font_1; //对照区字体大小
         public static Font font_2; //跟打区字体大小

@@ -7,11 +7,11 @@ using System.Resources;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("添雨跟打器")]
-[assembly: AssemblyDescription("taliove@vip.qq.com")]
+[assembly: AssemblyDescription("new4wang@outlook.com")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("添雨个人工作室")]
+[assembly: AssemblyCompany("Light")]
 [assembly: AssemblyProduct("添雨跟打器")]
-[assembly: AssemblyCopyright("Copyright ©  2012-2018")]
+[assembly: AssemblyCopyright("Copyright © 2012-2021")]
 [assembly: AssemblyTrademark("添雨")]
 [assembly: AssemblyCulture("")]
 

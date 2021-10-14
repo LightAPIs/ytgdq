@@ -1572,8 +1572,20 @@ namespace WindowsFormsApplication2
                 {
                     for (int i = HisSave[0]; i < HisSave[1]; i++)
                     {
-                        //末尾最后一次输入的字符有错字时
+                        // 末尾最后三个输入的字符有错字时
                         if (TextAlticle[i] != TextType[i])
+                        {
+                            Glob.LastInput = 1;
+                            break;
+                        }
+
+                        if (i >= 1 && (TextAlticle[i - 1] != TextType[i - 1]))
+                        {
+                            Glob.LastInput = 1;
+                            break;
+                        }
+
+                        if (i >= 2 && (TextAlticle[i - 2] != TextType[i - 2]))
                         {
                             Glob.LastInput = 1;
                             break;

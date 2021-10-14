@@ -16,8 +16,6 @@ namespace WindowsFormsApplication2
 {
     public partial class 新发文 : Form
     {
-        Assembly _assembly;
-        StreamReader _textStreamReader;
         Form1 frm;
         public 新发文(Form1 frm1)
         {
@@ -94,7 +92,7 @@ namespace WindowsFormsApplication2
                 case 4: rtbInfo.Text = "选【为人民服务】现代文一篇"; break;
                 case 5: rtbInfo.Text = "选【岳阳楼记】古文一篇"; break;
                 case 6: rtbInfo.Text = "前1500字整体"; break;
-                default: rtbInfo.Text = "有需求内置文章的跟友，请联系作者：taliove@vip.qq.com"; break;
+                default: rtbInfo.Text = "有需求内置文章的跟友，请联系作者"; break;
             }
             NewSendText.文章地址 = index.ToString();
             //else {
@@ -604,7 +602,6 @@ namespace WindowsFormsApplication2
             NewSendText.是否自动 = cbxAuto.Checked;
             NewSendText.文章来源 = tabControl1.SelectedIndex;
             NewSendText.发文状态 = true;
-            NewSendText.已发字数 = 0;
             if (NewSendText.是否周期)
             {
                 frm.SendTTest();
@@ -859,13 +856,8 @@ namespace WindowsFormsApplication2
                 switch (getAll[1])
                 {
                     case "0":
-                        _assembly = Assembly.GetExecutingAssembly();
-                        _textStreamReader = new StreamReader(_assembly.GetManifestResourceStream("WindowsFormsApplication2.Resources." + this.lbxTextList.Items[int.Parse(getAll[2])].ToString() + ".txt"));
-                        if (_textStreamReader.Peek() != -1)
-                        {
-                            GetText = _textStreamReader.ReadLine(); //文
-                            ComText(GetText); //确认文章信息
-                        }
+                        GetText = TyDll.GetResources.GetText("Resources.TXT." + this.lbxTextList.Items[int.Parse(getAll[2])].ToString() + ".txt");
+                        ComText(GetText);
                         break;//自带文章
                     case "1":
                         string path = getAll[2];
@@ -891,9 +883,10 @@ namespace WindowsFormsApplication2
                 if (this.checkBox1.Checked) nudSendTimer.Value = int.Parse(getAll[10]);
                 this.checkBox2.Checked = bool.Parse(getAll[11]);
                 //隐式信息写入
-                NewSendText.起始段号 = int.Parse(getAll[7]);
+                NewSendText.起始段号 = int.Parse(getAll[7]) + 1;
+                this.tbxQisduan.Text = NewSendText.起始段号.ToString();
                 NewSendText.文章来源 = int.Parse(getAll[1]);
-                NewSendText.已发段数 = int.Parse(getAll[6]);
+                NewSendText.已发字数 = int.Parse(getAll[6]);
                 NewSendText.当前配置序列 = getAll[0];
             }
         }

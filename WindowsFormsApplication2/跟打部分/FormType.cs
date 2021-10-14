@@ -1699,7 +1699,7 @@ namespace WindowsFormsApplication2
                         }
                         // 回改率
                         // Glob.TextHg_ = (double)Glob.TextHgAll * 100 / Glob.TextLenAll;   // 这计算的是总回改率
-                        Glob.TextHg_ = (double)Glob.TextHg * 100 / Glob.TextLen;
+                        Glob.TextHg_ = (double)Glob.TextHg * 100 / (Glob.TextLen + Glob.TextHg);
                         // 打词率
                         Glob.TextDc_ = (double)Glob.aTypeWords * 100 / Glob.TextLen;
                         //停留

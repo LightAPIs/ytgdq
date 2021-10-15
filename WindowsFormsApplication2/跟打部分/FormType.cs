@@ -4187,9 +4187,16 @@ namespace WindowsFormsApplication2
 
 
         #region 检查更新
+
+        private void 检查更新ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var upgrade = new UpgradePro();
+            upgrade.ShowDialog();
+        }
+
         private void 打开下载地址ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/LightAPIs/tygdq/releases/latest");
+            System.Diagnostics.Process.Start("http://dogegg.ys168.com/");
         }
 
         private void 访问官方网站ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -5926,18 +5933,6 @@ namespace WindowsFormsApplication2
             WindowsFormsApplication2.跟打报告.TypeAnalysis tya = new 跟打报告.TypeAnalysis();
             tya.ShowDialog();
         }
-        #endregion
-
-        #region 检查更新
-
-        private void 检查更新ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //! 待处理
-            return;
-            //var upgrade = new UpgradePro();
-            //upgrade.ShowDialog();
-        }
-
         #endregion
     }
 }

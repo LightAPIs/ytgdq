@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace WindowsFormsApplication2.检查更新
 {
@@ -12,44 +13,33 @@ namespace WindowsFormsApplication2.检查更新
     {
         #region 事件
 
-        public delegate void hasUp(object sender,bool b);
+        public delegate void hasUp(object sender, bool b);
 
         public event hasUp HasUpdated;
 
         protected virtual void OnHasUpdated(bool b)
         {
             hasUp handler = HasUpdated;
-            if (handler != null) handler(this,b);
-            
+            if (handler != null) handler(this, b);
+
         }
-        
+
         #endregion
         #region 属性
 
-        private Regex _getInfo = new Regex(@"\[taliove\].+\[\/taliove\]");
-        private string _url = "http://www.taliove.com/gdq-download/updateinfo/";
-        public string 获取 { set; get; }
-        public string 标题 { set; get; }
-        private Regex _getTitle = new Regex(@"(?<=\[title\]).+(?=\[\/title\])");
+        private string _url = "https://cdn.jsdelivr.net/gh/LightAPIs/tygdq@main/updates.json";
+        public List<VersionObject> VersionList { get; set; }
+        public List<VersionObject> NewVersionList { get; set; }
 
-        public string 版本 { get; set; }
-        private Regex _getVersion = new Regex(@"(?<=\[version\])\d+.\d+.\d+(?=.*?\[\/version\])");
-
-        public string 说明 { set; get; }
-        private Regex _getInstra = new Regex(@"(?<=\[info\]).+(?=\[\/info\])");
-
-        public DateTime 日期 { set; get; }
-        private Regex _getDate = new Regex(@"(?<=\[date\]).+(?=\[\/date\])");
-
-        public string 更新内容 { get; set; }
-        private Regex _getContext = new Regex(@"(?<=\[content\]).+(?=\[\/content\])");
-
-        public string 其它信息 { set; get; }
-        private Regex _getOther = new Regex(@"(?<=\[detail\]).+(?=\[\/detail\])");
+        public string VersionValue { get; set; }
+        public string DateValue { get; set; }
+        public string InstraValue { get; set; }
+        public string ContentValue { get; set; }
+        public string OtherValue { get; set; }
 
         public List<int> Compare = new List<int>();
-        public bool 是否有更新 = false;
-        public bool 是否有异常 = false;
+        public bool IsUpdate = false;
+        public bool IsError = false;
 
         #endregion
 
@@ -60,12 +50,34 @@ namespace WindowsFormsApplication2.检查更新
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.AppendLine(!string.IsNullOrEmpty(标题) ? 标题 : "");
-            sb.AppendLine(版本);
-            sb.AppendLine("更新时间：" + 日期.ToShortDateString());
-            sb.AppendLine(!string.IsNullOrEmpty(说明) ? "更新说明：\n" + 说明 :"");
-            sb.AppendLine("更新内容：\n" + 更新内容);
-            sb.AppendLine("其它说明：\n" + 其它信息);
+            sb.AppendLine("最新版本：" + VersionValue + " (" + DateValue + ")");
+            if (!string.IsNullOrEmpty(InstraValue)) {
+                sb.AppendLine("更新说明：\n" + InstraValue);
+            }
+            sb.AppendLine("更新内容：\n" + ContentValue);
+            if (!string.IsNullOrEmpty(OtherValue))
+            {
+                sb.AppendLine("其它信息：\n" + OtherValue);
+            }
+            sb.AppendLine("");
+
+            if (NewVersionList.Count > 1)
+            {
+                for (int i = 1; i < NewVersionList.Count; i++)
+                {
+                    sb.AppendLine("过往版本：" + NewVersionList[i].Version + " (" + NewVersionList[i].Date + ")");
+                    if (!string.IsNullOrEmpty(NewVersionList[i].Instra))
+                    {
+                        sb.AppendLine("更新说明：\n" + NewVersionList[i].Instra);
+                    }
+                    sb.AppendLine("更新内容：\n" + NewVersionList[i].Content);
+                    if (!string.IsNullOrEmpty(NewVersionList[i].Other))
+                    {
+                        sb.AppendLine("其它信息：\n" + NewVersionList[i].Other);
+                    }
+                    sb.AppendLine("");
+                }
+            }
             return sb.ToString();
         }
 
@@ -75,7 +87,7 @@ namespace WindowsFormsApplication2.检查更新
         public void GetWebRequest()
         {
             Compare.Clear();
-            是否有异常 = false;
+            IsError = false;
             Uri uri = new Uri(_url);
             WebRequest myReq = WebRequest.Create(uri);
             try
@@ -83,44 +95,60 @@ namespace WindowsFormsApplication2.检查更新
                 WebResponse result = myReq.GetResponse();
                 Stream receviceStream = result.GetResponseStream();
                 StreamReader readerOfStream = new StreamReader(receviceStream, System.Text.Encoding.UTF8);
-                string strHTML = readerOfStream.ReadToEnd();
+                string strJSON = readerOfStream.ReadToEnd();
                 readerOfStream.Close();
                 receviceStream.Close();
                 result.Close();
-                strHTML = strHTML.Replace("&lt;", "<").Replace("&gt;",">");
-                获取 = _getInfo.Match(strHTML).ToString();
-                版本 = _getVersion.Match(获取).ToString();
-                //对版本进行判断
-                var LocalVerion = Glob.VerInstance;
-                if (CompareVer(LocalVerion, 版本))
+
+                VersionList = JsonConvert.DeserializeObject<List<VersionObject>>(strJSON);
+
+                var localVersion = Glob.VerInstance;
+                VersionValue = localVersion;
+                DateValue = "";
+                InstraValue = "";
+                ContentValue = "";
+                OtherValue = "";
+                NewVersionList = new List<VersionObject> ();
+                IsUpdate = false;
+                foreach (VersionObject vo in VersionList)
                 {
-                    是否有更新 = true;
-                    标题 = _getTitle.Match(获取).ToString();
-                    说明 = _getInstra.Match(获取).ToString().Replace('|', '\n');
-                    try
+                    // 对版本进行判断
+                    if (CompareVer(localVersion, vo.Version))
                     {
-                        日期 = Convert.ToDateTime(_getDate.Match(获取).ToString());
+                        IsUpdate = true;
+                        NewVersionList.Add(vo);
                     }
-                    catch
-                    {
-                        日期 = DateTime.Now;
-                    }
-                    更新内容 = _getContext.Match(获取).ToString().Replace('|', '\n');
-                    其它信息 = _getOther.Match(获取).ToString().Replace('|','\n');
                 }
-                else
+
+                if (NewVersionList.Count > 0)
                 {
-                    是否有更新 = false;
+                    NewVersionList.Sort(delegate (VersionObject x, VersionObject y)
+                    {
+                        if (CompareVer(x.Version, y.Version))
+                        {
+                            return 1;
+                        }
+                        else
+                        {
+                            return -1;
+                        }
+                    });
+
+                    VersionValue = NewVersionList[0].Version;
+                    DateValue = NewVersionList[0].Date;
+                    InstraValue = NewVersionList[0].Instra;
+                    ContentValue = NewVersionList[0].Content;
+                    OtherValue = NewVersionList[0].Other;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                是否有异常 = true;
-                是否有更新 = false;
+                IsError = true;
+                IsUpdate = false;
             }
             finally
             {
-                OnHasUpdated(是否有更新);
+                OnHasUpdated(IsUpdate);
             }
         }
 

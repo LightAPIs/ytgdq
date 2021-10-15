@@ -38,7 +38,7 @@
             // btnCheckUpgrade
             // 
             this.btnCheckUpgrade.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCheckUpgrade.Location = new System.Drawing.Point(11, 289);
+            this.btnCheckUpgrade.Location = new System.Drawing.Point(11, 293);
             this.btnCheckUpgrade.Name = "btnCheckUpgrade";
             this.btnCheckUpgrade.Size = new System.Drawing.Size(170, 73);
             this.btnCheckUpgrade.TabIndex = 0;
@@ -54,7 +54,7 @@
             this.panel1.Controls.Add(this.rtbInfo);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(303, 271);
+            this.panel1.Size = new System.Drawing.Size(303, 275);
             this.panel1.TabIndex = 1;
             // 
             // rtbInfo
@@ -66,7 +66,7 @@
             this.rtbInfo.Location = new System.Drawing.Point(0, 0);
             this.rtbInfo.Name = "rtbInfo";
             this.rtbInfo.ReadOnly = true;
-            this.rtbInfo.Size = new System.Drawing.Size(303, 271);
+            this.rtbInfo.Size = new System.Drawing.Size(303, 275);
             this.rtbInfo.TabIndex = 0;
             this.rtbInfo.Text = "";
             this.rtbInfo.Visible = false;
@@ -76,7 +76,7 @@
             // 
             this.btnSeeContext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSeeContext.Enabled = false;
-            this.btnSeeContext.Location = new System.Drawing.Point(187, 289);
+            this.btnSeeContext.Location = new System.Drawing.Point(187, 293);
             this.btnSeeContext.Name = "btnSeeContext";
             this.btnSeeContext.Size = new System.Drawing.Size(123, 73);
             this.btnSeeContext.TabIndex = 2;
@@ -88,7 +88,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(327, 374);
+            this.ClientSize = new System.Drawing.Size(327, 378);
             this.Controls.Add(this.btnSeeContext);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnCheckUpgrade);

@@ -76,6 +76,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -136,6 +140,7 @@
     <Compile Include="检查更新\UpgradePro.Designer.cs">
       <DependentUpon>UpgradePro.cs</DependentUpon>
     </Compile>
+    <Compile Include="检查更新\VersionObject.cs" />
     <Compile Include="编码提示\BmAll.cs" />
     <Compile Include="编码提示\FormBMTips.cs">
       <SubType>Form</SubType>
@@ -336,7 +341,6 @@
     <Content Include="2013.ico" />
     <Content Include="rain_48x48.ico" />
     <None Include="Resources\doing.gif" />
-    <None Include="Resources\pay2.png" />
     <EmbeddedResource Include="Resources\3.jpg" />
   </ItemGroup>
   <ItemGroup />

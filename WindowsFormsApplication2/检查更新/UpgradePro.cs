@@ -34,20 +34,20 @@ namespace WindowsFormsApplication2.检查更新
         {
             var font1 = new Font("微软雅黑", 16f);
             var font2 = new Font(font1.FontFamily, 45);
-            e.Graphics.DrawString("当前版本", font1, Brushes.Gray, 10, 10);
+            e.Graphics.DrawString("当前版本：", font1, Brushes.Gray, 10, 10);
             e.Graphics.DrawString(Glob.VerInstance, font2, Brushes.Gray, 30, 40);
-            if (UpgradeModel.是否有更新 && !UpgradeModel.是否有异常)
+            if (UpgradeModel.IsUpdate && !UpgradeModel.IsError)
             {
-                e.Graphics.DrawString("更新版本 " + UpgradeModel.日期.ToShortDateString(), font1, Brushes.DimGray, 10, 115);
-                e.Graphics.DrawString(UpgradeModel.版本, font2, Brushes.HotPink, 30, 155);
+                e.Graphics.DrawString("更新版本：" + UpgradeModel.DateValue, font1, Brushes.DimGray, 10, 115);
+                e.Graphics.DrawString(UpgradeModel.VersionValue, font2, Brushes.HotPink, 30, 155);
             }
 
-            if (UpgradeModel.是否有异常)
+            if (UpgradeModel.IsError)
             {
                 e.Graphics.DrawString("更新异常！", font1, Brushes.Red, 10, 135);
             }
 
-            if (!UpgradeModel.是否有更新 && _start)
+            if (!UpgradeModel.IsUpdate && _start)
             {
                 e.Graphics.DrawString("暂无更新！", font1, Brushes.Coral, 10, 155);
             }
@@ -55,11 +55,9 @@ namespace WindowsFormsApplication2.检查更新
 
         private void btnCheckUpgrade_Click(object sender, EventArgs e)
         {
-
-            //http://taliove.diandian.com/updateInfo
             if (this.rtbInfo.Visible) this.rtbInfo.Visible = false;
             btnCheckUpgrade.Enabled = false;
-            UpgradeModel.是否有更新 = false;
+            UpgradeModel.IsUpdate = false;
             btnSeeContext.Enabled = false;
             this.btnCheckUpgrade.Text = "正在检测更新";
             panel1.Invalidate();
@@ -77,8 +75,8 @@ namespace WindowsFormsApplication2.检查更新
                         _start = true; //显示
                         this.btnCheckUpgrade.Text = "检查更新";
                         panel1.Invalidate();
-                        this.rtbInfo.AppendText("下载地址：http://taliove.ys168.com");
                         this.rtbInfo.Text = UpgradeModel.ToString();
+                        this.rtbInfo.AppendText("下载地址：http://dogegg.ys168.com/");
                     }));
             }
         }

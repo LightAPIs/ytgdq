@@ -132,13 +132,14 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.checkBox28 = new System.Windows.Forms.CheckBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.checkBox30 = new System.Windows.Forms.CheckBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.checkBox32 = new System.Windows.Forms.CheckBox();
+            this.checkBox33 = new System.Windows.Forms.CheckBox();
             this.panel12 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.newButton1 = new WindowsFormsApplication2.NewButton();
             this.newButton2 = new WindowsFormsApplication2.NewButton();
-            this.checkBox32 = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -1454,14 +1455,16 @@
             this.tableLayoutPanel1.Controls.Add(this.checkBox30, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.numericUpDown1, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.checkBox32, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.checkBox33, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(294, 334);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -1476,6 +1479,20 @@
             this.checkBox28.TabIndex = 0;
             this.checkBox28.Text = "跟打过程中，不显示即时数据";
             this.checkBox28.UseVisualStyleBackColor = true;
+            // 
+            // checkBox30
+            // 
+            this.checkBox30.AutoSize = true;
+            this.checkBox30.ForeColor = System.Drawing.Color.White;
+            this.checkBox30.Location = new System.Drawing.Point(3, 50);
+            this.checkBox30.Margin = new System.Windows.Forms.Padding(3, 4, 3, 3);
+            this.checkBox30.Name = "checkBox30";
+            this.checkBox30.Size = new System.Drawing.Size(96, 16);
+            this.checkBox30.TabIndex = 3;
+            this.checkBox30.Text = "速度限制发送";
+            this.checkBox30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox30.UseVisualStyleBackColor = true;
+            this.checkBox30.CheckedChanged += new System.EventHandler(this.checkBox30_CheckedChanged);
             // 
             // numericUpDown1
             // 
@@ -1494,19 +1511,29 @@
             this.numericUpDown1.Size = new System.Drawing.Size(69, 21);
             this.numericUpDown1.TabIndex = 2;
             // 
-            // checkBox30
+            // checkBox32
             // 
-            this.checkBox30.AutoSize = true;
-            this.checkBox30.ForeColor = System.Drawing.Color.White;
-            this.checkBox30.Location = new System.Drawing.Point(3, 50);
-            this.checkBox30.Margin = new System.Windows.Forms.Padding(3, 4, 3, 3);
-            this.checkBox30.Name = "checkBox30";
-            this.checkBox30.Size = new System.Drawing.Size(96, 16);
-            this.checkBox30.TabIndex = 3;
-            this.checkBox30.Text = "速度限制发送";
-            this.checkBox30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox30.UseVisualStyleBackColor = true;
-            this.checkBox30.CheckedChanged += new System.EventHandler(this.checkBox30_CheckedChanged);
+            this.checkBox32.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.checkBox32, 2);
+            this.checkBox32.ForeColor = System.Drawing.Color.White;
+            this.checkBox32.Location = new System.Drawing.Point(3, 26);
+            this.checkBox32.Name = "checkBox32";
+            this.checkBox32.Size = new System.Drawing.Size(240, 16);
+            this.checkBox32.TabIndex = 4;
+            this.checkBox32.Text = "跟打结束后，不自动将成绩复制到剪贴板";
+            this.checkBox32.UseVisualStyleBackColor = true;
+            // 
+            // checkBox33
+            // 
+            this.checkBox33.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.checkBox33, 2);
+            this.checkBox33.ForeColor = System.Drawing.Color.White;
+            this.checkBox33.Location = new System.Drawing.Point(3, 72);
+            this.checkBox33.Name = "checkBox33";
+            this.checkBox33.Size = new System.Drawing.Size(120, 16);
+            this.checkBox33.TabIndex = 5;
+            this.checkBox33.Text = "使用 ;\' 符号选重";
+            this.checkBox33.UseVisualStyleBackColor = true;
             // 
             // panel12
             // 
@@ -1557,18 +1584,6 @@
             this.newButton2.进入背景色 = System.Drawing.Color.Green;
             this.newButton2.默认背景色 = System.Drawing.Color.Gray;
             this.newButton2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // checkBox32
-            // 
-            this.checkBox32.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.checkBox32, 2);
-            this.checkBox32.ForeColor = System.Drawing.Color.White;
-            this.checkBox32.Location = new System.Drawing.Point(3, 26);
-            this.checkBox32.Name = "checkBox32";
-            this.checkBox32.Size = new System.Drawing.Size(240, 16);
-            this.checkBox32.TabIndex = 4;
-            this.checkBox32.Text = "跟打结束后，不自动将成绩复制到剪贴板";
-            this.checkBox32.UseVisualStyleBackColor = true;
             // 
             // TSetup
             // 
@@ -1757,5 +1772,6 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.CheckBox checkBox31;
         private System.Windows.Forms.CheckBox checkBox32;
+        private System.Windows.Forms.CheckBox checkBox33;
     }
 }

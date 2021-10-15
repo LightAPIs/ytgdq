@@ -151,24 +151,38 @@ namespace WindowsFormsApplication2
                 }
                 else if (k == 186 || k == 222 || k >= 48 && k <= 57)
                 {
-                    ; if (Glob.文段类型)
-                        if (Glob.是否选重)
+                    if (Glob.文段类型 && Glob.是否选重)
+                    {
+                        var s = richTextBox1.SelectionStart;
+                        var text = s + 1 <= this.richTextBox1.TextLength ? this.richTextBox1.Text.Substring(s + 1, 1) : "";
+                        //MessageBox.Show("s：" + s.ToString() + "\nrichTextBox1.TextLength：" + richTextBox1.TextLength.ToString() + "\ntext：" + text);
+                        if (!string.IsNullOrWhiteSpace(text))
                         {
-                            var s = richTextBox1.SelectionStart;
-                            var text = s + 1 <= this.richTextBox1.TextLength ? this.richTextBox1.Text.Substring(s, 1) : "";
-                            if (!string.IsNullOrWhiteSpace(text))
+                            if (";:'\"；：‘’“”".Contains(text))
                             {
-                                if (text == ";" || text == "'")
+                                System.Diagnostics.Debug.WriteLine("由于是打了标点，所以不计选重");
+                            }
+                            else if (k == 186 || k == 222)
+                            {
+                                if (Glob.useSymbolSelect)
                                 {
-                                    System.Diagnostics.Debug.WriteLine("由于是打了标点，所以不计选重");
+                                    // 符号选重的情况
+                                    Glob.选重++;
+                                    System.Diagnostics.Debug.WriteLine("符号选重，记录一次");
                                 }
                                 else
                                 {
-                                    Glob.选重++;
-                                    System.Diagnostics.Debug.WriteLine("记录一次");
+                                    System.Diagnostics.Debug.WriteLine("未开启符号选重，所以不计选重");
                                 }
                             }
+                            else
+                            {
+                                // 数字选重的情况
+                                Glob.选重++;
+                                System.Diagnostics.Debug.WriteLine("数字选重，记录一次");
+                            }
                         }
+                    }
                 }
             }
         }
@@ -506,6 +520,8 @@ namespace WindowsFormsApplication2
             Glob.notShowjs = bool.Parse(IniRead("控制", "不显示即时", "False"));
             // 不自动复制
             Glob.notAutoCopy = bool.Parse(IniRead("控制", "不自动复制", "False"));
+            // 符号选重
+            Glob.useSymbolSelect = bool.Parse(IniRead("控制", "符号选重", "False"));
             //速度限制
             Glob.速度限制 = double.Parse(IniRead("发送", "速度限制", "0.00"));
             Glob.是否速度限制 = bool.Parse(IniRead("发送", "是否速度限制", "False"));
@@ -796,7 +812,7 @@ namespace WindowsFormsApplication2
                         this.textBoxEx1.ReadOnly = false;
                         textBoxEx1.Select();
                         Glob.Pre_Cout = NewSendText.起始段号.ToString();//起始段号
-                        lblDuan.Text = "第" + NewSendText.起始段号 + "段";
+                        lblDuan.Text = "第" + NewSendText.起始段号.ToString() + "段";
                         GetInfo();//获取信息
                         Glob.reTypeCount = 0; //重打归零
                         if (!NewSendText.是否独练)
@@ -2030,7 +2046,7 @@ namespace WindowsFormsApplication2
                         {
                             dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5].Style.ForeColor = Color.FromArgb(149, 117, 205);
                         }
-                        else if (jj > 5.00)
+                        else if (mc > 5.00)
                         {
                             dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5].Style.ForeColor = Color.FromArgb(238, 6, 238);
                         }

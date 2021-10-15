@@ -263,6 +263,17 @@ namespace WindowsFormsApplication2
                 Glob.notAutoCopy = false;
             }
 
+            if (this.checkBox33.Checked)
+            {
+                Setupini.IniWriteValue("控制", "符号选重", "True");
+                Glob.useSymbolSelect = true;
+            }
+            else
+            {
+                Setupini.IniWriteValue("控制", "符号选重", "False");
+                Glob.useSymbolSelect = false;
+            }
+
             if (this.checkBox1.Checked)
             {
                 Glob.InstraPre_ = "1";

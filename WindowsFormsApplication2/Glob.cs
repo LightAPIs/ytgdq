@@ -37,6 +37,10 @@ namespace WindowsFormsApplication2
         /// 不自动复制成绩
         /// </summary>
         public static bool notAutoCopy = false;
+        /// <summary>
+        /// 使用符号选重
+        /// </summary>
+        public static bool useSymbolSelect = false;
         public static bool getStyle = false;//默认鼠标
 
         /// <summary>

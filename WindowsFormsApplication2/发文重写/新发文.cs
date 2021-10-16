@@ -77,7 +77,6 @@ namespace WindowsFormsApplication2
             int index = (sender as ListBox).SelectedIndex;
             if ((sender as ListBox).Text.Length != 0)
             {
-                //_assembly = Assembly.GetExecutingAssembly();
                 GetText = TyDll.GetResources.GetText("Resources.TXT." + (sender as ListBox).Text + ".txt");
                 lblTitle.Text = (sender as ListBox).Text;
 
@@ -88,11 +87,11 @@ namespace WindowsFormsApplication2
                 case 0: rtbInfo.Text = "选用标准常用字前一千五百的【前五百】个单字"; break;
                 case 1: rtbInfo.Text = "选用标准常用字前一千五百的【中五百】个单字"; break;
                 case 2: rtbInfo.Text = "选用标准常用字前一千五百的【后五百】个单字"; break;
-                case 3: rtbInfo.Text = "选用标准常用词组前三个常用词组"; break;
+                case 3: rtbInfo.Text = "选用标准常用词组前二百个常用词组"; break;
                 case 4: rtbInfo.Text = "选【为人民服务】现代文一篇"; break;
                 case 5: rtbInfo.Text = "选【岳阳楼记】古文一篇"; break;
                 case 6: rtbInfo.Text = "前1500字整体"; break;
-                default: rtbInfo.Text = "有需求内置文章的跟友，请联系作者"; break;
+                default: rtbInfo.Text = "没有定义的内容"; break;
             }
             NewSendText.文章地址 = index.ToString();
             //else {
@@ -100,45 +99,49 @@ namespace WindowsFormsApplication2
             // }
         }
 
+        /// <summary>
+        /// 自动处理并判定文段类型
+        /// 预先判定类型，可后续手动更改；
+        /// 只区分"文章"和"单字"；
+        /// </summary>
+        /// <param name="Text">文本内容</param>
         public void ComText(string Text)
-        { //确认文章信息
-            if (Text.Length != 0)
+        {
+            string tickText = Text;
+            // 注：只是采用去除空格和换行后的文本进行判定，但并没有修改原始的获取文本
+            if (this.cbxTickOut.Checked)
             {
-                if (Text.Length > 300)
+                tickText = TickBlock(Text, "");
+            }
+
+            if (tickText.Length != 0)
+            {
+                if (tickText.Length > 300)
                 {
-                    rtbShowText.Text = GetText.Substring(0, 300) + "[......未完]";
+                    rtbShowText.Text = Text.Substring(0, 300) + "[......未完]";
                 }
                 else
                 {
-                    rtbShowText.Text = GetText + "[已完]";
+                    rtbShowText.Text = Text + "[已完]";
                 }
-                if (Text.Length > 25)
+
+                if (tickText.Length > 25)
                 {
                     this.tbxSendCount.Text = "25";
                 }
                 else
                 {
-                    this.tbxSendCount.Text = (Text.Length / 2).ToString();
+                    //this.tbxSendCount.Text = (Text.Length / 2).ToString();
+                    this.tbxSendCount.Text = tickText.Length.ToString(); // 在 25 字以下时默认发送全文
                 }
+
                 //确认文章类型
-                isWords(Text);
-                //确认字数信息
-                bool isStrWords = this.lblStyle.Text == "词组";
-                if (isStrWords)
-                {
-                    FindWords();
-                }
-                else //非词组的时候
-                {
-                    lblTextCount.Text = GetText.Length.ToString();
-                }
+                IsWords(tickText);
+                lblTextCount.Text = tickText.Length.ToString();
+
                 tbxSendCount.Select();
                 tbxSendCount.MaxLength = lblTextCount.Text.Length;
                 tbxSendStart.MaxLength = lblTextCount.Text.Length;
-                if (this.cbxTickOut.Checked && !isStrWords)
-                {
-                    GetText = TickBlock(Text, "");
-                }
             }
         }
 
@@ -161,11 +164,14 @@ namespace WindowsFormsApplication2
             {
                 lblTextCount.Text = getWords.Length.ToString();
                 ShowFlowText("找到" + getWords.Length + "个词组");
+                
             }
             else
             {
                 ShowFlowText("未找到词组，请确定您所选择的文件");
             }
+
+            NewSendText.词组 = getWords;
         }
         /// <summary>
         /// 显示浮动的信息
@@ -177,21 +183,22 @@ namespace WindowsFormsApplication2
             sm.Show(text);
         }
 
-        //确信文章类型
-        public bool isWords(string text)
+        /// <summary>
+        /// 确定文章类型
+        /// </summary>
+        /// <param name="text"></param>
+        public void IsWords(string text)
         {
             Regex regexAll = new Regex(@"，|。|！|…|：|“|”|？");
             if (regexAll.IsMatch(text))
             {
                 tabControl2.SelectedIndex = 1;
-                if (this.lblStyle.Text == "") this.lblStyle.Text = "文章";
-                return true;
+                this.lblStyle.Text = "文章";
             }
             else
             {
                 tabControl2.SelectedIndex = 0;
-                if (this.lblStyle.Text == "") this.lblStyle.Text = "单字";
-                return false;
+                this.lblStyle.Text = "单字";
             }
         }
 
@@ -207,30 +214,42 @@ namespace WindowsFormsApplication2
         private void cbxSplit_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = (sender as ComboBox).SelectedIndex;
-            switch (index)
+            if (index > -1)
             {
-                case 0: split = ' '; break;
-                case 1: split = '\n'; break;
-                case 2: split = '\t'; break;
-                case 3: split = (this.tbxsplit.TextLength > 0) ? this.tbxsplit.Text.ToCharArray()[0] : ' '; break;
+                switch (index)
+                {
+                    case 0: split = ' '; break;
+                    case 1: split = '\n'; break;
+                    case 2: split = '\t'; break;
+                    case 3: split = (this.tbxsplit.TextLength > 0) ? this.tbxsplit.Text.ToCharArray()[0] : ' '; break;
+                }
+                FindWords();
             }
-            FindWords();
         }
 
+        private void tbxsplit_TextChanged(object sender, EventArgs e)
+        {
+            string text = (sender as TextBox).Text;
+            if (this.cbxSplit.SelectedIndex == 3)
+            {
+                split = text.Length > 0 ? text.ToCharArray()[0] : ' ';
+                FindWords();
+            }
+        }
+
+        /// <summary>
+        /// 手动选择文段类型处理事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tabControl2_Selecting(object sender, TabControlCancelEventArgs e)
         {
-            string getnow = (sender as TabControl).SelectedTab.Text;
-            if (lblStyle.Text == "单字")
+            int nowIndex = (sender as TabControl).SelectedIndex;
+            if (nowIndex == 2 && this.lblStyle.Text != "词组")
             {
-                if (getnow == "文章") e.Cancel = true;
+                this.cbxSplit.SelectedIndex = -1;
+                ShowFlowText("词组发送默认的乱序模式，暂不支持顺序。");
             }
-
-            if (lblStyle.Text == "文章")
-            {
-                if (getnow == "单字") e.Cancel = true;
-            }
-
-            if ((sender as TabControl).SelectedIndex == 2) ShowFlowText("词组发送默认的乱序模式，暂不支持顺序。");
             this.lblStyle.Text = (sender as TabControl).TabPages[this.tabControl2.SelectedIndex].Text;
         }
 
@@ -261,35 +280,6 @@ namespace WindowsFormsApplication2
         }
         #endregion
 
-        #region 词组信息
-        /// <summary>
-        /// 选择词组时
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cbxWordsCheck_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.cbxWordsCheck.Checked)
-            {
-                this.tabControl2.SelectedIndex = 2;
-                if (this.cbxSplit.SelectedIndex == -1)
-                    this.cbxSplit.SelectedIndex = 0;
-                this.FindWords();
-                //                string[] get = GetText.Split(split);
-                //                if (get.Length > 1)
-                //                {
-                //                    lblTextCount.Text = get.Length.ToString();
-                //                    ShowFlowText("找到" + get.Length + "个词组");
-                //                }
-                //                else
-                //                    ShowFlowText("未找到词组，请确定您所选择的文件");
-            }
-            else
-            {
-                ComText(GetText);
-            }
-        }
-        #endregion
         #region 清除所有信息
         private void ClearAll()
         {
@@ -338,10 +328,21 @@ namespace WindowsFormsApplication2
 
         private void btnAllText_Click(object sender, EventArgs e)
         {
-            if (GetText.Length != 0)
+            if (this.lblStyle.Text == "词组")
             {
-                this.tbxSendStart.Text = "0";
-                this.tbxSendCount.Text = GetText.Length.ToString();
+                if (NewSendText.词组.Length > 1)
+                {
+                    this.tbxSendStart.Text = "0";
+                    this.tbxSendCount.Text = NewSendText.词组.Length.ToString();
+                }
+            }
+            else
+            {
+                if (GetText.Length != 0)
+                {
+                    this.tbxSendStart.Text = "0";
+                    this.tbxSendCount.Text = GetText.Length.ToString();
+                }
             }
         }
 
@@ -570,17 +571,28 @@ namespace WindowsFormsApplication2
         private void btnGoSend_Click(object sender, EventArgs e)
         {
             rtbShowText.Text = "处理中...";
-            if (GetText.Length == 0) { MessageBox.Show("未获取到文章！"); return; }
+            if (this.cbxTickOut.Checked)
+            {
+                GetText = TickBlock(GetText, "");
+            }
+            if (GetText.Length == 0) {
+                rtbShowText.Text = "未获取到文章！";
+                MessageBox.Show("未获取到文章！");
+                return;
+            }
+
             NewSendText.标题 = lblTitle.Text;
             NewSendText.文章全文 = GetText;
             NewSendText.发文全文 = NewSendText.文章全文;
             NewSendText.类型 = lblStyle.Text;
             if (NewSendText.类型 == "词组")
             {
-                if (cbxSplit.SelectedIndex == 1)
-                    NewSendText.词组 = GetText.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-                else
-                    NewSendText.词组 = GetText.Split(split);
+                if (NewSendText.词组.Length <= 1)
+                {
+                    rtbShowText.Text = "未获取到词组！";
+                    MessageBox.Show("未获取到词组！");
+                    return;
+                }
 
                 NewSendText.词组发送分隔符 = this.tbxSendSplit.Text;
             }
@@ -979,6 +991,6 @@ namespace WindowsFormsApplication2
                 t2.IniWriteValue("发文面板配置", "乱序全段不重复", "False");
             }
         }
-        #endregion  
+        #endregion
     }
 }

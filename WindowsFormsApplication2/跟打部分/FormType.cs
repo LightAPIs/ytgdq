@@ -42,6 +42,29 @@ namespace WindowsFormsApplication2
         private RichEditBoxLineRender _render = new RichEditBoxLineRender();
         private FormBMTipsModel bmTips;//编码提示
         //private Stopwatch UseStopTime = new Stopwatch();
+        /// <summary>
+        /// 特殊字符替换字典
+        /// </summary>
+        public static Dictionary<string, char> CharReDict = new Dictionary<string, char> {
+                {
+                    "0x3008", '《'
+                },
+                {
+                    "0x3009", '》'
+                },
+                {
+                    "0xfe43", '『'
+                },
+                {
+                    "0xfe44", '』'
+                },
+                {
+                    "0xfe4f", '_'
+                },
+                {
+                    "0xffe5", '$'
+                }
+            };
         public Form1()
         {
             InitializeComponent();
@@ -3444,7 +3467,7 @@ namespace WindowsFormsApplication2
         {
             if (Glob.autoReplaceBiaodian)
             {
-                this.richTextBox1.Text = reText(this.richTextBox1.Text);
+                this.richTextBox1.Text = ReText(this.richTextBox1.Text);
             }
             var tl = richTextBox1.TextLength;
             Glob.TextLen = tl;
@@ -4983,18 +5006,56 @@ namespace WindowsFormsApplication2
             }
         }
 
-        public string reText(string text)
+
+        /// <summary>
+        /// 全角转半角的方法
+        /// </summary>
+        /// <param name="inputStr"></param>
+        /// <returns></returns>
+        public static string ReFullAsHalf(string inputStr)
         {
-            Regex english = new Regex(@"[a-zA-Z]");
-            if (!english.IsMatch(text))
+            char[] c = inputStr.ToCharArray();
+            for (int i = 0; i < c.Length; i++)
             {
-                string[] Ebiaodian = new string[] { "\"", "\"", "'", "'", ".", ",", ";", ":", "?", "!", "-", "~", "(", ")", "<", ">", @"\(", @"\)" };
-                string[] Cbiaodian = new string[] { "“", "”", "‘", "’", "。", "，", "；", "：", "？", "！", "—", "～", "（", "）", "《", "》", "（", "）" };
-                for (int i = 0; i < Ebiaodian.Length; i++)
+                if (c[i] > 0xff00 && c[i] < 0xff5f)
                 {
-                    text = text.Replace(Ebiaodian[i], Cbiaodian[i]);
+                    c[i] = (char)(c[i] - 0xfee0);
+                }
+                else if (CharReDict.ContainsKey("0x" + Convert.ToString(c[i], 16)))
+                {
+                    c[i] = CharReDict["0x" + Convert.ToString(c[i], 16)];
+                }
+                else
+                {
+                    continue;
                 }
             }
+
+            return new string(c);
+        }
+
+        /// <summary>
+        /// 标点替换方法
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public string ReText(string text)
+        {
+            text = ReFullAsHalf(text); // 全角转半角
+
+            string[] Ebiaodian = new string[] {",", ";", ":", "?", "!", "｢", "｣", "(", ")", "<", ">", @"\(", @"\)" };
+            string[] Cbiaodian = new string[] {"，", "；", "：", "？", "！", "「", "」", "（", "）", "《", "》", "（", "）" };
+            for (int i = 0; i < Ebiaodian.Length; i++)
+            {
+                text = text.Replace(Ebiaodian[i], Cbiaodian[i]);
+            }
+
+            text = Regex.Replace(text, "，{2,}", "，");
+            text = Regex.Replace(text, "—+|─+|-{2,}", "——");
+            text = Regex.Replace(text, @"…+|\.{3,}", "……");
+            text = text.Replace("..", "。");
+            text = Regex.Replace(text, @"([^\w])\.", "$1。");
+
             return text;
         }
 
@@ -5002,7 +5063,7 @@ namespace WindowsFormsApplication2
         {
             if (!Glob.autoReplaceBiaodian) //没有开自动的情况下
             {
-                richTextBox1.Text = reText(richTextBox1.Text);
+                richTextBox1.Text = ReText(richTextBox1.Text);
                 GetInfo();
             }
         }
@@ -5071,7 +5132,6 @@ namespace WindowsFormsApplication2
             else
             {
                 Glob.autoReplaceBiaodian = true;
-
                 this.toolStripButton1.Checked = true;
                 ini.IniWriteValue("程序控制", "自动替换", "True");
             }

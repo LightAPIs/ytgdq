@@ -59,9 +59,6 @@
     <Compile Include="Structs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\TXT\常用词组前三百.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources\TXT\常用单字后五百.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -71,9 +68,7 @@
     <EmbeddedResource Include="Resources\TXT\常用单字中五百.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\TXT\前1500单字.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\TXT\前1500单字.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\TXT\为人民服务节选.txt" />
@@ -174,6 +169,9 @@
     <Content Include="Resources\QQ\UserList\expandTexture.png" />
     <Content Include="Resources\QQ\UserList\expandTextureHigh.png" />
     <Content Include="Resources\QQ\UserList\headbg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\TXT\常用词组前二百.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,11 +7,11 @@ using System.Resources;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("添雨跟打器")]
-[assembly: AssemblyDescription("new4wang@outlook.com")]
+[assembly: AssemblyDescription("添雨跟打器 ® 软件名称、商标及标识均归添雨个人工作室拥有")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Light")]
 [assembly: AssemblyProduct("添雨跟打器")]
-[assembly: AssemblyCopyright("Copyright © 2012-2021")]
+[assembly: AssemblyCopyright("Copyright © 添雨 2012-2021")]
 [assembly: AssemblyTrademark("添雨")]
 [assembly: AssemblyCulture("")]
 
@@ -33,6 +33,6 @@ using System.Resources;
 // 可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.0.9.4")]
-[assembly: AssemblyFileVersion("0.0.9.4")]
+[assembly: AssemblyVersion("0.9.4.18")]
+[assembly: AssemblyFileVersion("0.9.4.18")]
 [assembly: NeutralResourcesLanguageAttribute("zh-CN")]

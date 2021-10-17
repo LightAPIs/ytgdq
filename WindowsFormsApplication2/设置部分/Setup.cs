@@ -296,13 +296,13 @@ namespace WindowsFormsApplication2
             if (checkBox19.Checked)
             {
                 Glob.PreText = this.textBoxPreText.Text;
-                Glob.PreDuan = this.textBoxDuan.Text.Replace("xx", @"\d+");
+                Glob.PreDuan = this.textBoxDuan.Text;
                 Glob.isZdy = true;
             }
             else
             {
                 Glob.PreText = "-----";
-                Glob.PreDuan = @"第\d+段";
+                Glob.PreDuan = "第xx段";
             }
             Glob.isQQ = this.checkBox21.Checked;
             Glob.QQnumber = this.textBoxQQ.Text;

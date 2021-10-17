@@ -111,12 +111,16 @@ namespace WindowsFormsApplication2
             //oThread.Join();
             //oThread.Abort();
             //MessageBox.Show(oThread.ThreadState.ToString());
-            RegisterHotKey(this.Handle, 2, (int)KeyModifiers.None, (Keys.F4)); //获取
-            RegisterHotKey(this.Handle, 3, (int)KeyModifiers.None, (Keys.F3)); //重打
-            RegisterHotKey(this.Handle, 4, (int)KeyModifiers.None, (Keys.F5)); //重打
-            RegisterHotKey(this.Handle, 5, (int)KeyModifiers.None, (Keys.F6)); //发文测试
+            //* 不再注册全局热键
+            //RegisterHotKey(this.Handle, 2, (int)KeyModifiers.None, (Keys.F4)); //获取
+            //RegisterHotKey(this.Handle, 3, (int)KeyModifiers.None, (Keys.F3)); //重打
+            //RegisterHotKey(this.Handle, 4, (int)KeyModifiers.None, (Keys.F5)); //重打
+            //RegisterHotKey(this.Handle, 5, (int)KeyModifiers.None, (Keys.F6)); //发文测试
 
             //RegisterHotKey(this.Handle, 6, (int)KeyModifiers.None, (Keys.F8)); //接收挑战
+
+            //* 注册一组老板键热键
+            RegisterHotKey(this.Handle, 100, (int)KeyModifiers.Alt, (Keys.Q));
             F5();
             this.textBoxEx1.Select();
             try
@@ -140,6 +144,44 @@ namespace WindowsFormsApplication2
                 LoadTheme("纯色", Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.ThemeBG);
                 //采用默认的图片显示
                 //LoadTheme("", Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.ThemeBG);
+            }
+        }
+
+
+        /// <summary>
+        /// 全局热键处理
+        /// </summary>
+        /// <param name="m"></param>
+        private void ProcessHotKey(int id)
+        {
+            string sid = id.ToString();
+            switch (sid)
+            {
+                case "100": // 老板键
+                    if (this.Visible)
+                    {
+                        this.Hide();
+                        if (this.发文状态窗口 != null && this.发文状态窗口.Visible)
+                        {
+                            this.发文状态窗口.Hide();
+                        }
+                        this.notifyIcon1.Visible = false;
+                    }
+                    else
+                    {
+                        this.Show();
+                        if (this.WindowState == FormWindowState.Minimized)
+                        {
+                            this.WindowState = FormWindowState.Normal;
+                        }
+                        if (this.发文状态窗口 != null)
+                        {
+                            this.发文状态窗口.Show(this);
+                        }
+                        this.notifyIcon1.Visible = true;
+                        this.Activate();
+                    }
+                    break;
             }
         }
 
@@ -630,10 +672,10 @@ namespace WindowsFormsApplication2
         private static extern void SwitchToThisWindow(IntPtr hWnd, bool fAltTab);
 
         [DllImport("user32.dll")]
-        public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+        public static extern bool UnregisterHotKey(IntPtr hWnd, int id); // 取消全局热键
 
         [DllImport("User32.dll")]
-        public static extern bool RegisterHotKey(IntPtr hwnd, int id, int fsModifiers, Keys vk);
+        public static extern bool RegisterHotKey(IntPtr hwnd, int id, int fsModifiers, Keys vk); // 注册全局热键
 
         [DllImport("user32.dll", EntryPoint = "SendMessageA")]
         private static extern int SendMessage(System.IntPtr ptr, int wMsg, int wParam, int lParam);
@@ -2895,13 +2937,15 @@ namespace WindowsFormsApplication2
 
 
         #region 全局快捷键设置
+
+        [Flags]
         public enum KeyModifiers
         {
             None = 0,
             Alt = 1,
-            control = 2,
+            Control = 2,
             Shift = 4,
-            Windows = 8
+            WindowsKey = 8
         }
 
         [DllImport("User32")]
@@ -2955,35 +2999,37 @@ namespace WindowsFormsApplication2
             switch (m.Msg)
             {
                 case WM_HOTKEY:
-                    if ((int)m.WParam == 2)
-                    { //F4 获取文字
-                        F4();
-                    }
-                    else if ((int)m.WParam == 3) //重打全局
-                    {
-                        SwitchToThisWindow(FindWindow(null, Glob.Form), true);
-                        if (GetForegroundWindow().ToInt32() != this.Handle.ToInt32())
-                        {
-                            this.Show();
-                            this.Activate();
-                            this.textBoxEx1.Select();
-                            if (Glob.TypeTextCount > 0 && this.textBoxEx1.TextLength != this.richTextBox2.TextLength)
-                                ShowFlowText("已激活跟打器，未设重打~");
-                            return;
-                        }
-                        F3();
-                    }
-                    else if ((int)m.WParam == 4)
-                    { //F6
-                        if (NewSendText.发文状态)// (zdSendText.isHand) //手动模式
-                        {
-                            //this.textBox1.TextChanged -= new System.EventHandler(textBoxEx1_TextChanged);
-                            SendAOnce();
-                            //SendAOnce();
-                            F3();
-                            //this.textBox1.TextChanged += new System.EventHandler(textBoxEx1_TextChanged);
-                        }
-                    }
+                    //if ((int)m.WParam == 2)
+                    //{ //F4 获取文字
+                    //    F4();
+                    //}
+                    //else if ((int)m.WParam == 3) //重打全局
+                    //{
+                    //    SwitchToThisWindow(FindWindow(null, Glob.Form), true);
+                    //    if (GetForegroundWindow().ToInt32() != this.Handle.ToInt32())
+                    //    {
+                    //        this.Show();
+                    //        this.Activate();
+                    //        this.textBoxEx1.Select();
+                    //        if (Glob.TypeTextCount > 0 && this.textBoxEx1.TextLength != this.richTextBox2.TextLength)
+                    //            ShowFlowText("已激活跟打器，未设重打~");
+                    //        return;
+                    //    }
+                    //    F3();
+                    //}
+                    //else if ((int)m.WParam == 4)
+                    //{ //F6
+                    //    if (NewSendText.发文状态)// (zdSendText.isHand) //手动模式
+                    //    {
+                    //        //this.textBox1.TextChanged -= new System.EventHandler(textBoxEx1_TextChanged);
+                    //        SendAOnce();
+                    //        //SendAOnce();
+                    //        F3();
+                    //        //this.textBox1.TextChanged += new System.EventHandler(textBoxEx1_TextChanged);
+                    //    }
+                    //}
+                    //* 现在只会处理老板键的全局热键
+                    ProcessHotKey(m.WParam.ToInt32());
                     break;
 
                 case WM_NCHITTEST:
@@ -3144,7 +3190,7 @@ namespace WindowsFormsApplication2
                     preduan = @"第\d+段";
                 }
 
-                Regex regexAll = new Regex(@".+\s.+\s" + pretext + preduan + ".+", RegexOptions.RightToLeft); //获取发送的全部信息
+                Regex regexAll = new Regex(@".+\s.+\s" + pretext + preduan + ".*", RegexOptions.RightToLeft); //获取发送的全部信息
                 Glob.getDuan = regexAll.Match(text_);
                 if (Glob.getDuan.Length == 0) //为空
                 {
@@ -3170,7 +3216,9 @@ namespace WindowsFormsApplication2
         public void PutText()
         {
             string text_ = Glob.Text;
-            Glob.Text = Clipboard.GetText(); //获取到跟打文字
+            //string testText = Clipboard.GetText().Trim();
+            //System.Diagnostics.Debug.Write(testText);
+            Glob.Text = Clipboard.GetText().Trim(); //获取到跟打文字
             if (Glob.Text.Length == 0) { return; }
             text_ = Glob.Text;
             //MessageBox.Show(text_);
@@ -3187,7 +3235,7 @@ namespace WindowsFormsApplication2
                 preduan = @"第\d+段";
             }
 
-            Regex regexAll = new Regex(@".+\s.+\s" + pretext + preduan + ".+", RegexOptions.RightToLeft); //获取发送的全部信息
+            Regex regexAll = new Regex(@".+\s.+\s" + pretext + preduan + ".*", RegexOptions.RightToLeft); //获取发送的全部信息
             Glob.getDuan = regexAll.Match(text_);
             if (Glob.getDuan.Length == 0) //为空
             {
@@ -3305,7 +3353,7 @@ namespace WindowsFormsApplication2
             GetInfo(); //获取文字信息
             richTextBox1.ForeColor = Color.Black;
             //Glob.Text = null;
-            Clipboard.Clear();
+            Clipboard.Clear(); // 清空剪贴板
             this.Activate();
             //SwitchToThisWindow(FindWindow(null, Glob.Form), true);
             //BlockMark();//空格标记
@@ -4270,7 +4318,7 @@ namespace WindowsFormsApplication2
             if (Glob.TypeText.Length == 0) return;
             if (是否正在测词中) return;
             是否正在测词中 = true;
-            var count = Glob.TypeText.Length;
+            var textLen = Glob.TypeText.Length;
             Glob.BmAlls.Clear();
             Glob.词库理论码长 = 0;
             var startTime = DateTime.Now;
@@ -4286,7 +4334,7 @@ namespace WindowsFormsApplication2
                     picDoing.Visible = true;
                 }));
             var counts = 0;
-            for (var i = 0; i < count; i++)
+            for (var i = 0; i < textLen; i++)
             {
                 var 起点字符 = Glob.TypeText[i].ToString();
                 if (bd.Contains(起点字符))
@@ -4298,7 +4346,7 @@ namespace WindowsFormsApplication2
                 }
                 var end = i + 1;
                 var temp_search = 0;
-                for (int j = i + 1; j < count; j++)
+                for (int j = i + 1; j < textLen; j++)
                 {
                     if (temp_search >= 10) break;
                     var temp = Glob.TypeText[j].ToString();
@@ -4310,7 +4358,7 @@ namespace WindowsFormsApplication2
                     temp_search++;
                 }
                 end += temp_search;
-                if (end >= count) end = count - 1;
+                if (end >= textLen) end = textLen - 1;
                 for (int j = end; j > i; j--)
                 {
                     var str = Glob.TypeText.Substring(i, j - i);
@@ -4659,21 +4707,27 @@ namespace WindowsFormsApplication2
         #endregion
 
         #region 按钮 快捷键
-        delegate void testt(string s);
+        
+        /// <summary>
+        /// 快捷键定义
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            //右
             if (e.KeyCode == Keys.Right && e.Control)
-            {
+            { // Ctrl + 右，载文下一段
+                if (sw != 0) return;
                 if (this.cmsDuanList.Items.Count <= 0) return;
-                int index = this.cmsDuanList.Items.IndexOfKey(Glob.Pre_Cout);
+                int index = this.cmsDuanList.Items.IndexOfKey(Glob.Pre_Cout); // 注：是获得索引值，而不是段号
                 index++;
                 if (index >= this.cmsDuanList.Items.Count)
                     index = 0;
                 this.cmsDuanList.Items[index].PerformClick();
             }
             else if (e.KeyCode == Keys.Left && e.Control)
-            {//左
+            { // Ctrl + 左，载文上一段
+                if (sw != 0) return;
                 if (this.cmsDuanList.Items.Count <= 0) return;
                 int index = this.cmsDuanList.Items.IndexOfKey(Glob.Pre_Cout);
                 index--;
@@ -4681,73 +4735,31 @@ namespace WindowsFormsApplication2
                     index = this.cmsDuanList.Items.Count - 1;
                 this.cmsDuanList.Items[index].PerformClick();
             }
-            else if (e.KeyCode == Keys.Q && e.Control)
-            {
-                this.将目前文章乱序ToolStripMenuItem.PerformClick();
-            }
-            else if (e.KeyCode == Keys.F5)
-            {
-                F5();
-            }
-            else if (e.KeyCode == Keys.PageDown)
-            {
-                int c = this.TSMI2.DropDownItems.Count;
-                if (c > 2)
-                {
-                    if (c == 3)
-                    {
-                        if (this.TSMI2.DropDownItems[2].Text == "未找到群")
-                        {
-                            F5();
-                        }
-                    }
-                    for (int i = 2; i < c; i++)
-                    {
-                        string getN = this.TSMI2.DropDownItems[i].Text;
-                        if (getN == this.lblQuan.Text)
-                        {
-                            i++;
-                            if (i >= c) { i = 2; }
-                            this.TSMI2.DropDownItems[i].PerformClick();
-                            break;
-                        }
-                    }
-                }
-            }
-            else if (e.KeyCode == Keys.PageUp)
-            {
-                //this.textBoxEx1.Focus();
-                //testt t = new testt(Test);
-                //t.BeginInvoke(this.richTextBox1.Text,null,null);
-                //double d = double.Parse(this.labelJiCheck.Text);
-                //d--;
-                //this.labelJiCheck.Text = d.ToString();
-                //int iMode = 0;
-                //int iSentence = 0;
-                //IntPtr prt = ImmGetContext(this.textBoxEx1.Handle);
-                //ImmGetConversionStatus(prt,ref iMode,ref iSentence);
-                //SetIMM(1026, 0);
-                //this.label1.Text = iMode + "/" + iSentence;
-                //活动信息显示
-            }
-            else if (e.KeyCode == Keys.End)
-            {
-            }
-            else if (e.KeyCode == Keys.F1)
-            {
-                //string s = this.SeriesSpeed.Points.
-                if (sw != 0) return;
-                this.设置ToolStripMenuItem1.PerformClick();
-            }
-            else if (e.KeyCode == Keys.F2)
-            {
-                if (sw != 0) return;
-                this.新发文ToolStripMenuItem.PerformClick();
-            }
-            else if (e.KeyCode == Keys.V && e.Control)
-            {
-
-            }
+            //else if (e.KeyCode == Keys.PageDown)
+            //{
+            //    int c = this.TSMI2.DropDownItems.Count;
+            //    if (c > 2)
+            //    {
+            //        if (c == 3)
+            //        {
+            //            if (this.TSMI2.DropDownItems[2].Text == "未找到群")
+            //            {
+            //                F5();
+            //            }
+            //        }
+            //        for (int i = 2; i < c; i++)
+            //        {
+            //            string getN = this.TSMI2.DropDownItems[i].Text;
+            //            if (getN == this.lblQuan.Text)
+            //            {
+            //                i++;
+            //                if (i >= c) { i = 2; }
+            //                this.TSMI2.DropDownItems[i].PerformClick();
+            //                break;
+            //            }
+            //        }
+            //    }
+            //}
             //MessageBox.Show(e.KeyCode.ToString());
         }
 
@@ -4759,26 +4771,6 @@ namespace WindowsFormsApplication2
         {
             var sm = new ShowMessage(this.Size, this.Location, this);
             sm.Show(text);
-        }
-        private static void Test(string s)
-        {
-            var str = "";
-            foreach (var bmAll in Glob.BmAlls)
-            {
-                var v = "";
-                if (bmAll.重数 == 0) v = "";
-                if (bmAll.重数 == 1) if (bmAll.编码.Length < 4) v = " ";
-                if (bmAll.重数 == 2) v = ";";
-                if (bmAll.重数 == 3) v = "'";
-                if (bmAll.重数 >= 4) v = bmAll.重数.ToString();
-                str += bmAll.编码 + v;
-            }
-            //MessageBox.Show(str);
-            for (int i = 0; i < str.Length; i++)
-            {
-                SendKeys.SendWait(str[i].ToString());
-                Delay(70);
-            }
         }
 
         private void 击键统计ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -5189,16 +5181,27 @@ namespace WindowsFormsApplication2
                     this.WindowState = FormWindowState.Normal;
                 }
                 this.Activate();
-                RegisterHotKey(this.Handle, 2, (int)KeyModifiers.None, (Keys.F4)); //获取
-                RegisterHotKey(this.Handle, 3, (int)KeyModifiers.None, (Keys.F3)); //重打
-                RegisterHotKey(this.Handle, 4, (int)KeyModifiers.None, (Keys.F6)); //发文测试
+                //* 不再注册全局热键
+                //RegisterHotKey(this.Handle, 2, (int)KeyModifiers.None, (Keys.F4)); //获取
+                //RegisterHotKey(this.Handle, 3, (int)KeyModifiers.None, (Keys.F3)); //重打
+                //RegisterHotKey(this.Handle, 4, (int)KeyModifiers.None, (Keys.F6)); //发文测试
             }
         }
 
+        /// <summary>
+        /// 老板键菜单项点击事件
+        /// 注：老板键为全局注册热键，不会触发到这个事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void 老板键ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (this.发文状态窗口 != null && this.发文状态窗口.Visible)
+            {
+                this.发文状态窗口.Hide();
+            }
             this.Hide();
-            RegisterHotKey(this.Handle, 3, (int)KeyModifiers.None, (Keys.F3)); //重打
+            this.notifyIcon1.Visible = false;
         }
 
         private void 显示ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -5209,9 +5212,10 @@ namespace WindowsFormsApplication2
                 this.WindowState = FormWindowState.Normal;
             }
             this.Activate();
-            RegisterHotKey(this.Handle, 2, (int)KeyModifiers.None, (Keys.F4)); //获取
-            RegisterHotKey(this.Handle, 3, (int)KeyModifiers.None, (Keys.F3)); //重打
-            RegisterHotKey(this.Handle, 4, (int)KeyModifiers.None, (Keys.F6)); //发文测试
+            //* 不再注册全局热键
+            //RegisterHotKey(this.Handle, 2, (int)KeyModifiers.None, (Keys.F4)); //获取
+            //RegisterHotKey(this.Handle, 3, (int)KeyModifiers.None, (Keys.F3)); //重打
+            //RegisterHotKey(this.Handle, 4, (int)KeyModifiers.None, (Keys.F6)); //发文测试
         }
 
         private bool isShowAll = false;
@@ -5541,7 +5545,7 @@ namespace WindowsFormsApplication2
         private void 添加测速点ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (sw != 0) { ShowFlowText("请勿在跟打时建立测速点！"); return; }
-            if (Glob.TextLen > 20) { ShowFlowText("文章字数过少，不建议使用此功能！"); return; }
+            if (Glob.TextLen <= 20) { ShowFlowText("文章字数过少，不建议使用此功能！"); return; }
             int start = this.richTextBox1.SelectionStart - 1;
             int count = Glob.SpeedPointCount;//SpeedPoint.Count;
             if (count == 0)
@@ -5704,13 +5708,13 @@ namespace WindowsFormsApplication2
             {
                 if (Glob.isZdy)
                 {
-                    return new Regex(@"(?<=-----第)\d+(?=段)");
+                    string pretext = Glob.PreText.Replace(@"\", @"\\");
+                    string preduan = Glob.PreDuan.Replace("xx", @"\d+");
+                    return new Regex(@"(?<=" + pretext + Glob.PreDuan.Replace("xx", @")\d+(?=") + ")");
                 }
                 else
                 {
-                    string pretext = Glob.PreText.Replace(@"\", @"\\");
-                    string preduan = Glob.PreDuan.Replace("xx", @"\d+");
-                    return new Regex(@"(?<=" + pretext + preduan[0] + @")\d+(?=" + preduan[4] + ")");
+                    return new Regex(@"(?<=-----第)\d+(?=段)");
                 }
             }
         }
@@ -5727,7 +5731,7 @@ namespace WindowsFormsApplication2
                 if (mc.Count > 0)
                 {
                     this.cmsDuanList.Items.Clear();
-                    for (int i = mc.Count - 1; i > 0; i--)
+                    for (int i = mc.Count - 1; i >= 0; i--)
                     {
                         if (c > 10) break;
                         this.cmsDuanList.Items.Add(mc[i].ToString(), null, new EventHandler(SelectDuan));
@@ -5749,6 +5753,8 @@ namespace WindowsFormsApplication2
         private void SelectDuan(object sender, EventArgs e)
         {
             string pretext, preduan;
+            //System.Diagnostics.Debug.Write("sender.ToString() = " + sender.ToString() + "\n");
+            //System.Diagnostics.Debug.Write("Glob.PreDuan = " + Glob.PreDuan + "\n");
             if (Glob.isZdy)
             {
                 pretext = Glob.PreText.Replace(@"\", @"\\");
@@ -5760,7 +5766,7 @@ namespace WindowsFormsApplication2
                 preduan = "第" + sender.ToString() + "段";
             }
             //MessageBox.Show(preduan);
-            Regex regexAll = new Regex(@".+\s.+\s" + pretext + preduan + ".+", RegexOptions.RightToLeft); //获取发送的全部信息
+            Regex regexAll = new Regex(@".+\s.+\s" + pretext + preduan + ".*", RegexOptions.RightToLeft); //获取发送的全部信息
             Glob.getDuan = regexAll.Match(Glob.Text);
             if (Glob.getDuan.Length == 0) //为空
             {
@@ -5773,10 +5779,12 @@ namespace WindowsFormsApplication2
             string getDuanAll = Glob.getDuan.ToString();
             if (Glob.isZdy)
             {
-                Glob.regexCout = new Regex(@"(?<=" + preduan[0] + @")" + sender.ToString() + "(?=" + preduan[4] + ")", RegexOptions.RightToLeft);
+                Glob.regexCout = new Regex(@"(?<=" + Glob.PreDuan.Replace("xx", @")" + sender.ToString() + "(?=") + ")", RegexOptions.RightToLeft);
             }
             else
+            {
                 Glob.regexCout = new Regex(@"(?<=第)" + sender.ToString() + "(?=段)", RegexOptions.RightToLeft);
+            }
             LoadText(pretext, preduan, Glob.regexCout, getDuanAll);
         }
         #endregion

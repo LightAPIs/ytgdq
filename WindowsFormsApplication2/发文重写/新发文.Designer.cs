@@ -50,7 +50,6 @@
             this.btnReGet = new System.Windows.Forms.Button();
             this.rtbClipboard = new System.Windows.Forms.RichTextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.cbxStatus = new System.Windows.Forms.CheckBox();
             this.cbx乱序全段不重复 = new System.Windows.Forms.CheckBox();
             this.cbxTickOut = new System.Windows.Forms.CheckBox();
             this.gropbox = new System.Windows.Forms.GroupBox();
@@ -126,7 +125,7 @@
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(432, 162);
+            this.tabControl1.Size = new System.Drawing.Size(432, 161);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -138,7 +137,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(424, 133);
+            this.tabPage1.Size = new System.Drawing.Size(424, 132);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "自带文章";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -184,7 +183,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(424, 134);
+            this.tabPage2.Size = new System.Drawing.Size(424, 132);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "自定义文章";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -198,7 +197,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(420, 25);
+            this.panel1.Size = new System.Drawing.Size(420, 23);
             this.panel1.TabIndex = 1;
             // 
             // button1
@@ -267,7 +266,7 @@
             this.listViewFile.GridLines = true;
             this.listViewFile.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listViewFile.HideSelection = false;
-            this.listViewFile.Location = new System.Drawing.Point(0, 25);
+            this.listViewFile.Location = new System.Drawing.Point(0, 23);
             this.listViewFile.Margin = new System.Windows.Forms.Padding(0);
             this.listViewFile.MultiSelect = false;
             this.listViewFile.Name = "listViewFile";
@@ -304,7 +303,7 @@
             this.tabPage3.Controls.Add(this.rtbClipboard);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(424, 134);
+            this.tabPage3.Size = new System.Drawing.Size(424, 132);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "来自剪切板";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -387,7 +386,7 @@
             this.rtbClipboard.Dock = System.Windows.Forms.DockStyle.Left;
             this.rtbClipboard.Location = new System.Drawing.Point(0, 0);
             this.rtbClipboard.Name = "rtbClipboard";
-            this.rtbClipboard.Size = new System.Drawing.Size(319, 130);
+            this.rtbClipboard.Size = new System.Drawing.Size(319, 128);
             this.rtbClipboard.TabIndex = 0;
             this.rtbClipboard.Text = "";
             this.rtbClipboard.TextChanged += new System.EventHandler(this.rtbClipboard_TextChanged);
@@ -395,33 +394,21 @@
             // tabPage4
             // 
             this.tabPage4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.tabPage4.Controls.Add(this.cbxStatus);
             this.tabPage4.Controls.Add(this.cbx乱序全段不重复);
             this.tabPage4.Controls.Add(this.cbxTickOut);
             this.tabPage4.Controls.Add(this.gropbox);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(424, 134);
+            this.tabPage4.Size = new System.Drawing.Size(424, 132);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "配置与设置";
             this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // cbxStatus
-            // 
-            this.cbxStatus.AutoSize = true;
-            this.cbxStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbxStatus.Location = new System.Drawing.Point(167, 91);
-            this.cbxStatus.Name = "cbxStatus";
-            this.cbxStatus.Size = new System.Drawing.Size(153, 16);
-            this.cbxStatus.TabIndex = 3;
-            this.cbxStatus.Text = "开启发文后打开状态页面";
-            this.cbxStatus.UseVisualStyleBackColor = true;
             // 
             // cbx乱序全段不重复
             // 
             this.cbx乱序全段不重复.AutoSize = true;
             this.cbx乱序全段不重复.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbx乱序全段不重复.Location = new System.Drawing.Point(6, 113);
+            this.cbx乱序全段不重复.Location = new System.Drawing.Point(188, 109);
             this.cbx乱序全段不重复.Name = "cbx乱序全段不重复";
             this.cbx乱序全段不重复.Size = new System.Drawing.Size(117, 16);
             this.cbx乱序全段不重复.TabIndex = 2;
@@ -433,7 +420,7 @@
             // 
             this.cbxTickOut.AutoSize = true;
             this.cbxTickOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbxTickOut.Location = new System.Drawing.Point(6, 91);
+            this.cbxTickOut.Location = new System.Drawing.Point(6, 109);
             this.cbxTickOut.Name = "cbxTickOut";
             this.cbxTickOut.Size = new System.Drawing.Size(153, 16);
             this.cbxTickOut.TabIndex = 1;
@@ -449,14 +436,14 @@
             this.gropbox.Dock = System.Windows.Forms.DockStyle.Top;
             this.gropbox.Location = new System.Drawing.Point(0, 0);
             this.gropbox.Name = "gropbox";
-            this.gropbox.Size = new System.Drawing.Size(420, 85);
+            this.gropbox.Size = new System.Drawing.Size(420, 103);
             this.gropbox.TabIndex = 0;
             this.gropbox.TabStop = false;
             this.gropbox.Text = "配置";
             // 
             // btnRefreshIni
             // 
-            this.btnRefreshIni.Location = new System.Drawing.Point(351, 57);
+            this.btnRefreshIni.Location = new System.Drawing.Point(351, 69);
             this.btnRefreshIni.Name = "btnRefreshIni";
             this.btnRefreshIni.Size = new System.Drawing.Size(50, 23);
             this.btnRefreshIni.TabIndex = 2;
@@ -467,7 +454,7 @@
             // 
             // btnDelini
             // 
-            this.btnDelini.Location = new System.Drawing.Point(351, 16);
+            this.btnDelini.Location = new System.Drawing.Point(351, 20);
             this.btnDelini.Name = "btnDelini";
             this.btnDelini.Size = new System.Drawing.Size(50, 23);
             this.btnDelini.TabIndex = 1;
@@ -482,7 +469,7 @@
             this.lbxIni.ItemHeight = 12;
             this.lbxIni.Location = new System.Drawing.Point(6, 16);
             this.lbxIni.Name = "lbxIni";
-            this.lbxIni.Size = new System.Drawing.Size(339, 64);
+            this.lbxIni.Size = new System.Drawing.Size(339, 76);
             this.lbxIni.TabIndex = 0;
             this.lbxIni.SelectedIndexChanged += new System.EventHandler(this.lbxIni_SelectedIndexChanged);
             // 
@@ -510,9 +497,9 @@
             this.rtbShowText.BackColor = System.Drawing.Color.LightSteelBlue;
             this.rtbShowText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rtbShowText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbShowText.Location = new System.Drawing.Point(3, 271);
+            this.rtbShowText.Location = new System.Drawing.Point(3, 268);
             this.rtbShowText.Name = "rtbShowText";
-            this.rtbShowText.Size = new System.Drawing.Size(188, 111);
+            this.rtbShowText.Size = new System.Drawing.Size(188, 114);
             this.rtbShowText.TabIndex = 1;
             this.rtbShowText.Text = "";
             this.toolTip1.SetToolTip(this.rtbShowText, "显示文段摘要");
@@ -523,10 +510,10 @@
             this.groupBox1.Controls.Add(this.tableLayoutPanel2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.ForeColor = System.Drawing.Color.Black;
-            this.groupBox1.Location = new System.Drawing.Point(197, 171);
+            this.groupBox1.Location = new System.Drawing.Point(197, 170);
             this.groupBox1.Name = "groupBox1";
             this.tableLayoutPanel1.SetRowSpan(this.groupBox1, 2);
-            this.groupBox1.Size = new System.Drawing.Size(238, 211);
+            this.groupBox1.Size = new System.Drawing.Size(238, 212);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "文章信息";
@@ -570,7 +557,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 13F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(232, 191);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(232, 192);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // tbxSendStart
@@ -873,10 +860,10 @@
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.HotTrack = true;
             this.tabControl2.ItemSize = new System.Drawing.Size(20, 20);
-            this.tabControl2.Location = new System.Drawing.Point(3, 171);
+            this.tabControl2.Location = new System.Drawing.Point(3, 170);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(188, 94);
+            this.tabControl2.Size = new System.Drawing.Size(188, 92);
             this.tabControl2.TabIndex = 2;
             this.tabControl2.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl2_Selecting);
             // 
@@ -890,7 +877,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 24);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(180, 66);
+            this.tabPage5.Size = new System.Drawing.Size(180, 64);
             this.tabPage5.TabIndex = 0;
             this.tabPage5.Text = "单字";
             // 
@@ -926,7 +913,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 24);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(180, 66);
+            this.tabPage6.Size = new System.Drawing.Size(180, 65);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "文章";
             // 
@@ -954,7 +941,7 @@
             this.tabPage7.Controls.Add(this.label9);
             this.tabPage7.Location = new System.Drawing.Point(4, 24);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(180, 66);
+            this.tabPage7.Size = new System.Drawing.Size(180, 65);
             this.tabPage7.TabIndex = 2;
             this.tabPage7.Text = "词组";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1120,7 +1107,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox tbxQisduan;
         private System.Windows.Forms.CheckBox cbxAuto;
-        private System.Windows.Forms.CheckBox cbxStatus;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.ComboBox cbxSplit;
         private System.Windows.Forms.Label label9;

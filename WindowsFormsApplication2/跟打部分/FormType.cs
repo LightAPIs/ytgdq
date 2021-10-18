@@ -161,7 +161,7 @@ namespace WindowsFormsApplication2
                     if (this.Visible)
                     {
                         this.Hide();
-                        if (this.发文状态窗口 != null && this.发文状态窗口.Visible)
+                        if (this.发文状态窗口 != null && !this.发文状态窗口.IsDisposed && this.发文状态窗口.Visible)
                         {
                             this.发文状态窗口.Hide();
                         }
@@ -174,7 +174,7 @@ namespace WindowsFormsApplication2
                         {
                             this.WindowState = FormWindowState.Normal;
                         }
-                        if (this.发文状态窗口 != null)
+                        if (this.发文状态窗口 != null && !this.发文状态窗口.IsDisposed)
                         {
                             this.发文状态窗口.Show(this);
                         }
@@ -5197,7 +5197,7 @@ namespace WindowsFormsApplication2
         /// <param name="e"></param>
         private void 老板键ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (this.发文状态窗口 != null && this.发文状态窗口.Visible)
+            if (this.发文状态窗口 != null && !this.发文状态窗口.IsDisposed && this.发文状态窗口.Visible)
             {
                 this.发文状态窗口.Hide();
             }

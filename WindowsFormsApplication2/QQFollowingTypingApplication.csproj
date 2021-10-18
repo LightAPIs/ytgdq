@@ -150,7 +150,6 @@
     </Compile>
     <Compile Include="编码提示\FormBMTipsModel.cs" />
     <Compile Include="编码提示\State.cs" />
-    <Compile Include="跟打报告\BaseFunc.cs" />
     <Compile Include="跟打报告\TypeAnalysis.cs">
       <SubType>Form</SubType>
     </Compile>

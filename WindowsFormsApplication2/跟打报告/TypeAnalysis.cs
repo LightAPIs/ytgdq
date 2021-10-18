@@ -62,7 +62,7 @@ namespace WindowsFormsApplication2.跟打报告
         /// 用PIC方式显示
         /// </summary>
         private void ShowToPic() {
-            Bitmap bmp = new Bitmap(this.pic_analysis.Width,120 + Glob.TypeText.Length + Glob.TextHg);
+            Bitmap bmp = new Bitmap(this.pic_analysis.Width, 135 + Glob.TypeText.Length + Glob.TextHg * 2);
             Graphics g = Graphics.FromImage(bmp);
             g.Clear(Color.White); //清洗画布
             
@@ -105,7 +105,7 @@ namespace WindowsFormsApplication2.跟打报告
             int t_js = 0;//键数
             double t_time = 0;//时间累计
             double t_hg_time = 0;//回改时间累计
-            int t_last_width = 0;//存储上次的宽度
+            //int t_last_width = 0;//存储上次的宽度
             int t_splite_distance = 3;//文字间隔
             int t_splite_info = 5;//信息上下间隔
             bool t_control = true;//回改处显示信息的控制器
@@ -118,7 +118,7 @@ namespace WindowsFormsApplication2.跟打报告
 
             for (int i = 1; i < this.dataGridView1.Rows.Count - 1; i++) {
                 string t_text = this.dataGridView1.Rows[i].Cells[3].Value.ToString();
-                int t_text_width = 1;
+                int t_text_width = 3;
                 if (t_text != "□")
                     t_text_width = (int)GetWH(g, t_text, t_font).Width;
 
@@ -128,10 +128,9 @@ namespace WindowsFormsApplication2.跟打报告
                     speed = (t_zis * 60 / t_time);
                     jj = (t_js / t_time);
                     mc = ((double)t_js / t_zis);
-
                 }
 
-                if (t_nowX + t_text_width > bmp.Width - 20)
+                if (t_nowX + t_text_width > bmp.Width - info_splite)
                 {
                     g.DrawString(speed.ToString("0.00"), t_font_hg, Brushes.DimGray, bmp.Width - info_splite, t_nowY - t_splite_info - 2);
                     g.DrawString(jj.ToString("0.00"), t_font_hg, (jj >= 8 ) ? jj_Color : Brushes.DimGray, bmp.Width - info_splite, t_nowY);
@@ -182,20 +181,23 @@ namespace WindowsFormsApplication2.跟打报告
                     double t_hg_time_ = double.Parse(this.dataGridView1.Rows[i].Cells["时间"].Value.ToString());
                     //t_js += (int)this.dataGridView1.Rows[i].Cells["键数"].Value;
                     if (t_control) {
-                        int t_splite_info_ = t_splite_info; //用时换行时的调配
+                        int t_splite_info_up = t_splite_info, t_splite_info_down = t_splite_info; //用时换行时的调配
                         string t_speed = (t_zis * 60/t_time).ToString("0.00"); //回改前
                         int t_hg_Y = t_nowY, t_hg_X = t_nowX;
-                        if (t_nowX + GetWH(g, t_speed, t_font_hg).Width > bmp.Width - 20) {
+                        if (t_nowX + GetWH(g, t_speed, t_font_hg).Width > bmp.Width - info_splite)
+                        {
                             t_hg_X = t_Start_X;
                             t_hg_Y += t_distance;
-                            t_splite_info_ = 12; //换行调配
+                            // 换行调配
+                            t_splite_info_up = 9;
+                            t_splite_info_down = 15;
                         } //换行
-                        g.DrawString(t_speed,t_font_hg,Brushes.IndianRed,t_hg_X,t_hg_Y - t_splite_info_);
+                        g.DrawString(t_speed,t_font_hg,Brushes.IndianRed,t_hg_X,t_hg_Y - t_splite_info_up);
                         t_text_width = (int)GetWH(g, t_speed, t_font_hg).Width;
-                        t_last_width = t_text_width;
+                        //t_last_width = t_text_width;
                         //用于计算回改后
                         t_time += t_hg_time_;
-                        g.DrawString((t_zis * 60 / t_time).ToString("0.00"), t_font_hg, Brushes.DarkBlue, t_hg_X, t_hg_Y + t_splite_info_);
+                        g.DrawString((t_zis * 60 / t_time).ToString("0.00"), t_font_hg, Brushes.DarkBlue, t_hg_X, t_hg_Y + t_splite_info_down);
                     }
                     t_control = false;
                     t_hg_time += t_hg_time_;//回改时间累计
@@ -214,7 +216,7 @@ namespace WindowsFormsApplication2.跟打报告
             Font Last_Font = new Font("Verdana",9f);
             string Last_Text = Glob.Form + Glob.Ver + "(" + Glob.Instration + ")";
             SizeF Last_Text_SizeF = GetWH(g,Last_Text,Last_Font);
-            g.DrawString(Last_Text,Last_Font,Brushes.DimGray,bmp.Width - Last_Text_SizeF.Width,bmp.Height - Last_Text_SizeF.Height - 3);
+            g.DrawString(Last_Text, Last_Font, Brushes.DimGray, bmp.Width - Last_Text_SizeF.Width, bmp.Height - Last_Text_SizeF.Height - 3);
             //给画布画上边框
             g.DrawRectangle(new Pen(Color.Green, 2), 1, 1, bmp.Width - 2, bmp.Height - 2);
             //显示出来

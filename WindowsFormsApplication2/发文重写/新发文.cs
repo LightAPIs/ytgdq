@@ -328,21 +328,11 @@ namespace WindowsFormsApplication2
 
         private void btnAllText_Click(object sender, EventArgs e)
         {
-            if (this.lblStyle.Text == "词组")
+            string allLen = this.lblTextCount.Text;
+            if (!string.IsNullOrEmpty(allLen))
             {
-                if (NewSendText.词组.Length > 1)
-                {
-                    this.tbxSendStart.Text = "0";
-                    this.tbxSendCount.Text = NewSendText.词组.Length.ToString();
-                }
-            }
-            else
-            {
-                if (GetText.Length != 0)
-                {
-                    this.tbxSendStart.Text = "0";
-                    this.tbxSendCount.Text = GetText.Length.ToString();
-                }
+                this.tbxSendStart.Text = "0";
+                this.tbxSendCount.Text = this.lblTextCount.Text;
             }
         }
 

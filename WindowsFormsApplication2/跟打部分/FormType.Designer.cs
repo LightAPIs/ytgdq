@@ -1005,7 +1005,7 @@
             this.richTextBox1.Size = new System.Drawing.Size(396, 125);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.TabStop = false;
-            this.richTextBox1.Text = "帮助请查看必看说明。快捷键：F3重打或激活跟打器、F4载文（跟打中无效）、F5换群";
+            this.richTextBox1.Text = "当你还在被世间诸多繁杂所束缚，心神不宁，不妨静下心来坐在电脑前跟打上一段文章。";
             this.toolTip1.SetToolTip(this.richTextBox1, "跟打对照区");
             this.richTextBox1.HScroll += new System.EventHandler(this.richTextBox1_HScroll);
             this.richTextBox1.VScroll += new System.EventHandler(this.richTextBox1_VScroll);

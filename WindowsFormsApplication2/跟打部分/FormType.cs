@@ -85,8 +85,8 @@ namespace WindowsFormsApplication2
              */
             spX = int.TryParse(IniRead("窗口位置", "横", "200"), out spX) ? spX < 0 ? 200 : spX : 200;
             spY = int.TryParse(IniRead("窗口位置", "纵", "200"), out spY) ? spY < 0 ? 200 : spY : 200;
-            spW = int.TryParse(IniRead("窗口位置", "宽", "482"), out spW) ? spW < 200 ? 443 : spW : 443;
-            spH = int.TryParse(IniRead("窗口位置", "高", "450"), out spH) ? spH < 50 ? 443 : spH : 443;
+            spW = int.TryParse(IniRead("窗口位置", "宽", "1080"), out spW) ? spW < 200 ? 520 : spW : 520;
+            spH = int.TryParse(IniRead("窗口位置", "高", "450"), out spH) ? spH < 50 ? 450 : spH : 450;
             Point pos = new Point(spX, spY);
             this.Location = pos;
             this.Size = new Size(spW, spH);
@@ -549,7 +549,8 @@ namespace WindowsFormsApplication2
             Glob.todayTyping = int.Parse(IniRead("今日跟打", DateTime.Today.ToShortDateString(), "0"));
             Glob.TextLenAll = int.Parse(IniRead("记录", "总字数", "0"));
 
-            lblMatchCount.Text = Glob.Instration.Trim();
+            //lblMatchCount.Text = Glob.Instration.Trim();
+            lblMatchCount.Text = 添雨验证(添雨验证(richTextBox1.Text));
             labelHaveTyping.Text = Glob.todayTyping + "/" + 字数格式化(Glob.TextRecLenAll) + "/" + Glob.TextRecDays + "天/" + 字数格式化(Glob.TextLenAll);
             //FileInfo ty = new FileInfo(Application.StartupPath + "\\Ttyping.ty");
             // double totaldays = (double)(DateTime.Today - ty.LastAccessTime).TotalDays;

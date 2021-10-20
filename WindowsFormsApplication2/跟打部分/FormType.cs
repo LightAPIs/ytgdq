@@ -97,6 +97,10 @@ namespace WindowsFormsApplication2
             int p31H = int.TryParse(IniRead("拖动条", "高2", "89"), out p31H) ? p31H : 89;
             this.splitContainer1.SplitterDistance = p11H;
             this.splitContainer3.SplitterDistance = p31H;
+
+            //* 快捷键处理
+            this.HotKeyHandler();
+
             this.UIThread(LoadSetup);
         }
 
@@ -119,8 +123,6 @@ namespace WindowsFormsApplication2
 
             //RegisterHotKey(this.Handle, 6, (int)KeyModifiers.None, (Keys.F8)); //接收挑战
 
-            //* 注册一组老板键热键
-            RegisterHotKey(this.Handle, 100, (int)KeyModifiers.Alt, (Keys.Q));
             F5();
             this.textBoxEx1.Select();
             try
@@ -144,6 +146,135 @@ namespace WindowsFormsApplication2
                 LoadTheme("纯色", Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.ThemeBG);
                 //采用默认的图片显示
                 //LoadTheme("", Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.ThemeBG);
+            }
+        }
+
+
+        /// <summary>
+        /// 快捷键处理
+        /// </summary>
+        public void HotKeyHandler()
+        {
+            //* 读取快捷键列表
+            for (int i = 0; i < Glob.HotKeyList.Count; i++)
+            {
+                string hk = IniRead("快捷键", Glob.HotKeyList[i].GetId(), Glob.HotKeyList[i].GetDefaultKeys());
+                if (hk == "None")
+                {
+                    Glob.HotKeyList[i].SetKeys("None");
+                }
+                else
+                {
+                    bool dup = false;
+                    for (int j = 0; j < i; j++)
+                    {
+                        if (Glob.HotKeyList[j].GetKeys() == hk)
+                        {
+                            dup = true;
+                            break;
+                        }
+                    }
+                    if (!dup)
+                    {
+                        Glob.HotKeyList[i].SetKeys(hk);
+                    }
+                }
+
+                Keys hotK = Glob.HotKeyList[i].TransKeyCode();
+                switch (Glob.HotKeyList[i].GetId())
+                {
+                    case "设置":
+                        this.设置ToolStripMenuItem1.ShortcutKeys = hotK;
+                        break;
+                    case "发文":
+                        this.新发文ToolStripMenuItem.ShortcutKeys = hotK;
+                        break;
+                    case "重打":
+                        this.重打ToolStripMenuItem.ShortcutKeys = hotK;
+                        break;
+                    case "载文":
+                        this.载文ToolStripMenuItem.ShortcutKeys = hotK;
+                        break;
+                    case "换群":
+                        this.换群ToolStripMenuItem1.ShortcutKeys = hotK;
+                        break;
+                    case "发送当前文段":
+                        this.发送正在跟打的文段ToolStripMenuItem1.ShortcutKeys = hotK;
+                        break;
+                    case "暂停":
+                        this.暂停ToolStripMenuItem.ShortcutKeys = hotK;
+                        break;
+                    case "发送上次成绩":
+                        this.上一次成绩ToolStripMenuItem1.ShortcutKeys = hotK;
+                        break;
+                    case "击键评定":
+                        this.击键统计ToolStripMenuItem.ShortcutKeys = hotK;
+                        break;
+                    case "窗口复位":
+                        this.窗口复位ToolStripMenuItem.ShortcutKeys = hotK;
+                        break;
+                    case "查询当前编码":
+                        this.查询当前编码ToolStripMenuItem2.ShortcutKeys = hotK;
+                        break;
+                    case "速度分析":
+                        this.跟打分析ToolStripMenuItem.ShortcutKeys = hotK;
+                        break;
+                    case "跟打报告":
+                        this.跟打报告ToolStripMenuItem.ShortcutKeys = hotK;
+                        break;
+                    case "乱序重打":
+                        this.DisorderToolStripMenuItem.ShortcutKeys = hotK;
+                        break;
+                    case "打开练习":
+                        this.DrillToolStripMenuItem.ShortcutKeys = hotK;
+                        break;
+                    case "测速数据":
+                        this.测速数据ToolStripMenuItem.ShortcutKeys = hotK;
+                        break;
+                    case "发下一段":
+                        this.发下一段ToolStripMenuItem.ShortcutKeys = hotK;
+                        break;
+                    case "复制图片成绩":
+                        this.复制图片成绩ToolStripMenuItem.ShortcutKeys = hotK;
+                        break;
+                    case "停止发文":
+                        this.停止发文ToolStripMenuItem1.ShortcutKeys = hotK;
+                        break;
+                    case "检验真伪":
+                        this.检验真伪ToolStripMenuItem.ShortcutKeys = hotK;
+                        break;
+                    case "从剪贴板":
+                        this.从剪切板ToolStripMenuItem1.ShortcutKeys = hotK;
+                        break;
+                    case "从QQ窗口":
+                        this.从QQ窗口手动ToolStripMenuItem1.ShortcutKeys = hotK;
+                        break;
+                    case "老板键":
+                        if (Glob.HotKeyList[i].GetKeys() == "None")
+                        {
+                            this.老板键ToolStripMenuItem1.ShortcutKeyDisplayString = "";
+                        }
+                        else
+                        {
+                            //！ 注册全局热键
+                            this.老板键ToolStripMenuItem1.ShortcutKeyDisplayString = Glob.HotKeyList[i].GetKeys();
+                            RegisterHotKey(this.Handle, 100, Glob.HotKeyList[i].TransKeyModifiers(), Glob.HotKeyList[i].TransOnlyKeyCode());
+                        }
+                        break;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// 重新注册全局老板键
+        /// 用于手动关闭设置窗口时
+        /// </summary>
+        public void ReRegisterBossKey()
+        {
+            if (Glob.HotKeyList[22].GetKeys() != "None")
+            {
+                RegisterHotKey(this.Handle, 100, Glob.HotKeyList[22].TransKeyModifiers(), Glob.HotKeyList[22].TransOnlyKeyCode());
             }
         }
 
@@ -571,7 +702,7 @@ namespace WindowsFormsApplication2
             Glob.StopUse = StopTime;
             this.toolTip1.SetToolTip(this.lblAutoReType, "跟打停止时间，大于" + Glob.StopUse + "分钟时自动停止跟打");
             //极简设置
-            Glob.simpleMoudle = bool.Parse(IniRead("发送", "状态", "False"));
+            Glob.simpleMoudle = bool.Parse(IniRead("发送", "极简状态", "False"));
             Glob.simpleSplite = IniRead("发送", "分隔符", "|");
             this.toolStripButton2.Checked = Glob.simpleMoudle;
             //自动替换
@@ -4019,6 +4150,13 @@ namespace WindowsFormsApplication2
         private void 设置ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (this.TopMost) { this.TopMost = false; 保持窗口最前ToolStripMenuItem1.Checked = false; }
+
+            //! 打开设置页面前禁用全局老板键
+            if (Glob.HotKeyList[22].GetKeys() != "None")
+            {
+                UnregisterHotKey(this.Handle, 100);
+            }
+
             TSetup SetupA = new TSetup(this);
             SetupA.ShowDialog();
         }
@@ -5104,13 +5242,13 @@ namespace WindowsFormsApplication2
             {
                 Glob.simpleMoudle = false;
                 this.toolStripButton2.Checked = false;
-                ini.IniWriteValue("发送", "状态", "False");
+                ini.IniWriteValue("发送", "极简状态", "False");
             }
             else
             {
                 Glob.simpleMoudle = true;
                 this.toolStripButton2.Checked = true;
-                ini.IniWriteValue("发送", "状态", "True");
+                ini.IniWriteValue("发送", "极简状态", "True");
             }
         }
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -5197,12 +5335,19 @@ namespace WindowsFormsApplication2
         /// <param name="e"></param>
         private void 老板键ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (this.发文状态窗口 != null && !this.发文状态窗口.IsDisposed && this.发文状态窗口.Visible)
+            if (Glob.HotKeyList[22].GetKeys() == "None")
             {
-                this.发文状态窗口.Hide();
+                MessageBox.Show("请先在快捷键设置中为老板键绑定按键，否则在隐藏后将无法恢复窗口！");
             }
-            this.Hide();
-            this.notifyIcon1.Visible = false;
+            else
+            {
+                if (this.发文状态窗口 != null && !this.发文状态窗口.IsDisposed && this.发文状态窗口.Visible)
+                {
+                    this.发文状态窗口.Hide();
+                }
+                this.Hide();
+                this.notifyIcon1.Visible = false;
+            }
         }
 
         private void 显示ToolStripMenuItem_Click(object sender, EventArgs e)

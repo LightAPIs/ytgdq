@@ -265,6 +265,35 @@ namespace WindowsFormsApplication2
         public static double 词库理论码长 = 0;
         public static string 词组编码 = "";
         public static Color[] BmColors = new Color[] {Color.Blue,Color.Red,Color.Purple,Color.DeepPink};
+
+        /// <summary>
+        /// 快捷键列表
+        /// </summary>
+        public static List<HotKey> HotKeyList = new List<HotKey> {
+            new HotKey("设置", "F1"),
+            new HotKey("发文", "F2"),
+            new HotKey("重打", "F3"),
+            new HotKey("载文", "F4"),
+            new HotKey("换群", "F5"),
+            new HotKey("发送当前文段", "F7"),
+            new HotKey("暂停", "F8"),
+            new HotKey("发送上次成绩", "F9"),
+            new HotKey("击键评定", "Ctrl+B"),
+            new HotKey("窗口复位", "Ctrl+D"),
+            new HotKey("查询当前编码", "Ctrl+F"),
+            new HotKey("速度分析", "Ctrl+G"),
+            new HotKey("跟打报告", "Ctrl+J"),
+            new HotKey("乱序重打", "Ctrl+L"),
+            new HotKey("打开练习", "Ctrl+O"),
+            new HotKey("测速数据", "Ctrl+P"),
+            new HotKey("发下一段", "Ctrl+R"),
+            new HotKey("复制图片成绩", "Ctrl+T"),
+            new HotKey("停止发文", "Ctrl+W"),
+            new HotKey("检验真伪", "Alt+D"),
+            new HotKey("从剪贴板", "Alt+E"),
+            new HotKey("从QQ窗口", "Alt+S"),
+            new HotKey("老板键", "Alt+Q"),
+        };
     }
 
     /// <summary>

@@ -106,6 +106,7 @@
       <DependentUpon>FormTheme.cs</DependentUpon>
     </Compile>
     <Compile Include="Glob.cs" />
+    <Compile Include="HotKey.cs" />
     <Compile Include="NewButton.cs">
       <SubType>Component</SubType>
     </Compile>

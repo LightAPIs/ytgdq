@@ -17,6 +17,17 @@ namespace WindowsFormsApplication2
     {
         Form1 frm;
         public Font fo1, fo2;
+
+        /// <summary>
+        /// 快捷键输入框
+        /// </summary>
+        public TextBox[] allTBox;
+
+        /// <summary>
+        /// 快捷键修改按钮
+        /// </summary>
+        public Button[] allModBtn;
+
         public TSetup(Form1 frm1)
         {
             frm = frm1;
@@ -112,6 +123,65 @@ namespace WindowsFormsApplication2
             this.tbxName.Text = IniRead("发送", "昵称", this.tbxName.Text);
             //bool c;
             //this.checkBox31.Checked = bool.TryParse(IniRead("控制", "自动获取", "True"), out c) ? c : true;
+
+            //* 快捷键设置
+            allTBox = new TextBox[23] {
+                HotKeyTextBox0,
+                HotKeyTextBox1,
+                HotKeyTextBox2,
+                HotKeyTextBox3,
+                HotKeyTextBox4,
+                HotKeyTextBox5,
+                HotKeyTextBox6,
+                HotKeyTextBox7,
+                HotKeyTextBox8,
+                HotKeyTextBox9,
+                HotKeyTextBox10,
+                HotKeyTextBox11,
+                HotKeyTextBox12,
+                HotKeyTextBox13,
+                HotKeyTextBox14,
+                HotKeyTextBox15,
+                HotKeyTextBox16,
+                HotKeyTextBox17,
+                HotKeyTextBox18,
+                HotKeyTextBox19,
+                HotKeyTextBox20,
+                HotKeyTextBox21,
+                HotKeyTextBox22
+            };
+            allModBtn = new Button[23]
+            {
+                HotKeyModButton0,
+                HotKeyModButton1,
+                HotKeyModButton2,
+                HotKeyModButton3,
+                HotKeyModButton4,
+                HotKeyModButton5,
+                HotKeyModButton6,
+                HotKeyModButton7,
+                HotKeyModButton8,
+                HotKeyModButton9,
+                HotKeyModButton10,
+                HotKeyModButton11,
+                HotKeyModButton12,
+                HotKeyModButton13,
+                HotKeyModButton14,
+                HotKeyModButton15,
+                HotKeyModButton16,
+                HotKeyModButton17,
+                HotKeyModButton18,
+                HotKeyModButton19,
+                HotKeyModButton20,
+                HotKeyModButton21,
+                HotKeyModButton22
+            };
+            // 读取保存的快捷键
+            for (int i = 0; i < allTBox.Length; i++)
+            {
+                allTBox[i].Text = IniRead("快捷键", Glob.HotKeyList[i].GetId(), Glob.HotKeyList[i].GetDefaultKeys());
+                allTBox[i].Tag = allTBox[i].Text;
+            }
         }
 
         public string IniRead(string section, string key, string def)
@@ -133,6 +203,11 @@ namespace WindowsFormsApplication2
             }
         }
 
+        /// <summary>
+        /// 确认按钮点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             _Ini Setupini = new _Ini("Ttyping.ty");
@@ -228,7 +303,7 @@ namespace WindowsFormsApplication2
                 frm.toolStripBtnLS.ForeColor = Color.Silver;
             }
             //极简模式
-            Setupini.IniWriteValue("发送","状态",this.checkBox23.Checked.ToString());
+            Setupini.IniWriteValue("发送", "极简状态", this.checkBox23.Checked.ToString());
             Setupini.IniWriteValue("发送","分隔符",this.textBox4.Text);
             Glob.simpleMoudle = this.checkBox23.Checked;
             Glob.simpleSplite = this.textBox4.Text;
@@ -318,6 +393,15 @@ namespace WindowsFormsApplication2
             else {
                 MessageBox.Show("文件丢失！");
             }
+
+            //* 保存快捷键设置
+            for (int i = 0; i < allTBox.Length; i++)
+            {
+                Glob.HotKeyList[i].SetKeys(allTBox[i].Tag.ToString());
+                Setupini.IniWriteValue("快捷键", Glob.HotKeyList[i].GetId(), Glob.HotKeyList[i].GetKeys());
+            }
+            //* 快捷键处理
+            frm.HotKeyHandler();
         }
 
         public void gQ() {  
@@ -376,8 +460,19 @@ namespace WindowsFormsApplication2
             }
         }
         
+        /// <summary>
+        /// 关闭按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
+            //* 重新注册全局老板键
+            if (Glob.HotKeyList[22].GetKeys() != "None")
+            {
+                frm.ReRegisterBossKey();
+            }
+
             this.Close();
         }
 
@@ -770,34 +865,6 @@ namespace WindowsFormsApplication2
             this.label17.Text = trackBar2.Value + "分";
         }
 
-        #region 极简模式
-        private void checkBox23_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.checkBox23.Checked) //开
-            {
-                this.panel极简模式.Enabled = true;
-                this.panel9.Enabled = false;
-            }
-            else {
-                this.panel极简模式.Enabled = false;
-                this.panel9.Enabled = true;
-            }
-        }
-
-        private void simpleSort() {
-            string thisSort = textBox3.Text; //排列依据
-            string total = "88";
-            string splite = " " + textBox4.Text + " ";//分隔符
-            if (thisSort.Length != 0)
-            {
-                char[] sort = thisSort.ToArray();
-                for (int i = 0; i < sort.Length; i++) {
-                    total += splite + getit(sort[i]);
-                }
-            }
-        }
-        #endregion
-
         #region 各项顺利控制
         //速度
         private void checkBoxSpeed_CheckedChanged(object sender, EventArgs e)
@@ -965,6 +1032,138 @@ namespace WindowsFormsApplication2
         public const int WM_SYSCOMMAND = 0x0112;
         public const int SC_MOVE = 0xF010;
         public const int HTCAPTION = 0x0002;
+
+        private void HotKeyModButtonClick(object sender, EventArgs e)
+        {
+            int index = int.Parse((sender as Button).Tag.ToString());
+            if (index > -1 && index < allTBox.Length)
+            {
+                string btnText = (sender as Button).Text;
+                if (btnText == "修改")
+                {
+                    allTBox[index].ReadOnly = false;
+                    allTBox[index].BackColor = System.Drawing.SystemColors.ControlLightLight;
+                    allTBox[index].Focus();
+                    (sender as Button).Text = "确定";
+                }
+                else if (btnText == "确定")
+                {
+                    string newKeys = allTBox[index].Text;
+                    allTBox[index].Tag = newKeys;
+                    allTBox[index].ReadOnly = true;
+                    allTBox[index].BackColor = System.Drawing.SystemColors.ControlDark;
+                    (sender as Button).Text = "修改";
+
+                    // 处理其它功能上可能的冲突按键
+                    for (int i = 0; i < allTBox.Length; i++)
+                    {
+                        if (i != index)
+                        {
+                            if (allTBox[i].Tag.ToString() == newKeys)
+                            {
+                                allTBox[i].Tag = "None";
+                                allTBox[i].Text = "None";
+                                allTBox[i].ReadOnly = true;
+                                allTBox[i].BackColor = System.Drawing.SystemColors.ControlDark;
+                                allModBtn[i].Text = "修改";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void HotKeyResetButtonClick(object sender, EventArgs e)
+        {
+            int index = int.Parse((sender as Button).Tag.ToString());
+            if (index > -1 && index < allTBox.Length)
+            {
+                string rKeys = Glob.HotKeyList[index].GetDefaultKeys();
+                allTBox[index].Tag = rKeys;
+                allTBox[index].Text = rKeys;
+                allTBox[index].ReadOnly = true;
+                allTBox[index].BackColor = System.Drawing.SystemColors.ControlDark;
+                allModBtn[index].Text = "修改";
+
+                // 处理其它功能上可能的冲突按键
+                for (int i = 0; i < allTBox.Length; i++)
+                {
+                    if (i != index)
+                    {
+                        if (allTBox[i].Tag.ToString() == rKeys)
+                        {
+                            allTBox[i].Tag = "None";
+                            allTBox[i].Text = "None";
+                            allTBox[i].ReadOnly = true;
+                            allTBox[i].BackColor = System.Drawing.SystemColors.ControlDark;
+                            allModBtn[i].Text = "修改";
+                        }
+                    }
+                }
+            }
+        }
+
+        private void HotKeyDisButtonClick(object sender, EventArgs e)
+        {
+            int index = int.Parse((sender as Button).Tag.ToString());
+            if (index > -1 && index < allTBox.Length)
+            {
+                allTBox[index].Tag = "None";
+                allTBox[index].Text = "None";
+                allTBox[index].ReadOnly = true;
+                allTBox[index].BackColor = System.Drawing.SystemColors.ControlDark;
+                allModBtn[index].Text = "修改";
+            }
+        }
+
+        private void HotKeyTextBoxKeyDown(object sender, KeyEventArgs e)
+        {
+            if (!(sender as TextBox).ReadOnly)
+            {
+                (sender as TextBox).Text = "";
+                if (e.Control)
+                { // 优先处理按下 Ctrl 的情况
+                    if ((e.KeyCode >= Keys.F1 && e.KeyCode <= Keys.F12) || (e.KeyCode >= Keys.A && e.KeyCode <= Keys.Z))
+                    {
+                        (sender as TextBox).Text = "Ctrl+" + e.KeyCode.ToString();
+                    }
+                    else if (e.KeyCode >= Keys.D0 && e.KeyCode <= Keys.D9)
+                    {
+                        (sender as TextBox).Text = "Ctrl+" + e.KeyCode.ToString().Replace("D", "");
+                    }
+                    else
+                    {
+                        (sender as TextBox).Text = "None";
+                    }
+                }
+                else if (e.Alt)
+                {
+                    if ((e.KeyCode >= Keys.F1 && e.KeyCode <= Keys.F12) || (e.KeyCode >= Keys.A && e.KeyCode <= Keys.Z))
+                    {
+                        (sender as TextBox).Text = "Alt+" + e.KeyCode.ToString();
+                    }
+                    else if (e.KeyCode >= Keys.D0 && e.KeyCode <= Keys.D9)
+                    {
+                        (sender as TextBox).Text = "Alt+" + e.KeyCode.ToString().Replace("D", "");
+                    }
+                    else
+                    {
+                        (sender as TextBox).Text = "None";
+                    }
+                }
+                else if (e.KeyCode >= Keys.F1 && e.KeyCode <= Keys.F12)
+                {
+                    (sender as TextBox).Text = e.KeyCode.ToString();
+                }
+                else
+                {
+                    (sender as TextBox).Text = "None";
+                }
+
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
 
         private void TSetup_MouseDown(object sender, MouseEventArgs e)
         {

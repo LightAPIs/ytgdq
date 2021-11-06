@@ -92,6 +92,8 @@
             this.打词率 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.用时 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.标题 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ToolPanel = new System.Windows.Forms.Panel();
+            this.ResultLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -100,6 +102,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.SpeedChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.HistoryContextMenuStrip.SuspendLayout();
+            this.ToolPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // monthCalendar
@@ -143,6 +146,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.splitContainer1.Panel1.Controls.Add(this.ToolPanel);
             this.splitContainer1.Panel1.Controls.Add(this.SpeedChart);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel1.Controls.Add(this.monthCalendar);
@@ -183,7 +187,7 @@
             series1.Color = System.Drawing.Color.White;
             series1.Name = "Series1";
             this.SpeedChart.Series.Add(series1);
-            this.SpeedChart.Size = new System.Drawing.Size(399, 180);
+            this.SpeedChart.Size = new System.Drawing.Size(396, 180);
             this.SpeedChart.TabIndex = 2;
             this.SpeedChart.Text = "chart1";
             // 
@@ -634,6 +638,27 @@
             this.标题.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.标题.Width = 43;
             // 
+            // ToolPanel
+            // 
+            this.ToolPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ToolPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.ToolPanel.Controls.Add(this.ResultLabel);
+            this.ToolPanel.Location = new System.Drawing.Point(5, 190);
+            this.ToolPanel.Name = "ToolPanel";
+            this.ToolPanel.Size = new System.Drawing.Size(1086, 25);
+            this.ToolPanel.TabIndex = 3;
+            // 
+            // ResultLabel
+            // 
+            this.ResultLabel.ForeColor = System.Drawing.Color.OliveDrab;
+            this.ResultLabel.Location = new System.Drawing.Point(6, 4);
+            this.ResultLabel.Name = "ResultLabel";
+            this.ResultLabel.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.ResultLabel.Size = new System.Drawing.Size(214, 18);
+            this.ResultLabel.TabIndex = 0;
+            this.ResultLabel.Text = "label1";
+            // 
             // History
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -652,6 +677,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.SpeedChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.HistoryContextMenuStrip.ResumeLayout(false);
+            this.ToolPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -692,5 +718,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 打词率;
         private System.Windows.Forms.DataGridViewTextBoxColumn 用时;
         private System.Windows.Forms.DataGridViewTextBoxColumn 标题;
+        private System.Windows.Forms.Panel ToolPanel;
+        private System.Windows.Forms.Label ResultLabel;
     }
 }

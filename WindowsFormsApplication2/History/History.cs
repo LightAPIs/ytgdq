@@ -44,6 +44,8 @@ namespace WindowsFormsApplication2.History
             this.PreviewRichTextBox.Text = "";
             this.SpeedChart.Series[0].Points.Clear();
 
+            this.ResultLabel.Text = "日期 " + date.ToString("d") + " 的数据：";
+
             int index = 0;
             int lastSegmentId = -1;
             this.currentScoreData = Glob.ScoreHistory.GetScoreFromDate(date);
@@ -161,7 +163,7 @@ namespace WindowsFormsApplication2.History
                 {
                     goal += this.dataGridView1.Columns[i].Name + curRow.Cells[i].Value + " ";
                 }
-                goal += " 校验:" + Validation.Validat(goal);
+                goal += "校验:" + Validation.Validat(goal);
                 goal += " v" + Glob.Ver + "(" + Glob.Instration + ") [复制成绩]";
                 ClipboardHandler.SetTextToClipboard(goal);
             }

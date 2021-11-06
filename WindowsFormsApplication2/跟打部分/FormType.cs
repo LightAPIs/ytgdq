@@ -4189,7 +4189,7 @@ namespace WindowsFormsApplication2
             {
                 goal += this.dataGridView1.Columns[i].Name + this.dataGridView1.CurrentRow.Cells[i].Value + " ";
             }
-            goal += " 校验:" + Validation.Validat(goal);
+            goal += "校验:" + Validation.Validat(goal);
             goal += " v" + Glob.Ver + "(" + Glob.Instration + ") [复制成绩]";
             ClipboardHandler.SetTextToClipboard(goal);
 

@@ -17,7 +17,7 @@ namespace WindowsFormsApplication2
         {
             InitializeComponent();
             this.Text = string.Format("关于 {0}", AssemblyTitle);
-            this.labelVersion.Text = "v" + Glob.VerInstance;
+            this.labelVersion.Text = "v" + Glob.Ver;
         }
 
         private void Jump(string str)
@@ -32,11 +32,11 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private DateTime Start = new DateTime(2012, 3, 20);
+        private DateTime Start = new DateTime(2021, 11, 2);
         private void Start_Load(object sender, EventArgs e)
         {
             var ts = DateTime.Now - Start;
-            lblInfo.Text = string.Format("添雨跟打器从{0}发布至今已过去{1}天", Start.ToShortDateString(),
+            lblInfo.Text = string.Format("雨天跟打器从{0}发布至今已过去{1}天", Start.ToShortDateString(),
             ts.TotalDays.ToString("0"));
         }
 
@@ -74,7 +74,7 @@ namespace WindowsFormsApplication2
 
         private void LinkLabel2Clicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Jump("https://github.com/LightAPIs/tygdq");
+            Jump("https://github.com/LightAPIs/ytgdq");
         }
 
         private void OKClicked(object sender, EventArgs e)

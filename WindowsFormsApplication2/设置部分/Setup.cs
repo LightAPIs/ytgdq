@@ -76,7 +76,7 @@ namespace WindowsFormsApplication2
             this.button3.Text = fo1.FontFamily.GetName(0) + " - " + fo1.Size;
             this.button4.Text = fo2.FontFamily.GetName(0) + " - " + fo2.Size;
             //速度计初始化
-            _Ini setupini = new _Ini("Ttyping.ty");
+            _Ini setupini = new _Ini("config.ini");
             //各个外观配置初始化
             buttoncolor1.BackColor = frm.richTextBox1.BackColor; //对照区底色
             buttoncolor2.BackColor = frm.textBoxEx1.BackColor; //跟打区底色
@@ -186,7 +186,7 @@ namespace WindowsFormsApplication2
 
         public string IniRead(string section, string key, string def)
         { //ini的快捷读取
-            _Ini sing = new _Ini("Ttyping.ty");
+            _Ini sing = new _Ini("config.ini");
             return sing.IniReadValue(section, key, def);
         }
 
@@ -210,7 +210,7 @@ namespace WindowsFormsApplication2
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
-            _Ini Setupini = new _Ini("Ttyping.ty");
+            _Ini Setupini = new _Ini("config.ini");
             string srf = Setupini.IniReadValue("输入法","惯用设置","0");
             if (srf != this.comboBox1.Text) {
                 Setupini.IniWriteValue("输入法","惯用设置", this.comboBox1.Text);
@@ -310,7 +310,7 @@ namespace WindowsFormsApplication2
             frm.toolStripButton2.Checked = this.checkBox23.Checked;
             if (!saveSort())
             {
-                MessageBox.Show(this, "含有错误排序字符，请重新检查！", "添雨跟打器排序提示");
+                MessageBox.Show(this, "含有错误排序字符，请重新检查！", "雨天跟打器排序提示");
                 return;
             }
             else {
@@ -386,7 +386,7 @@ namespace WindowsFormsApplication2
             Setupini.IniWriteValue("发送", "昵称", this.tbxName.Text);
             Glob.PicName = this.tbxName.Text;
            // Setupini.IniWriteValue("控制", "自动获取", this.checkBox31.Checked.ToString());
-            if (File.Exists("Ttyping.ty"))
+            if (File.Exists("config.ini"))
             {
                 this.Close();
             }
@@ -405,7 +405,7 @@ namespace WindowsFormsApplication2
         }
 
         public void gQ() {  
-            _Ini Setupini = new _Ini("Ttyping.ty");
+            _Ini Setupini = new _Ini("config.ini");
             if (this.checkBox1.Checked)
             {
                 if (this.textBox1.Text != "")
@@ -425,7 +425,7 @@ namespace WindowsFormsApplication2
         }//个签
 
         public void srfSave() {
-            _Ini Setupini = new _Ini("Ttyping.ty");
+            _Ini Setupini = new _Ini("config.ini");
             if (this.checkBox3.Checked)
             {
                 if (this.textBox2.Text != "")
@@ -692,7 +692,7 @@ namespace WindowsFormsApplication2
                 case 'M': return "回改率0.00% ";
                 case 'N': return "停留[字]XX秒";
                 case 'O': return "效率100%";
-                case 'P': return "添雨验证:05555";
+                case 'P': return "校验码:05555";
                 case 'Q': return "撤销2";
                 case 'R': return "键法";
                 case 'S': return " 退格";
@@ -796,7 +796,7 @@ namespace WindowsFormsApplication2
         {
             if (radioButton4.Checked)
             {
-                _Ini Setupini = new _Ini("Ttyping.ty");
+                _Ini Setupini = new _Ini("config.ini");
                 Glob.getStyle = false;
                 Setupini.IniWriteValue("载入","方式","false");
             }
@@ -805,7 +805,7 @@ namespace WindowsFormsApplication2
         private void radioButtonTab_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButtonTab.Checked) {
-                _Ini Setupini = new _Ini("Ttyping.ty");
+                _Ini Setupini = new _Ini("config.ini");
                 Glob.getStyle = true;
                 Setupini.IniWriteValue("载入", "方式", "true");
             }
@@ -838,15 +838,16 @@ namespace WindowsFormsApplication2
         }
 
         //颜色设置
-        private void pictureBoxRight_DoubleClick(object sender, EventArgs e)
+        private void pictureBoxRight_Click(object sender, EventArgs e)
         {
             this.colorDialog1.Color = Glob.Right;
-            if (colorDialog1.ShowDialog(this) == DialogResult.OK) {
+            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
+            {
                 this.pictureBoxRight.BackColor = colorDialog1.Color;
             }
         }
 
-        private void pictureBoxFalse_DoubleClick(object sender, EventArgs e)
+        private void pictureBoxFalse_Click(object sender, EventArgs e)
         {
             this.colorDialog1.Color = Glob.False;
             if (colorDialog1.ShowDialog(this) == DialogResult.OK)

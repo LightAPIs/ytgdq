@@ -659,7 +659,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "添雨跟打器发文状态";
+            this.Text = "雨天跟打器发文状态";
             this.Load += new System.EventHandler(this.SendTextStatic_Load);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);

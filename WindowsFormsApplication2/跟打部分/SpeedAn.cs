@@ -11,29 +11,45 @@ namespace WindowsFormsApplication2
 {
     public partial class SpeedAn : Form
     {
-        private string[] Data = new string[2];
-        Form1 frm;
-        public SpeedAn(string[] get,Form1 frm1)
+        /// <summary>
+        /// 当前段号
+        /// </summary>
+        private readonly string nowCout;
+        /// <summary>
+        /// 传递的数据
+        /// </summary>
+        private readonly string getData;
+        /// <summary>
+        /// 成绩版本
+        /// </summary>
+        private readonly string verInstration;
+        private readonly Form1 frm;
+        public SpeedAn(string now_cout, string get_data, string ver_instration, Form1 frm1)
         {
-            Data = get;//传递数据
+            nowCout = now_cout;
+            getData = get_data;
+            verInstration = ver_instration;
             frm = frm1;
             InitializeComponent();
         }
 
         private void SpeedAn_Load(object sender, EventArgs e)
         {
-            if (Data[0] != "") { 
-                string[] data = Data[0].Split('|');//获取各项数据
-                if (data.Length == 8)
+            if (getData != "") { 
+                string[] data = getData.Split('|');//获取各项数据
+                if (data.Length == 16)
                 {
-                    this.Text = "第" + Glob.Pre_Cout + "段速度分析";
+                    this.Text = "第" + nowCout + "段速度分析";
                     //准备画布
                     Bitmap bmp = new Bitmap(this.SpeedAnGet.Width + 2, this.SpeedAnGet.Height + 20);
                     Rectangle rect = new Rectangle(1, 1, this.SpeedAnGet.Width, this.SpeedAnGet.Height);
                     Graphics g = Graphics.FromImage(bmp);
                     //g.Clear(Color.DimGray);
                     //准备数据
-                    double 理论值 = double.TryParse(data[0], out 理论值) ? 理论值 : 0;//总长
+
+                    double perfect = double.TryParse(data[0], out perfect) ? perfect : 0; // 完美值
+                    double theoretical = double.TryParse(data[2], out theoretical) ? theoretical : 0; // 理论值
+                    double allTotalWidth = perfect > theoretical ? perfect : theoretical; // 总长
                     //double TotalWidth2 = double.TryParse(data[1], out TotalWidth2) ? TotalWidth2 : 0;//总长2
                     //double ImpactWidth = double.TryParse(data[2], out ImpactWidth) ? ImpactWidth : 0;//实际长
                     //double Hg = double.TryParse(data[3], out Hg) ? Hg : 0;
@@ -46,43 +62,43 @@ namespace WindowsFormsApplication2
                     int BmpWidth = this.SpeedAnGet.Width - 150; //矩形终点长度
                     int X = 15, Y = 8, width = 18; //整体坐标
                     //码长理论长度
-                    for (int i = 0; i < data.Length; i++)
+                    for (int i = 0; i < data.Length; i += 2)
                     {
                         SolidBrush SB_TotalWidth;
                         Color Colour = Color.FromArgb(10, 166, 146);
                         string MC_ = "";
-                        double TotalWidth = double.TryParse(data[i], out TotalWidth) ? TotalWidth < 0 ? 0 : TotalWidth : 0;//总长
+                        double TotalWidth = double.TryParse(data[i], out TotalWidth) ? TotalWidth < 0 ? 0 : TotalWidth : 0;// 长度
                         switch (i)
                         {
                             case 0:
                                 Colour = Color.FromArgb(10, 166, 146);
                                 MC_ = "完美理论值：" + TotalWidth.ToString("0.00");
                                 break;
-                            case 1:
+                            case 2:
                                 Colour = Color.FromArgb(7, 153, 7);
                                 MC_ = "码长理论值：" + TotalWidth.ToString("0.00");
                                 break;
-                            case 2:
+                            case 4:
                                 Colour = Color.FromArgb(195, 31, 89);
                                 MC_ = "跟打实际值：" + TotalWidth.ToString("0.00");
                                 break;
-                            case 3:
+                            case 6:
                                 Colour = Color.FromArgb(150, 27, 181);
                                 MC_ = "回改影响值：-" + TotalWidth.ToString("0.00");
                                 break;
-                            case 4:
+                            case 8:
                                 Colour = Color.FromArgb(202, 122, 36);
                                 MC_ = "退格影响值：-" + TotalWidth.ToString("0.00");
                                 break;
-                            case 5:
+                            case 10:
                                 Colour = Color.FromArgb(222, 51, 51);
                                 MC_ = "停留影响值：-" + TotalWidth.ToString("0.00");
                                 break;
-                            case 6:
+                            case 12:
                                 Colour =Color.FromArgb(110, 88, 242);
                                 MC_ = "错字影响值：-" + TotalWidth.ToString("0.00");
                                 break;
-                            case 7:
+                            case 14:
                                 Colour =Color.FromArgb(164, 193, 65);
                                 MC_ = "回车影响值：-" + TotalWidth.ToString("0.00");
                                 break;
@@ -92,8 +108,8 @@ namespace WindowsFormsApplication2
                                 break;
                         }
                         Font F = new Font("宋体",9f);//画字字体
-                        double Width = TotalWidth * BmpWidth / 理论值;
-                        if (Glob.PauseTimes > 0 && i == 5) TotalWidth = 0; //有暂停时 ，停留不计
+                        double Width = TotalWidth * BmpWidth / allTotalWidth;
+                        if (int.Parse(data[3]) > 0 && i == 5) TotalWidth = 0; //有暂停时 ，停留不计
                         if (TotalWidth.ToString("0.00") == "0.00")
                         {
                             Width = 1;
@@ -152,15 +168,50 @@ namespace WindowsFormsApplication2
             }
         }
 
+
+        /// <summary>
+        /// 生成速度分析文本
+        /// </summary>
+        /// <returns></returns>
+        private string CreateText()
+        {
+            if (getData != "")
+            {
+                string[] data = getData.Split('|');//获取各项数据
+                if (data.Length == 16)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine($"     第{nowCout}段跟打分析：");
+                    sb.AppendLine("+----------------------------------+");
+                    sb.AppendLine($" 速度码长理论值：{data[2]}");
+                    sb.AppendLine($" 速度完美理论值：{data[0]}({data[1]})");
+                    sb.AppendLine($" 速度跟打实际值：{data[4]}({data[5]})");
+                    sb.AppendLine("+----------------------------------+");
+                    sb.AppendLine($" 回改影响：-{data[6]} 回改：{data[7]}s");
+                    sb.AppendLine($" 退格影响：-{data[8]} 退格：{data[9]}");
+                    if (int.Parse(data[3]) == 0)
+                    {
+                        sb.AppendLine($" 停留影响：-{data[10]} 停留：{data[11]}s");
+                    }
+                    sb.AppendLine($" 错字影响：-{data[12]} 错字：{data[13]}");
+                    sb.AppendLine($" 回车影响：-{data[14]} 回车：{data[15]}");
+                    sb.AppendLine("+----------------------------------+");
+                    return sb.ToString();
+                }
+            }
+            return "无";
+        }
+
+
         //复制文本
         private void GetText_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(Data[1]);
+            Clipboard.SetText(CreateText());
         }
 
         private void SendText_Click(object sender, EventArgs e)
         {
-            frm.sendtext(Data[1]);
+            frm.sendtext(CreateText());
         }
 
         //截图类
@@ -178,10 +229,10 @@ namespace WindowsFormsApplication2
             var rect = new Rectangle(1, 21, this.SpeedAnGet.Width, this.SpeedAnGet.Height);//定义矩形
             this.SpeedAnGet.DrawToBitmap(bmp, rect);
             Font F = new Font("宋体", 9f);
-            string s = Glob.Form + "(" + Glob.Instration.Trim() + Glob.Ver + ")";
+            string s = Glob.Form + "(" + verInstration.Trim() + ")";
             SizeF sF = g.MeasureString(s, F);
             g.DrawString(s, F, Brushes.White, this.SpeedAnGet.Width - sF.Width + 2, bmp.Height - 15);
-            g.DrawString("第" + Glob.Pre_Cout + "段速度分析",F,Brushes.White,3,4);
+            g.DrawString("第" + nowCout + "段速度分析",F,Brushes.White,3,4);
             g.DrawString(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToShortTimeString(), F, Brushes.LightGray, 2, bmp.Height - 15);
             return bmp;
         }

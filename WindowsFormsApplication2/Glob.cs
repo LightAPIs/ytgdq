@@ -10,17 +10,19 @@ using System.Collections;
 using System.Globalization;
 using System.Reflection;
 using WindowsFormsApplication2.编码提示;
+using WindowsFormsApplication2.Storage;
 
 namespace WindowsFormsApplication2
 {
     public class Glob
     { //一些全局变量
-        private const string _ver = "0.94";
-        public static string Ver = ".18";
+        public static string Ver = "1.0.0";
 
-        public static string Form = "添雨跟打器v" + _ver;
-        public static string Instration = " t46"; //尾发送字符
-        public static string VerInstance = _ver + Ver;
+        public static string Form = "雨天跟打器v" + Ver;
+        /// <summary>
+        /// 成绩版本
+        /// </summary>
+        public static string Instration = "s01";
         //public static int su = 0;//测试用的
         public static string BianMa = ""; //编码查询
         /// <summary>
@@ -58,7 +60,11 @@ namespace WindowsFormsApplication2
         public static double TextSpeed; //以下为上次成绩
         public static double Textjj;
         public static double Textmc;
-        public static string TextPreCout = "";//上次段号
+        /// <summary>
+        /// 上一次文段校验码
+        /// 用于判定是否为重打
+        /// </summary>
+        public static string TextPreCout = "";
         public static bool ReTypePD = false;//重打判断
         public static int TextLen; //总字数
         public static int TextJc = 0;//需要减去的数量
@@ -257,7 +263,7 @@ namespace WindowsFormsApplication2
         //图片成绩发送昵称
         public static string PicName = "";
 
-        public static string TextTime = "";
+        public static DateTime TextTime;
 
         //是否开启智能测词
         public static bool 是否智能测词 = false;
@@ -294,6 +300,20 @@ namespace WindowsFormsApplication2
             new HotKey("从QQ窗口", "Alt+S"),
             new HotKey("老板键", "Alt+Q"),
         };
+
+        /// <summary>
+        /// 保存曲线各点速度值
+        /// </summary>
+        public static List<double> ChartSpeedArr = new List<double> ();
+
+        /// <summary>
+        /// 历史成绩
+        /// </summary>
+        public static ScoreData ScoreHistory;
+        /// <summary>
+        /// 历史文章
+        /// </summary>
+        public static ArticleData ArticleHistory;
     }
 
     /// <summary>

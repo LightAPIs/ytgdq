@@ -194,7 +194,7 @@ namespace WindowsFormsApplication2
         /// <param name="e"></param>
         private void btnOk_Click(object sender, EventArgs e)
         {
-            _Ini ini = new _Ini("Ttyping.ty");
+            _Ini ini = new _Ini("config.ini");
             ini.IniWriteValue("主题", "是否启用主题", "True");
             ini.IniWriteValue("主题","是否应用主题背景",this.SwitchB1.Checked.ToString());
             ini.IniWriteValue("主题", "背景路径", this.lblBGPath.Text);
@@ -317,7 +317,7 @@ namespace WindowsFormsApplication2
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Theme.ThemeApply = false;
-            _Ini ini = new _Ini("Ttyping.ty");
+            _Ini ini = new _Ini("config.ini");
             ini.IniWriteValue("主题", "是否启用主题", "False");
             frm.LoadTheme("", Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.ThemeBG);
             this.Close();

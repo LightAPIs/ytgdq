@@ -196,7 +196,7 @@ namespace WindowsFormsApplication2
             g.DrawString(T_,title_Font,Brushes.PaleVioletRed,label_title.Width,1);
             g.DrawString("当前日期: " + DateTime.Now.ToShortDateString(),text_Font,Brushes.DimGray,0,label_title.Height + 1);
             //尾标
-            string text_ = Glob.Form + Glob.Ver + "(" + Glob.Instration.Trim() + ")";
+            string text_ = Glob.Form + "(" + Glob.Instration + ")";
             SizeF text_Size = g.MeasureString(text_, text_Font);
             int LastFlagHeight = (int)(Pic_Bmp.Height - text_Size.Height);
             g.DrawString(text_,text_Font,Brushes.DimGray,Pic_Bmp.Width - text_Size.Width,LastFlagHeight);

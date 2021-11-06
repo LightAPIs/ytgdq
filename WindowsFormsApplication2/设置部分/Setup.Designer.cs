@@ -547,7 +547,7 @@
             this.richTextBox2.Size = new System.Drawing.Size(376, 66);
             this.richTextBox2.TabIndex = 2;
             this.richTextBox2.Text = "";
-            this.toolTip1.SetToolTip(this.richTextBox2, "填入成绩，不需要复制昵称。必须含有添雨验证");
+            this.toolTip1.SetToolTip(this.richTextBox2, "填入成绩，不需要复制昵称。必须含有校验码");
             this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
             // 
             // label14
@@ -819,7 +819,7 @@
             this.pictureBoxFalse.TabIndex = 13;
             this.pictureBoxFalse.TabStop = false;
             this.toolTip1.SetToolTip(this.pictureBoxFalse, "双击点我，选择错误时的标记颜色");
-            this.pictureBoxFalse.DoubleClick += new System.EventHandler(this.pictureBoxFalse_DoubleClick);
+            this.pictureBoxFalse.Click += new System.EventHandler(this.pictureBoxFalse_Click);
             // 
             // pictureBoxRight
             // 
@@ -830,7 +830,7 @@
             this.pictureBoxRight.TabIndex = 12;
             this.pictureBoxRight.TabStop = false;
             this.toolTip1.SetToolTip(this.pictureBoxRight, "双击点我，选择正确时的标记颜色");
-            this.pictureBoxRight.DoubleClick += new System.EventHandler(this.pictureBoxRight_DoubleClick);
+            this.pictureBoxRight.Click += new System.EventHandler(this.pictureBoxRight_Click);
             // 
             // tbxName
             // 
@@ -3389,7 +3389,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(122, 21);
             this.label10.TabIndex = 14;
-            this.label10.Text = "添雨跟打器设置";
+            this.label10.Text = "雨天跟打器设置";
             // 
             // newButton1
             // 
@@ -3441,7 +3441,7 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "添雨跟打器设置";
+            this.Text = "雨天跟打器设置";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CloseRefresh);
             this.Load += new System.EventHandler(this.Setup_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TSetup_MouseDown);

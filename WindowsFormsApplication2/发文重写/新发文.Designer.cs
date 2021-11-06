@@ -1019,7 +1019,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "添雨发文设置";
+            this.Text = "雨天发文设置";
             this.Load += new System.EventHandler(this.新发文_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

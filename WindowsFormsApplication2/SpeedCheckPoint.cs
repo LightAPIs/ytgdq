@@ -169,7 +169,7 @@ namespace WindowsFormsApplication2
                 g.Clear(Color.DimGray);
                 Font F = new Font("宋体", 9f);
                 string title = this.Ti.Text;
-                string detail = Glob.Form + "(" + Glob.Instration.Trim() + Glob.Ver + ")";
+                string detail = Glob.Form + "(" + Glob.Instration + ")";
                 string time = DateTime.Now.ToLongTimeString();
                 SizeF detail_Sf = g.MeasureString(detail, F);
                 SizeF title_Sf = g.MeasureString(title, F);

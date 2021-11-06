@@ -27,7 +27,7 @@ namespace WindowsFormsApplication2.检查更新
         #endregion
         #region 属性
 
-        private string _url = "https://cdn.jsdelivr.net/gh/LightAPIs/tygdq@main/updates.json";
+        private readonly string _url = "https://cdn.jsdelivr.net/gh/LightAPIs/ytgdq@main/updates.json";
         public List<VersionObject> VersionList { get; set; }
         public List<VersionObject> NewVersionList { get; set; }
 
@@ -37,9 +37,13 @@ namespace WindowsFormsApplication2.检查更新
         public string ContentValue { get; set; }
         public string OtherValue { get; set; }
 
-        public List<int> Compare = new List<int>();
         public bool IsUpdate = false;
         public bool IsError = false;
+
+        /// <summary>
+        /// 版本格式
+        /// </summary>
+        public int[] Standard = new int[3] { 8, 4, 2 };
 
         #endregion
 
@@ -61,7 +65,7 @@ namespace WindowsFormsApplication2.检查更新
             }
             sb.AppendLine("");
 
-            if (NewVersionList.Count > 1)
+            if (NewVersionList != null && NewVersionList.Count > 1)
             {
                 for (int i = 1; i < NewVersionList.Count; i++)
                 {
@@ -82,11 +86,10 @@ namespace WindowsFormsApplication2.检查更新
         }
 
         /// <summary>
-        ///     获取源数据
+        /// 获取源数据
         /// </summary>
         public void GetWebRequest()
         {
-            Compare.Clear();
             IsError = false;
             Uri uri = new Uri(_url);
             WebRequest myReq = WebRequest.Create(uri);
@@ -102,7 +105,7 @@ namespace WindowsFormsApplication2.检查更新
 
                 VersionList = JsonConvert.DeserializeObject<List<VersionObject>>(strJSON);
 
-                var localVersion = Glob.VerInstance;
+                var localVersion = Glob.Ver;
                 VersionValue = localVersion;
                 DateValue = "";
                 InstraValue = "";
@@ -163,19 +166,19 @@ namespace WindowsFormsApplication2.检查更新
             var vLoc = SpliteVer(vL);
             var vNet = SpliteVer(vN);
             if (vNet[0] == -1) return false;
-            for (int index = 0; index < vNet.Length; index++)
+            int compare = 0;
+            for (int index = 0; index < vLoc.Length; index++)
             {
-                var iN = vNet[index];
-                var iL = vLoc[index];
-                Compare.Add(iN - iL);
+                if (vNet[index] > vLoc[index])
+                {
+                    compare += Standard[index];
+                }
+                else if (vNet[index] < vLoc[index])
+                {
+                    compare -= Standard[index];
+                }
             }
-            return isUpgrade(Compare);
-        }
-
-        public bool isUpgrade(IEnumerable<int> ints)
-        {
-            var finds = ints.Count(o => o != 0);
-            return finds != 0;
+            return compare > 0;
         }
 
         /// <summary>
@@ -186,13 +189,14 @@ namespace WindowsFormsApplication2.检查更新
         private int[] SpliteVer(string ver)
         {
             var sp = ver.Split('.');
-            if (sp.Length != 3) return null;
+            if (sp.Length < 3) {
+                return new int[3] { 1, 0, 0 };
+            }
             var sv = new int[3];
             int.TryParse(sp[0], out sv[0]);
             int.TryParse(sp[1], out sv[1]);
             int.TryParse(sp[2], out sv[2]);
             return sv;
         }
-
     }
 }

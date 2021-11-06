@@ -33,7 +33,7 @@ namespace WindowsFormsApplication2
                 mu1 = new System.Threading.Mutex(true, "Global\\" + mutexName1, out is_createdNew1);
                 if (!is_createdNew1)
                 {
-                    MessageBox.Show("添雨跟打器对你弱弱地说：\"我已经打开了啦~~！\"","添雨跟打器",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    MessageBox.Show("雨天跟打器对你弱弱地说：\"我已经打开了啦~~！\"","雨天跟打器",MessageBoxButtons.OK,MessageBoxIcon.Information);
                     return;
                 }
 

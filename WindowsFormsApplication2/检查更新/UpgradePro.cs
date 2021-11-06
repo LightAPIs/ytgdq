@@ -35,7 +35,7 @@ namespace WindowsFormsApplication2.检查更新
             var font1 = new Font("微软雅黑", 16f);
             var font2 = new Font(font1.FontFamily, 45);
             e.Graphics.DrawString("当前版本：", font1, Brushes.Gray, 10, 10);
-            e.Graphics.DrawString(Glob.VerInstance, font2, Brushes.Gray, 30, 40);
+            e.Graphics.DrawString(Glob.Ver, font2, Brushes.Gray, 30, 40);
             if (UpgradeModel.IsUpdate && !UpgradeModel.IsError)
             {
                 e.Graphics.DrawString("更新版本：" + UpgradeModel.DateValue, font1, Brushes.DimGray, 10, 115);

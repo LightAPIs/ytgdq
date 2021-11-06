@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About));
             this.label2 = new System.Windows.Forms.Label();
             this.lblInfo = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
@@ -45,9 +46,9 @@
             this.label2.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.Location = new System.Drawing.Point(12, 14);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 31);
+            this.label2.Size = new System.Drawing.Size(164, 31);
             this.label2.TabIndex = 5;
-            this.label2.Text = "添雨跟打器";
+            this.label2.Text = "雨天跟打器 ®";
             // 
             // lblInfo
             // 
@@ -63,7 +64,7 @@
             // 
             this.labelVersion.AutoSize = true;
             this.labelVersion.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelVersion.Location = new System.Drawing.Point(162, 20);
+            this.labelVersion.Location = new System.Drawing.Point(182, 20);
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.Size = new System.Drawing.Size(67, 25);
             this.labelVersion.TabIndex = 7;
@@ -72,29 +73,29 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(14, 121);
+            this.linkLabel1.Location = new System.Drawing.Point(15, 189);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(192, 20);
+            this.linkLabel1.Size = new System.Drawing.Size(276, 20);
             this.linkLabel1.TabIndex = 8;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "原项目 (Apache License 2.0)";
+            this.linkLabel1.Text = "原项目：添雨跟打器 (Apache License 2.0)";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1Clicked);
             // 
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(14, 155);
+            this.linkLabel2.Location = new System.Drawing.Point(15, 227);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(65, 20);
+            this.linkLabel2.Size = new System.Drawing.Size(144, 20);
             this.linkLabel2.TabIndex = 9;
             this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "官方网站";
+            this.linkLabel2.Text = "源代码 (MIT License)";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel2Clicked);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 87);
+            this.label1.Location = new System.Drawing.Point(15, 156);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(131, 20);
             this.label1.TabIndex = 10;
@@ -113,20 +114,20 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 193);
+            this.label3.Location = new System.Drawing.Point(15, 119);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 20);
+            this.label3.Size = new System.Drawing.Size(289, 20);
             this.label3.TabIndex = 12;
-            this.label3.Text = "添雨跟打器 ® ";
+            this.label3.Text = "该软件基于添雨跟打器旧版本项目修改构建。";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 223);
+            this.label4.Location = new System.Drawing.Point(15, 86);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(303, 20);
+            this.label4.Size = new System.Drawing.Size(317, 20);
             this.label4.TabIndex = 13;
-            this.label4.Text = "软件名称、商标及标识均归添雨个人工作室拥有";
+            this.label4.Text = "雨天跟打器是一款免费开源的便捷打字练习软件，";
             // 
             // About
             // 
@@ -143,10 +144,11 @@
             this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "About";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "关于添雨跟打器";
+            this.Text = "关于雨天跟打器";
             this.Load += new System.EventHandler(this.Start_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -12,8 +12,18 @@ namespace WindowsFormsApplication2.跟打报告
 {
     public partial class TypeAnalysis : Form
     {
-        public TypeAnalysis()
+        private readonly List<TypeDate> typeReportData;
+        private readonly string typeTextData;
+        private readonly string textSpeedData;
+        private readonly int textHgData;
+        private readonly string verInstration;
+        public TypeAnalysis(List<TypeDate> type_report_data, string type_text_data, string text_speed_data, int text_hg_data, string ver_instration)
         {
+            this.typeReportData = type_report_data;
+            this.typeTextData = type_text_data;
+            this.textSpeedData = text_speed_data;
+            this.textHgData = text_hg_data;
+            this.verInstration = ver_instration;
             InitializeComponent();
         }
 
@@ -29,7 +39,7 @@ namespace WindowsFormsApplication2.跟打报告
                 BindingFlags.Instance | BindingFlags.NonPublic);
             pi.SetValue(dataGridView1, true, null);
 
-            //this.dataGridView1.DataSource = Glob.TypeReport.ToArray();
+            //this.dataGridView1.DataSource = this.typeReportData.ToArray();
             this.dataGridView1.Rows.Add("序","起","止","文字","用时","键数");
             this.dataGridView1.Rows[0].Frozen = true;
             this.dataGridView1.Rows[0].DefaultCellStyle.BackColor = Color.FromArgb(64,128,128);
@@ -43,15 +53,15 @@ namespace WindowsFormsApplication2.跟打报告
         /// </summary>
         private void ShowToTable()
         {
-            foreach (var item in Glob.TypeReport)
+            foreach (var item in this.typeReportData)
             {
-                this.dataGridView1.Rows.Add(item.Index,item.Start,item.End,(item.Start < item.End) ? Glob.TypeText.Substring(item.Start,item.Length):"□",item.TotalTime.ToString("0.0000"),item.TotalTick);
+                this.dataGridView1.Rows.Add(item.Index,item.Start,item.End,(item.Start < item.End) ? this.typeTextData.Substring(item.Start,item.Length):"□",item.TotalTime.ToString("0.0000"),item.TotalTick);
                 if (item.Length < 0)
                     this.dataGridView1.Rows[this.dataGridView1.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightPink;
             }
             try
             {
-                this.dataGridView1.Rows.Add("总", Glob.TypeReport[0].Start, Glob.TypeReport[Glob.TypeReport.Count - 1].End, "ALL", Glob.TypeReport.Sum(o => o.TotalTime).ToString("0.0000"), Glob.TypeReport.Sum(o => o.TotalTick));
+                this.dataGridView1.Rows.Add("总", this.typeReportData[0].Start, this.typeReportData[this.typeReportData.Count - 1].End, "ALL", this.typeReportData.Sum(o => o.TotalTime).ToString("0.0000"), this.typeReportData.Sum(o => o.TotalTick));
             }
             catch { 
                 
@@ -62,15 +72,14 @@ namespace WindowsFormsApplication2.跟打报告
         /// 用PIC方式显示
         /// </summary>
         private void ShowToPic() {
-            Bitmap bmp = new Bitmap(this.pic_analysis.Width, 135 + Glob.TypeText.Length + Glob.TextHg * 2);
+            Bitmap bmp = new Bitmap(this.pic_analysis.Width, 135 + this.typeTextData.Length + this.textHgData * 2);
             Graphics g = Graphics.FromImage(bmp);
             g.Clear(Color.White); //清洗画布
             
             //标题啦
             Font title_font = new Font("微软雅黑",14,FontStyle.Bold);
             g.DrawString("跟打报告",title_font,Brushes.ForestGreen,20,20);
-            string text_speed = Glob.TextSpeed.ToString("0.00");
-            g.DrawString(text_speed,title_font,Brushes.SeaGreen,bmp.Width - 20 - GetWH(g,text_speed,title_font).Width,20);//速度
+            g.DrawString(this.textSpeedData, title_font, Brushes.SeaGreen,bmp.Width - 20 - GetWH(g, this.textSpeedData, title_font).Width, 20);//速度
             int title_height = (int)GetWH(g,"跟",title_font).Height + 23;
             g.DrawLine(new Pen(Color.DarkSlateBlue, 3), 10, title_height, bmp.Width - 10, title_height);
             //副级标题1 全文跟打详细过程
@@ -95,7 +104,7 @@ namespace WindowsFormsApplication2.跟打报告
              * 开写
              */
             //获取用时最高的十个地方
-            List<TypeDate> UseHighTime = Glob.TypeReport.OrderByDescending(o => o.TotalTime).Take(10).ToList();
+            List<TypeDate> UseHighTime = this.typeReportData.OrderByDescending(o => o.TotalTime).Take(10).ToList();
 
             int t_nowX = t_Start_X + 10;
             int t_nowY = t_Start_Y;
@@ -167,7 +176,7 @@ namespace WindowsFormsApplication2.跟打报告
                         g.DrawString(text_temp,newFont,Brushes.DarkRed,t_nowX + t_text_width/2 - GetWH(g,text_temp,newFont).Width/2,t_nowY + 18);
                     }
 
-                    bool b_temp2 = (speed > Glob.TextSpeed);
+                    bool b_temp2 = (speed > double.Parse(this.textSpeedData));
                     if (!b_temp2) //速度低于平均值时
                         g.DrawLine(new Pen(Color.MediumVioletRed,2), t_nowX, t_nowY + 16, t_nowX + t_text_width, t_nowY + 16);
                     //高击键区 击键上8的情况
@@ -214,7 +223,7 @@ namespace WindowsFormsApplication2.跟打报告
             
             //尾标
             Font Last_Font = new Font("Verdana",9f);
-            string Last_Text = Glob.Form + Glob.Ver + "(" + Glob.Instration + ")";
+            string Last_Text = Glob.Form + "(" + this.verInstration + ")";
             SizeF Last_Text_SizeF = GetWH(g,Last_Text,Last_Font);
             g.DrawString(Last_Text, Last_Font, Brushes.DimGray, bmp.Width - Last_Text_SizeF.Width, bmp.Height - Last_Text_SizeF.Height - 3);
             //给画布画上边框

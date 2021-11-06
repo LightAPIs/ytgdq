@@ -364,7 +364,7 @@ namespace WindowsFormsApplication2
                 string infoIsT = NewSendText.是否周期.ToString();
                 string infoTTime = NewSendText.周期.ToString();
                 string infoisMyseft = NewSendText.是否独练.ToString();
-                _Ini setupini = new _Ini("Ttyping.ty");
+                _Ini setupini = new _Ini("config.ini");
                 string getALL_ = setupini.IniReadValue("发文面板配置","总序列","0");
                 if (getALL_ != "0")
                 {
@@ -420,7 +420,7 @@ namespace WindowsFormsApplication2
         {
             string str1 = Application.StartupPath;
             byte[] buffer = new byte[5120];
-            int rel = GetPrivateProfileStringA(sectionName, null, "", buffer, buffer.GetUpperBound(0), str1 + "\\Ttyping.ty");
+            int rel = GetPrivateProfileStringA(sectionName, null, "", buffer, buffer.GetUpperBound(0), str1 + "\\config.ini");
 
             int iCnt, iPos;
             ArrayList arrayList = new ArrayList();

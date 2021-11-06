@@ -91,7 +91,7 @@ namespace WindowsFormsApplication2
             Rectangle rect = new Rectangle(1, 1, this.chart1.Width, this.chart1.Height);//定义矩形
             this.chart1.DrawToBitmap(bmp, rect);
             Font F = new Font("宋体", 9f);
-            string s = Glob.Form + "(" + Glob.Instration.Trim() + Glob.Ver + ")";
+            string s = Glob.Form + "(" + Glob.Instration + ")";
             SizeF sF = g.MeasureString(s, F);
             g.DrawString(s, F, Brushes.White, this.chart1.Width - sF.Width + 2, this.chart1.Height + 4);
             g.DrawString(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToShortTimeString(), F, Brushes.LightGray, 2, this.chart1.Height + 4);

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="StorageDataSet" targetNamespace="http://tempuri.org/StorageDataSet.xsd" xmlns:mstns="http://tempuri.org/StorageDataSet.xsd" xmlns="http://tempuri.org/StorageDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="StorageDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="StorageDataSet" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="StorageDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Score" msprop:Generator_RowEvHandlerName="ScoreRowChangeEventHandler" msprop:Generator_RowDeletedName="ScoreRowDeleted" msprop:Generator_RowDeletingName="ScoreRowDeleting" msprop:Generator_RowEvArgName="ScoreRowChangeEvent" msprop:Generator_TablePropName="Score" msprop:Generator_RowChangedName="ScoreRowChanged" msprop:Generator_UserTableName="Score" msprop:Generator_RowChangingName="ScoreRowChanging" msprop:Generator_RowClassName="ScoreRow" msprop:Generator_TableClassName="ScoreDataTable" msprop:Generator_TableVarName="tableScore">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="score_time" msprop:Generator_UserColumnName="score_time" msprop:Generator_ColumnPropNameInTable="score_timeColumn" msprop:Generator_ColumnPropNameInRow="score_time" msprop:Generator_ColumnVarNameInTable="columnscore_time" type="xs:dateTime" />
+              <xs:element name="segment_num" msprop:Generator_UserColumnName="segment_num" msprop:Generator_ColumnPropNameInTable="segment_numColumn" msprop:Generator_ColumnPropNameInRow="segment_num" msprop:Generator_ColumnVarNameInTable="columnsegment_num" type="xs:int" minOccurs="0" />
+              <xs:element name="speed" msprop:Generator_UserColumnName="speed" msprop:Generator_ColumnPropNameInTable="speedColumn" msprop:Generator_ColumnPropNameInRow="speed" msprop:Generator_ColumnVarNameInTable="columnspeed" type="xs:string" minOccurs="0" />
+              <xs:element name="keystroke" msprop:Generator_UserColumnName="keystroke" msprop:Generator_ColumnPropNameInTable="keystrokeColumn" msprop:Generator_ColumnPropNameInRow="keystroke" msprop:Generator_ColumnVarNameInTable="columnkeystroke" type="xs:double" minOccurs="0" />
+              <xs:element name="code_len" msprop:Generator_UserColumnName="code_len" msprop:Generator_ColumnPropNameInTable="code_lenColumn" msprop:Generator_ColumnPropNameInRow="code_len" msprop:Generator_ColumnVarNameInTable="columncode_len" type="xs:double" minOccurs="0" />
+              <xs:element name="calc_len" msprop:Generator_UserColumnName="calc_len" msprop:Generator_ColumnPropNameInTable="calc_lenColumn" msprop:Generator_ColumnPropNameInRow="calc_len" msprop:Generator_ColumnVarNameInTable="columncalc_len" type="xs:double" minOccurs="0" />
+              <xs:element name="back_change" msprop:Generator_UserColumnName="back_change" msprop:Generator_ColumnPropNameInTable="back_changeColumn" msprop:Generator_ColumnPropNameInRow="back_change" msprop:Generator_ColumnVarNameInTable="columnback_change" type="xs:int" minOccurs="0" />
+              <xs:element name="backspace" msprop:Generator_UserColumnName="backspace" msprop:Generator_ColumnPropNameInTable="backspaceColumn" msprop:Generator_ColumnPropNameInRow="backspace" msprop:Generator_ColumnVarNameInTable="columnbackspace" type="xs:int" minOccurs="0" />
+              <xs:element name="enter" msprop:Generator_UserColumnName="enter" msprop:Generator_ColumnPropNameInTable="enterColumn" msprop:Generator_ColumnPropNameInRow="enter" msprop:Generator_ColumnVarNameInTable="columnenter" type="xs:int" minOccurs="0" />
+              <xs:element name="duplicate" msprop:Generator_UserColumnName="duplicate" msprop:Generator_ColumnPropNameInTable="duplicateColumn" msprop:Generator_ColumnPropNameInRow="duplicate" msprop:Generator_ColumnVarNameInTable="columnduplicate" type="xs:int" minOccurs="0" />
+              <xs:element name="error" msprop:Generator_UserColumnName="error" msprop:Generator_ColumnPropNameInTable="errorColumn" msprop:Generator_ColumnPropNameInRow="error" msprop:Generator_ColumnVarNameInTable="columnerror" type="xs:int" minOccurs="0" />
+              <xs:element name="back_rate" msprop:Generator_UserColumnName="back_rate" msprop:Generator_ColumnPropNameInTable="back_rateColumn" msprop:Generator_ColumnPropNameInRow="back_rate" msprop:Generator_ColumnVarNameInTable="columnback_rate" type="xs:double" minOccurs="0" />
+              <xs:element name="accuracy_rate" msprop:Generator_UserColumnName="accuracy_rate" msprop:Generator_ColumnPropNameInTable="accuracy_rateColumn" msprop:Generator_ColumnPropNameInRow="accuracy_rate" msprop:Generator_ColumnVarNameInTable="columnaccuracy_rate" type="xs:double" minOccurs="0" />
+              <xs:element name="effciency" msprop:Generator_UserColumnName="effciency" msprop:Generator_ColumnPropNameInTable="effciencyColumn" msprop:Generator_ColumnPropNameInRow="effciency" msprop:Generator_ColumnVarNameInTable="columneffciency" type="xs:int" minOccurs="0" />
+              <xs:element name="keys" msprop:Generator_UserColumnName="keys" msprop:Generator_ColumnPropNameInTable="keysColumn" msprop:Generator_ColumnPropNameInRow="keys" msprop:Generator_ColumnVarNameInTable="columnkeys" type="xs:int" minOccurs="0" />
+              <xs:element name="count" msprop:Generator_UserColumnName="count" msprop:Generator_ColumnPropNameInTable="countColumn" msprop:Generator_ColumnPropNameInRow="count" msprop:Generator_ColumnVarNameInTable="columncount" type="xs:int" minOccurs="0" />
+              <xs:element name="type_words" msprop:Generator_UserColumnName="type_words" msprop:Generator_ColumnPropNameInTable="type_wordsColumn" msprop:Generator_ColumnPropNameInRow="type_words" msprop:Generator_ColumnVarNameInTable="columntype_words" type="xs:int" minOccurs="0" />
+              <xs:element name="words_rate" msprop:Generator_UserColumnName="words_rate" msprop:Generator_ColumnPropNameInTable="words_rateColumn" msprop:Generator_ColumnPropNameInRow="words_rate" msprop:Generator_ColumnVarNameInTable="columnwords_rate" type="xs:double" minOccurs="0" />
+              <xs:element name="cost_time" msprop:Generator_UserColumnName="cost_time" msprop:Generator_ColumnPropNameInTable="cost_timeColumn" msprop:Generator_ColumnPropNameInRow="cost_time" msprop:Generator_ColumnVarNameInTable="columncost_time" type="xs:string" minOccurs="0" />
+              <xs:element name="segment_id" msprop:Generator_UserColumnName="segment_id" msprop:Generator_ColumnPropNameInTable="segment_idColumn" msprop:Generator_ColumnPropNameInRow="segment_id" msprop:Generator_ColumnVarNameInTable="columnsegment_id" type="xs:int" minOccurs="0" />
+              <xs:element name="article_title" msprop:Generator_UserColumnName="article_title" msprop:Generator_ColumnPropNameInTable="article_titleColumn" msprop:Generator_ColumnPropNameInRow="article_title" msprop:Generator_ColumnVarNameInTable="columnarticle_title" type="xs:string" minOccurs="0" />
+              <xs:element name="version" msprop:Generator_UserColumnName="version" msprop:Generator_ColumnPropNameInTable="versionColumn" msprop:Generator_ColumnPropNameInRow="version" msprop:Generator_ColumnVarNameInTable="columnversion" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Advanced" msprop:Generator_RowEvHandlerName="AdvancedRowChangeEventHandler" msprop:Generator_RowDeletedName="AdvancedRowDeleted" msprop:Generator_RowDeletingName="AdvancedRowDeleting" msprop:Generator_RowEvArgName="AdvancedRowChangeEvent" msprop:Generator_TablePropName="Advanced" msprop:Generator_RowChangedName="AdvancedRowChanged" msprop:Generator_RowChangingName="AdvancedRowChanging" msprop:Generator_TableClassName="AdvancedDataTable" msprop:Generator_RowClassName="AdvancedRow" msprop:Generator_TableVarName="tableAdvanced" msprop:Generator_UserTableName="Advanced">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="score_time" msprop:Generator_ColumnPropNameInRow="score_time" msprop:Generator_ColumnPropNameInTable="score_timeColumn" msprop:Generator_ColumnVarNameInTable="columnscore_time" msprop:Generator_UserColumnName="score_time" type="xs:dateTime" />
+              <xs:element name="curve" msprop:Generator_ColumnPropNameInRow="curve" msprop:Generator_ColumnPropNameInTable="curveColumn" msprop:Generator_ColumnVarNameInTable="columncurve" msprop:Generator_UserColumnName="curve" type="xs:string" minOccurs="0" />
+              <xs:element name="speed_analysis" msprop:Generator_ColumnPropNameInRow="speed_analysis" msprop:Generator_ColumnPropNameInTable="speed_analysisColumn" msprop:Generator_ColumnVarNameInTable="columnspeed_analysis" msprop:Generator_UserColumnName="speed_analysis" type="xs:string" minOccurs="0" />
+              <xs:element name="type_analysis" msprop:Generator_ColumnPropNameInRow="type_analysis" msprop:Generator_ColumnPropNameInTable="type_analysisColumn" msprop:Generator_ColumnVarNameInTable="columntype_analysis" msprop:Generator_UserColumnName="type_analysis" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Segment" msprop:Generator_RowEvHandlerName="SegmentRowChangeEventHandler" msprop:Generator_RowDeletedName="SegmentRowDeleted" msprop:Generator_RowDeletingName="SegmentRowDeleting" msprop:Generator_RowEvArgName="SegmentRowChangeEvent" msprop:Generator_TablePropName="Segment" msprop:Generator_RowChangedName="SegmentRowChanged" msprop:Generator_RowChangingName="SegmentRowChanging" msprop:Generator_TableClassName="SegmentDataTable" msprop:Generator_RowClassName="SegmentRow" msprop:Generator_TableVarName="tableSegment" msprop:Generator_UserTableName="Segment">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_UserColumnName="id" type="xs:int" />
+              <xs:element name="content" msprop:Generator_ColumnPropNameInRow="content" msprop:Generator_ColumnPropNameInTable="contentColumn" msprop:Generator_ColumnVarNameInTable="columncontent" msprop:Generator_UserColumnName="content" type="xs:string" minOccurs="0" />
+              <xs:element name="check_code" msprop:Generator_ColumnPropNameInRow="check_code" msprop:Generator_ColumnPropNameInTable="check_codeColumn" msprop:Generator_ColumnVarNameInTable="columncheck_code" msprop:Generator_UserColumnName="check_code" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="ScoreKey" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Score" />
+      <xs:field xpath="mstns:score_time" />
+    </xs:unique>
+    <xs:unique name="AdvancedKey" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Advanced" />
+      <xs:field xpath="mstns:score_time" />
+    </xs:unique>
+    <xs:unique name="SegmentKey" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Segment" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:keyref name="FK_Segment_Score" refer="SegmentKey" msdata:ConstraintOnly="true">
+      <xs:selector xpath=".//mstns:Score" />
+      <xs:field xpath="mstns:segment_id" />
+    </xs:keyref>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="FK_Score_Advanced" msdata:parent="Score" msdata:child="Advanced" msdata:parentkey="score_time" msdata:childkey="score_time" msprop:Generator_UserParentTable="Score" msprop:Generator_UserChildTable="Advanced" msprop:Generator_RelationVarName="relationFK_Score_Advanced" msprop:Generator_ChildPropName="GetAdvancedRows" msprop:Generator_ParentPropName="ScoreRow" msprop:Generator_UserRelationName="FK_Score_Advanced" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

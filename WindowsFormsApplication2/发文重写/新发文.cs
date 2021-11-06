@@ -35,7 +35,7 @@ namespace WindowsFormsApplication2
             NewSendText.当前配置序列 = "";
             ReadAll(Application.StartupPath);
             this.Text += "[当前群：" + frm.lblQuan.Text + "]";
-            _Ini t2 = new _Ini("Ttyping.ty");
+            _Ini t2 = new _Ini("config.ini");
             this.cbxTickOut.Checked = bool.Parse(t2.IniReadValue("发文面板配置", "自动剔除空格", "True"));
             this.cbx乱序全段不重复.Checked = bool.Parse(t2.IniReadValue("发文面板配置", "乱序全段不重复", "False"));
             if (!File.Exists(Application.StartupPath + "\\TyDll.dll"))
@@ -818,7 +818,7 @@ namespace WindowsFormsApplication2
             try
             {
                 this.lbxIni.Items.Clear();
-                _Ini getData = new _Ini("Ttyping.ty");
+                _Ini getData = new _Ini("config.ini");
                 ArrayList getini = ReadKeys("发文配置");
                 int count = getini.Count;
                 for (int i = 0; i < count; i++)
@@ -840,7 +840,7 @@ namespace WindowsFormsApplication2
         private void lbxIni_SelectedIndexChanged(object sender, EventArgs e)
         {
             string select = "";
-            _Ini getdata = new _Ini("Ttyping.ty");
+            _Ini getdata = new _Ini("config.ini");
             try
             {
                 select = (sender as ListBox).SelectedItem.ToString();
@@ -899,7 +899,7 @@ namespace WindowsFormsApplication2
             {
                 if (this.lbxIni.Items.Count > 0)
                 {
-                    _Ini ini = new _Ini("Ttyping.ty");
+                    _Ini ini = new _Ini("config.ini");
                     string select = this.lbxIni.SelectedItem.ToString();
                     string[] idget = select.Split('|');
                     string get = idget[0].Trim();
@@ -930,7 +930,7 @@ namespace WindowsFormsApplication2
         {
             string str1 = Application.StartupPath;
             byte[] buffer = new byte[5120];
-            int rel = GetPrivateProfileStringA(sectionName, null, "", buffer, buffer.GetUpperBound(0), str1 + "\\Ttyping.ty");
+            int rel = GetPrivateProfileStringA(sectionName, null, "", buffer, buffer.GetUpperBound(0), str1 + "\\config.ini");
 
             int iCnt, iPos;
             ArrayList arrayList = new ArrayList();
@@ -957,7 +957,7 @@ namespace WindowsFormsApplication2
         private void cbxTickOut_CheckedChanged(object sender, EventArgs e)
         {
             bool temp = (sender as CheckBox).Checked;
-            _Ini t2 = new _Ini("Ttyping.ty");
+            _Ini t2 = new _Ini("config.ini");
             if (temp)
             {
                 t2.IniWriteValue("发文面板配置", "自动剔除空格", "True");
@@ -971,7 +971,7 @@ namespace WindowsFormsApplication2
         private void cbx乱序全段不重复_CheckedChanged(object sender, EventArgs e)
         {
             bool temp = (sender as CheckBox).Checked;
-            _Ini t2 = new _Ini("Ttyping.ty");
+            _Ini t2 = new _Ini("config.ini");
             if (temp)
             {
                 t2.IniWriteValue("发文面板配置", "乱序全段不重复", "True");

@@ -45,7 +45,7 @@ namespace WindowsFormsApplication2
                 if (GetGoal.Length != 0) {
                     try
                     {
-                        string ch = frm.精五验证(convert(速度.Text), convert(击键.Text), convert(码长.Text), (int)(double.Parse(用时.Text) * 1000.0), 秋秋号.Text);
+                        string ch = Validation.JingWuValidat(convert(速度.Text), convert(击键.Text), convert(码长.Text), (int)(double.Parse(用时.Text) * 1000.0), 秋秋号.Text, this.frm.richTextBox1.Text);
                         Regex s = new Regex(@"第\d+段");
                         string Get = s.Replace(GetGoal, "第" + 期数.Text + "期精五门比赛文段");
                         str = Get.Remove(Get.IndexOf("校验:")) + "校验码:" + ch;
@@ -63,7 +63,7 @@ namespace WindowsFormsApplication2
                         str = err.Message;
                     }
                 }
-                生成框.Text = str + Glob.Instration; ;
+                生成框.Text = str + " " + Glob.Instration;
             }
         }
 

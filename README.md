@@ -1,18 +1,23 @@
-# 添雨跟打器
+#  <img src="assets/rain.ico" width="45" aligh="left"> 雨天跟打器
 
-![version](https://img.shields.io/badge/version-0.94.18-orange.svg)
+<p align="center">
+  <a href="https://github.com/LightAPIs/ytgdq/releases/latest">
+    <img src="https://img.shields.io/github/v/release/LightAPIs/ytgdq.svg?color=orange" alt="Release" />
+  </a>
+  <a href="./LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="MIT License" />
+  </a>
+</p>
 
-## 当前版本
+## 简介
 
-v0.94.18
+雨天跟打器是一款免费开源的便携打字练习软件，该软件基于[添雨跟打器旧版本](https://github.com/taliove/tygdq)项目修改构建。
 
-### 修改内容
-修复：
-* 优化兼容新版本QQ
+## 修改内容
+## 相关项目
 
-## 说明
-添雨跟打器开发于 2012年。是本人的第一个完整的程序。代码比较陈旧，查看代码时请戴好护目镜。
+- [taliove/tygdq](https://github.com/taliove/tygdq) ([Apache-2.0 License](https://github.com/taliove/tygdq/blob/master/LICENSE))
 
-## LICENSE
+## 许可证
 
-[Apache License Version 2.0](LICENSE)
+[MIT](/LICENSE) License

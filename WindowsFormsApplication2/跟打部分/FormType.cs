@@ -2107,17 +2107,8 @@ namespace WindowsFormsApplication2
                             if (!Glob.jwMatchMoudle)
                                 TotalSend += " 校验:" + Validation.Validat(TotalSend);
                             TotalSend += inistra + 暂停 + 版本;
-                            //TotalSend += 版本 ; //版本
                             Glob.theLastGoal = TotalSend;
-                            //MessageBox.Show(Convert.ToInt32(speed).ToString());
-                            //成绩
-                            //if (NewSendText.发文状态)
-                            //{
-                            //    TotalSend += " [发文人]";
-                            //}
                         }
-                        //try
-                        //{
                         picBar_Draw(0.0, Glob.TextLen + ",100%");
                         labelSpeeding.Text = speed.ToString("0.00");
                         //changelabelcolor(jj, 1); //改变击键的颜色
@@ -2691,7 +2682,7 @@ namespace WindowsFormsApplication2
         {
             get
             {
-                string ins = "v" + Glob.Ver + "(" +  Glob.Instration + ")";
+                string ins = " v" + Glob.Ver + "(" +  Glob.Instration + ")";
                 if (Glob.TextCz > 0)
                 {
                     ins += " [错1罚5]";
@@ -2845,15 +2836,22 @@ namespace WindowsFormsApplication2
         private void 复制图片成绩ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Glob.HaveTypeCount > 0)
-                send_picGoal();
+            {
+                CopyPicGoal();
+            }
         }
 
-        private void send_picGoal()
+        private void CopyPicGoal()
         {
             using (PicGoal_Class pgc = new PicGoal_Class())
             {
                 Clipboard.SetImage(pgc.GetPic((float)UserJz / 100, this.lblTitle.Text));
             }
+        }
+
+        private void send_picGoal()
+        {
+            CopyPicGoal();
             SendClipBoardToQQ();
         }
 

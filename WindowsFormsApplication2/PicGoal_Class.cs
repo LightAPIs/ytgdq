@@ -6,11 +6,10 @@ using System.Drawing;
 using System.Drawing.Text;
 namespace WindowsFormsApplication2
 {
-    /*
-     * 这是一个图片成绩的初始类
-     * 用于测试部分
-     * 
-     */
+
+    /// <summary>
+    /// 图片成绩的初始类
+    /// </summary>
     public class PicGoal_Class:IDisposable
     {
         /// <summary>
@@ -33,9 +32,9 @@ namespace WindowsFormsApplication2
         /// 取得图片
         /// </summary>
         /// <param name="jz">键准取得</param>
-        /// 
+        /// <param name="title">标题</param>
         /// <returns></returns>
-        public Bitmap GetPic(float jz,string title){
+        public Bitmap GetPic(float jz, string title){
             //取得画布
             Graphics g = Graphics.FromImage(Pic_Bmp);
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
@@ -43,7 +42,7 @@ namespace WindowsFormsApplication2
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             //填充颜色
             g.Clear(Color.FromArgb(240, 240, 240));//一种中蓝色
-            Font F = new Font("宋体",12f);
+            //Font F = new Font("宋体",12f);
             int StartH = 30;
             //外框画笔
             Pen BorderP =new Pen(Brushes.DimGray);
@@ -51,12 +50,13 @@ namespace WindowsFormsApplication2
             //以空格分隔需要显示的项目
             //段
             Font L_ = new Font("Verdana", 9f);
-            if (Glob.ReTypePD) //重打 红
-            {
+            if (Glob.ReTypePD)
+            { // 重打红
                 g.FillPie(Brushes.IndianRed, Pic_Bmp.Width - 20, 0, 20, 20, -90, 360);
                 g.DrawString("重", L_, Brushes.White, Pic_Bmp.Width - 20 + 2, 3);
             }
-            else { //新打绿
+            else 
+            { // 新打绿
                 g.FillPie(Brushes.ForestGreen, Pic_Bmp.Width - 20, 0, 20, 20, -90, 360);
                 g.DrawString("新", L_, Brushes.White, Pic_Bmp.Width - 20 + 2,3);
             }

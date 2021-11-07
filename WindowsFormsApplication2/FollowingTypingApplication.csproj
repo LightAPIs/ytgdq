@@ -255,7 +255,7 @@
     <Compile Include="精五成绩生成.Designer.cs">
       <DependentUpon>精五成绩生成.cs</DependentUpon>
     </Compile>
-    <Compile Include="跟打部分\图片成绩设计\PicGoal_Class.cs" />
+    <Compile Include="PicGoal_Class.cs" />
     <EmbeddedResource Include="FormTheme.resx">
       <DependentUpon>FormTheme.cs</DependentUpon>
       <SubType>Designer</SubType>

@@ -101,6 +101,34 @@ namespace WindowsFormsApplication2.Storage
         }
 
         /// <summary>
+        /// 根据标题获取成绩
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public StorageDataSet.ScoreDataTable GetScoreFromTitle(string title)
+        {
+            this.cmd.CommandText = $"SELECT * FROM score WHERE article_title LIKE '%{this.ConvertText(title).Replace("%", "/%").Replace("_", "/_")}%'";
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(this.cmd);
+            StorageDataSet.ScoreDataTable myScore = new StorageDataSet.ScoreDataTable();
+            adapter.Fill(myScore);
+            return myScore;
+        }
+
+        /// <summary>
+        /// 根据文段 id 获取成绩
+        /// </summary>
+        /// <param name="segmentId"></param>
+        /// <returns></returns>
+        public StorageDataSet.ScoreDataTable GetScoreFromSegmentId(int segmentId)
+        {
+            this.cmd.CommandText = $"SELECT * FROM score WHERE segment_id={segmentId}";
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(this.cmd);
+            StorageDataSet.ScoreDataTable myScore = new StorageDataSet.ScoreDataTable();
+            adapter.Fill(myScore);
+            return myScore;
+        }
+
+        /// <summary>
         /// 根据指定时间获取高阶统计
         /// </summary>
         /// <param name="time"></param>

@@ -379,6 +379,7 @@
   <ItemGroup>
     <Content Include="rain.ico" />
     <EmbeddedResource Include="Resources\bg.jpg" />
+    <None Include="Resources\search.png" />
     <Content Include="SQLite.Interop.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -37,18 +37,13 @@ namespace WindowsFormsApplication2.History
             ShowDataFromDate(DateTime.Now);
         }
 
-        private void ShowDataFromDate(DateTime date)
+        /// <summary>
+        /// 展示数据
+        /// </summary>
+        private void ShowData()
         {
-            this.dataGridView1.Rows.Clear();
-            this.currentScoreData.Clear();
-            this.PreviewRichTextBox.Text = "";
-            this.SpeedChart.Series[0].Points.Clear();
-
-            this.ResultLabel.Text = "日期 " + date.ToString("d") + " 的数据：";
-
             int index = 0;
             int lastSegmentId = -1;
-            this.currentScoreData = Glob.ScoreHistory.GetScoreFromDate(date);
             foreach (var dataRow in this.currentScoreData)
             {
                 string typeCountStr = "";
@@ -87,13 +82,13 @@ namespace WindowsFormsApplication2.History
                             this.dataGridView1.Rows[rowCount].Cells[i].Style.BackColor = Color.FromArgb(90, 90, 90);
                         }
                     }
-                    typeCountStr = "";
                 }
                 else
                 {
                     index++;
                     typeCountStr = index.ToString();
                 }
+
                 this.dataGridView1.Rows.Add(typeCountStr, dataRow["score_time"], dataRow["segment_num"], dataRow["speed"], ((double)dataRow["keystroke"]).ToString("0.00"), ((double)dataRow["code_len"]).ToString("0.00"), ((double)dataRow["calc_len"]).ToString("0.00"), dataRow["back_change"], dataRow["backspace"], dataRow["enter"], dataRow["duplicate"], dataRow["error"], dataRow["back_rate"] + "%", dataRow["accuracy_rate"] + "%", dataRow["effciency"] + "%", dataRow["keys"], dataRow["count"], dataRow["type_words"], dataRow["words_rate"] + "%", dataRow["cost_time"], dataRow["article_title"]);
                 this.dataGridView1.Rows[dataGridView1.RowCount - 1].ContextMenuStrip = this.HistoryContextMenuStrip;
                 #region 单元格高亮
@@ -104,6 +99,44 @@ namespace WindowsFormsApplication2.History
                 #endregion
                 lastSegmentId = (int)dataRow["segment_id"];
             }
+
+            this.dataGridView1.Enabled = true;
+        }
+
+        /// <summary>
+        /// 清理数据
+        /// </summary>
+        private void ClearData()
+        {
+            this.dataGridView1.Rows.Clear();
+            this.currentScoreData.Clear();
+            this.PreviewRichTextBox.Text = "";
+            this.SpeedChart.Series[0].Points.Clear();
+            this.dataGridView1.Enabled = false;
+        }
+
+        private void ShowDataFromDate(DateTime date)
+        {
+            this.ClearData();
+            this.ResultLabel.Text = "日期：" + date.ToString("d");
+            this.currentScoreData = Glob.ScoreHistory.GetScoreFromDate(date);
+            this.ShowData();
+        }
+
+        private void ShowDataFromTitle(string title)
+        {
+            this.ClearData();
+            this.ResultLabel.Text = "搜索标题：" + title;
+            this.currentScoreData = Glob.ScoreHistory.GetScoreFromTitle(title);
+            this.ShowData();
+        }
+
+        private void ShowDataFromSegment(int id)
+        {
+            this.ClearData();
+            this.ResultLabel.Text = "文段：" + id.ToString();
+            this.currentScoreData = Glob.ScoreHistory.GetScoreFromSegmentId(id);
+            this.ShowData();
         }
 
         private void HistorySelectionChanged(object sender, EventArgs e)
@@ -214,7 +247,7 @@ namespace WindowsFormsApplication2.History
                 StorageDataSet.ScoreRow sd = StorageDataSet.GetScoreRowFromTime(this.currentScoreData, scoreTime);
                 if (advRow != null && sd != null)
                 {
-                    try 
+                    try
                     {
                         List<TypeDate> td = JsonConvert.DeserializeObject<List<TypeDate>>(advRow["type_analysis"].ToString());
                         string content = Glob.ScoreHistory.GetContentFromSegmentId((int)sd["segment_id"]);
@@ -225,7 +258,7 @@ namespace WindowsFormsApplication2.History
                         WindowsFormsApplication2.跟打报告.TypeAnalysis tya = new 跟打报告.TypeAnalysis(td, content, speed.Last(), bc, vi);
                         tya.ShowDialog();
                     }
-                    catch 
+                    catch
                     {
                         MessageBox.Show("内部数据读取出错！");
                     }
@@ -233,6 +266,37 @@ namespace WindowsFormsApplication2.History
                 else
                 {
                     MessageBox.Show("没有找到高阶统计数据！");
+                }
+            }
+        }
+
+        private void SearchTitleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string scoreTime = this.MenuGetScoreTime();
+            if (!string.IsNullOrEmpty(scoreTime))
+            {
+                StorageDataSet.ScoreRow sd = StorageDataSet.GetScoreRowFromTime(this.currentScoreData, scoreTime);
+                if (sd != null)
+                {
+                    string articleTitle = sd["article_title"].ToString();
+                    if (!string.IsNullOrEmpty(articleTitle))
+                    {
+                        this.ShowDataFromTitle(articleTitle);
+                    }
+                }
+            }
+        }
+
+        private void SearchSegmentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string scoreTime = this.MenuGetScoreTime();
+            if (!string.IsNullOrEmpty(scoreTime))
+            {
+                StorageDataSet.ScoreRow sd = StorageDataSet.GetScoreRowFromTime(this.currentScoreData, scoreTime);
+                if (sd != null)
+                {
+                    int segmentId = (int)sd["segment_id"];
+                    this.ShowDataFromSegment(segmentId);
                 }
             }
         }
@@ -247,16 +311,33 @@ namespace WindowsFormsApplication2.History
                 {
                     string content = Glob.ScoreHistory.GetContentFromSegmentId((int)sd["segment_id"]);
                     string segmentNum = sd["segment_num"].ToString();
-                    string article_title = sd["article_title"].ToString();
-                    this.frm.TypeContentDirectly(content, segmentNum, article_title);
+                    string articleTitle = sd["article_title"].ToString();
+                    this.frm.TypeContentDirectly(content, segmentNum, articleTitle);
                     this.Close();
                 }
             }
         }
 
-        private void MonthCalendar_DateSelected(object sender, DateRangeEventArgs e)
+        private void MonthCalendar_DateChanged(object sender, DateRangeEventArgs e)
         {
             this.ShowDataFromDate(e.Start);
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            string sText = this.SearchTextBox.Text.Trim();
+            if (!string.IsNullOrEmpty(sText))
+            {
+                this.ShowDataFromTitle(sText);
+            }
+        }
+
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SearchButton.PerformClick();
+            }
         }
     }
 }

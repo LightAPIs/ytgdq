@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(History));
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -56,21 +57,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(History));
             this.monthCalendar = new System.Windows.Forms.MonthCalendar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.PreviewRichTextBox = new System.Windows.Forms.RichTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.ToolPanel = new System.Windows.Forms.Panel();
+            this.SearchButton = new System.Windows.Forms.Button();
+            this.SearchTextBox = new System.Windows.Forms.TextBox();
+            this.ResultLabel = new System.Windows.Forms.Label();
             this.SpeedChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.HistoryContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.CopyScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CopyContentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.SpeedAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.TypeAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.RetypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.序 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.时间 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.段号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,17 +88,27 @@
             this.打词率 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.用时 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.标题 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ToolPanel = new System.Windows.Forms.Panel();
-            this.ResultLabel = new System.Windows.Forms.Label();
+            this.HistoryContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.CopyScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CopyContentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.SpeedAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TypeAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.SearchTitleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.RetypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.SearchSegmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.ToolPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SpeedChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.HistoryContextMenuStrip.SuspendLayout();
-            this.ToolPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // monthCalendar
@@ -113,7 +119,7 @@
             this.monthCalendar.Name = "monthCalendar";
             this.monthCalendar.TabIndex = 0;
             this.monthCalendar.TabStop = false;
-            this.monthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendar_DateSelected);
+            this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendar_DateChanged);
             // 
             // groupBox1
             // 
@@ -132,6 +138,7 @@
             this.PreviewRichTextBox.ReadOnly = true;
             this.PreviewRichTextBox.Size = new System.Drawing.Size(449, 153);
             this.PreviewRichTextBox.TabIndex = 0;
+            this.PreviewRichTextBox.TabStop = false;
             this.PreviewRichTextBox.Text = "";
             // 
             // splitContainer1
@@ -158,6 +165,54 @@
             this.splitContainer1.Size = new System.Drawing.Size(1097, 450);
             this.splitContainer1.SplitterDistance = 218;
             this.splitContainer1.TabIndex = 1;
+            this.splitContainer1.TabStop = false;
+            // 
+            // ToolPanel
+            // 
+            this.ToolPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ToolPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.ToolPanel.Controls.Add(this.SearchButton);
+            this.ToolPanel.Controls.Add(this.SearchTextBox);
+            this.ToolPanel.Controls.Add(this.ResultLabel);
+            this.ToolPanel.Location = new System.Drawing.Point(5, 190);
+            this.ToolPanel.Name = "ToolPanel";
+            this.ToolPanel.Size = new System.Drawing.Size(1086, 25);
+            this.ToolPanel.TabIndex = 3;
+            // 
+            // SearchButton
+            // 
+            this.SearchButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SearchButton.BackgroundImage")));
+            this.SearchButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.SearchButton.Location = new System.Drawing.Point(398, 1);
+            this.SearchButton.Name = "SearchButton";
+            this.SearchButton.Size = new System.Drawing.Size(23, 23);
+            this.SearchButton.TabIndex = 2;
+            this.SearchButton.TabStop = false;
+            this.toolTip1.SetToolTip(this.SearchButton, "搜索");
+            this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
+            // 
+            // SearchTextBox
+            // 
+            this.SearchTextBox.Location = new System.Drawing.Point(230, 2);
+            this.SearchTextBox.Name = "SearchTextBox";
+            this.SearchTextBox.Size = new System.Drawing.Size(161, 21);
+            this.SearchTextBox.TabIndex = 1;
+            this.SearchTextBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.SearchTextBox, "输入标题进行搜索");
+            this.SearchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchTextBox_KeyDown);
+            // 
+            // ResultLabel
+            // 
+            this.ResultLabel.ForeColor = System.Drawing.Color.OliveDrab;
+            this.ResultLabel.Location = new System.Drawing.Point(6, 4);
+            this.ResultLabel.Name = "ResultLabel";
+            this.ResultLabel.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.ResultLabel.Size = new System.Drawing.Size(214, 18);
+            this.ResultLabel.TabIndex = 0;
+            this.ResultLabel.Text = "label1";
+            this.toolTip1.SetToolTip(this.ResultLabel, "所展示的数据类别");
             // 
             // SpeedChart
             // 
@@ -189,6 +244,7 @@
             this.SpeedChart.Series.Add(series1);
             this.SpeedChart.Size = new System.Drawing.Size(396, 180);
             this.SpeedChart.TabIndex = 2;
+            this.SpeedChart.TabStop = false;
             this.SpeedChart.Text = "chart1";
             // 
             // dataGridView1
@@ -282,68 +338,11 @@
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.ShowRowErrors = false;
             this.dataGridView1.Size = new System.Drawing.Size(1097, 228);
+            this.dataGridView1.StandardTab = true;
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.TabStop = false;
             this.dataGridView1.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.History_CellMoseDown);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.HistorySelectionChanged);
-            // 
-            // HistoryContextMenuStrip
-            // 
-            this.HistoryContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CopyScoreToolStripMenuItem,
-            this.CopyContentToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.SpeedAnToolStripMenuItem,
-            this.TypeAnToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.RetypeToolStripMenuItem});
-            this.HistoryContextMenuStrip.Name = "HistoryContextMenuStrip";
-            this.HistoryContextMenuStrip.Size = new System.Drawing.Size(149, 126);
-            // 
-            // CopyScoreToolStripMenuItem
-            // 
-            this.CopyScoreToolStripMenuItem.Name = "CopyScoreToolStripMenuItem";
-            this.CopyScoreToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.CopyScoreToolStripMenuItem.Text = "复制成绩";
-            this.CopyScoreToolStripMenuItem.Click += new System.EventHandler(this.CopyScoreToolStripMenuItem_Click);
-            // 
-            // CopyContentToolStripMenuItem
-            // 
-            this.CopyContentToolStripMenuItem.Name = "CopyContentToolStripMenuItem";
-            this.CopyContentToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.CopyContentToolStripMenuItem.Text = "复制文段内容";
-            this.CopyContentToolStripMenuItem.Click += new System.EventHandler(this.CopyContentToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(145, 6);
-            // 
-            // SpeedAnToolStripMenuItem
-            // 
-            this.SpeedAnToolStripMenuItem.Name = "SpeedAnToolStripMenuItem";
-            this.SpeedAnToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.SpeedAnToolStripMenuItem.Text = "速度分析";
-            this.SpeedAnToolStripMenuItem.Click += new System.EventHandler(this.SpeedAnToolStripMenuItem_Click);
-            // 
-            // TypeAnToolStripMenuItem
-            // 
-            this.TypeAnToolStripMenuItem.Name = "TypeAnToolStripMenuItem";
-            this.TypeAnToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.TypeAnToolStripMenuItem.Text = "跟打报告";
-            this.TypeAnToolStripMenuItem.Click += new System.EventHandler(this.TypeAnToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(145, 6);
-            // 
-            // RetypeToolStripMenuItem
-            // 
-            this.RetypeToolStripMenuItem.Name = "RetypeToolStripMenuItem";
-            this.RetypeToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.RetypeToolStripMenuItem.Text = "重打文段";
-            this.RetypeToolStripMenuItem.Click += new System.EventHandler(this.RetypeToolStripMenuItem_Click);
             // 
             // 序
             // 
@@ -638,26 +637,85 @@
             this.标题.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.标题.Width = 43;
             // 
-            // ToolPanel
+            // HistoryContextMenuStrip
             // 
-            this.ToolPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ToolPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.ToolPanel.Controls.Add(this.ResultLabel);
-            this.ToolPanel.Location = new System.Drawing.Point(5, 190);
-            this.ToolPanel.Name = "ToolPanel";
-            this.ToolPanel.Size = new System.Drawing.Size(1086, 25);
-            this.ToolPanel.TabIndex = 3;
+            this.HistoryContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CopyScoreToolStripMenuItem,
+            this.CopyContentToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.SpeedAnToolStripMenuItem,
+            this.TypeAnToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.SearchTitleToolStripMenuItem,
+            this.SearchSegmentToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.RetypeToolStripMenuItem});
+            this.HistoryContextMenuStrip.Name = "HistoryContextMenuStrip";
+            this.HistoryContextMenuStrip.Size = new System.Drawing.Size(181, 198);
             // 
-            // ResultLabel
+            // CopyScoreToolStripMenuItem
             // 
-            this.ResultLabel.ForeColor = System.Drawing.Color.OliveDrab;
-            this.ResultLabel.Location = new System.Drawing.Point(6, 4);
-            this.ResultLabel.Name = "ResultLabel";
-            this.ResultLabel.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-            this.ResultLabel.Size = new System.Drawing.Size(214, 18);
-            this.ResultLabel.TabIndex = 0;
-            this.ResultLabel.Text = "label1";
+            this.CopyScoreToolStripMenuItem.Name = "CopyScoreToolStripMenuItem";
+            this.CopyScoreToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.CopyScoreToolStripMenuItem.Text = "复制成绩";
+            this.CopyScoreToolStripMenuItem.Click += new System.EventHandler(this.CopyScoreToolStripMenuItem_Click);
+            // 
+            // CopyContentToolStripMenuItem
+            // 
+            this.CopyContentToolStripMenuItem.Name = "CopyContentToolStripMenuItem";
+            this.CopyContentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.CopyContentToolStripMenuItem.Text = "复制文段内容";
+            this.CopyContentToolStripMenuItem.Click += new System.EventHandler(this.CopyContentToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // SpeedAnToolStripMenuItem
+            // 
+            this.SpeedAnToolStripMenuItem.Name = "SpeedAnToolStripMenuItem";
+            this.SpeedAnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SpeedAnToolStripMenuItem.Text = "速度分析";
+            this.SpeedAnToolStripMenuItem.Click += new System.EventHandler(this.SpeedAnToolStripMenuItem_Click);
+            // 
+            // TypeAnToolStripMenuItem
+            // 
+            this.TypeAnToolStripMenuItem.Name = "TypeAnToolStripMenuItem";
+            this.TypeAnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.TypeAnToolStripMenuItem.Text = "跟打报告";
+            this.TypeAnToolStripMenuItem.Click += new System.EventHandler(this.TypeAnToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // SearchTitleToolStripMenuItem
+            // 
+            this.SearchTitleToolStripMenuItem.Name = "SearchTitleToolStripMenuItem";
+            this.SearchTitleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SearchTitleToolStripMenuItem.Text = "搜索标题";
+            this.SearchTitleToolStripMenuItem.Click += new System.EventHandler(this.SearchTitleToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            // 
+            // RetypeToolStripMenuItem
+            // 
+            this.RetypeToolStripMenuItem.Name = "RetypeToolStripMenuItem";
+            this.RetypeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.RetypeToolStripMenuItem.Text = "重打文段";
+            this.RetypeToolStripMenuItem.Click += new System.EventHandler(this.RetypeToolStripMenuItem_Click);
+            // 
+            // SearchSegmentToolStripMenuItem
+            // 
+            this.SearchSegmentToolStripMenuItem.Name = "SearchSegmentToolStripMenuItem";
+            this.SearchSegmentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SearchSegmentToolStripMenuItem.Text = "搜索文段";
+            this.SearchSegmentToolStripMenuItem.Click += new System.EventHandler(this.SearchSegmentToolStripMenuItem_Click);
             // 
             // History
             // 
@@ -674,10 +732,11 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.ToolPanel.ResumeLayout(false);
+            this.ToolPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SpeedChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.HistoryContextMenuStrip.ResumeLayout(false);
-            this.ToolPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -697,6 +756,11 @@
         private System.Windows.Forms.ToolStripMenuItem CopyScoreToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem RetypeToolStripMenuItem;
+        private System.Windows.Forms.Panel ToolPanel;
+        private System.Windows.Forms.Label ResultLabel;
+        private System.Windows.Forms.Button SearchButton;
+        private System.Windows.Forms.TextBox SearchTextBox;
+        private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.DataGridViewTextBoxColumn 序;
         private System.Windows.Forms.DataGridViewTextBoxColumn 时间;
         private System.Windows.Forms.DataGridViewTextBoxColumn 段号;
@@ -718,7 +782,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 打词率;
         private System.Windows.Forms.DataGridViewTextBoxColumn 用时;
         private System.Windows.Forms.DataGridViewTextBoxColumn 标题;
-        private System.Windows.Forms.Panel ToolPanel;
-        private System.Windows.Forms.Label ResultLabel;
+        private System.Windows.Forms.ToolStripMenuItem SearchTitleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem SearchSegmentToolStripMenuItem;
     }
 }

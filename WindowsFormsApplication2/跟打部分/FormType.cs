@@ -2845,7 +2845,8 @@ namespace WindowsFormsApplication2
         {
             using (PicGoal_Class pgc = new PicGoal_Class())
             {
-                Clipboard.SetImage(pgc.GetPic((float)UserJz / 100, this.lblTitle.Text));
+                Clipboard.SetImage(pgc.GetPic(this.lblTitle.Text, Glob.TextTime.ToString("G"), UserTime, UserJz, Glob.效率, Glob.TextLen, Glob.TextHg, Glob.TextCz, Glob.TextJs, Math.Abs(Glob.TextBg - Glob.TextHg), Glob.选重, Glob.Pre_Cout, Glob.TextSpeed, Glob.Textjj, Glob.Textmc, Glob.Instration));
+                pgc.Dispose();
             }
         }
 

@@ -100,6 +100,7 @@
             this.RetypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SearchSegmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CopyPicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -641,6 +642,7 @@
             // 
             this.HistoryContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CopyScoreToolStripMenuItem,
+            this.CopyPicToolStripMenuItem,
             this.CopyContentToolStripMenuItem,
             this.toolStripSeparator1,
             this.SpeedAnToolStripMenuItem,
@@ -651,7 +653,7 @@
             this.toolStripSeparator3,
             this.RetypeToolStripMenuItem});
             this.HistoryContextMenuStrip.Name = "HistoryContextMenuStrip";
-            this.HistoryContextMenuStrip.Size = new System.Drawing.Size(181, 198);
+            this.HistoryContextMenuStrip.Size = new System.Drawing.Size(181, 220);
             // 
             // CopyScoreToolStripMenuItem
             // 
@@ -716,6 +718,13 @@
             this.SearchSegmentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.SearchSegmentToolStripMenuItem.Text = "搜索文段";
             this.SearchSegmentToolStripMenuItem.Click += new System.EventHandler(this.SearchSegmentToolStripMenuItem_Click);
+            // 
+            // CopyPicToolStripMenuItem
+            // 
+            this.CopyPicToolStripMenuItem.Name = "CopyPicToolStripMenuItem";
+            this.CopyPicToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.CopyPicToolStripMenuItem.Text = "复制图片成绩";
+            this.CopyPicToolStripMenuItem.Click += new System.EventHandler(this.CopyPicToolStripMenuItem_Click);
             // 
             // History
             // 
@@ -785,5 +794,6 @@
         private System.Windows.Forms.ToolStripMenuItem SearchTitleToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem SearchSegmentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CopyPicToolStripMenuItem;
     }
 }

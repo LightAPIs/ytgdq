@@ -202,6 +202,24 @@ namespace WindowsFormsApplication2.History
             }
         }
 
+        private void CopyPicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string scoreTime = this.MenuGetScoreTime();
+            if (!string.IsNullOrEmpty(scoreTime))
+            {
+                StorageDataSet.ScoreRow sd = StorageDataSet.GetScoreRowFromTime(currentScoreData, scoreTime);
+                if (sd != null)
+                {
+                    using (PicGoal_Class pgc = new PicGoal_Class())
+                    {
+                        string[] speed = sd["speed"].ToString().Split('/');
+                        Clipboard.SetImage(pgc.GetPic(sd["article_title"].ToString(), scoreTime, sd["cost_time"].ToString(), (double)sd["accuracy_rate"], (int)sd["effciency"], (int)sd["count"], (int)sd["back_change"], (int)sd["error"], (int)sd["keys"], (int)sd["backspace"], (int)sd["duplicate"], sd["segment_num"].ToString(), double.Parse(speed.Last()), (double)sd["keystroke"], (double)sd["code_len"], sd["version"].ToString()));
+                        pgc.Dispose();
+                    }
+                }
+            }
+        }
+
         private void CopyContentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string scoreTime = this.MenuGetScoreTime();
@@ -272,17 +290,13 @@ namespace WindowsFormsApplication2.History
 
         private void SearchTitleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string scoreTime = this.MenuGetScoreTime();
-            if (!string.IsNullOrEmpty(scoreTime))
+            DataGridViewRow curRow = this.dataGridView1.Rows[this.mouseLocation.RowIndex];
+            if (curRow != null)
             {
-                StorageDataSet.ScoreRow sd = StorageDataSet.GetScoreRowFromTime(this.currentScoreData, scoreTime);
-                if (sd != null)
+                string articleTitle = curRow.Cells["标题"].Value.ToString().Trim();
+                if (!string.IsNullOrEmpty(articleTitle))
                 {
-                    string articleTitle = sd["article_title"].ToString();
-                    if (!string.IsNullOrEmpty(articleTitle))
-                    {
-                        this.ShowDataFromTitle(articleTitle);
-                    }
+                    this.ShowDataFromTitle(articleTitle);
                 }
             }
         }

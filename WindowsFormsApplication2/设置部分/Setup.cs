@@ -15,18 +15,18 @@ namespace WindowsFormsApplication2
 {
     public partial class TSetup : Form
     {
-        Form1 frm;
+        readonly Form1 frm;
         public Font fo1, fo2;
 
         /// <summary>
         /// 快捷键输入框
         /// </summary>
-        public TextBox[] allTBox;
+        private TextBox[] allTBox;
 
         /// <summary>
         /// 快捷键修改按钮
         /// </summary>
-        public Button[] allModBtn;
+        private Button[] allModBtn;
 
         public TSetup(Form1 frm1)
         {
@@ -514,11 +514,6 @@ namespace WindowsFormsApplication2
                 e.Handled = true;
             }
         }
-        private void buttonfont1_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e) //输入法签名开关
         {
@@ -531,11 +526,6 @@ namespace WindowsFormsApplication2
                 textBox2.BackColor = Color.Gray;
                 textBox2.ReadOnly = true;
             }
-        }
-
-        private void buttonfont1_Click_1(object sender, EventArgs e)
-        {
-
         }
 
         private void buttoncolor1_Click(object sender, EventArgs e)

@@ -246,7 +246,7 @@ namespace WindowsFormsApplication2.History
                     string gd = advRow["speed_analysis"].ToString();
                     string vi = sd["version"].ToString();
 
-                    SpeedAn sa = new SpeedAn(sn, gd, vi, this.frm);
+                    SpeedAn sa = new SpeedAn(scoreTime, sn, gd, vi, this.frm);
                     sa.ShowDialog();
                 }
                 else

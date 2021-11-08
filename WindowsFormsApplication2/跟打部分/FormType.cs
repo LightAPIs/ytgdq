@@ -2363,7 +2363,7 @@ namespace WindowsFormsApplication2
         {
             if (Glob.Use分析)
             {
-                SpeedAn sa = new SpeedAn(Glob.Pre_Cout, SpeedAnalysis(), Glob.Instration, this);
+                SpeedAn sa = new SpeedAn(Glob.TextTime.ToString("G"), Glob.Pre_Cout, SpeedAnalysis(), Glob.Instration, this);
                 sa.ShowDialog();
             }
         }

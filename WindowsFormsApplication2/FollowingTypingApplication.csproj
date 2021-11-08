@@ -187,10 +187,10 @@
       <DependentUpon>NewMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="跟打部分\ShowMessage.cs" />
-    <Compile Include="跟打部分\SpeedAn.cs">
+    <Compile Include="SpeedAn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="跟打部分\SpeedAn.Designer.cs">
+    <Compile Include="SpeedAn.Designer.cs">
       <DependentUpon>SpeedAn.cs</DependentUpon>
     </Compile>
     <Compile Include="跟打部分\JjCheck.cs">
@@ -303,7 +303,7 @@
     <EmbeddedResource Include="跟打部分\JjCheck.resx">
       <DependentUpon>JjCheck.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="跟打部分\SpeedAn.resx">
+    <EmbeddedResource Include="SpeedAn.resx">
       <DependentUpon>SpeedAn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="跟打部分\TextBoxEx.resx">

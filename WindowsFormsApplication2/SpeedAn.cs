@@ -12,6 +12,10 @@ namespace WindowsFormsApplication2
     public partial class SpeedAn : Form
     {
         /// <summary>
+        /// 跟打日期
+        /// </summary>
+        private readonly string scoreTime;
+        /// <summary>
         /// 当前段号
         /// </summary>
         private readonly string nowCout;
@@ -24,8 +28,9 @@ namespace WindowsFormsApplication2
         /// </summary>
         private readonly string verInstration;
         private readonly Form1 frm;
-        public SpeedAn(string now_cout, string get_data, string ver_instration, Form1 frm1)
+        public SpeedAn(string score_time, string now_cout, string get_data, string ver_instration, Form1 frm1)
         {
+            scoreTime = score_time;
             nowCout = now_cout;
             getData = get_data;
             verInstration = ver_instration;
@@ -217,10 +222,10 @@ namespace WindowsFormsApplication2
         //截图类
         private void GetPic_Click(object sender, EventArgs e)
         {
-            Clipboard.SetImage(getPic());
+            Clipboard.SetImage(GetPicMethod());
         }
 
-        private Bitmap getPic()
+        private Bitmap GetPicMethod()
         {
             Clipboard.Clear();
             Bitmap bmp = new Bitmap(this.SpeedAnGet.Width + 2, this.SpeedAnGet.Height + 40);
@@ -233,13 +238,13 @@ namespace WindowsFormsApplication2
             SizeF sF = g.MeasureString(s, F);
             g.DrawString(s, F, Brushes.White, this.SpeedAnGet.Width - sF.Width + 2, bmp.Height - 15);
             g.DrawString("第" + nowCout + "段速度分析",F,Brushes.White,3,4);
-            g.DrawString(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToShortTimeString(), F, Brushes.LightGray, 2, bmp.Height - 15);
+            g.DrawString(scoreTime, F, Brushes.LightGray, 2, bmp.Height - 15);
             return bmp;
         }
 
         private void SendPic_Click(object sender, EventArgs e)
         {
-            Clipboard.SetImage(getPic());
+            Clipboard.SetImage(GetPicMethod());
             frm.SendClipBoardToQQ();
         }
     }

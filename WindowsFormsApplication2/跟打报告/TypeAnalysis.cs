@@ -12,13 +12,15 @@ namespace WindowsFormsApplication2.跟打报告
 {
     public partial class TypeAnalysis : Form
     {
+        private readonly string typeTime;
         private readonly List<TypeDate> typeReportData;
         private readonly string typeTextData;
         private readonly string textSpeedData;
         private readonly int textHgData;
         private readonly string verInstration;
-        public TypeAnalysis(List<TypeDate> type_report_data, string type_text_data, string text_speed_data, int text_hg_data, string ver_instration)
+        public TypeAnalysis(string type_time, List<TypeDate> type_report_data, string type_text_data, string text_speed_data, int text_hg_data, string ver_instration)
         {
+            this.typeTime = type_time;
             this.typeReportData = type_report_data;
             this.typeTextData = type_text_data;
             this.textSpeedData = text_speed_data;
@@ -220,12 +222,16 @@ namespace WindowsFormsApplication2.跟打报告
                 t_nowX += t_text_width - t_splite_distance; //减为间隔
             }
             /* ====================================== ******** ======================================*/
-            
+
+            Font lastFont = new Font("Verdana", 9f);
+            // 跟打日期
+            SizeF typeTimeSizeF = GetWH(g, typeTime, lastFont);
+            g.DrawString(typeTime, lastFont, Brushes.DimGray, p_Start_X, bmp.Height - typeTimeSizeF.Height - 3);
+
             //尾标
-            Font Last_Font = new Font("Verdana",9f);
-            string Last_Text = Glob.Form + "(" + this.verInstration + ")";
-            SizeF Last_Text_SizeF = GetWH(g,Last_Text,Last_Font);
-            g.DrawString(Last_Text, Last_Font, Brushes.DimGray, bmp.Width - Last_Text_SizeF.Width, bmp.Height - Last_Text_SizeF.Height - 3);
+            string lastText = Glob.Form + "(" + this.verInstration + ")";
+            SizeF lastTextSizeF = GetWH(g, lastText, lastFont);
+            g.DrawString(lastText, lastFont, Brushes.DimGray, bmp.Width - lastTextSizeF.Width, bmp.Height - lastTextSizeF.Height - 3);
             //给画布画上边框
             g.DrawRectangle(new Pen(Color.Green, 2), 1, 1, bmp.Width - 2, bmp.Height - 2);
             //显示出来

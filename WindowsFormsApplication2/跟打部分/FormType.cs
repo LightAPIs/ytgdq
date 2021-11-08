@@ -5959,7 +5959,7 @@ namespace WindowsFormsApplication2
         #region 跟打报告
         private void 跟打报告ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            WindowsFormsApplication2.跟打报告.TypeAnalysis tya = new 跟打报告.TypeAnalysis(Glob.TypeReport, Glob.TypeText, Glob.TextSpeed.ToString("0.00"), Glob.TextHg, Glob.Instration);
+            WindowsFormsApplication2.跟打报告.TypeAnalysis tya = new 跟打报告.TypeAnalysis(Glob.TextTime.ToString("G"), Glob.TypeReport, Glob.TypeText, Glob.TextSpeed.ToString("0.00"), Glob.TextHg, Glob.Instration);
             tya.ShowDialog();
         }
         #endregion

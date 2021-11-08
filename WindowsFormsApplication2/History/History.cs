@@ -273,7 +273,7 @@ namespace WindowsFormsApplication2.History
                         int bc = (int)sd["back_change"];
                         string vi = sd["version"].ToString();
 
-                        WindowsFormsApplication2.跟打报告.TypeAnalysis tya = new 跟打报告.TypeAnalysis(td, content, speed.Last(), bc, vi);
+                        WindowsFormsApplication2.跟打报告.TypeAnalysis tya = new 跟打报告.TypeAnalysis(scoreTime, td, content, speed.Last(), bc, vi);
                         tya.ShowDialog();
                     }
                     catch

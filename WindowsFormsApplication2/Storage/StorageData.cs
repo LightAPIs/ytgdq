@@ -15,7 +15,7 @@ namespace WindowsFormsApplication2.Storage
         {
             this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS score(score_time DATETIME PRIMARY KEY NOT NULL, segment_num INT, speed TEXT, keystroke DOUBLE, code_len DOUBLE, calc_len DOUBLE, back_change INT, backspace INT, enter INT, duplicate INT, error INT, back_rate DOUBLE, accuracy_rate DOUBLE, effciency INT, keys INT, count INT, type_words INT, words_rate DOUBLE, cost_time TEXT, segment_id INTEGER, article_title TEXT, version TEXT);";
             this.cmd.ExecuteNonQuery();
-            this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS advanced(score_time DATETIME PRIMARY KEY NOT NULL, curve TEXT, speed_analysis TEXT, type_analysis TEXT);";
+            this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS advanced(score_time DATETIME PRIMARY KEY NOT NULL, curve TEXT, speed_analysis TEXT, type_analysis TEXT, key_analysis TEXT);";
             this.cmd.ExecuteNonQuery();
             this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS segment(id INTEGER PRIMARY KEY AUTOINCREMENT, content TEXT, check_code VARCHAR(5));";
             this.cmd.ExecuteNonQuery();
@@ -59,9 +59,9 @@ namespace WindowsFormsApplication2.Storage
         /// <param name="curve"></param>
         /// <param name="speed_analysis"></param>
         /// <param name="type_analysis"></param>
-        public void InsertAdvanced(string score_time, string curve, string speed_analysis, string type_analysis)
+        public void InsertAdvanced(string score_time, string curve, string speed_analysis, string type_analysis, string key_analysis)
         {
-            this.cmd.CommandText = $"INSERT INTO advanced VALUES('{score_time}','{curve}','{speed_analysis}','{type_analysis}');";
+            this.cmd.CommandText = $"INSERT INTO advanced VALUES('{score_time}','{curve}','{speed_analysis}','{type_analysis}','{key_analysis}');";
             this.cmd.ExecuteNonQuery();
         }
 

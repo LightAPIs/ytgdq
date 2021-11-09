@@ -90,17 +90,18 @@
             this.标题 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HistoryContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CopyScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CopyPicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CopyContentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.SpeedAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TypeAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.KeyAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.SearchTitleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SearchSegmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.RetypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.SearchSegmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CopyPicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -114,6 +115,7 @@
             // 
             // monthCalendar
             // 
+            this.monthCalendar.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.monthCalendar.Location = new System.Drawing.Point(5, 4);
             this.monthCalendar.MaxSelectionCount = 1;
             this.monthCalendar.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
@@ -125,6 +127,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.PreviewRichTextBox);
+            this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox1.Location = new System.Drawing.Point(228, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(462, 180);
@@ -647,84 +650,92 @@
             this.toolStripSeparator1,
             this.SpeedAnToolStripMenuItem,
             this.TypeAnToolStripMenuItem,
+            this.KeyAnToolStripMenuItem,
             this.toolStripSeparator2,
             this.SearchTitleToolStripMenuItem,
             this.SearchSegmentToolStripMenuItem,
             this.toolStripSeparator3,
             this.RetypeToolStripMenuItem});
             this.HistoryContextMenuStrip.Name = "HistoryContextMenuStrip";
-            this.HistoryContextMenuStrip.Size = new System.Drawing.Size(181, 220);
+            this.HistoryContextMenuStrip.Size = new System.Drawing.Size(149, 220);
             // 
             // CopyScoreToolStripMenuItem
             // 
             this.CopyScoreToolStripMenuItem.Name = "CopyScoreToolStripMenuItem";
-            this.CopyScoreToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.CopyScoreToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.CopyScoreToolStripMenuItem.Text = "复制成绩";
             this.CopyScoreToolStripMenuItem.Click += new System.EventHandler(this.CopyScoreToolStripMenuItem_Click);
+            // 
+            // CopyPicToolStripMenuItem
+            // 
+            this.CopyPicToolStripMenuItem.Name = "CopyPicToolStripMenuItem";
+            this.CopyPicToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.CopyPicToolStripMenuItem.Text = "复制图片成绩";
+            this.CopyPicToolStripMenuItem.Click += new System.EventHandler(this.CopyPicToolStripMenuItem_Click);
             // 
             // CopyContentToolStripMenuItem
             // 
             this.CopyContentToolStripMenuItem.Name = "CopyContentToolStripMenuItem";
-            this.CopyContentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.CopyContentToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.CopyContentToolStripMenuItem.Text = "复制文段内容";
             this.CopyContentToolStripMenuItem.Click += new System.EventHandler(this.CopyContentToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(145, 6);
             // 
             // SpeedAnToolStripMenuItem
             // 
             this.SpeedAnToolStripMenuItem.Name = "SpeedAnToolStripMenuItem";
-            this.SpeedAnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SpeedAnToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.SpeedAnToolStripMenuItem.Text = "速度分析";
             this.SpeedAnToolStripMenuItem.Click += new System.EventHandler(this.SpeedAnToolStripMenuItem_Click);
             // 
             // TypeAnToolStripMenuItem
             // 
             this.TypeAnToolStripMenuItem.Name = "TypeAnToolStripMenuItem";
-            this.TypeAnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.TypeAnToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.TypeAnToolStripMenuItem.Text = "跟打报告";
             this.TypeAnToolStripMenuItem.Click += new System.EventHandler(this.TypeAnToolStripMenuItem_Click);
+            // 
+            // KeyAnToolStripMenuItem
+            // 
+            this.KeyAnToolStripMenuItem.Name = "KeyAnToolStripMenuItem";
+            this.KeyAnToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.KeyAnToolStripMenuItem.Text = "按键统计";
+            this.KeyAnToolStripMenuItem.Click += new System.EventHandler(this.KeyAnToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(145, 6);
             // 
             // SearchTitleToolStripMenuItem
             // 
             this.SearchTitleToolStripMenuItem.Name = "SearchTitleToolStripMenuItem";
-            this.SearchTitleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SearchTitleToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.SearchTitleToolStripMenuItem.Text = "搜索标题";
             this.SearchTitleToolStripMenuItem.Click += new System.EventHandler(this.SearchTitleToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
-            // 
-            // RetypeToolStripMenuItem
-            // 
-            this.RetypeToolStripMenuItem.Name = "RetypeToolStripMenuItem";
-            this.RetypeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.RetypeToolStripMenuItem.Text = "重打文段";
-            this.RetypeToolStripMenuItem.Click += new System.EventHandler(this.RetypeToolStripMenuItem_Click);
             // 
             // SearchSegmentToolStripMenuItem
             // 
             this.SearchSegmentToolStripMenuItem.Name = "SearchSegmentToolStripMenuItem";
-            this.SearchSegmentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SearchSegmentToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.SearchSegmentToolStripMenuItem.Text = "搜索文段";
             this.SearchSegmentToolStripMenuItem.Click += new System.EventHandler(this.SearchSegmentToolStripMenuItem_Click);
             // 
-            // CopyPicToolStripMenuItem
+            // toolStripSeparator3
             // 
-            this.CopyPicToolStripMenuItem.Name = "CopyPicToolStripMenuItem";
-            this.CopyPicToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.CopyPicToolStripMenuItem.Text = "复制图片成绩";
-            this.CopyPicToolStripMenuItem.Click += new System.EventHandler(this.CopyPicToolStripMenuItem_Click);
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(145, 6);
+            // 
+            // RetypeToolStripMenuItem
+            // 
+            this.RetypeToolStripMenuItem.Name = "RetypeToolStripMenuItem";
+            this.RetypeToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.RetypeToolStripMenuItem.Text = "重打文段";
+            this.RetypeToolStripMenuItem.Click += new System.EventHandler(this.RetypeToolStripMenuItem_Click);
             // 
             // History
             // 
@@ -795,5 +806,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem SearchSegmentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CopyPicToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem KeyAnToolStripMenuItem;
     }
 }

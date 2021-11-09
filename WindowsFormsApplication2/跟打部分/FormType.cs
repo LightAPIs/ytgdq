@@ -21,6 +21,7 @@ using WindowsFormsApplication2.检查更新;
 using WindowsFormsApplication2.编码提示;
 using WindowsFormsApplication2.Storage;
 using WindowsFormsApplication2.History;
+using WindowsFormsApplication2.KeyAnalysis;
 using Newtonsoft.Json;
 
 //发送桌面的快捷方式
@@ -39,6 +40,9 @@ namespace WindowsFormsApplication2
         private Series SeriesSpeed = new Series("速度");
         public ChartArea ChartArea1 = new ChartArea();
         public Title title1 = new Title();
+        /// <summary>
+        /// 键盘钩子
+        /// </summary>
         private KeyBordHook KH = new KeyBordHook();
         public TimeSpan TimeStopAll = new TimeSpan();//暂停时间的累加
         private WordInfoUtil _wordInfoUtil = new WordInfoUtil();
@@ -48,7 +52,7 @@ namespace WindowsFormsApplication2
         /// <summary>
         /// 特殊字符替换字典
         /// </summary>
-        public static Dictionary<string, char> CharReDict = new Dictionary<string, char> {
+        private readonly static Dictionary<string, char> CharReDict = new Dictionary<string, char> {
                 {
                     "0x3008", '《'
                 },
@@ -68,6 +72,59 @@ namespace WindowsFormsApplication2
                     "0xffe5", '$'
                 }
             };
+        private readonly static List<Keys> KeysList = new List<Keys> {
+            Keys.Oemtilde,
+            Keys.D1,
+            Keys.D2,
+            Keys.D3,
+            Keys.D4,
+            Keys.D5,
+            Keys.D6,
+            Keys.D7,
+            Keys.D8,
+            Keys.D9,
+            Keys.D0,
+            Keys.OemMinus,
+            Keys.Oemplus,
+            Keys.Back,
+            Keys.Q,
+            Keys.W,
+            Keys.E,
+            Keys.R,
+            Keys.T,
+            Keys.Y,
+            Keys.U,
+            Keys.I,
+            Keys.O,
+            Keys.P,
+            Keys.OemOpenBrackets,
+            Keys.OemCloseBrackets,
+            Keys.OemPipe,
+            Keys.A,
+            Keys.S,
+            Keys.D,
+            Keys.F,
+            Keys.G,
+            Keys.H,
+            Keys.J,
+            Keys.K,
+            Keys.L,
+            Keys.OemSemicolon,
+            Keys.OemQuotes,
+            Keys.Enter,
+            Keys.Z,
+            Keys.X,
+            Keys.C,
+            Keys.V,
+            Keys.B,
+            Keys.N,
+            Keys.M,
+            Keys.Oemcomma,
+            Keys.OemPeriod,
+            Keys.OemQuestion,
+            Keys.Space,
+        };
+
         public Form1()
         {
             InitializeComponent();
@@ -323,24 +380,21 @@ namespace WindowsFormsApplication2
             }
         }
 
-        //钩子退格
+        /// <summary>
+        /// 键盘钩子按键按下事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void KH_OnKeyDownEvent(object sender, KeyEventArgs e)
         {
             if (sw != 0 && this.textBoxEx1.Focused)
             {
                 Glob.TextMc++; //计数 用于计量回车及回车产生前的量
+
                 int k = e.KeyValue;
                 if (k == 8)
                 {
                     Glob.TextBg++;
-                }
-                if (k >= 65 && k <= 71 || k >= 81 && k <= 84 || k == 88 || k == 90)
-                { //左手键法
-                    Glob.leftHand++;
-                }
-                else if (k >= 72 && k <= 80 || k == 85 || k == 89)
-                { //右手键法
-                    Glob.rightHand++;
                 }
                 else if (k == 13)
                 {
@@ -358,7 +412,7 @@ namespace WindowsFormsApplication2
                     {
                         var s = richTextBox1.SelectionStart;
                         var text = s + 1 <= this.richTextBox1.TextLength ? this.richTextBox1.Text.Substring(s + 1, 1) : "";
-                        //MessageBox.Show("s：" + s.ToString() + "\nrichTextBox1.TextLength：" + richTextBox1.TextLength.ToString() + "\ntext：" + text);
+                        
                         if (!string.IsNullOrWhiteSpace(text))
                         {
                             if (";:'\"；：‘’“”".Contains(text))
@@ -386,6 +440,13 @@ namespace WindowsFormsApplication2
                             }
                         }
                     }
+                }
+
+                //! 统计具体按键
+                int index = KeysList.IndexOf(e.KeyCode);
+                if (index != -1)
+                {
+                    Glob.KeysTotal[index]++;
                 }
             }
         }
@@ -874,7 +935,7 @@ namespace WindowsFormsApplication2
             public static extern int GetKeyboardState(byte[] pbKeyState);
             public delegate int HookProc(int nCode, Int32 wParam, IntPtr lParam);
             ///   <summary> 
-            ///   墨认的构造函数构造当前类的实例并自动的运行起来. 
+            ///   默认的构造函数构造当前类的实例并自动的运行起来. 
             ///   </summary> 
             public KeyBordHook()
             {
@@ -887,7 +948,7 @@ namespace WindowsFormsApplication2
             }
             public void Start()
             {
-                //安装键盘钩子   
+                //! 安装键盘钩子
                 if (hKeyboardHook == 0)
                 {
                     KeyboardHookProcedure = new HookProc(KeyboardHookProc);
@@ -1394,8 +1455,6 @@ namespace WindowsFormsApplication2
                 Glob.MinSplite = 500;
                 Glob.FWords.Clear();
                 Glob.TextBg = 0;//退格
-                Glob.leftHand = 0;//键法
-                Glob.rightHand = 0;
                 Glob.回车 = 0;
                 Glob.选重 = 0;
                 Glob.FWordsSkip = 0;
@@ -1413,6 +1472,9 @@ namespace WindowsFormsApplication2
                 Glob.Type_map_C_1 = Color.FromArgb(220, 220, 220);
                 Glob.TextHgPlace.Clear();
                 Glob.TypeReport.Clear();
+                this.SeriesSpeed.Points.Clear();
+                Glob.ChartSpeedArr.Clear();
+                Array.Clear(Glob.KeysTotal, 0, 50);
             }
             else if (Contr == 2)
             {  //显示初始化
@@ -2252,7 +2314,8 @@ namespace WindowsFormsApplication2
                         string curveData = string.Join("|", Glob.ChartSpeedArr);
                         string speedAnalysisData = SpeedAnalysis();
                         string typeAnalysisData = JsonConvert.SerializeObject(Glob.TypeReport);
-                        Glob.ScoreHistory.InsertAdvanced(Glob.TextTime.ToString("s"), curveData, speedAnalysisData, typeAnalysisData);
+                        string keyAnalysisData = string.Join("|", Glob.KeysTotal);
+                        Glob.ScoreHistory.InsertAdvanced(Glob.TextTime.ToString("s"), curveData, speedAnalysisData, typeAnalysisData, keyAnalysisData);
                         #endregion
 
                         //跟打完毕后，是否激活问题
@@ -2592,7 +2655,18 @@ namespace WindowsFormsApplication2
         }
         private string 键法
         {
-            get { if (Glob.leftHand > Glob.rightHand) return " [左" + Glob.leftHand + ":" + Glob.rightHand + "]"; else if (Glob.leftHand < Glob.rightHand) return " [右" + Glob.rightHand + ":" + Glob.leftHand + "]"; else return ""; }
+            get
+            {
+                int[] lrKeys = KeyAn.GetLRKeysCount(Glob.KeysTotal);
+                if (lrKeys[0] >= lrKeys[1])
+                {
+                    return $" [左{lrKeys[0]}:{lrKeys[1]}]";
+                }
+                else
+                {
+                    return $" [右{lrKeys[1]}:{lrKeys[0]}]";
+                }
+            }
         }
         private string UserHcText
         {
@@ -2865,18 +2939,22 @@ namespace WindowsFormsApplication2
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void maChangGet(object sender, KeyEventArgs e)
+        private void textBoxEx1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Alt)
+            {
                 e.Handled = true;
+            }
 
-            if (e.KeyCode != Keys.ControlKey && e.KeyCode != Keys.F3 && e.KeyCode != Keys.F4 && e.KeyCode != Keys.F5)
+            //* 不统计 Ctrl 和 F区 键数
+            if (e.KeyCode != Keys.ControlKey && (e.KeyCode < Keys.F1 || e.KeyCode > Keys.F12))
             {
                 Glob.TextJs++;
                 labelJsing.Text = Glob.TextJs.ToString();
                 Glob.nowStart = DateTime.Now; //停止用时
             }
-            //MessageBox.Show(e.KeyCode.ToString());
+            
+            //* 英文文章不存在选重
             if (e.KeyCode == Keys.ProcessKey)
             {
                 Glob.是否选重 = true;
@@ -3268,8 +3346,6 @@ namespace WindowsFormsApplication2
             //填入及初始化各项值
             timer1.Enabled = false;
 
-            this.SeriesSpeed.Points.Clear();
-            Glob.ChartSpeedArr.Clear();
             if (ExgetText != "")
             {
                 if (ExgetText != PerText) //获取新文段
@@ -5929,6 +6005,14 @@ namespace WindowsFormsApplication2
         {
             History.History his = new History.History(this);
             his.ShowDialog();
+        }
+        #endregion
+
+        #region 按键统计
+        private void KeyAnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KeyAn kan = new KeyAn(Glob.KeysTotal);
+            kan.ShowDialog();
         }
         #endregion
 

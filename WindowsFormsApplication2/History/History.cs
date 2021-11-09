@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using WindowsFormsApplication2.Storage;
+using WindowsFormsApplication2.KeyAnalysis;
 using Newtonsoft.Json;
 
 namespace WindowsFormsApplication2.History
@@ -186,6 +187,7 @@ namespace WindowsFormsApplication2.History
             this.mouseLocation = e;
         }
 
+        #region 表格右键菜单事件
         private void CopyScoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridViewRow curRow = this.dataGridView1.Rows[this.mouseLocation.RowIndex];
@@ -288,6 +290,25 @@ namespace WindowsFormsApplication2.History
             }
         }
 
+        private void KeyAnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string scoreTime = this.MenuGetScoreTime();
+            if (!string.IsNullOrEmpty(scoreTime))
+            {
+                StorageDataSet.AdvancedRow advRow = Glob.ScoreHistory.GetAdvancedRowFromTime(scoreTime);
+                if (advRow != null)
+                {
+                    int[] keysData = Array.ConvertAll(advRow["key_analysis"].ToString().Split('|'), s => int.Parse(s));
+                    KeyAn kan = new KeyAn(keysData);
+                    kan.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("没有找到高阶统计数据！");
+                }
+            }
+        }
+
         private void SearchTitleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridViewRow curRow = this.dataGridView1.Rows[this.mouseLocation.RowIndex];
@@ -331,6 +352,7 @@ namespace WindowsFormsApplication2.History
                 }
             }
         }
+        #endregion
 
         private void MonthCalendar_DateChanged(object sender, DateRangeEventArgs e)
         {

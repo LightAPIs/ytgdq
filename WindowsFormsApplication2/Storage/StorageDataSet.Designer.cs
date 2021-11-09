@@ -946,6 +946,8 @@ namespace WindowsFormsApplication2.Storage {
             
             private global::System.Data.DataColumn columntype_analysis;
             
+            private global::System.Data.DataColumn columnkey_analysis;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public AdvancedDataTable() {
@@ -1013,6 +1015,14 @@ namespace WindowsFormsApplication2.Storage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn key_analysisColumn {
+                get {
+                    return this.columnkey_analysis;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1048,13 +1058,14 @@ namespace WindowsFormsApplication2.Storage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public AdvancedRow AddAdvancedRow(ScoreRow parentScoreRowByFK_Score_Advanced, string curve, string speed_analysis, string type_analysis) {
+            public AdvancedRow AddAdvancedRow(ScoreRow parentScoreRowByFK_Score_Advanced, string curve, string speed_analysis, string type_analysis, string key_analysis) {
                 AdvancedRow rowAdvancedRow = ((AdvancedRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         curve,
                         speed_analysis,
-                        type_analysis};
+                        type_analysis,
+                        key_analysis};
                 if ((parentScoreRowByFK_Score_Advanced != null)) {
                     columnValuesArray[0] = parentScoreRowByFK_Score_Advanced[0];
                 }
@@ -1091,6 +1102,7 @@ namespace WindowsFormsApplication2.Storage {
                 this.columncurve = base.Columns["curve"];
                 this.columnspeed_analysis = base.Columns["speed_analysis"];
                 this.columntype_analysis = base.Columns["type_analysis"];
+                this.columnkey_analysis = base.Columns["key_analysis"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1104,6 +1116,8 @@ namespace WindowsFormsApplication2.Storage {
                 base.Columns.Add(this.columnspeed_analysis);
                 this.columntype_analysis = new global::System.Data.DataColumn("type_analysis", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntype_analysis);
+                this.columnkey_analysis = new global::System.Data.DataColumn("key_analysis", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnkey_analysis);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("AdvancedKey", new global::System.Data.DataColumn[] {
                                 this.columnscore_time}, true));
                 this.columnscore_time.AllowDBNull = false;
@@ -2220,6 +2234,22 @@ namespace WindowsFormsApplication2.Storage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string key_analysis {
+                get {
+                    try {
+                        return ((string)(this[this.tableAdvanced.key_analysisColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Advanced”中列“key_analysis”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableAdvanced.key_analysisColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ScoreRow ScoreRow {
                 get {
                     return ((ScoreRow)(this.GetParentRow(this.Table.ParentRelations["FK_Score_Advanced"])));
@@ -2263,6 +2293,18 @@ namespace WindowsFormsApplication2.Storage {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void Settype_analysisNull() {
                 this[this.tableAdvanced.type_analysisColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Iskey_analysisNull() {
+                return this.IsNull(this.tableAdvanced.key_analysisColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setkey_analysisNull() {
+                this[this.tableAdvanced.key_analysisColumn] = global::System.Convert.DBNull;
             }
         }
         

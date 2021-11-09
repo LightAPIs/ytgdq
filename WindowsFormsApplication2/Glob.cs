@@ -83,8 +83,6 @@ namespace WindowsFormsApplication2
         public static int 选重 = 0;
         public static bool 是否选重 = true;
         public static bool 文段类型 = true; //真 为中文 假为英文
-        public static int leftHand = 0;
-        public static int rightHand = 0;
         public static int 撤销 = 0;
         public static int 撤销用量 = 0;
         public static double 速度限制 = 0.00;
@@ -305,6 +303,11 @@ namespace WindowsFormsApplication2
         /// 保存曲线各点速度值
         /// </summary>
         public static List<double> ChartSpeedArr = new List<double> ();
+
+        /// <summary>
+        /// 按键总计
+        /// </summary>
+        public static int[] KeysTotal = new int[50];
 
         /// <summary>
         /// 历史成绩

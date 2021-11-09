@@ -118,6 +118,12 @@
       <DependentUpon>History.cs</DependentUpon>
     </Compile>
     <Compile Include="HotKey.cs" />
+    <Compile Include="KeyAnalysis\KeyAn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeyAnalysis\KeyAn.Designer.cs">
+      <DependentUpon>KeyAn.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -263,6 +269,9 @@
     <EmbeddedResource Include="History\History.resx">
       <DependentUpon>History.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="KeyAnalysis\KeyAn.resx">
+      <DependentUpon>KeyAn.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SpeedCheckOut.resx">
       <DependentUpon>SpeedCheckOut.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -385,9 +394,7 @@
     </Content>
     <None Include="Resources\doing.gif" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="KeyAnalysis\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

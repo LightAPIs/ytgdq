@@ -732,8 +732,7 @@ namespace WindowsFormsApplication2
             Glob.getStyle = bool.Parse(IniRead("载入", "方式", "false"));
             //今日跟打
             _Ini iniSetup = new _Ini("config.ini");
-            //记录开始时的总字数
-            Glob.TextRecLenAll = int.Parse(IniRead("记录", "记录总字数", "0"));
+            // 记录天数
             Glob.TextRecDays = int.Parse(IniRead("记录", "记录天数", "1"));
 
             ArrayList a = ReadKeys("今日跟打");
@@ -773,7 +772,7 @@ namespace WindowsFormsApplication2
 
             //lblMatchCount.Text = Glob.Instration.Trim();
             lblMatchCount.Text = Validation.Validat(Validation.Validat(richTextBox1.Text));
-            labelHaveTyping.Text = Glob.todayTyping + "/" + 字数格式化(Glob.TextRecLenAll) + "/" + Glob.TextRecDays + "天/" + 字数格式化(Glob.TextLenAll);
+            labelHaveTyping.Text = Glob.todayTyping + "/" + 字数格式化(Glob.TextLenAll) + "/" + Glob.TextRecDays + "天/" + 字数格式化(Glob.TextLenAll + Glob.TextHgAll);
             //FileInfo ty = new FileInfo(Application.StartupPath + "\\config.ini");
             // double totaldays = (double)(DateTime.Today - ty.LastAccessTime).TotalDays;
             //toolTip1.SetToolTip(this.labelHaveTyping,"今日跟打/总计数\n开始时间：" + ty.LastAccessTime.ToShortDateString() + "\n已开始第：" + totaldays.ToString("0.00") + "天\n平均每天：" + ((double)(Glob.TextLenAll/totaldays)).ToString("0.00") + "字\n本信息程序启动时更新");
@@ -846,12 +845,6 @@ namespace WindowsFormsApplication2
             this.PicSend.Checked = bool.Parse(IniRead("发送", "图片", "false"));
             this.比赛时自动打开寻找测速点ToolStripMenuItem.Checked = bool.Parse(IniRead("程序控制", "自动打开寻找", "False"));
             LblHaveTypingChange();
-
-            //if (Glob.TextRecLenAll == 0)
-            //{
-            //    Thread tr = new Thread(new ThreadStart(dnote));
-            //    tr.Start();
-            //}
         }
 
         /// <summary>
@@ -860,11 +853,11 @@ namespace WindowsFormsApplication2
         private void LblHaveTypingChange()
         {
             this.UIThread(() => toolTip1.SetToolTip(labelHaveTyping, "今日跟打：" + Glob.todayTyping + "字\n" +
+                                                                     "总计跟打：" + Glob.TextLenAll + "字\n" +
+                                                                     "跟打段数：" + Glob.jjAllC + "段\n" +
                                                                      "记录天数：" + Glob.TextRecDays + "天\n" +
-                                                                     "记录跟打：" + Glob.TextRecLenAll + "字\n" +
-                                                                     "平均每天：" + (Glob.TextRecLenAll / Glob.TextRecDays).ToString("0.00") + "字\n" +
-                                                                     "总跟打数：" + Glob.TextLenAll + "字\n" +
-                                                                     "跟打段数：" + Glob.jjAllC + "段"));
+                                                                     "记录字数：" + (Glob.TextLenAll + Glob.TextHgAll).ToString() + "字\n" +
+                                                                     "平均每天：" + ((Glob.TextLenAll + Glob.TextHgAll) / Glob.TextRecDays).ToString("0.00") + "字"));
         }
         void richTextBox1_FontChanged(object sender, EventArgs e)
         {
@@ -1563,9 +1556,8 @@ namespace WindowsFormsApplication2
                 Glob.TodayDate = DateTime.Now.ToShortDateString();
             }
             Glob.todayTyping += count; //今日跟打
-            Glob.TextRecLenAll += count;//记录字数
             Glob.TextLenAll += count;//总字数
-            labelHaveTyping.Text = Glob.todayTyping + "/" + 字数格式化(Glob.TextRecLenAll) + "/" + Glob.TextRecDays + "天/" + 字数格式化(Glob.TextLenAll);
+            labelHaveTyping.Text = Glob.todayTyping + "/" + 字数格式化(Glob.TextLenAll) + "/" + Glob.TextRecDays + "天/" + 字数格式化(Glob.TextLenAll + Glob.TextHgAll);
         }
         private int 上次输入标记 = 1;
         private int 跟打地图步进 = 0;
@@ -1750,14 +1742,14 @@ namespace WindowsFormsApplication2
                                 {
                                     string nowinput = richTextBox1.Text.Substring(HisSave[0], iP);
                                     if (nowinput == "……" || nowinput == "——")
-                                    {
+                                    { // 排除符号
                                         g++;
                                     }
                                     else
                                     {
                                         Glob.aTypeWords++;
                                         Glob.aTypeWordsCount += iP;
-                                    } //排除符号
+                                    }
                                 }
                                 else
                                 {
@@ -1818,13 +1810,13 @@ namespace WindowsFormsApplication2
                     }
                     else
                     {
-                        //这是一种回改的情况呵呵
+                        // 这是一种回改的情况
                         //Glob.TextCz = 0;//每次都归零
                         Glob.Type_Map_Color = Color.DeepSkyBlue;//回改橙色
                         int istart = textBoxEx1.SelectionStart; //获取当前光标所在的编号
                         int istep = Math.Abs(iP);//获取一次退格的 量
                         //MessageBox.Show(HisSave[1] + "\n" + HisSave[0]);
-                        Glob.TextHgAll++;
+                        Glob.TextHgAll++; //? 和 Glob.TextHg 的计算方式结果基本是等效的
                         if (istep > 0)
                         {
                             richTextBox1.SelectionStart = HisSave[1];
@@ -1873,7 +1865,7 @@ namespace WindowsFormsApplication2
                     if (Glob.isPointIt)
                         _render.SetCurrIndex(TextLenNow);
                 }
-                LblHaveTypingChange();
+
                 if (TextLenNow == TextLen)
                 {
                     for (int i = HisSave[0]; i < HisSave[1]; i++)
@@ -1917,6 +1909,10 @@ namespace WindowsFormsApplication2
 
                     #region 跟打结束
                     //toolStripStatusLabelTest.Text = "起打时间：" + sTime.ToShortTimeString() + " 终止时间：" + eTime.ToShortTimeString() + " 标志用时：" + (eTime - sTime).TotalSeconds + "s";
+                    
+                    Glob.jjAllC++;//跟打总段数
+                    LblHaveTypingChange();
+
                     textBoxEx1.ReadOnly = true;
                     ts = Glob.typeUseTime;
                     Sw = 0; //初始化
@@ -1941,7 +1937,6 @@ namespace WindowsFormsApplication2
                     }
                     //平均速度
                     Glob.TypeCount++; //跟打次数
-                    Glob.jjAllC++;//跟打总段数
                     //错情 与 错字
                     string RightAndFault = "", RFSplit = "|"; //分隔符
                     string fa = "";
@@ -3920,10 +3915,8 @@ namespace WindowsFormsApplication2
             iniSetup.IniWriteValue("记录", "总回改", Glob.TextHgAll.ToString());
             iniSetup.IniWriteValue("记录", "总按键", string.Join("|", Glob.HistoryKeysTotal));
             iniSetup.IniWriteValue("今日跟打", DateTime.Today.ToShortDateString(), Glob.todayTyping.ToString());
-            iniSetup.IniWriteValue("记录", "记录总字数", Glob.TextRecLenAll.ToString());
             iniSetup.IniWriteValue("记录", "记录天数", Glob.TextRecDays.ToString());
-            /*Glob.TextRecLenAll = int.Parse(IniRead("记录", "记录总字数", "0"));
-        Glob.TextRecDays = int.Parse(IniRead("记录", "记录天数", "0"));*/
+        
             for (int i = 0; i < 9; i++)
             {
                 iniSetup.IniWriteValue("记录", i.ToString(), Glob.jjPer[i].ToString());

@@ -104,16 +104,23 @@ namespace WindowsFormsApplication2
 
 
         public static int TextHg = 0; //回改
-        public static int TextHgAll = 0; //总回改
+
         /// <summary>
         /// 回改用时
         /// </summary>
         public static double hgAllUse;
-        public static int TextLenAll; //跟打的总字数
+
         /// <summary>
-        /// 记录开始时的字数
+        /// 记录总回改
+        /// 用于计算记录字数
         /// </summary>
-        public static int TextRecLenAll;//
+        public static int TextHgAll = 0;
+        /// <summary>
+        /// 总计跟打数
+        /// 不包括回改
+        /// </summary>
+        public static int TextLenAll;
+        
         /// <summary>
         /// 记录天数
         /// </summary>

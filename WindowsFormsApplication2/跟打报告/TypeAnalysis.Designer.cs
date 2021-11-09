@@ -39,6 +39,7 @@
             this.pic_analysis = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_putintoclip = new System.Windows.Forms.Button();
+            this.CloseButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_analysis)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -140,7 +141,7 @@
             // btn_putintoclip
             // 
             this.btn_putintoclip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_putintoclip.Location = new System.Drawing.Point(664, 495);
+            this.btn_putintoclip.Location = new System.Drawing.Point(577, 495);
             this.btn_putintoclip.Name = "btn_putintoclip";
             this.btn_putintoclip.Size = new System.Drawing.Size(75, 23);
             this.btn_putintoclip.TabIndex = 4;
@@ -148,11 +149,24 @@
             this.btn_putintoclip.UseVisualStyleBackColor = true;
             this.btn_putintoclip.Click += new System.EventHandler(this.btn_putintoclip_Click);
             // 
+            // CloseButton
+            // 
+            this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.CloseButton.Location = new System.Drawing.Point(658, 495);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(75, 23);
+            this.CloseButton.TabIndex = 5;
+            this.CloseButton.Text = "退出";
+            this.CloseButton.UseVisualStyleBackColor = true;
+            // 
             // TypeAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.CloseButton;
             this.ClientSize = new System.Drawing.Size(745, 521);
+            this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.btn_putintoclip);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.dataGridView1);
@@ -184,6 +198,6 @@
         private System.Windows.Forms.PictureBox pic_analysis;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btn_putintoclip;
-
+        private System.Windows.Forms.Button CloseButton;
     }
 }

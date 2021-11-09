@@ -305,9 +305,14 @@ namespace WindowsFormsApplication2
         public static List<double> ChartSpeedArr = new List<double> ();
 
         /// <summary>
-        /// 按键总计
+        /// 按键统计
         /// </summary>
         public static int[] KeysTotal = new int[50];
+
+        /// <summary>
+        /// 历史总按键统计
+        /// </summary>
+        public static int[] HistoryKeysTotal = new int[50];
 
         /// <summary>
         /// 历史成绩

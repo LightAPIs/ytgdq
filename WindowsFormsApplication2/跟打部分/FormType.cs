@@ -447,6 +447,7 @@ namespace WindowsFormsApplication2
                 if (index != -1)
                 {
                     Glob.KeysTotal[index]++;
+                    Glob.HistoryKeysTotal[index]++; // 历史总按键
                 }
             }
         }
@@ -749,6 +750,24 @@ namespace WindowsFormsApplication2
             }
             Glob.todayTyping = int.Parse(IniRead("今日跟打", DateTime.Today.ToShortDateString(), "0"));
             Glob.TextLenAll = int.Parse(IniRead("记录", "总字数", "0"));
+
+            //* 记录开始时的总按键统计
+            string readKeysTotalStr = IniRead("记录", "总按键", "");
+            if (!string.IsNullOrEmpty(readKeysTotalStr))
+            {
+                try
+                {
+                    int[] readKeysTotal = Array.ConvertAll(readKeysTotalStr.Split('|'), s => int.Parse(s));
+                    if (readKeysTotal.Length == 50)
+                    {
+                        Glob.HistoryKeysTotal = readKeysTotal;
+                    }
+                }
+                catch
+                {
+                    Array.Clear(Glob.HistoryKeysTotal, 0, 50);
+                }
+            }
 
             //lblMatchCount.Text = Glob.Instration.Trim();
             lblMatchCount.Text = Validation.Validat(Validation.Validat(richTextBox1.Text));
@@ -3897,6 +3916,7 @@ namespace WindowsFormsApplication2
             //iniSetup.IniWriteValue("发送", "起始", zdSendText.tSendTimes.ToString());
             iniSetup.IniWriteValue("记录", "总字数", Glob.TextLenAll.ToString());
             iniSetup.IniWriteValue("记录", "总回改", Glob.TextHgAll.ToString());
+            iniSetup.IniWriteValue("记录", "总按键", string.Join("|", Glob.HistoryKeysTotal));
             iniSetup.IniWriteValue("今日跟打", DateTime.Today.ToShortDateString(), Glob.todayTyping.ToString());
             iniSetup.IniWriteValue("记录", "记录总字数", Glob.TextRecLenAll.ToString());
             iniSetup.IniWriteValue("记录", "记录天数", Glob.TextRecDays.ToString());
@@ -6012,6 +6032,14 @@ namespace WindowsFormsApplication2
         private void KeyAnToolStripMenuItem_Click(object sender, EventArgs e)
         {
             KeyAn kan = new KeyAn(Glob.KeysTotal);
+            kan.ShowDialog();
+        }
+        #endregion
+
+        #region 历史按键热图
+        private void HistoryKeysToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KeyAn kan = new KeyAn(Glob.HistoryKeysTotal);
             kan.ShowDialog();
         }
         #endregion

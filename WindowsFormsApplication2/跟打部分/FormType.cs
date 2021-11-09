@@ -5416,18 +5416,18 @@ namespace WindowsFormsApplication2
         }
         #endregion
 
-        #region 恢复默认显示
+        #region 窗口复位
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             int getW = this.dataGridView1.Columns.GetColumnsWidth(DataGridViewElementStates.None) + 8;
-            if (getW < 443) getW = 443;
-            this.Size = new Size(getW, 443);
+            if (getW < 1080) getW = 1080;
+            this.Size = new Size(getW, 450);
 
             this.splitContainer1.Panel2Collapsed = false;
-            this.splitContainer1.SplitterDistance = 145;
+            this.splitContainer1.SplitterDistance = 142;
 
             this.splitContainer3.Panel2Collapsed = false;
-            this.splitContainer3.SplitterDistance = 80;
+            this.splitContainer3.SplitterDistance = 89;
 
             this.splitContainer4.Panel2Collapsed = false;
             this.splitContainer4.SplitterDistance = 206;

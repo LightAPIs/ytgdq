@@ -4166,7 +4166,7 @@ namespace WindowsFormsApplication2
                     if (title != "所在群")
                     {
                         string textTitle = "";
-                        if (lblTitle.Text != "标题") { textTitle = lblTitle.Text; }
+                        if (lblTitle.Text != "引导语") { textTitle = lblTitle.Text; }
                         string pre = "-----第" + Glob.Pre_Cout + "段";
                         if (Glob.Pre_Cout == "999")
                             pre += "-赛文验证:" + Validation.Validat(Validation.Validat(text));

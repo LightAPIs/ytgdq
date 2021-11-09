@@ -183,6 +183,7 @@
             this.外观ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.HistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.HistoryKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.窗口复位ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -248,7 +249,6 @@
             this.timerLblTime = new System.Windows.Forms.Timer(this.components);
             this.panelMain = new System.Windows.Forms.Panel();
             this.cmsDuanList = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.HistoryKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.cmsSetMatch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -480,7 +480,7 @@
             this.lblTitle.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
             this.lblTitle.Size = new System.Drawing.Size(198, 19);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = " 标题";
+            this.lblTitle.Text = "引导语";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.lblTitle, "文章标题");
             // 
@@ -1003,7 +1003,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox1.Size = new System.Drawing.Size(396, 102);
+            this.richTextBox1.Size = new System.Drawing.Size(396, 103);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.TabStop = false;
             this.richTextBox1.Text = "当你还在被世间诸多繁杂所束缚，心神不宁，不妨静下心来坐在电脑前跟打上一段文章。";
@@ -1187,7 +1187,7 @@
             this.textBoxEx1.Name = "textBoxEx1";
             this.textBoxEx1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxEx1.ShortcutsEnabled = false;
-            this.textBoxEx1.Size = new System.Drawing.Size(392, 9);
+            this.textBoxEx1.Size = new System.Drawing.Size(392, 8);
             this.textBoxEx1.TabIndex = 2;
             this.toolTip1.SetToolTip(this.textBoxEx1, "跟打区");
             this.textBoxEx1.TextChanged += new System.EventHandler(this.textBoxEx1_TextChanged);
@@ -1595,7 +1595,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel2MinSize = 50;
             this.splitContainer1.Size = new System.Drawing.Size(396, 217);
-            this.splitContainer1.SplitterDistance = 102;
+            this.splitContainer1.SplitterDistance = 103;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 3;
             this.splitContainer1.TabStop = false;
@@ -1606,7 +1606,7 @@
             this.picDoing.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.picDoing.BackColor = System.Drawing.Color.White;
             this.picDoing.Image = global::WindowsFormsApplication2.Properties.Resources.doing;
-            this.picDoing.Location = new System.Drawing.Point(355, 77);
+            this.picDoing.Location = new System.Drawing.Point(355, 78);
             this.picDoing.Name = "picDoing";
             this.picDoing.Size = new System.Drawing.Size(22, 22);
             this.picDoing.TabIndex = 23;
@@ -1629,7 +1629,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer2.Panel2MinSize = 0;
-            this.splitContainer2.Size = new System.Drawing.Size(396, 112);
+            this.splitContainer2.Size = new System.Drawing.Size(396, 111);
             this.splitContainer2.SplitterIncrement = 2;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 5;
@@ -1652,8 +1652,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer3.Size = new System.Drawing.Size(396, 112);
-            this.splitContainer3.SplitterDistance = 39;
+            this.splitContainer3.Size = new System.Drawing.Size(396, 111);
+            this.splitContainer3.SplitterDistance = 38;
             this.splitContainer3.TabIndex = 0;
             this.splitContainer3.TabStop = false;
             // 
@@ -2085,6 +2085,13 @@
             this.HistoryToolStripMenuItem.Size = new System.Drawing.Size(182, 24);
             this.HistoryToolStripMenuItem.Text = "历史记录...";
             this.HistoryToolStripMenuItem.Click += new System.EventHandler(this.HistoryToolStripMenuItem_Click);
+            // 
+            // HistoryKeysToolStripMenuItem
+            // 
+            this.HistoryKeysToolStripMenuItem.Name = "HistoryKeysToolStripMenuItem";
+            this.HistoryKeysToolStripMenuItem.Size = new System.Drawing.Size(182, 24);
+            this.HistoryKeysToolStripMenuItem.Text = "历史按键热图...";
+            this.HistoryKeysToolStripMenuItem.Click += new System.EventHandler(this.HistoryKeysToolStripMenuItem_Click);
             // 
             // toolStripSeparator8
             // 
@@ -2634,13 +2641,6 @@
             this.cmsDuanList.Name = "cmsDuanList";
             this.cmsDuanList.Size = new System.Drawing.Size(61, 4);
             this.cmsDuanList.Paint += new System.Windows.Forms.PaintEventHandler(this.cmsDuanList_Paint);
-            // 
-            // HistoryKeysToolStripMenuItem
-            // 
-            this.HistoryKeysToolStripMenuItem.Name = "HistoryKeysToolStripMenuItem";
-            this.HistoryKeysToolStripMenuItem.Size = new System.Drawing.Size(182, 24);
-            this.HistoryKeysToolStripMenuItem.Text = "历史按键热图...";
-            this.HistoryKeysToolStripMenuItem.Click += new System.EventHandler(this.HistoryKeysToolStripMenuItem_Click);
             // 
             // Form1
             // 

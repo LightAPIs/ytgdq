@@ -678,8 +678,7 @@ namespace WindowsFormsApplication2
             textBoxEx1.BackColor = Color.FromArgb(int.Parse(IniRead("外观", "跟打区颜色", "-722948")));
             Glob.Right = Color.FromArgb(int.Parse(IniRead("外观", "打对颜色", "-8355712")));
             Glob.False = Color.FromArgb(int.Parse(IniRead("外观", "打错颜色", "-38294")));
-            //            Glob.Right = Color.FromArgb(int.Parse(IniRead("外观", "打对颜色", "-8355712")));
-            //            Glob.False = Color.FromArgb(int.Parse(IniRead("外观", "打错颜色", "-38294")));
+            
             //下方工具条颜色
             //this.toolStripButton1.BorderColor = Color.FromArgb(253,144,91);//替换
             //this.toolStripBtnLS.BorderColor = Color.FromArgb(255,127,24);//限制

@@ -71,7 +71,7 @@ namespace WindowsFormsApplication2
             sortsend();
             //载入字体
             FontConverter fc = new FontConverter();
-            fo1 = (Font)fc.ConvertFromString(IniRead("外观", "对照区字体", "宋体, 14.25pt"));
+            fo1 = (Font)fc.ConvertFromString(IniRead("外观", "对照区字体", "宋体, 21.75pt"));
             fo2 = (Font)fc.ConvertFromString(IniRead("外观", "跟打区字体", "宋体, 12pt"));
             this.button3.Text = fo1.FontFamily.GetName(0) + " - " + fo1.Size;
             this.button4.Text = fo2.FontFamily.GetName(0) + " - " + fo2.Size;

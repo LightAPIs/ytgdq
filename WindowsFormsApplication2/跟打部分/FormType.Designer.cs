@@ -1003,7 +1003,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox1.Size = new System.Drawing.Size(396, 103);
+            this.richTextBox1.Size = new System.Drawing.Size(396, 105);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.TabStop = false;
             this.richTextBox1.Text = "当你还在被世间诸多繁杂所束缚，心神不宁，不妨静下心来坐在电脑前跟打上一段文章。";
@@ -1187,7 +1187,7 @@
             this.textBoxEx1.Name = "textBoxEx1";
             this.textBoxEx1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxEx1.ShortcutsEnabled = false;
-            this.textBoxEx1.Size = new System.Drawing.Size(392, 8);
+            this.textBoxEx1.Size = new System.Drawing.Size(392, 6);
             this.textBoxEx1.TabIndex = 2;
             this.toolTip1.SetToolTip(this.textBoxEx1, "跟打区");
             this.textBoxEx1.TextChanged += new System.EventHandler(this.textBoxEx1_TextChanged);
@@ -1595,7 +1595,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel2MinSize = 50;
             this.splitContainer1.Size = new System.Drawing.Size(396, 217);
-            this.splitContainer1.SplitterDistance = 103;
+            this.splitContainer1.SplitterDistance = 105;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 3;
             this.splitContainer1.TabStop = false;
@@ -1606,7 +1606,7 @@
             this.picDoing.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.picDoing.BackColor = System.Drawing.Color.White;
             this.picDoing.Image = global::WindowsFormsApplication2.Properties.Resources.doing;
-            this.picDoing.Location = new System.Drawing.Point(355, 78);
+            this.picDoing.Location = new System.Drawing.Point(355, 80);
             this.picDoing.Name = "picDoing";
             this.picDoing.Size = new System.Drawing.Size(22, 22);
             this.picDoing.TabIndex = 23;
@@ -1629,7 +1629,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer2.Panel2MinSize = 0;
-            this.splitContainer2.Size = new System.Drawing.Size(396, 111);
+            this.splitContainer2.Size = new System.Drawing.Size(396, 109);
             this.splitContainer2.SplitterIncrement = 2;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 5;
@@ -1652,8 +1652,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer3.Size = new System.Drawing.Size(396, 111);
-            this.splitContainer3.SplitterDistance = 38;
+            this.splitContainer3.Size = new System.Drawing.Size(396, 109);
+            this.splitContainer3.SplitterDistance = 36;
             this.splitContainer3.TabIndex = 0;
             this.splitContainer3.TabStop = false;
             // 
@@ -2059,7 +2059,7 @@
             this.设置ToolStripMenuItem1.Name = "设置ToolStripMenuItem1";
             this.设置ToolStripMenuItem1.ShortcutKeyDisplayString = "";
             this.设置ToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.设置ToolStripMenuItem1.Size = new System.Drawing.Size(182, 24);
+            this.设置ToolStripMenuItem1.Size = new System.Drawing.Size(196, 24);
             this.设置ToolStripMenuItem1.Text = "设置...";
             this.设置ToolStripMenuItem1.Click += new System.EventHandler(this.设置ToolStripMenuItem1_Click);
             // 
@@ -2068,42 +2068,43 @@
             this.外观ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9.2F, System.Drawing.FontStyle.Bold);
             this.外观ToolStripMenuItem.ForeColor = System.Drawing.Color.Green;
             this.外观ToolStripMenuItem.Name = "外观ToolStripMenuItem";
-            this.外观ToolStripMenuItem.Size = new System.Drawing.Size(182, 24);
+            this.外观ToolStripMenuItem.Size = new System.Drawing.Size(196, 24);
             this.外观ToolStripMenuItem.Text = "外观...";
             this.外观ToolStripMenuItem.Click += new System.EventHandler(this.外观ToolStripMenuItem_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(179, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(193, 6);
             // 
             // HistoryToolStripMenuItem
             // 
             this.HistoryToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9.2F, System.Drawing.FontStyle.Bold);
             this.HistoryToolStripMenuItem.ForeColor = System.Drawing.Color.Blue;
             this.HistoryToolStripMenuItem.Name = "HistoryToolStripMenuItem";
-            this.HistoryToolStripMenuItem.Size = new System.Drawing.Size(182, 24);
+            this.HistoryToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
+            this.HistoryToolStripMenuItem.Size = new System.Drawing.Size(196, 24);
             this.HistoryToolStripMenuItem.Text = "历史记录...";
             this.HistoryToolStripMenuItem.Click += new System.EventHandler(this.HistoryToolStripMenuItem_Click);
             // 
             // HistoryKeysToolStripMenuItem
             // 
             this.HistoryKeysToolStripMenuItem.Name = "HistoryKeysToolStripMenuItem";
-            this.HistoryKeysToolStripMenuItem.Size = new System.Drawing.Size(182, 24);
+            this.HistoryKeysToolStripMenuItem.Size = new System.Drawing.Size(196, 24);
             this.HistoryKeysToolStripMenuItem.Text = "历史按键热图...";
             this.HistoryKeysToolStripMenuItem.Click += new System.EventHandler(this.HistoryKeysToolStripMenuItem_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(179, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(193, 6);
             // 
             // 窗口复位ToolStripMenuItem
             // 
             this.窗口复位ToolStripMenuItem.Name = "窗口复位ToolStripMenuItem";
             this.窗口复位ToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.窗口复位ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.窗口复位ToolStripMenuItem.Size = new System.Drawing.Size(182, 24);
+            this.窗口复位ToolStripMenuItem.Size = new System.Drawing.Size(196, 24);
             this.窗口复位ToolStripMenuItem.Text = "窗口复位";
             this.窗口复位ToolStripMenuItem.ToolTipText = "恢复默认的窗口显示";
             this.窗口复位ToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
@@ -2111,7 +2112,7 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(182, 24);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(196, 24);
             this.toolStripMenuItem1.Text = "创建桌面快捷方式";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.发送到桌面的快捷方式ToolStripMenuItem_Click);
             // 
@@ -2119,19 +2120,19 @@
             // 
             this.老板键ToolStripMenuItem1.Name = "老板键ToolStripMenuItem1";
             this.老板键ToolStripMenuItem1.ShortcutKeyDisplayString = "Alt+Q";
-            this.老板键ToolStripMenuItem1.Size = new System.Drawing.Size(182, 24);
+            this.老板键ToolStripMenuItem1.Size = new System.Drawing.Size(196, 24);
             this.老板键ToolStripMenuItem1.Text = "老板键";
             this.老板键ToolStripMenuItem1.Click += new System.EventHandler(this.老板键ToolStripMenuItem1_Click);
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(179, 6);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(193, 6);
             // 
             // 保持窗口最前ToolStripMenuItem1
             // 
             this.保持窗口最前ToolStripMenuItem1.Name = "保持窗口最前ToolStripMenuItem1";
-            this.保持窗口最前ToolStripMenuItem1.Size = new System.Drawing.Size(182, 24);
+            this.保持窗口最前ToolStripMenuItem1.Size = new System.Drawing.Size(196, 24);
             this.保持窗口最前ToolStripMenuItem1.Text = "保持窗口最前";
             this.保持窗口最前ToolStripMenuItem1.Click += new System.EventHandler(this.保持窗口最前ToolStripMenuItem1_Click);
             // 
@@ -2357,7 +2358,7 @@
             // 平均成绩ToolStripMenuItem
             // 
             this.平均成绩ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9.2F);
-            this.平均成绩ToolStripMenuItem.ForeColor = System.Drawing.Color.DimGray;
+            this.平均成绩ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.平均成绩ToolStripMenuItem.Name = "平均成绩ToolStripMenuItem";
             this.平均成绩ToolStripMenuItem.Size = new System.Drawing.Size(204, 24);
             this.平均成绩ToolStripMenuItem.Text = "平均成绩...";
@@ -2366,10 +2367,9 @@
             // 击键统计ToolStripMenuItem
             // 
             this.击键统计ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9.2F);
-            this.击键统计ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(90)))), ((int)(((byte)(220)))));
+            this.击键统计ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.击键统计ToolStripMenuItem.Name = "击键统计ToolStripMenuItem";
             this.击键统计ToolStripMenuItem.ShortcutKeyDisplayString = "";
-            this.击键统计ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
             this.击键统计ToolStripMenuItem.Size = new System.Drawing.Size(204, 24);
             this.击键统计ToolStripMenuItem.Text = "击键评定...";
             this.击键统计ToolStripMenuItem.ToolTipText = "至少跟打100段，才可使用此功能。";
@@ -2389,6 +2389,7 @@
             // 跟打分析ToolStripMenuItem
             // 
             this.跟打分析ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9.2F);
+            this.跟打分析ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(90)))), ((int)(((byte)(220)))));
             this.跟打分析ToolStripMenuItem.Name = "跟打分析ToolStripMenuItem";
             this.跟打分析ToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.跟打分析ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
@@ -2398,6 +2399,7 @@
             // 
             // 跟打报告ToolStripMenuItem
             // 
+            this.跟打报告ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(90)))), ((int)(((byte)(220)))));
             this.跟打报告ToolStripMenuItem.Name = "跟打报告ToolStripMenuItem";
             this.跟打报告ToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.跟打报告ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.J)));
@@ -2407,6 +2409,7 @@
             // 
             // KeyAnToolStripMenuItem
             // 
+            this.KeyAnToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(90)))), ((int)(((byte)(220)))));
             this.KeyAnToolStripMenuItem.Name = "KeyAnToolStripMenuItem";
             this.KeyAnToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
             this.KeyAnToolStripMenuItem.Size = new System.Drawing.Size(204, 24);

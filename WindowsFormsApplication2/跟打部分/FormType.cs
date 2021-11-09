@@ -271,8 +271,8 @@ namespace WindowsFormsApplication2
                     case "发送上次成绩":
                         this.上一次成绩ToolStripMenuItem1.ShortcutKeys = hotK;
                         break;
-                    case "击键评定":
-                        this.击键统计ToolStripMenuItem.ShortcutKeys = hotK;
+                    case "历史记录":
+                        this.HistoryToolStripMenuItem.ShortcutKeys = hotK;
                         break;
                     case "窗口复位":
                         this.窗口复位ToolStripMenuItem.ShortcutKeys = hotK;
@@ -286,8 +286,8 @@ namespace WindowsFormsApplication2
                     case "跟打报告":
                         this.跟打报告ToolStripMenuItem.ShortcutKeys = hotK;
                         break;
-                    case "乱序重打":
-                        this.DisorderToolStripMenuItem.ShortcutKeys = hotK;
+                    case "按键统计":
+                        this.KeyAnToolStripMenuItem.ShortcutKeys = hotK;
                         break;
                     case "打开练习":
                         this.DrillToolStripMenuItem.ShortcutKeys = hotK;
@@ -313,6 +313,9 @@ namespace WindowsFormsApplication2
                     case "从QQ窗口":
                         this.从QQ窗口手动ToolStripMenuItem1.ShortcutKeys = hotK;
                         break;
+                    case "乱序重打":
+                        this.DisorderToolStripMenuItem.ShortcutKeys = hotK;
+                        break;
                     case "老板键":
                         if (Glob.HotKeyList[i].GetKeys() == "None")
                         {
@@ -336,9 +339,9 @@ namespace WindowsFormsApplication2
         /// </summary>
         public void ReRegisterBossKey()
         {
-            if (Glob.HotKeyList[22].GetKeys() != "None")
+            if (Glob.HotKeyList.Last().GetKeys() != "None")
             {
-                RegisterHotKey(this.Handle, 100, Glob.HotKeyList[22].TransKeyModifiers(), Glob.HotKeyList[22].TransOnlyKeyCode());
+                RegisterHotKey(this.Handle, 100, Glob.HotKeyList.Last().TransKeyModifiers(), Glob.HotKeyList.Last().TransOnlyKeyCode());
             }
         }
 
@@ -4098,7 +4101,7 @@ namespace WindowsFormsApplication2
             if (this.TopMost) { this.TopMost = false; 保持窗口最前ToolStripMenuItem1.Checked = false; }
 
             //! 打开设置页面前禁用全局老板键
-            if (Glob.HotKeyList[22].GetKeys() != "None")
+            if (Glob.HotKeyList.Last().GetKeys() != "None")
             {
                 UnregisterHotKey(this.Handle, 100);
             }
@@ -5241,7 +5244,7 @@ namespace WindowsFormsApplication2
         /// <param name="e"></param>
         private void 老板键ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (Glob.HotKeyList[22].GetKeys() == "None")
+            if (Glob.HotKeyList.Last().GetKeys() == "None")
             {
                 MessageBox.Show("请先在快捷键设置中为老板键绑定按键，否则在隐藏后将无法恢复窗口！");
             }

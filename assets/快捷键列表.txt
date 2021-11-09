@@ -7,12 +7,12 @@
 发送当前文段	F7
 暂停		F8
 发送上次成绩	F9
-击键评定	Ctrl+B
+历史记录	Ctrl+H
 窗口复位	Ctrl+D
 查询当前编码	Ctrl+F
 速度分析	Ctrl+G
 跟打报告	Ctrl+J
-乱序重打	Ctrl+L
+按键统计	Ctrl+K
 打开练习	Ctrl+O
 测速数据	Ctrl+P
 发下一段	Ctrl+R
@@ -21,6 +21,7 @@
 检验真伪	Alt+D
 从剪贴板载文	Alt+E
 从QQ窗口载文	Alt+S
+乱序重打	Ctrl+L
 老板键(全局)	Alt+Q
 
 内部快捷键(不可修改)：

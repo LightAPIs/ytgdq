@@ -273,6 +273,12 @@
             this.label42 = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
+            this.panel35 = new System.Windows.Forms.Panel();
+            this.HotKeyDisButton23 = new System.Windows.Forms.Button();
+            this.HotKeyModButton23 = new System.Windows.Forms.Button();
+            this.HotKeyResetButton23 = new System.Windows.Forms.Button();
+            this.HotKeyTextBox23 = new System.Windows.Forms.TextBox();
+            this.label43 = new System.Windows.Forms.Label();
             this.newButton1 = new WindowsFormsApplication2.NewButton();
             this.newButton2 = new WindowsFormsApplication2.NewButton();
             this.panel1.SuspendLayout();
@@ -328,6 +334,7 @@
             this.panel33.SuspendLayout();
             this.panel34.SuspendLayout();
             this.panel12.SuspendLayout();
+            this.panel35.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -1663,9 +1670,11 @@
             this.flowLayoutPanel1.Controls.Add(this.panel32);
             this.flowLayoutPanel1.Controls.Add(this.panel33);
             this.flowLayoutPanel1.Controls.Add(this.panel34);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 4);
+            this.flowLayoutPanel1.Controls.Add(this.panel35);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(383, 407);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(389, 414);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // panel10
@@ -2332,7 +2341,7 @@
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(53, 12);
             this.label28.TabIndex = 0;
-            this.label28.Text = "击键评定";
+            this.label28.Text = "历史记录";
             // 
             // panel21
             // 
@@ -2702,7 +2711,7 @@
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(53, 12);
             this.label33.TabIndex = 0;
-            this.label33.Text = "乱序重打";
+            this.label33.Text = "按键统计";
             // 
             // panel26
             // 
@@ -3307,7 +3316,6 @@
             this.panel34.Name = "panel34";
             this.panel34.Size = new System.Drawing.Size(347, 32);
             this.panel34.TabIndex = 23;
-            this.panel34.Click += new System.EventHandler(this.HotKeyDisButtonClick);
             // 
             // HotKeyDisButton22
             // 
@@ -3367,9 +3375,9 @@
             this.label42.ForeColor = System.Drawing.Color.White;
             this.label42.Location = new System.Drawing.Point(14, 9);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(41, 12);
+            this.label42.Size = new System.Drawing.Size(53, 12);
             this.label42.TabIndex = 0;
-            this.label42.Text = "老板键";
+            this.label42.Text = "乱序重打";
             // 
             // panel12
             // 
@@ -3390,6 +3398,80 @@
             this.label10.Size = new System.Drawing.Size(122, 21);
             this.label10.TabIndex = 14;
             this.label10.Text = "雨天跟打器设置";
+            // 
+            // panel35
+            // 
+            this.panel35.Controls.Add(this.HotKeyDisButton23);
+            this.panel35.Controls.Add(this.HotKeyModButton23);
+            this.panel35.Controls.Add(this.HotKeyResetButton23);
+            this.panel35.Controls.Add(this.HotKeyTextBox23);
+            this.panel35.Controls.Add(this.label43);
+            this.panel35.Location = new System.Drawing.Point(3, 877);
+            this.panel35.Name = "panel35";
+            this.panel35.Size = new System.Drawing.Size(347, 32);
+            this.panel35.TabIndex = 14;
+            // 
+            // HotKeyDisButton23
+            // 
+            this.HotKeyDisButton23.BackColor = System.Drawing.Color.Tan;
+            this.HotKeyDisButton23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton23.Location = new System.Drawing.Point(293, 4);
+            this.HotKeyDisButton23.Name = "HotKeyDisButton23";
+            this.HotKeyDisButton23.Size = new System.Drawing.Size(51, 23);
+            this.HotKeyDisButton23.TabIndex = 4;
+            this.HotKeyDisButton23.Tag = "23";
+            this.HotKeyDisButton23.Text = "停用";
+            this.HotKeyDisButton23.UseVisualStyleBackColor = false;
+            this.HotKeyDisButton23.Click += new System.EventHandler(this.HotKeyDisButtonClick);
+            // 
+            // HotKeyModButton23
+            // 
+            this.HotKeyModButton23.BackColor = System.Drawing.Color.LightGreen;
+            this.HotKeyModButton23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyModButton23.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton23.Location = new System.Drawing.Point(179, 4);
+            this.HotKeyModButton23.Name = "HotKeyModButton23";
+            this.HotKeyModButton23.Size = new System.Drawing.Size(51, 23);
+            this.HotKeyModButton23.TabIndex = 2;
+            this.HotKeyModButton23.Tag = "23";
+            this.HotKeyModButton23.Text = "修改";
+            this.HotKeyModButton23.UseVisualStyleBackColor = false;
+            this.HotKeyModButton23.Click += new System.EventHandler(this.HotKeyModButtonClick);
+            // 
+            // HotKeyResetButton23
+            // 
+            this.HotKeyResetButton23.BackColor = System.Drawing.Color.OrangeRed;
+            this.HotKeyResetButton23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton23.Location = new System.Drawing.Point(236, 4);
+            this.HotKeyResetButton23.Name = "HotKeyResetButton23";
+            this.HotKeyResetButton23.Size = new System.Drawing.Size(51, 23);
+            this.HotKeyResetButton23.TabIndex = 3;
+            this.HotKeyResetButton23.Tag = "23";
+            this.HotKeyResetButton23.Text = "重置";
+            this.HotKeyResetButton23.UseVisualStyleBackColor = false;
+            this.HotKeyResetButton23.Click += new System.EventHandler(this.HotKeyResetButtonClick);
+            // 
+            // HotKeyTextBox23
+            // 
+            this.HotKeyTextBox23.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.HotKeyTextBox23.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.HotKeyTextBox23.Location = new System.Drawing.Point(101, 6);
+            this.HotKeyTextBox23.Name = "HotKeyTextBox23";
+            this.HotKeyTextBox23.ReadOnly = true;
+            this.HotKeyTextBox23.Size = new System.Drawing.Size(72, 21);
+            this.HotKeyTextBox23.TabIndex = 1;
+            this.HotKeyTextBox23.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.HotKeyTextBox23.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HotKeyTextBoxKeyDown);
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.ForeColor = System.Drawing.Color.White;
+            this.label43.Location = new System.Drawing.Point(14, 9);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(41, 12);
+            this.label43.TabIndex = 0;
+            this.label43.Text = "老板键";
             // 
             // newButton1
             // 
@@ -3534,6 +3616,8 @@
             this.panel34.ResumeLayout(false);
             this.panel34.PerformLayout();
             this.panel12.ResumeLayout(false);
+            this.panel35.ResumeLayout(false);
+            this.panel35.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3787,5 +3871,11 @@
         private System.Windows.Forms.Button HotKeyResetButton22;
         private System.Windows.Forms.TextBox HotKeyTextBox22;
         private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Panel panel35;
+        private System.Windows.Forms.Button HotKeyDisButton23;
+        private System.Windows.Forms.Button HotKeyModButton23;
+        private System.Windows.Forms.Button HotKeyResetButton23;
+        private System.Windows.Forms.TextBox HotKeyTextBox23;
+        private System.Windows.Forms.Label label43;
     }
 }

@@ -297,6 +297,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="设置部分\Setup.resx">
       <DependentUpon>Setup.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="跟打报告\TypeAnalysis.resx">
       <DependentUpon>TypeAnalysis.cs</DependentUpon>

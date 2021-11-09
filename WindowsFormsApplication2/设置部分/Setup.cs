@@ -125,7 +125,7 @@ namespace WindowsFormsApplication2
             //this.checkBox31.Checked = bool.TryParse(IniRead("控制", "自动获取", "True"), out c) ? c : true;
 
             //* 快捷键设置
-            allTBox = new TextBox[23] {
+            allTBox = new TextBox[24] {
                 HotKeyTextBox0,
                 HotKeyTextBox1,
                 HotKeyTextBox2,
@@ -148,9 +148,10 @@ namespace WindowsFormsApplication2
                 HotKeyTextBox19,
                 HotKeyTextBox20,
                 HotKeyTextBox21,
-                HotKeyTextBox22
+                HotKeyTextBox22,
+                HotKeyTextBox23,
             };
-            allModBtn = new Button[23]
+            allModBtn = new Button[24]
             {
                 HotKeyModButton0,
                 HotKeyModButton1,
@@ -174,7 +175,8 @@ namespace WindowsFormsApplication2
                 HotKeyModButton19,
                 HotKeyModButton20,
                 HotKeyModButton21,
-                HotKeyModButton22
+                HotKeyModButton22,
+                HotKeyModButton23,
             };
             // 读取保存的快捷键
             for (int i = 0; i < allTBox.Length; i++)

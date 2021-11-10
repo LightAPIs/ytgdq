@@ -21,9 +21,9 @@ namespace WindowsFormsApplication2.History
         private StorageDataSet.ScoreDataTable currentScoreData = new StorageDataSet.ScoreDataTable();
 
         /// <summary>
-        /// 鼠标当前操作行
+        /// 表格操作器
         /// </summary>
-        private DataGridViewCellMouseEventArgs mouseLocation;
+        private HistoryDataGridHandler gridHandler;
 
         private readonly Form1 frm;
 
@@ -35,6 +35,7 @@ namespace WindowsFormsApplication2.History
 
         private void History_Load(object sender, EventArgs e)
         {
+            this.gridHandler = new HistoryDataGridHandler(this.dataGridView1);
             ShowDataFromDate(DateTime.Now);
         }
 
@@ -172,184 +173,67 @@ namespace WindowsFormsApplication2.History
             }
         }
 
-        private string MenuGetScoreTime()
-        {
-            DataGridViewRow curRow = this.dataGridView1.Rows[this.mouseLocation.RowIndex];
-            if (curRow != null)
-            {
-                return curRow.Cells[1].Value.ToString();
-            }
-            return "";
-        }
-
+        #region 表格右键菜单事件
         private void History_CellMoseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
-            this.mouseLocation = e;
+            this.gridHandler.SetMouseLocation(e);
         }
 
-        #region 表格右键菜单事件
         private void CopyScoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DataGridViewRow curRow = this.dataGridView1.Rows[this.mouseLocation.RowIndex];
-            if (curRow != null)
-            {
-                string goal = "第" + curRow.Cells[2].Value + "段 ";
-                for (int i = 3; i < this.dataGridView1.Columns.Count - 1; i++)
-                {
-                    goal += this.dataGridView1.Columns[i].Name + curRow.Cells[i].Value + " ";
-                }
-                goal += "校验:" + Validation.Validat(goal);
-                goal += " v" + Glob.Ver + "(" + Glob.Instration + ") [复制成绩]";
-                ClipboardHandler.SetTextToClipboard(goal);
-            }
+            this.gridHandler.CopyScore(this.currentScoreData);
         }
 
         private void CopyPicToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string scoreTime = this.MenuGetScoreTime();
-            if (!string.IsNullOrEmpty(scoreTime))
-            {
-                StorageDataSet.ScoreRow sd = StorageDataSet.GetScoreRowFromTime(currentScoreData, scoreTime);
-                if (sd != null)
-                {
-                    using (PicGoal_Class pgc = new PicGoal_Class())
-                    {
-                        string[] speed = sd["speed"].ToString().Split('/');
-                        Clipboard.SetImage(pgc.GetPic(sd["article_title"].ToString(), scoreTime, sd["cost_time"].ToString(), (double)sd["accuracy_rate"], (int)sd["effciency"], (int)sd["count"], (int)sd["back_change"], (int)sd["error"], (int)sd["keys"], (int)sd["backspace"], (int)sd["duplicate"], sd["segment_num"].ToString(), double.Parse(speed.Last()), (double)sd["keystroke"], (double)sd["code_len"], sd["version"].ToString()));
-                        pgc.Dispose();
-                    }
-                }
-            }
+            this.gridHandler.CopyPicScore(this.currentScoreData);
         }
 
         private void CopyContentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string scoreTime = this.MenuGetScoreTime();
-            if (!string.IsNullOrEmpty(scoreTime))
-            {
-                StorageDataSet.ScoreRow sd = StorageDataSet.GetScoreRowFromTime(currentScoreData, scoreTime);
-                if (sd != null)
-                {
-                    ClipboardHandler.SetTextToClipboard(Glob.ScoreHistory.GetContentFromSegmentId((int)sd["segment_id"]));
-                }
-            }
+            this.gridHandler.CopyContent(this.currentScoreData);
         }
 
         private void SpeedAnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string scoreTime = this.MenuGetScoreTime();
-            if (!string.IsNullOrEmpty(scoreTime))
-            {
-                StorageDataSet.AdvancedRow advRow = Glob.ScoreHistory.GetAdvancedRowFromTime(scoreTime);
-                StorageDataSet.ScoreRow sd = StorageDataSet.GetScoreRowFromTime(currentScoreData, scoreTime);
-                if (advRow != null && sd != null)
-                {
-                    string sn = sd["segment_num"].ToString();
-                    string gd = advRow["speed_analysis"].ToString();
-                    string vi = sd["version"].ToString();
-
-                    SpeedAn sa = new SpeedAn(scoreTime, sn, gd, vi, this.frm);
-                    sa.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show("没有找到高阶统计数据！");
-                }
-            }
+            this.gridHandler.SpeedAn(this.currentScoreData, this.frm);
         }
 
         private void TypeAnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string scoreTime = this.MenuGetScoreTime();
-            if (!string.IsNullOrEmpty(scoreTime))
-            {
-                StorageDataSet.AdvancedRow advRow = Glob.ScoreHistory.GetAdvancedRowFromTime(scoreTime);
-                StorageDataSet.ScoreRow sd = StorageDataSet.GetScoreRowFromTime(this.currentScoreData, scoreTime);
-                if (advRow != null && sd != null)
-                {
-                    try
-                    {
-                        List<TypeDate> td = JsonConvert.DeserializeObject<List<TypeDate>>(advRow["type_analysis"].ToString());
-                        string content = Glob.ScoreHistory.GetContentFromSegmentId((int)sd["segment_id"]);
-                        string[] speed = sd["speed"].ToString().Split('/');
-                        int bc = (int)sd["back_change"];
-                        string vi = sd["version"].ToString();
-
-                        WindowsFormsApplication2.跟打报告.TypeAnalysis tya = new 跟打报告.TypeAnalysis(scoreTime, td, content, speed.Last(), bc, vi);
-                        tya.ShowDialog();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("内部数据读取出错！");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("没有找到高阶统计数据！");
-                }
-            }
+            this.gridHandler.TypeAn(this.currentScoreData);
         }
 
         private void KeyAnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string scoreTime = this.MenuGetScoreTime();
-            if (!string.IsNullOrEmpty(scoreTime))
-            {
-                StorageDataSet.AdvancedRow advRow = Glob.ScoreHistory.GetAdvancedRowFromTime(scoreTime);
-                if (advRow != null)
-                {
-                    int[] keysData = Array.ConvertAll(advRow["key_analysis"].ToString().Split('|'), s => int.Parse(s));
-                    KeyAn kan = new KeyAn(keysData);
-                    kan.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show("没有找到高阶统计数据！");
-                }
-            }
+            this.gridHandler.KeyAn();
         }
 
         private void SearchTitleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DataGridViewRow curRow = this.dataGridView1.Rows[this.mouseLocation.RowIndex];
-            if (curRow != null)
+            string articleTitle = this.gridHandler.GetArticleTitle();
+            if (!string.IsNullOrEmpty(articleTitle))
             {
-                string articleTitle = curRow.Cells["标题"].Value.ToString().Trim();
-                if (!string.IsNullOrEmpty(articleTitle))
-                {
-                    this.ShowDataFromTitle(articleTitle);
-                }
+                this.ShowDataFromTitle(articleTitle);
             }
         }
 
         private void SearchSegmentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string scoreTime = this.MenuGetScoreTime();
-            if (!string.IsNullOrEmpty(scoreTime))
+            int segmentId = this.gridHandler.GetSegmentId(this.currentScoreData);
+            if (segmentId != -1)
             {
-                StorageDataSet.ScoreRow sd = StorageDataSet.GetScoreRowFromTime(this.currentScoreData, scoreTime);
-                if (sd != null)
-                {
-                    int segmentId = (int)sd["segment_id"];
-                    this.ShowDataFromSegment(segmentId);
-                }
+                this.ShowDataFromSegment(segmentId);
             }
         }
 
         private void RetypeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string scoreTime = this.MenuGetScoreTime();
-            if (!string.IsNullOrEmpty(scoreTime))
+            string[] result = this.gridHandler.GetRetype(this.currentScoreData);
+            if (result != null)
             {
-                StorageDataSet.ScoreRow sd = StorageDataSet.GetScoreRowFromTime(currentScoreData, scoreTime);
-                if (sd != null)
-                {
-                    string content = Glob.ScoreHistory.GetContentFromSegmentId((int)sd["segment_id"]);
-                    string segmentNum = sd["segment_num"].ToString();
-                    string articleTitle = sd["article_title"].ToString();
-                    this.frm.TypeContentDirectly(content, segmentNum, articleTitle);
-                    this.Close();
-                }
+                this.frm.TypeContentDirectly(result[0], result[1], result[2]);
+                this.Close();
             }
         }
         #endregion

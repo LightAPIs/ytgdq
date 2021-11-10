@@ -49,6 +49,17 @@ namespace WindowsFormsApplication2
         private RichEditBoxLineRender _render = new RichEditBoxLineRender();
         private FormBMTipsModel bmTips;//编码提示
         //private Stopwatch UseStopTime = new Stopwatch();
+
+        /// <summary>
+        /// 当前成绩数据
+        /// </summary>
+        private StorageDataSet.ScoreDataTable currentScoreData = new StorageDataSet.ScoreDataTable();
+
+        /// <summary>
+        /// 表格操作器
+        /// </summary>
+        private HistoryDataGridHandler gridHandler;
+
         /// <summary>
         /// 特殊字符替换字典
         /// </summary>
@@ -211,6 +222,8 @@ namespace WindowsFormsApplication2
                 //采用默认的图片显示
                 //LoadTheme("", Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.ThemeBG);
             }
+
+            this.gridHandler = new HistoryDataGridHandler(this.dataGridView1);
         }
 
 
@@ -608,7 +621,7 @@ namespace WindowsFormsApplication2
         public void LoadSetup()
         {
             //创建表头
-            this.dataGridView1.Rows.Add("序", "时间", "段", "速度", "击键", "码长", "理论", "回改", "退格", "回车", "选重", "错字", "回改率", "键准", "效率", "键数", "字数", "打词", "打词率", "用时", "群");
+            this.dataGridView1.Rows.Add("序", "时间", "段", "速度", "击键", "码长", "理论", "回改", "退格", "回车", "选重", "错字", "回改率", "键准", "效率", "键数", "字数", "打词", "打词率", "用时", "标题");
             this.dataGridView1.Rows[0].Frozen = true;
             this.dataGridView1.Rows[0].DefaultCellStyle.Font = new Font("微软雅黑", 11f);
             this.dataGridView1.Rows[0].DefaultCellStyle.BackColor = Theme.ThemeColorBG;
@@ -2249,7 +2262,9 @@ namespace WindowsFormsApplication2
                             typeCountStr = Glob.HaveTypeCount_.ToString();
                         }
                         //* 成绩栏添加新数据行
-                        dataGridView1.Rows.Add(typeCountStr, Glob.TextTime.ToLongTimeString(), Glob.Pre_Cout, Spsend, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserDcl, UserTime, title);
+                        dataGridView1.Rows.Add(typeCountStr, Glob.TextTime.ToString("G"), Glob.Pre_Cout, Spsend, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserDcl, UserTime, this.lblTitle.Text);
+                        //* 绑定右键菜单
+                        dataGridView1.Rows[dataGridView1.RowCount - 1].ContextMenuStrip = this.ScoreContextMenuStrip;
                         Glob.TextPreCout = this.lblMatchCount.Text; // 记录本文段校验码
                         //成绩信息底色黑
                         this.dataGridView1.Rows[this.dataGridView1.Rows.Count - 1].DefaultCellStyle.BackColor = Color.FromArgb(61, 61, 61);
@@ -2303,13 +2318,13 @@ namespace WindowsFormsApplication2
                             }
                         }
                         if (Glob.isSub) { timerSubFlash.Start(); return; }
-                        if (title != "所在群")
+                        if (!string.IsNullOrEmpty(title) && title != "所在群")
                         {
                             if (Glob.是否速度限制)
                             {
                                 if (speed2 >= Glob.速度限制)
                                 {
-                                    isornoSend(title, TotalSend);
+                                    isornoSend(TotalSend);
                                 }
                                 else
                                 {
@@ -2318,7 +2333,7 @@ namespace WindowsFormsApplication2
                             }
                             else
                             {
-                                isornoSend(title, TotalSend);
+                                isornoSend(TotalSend);
                             }
                         }
 
@@ -2332,6 +2347,33 @@ namespace WindowsFormsApplication2
                         string typeAnalysisData = JsonConvert.SerializeObject(Glob.TypeReport);
                         string keyAnalysisData = string.Join("|", Glob.KeysTotal);
                         Glob.ScoreHistory.InsertAdvanced(Glob.TextTime.ToString("s"), curveData, speedAnalysisData, typeAnalysisData, keyAnalysisData);
+                        #endregion
+
+                        #region 记录当前数据
+                        StorageDataSet.ScoreRow scoreRow = this.currentScoreData.NewScoreRow();
+                        scoreRow["score_time"] = Glob.TextTime;
+                        scoreRow["segment_num"] = int.Parse(Glob.Pre_Cout);
+                        scoreRow["speed"] = Spsend;
+                        scoreRow["keystroke"] = jj;
+                        scoreRow["code_len"] = mc;
+                        scoreRow["calc_len"] = Glob.词库理论码长;
+                        scoreRow["back_change"] = Glob.TextHg;
+                        scoreRow["backspace"] = Math.Abs(Glob.TextBg - Glob.TextHg);
+                        scoreRow["enter"] = Glob.回车;
+                        scoreRow["duplicate"] = Glob.选重;
+                        scoreRow["error"] = Glob.TextCz;
+                        scoreRow["back_rate"] = Glob.TextHg_;
+                        scoreRow["accuracy_rate"] = UserJz;
+                        scoreRow["effciency"] = Glob.效率;
+                        scoreRow["keys"] = Glob.TextJs;
+                        scoreRow["count"] = TextLen;
+                        scoreRow["type_words"] = Glob.aTypeWords;
+                        scoreRow["words_rate"] = Glob.TextDc_;
+                        scoreRow["cost_time"] = UserTime;
+                        scoreRow["segment_id"] = databaseSegmentId;
+                        scoreRow["article_title"] = this.lblTitle.Text;
+                        scoreRow["version"] = Glob.Instration;
+                        this.currentScoreData.AddScoreRow(scoreRow);
                         #endregion
 
                         //跟打完毕后，是否激活问题
@@ -2860,9 +2902,8 @@ namespace WindowsFormsApplication2
             }
         }
 
-        public void isornoSend(string title, string TotalSend)
+        public void isornoSend(string TotalSend)
         {
-            //IntPtr QQwinn = FindWindow(null, title);
             if (Glob.sendOrNo)
             {
                 if (NewSendText.发文状态)
@@ -2871,7 +2912,6 @@ namespace WindowsFormsApplication2
                     {
                         if (MessageBox.Show(TotalSend, "是否发送成绩？是发送，否放入剪切板。", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
-                            //SwitchToThisWindow(QQwinn, true);
                             if (this.PicSend.Checked & !Glob.isMatch)
                                 send_picGoal();
                             else
@@ -2905,7 +2945,6 @@ namespace WindowsFormsApplication2
                 {
                     if (!NewSendText.是否独练)
                     {
-                        //SwitchToThisWindow(QQwinn, true);
                         if (this.PicSend.Checked & !Glob.isMatch)
                             send_picGoal();
                         else
@@ -4232,58 +4271,6 @@ namespace WindowsFormsApplication2
             }
         }
 
-        #endregion
-
-        #region 表格右键
-        private void dataGridView1_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                if (e.RowIndex > 0 & e.RowIndex < dataGridView1.RowCount - 1)
-                {
-                    if (dataGridView1.Rows[e.RowIndex].Selected == false)
-                    {
-                        dataGridView1.ClearSelection();
-                        dataGridView1.Rows[e.RowIndex].Selected = true;
-                    }
-
-                    //只选一行
-                    if (dataGridView1.SelectedRows.Count == 1)
-                    {
-                        dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                    }
-                    string index = this.dataGridView1.CurrentRow.Cells[0].Value.ToString();
-                    string duan = this.dataGridView1.CurrentRow.Cells[2].Value.ToString();
-                    string text = "复制当前成绩";
-                    if (index == "" && duan == "")
-                    {
-                    }
-                    else
-                    {
-                        if (index == "")
-                            text = "复制[第" + duan + "段]的[重打]成绩";
-                        else
-                            text = "复制[序" + index + "][第" + duan + "段]的成绩";
-
-                        复制成绩ToolStripMenuItem.Text = text;
-                        contextMenuStrip1.Show(MousePosition.X, MousePosition.Y);
-                    }
-                }
-            }
-        }
-
-        private void 复制成绩ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string goal = "第" + this.dataGridView1.CurrentRow.Cells[2].Value + "段 ";
-            for (int i = 3; i < this.dataGridView1.Columns.Count - 1; i++)
-            {
-                goal += this.dataGridView1.Columns[i].Name + this.dataGridView1.CurrentRow.Cells[i].Value + " ";
-            }
-            goal += "校验:" + Validation.Validat(goal);
-            goal += " v" + Glob.Ver + "(" + Glob.Instration + ") [复制成绩]";
-            ClipboardHandler.SetTextToClipboard(goal);
-
-        }
         #endregion
 
         #region 换群菜单
@@ -6036,6 +6023,52 @@ namespace WindowsFormsApplication2
         {
             KeyAn kan = new KeyAn(Glob.HistoryKeysTotal);
             kan.ShowDialog();
+        }
+        #endregion
+
+        #region 表格右键菜单事件
+        private void dataGridView1_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            this.gridHandler.SetMouseLocation(e);
+        }
+        
+        private void CopyScoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.gridHandler.CopyScore(this.currentScoreData);
+        }
+
+        private void CopyPicScoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.gridHandler.CopyPicScore(this.currentScoreData);
+        }
+
+        private void CopyCotentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.gridHandler.CopyContent(this.currentScoreData);
+        }
+
+        private void GridSpeedAnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.gridHandler.SpeedAn(this.currentScoreData, this);
+        }
+
+        private void GridTypeAnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.gridHandler.TypeAn(this.currentScoreData);
+        }
+
+        private void GridKeyAnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.gridHandler.KeyAn();
+        }
+
+        private void GridRetypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string[] result = this.gridHandler.GetRetype(this.currentScoreData);
+            if (result != null)
+            {
+                this.TypeContentDirectly(result[0], result[1], result[2]);
+            }
         }
         #endregion
 

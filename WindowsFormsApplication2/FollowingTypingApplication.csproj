@@ -117,6 +117,7 @@
     <Compile Include="History\History.Designer.cs">
       <DependentUpon>History.cs</DependentUpon>
     </Compile>
+    <Compile Include="History\HistoryDataGridHandler.cs" />
     <Compile Include="HotKey.cs" />
     <Compile Include="KeyAnalysis\KeyAn.cs">
       <SubType>Form</SubType>

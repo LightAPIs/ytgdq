@@ -99,7 +99,7 @@
             this.打词 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.打词率 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.用时 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.群 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.标题 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chartSpeed = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.richTextBox1 = new WindowsFormsApplication2.RichEditBoxLineRender();
             this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -234,8 +234,8 @@
             this.访问官方网站ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel5 = new System.Windows.Forms.Panel();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.复制成绩ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ScoreContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.CopyScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timerTSend = new System.Windows.Forms.Timer(this.components);
             this.timer5 = new System.Windows.Forms.Timer(this.components);
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
@@ -249,6 +249,14 @@
             this.timerLblTime = new System.Windows.Forms.Timer(this.components);
             this.panelMain = new System.Windows.Forms.Panel();
             this.cmsDuanList = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.CopyPicScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CopyContentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
+            this.GridSpeedAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GridTypeAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GridKeyAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
+            this.GridRetypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.cmsSetMatch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -278,7 +286,7 @@
             this.toolStrip1.SuspendLayout();
             this.mS1.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
+            this.ScoreContextMenuStrip.SuspendLayout();
             this.cmsTP.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.SuspendLayout();
@@ -612,7 +620,7 @@
             this.打词,
             this.打词率,
             this.用时,
-            this.群});
+            this.标题});
             dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle23.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -627,6 +635,7 @@
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(0);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -950,20 +959,20 @@
             this.用时.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.用时.Width = 5;
             // 
-            // 群
+            // 标题
             // 
-            this.群.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.标题.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle22.BackColor = System.Drawing.Color.DimGray;
             dataGridViewCellStyle22.ForeColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.DimGray;
             dataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.群.DefaultCellStyle = dataGridViewCellStyle22;
-            this.群.HeaderText = "群";
-            this.群.Name = "群";
-            this.群.ReadOnly = true;
-            this.群.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.群.Width = 5;
+            this.标题.DefaultCellStyle = dataGridViewCellStyle22;
+            this.标题.HeaderText = "标题";
+            this.标题.Name = "标题";
+            this.标题.ReadOnly = true;
+            this.标题.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.标题.Width = 5;
             // 
             // chartSpeed
             // 
@@ -1003,7 +1012,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox1.Size = new System.Drawing.Size(396, 105);
+            this.richTextBox1.Size = new System.Drawing.Size(396, 108);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.TabStop = false;
             this.richTextBox1.Text = "当你还在被世间诸多繁杂所束缚，心神不宁，不妨静下心来坐在电脑前跟打上一段文章。";
@@ -1187,7 +1196,7 @@
             this.textBoxEx1.Name = "textBoxEx1";
             this.textBoxEx1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxEx1.ShortcutsEnabled = false;
-            this.textBoxEx1.Size = new System.Drawing.Size(392, 6);
+            this.textBoxEx1.Size = new System.Drawing.Size(392, 3);
             this.textBoxEx1.TabIndex = 2;
             this.toolTip1.SetToolTip(this.textBoxEx1, "跟打区");
             this.textBoxEx1.TextChanged += new System.EventHandler(this.textBoxEx1_TextChanged);
@@ -1595,7 +1604,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel2MinSize = 50;
             this.splitContainer1.Size = new System.Drawing.Size(396, 217);
-            this.splitContainer1.SplitterDistance = 105;
+            this.splitContainer1.SplitterDistance = 108;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 3;
             this.splitContainer1.TabStop = false;
@@ -1606,7 +1615,7 @@
             this.picDoing.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.picDoing.BackColor = System.Drawing.Color.White;
             this.picDoing.Image = global::WindowsFormsApplication2.Properties.Resources.doing;
-            this.picDoing.Location = new System.Drawing.Point(355, 80);
+            this.picDoing.Location = new System.Drawing.Point(355, 83);
             this.picDoing.Name = "picDoing";
             this.picDoing.Size = new System.Drawing.Size(22, 22);
             this.picDoing.TabIndex = 23;
@@ -1629,7 +1638,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer2.Panel2MinSize = 0;
-            this.splitContainer2.Size = new System.Drawing.Size(396, 109);
+            this.splitContainer2.Size = new System.Drawing.Size(396, 106);
             this.splitContainer2.SplitterIncrement = 2;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 5;
@@ -1652,8 +1661,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer3.Size = new System.Drawing.Size(396, 109);
-            this.splitContainer3.SplitterDistance = 36;
+            this.splitContainer3.Size = new System.Drawing.Size(396, 106);
+            this.splitContainer3.SplitterDistance = 33;
             this.splitContainer3.TabIndex = 0;
             this.splitContainer3.TabStop = false;
             // 
@@ -2547,19 +2556,27 @@
             this.timer3.Interval = 1000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
-            // contextMenuStrip1
+            // ScoreContextMenuStrip
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.复制成绩ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 26);
+            this.ScoreContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CopyScoreToolStripMenuItem,
+            this.CopyPicScoreToolStripMenuItem,
+            this.CopyContentToolStripMenuItem,
+            this.toolStripSeparator15,
+            this.GridSpeedAnToolStripMenuItem,
+            this.GridTypeAnToolStripMenuItem,
+            this.GridKeyAnToolStripMenuItem,
+            this.toolStripSeparator16,
+            this.GridRetypeToolStripMenuItem});
+            this.ScoreContextMenuStrip.Name = "contextMenuStrip1";
+            this.ScoreContextMenuStrip.Size = new System.Drawing.Size(149, 170);
             // 
-            // 复制成绩ToolStripMenuItem
+            // CopyScoreToolStripMenuItem
             // 
-            this.复制成绩ToolStripMenuItem.Name = "复制成绩ToolStripMenuItem";
-            this.复制成绩ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.复制成绩ToolStripMenuItem.Text = "复制成绩";
-            this.复制成绩ToolStripMenuItem.Click += new System.EventHandler(this.复制成绩ToolStripMenuItem_Click);
+            this.CopyScoreToolStripMenuItem.Name = "CopyScoreToolStripMenuItem";
+            this.CopyScoreToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.CopyScoreToolStripMenuItem.Text = "复制成绩";
+            this.CopyScoreToolStripMenuItem.Click += new System.EventHandler(this.CopyScoreToolStripMenuItem_Click);
             // 
             // timerTSend
             // 
@@ -2645,6 +2662,58 @@
             this.cmsDuanList.Size = new System.Drawing.Size(61, 4);
             this.cmsDuanList.Paint += new System.Windows.Forms.PaintEventHandler(this.cmsDuanList_Paint);
             // 
+            // CopyPicScoreToolStripMenuItem
+            // 
+            this.CopyPicScoreToolStripMenuItem.Name = "CopyPicScoreToolStripMenuItem";
+            this.CopyPicScoreToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.CopyPicScoreToolStripMenuItem.Text = "复制图片成绩";
+            this.CopyPicScoreToolStripMenuItem.Click += new System.EventHandler(this.CopyPicScoreToolStripMenuItem_Click);
+            // 
+            // CopyContentToolStripMenuItem
+            // 
+            this.CopyContentToolStripMenuItem.Name = "CopyContentToolStripMenuItem";
+            this.CopyContentToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.CopyContentToolStripMenuItem.Text = "复制文段内容";
+            this.CopyContentToolStripMenuItem.Click += new System.EventHandler(this.CopyCotentToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator15
+            // 
+            this.toolStripSeparator15.Name = "toolStripSeparator15";
+            this.toolStripSeparator15.Size = new System.Drawing.Size(145, 6);
+            // 
+            // GridSpeedAnToolStripMenuItem
+            // 
+            this.GridSpeedAnToolStripMenuItem.Name = "GridSpeedAnToolStripMenuItem";
+            this.GridSpeedAnToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.GridSpeedAnToolStripMenuItem.Text = "速度分析";
+            this.GridSpeedAnToolStripMenuItem.Click += new System.EventHandler(this.GridSpeedAnToolStripMenuItem_Click);
+            // 
+            // GridTypeAnToolStripMenuItem
+            // 
+            this.GridTypeAnToolStripMenuItem.Name = "GridTypeAnToolStripMenuItem";
+            this.GridTypeAnToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.GridTypeAnToolStripMenuItem.Text = "跟打报告";
+            this.GridTypeAnToolStripMenuItem.Click += new System.EventHandler(this.GridTypeAnToolStripMenuItem_Click);
+            // 
+            // GridKeyAnToolStripMenuItem
+            // 
+            this.GridKeyAnToolStripMenuItem.Name = "GridKeyAnToolStripMenuItem";
+            this.GridKeyAnToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.GridKeyAnToolStripMenuItem.Text = "按键统计";
+            this.GridKeyAnToolStripMenuItem.Click += new System.EventHandler(this.GridKeyAnToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator16
+            // 
+            this.toolStripSeparator16.Name = "toolStripSeparator16";
+            this.toolStripSeparator16.Size = new System.Drawing.Size(145, 6);
+            // 
+            // GridRetypeToolStripMenuItem
+            // 
+            this.GridRetypeToolStripMenuItem.Name = "GridRetypeToolStripMenuItem";
+            this.GridRetypeToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.GridRetypeToolStripMenuItem.Text = "重打文段";
+            this.GridRetypeToolStripMenuItem.Click += new System.EventHandler(this.GridRetypeToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2701,7 +2770,7 @@
             this.mS1.ResumeLayout(false);
             this.mS1.PerformLayout();
             this.panel5.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.ScoreContextMenuStrip.ResumeLayout(false);
             this.cmsTP.ResumeLayout(false);
             this.panelMain.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -2727,8 +2796,8 @@
         private System.Windows.Forms.Label lblMatchCount;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Timer timer3;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 复制成绩ToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip ScoreContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem CopyScoreToolStripMenuItem;
         public System.Windows.Forms.Label lblQuan;
         public System.Windows.Forms.Timer timerTSend;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripMain;
@@ -2876,6 +2945,9 @@
         private System.Windows.Forms.ToolStripMenuItem 换群ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
         private System.Windows.Forms.ToolStripMenuItem HistoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem KeyAnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem HistoryKeysToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
         private System.Windows.Forms.DataGridViewTextBoxColumn 时间;
         private System.Windows.Forms.DataGridViewTextBoxColumn 段号;
@@ -2896,10 +2968,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 打词;
         private System.Windows.Forms.DataGridViewTextBoxColumn 打词率;
         private System.Windows.Forms.DataGridViewTextBoxColumn 用时;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 群;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        private System.Windows.Forms.ToolStripMenuItem KeyAnToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem HistoryKeysToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 标题;
+        private System.Windows.Forms.ToolStripMenuItem CopyPicScoreToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CopyContentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
+        private System.Windows.Forms.ToolStripMenuItem GridSpeedAnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem GridTypeAnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem GridKeyAnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
+        private System.Windows.Forms.ToolStripMenuItem GridRetypeToolStripMenuItem;
     }
 }
 

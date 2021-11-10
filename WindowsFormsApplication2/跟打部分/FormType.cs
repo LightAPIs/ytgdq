@@ -3292,14 +3292,16 @@ namespace WindowsFormsApplication2
             string title = lblQuan.Text;
             if (title != "所在群")
             {
+                //! 停止发文
+                this.停止发文ToolStripMenuItem1.PerformClick();
+
                 GetCursorPos(ref p);
-                string text_ = Glob.Text;
                 Glob.Text = getQQText(); //获取到跟打文字
                 if (Glob.Text.Length == 0)
                 {
                     return;
                 }
-                text_ = Glob.Text;
+                string text_ = Glob.Text;
                 //MessageBox.Show(text_);
                 //SwitchToThisWindow(FindWindow(null, Glob.Form), true);
                 string pretext, preduan;
@@ -3339,12 +3341,12 @@ namespace WindowsFormsApplication2
 
         public void PutText()
         {
-            string text_ = Glob.Text;
-            //string testText = Clipboard.GetText().Trim();
-            //System.Diagnostics.Debug.Write(testText);
             Glob.Text = Clipboard.GetText().Trim(); //获取到跟打文字
             if (Glob.Text.Length == 0) { return; }
-            text_ = Glob.Text;
+            //! 停止发文
+            this.停止发文ToolStripMenuItem1.PerformClick();
+
+            string text_ = Glob.Text;
             //MessageBox.Show(text_);
             //SwitchToThisWindow(FindWindow(null, Glob.Form), true);
             string pretext, preduan;
@@ -3492,6 +3494,9 @@ namespace WindowsFormsApplication2
         {
             if (content != "")
             {
+                //! 停止发文
+                this.停止发文ToolStripMenuItem1.PerformClick();
+
                 Glob.Pre_Cout = cout;
                 this.lblDuan.Text = "第" + Glob.Pre_Cout + "段";
                 this.lblTitle.Text = title;

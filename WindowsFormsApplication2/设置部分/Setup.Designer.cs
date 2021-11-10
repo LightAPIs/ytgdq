@@ -271,14 +271,14 @@
             this.HotKeyResetButton22 = new System.Windows.Forms.Button();
             this.HotKeyTextBox22 = new System.Windows.Forms.TextBox();
             this.label42 = new System.Windows.Forms.Label();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
             this.panel35 = new System.Windows.Forms.Panel();
             this.HotKeyDisButton23 = new System.Windows.Forms.Button();
             this.HotKeyModButton23 = new System.Windows.Forms.Button();
             this.HotKeyResetButton23 = new System.Windows.Forms.Button();
             this.HotKeyTextBox23 = new System.Windows.Forms.TextBox();
             this.label43 = new System.Windows.Forms.Label();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
             this.newButton1 = new WindowsFormsApplication2.NewButton();
             this.newButton2 = new WindowsFormsApplication2.NewButton();
             this.panel1.SuspendLayout();
@@ -333,8 +333,8 @@
             this.panel32.SuspendLayout();
             this.panel33.SuspendLayout();
             this.panel34.SuspendLayout();
-            this.panel12.SuspendLayout();
             this.panel35.SuspendLayout();
+            this.panel12.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -3227,9 +3227,9 @@
             this.label40.ForeColor = System.Drawing.Color.White;
             this.label40.Location = new System.Drawing.Point(14, 9);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(77, 12);
+            this.label40.Size = new System.Drawing.Size(89, 12);
             this.label40.TabIndex = 0;
-            this.label40.Text = "从剪贴板载文";
+            this.label40.Text = "剪贴板直接载文";
             // 
             // panel33
             // 
@@ -3301,9 +3301,9 @@
             this.label41.ForeColor = System.Drawing.Color.White;
             this.label41.Location = new System.Drawing.Point(14, 9);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(77, 12);
+            this.label41.Size = new System.Drawing.Size(89, 12);
             this.label41.TabIndex = 0;
-            this.label41.Text = "从QQ窗口载文";
+            this.label41.Text = "剪贴板格式载文";
             // 
             // panel34
             // 
@@ -3379,26 +3379,6 @@
             this.label42.TabIndex = 0;
             this.label42.Text = "乱序重打";
             // 
-            // panel12
-            // 
-            this.panel12.Controls.Add(this.tabControl1);
-            this.panel12.Controls.Add(this.panel2);
-            this.panel12.Location = new System.Drawing.Point(6, 21);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(397, 440);
-            this.panel12.TabIndex = 13;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(3, -1);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(122, 21);
-            this.label10.TabIndex = 14;
-            this.label10.Text = "雨天跟打器设置";
-            // 
             // panel35
             // 
             this.panel35.Controls.Add(this.HotKeyDisButton23);
@@ -3473,6 +3453,26 @@
             this.label43.TabIndex = 0;
             this.label43.Text = "老板键";
             // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.tabControl1);
+            this.panel12.Controls.Add(this.panel2);
+            this.panel12.Location = new System.Drawing.Point(6, 21);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(397, 440);
+            this.panel12.TabIndex = 13;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(3, -1);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(122, 21);
+            this.label10.TabIndex = 14;
+            this.label10.Text = "雨天跟打器设置";
+            // 
             // newButton1
             // 
             this.newButton1.BackColor = System.Drawing.Color.Gray;
@@ -3484,7 +3484,7 @@
             this.newButton1.TabIndex = 2;
             this.newButton1.Text = "确认";
             this.newButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.newButton1.进入背景色 = System.Drawing.Color.Red;
+            this.newButton1.进入背景色 = System.Drawing.Color.Green;
             this.newButton1.默认背景色 = System.Drawing.Color.Gray;
             this.newButton1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -3499,7 +3499,7 @@
             this.newButton2.TabIndex = 3;
             this.newButton2.Text = "关闭";
             this.newButton2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.newButton2.进入背景色 = System.Drawing.Color.Green;
+            this.newButton2.进入背景色 = System.Drawing.Color.Red;
             this.newButton2.默认背景色 = System.Drawing.Color.Gray;
             this.newButton2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -3615,9 +3615,9 @@
             this.panel33.PerformLayout();
             this.panel34.ResumeLayout(false);
             this.panel34.PerformLayout();
-            this.panel12.ResumeLayout(false);
             this.panel35.ResumeLayout(false);
             this.panel35.PerformLayout();
+            this.panel12.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

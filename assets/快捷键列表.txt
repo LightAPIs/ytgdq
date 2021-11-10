@@ -19,8 +19,8 @@
 复制图片成绩	Ctrl+T
 停止发文	Ctrl+W
 检验真伪	Alt+D
-从剪贴板载文	Alt+E
-从QQ窗口载文	Alt+S
+从剪贴板直接载文	Alt+E
+从剪贴板格式载文	Alt+S
 乱序重打	Ctrl+L
 老板键(全局)	Alt+Q
 

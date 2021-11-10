@@ -115,7 +115,6 @@
             this.清除测速点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.自动寻找赛文标记ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.打开练习ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.内部测速ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.前五百单字ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.中五百单字ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -236,6 +235,14 @@
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.ScoreContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CopyScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CopyPicScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CopyContentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
+            this.GridSpeedAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GridTypeAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GridKeyAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
+            this.GridRetypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timerTSend = new System.Windows.Forms.Timer(this.components);
             this.timer5 = new System.Windows.Forms.Timer(this.components);
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
@@ -249,14 +256,6 @@
             this.timerLblTime = new System.Windows.Forms.Timer(this.components);
             this.panelMain = new System.Windows.Forms.Panel();
             this.cmsDuanList = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.CopyPicScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CopyContentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
-            this.GridSpeedAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.GridTypeAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.GridKeyAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
-            this.GridRetypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.cmsSetMatch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1012,7 +1011,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox1.Size = new System.Drawing.Size(396, 108);
+            this.richTextBox1.Size = new System.Drawing.Size(396, 111);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.TabStop = false;
             this.richTextBox1.Text = "当你还在被世间诸多繁杂所束缚，心神不宁，不妨静下心来坐在电脑前跟打上一段文章。";
@@ -1032,10 +1031,9 @@
             this.清除测速点ToolStripMenuItem,
             this.自动寻找赛文标记ToolStripMenuItem,
             this.toolStripSeparator4,
-            this.打开练习ToolStripMenuItem,
             this.内部测速ToolStripMenuItem});
             this.contextMenuStripMain.Name = "contextMenuStripMain";
-            this.contextMenuStripMain.Size = new System.Drawing.Size(185, 176);
+            this.contextMenuStripMain.Size = new System.Drawing.Size(185, 154);
             // 
             // tsmiFindSelectionBm
             // 
@@ -1122,15 +1120,6 @@
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(181, 6);
             // 
-            // 打开练习ToolStripMenuItem
-            // 
-            this.打开练习ToolStripMenuItem.Name = "打开练习ToolStripMenuItem";
-            this.打开练习ToolStripMenuItem.ShortcutKeyDisplayString = "";
-            this.打开练习ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.打开练习ToolStripMenuItem.Text = "打开练习";
-            this.打开练习ToolStripMenuItem.ToolTipText = "打开练习所选文本，跟打器不作任何处理，请先设定好文本内容";
-            this.打开练习ToolStripMenuItem.Click += new System.EventHandler(this.打开练习ToolStripMenuItem_Click);
-            // 
             // 内部测速ToolStripMenuItem
             // 
             this.内部测速ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1196,7 +1185,7 @@
             this.textBoxEx1.Name = "textBoxEx1";
             this.textBoxEx1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxEx1.ShortcutsEnabled = false;
-            this.textBoxEx1.Size = new System.Drawing.Size(392, 3);
+            this.textBoxEx1.Size = new System.Drawing.Size(392, 0);
             this.textBoxEx1.TabIndex = 2;
             this.toolTip1.SetToolTip(this.textBoxEx1, "跟打区");
             this.textBoxEx1.TextChanged += new System.EventHandler(this.textBoxEx1_TextChanged);
@@ -1604,7 +1593,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel2MinSize = 50;
             this.splitContainer1.Size = new System.Drawing.Size(396, 217);
-            this.splitContainer1.SplitterDistance = 108;
+            this.splitContainer1.SplitterDistance = 111;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 3;
             this.splitContainer1.TabStop = false;
@@ -1615,7 +1604,7 @@
             this.picDoing.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.picDoing.BackColor = System.Drawing.Color.White;
             this.picDoing.Image = global::WindowsFormsApplication2.Properties.Resources.doing;
-            this.picDoing.Location = new System.Drawing.Point(355, 83);
+            this.picDoing.Location = new System.Drawing.Point(355, 86);
             this.picDoing.Name = "picDoing";
             this.picDoing.Size = new System.Drawing.Size(22, 22);
             this.picDoing.TabIndex = 23;
@@ -1638,7 +1627,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer2.Panel2MinSize = 0;
-            this.splitContainer2.Size = new System.Drawing.Size(396, 106);
+            this.splitContainer2.Size = new System.Drawing.Size(396, 103);
             this.splitContainer2.SplitterIncrement = 2;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 5;
@@ -1661,8 +1650,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer3.Size = new System.Drawing.Size(396, 106);
-            this.splitContainer3.SplitterDistance = 33;
+            this.splitContainer3.Size = new System.Drawing.Size(396, 103);
+            this.splitContainer3.SplitterDistance = 30;
             this.splitContainer3.TabIndex = 0;
             this.splitContainer3.TabStop = false;
             // 
@@ -2193,15 +2182,16 @@
             this.从QQ窗口手动ToolStripMenuItem1});
             this.载文途径ToolStripMenuItem1.Name = "载文途径ToolStripMenuItem1";
             this.载文途径ToolStripMenuItem1.Size = new System.Drawing.Size(184, 24);
-            this.载文途径ToolStripMenuItem1.Text = "手动载文";
+            this.载文途径ToolStripMenuItem1.Text = "从剪贴板载文";
             // 
             // 从剪切板ToolStripMenuItem1
             // 
             this.从剪切板ToolStripMenuItem1.Name = "从剪切板ToolStripMenuItem1";
             this.从剪切板ToolStripMenuItem1.ShortcutKeyDisplayString = "";
             this.从剪切板ToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.E)));
-            this.从剪切板ToolStripMenuItem1.Size = new System.Drawing.Size(183, 24);
-            this.从剪切板ToolStripMenuItem1.Text = "从剪切板";
+            this.从剪切板ToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.从剪切板ToolStripMenuItem1.Text = "直接载文";
+            this.从剪切板ToolStripMenuItem1.ToolTipText = "不处理前导符等格式，直接载入原文";
             this.从剪切板ToolStripMenuItem1.Click += new System.EventHandler(this.从剪切板ToolStripMenuItem1_Click);
             // 
             // 从QQ窗口手动ToolStripMenuItem1
@@ -2209,8 +2199,9 @@
             this.从QQ窗口手动ToolStripMenuItem1.Name = "从QQ窗口手动ToolStripMenuItem1";
             this.从QQ窗口手动ToolStripMenuItem1.ShortcutKeyDisplayString = "";
             this.从QQ窗口手动ToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
-            this.从QQ窗口手动ToolStripMenuItem1.Size = new System.Drawing.Size(183, 24);
-            this.从QQ窗口手动ToolStripMenuItem1.Text = "从QQ窗口";
+            this.从QQ窗口手动ToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.从QQ窗口手动ToolStripMenuItem1.Text = "格式载文";
+            this.从QQ窗口手动ToolStripMenuItem1.ToolTipText = "载入处理前导符等格式后得到的文段";
             this.从QQ窗口手动ToolStripMenuItem1.Click += new System.EventHandler(this.从QQ窗口手动ToolStripMenuItem1_Click);
             // 
             // DrillToolStripMenuItem
@@ -2220,6 +2211,7 @@
             this.DrillToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.DrillToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
             this.DrillToolStripMenuItem.Text = "打开练习";
+            this.DrillToolStripMenuItem.ToolTipText = "直接打开所选文本进行练习，跟打器不作任何处理。\r\n请先设定好文本内容";
             this.DrillToolStripMenuItem.Click += new System.EventHandler(this.打开练习ToolStripMenuItem_Click);
             // 
             // 重打ToolStripMenuItem
@@ -2578,6 +2570,58 @@
             this.CopyScoreToolStripMenuItem.Text = "复制成绩";
             this.CopyScoreToolStripMenuItem.Click += new System.EventHandler(this.CopyScoreToolStripMenuItem_Click);
             // 
+            // CopyPicScoreToolStripMenuItem
+            // 
+            this.CopyPicScoreToolStripMenuItem.Name = "CopyPicScoreToolStripMenuItem";
+            this.CopyPicScoreToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.CopyPicScoreToolStripMenuItem.Text = "复制图片成绩";
+            this.CopyPicScoreToolStripMenuItem.Click += new System.EventHandler(this.CopyPicScoreToolStripMenuItem_Click);
+            // 
+            // CopyContentToolStripMenuItem
+            // 
+            this.CopyContentToolStripMenuItem.Name = "CopyContentToolStripMenuItem";
+            this.CopyContentToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.CopyContentToolStripMenuItem.Text = "复制文段内容";
+            this.CopyContentToolStripMenuItem.Click += new System.EventHandler(this.CopyCotentToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator15
+            // 
+            this.toolStripSeparator15.Name = "toolStripSeparator15";
+            this.toolStripSeparator15.Size = new System.Drawing.Size(145, 6);
+            // 
+            // GridSpeedAnToolStripMenuItem
+            // 
+            this.GridSpeedAnToolStripMenuItem.Name = "GridSpeedAnToolStripMenuItem";
+            this.GridSpeedAnToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.GridSpeedAnToolStripMenuItem.Text = "速度分析";
+            this.GridSpeedAnToolStripMenuItem.Click += new System.EventHandler(this.GridSpeedAnToolStripMenuItem_Click);
+            // 
+            // GridTypeAnToolStripMenuItem
+            // 
+            this.GridTypeAnToolStripMenuItem.Name = "GridTypeAnToolStripMenuItem";
+            this.GridTypeAnToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.GridTypeAnToolStripMenuItem.Text = "跟打报告";
+            this.GridTypeAnToolStripMenuItem.Click += new System.EventHandler(this.GridTypeAnToolStripMenuItem_Click);
+            // 
+            // GridKeyAnToolStripMenuItem
+            // 
+            this.GridKeyAnToolStripMenuItem.Name = "GridKeyAnToolStripMenuItem";
+            this.GridKeyAnToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.GridKeyAnToolStripMenuItem.Text = "按键统计";
+            this.GridKeyAnToolStripMenuItem.Click += new System.EventHandler(this.GridKeyAnToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator16
+            // 
+            this.toolStripSeparator16.Name = "toolStripSeparator16";
+            this.toolStripSeparator16.Size = new System.Drawing.Size(145, 6);
+            // 
+            // GridRetypeToolStripMenuItem
+            // 
+            this.GridRetypeToolStripMenuItem.Name = "GridRetypeToolStripMenuItem";
+            this.GridRetypeToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.GridRetypeToolStripMenuItem.Text = "重打文段";
+            this.GridRetypeToolStripMenuItem.Click += new System.EventHandler(this.GridRetypeToolStripMenuItem_Click);
+            // 
             // timerTSend
             // 
             this.timerTSend.Interval = 1000;
@@ -2661,58 +2705,6 @@
             this.cmsDuanList.Name = "cmsDuanList";
             this.cmsDuanList.Size = new System.Drawing.Size(61, 4);
             this.cmsDuanList.Paint += new System.Windows.Forms.PaintEventHandler(this.cmsDuanList_Paint);
-            // 
-            // CopyPicScoreToolStripMenuItem
-            // 
-            this.CopyPicScoreToolStripMenuItem.Name = "CopyPicScoreToolStripMenuItem";
-            this.CopyPicScoreToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.CopyPicScoreToolStripMenuItem.Text = "复制图片成绩";
-            this.CopyPicScoreToolStripMenuItem.Click += new System.EventHandler(this.CopyPicScoreToolStripMenuItem_Click);
-            // 
-            // CopyContentToolStripMenuItem
-            // 
-            this.CopyContentToolStripMenuItem.Name = "CopyContentToolStripMenuItem";
-            this.CopyContentToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.CopyContentToolStripMenuItem.Text = "复制文段内容";
-            this.CopyContentToolStripMenuItem.Click += new System.EventHandler(this.CopyCotentToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator15
-            // 
-            this.toolStripSeparator15.Name = "toolStripSeparator15";
-            this.toolStripSeparator15.Size = new System.Drawing.Size(145, 6);
-            // 
-            // GridSpeedAnToolStripMenuItem
-            // 
-            this.GridSpeedAnToolStripMenuItem.Name = "GridSpeedAnToolStripMenuItem";
-            this.GridSpeedAnToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.GridSpeedAnToolStripMenuItem.Text = "速度分析";
-            this.GridSpeedAnToolStripMenuItem.Click += new System.EventHandler(this.GridSpeedAnToolStripMenuItem_Click);
-            // 
-            // GridTypeAnToolStripMenuItem
-            // 
-            this.GridTypeAnToolStripMenuItem.Name = "GridTypeAnToolStripMenuItem";
-            this.GridTypeAnToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.GridTypeAnToolStripMenuItem.Text = "跟打报告";
-            this.GridTypeAnToolStripMenuItem.Click += new System.EventHandler(this.GridTypeAnToolStripMenuItem_Click);
-            // 
-            // GridKeyAnToolStripMenuItem
-            // 
-            this.GridKeyAnToolStripMenuItem.Name = "GridKeyAnToolStripMenuItem";
-            this.GridKeyAnToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.GridKeyAnToolStripMenuItem.Text = "按键统计";
-            this.GridKeyAnToolStripMenuItem.Click += new System.EventHandler(this.GridKeyAnToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator16
-            // 
-            this.toolStripSeparator16.Name = "toolStripSeparator16";
-            this.toolStripSeparator16.Size = new System.Drawing.Size(145, 6);
-            // 
-            // GridRetypeToolStripMenuItem
-            // 
-            this.GridRetypeToolStripMenuItem.Name = "GridRetypeToolStripMenuItem";
-            this.GridRetypeToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.GridRetypeToolStripMenuItem.Text = "重打文段";
-            this.GridRetypeToolStripMenuItem.Click += new System.EventHandler(this.GridRetypeToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -2835,7 +2827,6 @@
         private ToolButton toolStripButton4;
         private System.Windows.Forms.ToolStripMenuItem 平均成绩ToolStripMenuItem;
         public TextBoxEx textBoxEx1;
-        private System.Windows.Forms.ToolStripMenuItem 打开练习ToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Timer timerBtnFlash;
         private System.Windows.Forms.Timer timerSubFlash;

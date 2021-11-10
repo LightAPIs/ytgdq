@@ -2278,7 +2278,7 @@ namespace WindowsFormsApplication2
                         double jjPer_ = Glob.Per_Jj / Glob.HaveTypeCount;
                         Glob.Total_Type += Glob.TextLen;
                         string dis = "00:00:00";
-                        if (Glob.HaveTypeCount > 1)
+                        if (Glob.HaveTypeCount >= 1)
                         {
                             DateTime dt = new DateTime().AddSeconds(touse);
                             dis = dt.ToString("HH:mm:ss");

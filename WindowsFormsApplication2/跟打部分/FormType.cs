@@ -6018,7 +6018,7 @@ namespace WindowsFormsApplication2
         #region 按键统计
         private void KeyAnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            KeyAn kan = new KeyAn(Glob.KeysTotal);
+            KeyAn kan = new KeyAn(Glob.KeysTotal, Glob.TextTime.ToString("G"));
             kan.ShowDialog();
         }
         #endregion
@@ -6026,7 +6026,7 @@ namespace WindowsFormsApplication2
         #region 历史按键热图
         private void HistoryKeysToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            KeyAn kan = new KeyAn(Glob.HistoryKeysTotal);
+            KeyAn kan = new KeyAn(Glob.HistoryKeysTotal, "历史按键热图");
             kan.ShowDialog();
         }
         #endregion

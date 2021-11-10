@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint21 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 45D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint22 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 55D);
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint23 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 15D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint24 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 15D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint25 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 10D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint26 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 5D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint27 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 25D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint28 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 15D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint29 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 10D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint30 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 5D);
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint41 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 45D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint42 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 55D);
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint43 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 15D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint44 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 15D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint45 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 10D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint46 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 5D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint47 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 25D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint48 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 15D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint49 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 10D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint50 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 5D);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.KeySpaceButton = new System.Windows.Forms.Button();
@@ -108,30 +108,31 @@
             this.KeyD1Button = new System.Windows.Forms.Button();
             this.KeyOemtildeButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.KeyToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.RXKeysLabel = new System.Windows.Forms.Label();
+            this.RWKeysLabel = new System.Windows.Forms.Label();
+            this.RZKeysLabel = new System.Windows.Forms.Label();
+            this.RSKeysLabel = new System.Windows.Forms.Label();
+            this.LXKeysLabel = new System.Windows.Forms.Label();
+            this.LWKeysLabel = new System.Windows.Forms.Label();
+            this.LZKeysLabel = new System.Windows.Forms.Label();
+            this.LSKeysLabel = new System.Windows.Forms.Label();
+            this.RKeysLabel = new System.Windows.Forms.Label();
+            this.LKeysLabel = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.AllKeysLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.LKeysLabel = new System.Windows.Forms.Label();
-            this.RKeysLabel = new System.Windows.Forms.Label();
-            this.LSKeysLabel = new System.Windows.Forms.Label();
-            this.LZKeysLabel = new System.Windows.Forms.Label();
-            this.LWKeysLabel = new System.Windows.Forms.Label();
-            this.LXKeysLabel = new System.Windows.Forms.Label();
-            this.RSKeysLabel = new System.Windows.Forms.Label();
-            this.RZKeysLabel = new System.Windows.Forms.Label();
-            this.RWKeysLabel = new System.Windows.Forms.Label();
-            this.RXKeysLabel = new System.Windows.Forms.Label();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.KeyToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.FlagLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -1052,6 +1053,7 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.White;
+            this.groupBox2.Controls.Add(this.FlagLabel);
             this.groupBox2.Controls.Add(this.RXKeysLabel);
             this.groupBox2.Controls.Add(this.RWKeysLabel);
             this.groupBox2.Controls.Add(this.RZKeysLabel);
@@ -1084,141 +1086,205 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "按键比例";
             // 
-            // chart1
+            // RXKeysLabel
             // 
-            chartArea5.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
-            chartArea5.Area3DStyle.Enable3D = true;
-            chartArea5.Area3DStyle.Inclination = 45;
-            chartArea5.Area3DStyle.PointDepth = 300;
-            chartArea5.BackColor = System.Drawing.Color.White;
-            chartArea5.InnerPlotPosition.Auto = false;
-            chartArea5.InnerPlotPosition.Height = 100F;
-            chartArea5.InnerPlotPosition.Width = 100F;
-            chartArea5.Name = "ChartArea1";
-            chartArea5.Position.Auto = false;
-            chartArea5.Position.Height = 100F;
-            chartArea5.Position.Width = 40F;
-            chartArea6.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
-            chartArea6.Area3DStyle.Enable3D = true;
-            chartArea6.Area3DStyle.Inclination = 45;
-            chartArea6.Area3DStyle.PointDepth = 300;
-            chartArea6.BackColor = System.Drawing.Color.White;
-            chartArea6.InnerPlotPosition.Auto = false;
-            chartArea6.InnerPlotPosition.Height = 100F;
-            chartArea6.InnerPlotPosition.Width = 100F;
-            chartArea6.Name = "ChartArea2";
-            chartArea6.Position.Auto = false;
-            chartArea6.Position.Height = 100F;
-            chartArea6.Position.Width = 40F;
-            chartArea6.Position.X = 40F;
-            this.chart1.ChartAreas.Add(chartArea5);
-            this.chart1.ChartAreas.Add(chartArea6);
-            legend3.LegendItemOrder = System.Windows.Forms.DataVisualization.Charting.LegendItemOrder.SameAsSeriesOrder;
-            legend3.Name = "Legend1";
-            legend3.Position.Auto = false;
-            legend3.Position.Height = 71.28205F;
-            legend3.Position.Width = 20F;
-            legend3.Position.X = 78.5F;
-            legend3.Position.Y = 3F;
-            legend3.ShadowOffset = 5;
-            legend3.Title = "手指";
-            legend3.TitleForeColor = System.Drawing.Color.DimGray;
-            this.chart1.Legends.Add(legend3);
-            this.chart1.Location = new System.Drawing.Point(217, 14);
-            this.chart1.Name = "chart1";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series5.CustomProperties = "PieStartAngle=270";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            dataPoint21.Color = System.Drawing.Color.DarkOrange;
-            dataPoint21.IsValueShownAsLabel = true;
-            dataPoint21.IsVisibleInLegend = false;
-            dataPoint21.Label = "#LEGENDTEXT\\n\\n#PERCENT{P2}";
-            dataPoint21.LabelForeColor = System.Drawing.Color.Black;
-            dataPoint21.LabelToolTip = "#VAL键";
-            dataPoint21.LegendText = "右手";
-            dataPoint21.LegendToolTip = "#PERCENT{P2}";
-            dataPoint22.Color = System.Drawing.Color.RoyalBlue;
-            dataPoint22.IsValueShownAsLabel = true;
-            dataPoint22.IsVisibleInLegend = false;
-            dataPoint22.Label = "#LEGENDTEXT\\n\\n#PERCENT{P2}";
-            dataPoint22.LabelAngle = 0;
-            dataPoint22.LabelFormat = "";
-            dataPoint22.LabelToolTip = "#VAL键";
-            dataPoint22.LegendText = "左手";
-            dataPoint22.LegendToolTip = "#PERCENT{P2}";
-            series5.Points.Add(dataPoint21);
-            series5.Points.Add(dataPoint22);
-            series5.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-            series6.ChartArea = "ChartArea2";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series6.CustomProperties = "PieStartAngle=270";
-            series6.Legend = "Legend1";
-            series6.Name = "Series2";
-            dataPoint23.Color = System.Drawing.Color.Coral;
-            dataPoint23.IsValueShownAsLabel = true;
-            dataPoint23.Label = "#PERCENT{P2}";
-            dataPoint23.LabelFormat = "";
-            dataPoint23.LabelToolTip = "#LEGENDTEXT #VAL键";
-            dataPoint23.LegendText = "右手食指";
-            dataPoint23.LegendToolTip = "#PERCENT{P2}";
-            dataPoint24.Color = System.Drawing.Color.SaddleBrown;
-            dataPoint24.IsValueShownAsLabel = true;
-            dataPoint24.Label = "#PERCENT{P2}";
-            dataPoint24.LabelToolTip = "#LEGENDTEXT #VAL键";
-            dataPoint24.LegendText = "右手中指";
-            dataPoint24.LegendToolTip = "#PERCENT{P2}";
-            dataPoint25.Color = System.Drawing.Color.LimeGreen;
-            dataPoint25.IsValueShownAsLabel = true;
-            dataPoint25.Label = "#PERCENT{P2}";
-            dataPoint25.LabelToolTip = "#LEGENDTEXT #VAL键";
-            dataPoint25.LegendText = "右手无名指";
-            dataPoint25.LegendToolTip = "#PERCENT{P2}";
-            dataPoint26.Color = System.Drawing.Color.CadetBlue;
-            dataPoint26.IsValueShownAsLabel = true;
-            dataPoint26.Label = "#PERCENT{P2}";
-            dataPoint26.LabelToolTip = "#LEGENDTEXT #VAL键";
-            dataPoint26.LegendText = "右手小拇指";
-            dataPoint26.LegendToolTip = "#PERCENT{P2}";
-            dataPoint27.Color = System.Drawing.Color.DarkOrchid;
-            dataPoint27.IsValueShownAsLabel = true;
-            dataPoint27.Label = "#PERCENT{P2}";
-            dataPoint27.LabelToolTip = "#LEGENDTEXT #VAL键";
-            dataPoint27.LegendText = "左手小拇指";
-            dataPoint27.LegendToolTip = "#PERCENT{P2}";
-            dataPoint28.Color = System.Drawing.Color.Crimson;
-            dataPoint28.IsValueShownAsLabel = true;
-            dataPoint28.Label = "#PERCENT{P2}";
-            dataPoint28.LabelToolTip = "#LEGENDTEXT #VAL键";
-            dataPoint28.LegendText = "左手无名指";
-            dataPoint28.LegendToolTip = "#PERCENT{P2}";
-            dataPoint29.Color = System.Drawing.Color.Violet;
-            dataPoint29.IsValueShownAsLabel = true;
-            dataPoint29.Label = "#PERCENT{P2}";
-            dataPoint29.LabelToolTip = "#LEGENDTEXT #VAL键";
-            dataPoint29.LegendText = "左手中指";
-            dataPoint29.LegendToolTip = "#PERCENT{P2}";
-            dataPoint30.Color = System.Drawing.Color.DodgerBlue;
-            dataPoint30.IsValueShownAsLabel = true;
-            dataPoint30.Label = "#PERCENT{P2}";
-            dataPoint30.LabelToolTip = "#LEGENDTEXT #VAL键";
-            dataPoint30.LegendText = "左手食指";
-            dataPoint30.LegendToolTip = "#PERCENT{P2}";
-            series6.Points.Add(dataPoint23);
-            series6.Points.Add(dataPoint24);
-            series6.Points.Add(dataPoint25);
-            series6.Points.Add(dataPoint26);
-            series6.Points.Add(dataPoint27);
-            series6.Points.Add(dataPoint28);
-            series6.Points.Add(dataPoint29);
-            series6.Points.Add(dataPoint30);
-            series6.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-            this.chart1.Series.Add(series5);
-            this.chart1.Series.Add(series6);
-            this.chart1.Size = new System.Drawing.Size(560, 196);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
+            this.RXKeysLabel.AutoSize = true;
+            this.RXKeysLabel.ForeColor = System.Drawing.Color.CadetBlue;
+            this.RXKeysLabel.Location = new System.Drawing.Point(98, 191);
+            this.RXKeysLabel.Name = "RXKeysLabel";
+            this.RXKeysLabel.Size = new System.Drawing.Size(15, 17);
+            this.RXKeysLabel.TabIndex = 22;
+            this.RXKeysLabel.Text = "5";
+            // 
+            // RWKeysLabel
+            // 
+            this.RWKeysLabel.AutoSize = true;
+            this.RWKeysLabel.ForeColor = System.Drawing.Color.LimeGreen;
+            this.RWKeysLabel.Location = new System.Drawing.Point(98, 174);
+            this.RWKeysLabel.Name = "RWKeysLabel";
+            this.RWKeysLabel.Size = new System.Drawing.Size(22, 17);
+            this.RWKeysLabel.TabIndex = 21;
+            this.RWKeysLabel.Text = "10";
+            // 
+            // RZKeysLabel
+            // 
+            this.RZKeysLabel.AutoSize = true;
+            this.RZKeysLabel.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.RZKeysLabel.Location = new System.Drawing.Point(98, 157);
+            this.RZKeysLabel.Name = "RZKeysLabel";
+            this.RZKeysLabel.Size = new System.Drawing.Size(22, 17);
+            this.RZKeysLabel.TabIndex = 20;
+            this.RZKeysLabel.Text = "15";
+            // 
+            // RSKeysLabel
+            // 
+            this.RSKeysLabel.AutoSize = true;
+            this.RSKeysLabel.ForeColor = System.Drawing.Color.Coral;
+            this.RSKeysLabel.Location = new System.Drawing.Point(98, 140);
+            this.RSKeysLabel.Name = "RSKeysLabel";
+            this.RSKeysLabel.Size = new System.Drawing.Size(22, 17);
+            this.RSKeysLabel.TabIndex = 19;
+            this.RSKeysLabel.Text = "15";
+            // 
+            // LXKeysLabel
+            // 
+            this.LXKeysLabel.AutoSize = true;
+            this.LXKeysLabel.ForeColor = System.Drawing.Color.DarkOrchid;
+            this.LXKeysLabel.Location = new System.Drawing.Point(98, 123);
+            this.LXKeysLabel.Name = "LXKeysLabel";
+            this.LXKeysLabel.Size = new System.Drawing.Size(22, 17);
+            this.LXKeysLabel.TabIndex = 18;
+            this.LXKeysLabel.Text = "25";
+            // 
+            // LWKeysLabel
+            // 
+            this.LWKeysLabel.AutoSize = true;
+            this.LWKeysLabel.ForeColor = System.Drawing.Color.Crimson;
+            this.LWKeysLabel.Location = new System.Drawing.Point(98, 106);
+            this.LWKeysLabel.Name = "LWKeysLabel";
+            this.LWKeysLabel.Size = new System.Drawing.Size(22, 17);
+            this.LWKeysLabel.TabIndex = 17;
+            this.LWKeysLabel.Text = "15";
+            // 
+            // LZKeysLabel
+            // 
+            this.LZKeysLabel.AutoSize = true;
+            this.LZKeysLabel.ForeColor = System.Drawing.Color.Violet;
+            this.LZKeysLabel.Location = new System.Drawing.Point(98, 89);
+            this.LZKeysLabel.Name = "LZKeysLabel";
+            this.LZKeysLabel.Size = new System.Drawing.Size(22, 17);
+            this.LZKeysLabel.TabIndex = 16;
+            this.LZKeysLabel.Text = "10";
+            // 
+            // LSKeysLabel
+            // 
+            this.LSKeysLabel.AutoSize = true;
+            this.LSKeysLabel.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.LSKeysLabel.Location = new System.Drawing.Point(98, 72);
+            this.LSKeysLabel.Name = "LSKeysLabel";
+            this.LSKeysLabel.Size = new System.Drawing.Size(15, 17);
+            this.LSKeysLabel.TabIndex = 15;
+            this.LSKeysLabel.Text = "5";
+            // 
+            // RKeysLabel
+            // 
+            this.RKeysLabel.AutoSize = true;
+            this.RKeysLabel.ForeColor = System.Drawing.Color.DarkOrange;
+            this.RKeysLabel.Location = new System.Drawing.Point(98, 55);
+            this.RKeysLabel.Name = "RKeysLabel";
+            this.RKeysLabel.Size = new System.Drawing.Size(22, 17);
+            this.RKeysLabel.TabIndex = 14;
+            this.RKeysLabel.Text = "45";
+            // 
+            // LKeysLabel
+            // 
+            this.LKeysLabel.AutoSize = true;
+            this.LKeysLabel.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.LKeysLabel.Location = new System.Drawing.Point(98, 38);
+            this.LKeysLabel.Name = "LKeysLabel";
+            this.LKeysLabel.Size = new System.Drawing.Size(22, 17);
+            this.LKeysLabel.TabIndex = 13;
+            this.LKeysLabel.Text = "55";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.CadetBlue;
+            this.label11.Location = new System.Drawing.Point(13, 191);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(80, 17);
+            this.label11.TabIndex = 12;
+            this.label11.Text = "右手小拇指：";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.LimeGreen;
+            this.label10.Location = new System.Drawing.Point(13, 174);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(80, 17);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "右手无名指：";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.label9.Location = new System.Drawing.Point(13, 157);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(68, 17);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "右手中指：";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Coral;
+            this.label8.Location = new System.Drawing.Point(13, 140);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(68, 17);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "右手食指：";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.DarkOrchid;
+            this.label7.Location = new System.Drawing.Point(13, 123);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(80, 17);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "左手小拇指：";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.Crimson;
+            this.label6.Location = new System.Drawing.Point(13, 106);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(80, 17);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "左手无名指：";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.Violet;
+            this.label5.Location = new System.Drawing.Point(13, 89);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 17);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "左手中指：";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label4.Location = new System.Drawing.Point(13, 72);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 17);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "左手食指：";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.DarkOrange;
+            this.label3.Location = new System.Drawing.Point(13, 55);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(68, 17);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "右手键数：";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label2.Location = new System.Drawing.Point(13, 38);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 17);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "左手键数：";
             // 
             // AllKeysLabel
             // 
@@ -1238,205 +1304,151 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "总键数：";
             // 
-            // label2
+            // chart1
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label2.Location = new System.Drawing.Point(13, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 17);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "左手键数：";
+            chartArea9.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
+            chartArea9.Area3DStyle.Enable3D = true;
+            chartArea9.Area3DStyle.Inclination = 45;
+            chartArea9.Area3DStyle.PointDepth = 300;
+            chartArea9.BackColor = System.Drawing.Color.White;
+            chartArea9.InnerPlotPosition.Auto = false;
+            chartArea9.InnerPlotPosition.Height = 100F;
+            chartArea9.InnerPlotPosition.Width = 100F;
+            chartArea9.Name = "ChartArea1";
+            chartArea9.Position.Auto = false;
+            chartArea9.Position.Height = 100F;
+            chartArea9.Position.Width = 40F;
+            chartArea10.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
+            chartArea10.Area3DStyle.Enable3D = true;
+            chartArea10.Area3DStyle.Inclination = 45;
+            chartArea10.Area3DStyle.PointDepth = 300;
+            chartArea10.BackColor = System.Drawing.Color.White;
+            chartArea10.InnerPlotPosition.Auto = false;
+            chartArea10.InnerPlotPosition.Height = 100F;
+            chartArea10.InnerPlotPosition.Width = 100F;
+            chartArea10.Name = "ChartArea2";
+            chartArea10.Position.Auto = false;
+            chartArea10.Position.Height = 100F;
+            chartArea10.Position.Width = 40F;
+            chartArea10.Position.X = 40F;
+            this.chart1.ChartAreas.Add(chartArea9);
+            this.chart1.ChartAreas.Add(chartArea10);
+            legend5.LegendItemOrder = System.Windows.Forms.DataVisualization.Charting.LegendItemOrder.SameAsSeriesOrder;
+            legend5.Name = "Legend1";
+            legend5.Position.Auto = false;
+            legend5.Position.Height = 71.28205F;
+            legend5.Position.Width = 20F;
+            legend5.Position.X = 78.5F;
+            legend5.Position.Y = 3F;
+            legend5.ShadowOffset = 5;
+            legend5.Title = "手指";
+            legend5.TitleForeColor = System.Drawing.Color.DimGray;
+            this.chart1.Legends.Add(legend5);
+            this.chart1.Location = new System.Drawing.Point(217, 14);
+            this.chart1.Name = "chart1";
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series9.CustomProperties = "PieStartAngle=270";
+            series9.Legend = "Legend1";
+            series9.Name = "Series1";
+            dataPoint41.Color = System.Drawing.Color.DarkOrange;
+            dataPoint41.IsValueShownAsLabel = true;
+            dataPoint41.IsVisibleInLegend = false;
+            dataPoint41.Label = "#LEGENDTEXT\\n\\n#PERCENT{P2}";
+            dataPoint41.LabelForeColor = System.Drawing.Color.Black;
+            dataPoint41.LabelToolTip = "#VAL键";
+            dataPoint41.LegendText = "右手";
+            dataPoint41.LegendToolTip = "#PERCENT{P2}";
+            dataPoint42.Color = System.Drawing.Color.RoyalBlue;
+            dataPoint42.IsValueShownAsLabel = true;
+            dataPoint42.IsVisibleInLegend = false;
+            dataPoint42.Label = "#LEGENDTEXT\\n\\n#PERCENT{P2}";
+            dataPoint42.LabelAngle = 0;
+            dataPoint42.LabelFormat = "";
+            dataPoint42.LabelToolTip = "#VAL键";
+            dataPoint42.LegendText = "左手";
+            dataPoint42.LegendToolTip = "#PERCENT{P2}";
+            series9.Points.Add(dataPoint41);
+            series9.Points.Add(dataPoint42);
+            series9.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+            series10.ChartArea = "ChartArea2";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series10.CustomProperties = "PieStartAngle=270";
+            series10.Legend = "Legend1";
+            series10.Name = "Series2";
+            dataPoint43.Color = System.Drawing.Color.Coral;
+            dataPoint43.IsValueShownAsLabel = true;
+            dataPoint43.Label = "#PERCENT{P2}";
+            dataPoint43.LabelFormat = "";
+            dataPoint43.LabelToolTip = "#LEGENDTEXT #VAL键";
+            dataPoint43.LegendText = "右手食指";
+            dataPoint43.LegendToolTip = "#PERCENT{P2}";
+            dataPoint44.Color = System.Drawing.Color.SaddleBrown;
+            dataPoint44.IsValueShownAsLabel = true;
+            dataPoint44.Label = "#PERCENT{P2}";
+            dataPoint44.LabelToolTip = "#LEGENDTEXT #VAL键";
+            dataPoint44.LegendText = "右手中指";
+            dataPoint44.LegendToolTip = "#PERCENT{P2}";
+            dataPoint45.Color = System.Drawing.Color.LimeGreen;
+            dataPoint45.IsValueShownAsLabel = true;
+            dataPoint45.Label = "#PERCENT{P2}";
+            dataPoint45.LabelToolTip = "#LEGENDTEXT #VAL键";
+            dataPoint45.LegendText = "右手无名指";
+            dataPoint45.LegendToolTip = "#PERCENT{P2}";
+            dataPoint46.Color = System.Drawing.Color.CadetBlue;
+            dataPoint46.IsValueShownAsLabel = true;
+            dataPoint46.Label = "#PERCENT{P2}";
+            dataPoint46.LabelToolTip = "#LEGENDTEXT #VAL键";
+            dataPoint46.LegendText = "右手小拇指";
+            dataPoint46.LegendToolTip = "#PERCENT{P2}";
+            dataPoint47.Color = System.Drawing.Color.DarkOrchid;
+            dataPoint47.IsValueShownAsLabel = true;
+            dataPoint47.Label = "#PERCENT{P2}";
+            dataPoint47.LabelToolTip = "#LEGENDTEXT #VAL键";
+            dataPoint47.LegendText = "左手小拇指";
+            dataPoint47.LegendToolTip = "#PERCENT{P2}";
+            dataPoint48.Color = System.Drawing.Color.Crimson;
+            dataPoint48.IsValueShownAsLabel = true;
+            dataPoint48.Label = "#PERCENT{P2}";
+            dataPoint48.LabelToolTip = "#LEGENDTEXT #VAL键";
+            dataPoint48.LegendText = "左手无名指";
+            dataPoint48.LegendToolTip = "#PERCENT{P2}";
+            dataPoint49.Color = System.Drawing.Color.Violet;
+            dataPoint49.IsValueShownAsLabel = true;
+            dataPoint49.Label = "#PERCENT{P2}";
+            dataPoint49.LabelToolTip = "#LEGENDTEXT #VAL键";
+            dataPoint49.LegendText = "左手中指";
+            dataPoint49.LegendToolTip = "#PERCENT{P2}";
+            dataPoint50.Color = System.Drawing.Color.DodgerBlue;
+            dataPoint50.IsValueShownAsLabel = true;
+            dataPoint50.Label = "#PERCENT{P2}";
+            dataPoint50.LabelToolTip = "#LEGENDTEXT #VAL键";
+            dataPoint50.LegendText = "左手食指";
+            dataPoint50.LegendToolTip = "#PERCENT{P2}";
+            series10.Points.Add(dataPoint43);
+            series10.Points.Add(dataPoint44);
+            series10.Points.Add(dataPoint45);
+            series10.Points.Add(dataPoint46);
+            series10.Points.Add(dataPoint47);
+            series10.Points.Add(dataPoint48);
+            series10.Points.Add(dataPoint49);
+            series10.Points.Add(dataPoint50);
+            series10.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+            this.chart1.Series.Add(series9);
+            this.chart1.Series.Add(series10);
+            this.chart1.Size = new System.Drawing.Size(560, 196);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
             // 
-            // label3
+            // FlagLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.DarkOrange;
-            this.label3.Location = new System.Drawing.Point(13, 55);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 17);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "右手键数：";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label4.Location = new System.Drawing.Point(13, 72);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 17);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "左手食指：";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.Violet;
-            this.label5.Location = new System.Drawing.Point(13, 89);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 17);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "左手中指：";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.Crimson;
-            this.label6.Location = new System.Drawing.Point(13, 106);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(80, 17);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "左手无名指：";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.DarkOrchid;
-            this.label7.Location = new System.Drawing.Point(13, 123);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(80, 17);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "左手小拇指：";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.Coral;
-            this.label8.Location = new System.Drawing.Point(13, 140);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(68, 17);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "右手食指：";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label9.Location = new System.Drawing.Point(13, 157);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(68, 17);
-            this.label9.TabIndex = 10;
-            this.label9.Text = "右手中指：";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.Color.LimeGreen;
-            this.label10.Location = new System.Drawing.Point(13, 174);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(80, 17);
-            this.label10.TabIndex = 11;
-            this.label10.Text = "右手无名指：";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.ForeColor = System.Drawing.Color.CadetBlue;
-            this.label11.Location = new System.Drawing.Point(13, 191);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(80, 17);
-            this.label11.TabIndex = 12;
-            this.label11.Text = "右手小拇指：";
-            // 
-            // LKeysLabel
-            // 
-            this.LKeysLabel.AutoSize = true;
-            this.LKeysLabel.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.LKeysLabel.Location = new System.Drawing.Point(98, 38);
-            this.LKeysLabel.Name = "LKeysLabel";
-            this.LKeysLabel.Size = new System.Drawing.Size(22, 17);
-            this.LKeysLabel.TabIndex = 13;
-            this.LKeysLabel.Text = "55";
-            // 
-            // RKeysLabel
-            // 
-            this.RKeysLabel.AutoSize = true;
-            this.RKeysLabel.ForeColor = System.Drawing.Color.DarkOrange;
-            this.RKeysLabel.Location = new System.Drawing.Point(98, 55);
-            this.RKeysLabel.Name = "RKeysLabel";
-            this.RKeysLabel.Size = new System.Drawing.Size(22, 17);
-            this.RKeysLabel.TabIndex = 14;
-            this.RKeysLabel.Text = "45";
-            // 
-            // LSKeysLabel
-            // 
-            this.LSKeysLabel.AutoSize = true;
-            this.LSKeysLabel.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.LSKeysLabel.Location = new System.Drawing.Point(98, 72);
-            this.LSKeysLabel.Name = "LSKeysLabel";
-            this.LSKeysLabel.Size = new System.Drawing.Size(15, 17);
-            this.LSKeysLabel.TabIndex = 15;
-            this.LSKeysLabel.Text = "5";
-            // 
-            // LZKeysLabel
-            // 
-            this.LZKeysLabel.AutoSize = true;
-            this.LZKeysLabel.ForeColor = System.Drawing.Color.Violet;
-            this.LZKeysLabel.Location = new System.Drawing.Point(98, 89);
-            this.LZKeysLabel.Name = "LZKeysLabel";
-            this.LZKeysLabel.Size = new System.Drawing.Size(22, 17);
-            this.LZKeysLabel.TabIndex = 16;
-            this.LZKeysLabel.Text = "10";
-            // 
-            // LWKeysLabel
-            // 
-            this.LWKeysLabel.AutoSize = true;
-            this.LWKeysLabel.ForeColor = System.Drawing.Color.Crimson;
-            this.LWKeysLabel.Location = new System.Drawing.Point(98, 106);
-            this.LWKeysLabel.Name = "LWKeysLabel";
-            this.LWKeysLabel.Size = new System.Drawing.Size(22, 17);
-            this.LWKeysLabel.TabIndex = 17;
-            this.LWKeysLabel.Text = "15";
-            // 
-            // LXKeysLabel
-            // 
-            this.LXKeysLabel.AutoSize = true;
-            this.LXKeysLabel.ForeColor = System.Drawing.Color.DarkOrchid;
-            this.LXKeysLabel.Location = new System.Drawing.Point(98, 123);
-            this.LXKeysLabel.Name = "LXKeysLabel";
-            this.LXKeysLabel.Size = new System.Drawing.Size(22, 17);
-            this.LXKeysLabel.TabIndex = 18;
-            this.LXKeysLabel.Text = "25";
-            // 
-            // RSKeysLabel
-            // 
-            this.RSKeysLabel.AutoSize = true;
-            this.RSKeysLabel.ForeColor = System.Drawing.Color.Coral;
-            this.RSKeysLabel.Location = new System.Drawing.Point(98, 140);
-            this.RSKeysLabel.Name = "RSKeysLabel";
-            this.RSKeysLabel.Size = new System.Drawing.Size(22, 17);
-            this.RSKeysLabel.TabIndex = 19;
-            this.RSKeysLabel.Text = "15";
-            // 
-            // RZKeysLabel
-            // 
-            this.RZKeysLabel.AutoSize = true;
-            this.RZKeysLabel.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.RZKeysLabel.Location = new System.Drawing.Point(98, 157);
-            this.RZKeysLabel.Name = "RZKeysLabel";
-            this.RZKeysLabel.Size = new System.Drawing.Size(22, 17);
-            this.RZKeysLabel.TabIndex = 20;
-            this.RZKeysLabel.Text = "15";
-            // 
-            // RWKeysLabel
-            // 
-            this.RWKeysLabel.AutoSize = true;
-            this.RWKeysLabel.ForeColor = System.Drawing.Color.LimeGreen;
-            this.RWKeysLabel.Location = new System.Drawing.Point(98, 174);
-            this.RWKeysLabel.Name = "RWKeysLabel";
-            this.RWKeysLabel.Size = new System.Drawing.Size(22, 17);
-            this.RWKeysLabel.TabIndex = 21;
-            this.RWKeysLabel.Text = "10";
-            // 
-            // RXKeysLabel
-            // 
-            this.RXKeysLabel.AutoSize = true;
-            this.RXKeysLabel.ForeColor = System.Drawing.Color.CadetBlue;
-            this.RXKeysLabel.Location = new System.Drawing.Point(98, 191);
-            this.RXKeysLabel.Name = "RXKeysLabel";
-            this.RXKeysLabel.Size = new System.Drawing.Size(15, 17);
-            this.RXKeysLabel.TabIndex = 22;
-            this.RXKeysLabel.Text = "5";
+            this.FlagLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.FlagLabel.Location = new System.Drawing.Point(619, 193);
+            this.FlagLabel.Name = "FlagLabel";
+            this.FlagLabel.Size = new System.Drawing.Size(160, 17);
+            this.FlagLabel.TabIndex = 23;
+            this.FlagLabel.Text = "label12";
+            this.FlagLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // KeyAn
             // 
@@ -1556,5 +1568,6 @@
         private System.Windows.Forms.Label LSKeysLabel;
         private System.Windows.Forms.Label RKeysLabel;
         private System.Windows.Forms.Label LKeysLabel;
+        private System.Windows.Forms.Label FlagLabel;
     }
 }

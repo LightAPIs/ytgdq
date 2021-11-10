@@ -17,13 +17,19 @@ namespace WindowsFormsApplication2.KeyAnalysis
         private readonly int[] keysData;
 
         /// <summary>
+        /// 标识
+        /// </summary>
+        private readonly string flag;
+
+        /// <summary>
         /// 按键列表
         /// </summary>
         private Button[] allKeyButton;
 
-        public KeyAn(int[] keys_data)
+        public KeyAn(int[] keys_data, string _flag)
         {
             this.keysData = keys_data;
+            this.flag = _flag;
             InitializeComponent();
         }
 
@@ -219,6 +225,8 @@ namespace WindowsFormsApplication2.KeyAnalysis
                     }
                 }
             }
+
+            this.FlagLabel.Text = flag;
         }
 
         private void KeyAn_KeyDown(object sender, KeyEventArgs e)

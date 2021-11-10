@@ -177,7 +177,7 @@ namespace WindowsFormsApplication2.History
                 if (advRow != null)
                 {
                     int[] keysData = Array.ConvertAll(advRow["key_analysis"].ToString().Split('|'), s => int.Parse(s));
-                    KeyAn kan = new KeyAn(keysData);
+                    KeyAn kan = new KeyAn(keysData, scoreTime);
                     kan.ShowDialog();
                 }
                 else

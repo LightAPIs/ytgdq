@@ -193,6 +193,14 @@ namespace WindowsFormsApplication2.KeyAnalysis
 
                 this.chart1.Series[0].Points[1].SetValueY(lrKeys[0]); // 左手
                 this.chart1.Series[0].Points[0].SetValueY(lrKeys[1]); // 右手
+                for (int j = 0; j < 2; j++)
+                {
+                    if (this.chart1.Series[0].Points[j].YValues[0] == 0)
+                    {
+                        this.chart1.Series[0].Points[j].IsValueShownAsLabel = false;
+                        this.chart1.Series[0].Points[j].Label = String.Empty;
+                    }
+                }
 
                 this.chart1.Series[1].Points[7].SetValueY(lrKeys[5]); // 左手食指
                 this.chart1.Series[1].Points[6].SetValueY(lrKeys[4]); // 左手中指
@@ -202,6 +210,14 @@ namespace WindowsFormsApplication2.KeyAnalysis
                 this.chart1.Series[1].Points[1].SetValueY(lrKeys[7]); // 右手中指
                 this.chart1.Series[1].Points[2].SetValueY(lrKeys[8]); // 右手无名指
                 this.chart1.Series[1].Points[3].SetValueY(lrKeys[9]); // 右手小拇指
+                for (int k = 0; k < 8; k++)
+                {
+                    if (this.chart1.Series[1].Points[k].YValues[0] == 0)
+                    {
+                        this.chart1.Series[1].Points[k].IsValueShownAsLabel = false;
+                        this.chart1.Series[1].Points[k].Label = String.Empty;
+                    }
+                }
             }
         }
 

@@ -177,6 +177,7 @@ namespace WindowsFormsApplication2.History
         private void History_CellMoseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             this.gridHandler.SetMouseLocation(e);
+            this.ItemToolStripTextBox.Text = this.gridHandler.MenuGetScoreTime();
         }
 
         private void CopyScoreToolStripMenuItem_Click(object sender, EventArgs e)

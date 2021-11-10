@@ -26,7 +26,7 @@ namespace WindowsFormsApplication2.History
             this.historyDataGridView = data_grid_view;
         }
 
-        private string MenuGetScoreTime()
+        public string MenuGetScoreTime()
         {
             DataGridViewRow curRow = this.historyDataGridView.Rows[this.mouseLocation.RowIndex];
             if (curRow != null)

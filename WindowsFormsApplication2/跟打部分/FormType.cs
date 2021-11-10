@@ -2209,7 +2209,7 @@ namespace WindowsFormsApplication2
 
                         //平均数据
                         //this.SeriesSpeed.Points.AddXY(Glob.typeUseTime,speed2);
-                        Glob.Per_Speed += speed2;
+                        Glob.Per_Speed += speed2; // 用的惩罚错字后的速度
                         Glob.Per_Jj += jj;
                         Glob.Per_Mc += mc;
 
@@ -6035,6 +6035,7 @@ namespace WindowsFormsApplication2
         private void dataGridView1_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             this.gridHandler.SetMouseLocation(e);
+            this.ItemToolStripTextBox.Text = this.gridHandler.MenuGetScoreTime();
         }
         
         private void CopyScoreToolStripMenuItem_Click(object sender, EventArgs e)

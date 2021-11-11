@@ -28,10 +28,13 @@ namespace WindowsFormsApplication2.History
 
         public string MenuGetScoreTime()
         {
-            DataGridViewRow curRow = this.historyDataGridView.Rows[this.mouseLocation.RowIndex];
-            if (curRow != null)
+            if (this.mouseLocation.RowIndex >= 0)
             {
-                return curRow.Cells[1].Value.ToString();
+                DataGridViewRow curRow = this.historyDataGridView.Rows[this.mouseLocation.RowIndex];
+                if (curRow != null)
+                {
+                    return curRow.Cells[1].Value.ToString();
+                }
             }
             return "";
         }

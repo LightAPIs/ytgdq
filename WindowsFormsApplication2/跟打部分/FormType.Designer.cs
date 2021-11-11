@@ -234,6 +234,8 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.ScoreContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ItemToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
             this.CopyScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CopyPicScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CopyContentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -256,8 +258,6 @@
             this.timerLblTime = new System.Windows.Forms.Timer(this.components);
             this.panelMain = new System.Windows.Forms.Panel();
             this.cmsDuanList = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ItemToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel1.SuspendLayout();
             this.cmsSetMatch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1013,7 +1013,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox1.Size = new System.Drawing.Size(396, 112);
+            this.richTextBox1.Size = new System.Drawing.Size(396, 113);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.TabStop = false;
             this.richTextBox1.Text = "当你还在被世间诸多繁杂所束缚，心神不宁，不妨静下心来坐在电脑前跟打上一段文章。";
@@ -1595,7 +1595,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel2MinSize = 50;
             this.splitContainer1.Size = new System.Drawing.Size(396, 217);
-            this.splitContainer1.SplitterDistance = 112;
+            this.splitContainer1.SplitterDistance = 113;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 3;
             this.splitContainer1.TabStop = false;
@@ -1606,7 +1606,7 @@
             this.picDoing.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.picDoing.BackColor = System.Drawing.Color.White;
             this.picDoing.Image = global::WindowsFormsApplication2.Properties.Resources.doing;
-            this.picDoing.Location = new System.Drawing.Point(355, 87);
+            this.picDoing.Location = new System.Drawing.Point(355, 88);
             this.picDoing.Name = "picDoing";
             this.picDoing.Size = new System.Drawing.Size(22, 22);
             this.picDoing.TabIndex = 23;
@@ -1629,7 +1629,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer2.Panel2MinSize = 0;
-            this.splitContainer2.Size = new System.Drawing.Size(396, 102);
+            this.splitContainer2.Size = new System.Drawing.Size(396, 101);
             this.splitContainer2.SplitterIncrement = 2;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 5;
@@ -1652,8 +1652,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer3.Size = new System.Drawing.Size(396, 102);
-            this.splitContainer3.SplitterDistance = 29;
+            this.splitContainer3.Size = new System.Drawing.Size(396, 101);
+            this.splitContainer3.SplitterDistance = 28;
             this.splitContainer3.TabIndex = 0;
             this.splitContainer3.TabStop = false;
             // 
@@ -1949,7 +1949,7 @@
             this.tbnSpline.Name = "tbnSpline";
             this.tbnSpline.Size = new System.Drawing.Size(35, 19);
             this.tbnSpline.Text = "曲线";
-            this.tbnSpline.ToolTipText = "显示与关闭曲线";
+            this.tbnSpline.ToolTipText = "显示与隐藏曲线界面\r\n不影响曲线统计";
             this.tbnSpline.WdithAdjust = 2;
             this.tbnSpline.Click += new System.EventHandler(this.tbnSpline_Click);
             // 
@@ -2565,7 +2565,22 @@
             this.toolStripSeparator16,
             this.GridRetypeToolStripMenuItem});
             this.ScoreContextMenuStrip.Name = "contextMenuStrip1";
-            this.ScoreContextMenuStrip.Size = new System.Drawing.Size(181, 214);
+            this.ScoreContextMenuStrip.Size = new System.Drawing.Size(181, 192);
+            // 
+            // ItemToolStripTextBox
+            // 
+            this.ItemToolStripTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ItemToolStripTextBox.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ItemToolStripTextBox.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.ItemToolStripTextBox.Margin = new System.Windows.Forms.Padding(0);
+            this.ItemToolStripTextBox.Name = "ItemToolStripTextBox";
+            this.ItemToolStripTextBox.Size = new System.Drawing.Size(120, 16);
+            this.ItemToolStripTextBox.Text = "2021-11-11 11:11:11";
+            // 
+            // toolStripSeparator17
+            // 
+            this.toolStripSeparator17.Name = "toolStripSeparator17";
+            this.toolStripSeparator17.Size = new System.Drawing.Size(177, 6);
             // 
             // CopyScoreToolStripMenuItem
             // 
@@ -2709,21 +2724,6 @@
             this.cmsDuanList.Name = "cmsDuanList";
             this.cmsDuanList.Size = new System.Drawing.Size(61, 4);
             this.cmsDuanList.Paint += new System.Windows.Forms.PaintEventHandler(this.cmsDuanList_Paint);
-            // 
-            // ItemToolStripTextBox
-            // 
-            this.ItemToolStripTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ItemToolStripTextBox.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ItemToolStripTextBox.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.ItemToolStripTextBox.Margin = new System.Windows.Forms.Padding(0);
-            this.ItemToolStripTextBox.Name = "ItemToolStripTextBox";
-            this.ItemToolStripTextBox.Size = new System.Drawing.Size(120, 16);
-            this.ItemToolStripTextBox.Text = "2021-11-11 11:11:11";
-            // 
-            // toolStripSeparator17
-            // 
-            this.toolStripSeparator17.Name = "toolStripSeparator17";
-            this.toolStripSeparator17.Size = new System.Drawing.Size(177, 6);
             // 
             // Form1
             // 

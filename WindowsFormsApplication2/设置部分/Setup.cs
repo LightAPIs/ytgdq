@@ -104,8 +104,6 @@ namespace WindowsFormsApplication2
             //QQ
             this.checkBox21.Checked = bool.Parse(IniRead("发送","QQSta","false"));
             this.textBoxQQ.Text = IniRead("发送","QQ","");
-            //曲线
-            this.checkBox22.Checked = Glob.isShowSpline;
             //停止时间初始化
             int StopTime = int.Parse(IniRead("控制", "停止", "1"));
             if (StopTime < 1 || StopTime > 10) {
@@ -270,16 +268,6 @@ namespace WindowsFormsApplication2
             {
                 Glob.GDQActon = false;
                 Setupini.IniWriteValue("发送", "激活", "false");
-            }
-            //是否显示曲线
-            if (checkBox22.Checked)
-            {
-                frm.splitContainer4.Panel1Collapsed = true;
-                Setupini.IniWriteValue("拖动条", "曲线", "true");
-            }
-            else {
-                frm.splitContainer4.Panel1Collapsed = false;
-                Setupini.IniWriteValue("拖动条", "曲线", "false");
             }
 
             //停止时间
@@ -846,11 +834,6 @@ namespace WindowsFormsApplication2
             {
                 this.pictureBoxFalse.BackColor = colorDialog1.Color;
             }
-        }
-
-        private void checkBox22_CheckedChanged(object sender, EventArgs e)
-        {
-            Glob.isShowSpline = this.checkBox22.Checked;
         }
 
         private void trackBar2_Scroll(object sender, EventArgs e)

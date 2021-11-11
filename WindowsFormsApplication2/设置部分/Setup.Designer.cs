@@ -129,7 +129,6 @@
             this.checkBox28 = new System.Windows.Forms.CheckBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.checkBox22 = new System.Windows.Forms.CheckBox();
             this.checkBoxGDQAction = new System.Windows.Forms.CheckBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -706,7 +705,7 @@
             // trackBar2
             // 
             this.trackBar2.AutoSize = false;
-            this.trackBar2.Location = new System.Drawing.Point(176, 135);
+            this.trackBar2.Location = new System.Drawing.Point(176, 110);
             this.trackBar2.Minimum = 1;
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(104, 18);
@@ -1551,7 +1550,6 @@
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.trackBar2);
             this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.checkBox22);
             this.groupBox1.Controls.Add(this.checkBoxGDQAction);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -1598,7 +1596,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(286, 135);
+            this.label17.Location = new System.Drawing.Point(286, 110);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(23, 12);
             this.label17.TabIndex = 8;
@@ -1607,22 +1605,11 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(9, 135);
+            this.label16.Location = new System.Drawing.Point(9, 110);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(161, 12);
             this.label16.TabIndex = 6;
             this.label16.Text = "离开时间(超时则停止跟打)：";
-            // 
-            // checkBox22
-            // 
-            this.checkBox22.AutoSize = true;
-            this.checkBox22.Location = new System.Drawing.Point(10, 104);
-            this.checkBox22.Name = "checkBox22";
-            this.checkBox22.Size = new System.Drawing.Size(204, 16);
-            this.checkBox22.TabIndex = 5;
-            this.checkBox22.Text = "不显示曲线界面（曲线仍然有效）";
-            this.checkBox22.UseVisualStyleBackColor = true;
-            this.checkBox22.CheckedChanged += new System.EventHandler(this.checkBox22_CheckedChanged);
             // 
             // checkBoxGDQAction
             // 
@@ -3703,7 +3690,6 @@
         private System.Windows.Forms.PictureBox pictureBoxFalse;
         private System.Windows.Forms.PictureBox pictureBoxRight;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.CheckBox checkBox22;
         private System.Windows.Forms.TrackBar trackBar2;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;

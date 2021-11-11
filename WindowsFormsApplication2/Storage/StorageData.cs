@@ -90,24 +90,45 @@ namespace WindowsFormsApplication2.Storage
         /// 根据日期获取成绩
         /// </summary>
         /// <param name="date"></param>
+        /// <param name="start"></param>
+        /// <param name="limit"></param>
         /// <returns></returns>
-        public StorageDataSet.ScoreDataTable GetScoreFromDate(DateTime date)
+        public StorageDataSet.ScoreDataTable GetScoreFromDate(DateTime date, int start, int limit)
         {
-            this.cmd.CommandText = $"SELECT * FROM score WHERE score_time LIKE '{date:d}%'";
+            this.cmd.CommandText = $"SELECT * FROM score WHERE score_time LIKE '{date:d}%' LIMIT {limit} OFFSET {start}";
             SQLiteDataAdapter adapter = new SQLiteDataAdapter(this.cmd);
             StorageDataSet.ScoreDataTable myScore = new StorageDataSet.ScoreDataTable();
             adapter.Fill(myScore);
             return myScore;
+        }
+
+        /// <summary>
+        /// 根据日期获取成绩数量
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public int GetScoreCountFromDate(DateTime date)
+        {
+            this.cmd.CommandText = $"SELECT COUNT(1) FROM score WHERE score_time LIKE '{date:d}%'";
+            object readNum = this.cmd.ExecuteScalar();
+
+            if (readNum == null)
+            {
+                return 0;
+            }
+            return Convert.ToInt32(readNum);
         }
 
         /// <summary>
         /// 根据标题获取成绩
         /// </summary>
         /// <param name="title"></param>
+        /// <param name="start"></param>
+        /// <param name="limit"></param>
         /// <returns></returns>
-        public StorageDataSet.ScoreDataTable GetScoreFromTitle(string title)
+        public StorageDataSet.ScoreDataTable GetScoreFromTitle(string title, int start, int limit)
         {
-            this.cmd.CommandText = $"SELECT * FROM score WHERE article_title LIKE '%{this.ConvertText(title).Replace("%", "/%").Replace("_", "/_")}%'";
+            this.cmd.CommandText = $"SELECT * FROM score WHERE article_title LIKE '%{this.ConvertText(title).Replace("%", "/%").Replace("_", "/_")}%' LIMIT {limit} OFFSET {start}";
             SQLiteDataAdapter adapter = new SQLiteDataAdapter(this.cmd);
             StorageDataSet.ScoreDataTable myScore = new StorageDataSet.ScoreDataTable();
             adapter.Fill(myScore);
@@ -115,17 +136,53 @@ namespace WindowsFormsApplication2.Storage
         }
 
         /// <summary>
+        /// 根据标题获取成绩数量
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public int GetScoreCountFromTitle(string title)
+        {
+            this.cmd.CommandText = $"SELECT COUNT(1) FROM score WHERE article_title LIKE '%{this.ConvertText(title).Replace("%", "/%").Replace("_", "/_")}%'";
+            object readNum = this.cmd.ExecuteScalar();
+
+            if (readNum == null)
+            {
+                return 0;
+            }
+            return Convert.ToInt32(readNum);
+        }
+
+        /// <summary>
         /// 根据文段 id 获取成绩
         /// </summary>
         /// <param name="segmentId"></param>
+        /// <param name="limit"></param>
+        /// <param name="start"></param>
         /// <returns></returns>
-        public StorageDataSet.ScoreDataTable GetScoreFromSegmentId(int segmentId)
+        public StorageDataSet.ScoreDataTable GetScoreFromSegmentId(int segmentId, int start, int limit)
         {
-            this.cmd.CommandText = $"SELECT * FROM score WHERE segment_id={segmentId}";
+            this.cmd.CommandText = $"SELECT * FROM score WHERE segment_id={segmentId} LIMIT {limit} OFFSET {start}";
             SQLiteDataAdapter adapter = new SQLiteDataAdapter(this.cmd);
             StorageDataSet.ScoreDataTable myScore = new StorageDataSet.ScoreDataTable();
             adapter.Fill(myScore);
             return myScore;
+        }
+
+        /// <summary>
+        /// 根据文段 id 获取成绩数量
+        /// </summary>
+        /// <param name="segmentId"></param>
+        /// <returns></returns>
+        public int GetScoreCountFromSegmentId(int segmentId)
+        {
+            this.cmd.CommandText = $"SELECT COUNT(1) FROM score WHERE segment_id={segmentId}";
+            object readNum = this.cmd.ExecuteScalar();
+
+            if (readNum == null)
+            {
+                return 0;
+            }
+            return Convert.ToInt32(readNum);
         }
 
         /// <summary>

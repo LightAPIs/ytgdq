@@ -27,6 +27,32 @@ namespace WindowsFormsApplication2.History
 
         private readonly Form1 frm;
 
+        /// <summary>
+        /// 类别标识
+        /// 用于翻页操作中
+        /// </summary>
+        private DataType dataType = new DataType();
+
+        /// <summary>
+        /// 每页数据量
+        /// </summary>
+        private readonly int PageSize = 30;
+
+        /// <summary>
+        /// 当前页
+        /// </summary>
+        private int currentPage = 0;
+
+        /// <summary>
+        /// 总数据量
+        /// </summary>
+        private int totalCount = 0;
+
+        /// <summary>
+        /// 总页数
+        /// </summary>
+        private int totalPage = 0;
+
         public History(Form1 frm1)
         {
             this.frm = frm1;
@@ -42,7 +68,7 @@ namespace WindowsFormsApplication2.History
         /// <summary>
         /// 展示数据
         /// </summary>
-        private void ShowData()
+        private void ShowGridData()
         {
             int index = 0;
             int lastSegmentId = -1;
@@ -108,7 +134,7 @@ namespace WindowsFormsApplication2.History
         /// <summary>
         /// 清理数据
         /// </summary>
-        private void ClearData()
+        private void ClearGridData()
         {
             this.dataGridView1.Rows.Clear();
             this.currentScoreData.Clear();
@@ -119,26 +145,86 @@ namespace WindowsFormsApplication2.History
 
         private void ShowDataFromDate(DateTime date)
         {
-            this.ClearData();
+            this.ClearGridData();
+            this.dataType.Cur = "Date";
+            this.dataType.Date = date;
             this.ResultLabel.Text = "日期：" + date.ToString("d");
-            this.currentScoreData = Glob.ScoreHistory.GetScoreFromDate(date);
-            this.ShowData();
+            this.totalCount = Glob.ScoreHistory.GetScoreCountFromDate(date);
+            this.totalPage = (int)Math.Ceiling((float)this.totalCount / PageSize);
+            this.CountLabel.Text = this.totalCount.ToString();
+            this.TotalPageNumLabel.Text = "/" + this.totalPage.ToString() + "页";
+
+            if (this.totalPage > 0)
+            {
+                this.currentPage = 1;
+            }
+            else
+            {
+                this.currentPage = 0;
+            }
+            this.PageNumTextBox.Text = this.currentPage.ToString();
+
+            if (this.totalCount > 0)
+            {
+                this.currentScoreData = Glob.ScoreHistory.GetScoreFromDate(date, 0, PageSize);
+            }
+            this.ShowGridData();
         }
 
         private void ShowDataFromTitle(string title)
         {
-            this.ClearData();
+            this.ClearGridData();
+            this.dataType.Cur = "Title";
+            this.dataType.Title = title;
             this.ResultLabel.Text = "搜索标题：" + title;
-            this.currentScoreData = Glob.ScoreHistory.GetScoreFromTitle(title);
-            this.ShowData();
+            this.totalCount = Glob.ScoreHistory.GetScoreCountFromTitle(title);
+            this.totalPage = (int)Math.Ceiling((float)this.totalCount / PageSize);
+            this.CountLabel.Text = this.totalCount.ToString();
+            this.TotalPageNumLabel.Text = "/" + this.totalPage.ToString() + "页";
+
+            if (this.totalPage > 0)
+            {
+                this.currentPage = 1;
+            }
+            else
+            {
+                this.currentPage = 0;
+            }
+            this.PageNumTextBox.Text = this.currentPage.ToString();
+
+            if (this.totalCount > 0)
+            {
+                this.currentScoreData = Glob.ScoreHistory.GetScoreFromTitle(title, 0, PageSize);
+            }
+            this.ShowGridData();
         }
 
         private void ShowDataFromSegment(int id)
         {
-            this.ClearData();
+            this.ClearGridData();
+            this.dataType.Cur = "SegmentId";
+            this.dataType.SegmentId = id;
             this.ResultLabel.Text = "文段：" + id.ToString();
-            this.currentScoreData = Glob.ScoreHistory.GetScoreFromSegmentId(id);
-            this.ShowData();
+            this.totalCount = Glob.ScoreHistory.GetScoreCountFromSegmentId(id);
+            this.totalPage = (int)Math.Ceiling((float)this.totalCount / PageSize);
+            this.CountLabel.Text = this.totalCount.ToString();
+            this.TotalPageNumLabel.Text = "/" + this.totalPage.ToString() + "页";
+
+            if (this.totalPage > 0)
+            {
+                this.currentPage = 1;
+            }
+            else
+            {
+                this.currentPage = 0;
+            }
+            this.PageNumTextBox.Text = this.currentPage.ToString();
+
+            if (this.totalCount > 0)
+            {
+                this.currentScoreData = Glob.ScoreHistory.GetScoreFromSegmentId(id, 0, PageSize);
+            }
+            this.ShowGridData();
         }
 
         private void HistorySelectionChanged(object sender, EventArgs e)
@@ -239,6 +325,7 @@ namespace WindowsFormsApplication2.History
         }
         #endregion
 
+        #region 搜索标题框
         private void SearchButton_Click(object sender, EventArgs e)
         {
             string sText = this.SearchTextBox.Text.Trim();
@@ -255,10 +342,93 @@ namespace WindowsFormsApplication2.History
                 this.SearchButton.PerformClick();
             }
         }
+        #endregion
 
         private void MonthCalendar_DateSelected(object sender, DateRangeEventArgs e)
         {
             this.ShowDataFromDate(e.Start);
+        }
+
+        #region 跳转页数处理
+        private void JumpPageHandler(int pageNum)
+        {
+            this.ClearGridData();
+            this.currentPage = pageNum;
+            this.PageNumTextBox.Text = pageNum.ToString();
+            switch (this.dataType.Cur)
+            {
+                case "Date":
+                    this.currentScoreData = Glob.ScoreHistory.GetScoreFromDate(this.dataType.Date, (pageNum - 1) * PageSize, PageSize);
+                    break;
+                case "Title":
+                    this.currentScoreData = Glob.ScoreHistory.GetScoreFromTitle(this.dataType.Title, (pageNum - 1) * PageSize, PageSize);
+                    break;
+                case "SegmentId":
+                    this.currentScoreData = Glob.ScoreHistory.GetScoreFromSegmentId(this.dataType.SegmentId, (pageNum - 1) * PageSize, PageSize);
+                    break;
+            }
+            this.ShowGridData();
+        }
+        #endregion
+
+        private void FirstPageButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentPage > 1)
+            {
+                this.JumpPageHandler(1);
+            }
+        }
+
+        private void PrePageButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentPage > 1)
+            {
+                this.JumpPageHandler(this.currentPage - 1);
+            }
+        }
+
+        private void NextPageButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentPage < this.totalPage)
+            {
+                this.JumpPageHandler(this.currentPage + 1);
+            }
+        }
+
+        private void LastPageButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentPage < this.totalPage)
+            {
+                this.JumpPageHandler(this.totalPage);
+            }
+        }
+
+        private void JumpPageButton_Click(object sender, EventArgs e)
+        {
+            if (this.PageNumTextBox.Text != "" && this.PageNumTextBox.Text != "0")
+            {
+                int pageNum = int.Parse(this.PageNumTextBox.Text);
+                if (pageNum > 0 && pageNum <= this.totalPage && pageNum != this.currentPage)
+                {
+                    this.JumpPageHandler(pageNum);
+                }
+            }
+        }
+
+        private void PageNumTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            { // 按下 Enter 跳转
+                this.JumpPageButton.PerformClick();
+            } 
+            else if (e.KeyChar == 27)
+            { // 按下 ESC 恢复当前页码
+                this.PageNumTextBox.Text = this.currentPage.ToString();
+            } 
+            else if (e.KeyChar >= 31 && (e.KeyChar < '0' || e.KeyChar > '9'))
+            { // 限制输入框只能输入数字
+                e.Handled = true;
+            }
         }
     }
 }

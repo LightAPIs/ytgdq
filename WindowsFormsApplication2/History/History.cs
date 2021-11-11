@@ -239,11 +239,6 @@ namespace WindowsFormsApplication2.History
         }
         #endregion
 
-        private void MonthCalendar_DateChanged(object sender, DateRangeEventArgs e)
-        {
-            this.ShowDataFromDate(e.Start);
-        }
-
         private void SearchButton_Click(object sender, EventArgs e)
         {
             string sText = this.SearchTextBox.Text.Trim();
@@ -259,6 +254,11 @@ namespace WindowsFormsApplication2.History
             {
                 this.SearchButton.PerformClick();
             }
+        }
+
+        private void MonthCalendar_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            this.ShowDataFromDate(e.Start);
         }
     }
 }

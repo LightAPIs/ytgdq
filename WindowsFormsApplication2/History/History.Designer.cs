@@ -89,6 +89,8 @@
             this.用时 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.标题 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HistoryContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ItemToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.CopyScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CopyPicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CopyContentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,8 +104,6 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.RetypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.ItemToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -124,7 +124,7 @@
             this.monthCalendar.Name = "monthCalendar";
             this.monthCalendar.TabIndex = 0;
             this.monthCalendar.TabStop = false;
-            this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendar_DateChanged);
+            this.monthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendar_DateSelected);
             // 
             // groupBox1
             // 
@@ -663,6 +663,22 @@
             this.HistoryContextMenuStrip.Name = "HistoryContextMenuStrip";
             this.HistoryContextMenuStrip.Size = new System.Drawing.Size(181, 242);
             // 
+            // ItemToolStripTextBox
+            // 
+            this.ItemToolStripTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.ItemToolStripTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ItemToolStripTextBox.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ItemToolStripTextBox.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.ItemToolStripTextBox.Margin = new System.Windows.Forms.Padding(0);
+            this.ItemToolStripTextBox.Name = "ItemToolStripTextBox";
+            this.ItemToolStripTextBox.Size = new System.Drawing.Size(120, 16);
+            this.ItemToolStripTextBox.Text = "2021-11-11 11:11:11";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            // 
             // CopyScoreToolStripMenuItem
             // 
             this.CopyScoreToolStripMenuItem.Name = "CopyScoreToolStripMenuItem";
@@ -740,22 +756,6 @@
             this.RetypeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.RetypeToolStripMenuItem.Text = "重打文段";
             this.RetypeToolStripMenuItem.Click += new System.EventHandler(this.RetypeToolStripMenuItem_Click);
-            // 
-            // ItemToolStripTextBox
-            // 
-            this.ItemToolStripTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.ItemToolStripTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ItemToolStripTextBox.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ItemToolStripTextBox.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.ItemToolStripTextBox.Margin = new System.Windows.Forms.Padding(0);
-            this.ItemToolStripTextBox.Name = "ItemToolStripTextBox";
-            this.ItemToolStripTextBox.Size = new System.Drawing.Size(120, 16);
-            this.ItemToolStripTextBox.Text = "2021-11-11 11:11:11";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // History
             // 

@@ -122,6 +122,9 @@ namespace WindowsFormsApplication2
             //bool c;
             //this.checkBox31.Checked = bool.TryParse(IniRead("控制", "自动获取", "True"), out c) ? c : true;
 
+            //* 禁止保存高阶统计
+            this.AdvancedCheckBox.Checked = Glob.DisableSaveAdvanced;
+
             //* 快捷键设置
             allTBox = new TextBox[24] {
                 HotKeyTextBox0,
@@ -326,6 +329,17 @@ namespace WindowsFormsApplication2
             {
                 Setupini.IniWriteValue("控制", "不自动复制", "False");
                 Glob.notAutoCopy = false;
+            }
+
+            if (this.AdvancedCheckBox.Checked)
+            {
+                Setupini.IniWriteValue("控制", "不保存高阶", "True");
+                Glob.DisableSaveAdvanced = true;
+            }
+            else
+            {
+                Setupini.IniWriteValue("控制", "不保存高阶", "False");
+                Glob.DisableSaveAdvanced = false;
             }
 
             if (this.checkBox33.Checked)

@@ -280,6 +280,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.newButton1 = new WindowsFormsApplication2.NewButton();
             this.newButton2 = new WindowsFormsApplication2.NewButton();
+            this.AdvancedCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -705,7 +706,7 @@
             // trackBar2
             // 
             this.trackBar2.AutoSize = false;
-            this.trackBar2.Location = new System.Drawing.Point(176, 110);
+            this.trackBar2.Location = new System.Drawing.Point(176, 131);
             this.trackBar2.Minimum = 1;
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(104, 18);
@@ -1544,6 +1545,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.DimGray;
+            this.groupBox1.Controls.Add(this.AdvancedCheckBox);
             this.groupBox1.Controls.Add(this.checkBox33);
             this.groupBox1.Controls.Add(this.checkBox32);
             this.groupBox1.Controls.Add(this.checkBox28);
@@ -1596,7 +1598,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(286, 110);
+            this.label17.Location = new System.Drawing.Point(286, 131);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(23, 12);
             this.label17.TabIndex = 8;
@@ -1605,7 +1607,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(9, 110);
+            this.label16.Location = new System.Drawing.Point(9, 131);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(161, 12);
             this.label16.TabIndex = 6;
@@ -3490,6 +3492,16 @@
             this.newButton2.默认背景色 = System.Drawing.Color.Gray;
             this.newButton2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // AdvancedCheckBox
+            // 
+            this.AdvancedCheckBox.AutoSize = true;
+            this.AdvancedCheckBox.Location = new System.Drawing.Point(10, 105);
+            this.AdvancedCheckBox.Name = "AdvancedCheckBox";
+            this.AdvancedCheckBox.Size = new System.Drawing.Size(204, 16);
+            this.AdvancedCheckBox.TabIndex = 12;
+            this.AdvancedCheckBox.Text = "禁止将高阶统计保存到历史记录中";
+            this.AdvancedCheckBox.UseVisualStyleBackColor = true;
+            // 
             // TSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -3863,5 +3875,6 @@
         private System.Windows.Forms.Button HotKeyResetButton23;
         private System.Windows.Forms.TextBox HotKeyTextBox23;
         private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.CheckBox AdvancedCheckBox;
     }
 }

@@ -278,6 +278,11 @@ namespace WindowsFormsApplication2
         public static Color[] BmColors = new Color[] {Color.Blue,Color.Red,Color.Purple,Color.DeepPink};
 
         /// <summary>
+        /// 禁止保存高阶统计
+        /// </summary>
+        public static bool DisableSaveAdvanced = false;
+
+        /// <summary>
         /// 快捷键列表
         /// </summary>
         public static List<HotKey> HotKeyList = new List<HotKey> {

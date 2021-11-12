@@ -820,6 +820,8 @@ namespace WindowsFormsApplication2
             Glob.notShowjs = bool.Parse(IniRead("控制", "不显示即时", "False"));
             // 不自动复制
             Glob.notAutoCopy = bool.Parse(IniRead("控制", "不自动复制", "False"));
+            //不保存高阶
+            Glob.DisableSaveAdvanced = bool.Parse(IniRead("控制", "不保存高阶", "False"));
             // 符号选重
             Glob.useSymbolSelect = bool.Parse(IniRead("控制", "符号选重", "False"));
             //速度限制
@@ -2342,11 +2344,14 @@ namespace WindowsFormsApplication2
                         int databaseSegmentId = Glob.ScoreHistory.InsertSegment(Glob.TypeText, this.lblMatchCount.Text);
                         //* 保存成绩
                         Glob.ScoreHistory.InsertScore(Glob.TextTime.ToString("s"), int.Parse(Glob.Pre_Cout), Spsend, jj, mc, Glob.词库理论码长, Glob.TextHg, Math.Abs(Glob.TextBg - Glob.TextHg), Glob.回车, Glob.选重, Glob.TextCz, Glob.TextHg_, UserJz, Glob.效率, Glob.TextJs, TextLen, Glob.aTypeWords, Glob.TextDc_, UserTime, databaseSegmentId, this.lblTitle.Text, Glob.Instration);
-                        string curveData = string.Join("|", Glob.ChartSpeedArr);
-                        string speedAnalysisData = SpeedAnalysis();
-                        string typeAnalysisData = JsonConvert.SerializeObject(Glob.TypeReport);
-                        string keyAnalysisData = string.Join("|", Glob.KeysTotal);
-                        Glob.ScoreHistory.InsertAdvanced(Glob.TextTime.ToString("s"), curveData, speedAnalysisData, typeAnalysisData, keyAnalysisData);
+                        if (!Glob.DisableSaveAdvanced)
+                        { // 保存高阶统计数据
+                            string curveData = string.Join("|", Glob.ChartSpeedArr);
+                            string speedAnalysisData = SpeedAnalysis();
+                            string typeAnalysisData = JsonConvert.SerializeObject(Glob.TypeReport);
+                            string keyAnalysisData = string.Join("|", Glob.KeysTotal);
+                            Glob.ScoreHistory.InsertAdvanced(Glob.TextTime.ToString("s"), curveData, speedAnalysisData, typeAnalysisData, keyAnalysisData);
+                        }
                         #endregion
 
                         #region 记录当前数据

@@ -21,6 +21,10 @@ namespace WindowsFormsApplication2.Storage
             this.cmd.ExecuteNonQuery();
             this.cmd.CommandText = "CREATE INDEX IF NOT EXISTS score_segment_id ON score (segment_id);";
             this.cmd.ExecuteNonQuery();
+            this.cmd.CommandText = "CREATE TRIGGER IF NOT EXISTS score_delete_before BEFORE DELETE ON score FOR EACH ROW BEGIN DELETE FROM advanced WHERE score_time=old.score_time; END;";
+            this.cmd.ExecuteNonQuery();
+            this.cmd.CommandText = "CREATE TRIGGER IF NOT EXISTS score_delete_after AFTER DELETE ON score FOR EACH ROW WHEN (SELECT COUNT(1) FROM score WHERE segment_id=old.segment_id) = 0 BEGIN DELETE FROM segment WHERE id=old.segment_id; END;";
+            this.cmd.ExecuteNonQuery();
             this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS advanced(score_time DATETIME PRIMARY KEY NOT NULL, curve TEXT, speed_analysis TEXT, type_analysis TEXT, key_analysis TEXT, CONSTRAINT fk_score_advanced FOREIGN KEY (score_time) REFERENCES score(score_time));";
             this.cmd.ExecuteNonQuery();
         }
@@ -230,6 +234,22 @@ namespace WindowsFormsApplication2.Storage
             this.cmd.CommandText = $"SELECT content FROM segment WHERE id={id}";
             object readContent = this.cmd.ExecuteScalar();
             return readContent == null ? "" : readContent.ToString();
+        }
+
+        /// <summary>
+        /// 根据指定时间删除记录
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        public bool DeleteScoreItemByTime(string time)
+        {
+            this.cmd.CommandText = $"DELETE FROM score WHERE score_time='{time.Replace(" ", "T")}'";
+            int rows = this.cmd.ExecuteNonQuery();
+            if (rows > 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 

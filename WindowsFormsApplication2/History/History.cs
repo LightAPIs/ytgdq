@@ -51,7 +51,12 @@ namespace WindowsFormsApplication2.History
         /// <summary>
         /// 总页数
         /// </summary>
-        private int totalPage = 0;
+        private int totalPage { 
+            get
+            {
+                return (int)Math.Ceiling((float)this.totalCount / this.PageSize);
+            } 
+        }
 
         public History(Form1 frm1)
         {
@@ -143,6 +148,13 @@ namespace WindowsFormsApplication2.History
             this.dataGridView1.Enabled = false;
         }
 
+        private void UpdateGridToolBar()
+        {
+            this.CountLabel.Text = this.totalCount.ToString();
+            this.TotalPageNumLabel.Text = "/" + this.totalPage.ToString() + "页";
+            this.PageNumTextBox.Text = this.currentPage.ToString();
+        }
+
         private void ShowDataFromDate(DateTime date)
         {
             this.ClearGridData();
@@ -150,9 +162,6 @@ namespace WindowsFormsApplication2.History
             this.dataType.Date = date;
             this.ResultLabel.Text = "日期：" + date.ToString("d");
             this.totalCount = Glob.ScoreHistory.GetScoreCountFromDate(date);
-            this.totalPage = (int)Math.Ceiling((float)this.totalCount / PageSize);
-            this.CountLabel.Text = this.totalCount.ToString();
-            this.TotalPageNumLabel.Text = "/" + this.totalPage.ToString() + "页";
 
             if (this.totalPage > 0)
             {
@@ -162,8 +171,8 @@ namespace WindowsFormsApplication2.History
             {
                 this.currentPage = 0;
             }
-            this.PageNumTextBox.Text = this.currentPage.ToString();
 
+            this.UpdateGridToolBar();
             if (this.totalCount > 0)
             {
                 this.currentScoreData = Glob.ScoreHistory.GetScoreFromDate(date, 0, PageSize);
@@ -178,9 +187,6 @@ namespace WindowsFormsApplication2.History
             this.dataType.Title = title;
             this.ResultLabel.Text = "搜索标题：" + title;
             this.totalCount = Glob.ScoreHistory.GetScoreCountFromTitle(title);
-            this.totalPage = (int)Math.Ceiling((float)this.totalCount / PageSize);
-            this.CountLabel.Text = this.totalCount.ToString();
-            this.TotalPageNumLabel.Text = "/" + this.totalPage.ToString() + "页";
 
             if (this.totalPage > 0)
             {
@@ -190,8 +196,8 @@ namespace WindowsFormsApplication2.History
             {
                 this.currentPage = 0;
             }
-            this.PageNumTextBox.Text = this.currentPage.ToString();
 
+            this.UpdateGridToolBar();
             if (this.totalCount > 0)
             {
                 this.currentScoreData = Glob.ScoreHistory.GetScoreFromTitle(title, 0, PageSize);
@@ -206,9 +212,6 @@ namespace WindowsFormsApplication2.History
             this.dataType.SegmentId = id;
             this.ResultLabel.Text = "文段：" + id.ToString();
             this.totalCount = Glob.ScoreHistory.GetScoreCountFromSegmentId(id);
-            this.totalPage = (int)Math.Ceiling((float)this.totalCount / PageSize);
-            this.CountLabel.Text = this.totalCount.ToString();
-            this.TotalPageNumLabel.Text = "/" + this.totalPage.ToString() + "页";
 
             if (this.totalPage > 0)
             {
@@ -218,8 +221,8 @@ namespace WindowsFormsApplication2.History
             {
                 this.currentPage = 0;
             }
-            this.PageNumTextBox.Text = this.currentPage.ToString();
 
+            this.UpdateGridToolBar();
             if (this.totalCount > 0)
             {
                 this.currentScoreData = Glob.ScoreHistory.GetScoreFromSegmentId(id, 0, PageSize);
@@ -430,5 +433,41 @@ namespace WindowsFormsApplication2.History
                 e.Handled = true;
             }
         }
+
+        #region 删除数据
+        private void DeleteItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string scoreTime = this.gridHandler.MenuGetScoreTime();
+            if (!string.IsNullOrEmpty(scoreTime))
+            {
+                switch (MessageBox.Show("确认删除跟打时间为 " + scoreTime + " 的这条记录吗？", "删除询问", MessageBoxButtons.YesNoCancel))
+                {
+                    case DialogResult.Yes:
+                        if (Glob.ScoreHistory.DeleteScoreItemByTime(scoreTime))
+                        {
+                            this.totalCount--;
+                            if (this.totalCount == 0)
+                            {
+                                this.currentPage = 0;
+                                this.UpdateGridToolBar();
+                                this.ClearGridData();
+                            }
+                            else
+                            {
+                                if (this.currentPage > this.totalPage)
+                                {
+                                    this.currentPage = this.totalPage;
+                                }
+                                this.UpdateGridToolBar();
+                                this.JumpPageHandler(this.currentPage);
+                            }
+                        }
+                        break;
+                    case DialogResult.No:
+                        break;
+                }
+            }
+        }
+        #endregion
     }
 }

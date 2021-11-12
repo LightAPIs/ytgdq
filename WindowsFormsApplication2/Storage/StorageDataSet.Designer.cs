@@ -30,8 +30,6 @@ namespace WindowsFormsApplication2.Storage {
         
         private SegmentDataTable tableSegment;
         
-        private global::System.Data.DataRelation relationFK_Score_Advanced;
-        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -244,7 +242,6 @@ namespace WindowsFormsApplication2.Storage {
                     this.tableSegment.InitVars();
                 }
             }
-            this.relationFK_Score_Advanced = this.Relations["FK_Score_Advanced"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -269,10 +266,13 @@ namespace WindowsFormsApplication2.Storage {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            this.relationFK_Score_Advanced = new global::System.Data.DataRelation("FK_Score_Advanced", new global::System.Data.DataColumn[] {
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_Score_Advanced", new global::System.Data.DataColumn[] {
                         this.tableScore.score_timeColumn}, new global::System.Data.DataColumn[] {
-                        this.tableAdvanced.score_timeColumn}, false);
-            this.Relations.Add(this.relationFK_Score_Advanced);
+                        this.tableAdvanced.score_timeColumn});
+            this.tableAdvanced.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.None;
+            fkc.UpdateRule = global::System.Data.Rule.None;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1058,17 +1058,14 @@ namespace WindowsFormsApplication2.Storage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public AdvancedRow AddAdvancedRow(ScoreRow parentScoreRowByFK_Score_Advanced, string curve, string speed_analysis, string type_analysis, string key_analysis) {
+            public AdvancedRow AddAdvancedRow(System.DateTime score_time, string curve, string speed_analysis, string type_analysis, string key_analysis) {
                 AdvancedRow rowAdvancedRow = ((AdvancedRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
+                        score_time,
                         curve,
                         speed_analysis,
                         type_analysis,
                         key_analysis};
-                if ((parentScoreRowByFK_Score_Advanced != null)) {
-                    columnValuesArray[0] = parentScoreRowByFK_Score_Advanced[0];
-                }
                 rowAdvancedRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowAdvancedRow);
                 return rowAdvancedRow;
@@ -2146,17 +2143,6 @@ namespace WindowsFormsApplication2.Storage {
             public void SetversionNull() {
                 this[this.tableScore.versionColumn] = global::System.Convert.DBNull;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public AdvancedRow[] GetAdvancedRows() {
-                if ((this.Table.ChildRelations["FK_Score_Advanced"] == null)) {
-                    return new AdvancedRow[0];
-                }
-                else {
-                    return ((AdvancedRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Score_Advanced"])));
-                }
-            }
         }
         
         /// <summary>
@@ -2245,17 +2231,6 @@ namespace WindowsFormsApplication2.Storage {
                 }
                 set {
                     this[this.tableAdvanced.key_analysisColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ScoreRow ScoreRow {
-                get {
-                    return ((ScoreRow)(this.GetParentRow(this.Table.ParentRelations["FK_Score_Advanced"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Score_Advanced"]);
                 }
             }
             

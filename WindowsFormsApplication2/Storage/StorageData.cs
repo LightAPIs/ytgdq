@@ -13,11 +13,15 @@ namespace WindowsFormsApplication2.Storage
 
         public override void Init()
         {
-            this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS score(score_time DATETIME PRIMARY KEY NOT NULL, segment_num INT, speed TEXT, keystroke DOUBLE, code_len DOUBLE, calc_len DOUBLE, back_change INT, backspace INT, enter INT, duplicate INT, error INT, back_rate DOUBLE, accuracy_rate DOUBLE, effciency INT, keys INT, count INT, type_words INT, words_rate DOUBLE, cost_time TEXT, segment_id INTEGER, article_title TEXT, version TEXT);";
-            this.cmd.ExecuteNonQuery();
-            this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS advanced(score_time DATETIME PRIMARY KEY NOT NULL, curve TEXT, speed_analysis TEXT, type_analysis TEXT, key_analysis TEXT);";
+            this.cmd.CommandText = "PRAGMA foreign_keys = ON;";
             this.cmd.ExecuteNonQuery();
             this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS segment(id INTEGER PRIMARY KEY AUTOINCREMENT, content TEXT, check_code VARCHAR(5));";
+            this.cmd.ExecuteNonQuery();
+            this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS score(score_time DATETIME PRIMARY KEY NOT NULL, segment_num INT, speed TEXT, keystroke DOUBLE, code_len DOUBLE, calc_len DOUBLE, back_change INT, backspace INT, enter INT, duplicate INT, error INT, back_rate DOUBLE, accuracy_rate DOUBLE, effciency INT, keys INT, count INT, type_words INT, words_rate DOUBLE, cost_time TEXT, segment_id INTEGER NOT NULL, article_title TEXT, version TEXT, CONSTRAINT fk_segment_score FOREIGN KEY (segment_id) REFERENCES segment(id));";
+            this.cmd.ExecuteNonQuery();
+            this.cmd.CommandText = "CREATE INDEX IF NOT EXISTS score_segment_id ON score (segment_id);";
+            this.cmd.ExecuteNonQuery();
+            this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS advanced(score_time DATETIME PRIMARY KEY NOT NULL, curve TEXT, speed_analysis TEXT, type_analysis TEXT, key_analysis TEXT, CONSTRAINT fk_score_advanced FOREIGN KEY (score_time) REFERENCES score(score_time));";
             this.cmd.ExecuteNonQuery();
         }
 
@@ -201,6 +205,19 @@ namespace WindowsFormsApplication2.Storage
                 return myAdvanced[0];
             }
             return null;
+        }
+
+        /// <summary>
+        /// 根据时间获取指定高阶统计
+        /// </summary>
+        /// <param name="time"></param>
+        /// <param name="dataType"></param>
+        /// <returns></returns>
+        public string GetAdvancedDataFromTime(string time, string dataType)
+        {
+            this.cmd.CommandText = $"SELECT {dataType} FROM advanced WHERE score_time='{time.Replace(" ", "T")}'";
+            object readStr = this.cmd.ExecuteScalar();
+            return readStr == null ? "" : readStr.ToString();
         }
 
         /// <summary>

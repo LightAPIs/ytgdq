@@ -114,15 +114,14 @@ namespace WindowsFormsApplication2.History
             string scoreTime = this.MenuGetScoreTime();
             if (!string.IsNullOrEmpty(scoreTime))
             {
-                StorageDataSet.AdvancedRow advRow = Glob.ScoreHistory.GetAdvancedRowFromTime(scoreTime);
+                string adv = Glob.ScoreHistory.GetAdvancedDataFromTime(scoreTime, "speed_analysis");
                 StorageDataSet.ScoreRow sd = StorageDataSet.GetScoreRowFromTime(curData, scoreTime);
-                if (advRow != null && sd != null)
+                if (!string.IsNullOrEmpty(adv) && sd != null)
                 {
                     string sn = sd["segment_num"].ToString();
-                    string gd = advRow["speed_analysis"].ToString();
                     string vi = sd["version"].ToString();
 
-                    SpeedAn sa = new SpeedAn(scoreTime, sn, gd, vi, frm);
+                    SpeedAn sa = new SpeedAn(scoreTime, sn, adv, vi, frm);
                     sa.ShowDialog();
                 }
                 else
@@ -141,13 +140,13 @@ namespace WindowsFormsApplication2.History
             string scoreTime = this.MenuGetScoreTime();
             if (!string.IsNullOrEmpty(scoreTime))
             {
-                StorageDataSet.AdvancedRow advRow = Glob.ScoreHistory.GetAdvancedRowFromTime(scoreTime);
+                string adv = Glob.ScoreHistory.GetAdvancedDataFromTime(scoreTime, "type_analysis");
                 StorageDataSet.ScoreRow sd = StorageDataSet.GetScoreRowFromTime(curData, scoreTime);
-                if (advRow != null && sd != null)
+                if (!string.IsNullOrEmpty(adv) && sd != null)
                 {
                     try
                     {
-                        List<TypeDate> td = JsonConvert.DeserializeObject<List<TypeDate>>(advRow["type_analysis"].ToString());
+                        List<TypeDate> td = JsonConvert.DeserializeObject<List<TypeDate>>(adv);
                         string content = Glob.ScoreHistory.GetContentFromSegmentId((int)sd["segment_id"]);
                         string[] speed = sd["speed"].ToString().Split('/');
                         int bc = (int)sd["back_change"];
@@ -176,10 +175,10 @@ namespace WindowsFormsApplication2.History
             string scoreTime = this.MenuGetScoreTime();
             if (!string.IsNullOrEmpty(scoreTime))
             {
-                StorageDataSet.AdvancedRow advRow = Glob.ScoreHistory.GetAdvancedRowFromTime(scoreTime);
-                if (advRow != null)
+                string adv = Glob.ScoreHistory.GetAdvancedDataFromTime(scoreTime, "key_analysis");
+                if (!string.IsNullOrEmpty(adv))
                 {
-                    int[] keysData = Array.ConvertAll(advRow["key_analysis"].ToString().Split('|'), s => int.Parse(s));
+                    int[] keysData = Array.ConvertAll(adv.Split('|'), s => int.Parse(s));
                     KeyAn kan = new KeyAn(keysData, scoreTime);
                     kan.ShowDialog();
                 }

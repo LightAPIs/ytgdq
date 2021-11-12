@@ -239,10 +239,10 @@ namespace WindowsFormsApplication2.History
             }
             else
             {
-                StorageDataSet.AdvancedRow advRow = Glob.ScoreHistory.GetAdvancedRowFromTime(scoreTime);
-                if (advRow != null)
+                string adv = Glob.ScoreHistory.GetAdvancedDataFromTime(scoreTime, "curve");
+                if (!string.IsNullOrEmpty(adv))
                 {
-                    double[] advCurve = Array.ConvertAll(advRow["curve"].ToString().Split('|'), s => double.Parse(s));
+                    double[] advCurve = Array.ConvertAll(adv.Split('|'), s => double.Parse(s));
                     foreach (double ce in advCurve)
                     {
                         this.SpeedChart.Series[0].Points.AddY(ce);

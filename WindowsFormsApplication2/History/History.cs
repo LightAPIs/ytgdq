@@ -185,7 +185,7 @@ namespace WindowsFormsApplication2.History
             this.ClearGridData();
             this.dataType.Cur = "Title";
             this.dataType.Title = title;
-            this.ResultLabel.Text = "搜索标题：" + title;
+            this.ResultLabel.Text = "标题：" + title;
             this.totalCount = Glob.ScoreHistory.GetScoreCountFromTitle(title);
 
             if (this.totalPage > 0)
@@ -201,6 +201,31 @@ namespace WindowsFormsApplication2.History
             if (this.totalCount > 0)
             {
                 this.currentScoreData = Glob.ScoreHistory.GetScoreFromTitle(title, 0, PageSize);
+            }
+            this.ShowGridData();
+        }
+
+        private void ShowDataFromSubTitle(string title)
+        {
+            this.ClearGridData();
+            this.dataType.Cur = "SubTitle";
+            this.dataType.SubTitle = title;
+            this.ResultLabel.Text = "搜索标题：" + title;
+            this.totalCount = Glob.ScoreHistory.GetScoreCountFromSubTitle(title);
+
+            if (this.totalPage > 0)
+            {
+                this.currentPage = 1;
+            }
+            else
+            {
+                this.currentPage = 0;
+            }
+
+            this.UpdateGridToolBar();
+            if (this.totalCount > 0)
+            {
+                this.currentScoreData = Glob.ScoreHistory.GetScoreFromSubTitle(title, 0, PageSize);
             }
             this.ShowGridData();
         }
@@ -339,7 +364,7 @@ namespace WindowsFormsApplication2.History
             string sText = this.SearchTextBox.Text.Trim();
             if (!string.IsNullOrEmpty(sText))
             {
-                this.ShowDataFromTitle(sText);
+                this.ShowDataFromSubTitle(sText);
             }
         }
 
@@ -372,6 +397,9 @@ namespace WindowsFormsApplication2.History
                     break;
                 case "Title":
                     this.currentScoreData = Glob.ScoreHistory.GetScoreFromTitle(this.dataType.Title, (pageNum - 1) * PageSize, PageSize);
+                    break;
+                case "SubTitle":
+                    this.currentScoreData = Glob.ScoreHistory.GetScoreFromSubTitle(this.dataType.SubTitle, (pageNum - 1) * PageSize, PageSize);
                     break;
                 case "SegmentId":
                     this.currentScoreData = Glob.ScoreHistory.GetScoreFromSegmentId(this.dataType.SegmentId, (pageNum - 1) * PageSize, PageSize);

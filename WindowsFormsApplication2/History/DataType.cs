@@ -23,6 +23,11 @@ namespace WindowsFormsApplication2.History
         public string Title { get; set; }
 
         /// <summary>
+        /// 标题片段
+        /// </summary>
+        public string SubTitle { get; set; }
+
+        /// <summary>
         /// 文段 id
         /// </summary>
         public int SegmentId { get; set; }

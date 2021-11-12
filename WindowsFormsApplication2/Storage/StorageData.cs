@@ -21,6 +21,8 @@ namespace WindowsFormsApplication2.Storage
             this.cmd.ExecuteNonQuery();
             this.cmd.CommandText = "CREATE INDEX IF NOT EXISTS score_segment_id ON score (segment_id);";
             this.cmd.ExecuteNonQuery();
+            this.cmd.CommandText = "CREATE INDEX IF NOT EXISTS score_article_title ON score (article_title)";
+            this.cmd.ExecuteNonQuery();
             this.cmd.CommandText = "CREATE TRIGGER IF NOT EXISTS score_delete_before BEFORE DELETE ON score FOR EACH ROW BEGIN DELETE FROM advanced WHERE score_time=old.score_time; END;";
             this.cmd.ExecuteNonQuery();
             this.cmd.CommandText = "CREATE TRIGGER IF NOT EXISTS score_delete_after AFTER DELETE ON score FOR EACH ROW WHEN (SELECT COUNT(1) FROM score WHERE segment_id=old.segment_id) = 0 BEGIN DELETE FROM segment WHERE id=old.segment_id; END;";
@@ -128,6 +130,39 @@ namespace WindowsFormsApplication2.Storage
         }
 
         /// <summary>
+        /// 搜索包含指定标题文本的成绩
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="start"></param>
+        /// <param name="limit"></param>
+        /// <returns></returns>
+        public StorageDataSet.ScoreDataTable GetScoreFromSubTitle(string title, int start, int limit)
+        {
+            this.cmd.CommandText = $"SELECT * FROM score WHERE article_title LIKE '%{this.ConvertText(title).Replace("%", "/%").Replace("_", "/_")}%' LIMIT {limit} OFFSET {start}";
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(this.cmd);
+            StorageDataSet.ScoreDataTable myScore = new StorageDataSet.ScoreDataTable();
+            adapter.Fill(myScore);
+            return myScore;
+        }
+
+        /// <summary>
+        /// 搜索包含指定标题文本的成绩数量
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public int GetScoreCountFromSubTitle(string title)
+        {
+            this.cmd.CommandText = $"SELECT COUNT(1) FROM score WHERE article_title LIKE '%{this.ConvertText(title).Replace("%", "/%").Replace("_", "/_")}%'";
+            object readNum = this.cmd.ExecuteScalar();
+
+            if (readNum == null)
+            {
+                return 0;
+            }
+            return Convert.ToInt32(readNum);
+        }
+
+        /// <summary>
         /// 根据标题获取成绩
         /// </summary>
         /// <param name="title"></param>
@@ -136,7 +171,7 @@ namespace WindowsFormsApplication2.Storage
         /// <returns></returns>
         public StorageDataSet.ScoreDataTable GetScoreFromTitle(string title, int start, int limit)
         {
-            this.cmd.CommandText = $"SELECT * FROM score WHERE article_title LIKE '%{this.ConvertText(title).Replace("%", "/%").Replace("_", "/_")}%' LIMIT {limit} OFFSET {start}";
+            this.cmd.CommandText = $"SELECT * FROM score WHERE article_title='{this.ConvertText(title)}' LIMIT {limit} OFFSET {start}";
             SQLiteDataAdapter adapter = new SQLiteDataAdapter(this.cmd);
             StorageDataSet.ScoreDataTable myScore = new StorageDataSet.ScoreDataTable();
             adapter.Fill(myScore);
@@ -150,7 +185,7 @@ namespace WindowsFormsApplication2.Storage
         /// <returns></returns>
         public int GetScoreCountFromTitle(string title)
         {
-            this.cmd.CommandText = $"SELECT COUNT(1) FROM score WHERE article_title LIKE '%{this.ConvertText(title).Replace("%", "/%").Replace("_", "/_")}%'";
+            this.cmd.CommandText = $"SELECT COUNT(1) FROM score WHERE article_title='{this.ConvertText(title)}'";
             object readNum = this.cmd.ExecuteScalar();
 
             if (readNum == null)

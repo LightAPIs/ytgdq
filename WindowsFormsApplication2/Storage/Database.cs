@@ -44,6 +44,15 @@ namespace WindowsFormsApplication2.Storage
             }
         }
 
+        /// <summary>
+        /// 整理数据库
+        /// </summary>
+        public void CleanDisk()
+        {
+            this.cmd.CommandText = "VACUUM";
+            this.cmd.ExecuteNonQuery();
+        }
+
         public string ConvertText(string text)
         {
             return text.Replace("'", "''");

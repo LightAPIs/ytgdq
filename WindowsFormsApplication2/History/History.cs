@@ -477,14 +477,15 @@ namespace WindowsFormsApplication2.History
             string scoreTime = this.gridHandler.MenuGetScoreTime();
             if (!string.IsNullOrEmpty(scoreTime))
             {
-                switch (MessageBox.Show("确认删除跟打时间为 " + scoreTime + " 的这条记录吗？", "删除询问", MessageBoxButtons.YesNoCancel))
+                switch (MessageBox.Show("确认删除跟打时间为 " + scoreTime + " 的这条记录吗？", "删除询问", MessageBoxButtons.YesNo))
                 {
                     case DialogResult.Yes:
                         if (Glob.ScoreHistory.DeleteScoreItemByTime(scoreTime))
                         {
                             this.totalCount--;
-                            if (this.totalCount == 0)
+                            if (this.totalCount <= 0)
                             {
+                                this.totalCount = 0;
                                 this.currentPage = 0;
                                 this.UpdateGridToolBar();
                                 this.ClearGridData();
@@ -503,6 +504,48 @@ namespace WindowsFormsApplication2.History
                     case DialogResult.No:
                         break;
                 }
+            }
+        }
+
+        private void DeletePageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            switch (MessageBox.Show("确认删除该页所有记录吗？", "删除询问", MessageBoxButtons.YesNo))
+            {
+                case DialogResult.Yes:
+                    int deleteCount = 0;
+                    foreach (var dataRow in this.currentScoreData)
+                    {
+                        if (Glob.ScoreHistory.DeleteScoreItemByTime(dataRow["score_time"].ToString()))
+                        {
+                            deleteCount++;
+                        }
+                    }
+
+                    if (deleteCount > 20)
+                    { // 返还磁盘空间
+                        Glob.ScoreHistory.CleanDisk();
+                    }
+
+                    this.totalCount -= deleteCount;
+                    if (this.totalCount <= 0)
+                    {
+                        this.totalCount = 0;
+                        this.currentPage = 0;
+                        this.UpdateGridToolBar();
+                        this.ClearGridData();
+                    }
+                    else
+                    {
+                        if (this.currentPage > this.totalPage)
+                        {
+                            this.currentPage = this.totalPage;
+                        }
+                        this.UpdateGridToolBar();
+                        this.JumpPageHandler(this.currentPage);
+                    }
+                    break;
+                case DialogResult.No:
+                    break;
             }
         }
         #endregion

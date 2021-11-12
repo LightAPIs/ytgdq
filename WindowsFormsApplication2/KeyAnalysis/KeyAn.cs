@@ -92,11 +92,21 @@ namespace WindowsFormsApplication2.KeyAnalysis
             if (this.keysData.Length == 50)
             {
                 int sum = this.keysData.Sum();
+                int sum2 = sum - this.keysData[13] - this.keysData[38] - this.keysData[49];
                 this.AllKeysLabel.Text = sum.ToString();
                 for (int i = 0; i < keysData.Length; i++)
                 {
                     int count = keysData[i];
-                    double value = sum > 0 ? ((double)count / sum * 100) : 0;
+                    double value;
+                    if (i == 13 || i == 38 || i == 49)
+                    {
+                        value = sum > 0 ? ((double)count / sum * 100) : 0;
+                    }
+                    else
+                    {
+                        value = sum2 > 0 ? ((double)count / sum2 * 100) : 0;
+                    }
+                    
                     Button btn = allKeyButton[i];
                     this.KeyToolTip.SetToolTip(btn, count.ToString() + "次");
 

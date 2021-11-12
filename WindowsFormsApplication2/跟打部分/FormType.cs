@@ -6053,6 +6053,11 @@ namespace WindowsFormsApplication2
             this.gridHandler.CopyPicScore(this.currentScoreData);
         }
 
+        private void CopyTitleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.gridHandler.CopyTitle();
+        }
+
         private void CopyCotentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.gridHandler.CopyContent(this.currentScoreData);

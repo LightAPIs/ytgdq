@@ -88,6 +88,25 @@ namespace WindowsFormsApplication2.History
         }
 
         /// <summary>
+        /// 复制文段标题
+        /// </summary>
+        public void CopyTitle()
+        {
+            string scoreTime = this.MenuGetScoreTime();
+            if (!string.IsNullOrEmpty(scoreTime))
+            {
+                if (this.mouseLocation.RowIndex >= 0)
+                {
+                    DataGridViewRow curRow = this.historyDataGridView.Rows[this.mouseLocation.RowIndex];
+                    if (curRow != null)
+                    {
+                        ClipboardHandler.SetTextToClipboard(curRow.Cells[20].Value.ToString());
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// 复制文段内容
         /// </summary>
         /// <param name="curData"></param>

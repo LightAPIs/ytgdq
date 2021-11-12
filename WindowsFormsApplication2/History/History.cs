@@ -279,6 +279,11 @@ namespace WindowsFormsApplication2.History
             this.gridHandler.CopyPicScore(this.currentScoreData);
         }
 
+        private void CopyTitleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.gridHandler.CopyTitle();
+        }
+
         private void CopyContentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.gridHandler.CopyContent(this.currentScoreData);
@@ -347,10 +352,12 @@ namespace WindowsFormsApplication2.History
         }
         #endregion
 
+        #region 选择日期
         private void MonthCalendar_DateSelected(object sender, DateRangeEventArgs e)
         {
             this.ShowDataFromDate(e.Start);
         }
+        #endregion
 
         #region 跳转页数处理
         private void JumpPageHandler(int pageNum)
@@ -374,6 +381,7 @@ namespace WindowsFormsApplication2.History
         }
         #endregion
 
+        #region 翻页按钮
         private void FirstPageButton_Click(object sender, EventArgs e)
         {
             if (this.currentPage > 1)
@@ -433,6 +441,7 @@ namespace WindowsFormsApplication2.History
                 e.Handled = true;
             }
         }
+        #endregion
 
         #region 删除数据
         private void DeleteItemToolStripMenuItem_Click(object sender, EventArgs e)

@@ -288,6 +288,20 @@ namespace WindowsFormsApplication2.Storage
         }
 
         /// <summary>
+        /// 根据 segment_id 删除记录
+        /// </summary>
+        /// <param name="segmentId"></param>
+        public void DeleteScoreItemBySegmentId(long segmentId)
+        {
+            this.cmd.CommandText = $"DELETE FROM score WHERE segment_id={segmentId}";
+            int count = this.cmd.ExecuteNonQuery();
+            if (count > 20)
+            {
+                this.CleanDisk();
+            }
+        }
+
+        /// <summary>
         /// 根据日期删除记录
         /// </summary>
         /// <param name="date"></param>
@@ -302,6 +316,9 @@ namespace WindowsFormsApplication2.Storage
             }
         }
 
+        /// <summary>
+        /// 删除所有成绩数据
+        /// </summary>
         public void DeleteAllScore()
         {
             this.cmd.CommandText = $"DELETE FROM score;";

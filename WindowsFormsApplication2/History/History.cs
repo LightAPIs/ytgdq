@@ -504,6 +504,53 @@ namespace WindowsFormsApplication2.History
             }
         }
 
+        private void DeleteSegmentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            long segmentId = this.gridHandler.GetSegmentId(this.currentScoreData);
+            if (segmentId != -1)
+            {
+                switch (MessageBox.Show("确认删除文段ID为 " + segmentId.ToString() + " 的所有记录吗？", "删除询问", MessageBoxButtons.YesNo))
+                {
+                    case DialogResult.Yes:
+                        Glob.ScoreHistory.DeleteScoreItemBySegmentId(segmentId);
+                        switch (this.dataType.Cur)
+                        {
+                            case "Date":
+                                this.totalCount = Glob.ScoreHistory.GetScoreCountFromDate(this.dataType.Date);
+                                break;
+                            case "Title":
+                                this.totalCount = Glob.ScoreHistory.GetScoreCountFromTitle(this.dataType.Title);
+                                break;
+                            case "SubTitle":
+                                this.totalCount = Glob.ScoreHistory.GetScoreCountFromSubTitle(this.dataType.SubTitle);
+                                break;
+                            case "SegmentId":
+                                this.totalCount = Glob.ScoreHistory.GetScoreCountFromSegmentId(this.dataType.SegmentId);
+                                break;
+                        }
+
+                        if (this.totalCount == 0)
+                        {
+                            this.currentPage = 0;
+                            this.UpdateGridToolBar();
+                            this.ClearGridData();
+                        }
+                        else
+                        {
+                            if (this.currentPage > this.TotalPage)
+                            {
+                                this.currentPage = this.TotalPage;
+                            }
+                            this.UpdateGridToolBar();
+                            this.JumpPageHandler(this.currentPage);
+                        }
+                        break;
+                    case DialogResult.No:
+                        break;
+                }
+            }
+        }
+
         private void DeletePageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             switch (MessageBox.Show("确认删除该页所有记录吗？", "删除询问", MessageBoxButtons.YesNo))

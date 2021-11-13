@@ -114,14 +114,16 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.RetypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.DeleteItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DeletePageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.MonthCalendarContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.DeleteDayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteMonthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteYearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeletePageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteSegmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PreviewGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -794,8 +796,7 @@
             this.toolStripSeparator3,
             this.RetypeToolStripMenuItem,
             this.toolStripSeparator5,
-            this.DeleteItemToolStripMenuItem,
-            this.DeletePageToolStripMenuItem});
+            this.DeleteGroupToolStripMenuItem});
             this.HistoryContextMenuStrip.Name = "HistoryContextMenuStrip";
             this.HistoryContextMenuStrip.Size = new System.Drawing.Size(181, 314);
             // 
@@ -909,22 +910,6 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
-            // DeleteItemToolStripMenuItem
-            // 
-            this.DeleteItemToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
-            this.DeleteItemToolStripMenuItem.Name = "DeleteItemToolStripMenuItem";
-            this.DeleteItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.DeleteItemToolStripMenuItem.Text = "删除此行记录";
-            this.DeleteItemToolStripMenuItem.Click += new System.EventHandler(this.DeleteItemToolStripMenuItem_Click);
-            // 
-            // DeletePageToolStripMenuItem
-            // 
-            this.DeletePageToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
-            this.DeletePageToolStripMenuItem.Name = "DeletePageToolStripMenuItem";
-            this.DeletePageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.DeletePageToolStripMenuItem.Text = "删除此页记录";
-            this.DeletePageToolStripMenuItem.Click += new System.EventHandler(this.DeletePageToolStripMenuItem_Click);
-            // 
             // MonthCalendarContextMenuStrip
             // 
             this.MonthCalendarContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -966,6 +951,40 @@
             this.DeleteAllToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.DeleteAllToolStripMenuItem.Text = "删除所有历史记录";
             this.DeleteAllToolStripMenuItem.Click += new System.EventHandler(this.DeleteAllToolStripMenuItem_Click);
+            // 
+            // DeleteGroupToolStripMenuItem
+            // 
+            this.DeleteGroupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DeleteItemToolStripMenuItem,
+            this.DeleteSegmentToolStripMenuItem,
+            this.DeletePageToolStripMenuItem});
+            this.DeleteGroupToolStripMenuItem.Name = "DeleteGroupToolStripMenuItem";
+            this.DeleteGroupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DeleteGroupToolStripMenuItem.Text = "删除记录";
+            // 
+            // DeleteItemToolStripMenuItem
+            // 
+            this.DeleteItemToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
+            this.DeleteItemToolStripMenuItem.Name = "DeleteItemToolStripMenuItem";
+            this.DeleteItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DeleteItemToolStripMenuItem.Text = "删除此行记录";
+            this.DeleteItemToolStripMenuItem.Click += new System.EventHandler(this.DeleteItemToolStripMenuItem_Click);
+            // 
+            // DeletePageToolStripMenuItem
+            // 
+            this.DeletePageToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
+            this.DeletePageToolStripMenuItem.Name = "DeletePageToolStripMenuItem";
+            this.DeletePageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DeletePageToolStripMenuItem.Text = "删除此页记录";
+            this.DeletePageToolStripMenuItem.Click += new System.EventHandler(this.DeletePageToolStripMenuItem_Click);
+            // 
+            // DeleteSegmentToolStripMenuItem
+            // 
+            this.DeleteSegmentToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
+            this.DeleteSegmentToolStripMenuItem.Name = "DeleteSegmentToolStripMenuItem";
+            this.DeleteSegmentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DeleteSegmentToolStripMenuItem.Text = "删除此文段记录";
+            this.DeleteSegmentToolStripMenuItem.Click += new System.EventHandler(this.DeleteSegmentToolStripMenuItem_Click);
             // 
             // History
             // 
@@ -1051,13 +1070,15 @@
         private System.Windows.Forms.Label TotalPageNumLabel;
         private System.Windows.Forms.TextBox PageNumTextBox;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripMenuItem DeleteItemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CopyTitleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem DeletePageToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip MonthCalendarContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem DeleteDayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DeleteMonthToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DeleteYearToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DeleteAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DeleteGroupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DeleteItemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DeletePageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DeleteSegmentToolStripMenuItem;
     }
 }

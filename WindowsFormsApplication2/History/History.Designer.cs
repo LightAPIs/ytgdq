@@ -30,35 +30,35 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(History));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle101 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle102 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle123 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle124 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle125 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle103 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle104 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle105 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle106 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle107 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle108 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle109 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle110 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle111 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle112 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle113 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle114 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle115 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle116 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle117 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle118 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle119 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle120 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle121 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle122 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MonthCalendar = new System.Windows.Forms.MonthCalendar();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.PreviewGroupBox = new System.Windows.Forms.GroupBox();
             this.PreviewRichTextBox = new System.Windows.Forms.RichTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.ToolPanel = new System.Windows.Forms.Panel();
@@ -122,7 +122,7 @@
             this.DeleteMonthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteYearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox1.SuspendLayout();
+            this.PreviewGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -147,16 +147,16 @@
             this.MonthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendar_DateSelected);
             this.MonthCalendar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MonthCalendar_MouseDown);
             // 
-            // groupBox1
+            // PreviewGroupBox
             // 
-            this.groupBox1.Controls.Add(this.PreviewRichTextBox);
-            this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox1.Location = new System.Drawing.Point(228, 4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(462, 180);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "文段预览";
+            this.PreviewGroupBox.Controls.Add(this.PreviewRichTextBox);
+            this.PreviewGroupBox.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.PreviewGroupBox.Location = new System.Drawing.Point(228, 4);
+            this.PreviewGroupBox.Name = "PreviewGroupBox";
+            this.PreviewGroupBox.Size = new System.Drawing.Size(462, 180);
+            this.PreviewGroupBox.TabIndex = 1;
+            this.PreviewGroupBox.TabStop = false;
+            this.PreviewGroupBox.Text = "文段预览";
             // 
             // PreviewRichTextBox
             // 
@@ -182,7 +182,7 @@
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.splitContainer1.Panel1.Controls.Add(this.ToolPanel);
             this.splitContainer1.Panel1.Controls.Add(this.SpeedChart);
-            this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.PreviewGroupBox);
             this.splitContainer1.Panel1.Controls.Add(this.MonthCalendar);
             // 
             // splitContainer1.Panel2
@@ -357,29 +357,29 @@
             this.SpeedChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SpeedChart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
-            chartArea5.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea5.AxisX.LabelAutoFitMaxFontSize = 7;
-            chartArea5.AxisX.LineColor = System.Drawing.Color.White;
-            chartArea5.AxisX.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            chartArea5.AxisX.MajorTickMark.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(35)))));
-            chartArea5.AxisX.Minimum = 1D;
-            chartArea5.AxisX2.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            chartArea5.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea5.AxisY.LabelAutoFitMaxFontSize = 7;
-            chartArea5.AxisY.LineColor = System.Drawing.Color.White;
-            chartArea5.AxisY.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            chartArea5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
-            chartArea5.Name = "ChartArea1";
-            this.SpeedChart.ChartAreas.Add(chartArea5);
+            chartArea1.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.AxisX.LabelAutoFitMaxFontSize = 7;
+            chartArea1.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            chartArea1.AxisX.MajorTickMark.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(35)))));
+            chartArea1.AxisX.Minimum = 1D;
+            chartArea1.AxisX2.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            chartArea1.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.AxisY.LabelAutoFitMaxFontSize = 7;
+            chartArea1.AxisY.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            chartArea1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
+            chartArea1.Name = "ChartArea1";
+            this.SpeedChart.ChartAreas.Add(chartArea1);
             this.SpeedChart.Location = new System.Drawing.Point(695, 4);
             this.SpeedChart.Name = "SpeedChart";
-            series5.BackSecondaryColor = System.Drawing.Color.Black;
-            series5.BorderWidth = 2;
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
-            series5.Color = System.Drawing.Color.White;
-            series5.Name = "Series1";
-            this.SpeedChart.Series.Add(series5);
+            series1.BackSecondaryColor = System.Drawing.Color.Black;
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
+            series1.Color = System.Drawing.Color.White;
+            series1.Name = "Series1";
+            this.SpeedChart.Series.Add(series1);
             this.SpeedChart.Size = new System.Drawing.Size(396, 180);
             this.SpeedChart.TabIndex = 2;
             this.SpeedChart.TabStop = false;
@@ -391,24 +391,24 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle101.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle101.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
-            dataGridViewCellStyle101.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle101.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle101.SelectionForeColor = System.Drawing.Color.White;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle101;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle102.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle102.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(80)))), ((int)(((byte)(86)))));
-            dataGridViewCellStyle102.Font = new System.Drawing.Font("微软雅黑", 11.25F);
-            dataGridViewCellStyle102.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle102.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle102.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle102;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(80)))), ((int)(((byte)(86)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeight = 20;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -434,14 +434,14 @@
             this.用时,
             this.标题});
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle123.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle123.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle123.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle123.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle123.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle123.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle123.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle123;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle23;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.EnableHeadersVisualStyles = false;
@@ -452,23 +452,23 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle124.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle124.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle124.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle124.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle124.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle124.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle124.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle124;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 18;
-            dataGridViewCellStyle125.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle125.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
-            dataGridViewCellStyle125.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle125.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle125.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle125.SelectionForeColor = System.Drawing.Color.White;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle125;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle25.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.Color.White;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle25;
             this.dataGridView1.RowTemplate.Height = 18;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -494,10 +494,10 @@
             // 时间
             // 
             this.时间.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle103.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle103.BackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle103.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.时间.DefaultCellStyle = dataGridViewCellStyle103;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.时间.DefaultCellStyle = dataGridViewCellStyle3;
             this.时间.HeaderText = "时间";
             this.时间.Name = "时间";
             this.时间.ReadOnly = true;
@@ -507,11 +507,11 @@
             // 段号
             // 
             this.段号.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle104.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle104.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle104.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle104.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.段号.DefaultCellStyle = dataGridViewCellStyle104;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.段号.DefaultCellStyle = dataGridViewCellStyle4;
             this.段号.HeaderText = "段号";
             this.段号.MinimumWidth = 10;
             this.段号.Name = "段号";
@@ -522,12 +522,12 @@
             // 速度
             // 
             this.速度.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle105.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle105.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle105.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle105.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle105.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.速度.DefaultCellStyle = dataGridViewCellStyle105;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.速度.DefaultCellStyle = dataGridViewCellStyle5;
             this.速度.FillWeight = 80F;
             this.速度.HeaderText = "速度";
             this.速度.Name = "速度";
@@ -538,12 +538,12 @@
             // 击键
             // 
             this.击键.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle106.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle106.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle106.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle106.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle106.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.击键.DefaultCellStyle = dataGridViewCellStyle106;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.击键.DefaultCellStyle = dataGridViewCellStyle6;
             this.击键.HeaderText = "击键";
             this.击键.Name = "击键";
             this.击键.ReadOnly = true;
@@ -553,12 +553,12 @@
             // 码长
             // 
             this.码长.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle107.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle107.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle107.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle107.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle107.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.码长.DefaultCellStyle = dataGridViewCellStyle107;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.码长.DefaultCellStyle = dataGridViewCellStyle7;
             this.码长.HeaderText = "码长";
             this.码长.Name = "码长";
             this.码长.ReadOnly = true;
@@ -568,11 +568,11 @@
             // 理论
             // 
             this.理论.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle108.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle108.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle108.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle108.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.理论.DefaultCellStyle = dataGridViewCellStyle108;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.理论.DefaultCellStyle = dataGridViewCellStyle8;
             this.理论.HeaderText = "理论";
             this.理论.Name = "理论";
             this.理论.ReadOnly = true;
@@ -582,11 +582,11 @@
             // 回改
             // 
             this.回改.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle109.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle109.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle109.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle109.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.回改.DefaultCellStyle = dataGridViewCellStyle109;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.回改.DefaultCellStyle = dataGridViewCellStyle9;
             this.回改.HeaderText = "回改";
             this.回改.Name = "回改";
             this.回改.ReadOnly = true;
@@ -596,11 +596,11 @@
             // 退格
             // 
             this.退格.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle110.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle110.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle110.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle110.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.退格.DefaultCellStyle = dataGridViewCellStyle110;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.退格.DefaultCellStyle = dataGridViewCellStyle10;
             this.退格.HeaderText = "退格";
             this.退格.Name = "退格";
             this.退格.ReadOnly = true;
@@ -610,11 +610,11 @@
             // 回车
             // 
             this.回车.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle111.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle111.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle111.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle111.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.回车.DefaultCellStyle = dataGridViewCellStyle111;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.回车.DefaultCellStyle = dataGridViewCellStyle11;
             this.回车.HeaderText = "回车";
             this.回车.Name = "回车";
             this.回车.ReadOnly = true;
@@ -624,11 +624,11 @@
             // 选重
             // 
             this.选重.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle112.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle112.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle112.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle112.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.选重.DefaultCellStyle = dataGridViewCellStyle112;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.选重.DefaultCellStyle = dataGridViewCellStyle12;
             this.选重.HeaderText = "选重";
             this.选重.Name = "选重";
             this.选重.ReadOnly = true;
@@ -638,11 +638,11 @@
             // 错字
             // 
             this.错字.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle113.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle113.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle113.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle113.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.错字.DefaultCellStyle = dataGridViewCellStyle113;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.错字.DefaultCellStyle = dataGridViewCellStyle13;
             this.错字.HeaderText = "错字";
             this.错字.Name = "错字";
             this.错字.ReadOnly = true;
@@ -652,11 +652,11 @@
             // 回改率
             // 
             this.回改率.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle114.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle114.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle114.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle114.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.回改率.DefaultCellStyle = dataGridViewCellStyle114;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.回改率.DefaultCellStyle = dataGridViewCellStyle14;
             this.回改率.HeaderText = "回改率";
             this.回改率.Name = "回改率";
             this.回改率.ReadOnly = true;
@@ -666,11 +666,11 @@
             // 键准
             // 
             this.键准.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle115.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle115.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle115.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle115.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.键准.DefaultCellStyle = dataGridViewCellStyle115;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.键准.DefaultCellStyle = dataGridViewCellStyle15;
             this.键准.HeaderText = "键准";
             this.键准.Name = "键准";
             this.键准.ReadOnly = true;
@@ -680,11 +680,11 @@
             // 效率
             // 
             this.效率.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle116.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle116.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle116.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle116.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.效率.DefaultCellStyle = dataGridViewCellStyle116;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.效率.DefaultCellStyle = dataGridViewCellStyle16;
             this.效率.HeaderText = "效率";
             this.效率.Name = "效率";
             this.效率.ReadOnly = true;
@@ -694,11 +694,11 @@
             // 键数
             // 
             this.键数.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle117.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle117.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle117.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle117.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.键数.DefaultCellStyle = dataGridViewCellStyle117;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.键数.DefaultCellStyle = dataGridViewCellStyle17;
             this.键数.HeaderText = "键数";
             this.键数.Name = "键数";
             this.键数.ReadOnly = true;
@@ -708,11 +708,11 @@
             // 字数
             // 
             this.字数.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle118.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle118.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle118.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle118.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.字数.DefaultCellStyle = dataGridViewCellStyle118;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.字数.DefaultCellStyle = dataGridViewCellStyle18;
             this.字数.HeaderText = "字数";
             this.字数.Name = "字数";
             this.字数.ReadOnly = true;
@@ -722,11 +722,11 @@
             // 打词
             // 
             this.打词.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle119.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle119.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle119.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle119.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.打词.DefaultCellStyle = dataGridViewCellStyle119;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.打词.DefaultCellStyle = dataGridViewCellStyle19;
             this.打词.HeaderText = "打词";
             this.打词.Name = "打词";
             this.打词.ReadOnly = true;
@@ -736,11 +736,11 @@
             // 打词率
             // 
             this.打词率.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle120.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle120.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle120.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle120.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.打词率.DefaultCellStyle = dataGridViewCellStyle120;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.打词率.DefaultCellStyle = dataGridViewCellStyle20;
             this.打词率.HeaderText = "打词率";
             this.打词率.Name = "打词率";
             this.打词率.ReadOnly = true;
@@ -750,11 +750,11 @@
             // 用时
             // 
             this.用时.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle121.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle121.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle121.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle121.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.用时.DefaultCellStyle = dataGridViewCellStyle121;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.用时.DefaultCellStyle = dataGridViewCellStyle21;
             this.用时.HeaderText = "用时";
             this.用时.Name = "用时";
             this.用时.ReadOnly = true;
@@ -764,11 +764,11 @@
             // 标题
             // 
             this.标题.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle122.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle122.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle122.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle122.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.标题.DefaultCellStyle = dataGridViewCellStyle122;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.标题.DefaultCellStyle = dataGridViewCellStyle22;
             this.标题.HeaderText = "标题";
             this.标题.Name = "标题";
             this.标题.ReadOnly = true;
@@ -933,13 +933,13 @@
             this.DeleteYearToolStripMenuItem,
             this.DeleteAllToolStripMenuItem});
             this.MonthCalendarContextMenuStrip.Name = "MonthCalendarContextMenuStrip";
-            this.MonthCalendarContextMenuStrip.Size = new System.Drawing.Size(181, 114);
+            this.MonthCalendarContextMenuStrip.Size = new System.Drawing.Size(173, 92);
             // 
             // DeleteDayToolStripMenuItem
             // 
             this.DeleteDayToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.DeleteDayToolStripMenuItem.Name = "DeleteDayToolStripMenuItem";
-            this.DeleteDayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DeleteDayToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.DeleteDayToolStripMenuItem.Text = "删除该日所有记录";
             this.DeleteDayToolStripMenuItem.Click += new System.EventHandler(this.DeleteDayToolStripMenuItem_Click);
             // 
@@ -947,7 +947,7 @@
             // 
             this.DeleteMonthToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.DeleteMonthToolStripMenuItem.Name = "DeleteMonthToolStripMenuItem";
-            this.DeleteMonthToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DeleteMonthToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.DeleteMonthToolStripMenuItem.Text = "删除该月所有记录";
             this.DeleteMonthToolStripMenuItem.Click += new System.EventHandler(this.DeleteMonthToolStripMenuItem_Click);
             // 
@@ -955,7 +955,7 @@
             // 
             this.DeleteYearToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.DeleteYearToolStripMenuItem.Name = "DeleteYearToolStripMenuItem";
-            this.DeleteYearToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DeleteYearToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.DeleteYearToolStripMenuItem.Text = "删除该年所有记录";
             this.DeleteYearToolStripMenuItem.Click += new System.EventHandler(this.DeleteYearToolStripMenuItem_Click);
             // 
@@ -963,7 +963,7 @@
             // 
             this.DeleteAllToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.DeleteAllToolStripMenuItem.Name = "DeleteAllToolStripMenuItem";
-            this.DeleteAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DeleteAllToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.DeleteAllToolStripMenuItem.Text = "删除所有历史记录";
             this.DeleteAllToolStripMenuItem.Click += new System.EventHandler(this.DeleteAllToolStripMenuItem_Click);
             // 
@@ -977,7 +977,7 @@
             this.Name = "History";
             this.Text = "跟打历史记录";
             this.Load += new System.EventHandler(this.History_Load);
-            this.groupBox1.ResumeLayout(false);
+            this.PreviewGroupBox.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -995,7 +995,7 @@
 
         #endregion
         private System.Windows.Forms.MonthCalendar MonthCalendar;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox PreviewGroupBox;
         private System.Windows.Forms.RichTextBox PreviewRichTextBox;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridView dataGridView1;

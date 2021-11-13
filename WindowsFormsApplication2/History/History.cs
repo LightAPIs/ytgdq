@@ -143,6 +143,7 @@ namespace WindowsFormsApplication2.History
         {
             this.dataGridView1.Rows.Clear();
             this.currentScoreData.Clear();
+            this.PreviewGroupBox.Text = "文段预览";
             this.PreviewRichTextBox.Text = "";
             this.SpeedChart.Series[0].Points.Clear();
             this.dataGridView1.Enabled = false;
@@ -235,7 +236,7 @@ namespace WindowsFormsApplication2.History
             this.ClearGridData();
             this.dataType.Cur = "SegmentId";
             this.dataType.SegmentId = id;
-            this.ResultLabel.Text = "文段：" + id.ToString();
+            this.ResultLabel.Text = "文段ID：" + id.ToString();
             this.totalCount = Glob.ScoreHistory.GetScoreCountFromSegmentId(id);
 
             if (this.TotalPage > 0)
@@ -263,6 +264,7 @@ namespace WindowsFormsApplication2.History
             if (string.IsNullOrEmpty(scoreTime))
             {
                 //* 清空文段预览内容
+                this.PreviewGroupBox.Text = "文段预览";
                 this.PreviewRichTextBox.Text = "";
             }
             else
@@ -282,7 +284,9 @@ namespace WindowsFormsApplication2.History
                 StorageDataSet.ScoreRow sd = StorageDataSet.GetScoreRowFromTime(currentScoreData, scoreTime);
                 if (sd != null)
                 {
-                    this.PreviewRichTextBox.Text = Glob.ScoreHistory.GetContentFromSegmentId((long)sd["segment_id"]);
+                    long segmentId = (long)sd["segment_id"];
+                    this.PreviewGroupBox.Text = "文段预览 (ID=" + segmentId.ToString() + ")"; 
+                    this.PreviewRichTextBox.Text = Glob.ScoreHistory.GetContentFromSegmentId(segmentId);
                 }
             }
         }

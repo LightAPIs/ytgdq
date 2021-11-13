@@ -51,7 +51,7 @@ namespace WindowsFormsApplication2.History
         /// <summary>
         /// 总页数
         /// </summary>
-        private int totalPage { 
+        private int TotalPage { 
             get
             {
                 return (int)Math.Ceiling((float)this.totalCount / this.PageSize);
@@ -76,12 +76,12 @@ namespace WindowsFormsApplication2.History
         private void ShowGridData()
         {
             int index = 0;
-            int lastSegmentId = -1;
+            long lastSegmentId = -1;
             foreach (var dataRow in this.currentScoreData)
             {
                 string typeCountStr = "";
                 string[] curSpeed = dataRow["speed"].ToString().Split('/');
-                if ((int)dataRow["segment_id"] == lastSegmentId)
+                if ((long)dataRow["segment_id"] == lastSegmentId)
                 {
                     //* 为重打数据
                     int rowCount = this.dataGridView1.Rows.Count - 1;
@@ -130,7 +130,7 @@ namespace WindowsFormsApplication2.History
                 CellHighlight.CodeLen(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5], (double)dataRow["code_len"]);
                 CellHighlight.Error(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[11], (int)dataRow["error"]);
                 #endregion
-                lastSegmentId = (int)dataRow["segment_id"];
+                lastSegmentId = (long)dataRow["segment_id"];
             }
 
             this.dataGridView1.Enabled = true;
@@ -151,7 +151,7 @@ namespace WindowsFormsApplication2.History
         private void UpdateGridToolBar()
         {
             this.CountLabel.Text = this.totalCount.ToString();
-            this.TotalPageNumLabel.Text = "/" + this.totalPage.ToString() + "页";
+            this.TotalPageNumLabel.Text = "/" + this.TotalPage.ToString() + "页";
             this.PageNumTextBox.Text = this.currentPage.ToString();
         }
 
@@ -163,7 +163,7 @@ namespace WindowsFormsApplication2.History
             this.ResultLabel.Text = "日期：" + date.ToString("d");
             this.totalCount = Glob.ScoreHistory.GetScoreCountFromDate(date);
 
-            if (this.totalPage > 0)
+            if (this.TotalPage > 0)
             {
                 this.currentPage = 1;
             }
@@ -188,7 +188,7 @@ namespace WindowsFormsApplication2.History
             this.ResultLabel.Text = "标题：" + title;
             this.totalCount = Glob.ScoreHistory.GetScoreCountFromTitle(title);
 
-            if (this.totalPage > 0)
+            if (this.TotalPage > 0)
             {
                 this.currentPage = 1;
             }
@@ -213,7 +213,7 @@ namespace WindowsFormsApplication2.History
             this.ResultLabel.Text = "搜索标题：" + title;
             this.totalCount = Glob.ScoreHistory.GetScoreCountFromSubTitle(title);
 
-            if (this.totalPage > 0)
+            if (this.TotalPage > 0)
             {
                 this.currentPage = 1;
             }
@@ -230,7 +230,7 @@ namespace WindowsFormsApplication2.History
             this.ShowGridData();
         }
 
-        private void ShowDataFromSegment(int id)
+        private void ShowDataFromSegment(long id)
         {
             this.ClearGridData();
             this.dataType.Cur = "SegmentId";
@@ -238,7 +238,7 @@ namespace WindowsFormsApplication2.History
             this.ResultLabel.Text = "文段：" + id.ToString();
             this.totalCount = Glob.ScoreHistory.GetScoreCountFromSegmentId(id);
 
-            if (this.totalPage > 0)
+            if (this.TotalPage > 0)
             {
                 this.currentPage = 1;
             }
@@ -282,7 +282,7 @@ namespace WindowsFormsApplication2.History
                 StorageDataSet.ScoreRow sd = StorageDataSet.GetScoreRowFromTime(currentScoreData, scoreTime);
                 if (sd != null)
                 {
-                    this.PreviewRichTextBox.Text = Glob.ScoreHistory.GetContentFromSegmentId((int)sd["segment_id"]);
+                    this.PreviewRichTextBox.Text = Glob.ScoreHistory.GetContentFromSegmentId((long)sd["segment_id"]);
                 }
             }
         }
@@ -340,7 +340,7 @@ namespace WindowsFormsApplication2.History
 
         private void SearchSegmentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int segmentId = this.gridHandler.GetSegmentId(this.currentScoreData);
+            long segmentId = this.gridHandler.GetSegmentId(this.currentScoreData);
             if (segmentId != -1)
             {
                 this.ShowDataFromSegment(segmentId);
@@ -374,13 +374,6 @@ namespace WindowsFormsApplication2.History
             {
                 this.SearchButton.PerformClick();
             }
-        }
-        #endregion
-
-        #region 选择日期
-        private void MonthCalendar_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            this.ShowDataFromDate(e.Start);
         }
         #endregion
 
@@ -428,7 +421,7 @@ namespace WindowsFormsApplication2.History
 
         private void NextPageButton_Click(object sender, EventArgs e)
         {
-            if (this.currentPage < this.totalPage)
+            if (this.currentPage < this.TotalPage)
             {
                 this.JumpPageHandler(this.currentPage + 1);
             }
@@ -436,9 +429,9 @@ namespace WindowsFormsApplication2.History
 
         private void LastPageButton_Click(object sender, EventArgs e)
         {
-            if (this.currentPage < this.totalPage)
+            if (this.currentPage < this.TotalPage)
             {
-                this.JumpPageHandler(this.totalPage);
+                this.JumpPageHandler(this.TotalPage);
             }
         }
 
@@ -447,7 +440,7 @@ namespace WindowsFormsApplication2.History
             if (this.PageNumTextBox.Text != "" && this.PageNumTextBox.Text != "0")
             {
                 int pageNum = int.Parse(this.PageNumTextBox.Text);
-                if (pageNum > 0 && pageNum <= this.totalPage && pageNum != this.currentPage)
+                if (pageNum > 0 && pageNum <= this.TotalPage && pageNum != this.currentPage)
                 {
                     this.JumpPageHandler(pageNum);
                 }
@@ -492,9 +485,9 @@ namespace WindowsFormsApplication2.History
                             }
                             else
                             {
-                                if (this.currentPage > this.totalPage)
+                                if (this.currentPage > this.TotalPage)
                                 {
-                                    this.currentPage = this.totalPage;
+                                    this.currentPage = this.TotalPage;
                                 }
                                 this.UpdateGridToolBar();
                                 this.JumpPageHandler(this.currentPage);
@@ -536,13 +529,102 @@ namespace WindowsFormsApplication2.History
                     }
                     else
                     {
-                        if (this.currentPage > this.totalPage)
+                        if (this.currentPage > this.TotalPage)
                         {
-                            this.currentPage = this.totalPage;
+                            this.currentPage = this.TotalPage;
                         }
                         this.UpdateGridToolBar();
                         this.JumpPageHandler(this.currentPage);
                     }
+                    break;
+                case DialogResult.No:
+                    break;
+            }
+        }
+        #endregion
+
+        #region 选择日期
+        private void MonthCalendar_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            this.ShowDataFromDate(e.Start);
+        }
+        #endregion
+
+        #region 日历右键菜单项
+        private void MonthCalendar_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (this.dataType.Date == null)
+                {
+                    this.dataType.Date = DateTime.Now;
+                }
+                this.DeleteDayToolStripMenuItem.Text = "删除" + this.dataType.Date.ToString("d") + "的记录";
+                this.DeleteMonthToolStripMenuItem.Text = "删除" + this.dataType.Date.ToString("Y") + "的记录";
+                this.DeleteYearToolStripMenuItem.Text = "删除" + this.dataType.Date.ToString("yyyy") + "年的记录";
+            }
+        }
+
+        /// <summary>
+        /// 日历删除处理器
+        /// </summary>
+        /// <param name="_type">类别</param>
+        private void MonthCalendarDateDeleteHandler(string _type)
+        {
+            string dateTip = "";
+            string dateVal = "";
+            switch (_type)
+            {
+                case "day":
+                    dateTip = this.dataType.Date.ToString("d");
+                    dateVal = this.dataType.Date.ToString("d");
+                    break;
+                case "month":
+                    dateTip = this.dataType.Date.ToString("Y");
+                    dateVal = this.dataType.Date.ToString("yyyy-MM");
+                    break;
+                case "year":
+                    dateTip = this.dataType.Date.ToString("yyyy") + "年";
+                    dateVal = this.dataType.Date.ToString("yyyy");
+                    break;
+            }
+            
+            if (dateVal != "")
+            {
+                switch (MessageBox.Show("确认删除 " + dateTip + " 的所有记录吗？", "删除询问", MessageBoxButtons.YesNo))
+                {
+                    case DialogResult.Yes:
+                        Glob.ScoreHistory.DeleteScoreItemByDate(dateVal);
+                        this.ShowDataFromDate(this.dataType.Date);
+                        break;
+                    case DialogResult.No:
+                        break;
+                }
+            }
+        }
+
+        private void DeleteDayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.MonthCalendarDateDeleteHandler("day");
+        }
+
+        private void DeleteMonthToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.MonthCalendarDateDeleteHandler("month");
+        }
+
+        private void DeleteYearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.MonthCalendarDateDeleteHandler("year");
+        }
+
+        private void DeleteAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            switch (MessageBox.Show("确认删除所有的历史记录吗？", "删除询问", MessageBoxButtons.YesNo))
+            {
+                case DialogResult.Yes:
+                    Glob.ScoreHistory.DeleteAllScore();
+                    this.ShowDataFromDate(DateTime.Now);
                     break;
                 case DialogResult.No:
                     break;

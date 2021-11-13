@@ -30,6 +30,6 @@ namespace WindowsFormsApplication2.History
         /// <summary>
         /// 文段 id
         /// </summary>
-        public int SegmentId { get; set; }
+        public long SegmentId { get; set; }
     }
 }

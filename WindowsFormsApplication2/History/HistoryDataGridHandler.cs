@@ -118,7 +118,7 @@ namespace WindowsFormsApplication2.History
                 StorageDataSet.ScoreRow sd = StorageDataSet.GetScoreRowFromTime(curData, scoreTime);
                 if (sd != null)
                 {
-                    ClipboardHandler.SetTextToClipboard(Glob.ScoreHistory.GetContentFromSegmentId((int)sd["segment_id"]));
+                    ClipboardHandler.SetTextToClipboard(Glob.ScoreHistory.GetContentFromSegmentId((long)sd["segment_id"]));
                 }
             }
         }
@@ -166,7 +166,7 @@ namespace WindowsFormsApplication2.History
                     try
                     {
                         List<TypeDate> td = JsonConvert.DeserializeObject<List<TypeDate>>(adv);
-                        string content = Glob.ScoreHistory.GetContentFromSegmentId((int)sd["segment_id"]);
+                        string content = Glob.ScoreHistory.GetContentFromSegmentId((long)sd["segment_id"]);
                         string[] speed = sd["speed"].ToString().Split('/');
                         int bc = (int)sd["back_change"];
                         string vi = sd["version"].ToString();
@@ -227,7 +227,7 @@ namespace WindowsFormsApplication2.History
         /// </summary>
         /// <param name="curData"></param>
         /// <returns></returns>
-        public int GetSegmentId(StorageDataSet.ScoreDataTable curData)
+        public long GetSegmentId(StorageDataSet.ScoreDataTable curData)
         {
             string scoreTime = this.MenuGetScoreTime();
             if (!string.IsNullOrEmpty(scoreTime))
@@ -235,7 +235,7 @@ namespace WindowsFormsApplication2.History
                 StorageDataSet.ScoreRow sd = StorageDataSet.GetScoreRowFromTime(curData, scoreTime);
                 if (sd != null)
                 {
-                    return (int)sd["segment_id"];
+                    return (long)sd["segment_id"];
                 }
             }
             return -1;
@@ -255,7 +255,7 @@ namespace WindowsFormsApplication2.History
                 StorageDataSet.ScoreRow sd = StorageDataSet.GetScoreRowFromTime(curData, scoreTime);
                 if (sd != null)
                 {
-                    result[0] = Glob.ScoreHistory.GetContentFromSegmentId((int)sd["segment_id"]);
+                    result[0] = Glob.ScoreHistory.GetContentFromSegmentId((long)sd["segment_id"]);
                     result[1] = sd["segment_num"].ToString();
                     result[2] = sd["article_title"].ToString();
                     return result;

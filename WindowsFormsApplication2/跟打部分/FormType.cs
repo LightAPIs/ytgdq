@@ -2341,7 +2341,7 @@ namespace WindowsFormsApplication2
 
                         #region 保存成绩到数据库中
                         //* 保存文段
-                        int databaseSegmentId = Glob.ScoreHistory.InsertSegment(Glob.TypeText, this.lblMatchCount.Text);
+                        long databaseSegmentId = Glob.ScoreHistory.InsertSegment(Glob.TypeText, this.lblMatchCount.Text);
                         //* 保存成绩
                         Glob.ScoreHistory.InsertScore(Glob.TextTime.ToString("s"), int.Parse(Glob.Pre_Cout), Spsend, jj, mc, Glob.词库理论码长, Glob.TextHg, Math.Abs(Glob.TextBg - Glob.TextHg), Glob.回车, Glob.选重, Glob.TextCz, Glob.TextHg_, UserJz, Glob.效率, Glob.TextJs, TextLen, Glob.aTypeWords, Glob.TextDc_, UserTime, databaseSegmentId, this.lblTitle.Text, Glob.Instration);
                         if (!Glob.DisableSaveAdvanced)

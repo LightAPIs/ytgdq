@@ -56,7 +56,7 @@ namespace WindowsFormsApplication2.Storage
         /// <param name="segment_id"></param>
         /// <param name="article_title"></param>
         /// <param name="version"></param>
-        public void InsertScore(string score_time, int segment_num, string speed, double keystroke, double code_len, double calc_len, int back_change, int backspace, int enter, int duplicate, int error, double back_rate, double accuracy_rate, int effciency, int keys, int count, int type_words, double words_rate, string cost_time, int segment_id, string article_title, string version)
+        public void InsertScore(string score_time, int segment_num, string speed, double keystroke, double code_len, double calc_len, int back_change, int backspace, int enter, int duplicate, int error, double back_rate, double accuracy_rate, int effciency, int keys, int count, int type_words, double words_rate, string cost_time, long segment_id, string article_title, string version)
         {
             this.cmd.CommandText = $"INSERT INTO score VALUES('{score_time}',{segment_num},'{speed}',{keystroke},{code_len},{calc_len},{back_change},{backspace},{enter},{duplicate},{error},{back_rate},{accuracy_rate},{effciency},{keys},{count},{type_words},{words_rate},'{cost_time}',{segment_id},'{this.ConvertText(article_title)}','{version}');";
             this.cmd.ExecuteNonQuery();
@@ -81,7 +81,7 @@ namespace WindowsFormsApplication2.Storage
         /// <param name="content"></param>
         /// <param name="check_code"></param>
         /// <returns></returns>
-        public int InsertSegment(string content, string check_code)
+        public long InsertSegment(string content, string check_code)
         {
             string newContent = this.ConvertText(content);
             this.cmd.CommandText = $"SELECT * FROM segment WHERE check_code='{check_code}' AND content='{newContent}';";
@@ -93,7 +93,7 @@ namespace WindowsFormsApplication2.Storage
                 readId = this.cmd.ExecuteScalar();
             }
 
-            return Convert.ToInt32(readId);
+            return Convert.ToInt64(readId);
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace WindowsFormsApplication2.Storage
         /// <param name="limit"></param>
         /// <param name="start"></param>
         /// <returns></returns>
-        public StorageDataSet.ScoreDataTable GetScoreFromSegmentId(int segmentId, int start, int limit)
+        public StorageDataSet.ScoreDataTable GetScoreFromSegmentId(long segmentId, int start, int limit)
         {
             this.cmd.CommandText = $"SELECT * FROM score WHERE segment_id={segmentId} LIMIT {limit} OFFSET {start}";
             SQLiteDataAdapter adapter = new SQLiteDataAdapter(this.cmd);
@@ -216,7 +216,7 @@ namespace WindowsFormsApplication2.Storage
         /// </summary>
         /// <param name="segmentId"></param>
         /// <returns></returns>
-        public int GetScoreCountFromSegmentId(int segmentId)
+        public int GetScoreCountFromSegmentId(long segmentId)
         {
             this.cmd.CommandText = $"SELECT COUNT(1) FROM score WHERE segment_id={segmentId}";
             object readNum = this.cmd.ExecuteScalar();
@@ -264,7 +264,7 @@ namespace WindowsFormsApplication2.Storage
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public string GetContentFromSegmentId(int id)
+        public string GetContentFromSegmentId(long id)
         {
             this.cmd.CommandText = $"SELECT content FROM segment WHERE id={id}";
             object readContent = this.cmd.ExecuteScalar();
@@ -285,6 +285,30 @@ namespace WindowsFormsApplication2.Storage
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// 根据日期删除记录
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public void DeleteScoreItemByDate(string date)
+        {
+            this.cmd.CommandText = $"DELETE FROM score WHERE score_time LIKE '{date}%'";
+            int count = this.cmd.ExecuteNonQuery();
+            if (count > 20)
+            {
+                this.CleanDisk();
+            }
+        }
+
+        public void DeleteAllScore()
+        {
+            this.cmd.CommandText = $"DELETE FROM score;";
+            this.cmd.ExecuteNonQuery();
+            this.cmd.CommandText = $"DELETE FROM sqlite_sequence WHERE name='segment';";
+            this.cmd.ExecuteNonQuery();
+            this.CleanDisk();
         }
     }
 

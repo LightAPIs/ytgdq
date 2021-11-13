@@ -674,7 +674,7 @@ namespace WindowsFormsApplication2.Storage {
                         int type_words, 
                         double words_rate, 
                         string cost_time, 
-                        int segment_id, 
+                        long segment_id, 
                         string article_title, 
                         string version) {
                 ScoreRow rowScoreRow = ((ScoreRow)(this.NewRow()));
@@ -795,7 +795,7 @@ namespace WindowsFormsApplication2.Storage {
                 base.Columns.Add(this.columnwords_rate);
                 this.columncost_time = new global::System.Data.DataColumn("cost_time", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncost_time);
-                this.columnsegment_id = new global::System.Data.DataColumn("segment_id", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnsegment_id = new global::System.Data.DataColumn("segment_id", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsegment_id);
                 this.columnarticle_title = new global::System.Data.DataColumn("article_title", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnarticle_title);
@@ -1352,7 +1352,7 @@ namespace WindowsFormsApplication2.Storage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public SegmentRow AddSegmentRow(int id, string content, string check_code) {
+            public SegmentRow AddSegmentRow(long id, string content, string check_code) {
                 SegmentRow rowSegmentRow = ((SegmentRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         id,
@@ -1365,7 +1365,7 @@ namespace WindowsFormsApplication2.Storage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public SegmentRow FindByid(int id) {
+            public SegmentRow FindByid(long id) {
                 return ((SegmentRow)(this.Rows.Find(new object[] {
                             id})));
             }
@@ -1395,7 +1395,7 @@ namespace WindowsFormsApplication2.Storage {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnid = new global::System.Data.DataColumn("id", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnid = new global::System.Data.DataColumn("id", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnid);
                 this.columncontent = new global::System.Data.DataColumn("content", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncontent);
@@ -1846,10 +1846,10 @@ namespace WindowsFormsApplication2.Storage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int segment_id {
+            public long segment_id {
                 get {
                     try {
-                        return ((int)(this[this.tableScore.segment_idColumn]));
+                        return ((long)(this[this.tableScore.segment_idColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("表“Score”中列“segment_id”的值为 DBNull。", e);
@@ -2299,9 +2299,9 @@ namespace WindowsFormsApplication2.Storage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int id {
+            public long id {
                 get {
-                    return ((int)(this[this.tableSegment.idColumn]));
+                    return ((long)(this[this.tableSegment.idColumn]));
                 }
                 set {
                     this[this.tableSegment.idColumn] = value;

@@ -17,6 +17,9 @@ namespace WindowsFormsApplication2
         public static bool 乱序全段不重复 = false;
 
         public static bool 是否一句结束;
+        /// <summary>
+        /// 下一段的段号
+        /// </summary>
         public static int 起始段号 = 1;
         /// <summary>
         /// 每段发送的字数

@@ -53,6 +53,11 @@ namespace WindowsFormsApplication2
         private SendTextStatic 发文状态窗口;
 
         /// <summary>
+        /// 判断是否为汉字或数字
+        /// </summary>
+        public static Regex IsCN = new Regex(@"[\u4e00-\u9fa5]|\d");
+
+        /// <summary>
         /// 当前成绩数据
         /// </summary>
         private StorageDataSet.ScoreDataTable currentScoreData = new StorageDataSet.ScoreDataTable();
@@ -85,6 +90,10 @@ namespace WindowsFormsApplication2
                     "0xffe5", '$'
                 }
             };
+
+        /// <summary>
+        /// 按键列表
+        /// </summary>
         private readonly static List<Keys> KeysList = new List<Keys> {
             Keys.Oemtilde,
             Keys.D1,
@@ -1072,6 +1081,7 @@ namespace WindowsFormsApplication2
                 NewSendTextToQQ(textAll, NewSendText.起始段号, NewSendText.标题, textLen);
                 this.Activate();
             }
+            NewSendText.起始段号++;
             NewSendText.已发段数++;
         }
 
@@ -1114,7 +1124,7 @@ namespace WindowsFormsApplication2
                                 }
                                 NewSendText.发文全文 = NewSendText.发文全文.Replace(" ", "");
                                 NewSendText.标记 += numlist.Length;
-                                CleanBeforeSending(TextAll, TextLen);
+                                CleanBeforeSending(TextAll, NewSendText.文章全文.Length);
                             }
                             else
                             { // 剩余字数为零时
@@ -1143,7 +1153,6 @@ namespace WindowsFormsApplication2
                     else
                     { //* 单字顺序
                         //? 此时 TextLen 指示总字数
-                        int least = TextLen - NewSendText.标记 + 1 - NewSendText.字数;
                         int limit = TextLen / NewSendText.字数;//总共只能发送多少段
 
                         if (NewSendText.已发段数 < limit)
@@ -1159,7 +1168,7 @@ namespace WindowsFormsApplication2
                                 NewSendText.标记 += NewSendText.字数;
                             }
 
-                            CleanBeforeSending(TextAll, least);
+                            CleanBeforeSending(TextAll, TextLen);
                         }
                         else
                         {
@@ -1211,7 +1220,7 @@ namespace WindowsFormsApplication2
                     NewSendText.已发段数++;
                 }
                 else if (NewSendText.类型 == "文章")
-                {
+                { //? 此时 TextLen 指示总字数
                     if (NewSendText.是否一句结束)
                     {
                         if (NewSendText.标记 < TextLen)
@@ -1219,68 +1228,57 @@ namespace WindowsFormsApplication2
                             int now = NewSendText.标记 + NewSendText.字数;
                             if (now < TextLen)
                             {
-                                int textlen = NewSendText.字数;
-                                if (zdSendText.isDot.IsMatch(NewSendText.文章全文.Substring(now - 1, 1))) //最后一个字不是汉字或数字
-                                {
+                                int textlength = NewSendText.字数;
+                                if (IsCN.IsMatch(NewSendText.文章全文.Substring(now - 1, 1))) //? 当前的最后一个字是汉字或数字
+                                { //* 寻找潜在的符号
                                     for (int i = now; i < now + 50; i++)
                                     {
-                                        string nowit = NewSendText.文章全文.Substring(i, 1);
-                                        if (!zdSendText.isDot.IsMatch(nowit))
+                                        string nowIt = NewSendText.文章全文.Substring(i, 1);
+                                        if (!IsCN.IsMatch(nowIt))
                                         {  //如果找到
                                             try
                                             {
-                                                if (nowit == "。")
-                                                    if (NewSendText.文章全文.Substring(i + 1, 1) == "”")
-                                                        i++;
+                                                if (nowIt == "。" && NewSendText.文章全文.Substring(i + 1, 1) == "”")
+                                                {
+                                                    i++;
+                                                }
 
-                                                if (nowit == "”")
-                                                    if (NewSendText.文章全文.Substring(i + 1, 1) == "。")
-                                                        i++;
+                                                if (nowIt == "”" && NewSendText.文章全文.Substring(i + 1, 1) == "。")
+                                                {
+                                                    i++;
+                                                }
 
-                                                if (nowit == "—")
-                                                    if (NewSendText.文章全文.Substring(i + 1, 1) == "—")
-                                                        i++;
+                                                if (nowIt == "—" && NewSendText.文章全文.Substring(i + 1, 1) == "—")
+                                                {
+                                                    i++;
+                                                }
 
-                                                if (nowit == "…")
-                                                    if (NewSendText.文章全文.Substring(i + 1, 1) == "…")
-                                                        i++;
+                                                if (nowIt == "…" && NewSendText.文章全文.Substring(i + 1, 1) == "…")
+                                                {
+                                                    i++;
+                                                }
 
-                                                if (nowit == "：")
-                                                    if (NewSendText.文章全文.Substring(i + 1, 1) == "“")
-                                                        i++;
+                                                if (nowIt == "“" || nowIt == "‘")
+                                                { //? 不包括开引号
+                                                    i--;
+                                                }
                                             }
                                             catch { }
-                                            textlen = i - NewSendText.标记 + 1;
+                                            textlength = i - NewSendText.标记 + 1;
                                             break;
                                         }
                                     }
                                 }
-                                TextAll = NewSendText.文章全文.Substring(NewSendText.标记, textlen);
-                                NewSendText.标记 += textlen;
+                                TextAll = NewSendText.文章全文.Substring(NewSendText.标记, textlength);
+                                NewSendText.标记 += textlength;
                             }
                             else
                             {
                                 TextAll = NewSendText.文章全文.Substring(NewSendText.标记, TextLen - NewSendText.标记);
                                 NewSendText.标记 = TextLen;
                             }
-                            this.textBoxEx1.Clear();
-                            richTextBox1.SelectAll();
-                            richTextBox1.SelectionBackColor = Glob.r1Back;
-                            richTextBox1.Text = TextAll;
-                            Initialize(1);
-                            Initialize(2);
-                            this.textBoxEx1.ReadOnly = false;
-                            textBoxEx1.Select();
-                            Glob.Pre_Cout = (NewSendText.起始段号 + NewSendText.已发段数).ToString();
-                            lblDuan.Text = "第" + Glob.Pre_Cout + "段";
-                            GetInfo();//获取信息
-                            Glob.reTypeCount = 0; //重打归零
-                            if (!NewSendText.是否独练)
-                            {
-                                NewSendTextToQQ(TextAll, NewSendText.起始段号 + NewSendText.已发段数, NewSendText.标题, TextLen);
-                                this.Activate();
-                            }
-                            NewSendText.已发段数++;
+
+                            CleanBeforeSending(TextAll, TextLen);
                         }
                         else
                         {
@@ -1288,10 +1286,8 @@ namespace WindowsFormsApplication2
                             {
                                 sendtext("文已发空！继续则重复发送！");
                             }
-                            else
-                            {
-                                ShowFlowText("跟打完毕，请重新换文！");
-                            }
+                            ShowFlowText("文章全文已发送完毕，请重新换文！");
+                            
                             NewSendText.已发段数 = 0;
                             NewSendText.标记 = 0;
                             NewSendText.已发字数 = 0;
@@ -1378,12 +1374,6 @@ namespace WindowsFormsApplication2
         #endregion
 
         #region 自带发文
-        public class zdSendText
-        {  //自带发文的全局变量
-            public static Regex isDot = new Regex(@"[\u4e00-\u9fa5]|\d");//判断是否为符号
-        }
-
-
         public void sendtext(string text)
         {
             if (text != "")

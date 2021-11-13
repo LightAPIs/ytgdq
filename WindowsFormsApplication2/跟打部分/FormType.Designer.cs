@@ -327,7 +327,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 53F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(396, 36);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(400, 36);
             this.tableLayoutPanel1.TabIndex = 12;
             this.tableLayoutPanel1.TabStop = true;
             // 
@@ -341,10 +341,10 @@
             this.lblMatchCount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblMatchCount.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Bold);
             this.lblMatchCount.ForeColor = System.Drawing.Color.Transparent;
-            this.lblMatchCount.Location = new System.Drawing.Point(343, 19);
+            this.lblMatchCount.Location = new System.Drawing.Point(348, 19);
             this.lblMatchCount.Margin = new System.Windows.Forms.Padding(0);
             this.lblMatchCount.Name = "lblMatchCount";
-            this.lblMatchCount.Size = new System.Drawing.Size(53, 17);
+            this.lblMatchCount.Size = new System.Drawing.Size(52, 17);
             this.lblMatchCount.TabIndex = 11;
             this.lblMatchCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.lblMatchCount, "赛文验证：文章唯一编码标识");
@@ -361,7 +361,7 @@
             this.lblDuan.Margin = new System.Windows.Forms.Padding(0);
             this.lblDuan.Name = "lblDuan";
             this.lblDuan.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.lblDuan.Size = new System.Drawing.Size(65, 19);
+            this.lblDuan.Size = new System.Drawing.Size(66, 19);
             this.lblDuan.TabIndex = 3;
             this.lblDuan.Text = "段号";
             this.lblDuan.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -400,11 +400,11 @@
             this.tableLayoutPanel1.SetColumnSpan(this.lblQuan, 2);
             this.lblQuan.Font = new System.Drawing.Font("宋体", 9F);
             this.lblQuan.ForeColor = System.Drawing.Color.White;
-            this.lblQuan.Location = new System.Drawing.Point(311, 0);
+            this.lblQuan.Location = new System.Drawing.Point(316, 0);
             this.lblQuan.Margin = new System.Windows.Forms.Padding(0);
             this.lblQuan.Name = "lblQuan";
             this.lblQuan.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.lblQuan.Size = new System.Drawing.Size(85, 19);
+            this.lblQuan.Size = new System.Drawing.Size(84, 19);
             this.lblQuan.TabIndex = 2;
             this.lblQuan.Tag = "";
             this.lblQuan.Text = "所在群";
@@ -421,7 +421,7 @@
             this.labelmcing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(181)))), ((int)(((byte)(157)))));
             this.labelmcing.Font = new System.Drawing.Font("Verdana", 8.25F);
             this.labelmcing.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.labelmcing.Location = new System.Drawing.Point(311, 19);
+            this.labelmcing.Location = new System.Drawing.Point(316, 19);
             this.labelmcing.Margin = new System.Windows.Forms.Padding(0);
             this.labelmcing.Name = "labelmcing";
             this.labelmcing.Size = new System.Drawing.Size(32, 17);
@@ -435,11 +435,11 @@
             this.lblMCText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblMCText.Font = new System.Drawing.Font("宋体", 9F);
             this.lblMCText.ForeColor = System.Drawing.Color.White;
-            this.lblMCText.Location = new System.Drawing.Point(263, 19);
+            this.lblMCText.Location = new System.Drawing.Point(267, 19);
             this.lblMCText.Margin = new System.Windows.Forms.Padding(0);
             this.lblMCText.Name = "lblMCText";
             this.lblMCText.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.lblMCText.Size = new System.Drawing.Size(48, 17);
+            this.lblMCText.Size = new System.Drawing.Size(49, 17);
             this.lblMCText.TabIndex = 8;
             this.lblMCText.Text = "码长";
             this.lblMCText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -454,10 +454,10 @@
             this.labelSpeeding.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.labelSpeeding.Font = new System.Drawing.Font("Verdana", 8.25F);
             this.labelSpeeding.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.labelSpeeding.Location = new System.Drawing.Point(65, 19);
+            this.labelSpeeding.Location = new System.Drawing.Point(66, 19);
             this.labelSpeeding.Margin = new System.Windows.Forms.Padding(0);
             this.labelSpeeding.Name = "labelSpeeding";
-            this.labelSpeeding.Size = new System.Drawing.Size(45, 17);
+            this.labelSpeeding.Size = new System.Drawing.Size(46, 17);
             this.labelSpeeding.TabIndex = 5;
             this.labelSpeeding.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolTip1.SetToolTip(this.labelSpeeding, "速度即时获取");
@@ -467,10 +467,10 @@
             this.lblCount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(129)))), ((int)(((byte)(97)))));
             this.lblCount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblCount.ForeColor = System.Drawing.Color.White;
-            this.lblCount.Location = new System.Drawing.Point(263, 0);
+            this.lblCount.Location = new System.Drawing.Point(267, 0);
             this.lblCount.Margin = new System.Windows.Forms.Padding(0);
             this.lblCount.Name = "lblCount";
-            this.lblCount.Size = new System.Drawing.Size(48, 19);
+            this.lblCount.Size = new System.Drawing.Size(49, 19);
             this.lblCount.TabIndex = 1;
             this.lblCount.Text = "字数";
             this.lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -484,11 +484,11 @@
             this.lblTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblTitle.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(65, 0);
+            this.lblTitle.Location = new System.Drawing.Point(66, 0);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.lblTitle.Size = new System.Drawing.Size(198, 19);
+            this.lblTitle.Size = new System.Drawing.Size(201, 19);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "引导语";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -502,10 +502,10 @@
             this.labelJjing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(181)))), ((int)(((byte)(157)))));
             this.labelJjing.Font = new System.Drawing.Font("Verdana", 8.25F);
             this.labelJjing.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.labelJjing.Location = new System.Drawing.Point(158, 19);
+            this.labelJjing.Location = new System.Drawing.Point(161, 19);
             this.labelJjing.Margin = new System.Windows.Forms.Padding(0);
             this.labelJjing.Name = "labelJjing";
-            this.labelJjing.Size = new System.Drawing.Size(37, 17);
+            this.labelJjing.Size = new System.Drawing.Size(38, 17);
             this.labelJjing.TabIndex = 7;
             this.labelJjing.Tag = "";
             this.labelJjing.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -516,11 +516,11 @@
             this.lblJJText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblJJText.Font = new System.Drawing.Font("宋体", 9F);
             this.lblJJText.ForeColor = System.Drawing.Color.White;
-            this.lblJJText.Location = new System.Drawing.Point(110, 19);
+            this.lblJJText.Location = new System.Drawing.Point(112, 19);
             this.lblJJText.Margin = new System.Windows.Forms.Padding(0);
             this.lblJJText.Name = "lblJJText";
             this.lblJJText.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.lblJJText.Size = new System.Drawing.Size(48, 17);
+            this.lblJJText.Size = new System.Drawing.Size(49, 17);
             this.lblJJText.TabIndex = 6;
             this.lblJJText.Text = "击键";
             this.lblJJText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -536,7 +536,7 @@
             this.lblSpeedText.Margin = new System.Windows.Forms.Padding(0);
             this.lblSpeedText.Name = "lblSpeedText";
             this.lblSpeedText.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.lblSpeedText.Size = new System.Drawing.Size(65, 17);
+            this.lblSpeedText.Size = new System.Drawing.Size(66, 17);
             this.lblSpeedText.TabIndex = 4;
             this.lblSpeedText.Text = "速度";
             this.lblSpeedText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -550,7 +550,7 @@
             this.labelJiCheck.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(181)))), ((int)(((byte)(157)))));
             this.labelJiCheck.Font = new System.Drawing.Font("Verdana", 7.8F);
             this.labelJiCheck.ForeColor = System.Drawing.Color.White;
-            this.labelJiCheck.Location = new System.Drawing.Point(195, 19);
+            this.labelJiCheck.Location = new System.Drawing.Point(199, 19);
             this.labelJiCheck.Margin = new System.Windows.Forms.Padding(0);
             this.labelJiCheck.Name = "labelJiCheck";
             this.labelJiCheck.Size = new System.Drawing.Size(50, 17);
@@ -564,7 +564,7 @@
             this.labelCheckUD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(181)))), ((int)(((byte)(157)))));
             this.labelCheckUD.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelCheckUD.ForeColor = System.Drawing.Color.DimGray;
-            this.labelCheckUD.Location = new System.Drawing.Point(245, 19);
+            this.labelCheckUD.Location = new System.Drawing.Point(249, 19);
             this.labelCheckUD.Margin = new System.Windows.Forms.Padding(0);
             this.labelCheckUD.Name = "labelCheckUD";
             this.labelCheckUD.Size = new System.Drawing.Size(18, 17);
@@ -664,7 +664,7 @@
             this.dataGridView1.ShowCellToolTips = false;
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.ShowRowErrors = false;
-            this.dataGridView1.Size = new System.Drawing.Size(396, 69);
+            this.dataGridView1.Size = new System.Drawing.Size(400, 55);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.TabStop = false;
             this.toolTip1.SetToolTip(this.dataGridView1, "跟打历史区");
@@ -1014,7 +1014,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox1.Size = new System.Drawing.Size(396, 116);
+            this.richTextBox1.Size = new System.Drawing.Size(400, 129);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.TabStop = false;
             this.richTextBox1.Text = "当你还在被世间诸多繁杂所束缚，心神不宁，不妨静下心来坐在电脑前跟打上一段文章。";
@@ -1188,7 +1188,7 @@
             this.textBoxEx1.Name = "textBoxEx1";
             this.textBoxEx1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxEx1.ShortcutsEnabled = false;
-            this.textBoxEx1.Size = new System.Drawing.Size(392, 0);
+            this.textBoxEx1.Size = new System.Drawing.Size(396, 28);
             this.textBoxEx1.TabIndex = 2;
             this.toolTip1.SetToolTip(this.textBoxEx1, "跟打区");
             this.textBoxEx1.TextChanged += new System.EventHandler(this.textBoxEx1_TextChanged);
@@ -1203,10 +1203,10 @@
             this.lblNowTime_.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNowTime_.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.lblNowTime_.ForeColor = System.Drawing.Color.Black;
-            this.lblNowTime_.Location = new System.Drawing.Point(240, 1);
+            this.lblNowTime_.Location = new System.Drawing.Point(245, 1);
             this.lblNowTime_.Margin = new System.Windows.Forms.Padding(0, 1, 1, 0);
             this.lblNowTime_.Name = "lblNowTime_";
-            this.lblNowTime_.Size = new System.Drawing.Size(29, 14);
+            this.lblNowTime_.Size = new System.Drawing.Size(30, 14);
             this.lblNowTime_.TabIndex = 20;
             this.lblNowTime_.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.lblNowTime_, "发文周期计数");
@@ -1220,10 +1220,10 @@
             this.labelHaveTyping.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.labelHaveTyping.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.labelHaveTyping.ForeColor = System.Drawing.Color.Black;
-            this.labelHaveTyping.Location = new System.Drawing.Point(270, 1);
+            this.labelHaveTyping.Location = new System.Drawing.Point(276, 1);
             this.labelHaveTyping.Margin = new System.Windows.Forms.Padding(0, 1, 1, 0);
             this.labelHaveTyping.Name = "labelHaveTyping";
-            this.labelHaveTyping.Size = new System.Drawing.Size(125, 14);
+            this.labelHaveTyping.Size = new System.Drawing.Size(123, 14);
             this.labelHaveTyping.TabIndex = 8;
             this.labelHaveTyping.Text = "0";
             this.labelHaveTyping.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1237,10 +1237,10 @@
             this.toolStripStatusLabelStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.toolStripStatusLabelStatus.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.toolStripStatusLabelStatus.ForeColor = System.Drawing.Color.Black;
-            this.toolStripStatusLabelStatus.Location = new System.Drawing.Point(208, 1);
+            this.toolStripStatusLabelStatus.Location = new System.Drawing.Point(212, 1);
             this.toolStripStatusLabelStatus.Margin = new System.Windows.Forms.Padding(0, 1, 1, 0);
             this.toolStripStatusLabelStatus.Name = "toolStripStatusLabelStatus";
-            this.toolStripStatusLabelStatus.Size = new System.Drawing.Size(31, 14);
+            this.toolStripStatusLabelStatus.Size = new System.Drawing.Size(32, 14);
             this.toolStripStatusLabelStatus.TabIndex = 6;
             this.toolStripStatusLabelStatus.Text = "-";
             this.toolStripStatusLabelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1254,10 +1254,10 @@
             this.labelhgstatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.labelhgstatus.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.labelhgstatus.ForeColor = System.Drawing.Color.Black;
-            this.labelhgstatus.Location = new System.Drawing.Point(144, 1);
+            this.labelhgstatus.Location = new System.Drawing.Point(146, 1);
             this.labelhgstatus.Margin = new System.Windows.Forms.Padding(0, 1, 1, 0);
             this.labelhgstatus.Name = "labelhgstatus";
-            this.labelhgstatus.Size = new System.Drawing.Size(31, 14);
+            this.labelhgstatus.Size = new System.Drawing.Size(32, 14);
             this.labelhgstatus.TabIndex = 9;
             this.labelhgstatus.Text = "0";
             this.labelhgstatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1276,7 +1276,7 @@
             this.labelTimeFlys.Location = new System.Drawing.Point(34, 1);
             this.labelTimeFlys.Margin = new System.Windows.Forms.Padding(0, 1, 1, 0);
             this.labelTimeFlys.Name = "labelTimeFlys";
-            this.labelTimeFlys.Size = new System.Drawing.Size(51, 14);
+            this.labelTimeFlys.Size = new System.Drawing.Size(52, 14);
             this.labelTimeFlys.TabIndex = 1;
             this.labelTimeFlys.Text = "00:00.00";
             this.labelTimeFlys.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1308,10 +1308,10 @@
             this.labelBM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.labelBM.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.labelBM.ForeColor = System.Drawing.Color.Black;
-            this.labelBM.Location = new System.Drawing.Point(176, 1);
+            this.labelBM.Location = new System.Drawing.Point(179, 1);
             this.labelBM.Margin = new System.Windows.Forms.Padding(0, 1, 1, 0);
             this.labelBM.Name = "labelBM";
-            this.labelBM.Size = new System.Drawing.Size(31, 14);
+            this.labelBM.Size = new System.Drawing.Size(32, 14);
             this.labelBM.TabIndex = 12;
             this.labelBM.Text = "0";
             this.labelBM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1342,10 +1342,10 @@
             this.lbl地图长度.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.lbl地图长度.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.lbl地图长度.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.lbl地图长度.Location = new System.Drawing.Point(240, 16);
+            this.lbl地图长度.Location = new System.Drawing.Point(245, 16);
             this.lbl地图长度.Margin = new System.Windows.Forms.Padding(0, 1, 1, 1);
             this.lbl地图长度.Name = "lbl地图长度";
-            this.lbl地图长度.Size = new System.Drawing.Size(29, 13);
+            this.lbl地图长度.Size = new System.Drawing.Size(30, 13);
             this.lbl地图长度.TabIndex = 21;
             this.lbl地图长度.Text = "100%";
             this.lbl地图长度.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1357,10 +1357,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.picMap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.picMap.Location = new System.Drawing.Point(270, 16);
+            this.picMap.Location = new System.Drawing.Point(276, 16);
             this.picMap.Margin = new System.Windows.Forms.Padding(0, 1, 1, 1);
             this.picMap.Name = "picMap";
-            this.picMap.Size = new System.Drawing.Size(125, 13);
+            this.picMap.Size = new System.Drawing.Size(123, 13);
             this.picMap.TabIndex = 19;
             this.picMap.TabStop = false;
             this.toolTip1.SetToolTip(this.picMap, "跟打地图");
@@ -1424,7 +1424,7 @@
             this.dataGridView2.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView2.ShowCellToolTips = false;
-            this.dataGridView2.Size = new System.Drawing.Size(396, 15);
+            this.dataGridView2.Size = new System.Drawing.Size(400, 15);
             this.dataGridView2.TabIndex = 20;
             this.dataGridView2.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView2_CellFormatting);
             // 
@@ -1595,8 +1595,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel2MinSize = 50;
-            this.splitContainer1.Size = new System.Drawing.Size(396, 217);
-            this.splitContainer1.SplitterDistance = 116;
+            this.splitContainer1.Size = new System.Drawing.Size(400, 244);
+            this.splitContainer1.SplitterDistance = 129;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 3;
             this.splitContainer1.TabStop = false;
@@ -1607,7 +1607,7 @@
             this.picDoing.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.picDoing.BackColor = System.Drawing.Color.White;
             this.picDoing.Image = global::WindowsFormsApplication2.Properties.Resources.doing;
-            this.picDoing.Location = new System.Drawing.Point(355, 91);
+            this.picDoing.Location = new System.Drawing.Point(359, 104);
             this.picDoing.Name = "picDoing";
             this.picDoing.Size = new System.Drawing.Size(22, 22);
             this.picDoing.TabIndex = 23;
@@ -1630,7 +1630,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer2.Panel2MinSize = 0;
-            this.splitContainer2.Size = new System.Drawing.Size(396, 98);
+            this.splitContainer2.Size = new System.Drawing.Size(400, 112);
             this.splitContainer2.SplitterIncrement = 2;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 5;
@@ -1653,8 +1653,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer3.Size = new System.Drawing.Size(396, 98);
-            this.splitContainer3.SplitterDistance = 25;
+            this.splitContainer3.Size = new System.Drawing.Size(400, 112);
+            this.splitContainer3.SplitterDistance = 53;
             this.splitContainer3.TabIndex = 0;
             this.splitContainer3.TabStop = false;
             // 
@@ -1695,17 +1695,17 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(396, 30);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(400, 30);
             this.tableLayoutPanel2.TabIndex = 10;
             // 
             // lblBmTips
             // 
             this.lblBmTips.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.lblBmTips.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblBmTips.Location = new System.Drawing.Point(86, 1);
+            this.lblBmTips.Location = new System.Drawing.Point(87, 1);
             this.lblBmTips.Margin = new System.Windows.Forms.Padding(0, 1, 1, 0);
             this.lblBmTips.Name = "lblBmTips";
-            this.lblBmTips.Size = new System.Drawing.Size(57, 14);
+            this.lblBmTips.Size = new System.Drawing.Size(58, 14);
             this.lblBmTips.TabIndex = 23;
             this.lblBmTips.TabStop = false;
             // 
@@ -1715,10 +1715,10 @@
             this.lblAutoReType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblAutoReType.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAutoReType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.lblAutoReType.Location = new System.Drawing.Point(208, 16);
+            this.lblAutoReType.Location = new System.Drawing.Point(212, 16);
             this.lblAutoReType.Margin = new System.Windows.Forms.Padding(0, 1, 1, 1);
             this.lblAutoReType.Name = "lblAutoReType";
-            this.lblAutoReType.Size = new System.Drawing.Size(31, 13);
+            this.lblAutoReType.Size = new System.Drawing.Size(32, 13);
             this.lblAutoReType.TabIndex = 18;
             this.lblAutoReType.Text = "0";
             this.lblAutoReType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1729,10 +1729,10 @@
             this.lbl错字显示.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbl错字显示.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl错字显示.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.lbl错字显示.Location = new System.Drawing.Point(176, 15);
+            this.lbl错字显示.Location = new System.Drawing.Point(179, 15);
             this.lbl错字显示.Margin = new System.Windows.Forms.Padding(0, 0, 1, 1);
             this.lbl错字显示.Name = "lbl错字显示";
-            this.lbl错字显示.Size = new System.Drawing.Size(31, 14);
+            this.lbl错字显示.Size = new System.Drawing.Size(32, 14);
             this.lbl错字显示.TabIndex = 17;
             this.lbl错字显示.Text = "错字";
             this.lbl错字显示.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1743,10 +1743,10 @@
             this.lbl回改显示.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbl回改显示.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl回改显示.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.lbl回改显示.Location = new System.Drawing.Point(144, 15);
+            this.lbl回改显示.Location = new System.Drawing.Point(146, 15);
             this.lbl回改显示.Margin = new System.Windows.Forms.Padding(0, 0, 1, 1);
             this.lbl回改显示.Name = "lbl回改显示";
-            this.lbl回改显示.Size = new System.Drawing.Size(31, 14);
+            this.lbl回改显示.Size = new System.Drawing.Size(32, 14);
             this.lbl回改显示.TabIndex = 16;
             this.lbl回改显示.Text = "回改";
             this.lbl回改显示.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1760,7 +1760,7 @@
             this.lblspeedcheck.Location = new System.Drawing.Point(34, 15);
             this.lblspeedcheck.Margin = new System.Windows.Forms.Padding(0, 0, 1, 1);
             this.lblspeedcheck.Name = "lblspeedcheck";
-            this.lblspeedcheck.Size = new System.Drawing.Size(51, 14);
+            this.lblspeedcheck.Size = new System.Drawing.Size(52, 14);
             this.lblspeedcheck.TabIndex = 14;
             this.lblspeedcheck.Text = "时间";
             this.lblspeedcheck.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1769,10 +1769,10 @@
             // 
             this.picBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.picBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picBar.Location = new System.Drawing.Point(86, 16);
+            this.picBar.Location = new System.Drawing.Point(87, 16);
             this.picBar.Margin = new System.Windows.Forms.Padding(0, 1, 1, 1);
             this.picBar.Name = "picBar";
-            this.picBar.Size = new System.Drawing.Size(57, 13);
+            this.picBar.Size = new System.Drawing.Size(58, 13);
             this.picBar.TabIndex = 22;
             this.picBar.TabStop = false;
             // 
@@ -1794,7 +1794,7 @@
             // 
             this.splitContainer4.Panel2.Controls.Add(this.dataGridView1);
             this.splitContainer4.Panel2.Controls.Add(this.richTextBox2);
-            this.splitContainer4.Size = new System.Drawing.Size(396, 69);
+            this.splitContainer4.Size = new System.Drawing.Size(400, 55);
             this.splitContainer4.SplitterDistance = 206;
             this.splitContainer4.SplitterWidth = 1;
             this.splitContainer4.TabIndex = 1;
@@ -1831,12 +1831,12 @@
             this.picBmTips,
             this.PicSend,
             this.toolButton1});
-            this.toolStrip1.Location = new System.Drawing.Point(5, 316);
+            this.toolStrip1.Location = new System.Drawing.Point(3, 343);
             this.toolStrip1.Margin = new System.Windows.Forms.Padding(0, 0, 2, 2);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(396, 22);
+            this.toolStrip1.Size = new System.Drawing.Size(400, 22);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.Paint += new System.Windows.Forms.PaintEventHandler(this.toolStrip1_Paint_1);
@@ -2016,11 +2016,11 @@
             this.TSMI3,
             this.TSMI2,
             this.TSMI5});
-            this.mS1.Location = new System.Drawing.Point(5, 26);
+            this.mS1.Location = new System.Drawing.Point(3, 26);
             this.mS1.Name = "mS1";
             this.mS1.Padding = new System.Windows.Forms.Padding(0);
             this.mS1.ShowItemToolTips = true;
-            this.mS1.Size = new System.Drawing.Size(396, 22);
+            this.mS1.Size = new System.Drawing.Size(400, 22);
             this.mS1.TabIndex = 1;
             this.mS1.TabStop = true;
             this.mS1.Text = "menuStrip1";
@@ -2543,7 +2543,7 @@
             this.panel5.Location = new System.Drawing.Point(0, 51);
             this.panel5.Margin = new System.Windows.Forms.Padding(0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(396, 217);
+            this.panel5.Size = new System.Drawing.Size(400, 244);
             this.panel5.TabIndex = 18;
             // 
             // timer3
@@ -2724,10 +2724,10 @@
             this.panelMain.Controls.Add(this.panel5);
             this.panelMain.Controls.Add(this.dataGridView2);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Location = new System.Drawing.Point(5, 48);
+            this.panelMain.Location = new System.Drawing.Point(3, 48);
             this.panelMain.Margin = new System.Windows.Forms.Padding(0);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(396, 290);
+            this.panelMain.Size = new System.Drawing.Size(400, 317);
             this.panelMain.TabIndex = 22;
             // 
             // cmsDuanList
@@ -2742,7 +2742,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(406, 343);
+            this.ClientSize = new System.Drawing.Size(406, 368);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.mS1);
@@ -2750,7 +2750,7 @@
             this.KeyPreview = true;
             this.MainMenuStrip = this.mS1;
             this.Name = "Form1";
-            this.Padding = new System.Windows.Forms.Padding(5, 26, 5, 5);
+            this.Padding = new System.Windows.Forms.Padding(3, 26, 3, 3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "雨天跟打器";
             this.Activated += new System.EventHandler(this.Form_Action);

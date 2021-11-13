@@ -27,7 +27,7 @@ namespace WindowsFormsApplication2
             this.Location = new Point(MainPos.X - this.Width, MainPos.Y);
             //MessageBox.Show(MainPos + "\n" + this.Width);
             FillData();
-            frm.ShowFlowText("发文已开启，全局F6 或者 Ctrl+R 发下一段");
+            frm.ShowFlowText("发文已开启...");
         }
 
         //填充数据

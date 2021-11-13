@@ -18,7 +18,10 @@ namespace WindowsFormsApplication2
 
         public static bool 是否一句结束;
         public static int 起始段号 = 1;
-        public static int 字数;//发送字数
+        /// <summary>
+        /// 每段发送的字数
+        /// </summary>
+        public static int 字数;
         public static int 标记;
         public static int 已发段数 = 0;
 

@@ -157,7 +157,10 @@ namespace WindowsFormsApplication2
 
         public static bool binput = true;
         public static int oneH; //一行高度
-        public static int reTypeCount = 0;//重打次数
+        /// <summary>
+        /// 重打次数
+        /// </summary>
+        public static int reTypeCount = 0;
 
         /// <summary>
         /// 跟打效率

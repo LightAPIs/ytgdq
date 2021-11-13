@@ -50,6 +50,8 @@ namespace WindowsFormsApplication2
         private FormBMTipsModel bmTips;//编码提示
         //private Stopwatch UseStopTime = new Stopwatch();
 
+        private SendTextStatic 发文状态窗口;
+
         /// <summary>
         /// 当前成绩数据
         /// </summary>
@@ -1046,6 +1048,36 @@ namespace WindowsFormsApplication2
         #endregion
 
         #region 新发文
+        /// <summary>
+        /// 正式发文前的数据清理
+        /// </summary>
+        /// <param name="textAll">跟打区的文本内容</param>
+        /// <param name="textLen">剩余的发文字数</param>
+        private void CleanBeforeSending(string textAll, int textLen)
+        {
+            this.textBoxEx1.Clear(); // 清空跟打区
+            this.richTextBox1.SelectAll();
+            this.richTextBox1.SelectionBackColor = Glob.r1Back;
+            this.richTextBox1.Text = textAll;
+            Initialize(1);
+            Initialize(2);
+            this.textBoxEx1.ReadOnly = false; // 激活跟打区
+            this.textBoxEx1.Select();
+            Glob.Pre_Cout = NewSendText.起始段号.ToString(); // 设置当前段号为起始段号
+            this.lblDuan.Text = "第" + Glob.Pre_Cout.ToString() + "段";
+            GetInfo(); // 获取信息
+            Glob.reTypeCount = 0; // 重打次数归零
+            if (!NewSendText.是否独练)
+            {
+                NewSendTextToQQ(textAll, NewSendText.起始段号, NewSendText.标题, textLen);
+                this.Activate();
+            }
+            NewSendText.已发段数++;
+        }
+
+        /// <summary>
+        /// 正常发文
+        /// </summary>
         public void SendAOnce()
         {
             this.textBoxEx1.TextChanged -= new System.EventHandler(textBoxEx1_TextChanged);
@@ -1053,77 +1085,67 @@ namespace WindowsFormsApplication2
             {
                 //输入法状态
                 Glob.binput = true;
-                string TextAll = ""; //要发送的信息
+                string TextAll = ""; // 要发送的文字
                 int TextLen = NewSendText.发文全文.Length;
                 this.lblTitle.Text = NewSendText.标题;
                 if (NewSendText.类型 == "单字")
                 {
                     if (NewSendText.是否乱序)
-                    {
+                    { //* 单字乱序
+                        //? 此时 TextLen 指示剩余字数
                         int[] numlist;
-                        //乱序的话
-                        if (TextLen < NewSendText.字数 && TextLen > 0)
-                        {
-                            numlist = GetRandomUnrepeatArray(0, TextLen - 1, TextLen);
-                        }
-                        else if (TextLen >= NewSendText.字数)
-                        {
-                            numlist = GetRandomUnrepeatArray(0, TextLen - 1, NewSendText.字数);
-                        }
-                        else
-                        {
-                            if (!NewSendText.是否独练)
-                            {
-                                sendtext("文已发空！");
+                        if (NewSendText.乱序全段不重复)
+                        { //* 全段不重复
+                            if (TextLen > 0)
+                            { // 剩余字数大于零时
+                                if (TextLen < NewSendText.字数)
+                                { // 剩余字数小于需要发送的字数
+                                    numlist = GetRandomUnrepeatArray(0, TextLen - 1, TextLen);
+                                }
+                                else
+                                { // 剩余字数大于需要发送的字数时
+                                    numlist = GetRandomUnrepeatArray(0, TextLen - 1, NewSendText.字数);
+                                }
+                                Random ro = new Random((int)DateTime.Now.Ticks);
+                                foreach (int item in numlist)
+                                {
+                                    TextAll += NewSendText.发文全文[item];
+                                    NewSendText.发文全文 = NewSendText.发文全文.Replace(NewSendText.发文全文[item].ToString(), " "); // 将已发送的文字从全文当中剔除
+                                }
+                                NewSendText.发文全文 = NewSendText.发文全文.Replace(" ", "");
+                                NewSendText.标记 += numlist.Length;
+                                CleanBeforeSending(TextAll, TextLen);
                             }
                             else
-                            {
-                                ShowFlowText("跟打完毕，请重新换文！");
-                            }
-                            NewSendText.标记 = 0;
-                            if (NewSendText.乱序全段不重复)
+                            { // 剩余字数为零时
+                                if (!NewSendText.是否独练)
+                                {
+                                    sendtext("文已发空！");
+                                }
+                                ShowFlowText("文章全文已发送完毕，请重新换文！"); //* 仅弹出提示，不会自动停止发文
+                                NewSendText.标记 = 0;
+                                NewSendText.已发段数 = 0;
+                                NewSendText.已发字数 = 0;
                                 NewSendText.发文全文 = NewSendText.文章全文;
-                            TextLen = NewSendText.发文全文.Length;
-                            numlist = GetRandomUnrepeatArray(0, TextLen - 1, NewSendText.字数);
-                        }
-                        Random ro = new Random((int)DateTime.Now.Ticks);
-                        foreach (int item in numlist)
-                        {
-                            TextAll += NewSendText.发文全文[item];
-                            if (NewSendText.乱序全段不重复)
-                            {
-                                NewSendText.发文全文 = NewSendText.发文全文.Replace(NewSendText.发文全文[item].ToString(), " ");
                             }
                         }
-                        if (NewSendText.乱序全段不重复)
-                            NewSendText.发文全文 = NewSendText.发文全文.Replace(" ", "");
-
-                        //MessageBox.Show("已结束:" + numlist.Length + "\n当前度：" + NewSendText.发文全文.Length);
-                        this.textBoxEx1.Clear();
-                        richTextBox1.SelectAll();
-                        richTextBox1.SelectionBackColor = Glob.r1Back;
-                        richTextBox1.Text = TextAll;
-                        Initialize(1);
-                        Initialize(2);
-                        this.textBoxEx1.ReadOnly = false;
-                        textBoxEx1.Select();
-                        Glob.Pre_Cout = NewSendText.起始段号.ToString();//起始段号
-                        lblDuan.Text = "第" + NewSendText.起始段号.ToString() + "段";
-                        GetInfo();//获取信息
-                        Glob.reTypeCount = 0; //重打归零
-                        if (!NewSendText.是否独练)
-                        {
-                            NewSendTextToQQ(TextAll, NewSendText.起始段号, NewSendText.标题, TextLen);
-                            SwitchToThisWindow(FindWindow(null, Glob.Form), true);
+                        else
+                        { //* 乱序无限
+                            numlist = GetRandomUnrepeatArray(0, TextLen - 1, NewSendText.字数);
+                            Random ro = new Random((int)DateTime.Now.Ticks);
+                            foreach (int item in numlist)
+                            {
+                                TextAll += NewSendText.发文全文[item];
+                            }
+                            CleanBeforeSending(TextAll, TextLen);
                         }
-                        NewSendText.起始段号++;
-                        NewSendText.已发段数++;
                     }
                     else
-                    {
+                    { //* 单字顺序
+                        //? 此时 TextLen 指示总字数
                         int least = TextLen - NewSendText.标记 + 1 - NewSendText.字数;
                         int limit = TextLen / NewSendText.字数;//总共只能发送多少段
-                        //MessageBox.Show(limit + "\n" + NewSendText.标记);
+
                         if (NewSendText.已发段数 < limit)
                         {
                             if (NewSendText.已发段数 == limit - 1)
@@ -1136,25 +1158,8 @@ namespace WindowsFormsApplication2
                                 TextAll = NewSendText.发文全文.Substring(NewSendText.标记, NewSendText.字数);
                                 NewSendText.标记 += NewSendText.字数;
                             }
-                            this.textBoxEx1.Clear();
-                            richTextBox1.SelectAll();
-                            richTextBox1.SelectionBackColor = Glob.r1Back;
-                            richTextBox1.Text = TextAll;
-                            Initialize(1);
-                            Initialize(2);
-                            this.textBoxEx1.ReadOnly = false;
-                            textBoxEx1.Select();
-                            Glob.Pre_Cout = (NewSendText.起始段号 + NewSendText.已发段数).ToString();
-                            lblDuan.Text = "第" + Glob.Pre_Cout + "段";
-                            GetInfo();//获取信息
-                            Glob.reTypeCount = 0; //重打归零
-                            if (!NewSendText.是否独练)
-                            {
-                                NewSendTextToQQ(TextAll, NewSendText.起始段号 + NewSendText.已发段数, NewSendText.标题, TextLen);
-                                this.Activate();
-                                //SwitchToThisWindow(FindWindow(null, Glob.Form), true);
-                            }
-                            NewSendText.已发段数++;
+
+                            CleanBeforeSending(TextAll, least);
                         }
                         else
                         {
@@ -1162,15 +1167,11 @@ namespace WindowsFormsApplication2
                             {
                                 sendtext("文已发空！");
                             }
-                            else
-                            {
-                                ShowFlowText("跟打完毕，请重新换文！");
-                            }
+                            ShowFlowText("文章全文已发送完毕，请重新换文！");
+                            
                             NewSendText.标记 = 0;
                             NewSendText.已发段数 = 0;
-                            NewSendText.已发字数 = 0;
-                            if (NewSendText.乱序全段不重复)
-                                NewSendText.发文全文 = NewSendText.文章全文;
+                            NewSendText.已发字数 = 0;                            
                         }
                     }
                 }
@@ -1343,8 +1344,6 @@ namespace WindowsFormsApplication2
                     发文状态窗口.tbxNowStart.Text = NewSendText.标记.ToString();//当前标记
                     发文状态窗口.tbxSendC.Text = NewSendText.字数.ToString();//一次发送字数
                     发文状态窗口.tbxNowStartCount.Text = Glob.Pre_Cout;//当前段号
-                    if (NewSendText.乱序全段不重复)
-                        发文状态窗口.lblLeastCount.Text = NewSendText.发文全文.Length.ToString();
                     if (NewSendText.是否周期)
                     {
                         发文状态窗口.lblNowTime.Text = NewSendText.周期计数.ToString();
@@ -1354,7 +1353,6 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private SendTextStatic 发文状态窗口;
         private void 发文状态ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //! 注：新发文同样是采用该事件来显示发文状态窗口
@@ -1416,7 +1414,10 @@ namespace WindowsFormsApplication2
                 SendKeys.SendWait("^a^v%s");
             }
         }
-        //周期发文
+
+        /// <summary>
+        /// 周期发文
+        /// </summary>
         public void SendTTest()
         {
             NewSendText.周期计数 = NewSendText.周期;
@@ -1461,8 +1462,12 @@ namespace WindowsFormsApplication2
             public static string srf;
         }
 
+        /// <summary>
+        /// 初始化操作
+        /// </summary>
+        /// <param name="Contr"></param>
         public void Initialize(int Contr)
-        {  //初始化操作
+        {
             if (Contr == 1)
             { //数值初始化
                 Glob.TextJc = 0;
@@ -3671,6 +3676,10 @@ namespace WindowsFormsApplication2
                 lblQuan.Text = err2.Message;
             }
         }
+
+        /// <summary>
+        /// 获取信息
+        /// </summary>
         public void GetInfo()
         {
             if (Glob.autoReplaceBiaodian)
@@ -4997,6 +5006,13 @@ namespace WindowsFormsApplication2
         #endregion
 
         #region 文章处理
+        /// <summary>
+        /// 获取范围随机数组
+        /// </summary>
+        /// <param name="minValue"></param>
+        /// <param name="maxValue"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
         public int[] GetRandomUnrepeatArray(int minValue, int maxValue, int count)
         {
             Random rnd = new Random();

@@ -562,7 +562,7 @@ namespace WindowsFormsApplication2
         {
             rtbShowText.Text = "处理中...";
             if (this.cbxTickOut.Checked)
-            {
+            { // 勾选"文章自动清除空格和换行时"
                 GetText = TickBlock(GetText, "");
             }
             if (GetText.Length == 0) {
@@ -589,7 +589,7 @@ namespace WindowsFormsApplication2
 
             NewSendText.是否乱序 = rbnOutOrder.Checked;
             NewSendText.乱序全段不重复 = this.cbx乱序全段不重复.Checked;
-            NewSendText.是否一句结束 = cbxOneEnd.Checked;
+            NewSendText.是否一句结束 = cbxOneEnd.Checked; //? 文章中强制开启，这个选项其实无法改动
             try
             {
                 NewSendText.字数 = int.Parse(tbxSendCount.Text);
@@ -664,6 +664,12 @@ namespace WindowsFormsApplication2
         #endregion
 
         #region 文章处理
+        /// <summary>
+        /// 清除空格和换行
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
         private string TickBlock(string text, string target)
         {
             string s = text;

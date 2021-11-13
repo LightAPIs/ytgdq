@@ -103,6 +103,10 @@ namespace WindowsFormsApplication2
                     lblLeastCount.Text = (total - now).ToString();
                 }
             }
+            else if (NewSendText.类型 == "词组")
+            {
+                lblLeastCount.Text = "乱序无限";
+            }
             else
             {
                 int total = int.Parse(lblTotalCount.Text);

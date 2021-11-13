@@ -1198,26 +1198,7 @@ namespace WindowsFormsApplication2
                                       NewSendText.词组发送分隔符.Length);
                     }
 
-                    //MessageBox.Show("已结束:" + numlist.Length + "\n当前度：" + NewSendText.发文全文.Length);
-                    this.textBoxEx1.Clear();
-                    richTextBox1.SelectAll();
-                    richTextBox1.SelectionBackColor = Glob.r1Back;
-                    richTextBox1.Text = TextAll;
-                    Initialize(1);
-                    Initialize(2);
-                    this.textBoxEx1.ReadOnly = false;
-                    textBoxEx1.Select();
-                    Glob.Pre_Cout = NewSendText.起始段号.ToString();//起始段号
-                    lblDuan.Text = "第" + NewSendText.起始段号 + "段";
-                    GetInfo();//获取信息
-                    Glob.reTypeCount = 0; //重打归零
-                    if (!NewSendText.是否独练)
-                    {
-                        NewSendTextToQQ(TextAll, NewSendText.起始段号, NewSendText.标题, TextLen);
-                        SwitchToThisWindow(FindWindow(null, Glob.Form), true);
-                    }
-                    NewSendText.起始段号++;
-                    NewSendText.已发段数++;
+                    CleanBeforeSending(TextAll, TextLen);
                 }
                 else if (NewSendText.类型 == "文章")
                 { //? 此时 TextLen 指示总字数

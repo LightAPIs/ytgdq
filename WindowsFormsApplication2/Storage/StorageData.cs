@@ -84,7 +84,7 @@ namespace WindowsFormsApplication2.Storage
         public long InsertSegment(string content, string check_code)
         {
             string newContent = this.ConvertText(content);
-            this.cmd.CommandText = $"SELECT * FROM segment WHERE check_code='{check_code}' AND content='{newContent}';";
+            this.cmd.CommandText = $"SELECT id FROM segment WHERE check_code='{check_code}' AND content='{newContent}';";
             object readId = this.cmd.ExecuteScalar();
 
             if (readId == null)
@@ -335,8 +335,142 @@ namespace WindowsFormsApplication2.Storage
 
         public override void Init()
         {
-            this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS article(id INTEGER PRIMARY KEY AUTOINCREMENT, content TEXT, md5 VARCHAR(32), title TEXT, type INT)";
+            this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS article(id INTEGER PRIMARY KEY AUTOINCREMENT, content TEXT, md5 VARCHAR(32), title TEXT, create_time DATETIME NOT NULL)";
             this.cmd.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// 插入文章
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="md5"></param>
+        /// <param name="title"></param>
+        /// <param name="create_time"></param>
+        public void InsertArticle(string content, string md5, string title, string create_time)
+        {
+            string newContent = this.ConvertText(content);
+            this.cmd.CommandText = $"SELECT id FROM article WHERE md5='{md5}' AND content='{newContent}';";
+            object readId = this.cmd.ExecuteScalar();
+
+            if (readId == null)
+            {
+                this.cmd.CommandText = $"INSERT INTO article VALUES(NULL,'{newContent}','{md5}','{this.ConvertText(title)}','{create_time}');";
+                this.cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// 获取文章
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="limit"></param>
+        /// <returns></returns>
+        public StorageDataSet.ArticleDataTable GetArticle(int start, int limit)
+        {
+            this.cmd.CommandText = $"SELECT * FROM article LIMIT {limit} OFFSET {start}";
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(this.cmd);
+            StorageDataSet.ArticleDataTable myArticle = new StorageDataSet.ArticleDataTable();
+            adapter.Fill(myArticle);
+            return myArticle;
+        }
+
+        /// <summary>
+        /// 获取文章总数量
+        /// </summary>
+        /// <returns></returns>
+        public int GetArticleCount()
+        {
+            this.cmd.CommandText = $"SELECT COUNT(1) FROM article";
+            object readNum = this.cmd.ExecuteScalar();
+
+            if (readNum == null)
+            {
+                return 0;
+            }
+            return Convert.ToInt32(readNum);
+        }
+
+        /// <summary>
+        /// 搜索包含指定标题文本的文章
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="start"></param>
+        /// <param name="limit"></param>
+        /// <returns></returns>
+        public StorageDataSet.ArticleDataTable GetArticleFromSubTitle(string title, int start, int limit)
+        {
+            this.cmd.CommandText = $"SELECT * FROM article WHERE title LIKE '%{this.ConvertText(title).Replace("%", "/%").Replace("_", "/_")}%' LIMIT {limit} OFFSET {start}";
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(this.cmd);
+            StorageDataSet.ArticleDataTable myArticle = new StorageDataSet.ArticleDataTable();
+            adapter.Fill(myArticle);
+            return myArticle;
+        }
+
+        /// <summary>
+        /// 搜索包含指定标题文本的文章数量
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public int GetArticleCountFromSubTitle(string title)
+        {
+            this.cmd.CommandText = $"SELECT COUNT(1) FROM article WHERE title LIKE '%{this.ConvertText(title).Replace("%", "/%").Replace("_", "/_")}%'";
+            object readNum = this.cmd.ExecuteScalar();
+
+            if (readNum == null)
+            {
+                return 0;
+            }
+            return Convert.ToInt32(readNum);
+        }
+
+        /// <summary>
+        /// 更新文章标题
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="title"></param>
+        public void UpdateArticleTitle(long id, string title)
+        {
+            this.cmd.CommandText = $"UPDATE article SET title='{this.ConvertText(title)}' WHERE id={id};";
+            this.cmd.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// 更新文章内容
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="content"></param>
+        public void UpdateArticleContent(long id, string content)
+        {
+            this.cmd.CommandText = $"UPDATE article SET content='{this.ConvertText(content)}' WHERE id={id};";
+            this.cmd.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// 根据 id 删除文章
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool DeleteArticleItemById(long id)
+        {
+            this.cmd.CommandText = $"DELETE FROM article WHERE id={id}";
+            int rows = this.cmd.ExecuteNonQuery();
+            if (rows > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 删除所有文章
+        /// </summary>
+        public void DeleteAllArticle()
+        {
+            this.cmd.CommandText = $"DELETE FROM article;";
+            this.cmd.ExecuteNonQuery();
+            this.cmd.CommandText = $"DELETE FROM sqlite_sequence WHERE name ='article';";
+            this.cmd.ExecuteNonQuery();
+            this.CleanDisk();
         }
     }
 }

@@ -208,6 +208,8 @@ namespace WindowsFormsApplication2
             //* 数据库初始化
             Glob.ScoreHistory = new ScoreData("score");
             Glob.ScoreHistory.Init();
+            Glob.ArticleHistory = new ArticleData("article");
+            Glob.ArticleHistory.Init();
 
             F5();
             this.textBoxEx1.Select();
@@ -3654,7 +3656,7 @@ namespace WindowsFormsApplication2
         public void GetInfo()
         {
             if (Glob.autoReplaceBiaodian)
-            {
+            { //* 标点替换
                 this.richTextBox1.Text = ReText(this.richTextBox1.Text);
             }
             var tl = richTextBox1.TextLength;
@@ -5077,7 +5079,7 @@ namespace WindowsFormsApplication2
 
         private void 英文标点换中文标点ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!Glob.autoReplaceBiaodian) //没有开自动的情况下
+            if (!Glob.autoReplaceBiaodian) // 之前没有开自动替换标点的前提下
             {
                 richTextBox1.Text = ReText(richTextBox1.Text);
                 GetInfo();
@@ -5151,7 +5153,6 @@ namespace WindowsFormsApplication2
                 this.toolStripButton1.Checked = true;
                 ini.IniWriteValue("程序控制", "自动替换", "True");
             }
-            //MessageBox.Show(Glob.autoReplaceBiaodian + "\n" + this.toolStripButton1.Checked);
         }
 
         //潜水

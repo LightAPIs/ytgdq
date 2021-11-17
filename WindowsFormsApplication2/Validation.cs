@@ -12,6 +12,27 @@ namespace WindowsFormsApplication2
     public class Validation
     {
         /// <summary>
+        /// 计算字符串MD5
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static string GetMd5Hash(string input)
+        {
+            if (input == null)
+            {
+                return "";
+            }
+            MD5 md5 = MD5.Create();
+            byte[] data = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < data.Length; i++)
+            {
+                sb.Append(data[i].ToString("x2"));
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
         /// 校验函数
         /// </summary>
         /// <param name="a"></param>

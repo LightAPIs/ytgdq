@@ -60,6 +60,17 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Article" msprop:Generator_RowEvHandlerName="ArticleRowChangeEventHandler" msprop:Generator_RowDeletedName="ArticleRowDeleted" msprop:Generator_RowDeletingName="ArticleRowDeleting" msprop:Generator_RowEvArgName="ArticleRowChangeEvent" msprop:Generator_TablePropName="Article" msprop:Generator_RowChangedName="ArticleRowChanged" msprop:Generator_RowChangingName="ArticleRowChanging" msprop:Generator_TableClassName="ArticleDataTable" msprop:Generator_RowClassName="ArticleRow" msprop:Generator_TableVarName="tableArticle" msprop:Generator_UserTableName="Article">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_UserColumnName="id" type="xs:long" />
+              <xs:element name="content" msprop:Generator_ColumnPropNameInRow="content" msprop:Generator_ColumnPropNameInTable="contentColumn" msprop:Generator_ColumnVarNameInTable="columncontent" msprop:Generator_UserColumnName="content" type="xs:string" minOccurs="0" />
+              <xs:element name="md5" msprop:Generator_ColumnPropNameInRow="md5" msprop:Generator_ColumnPropNameInTable="md5Column" msprop:Generator_ColumnVarNameInTable="columnmd5" msprop:Generator_UserColumnName="md5" type="xs:string" minOccurs="0" />
+              <xs:element name="title" msprop:Generator_ColumnPropNameInRow="title" msprop:Generator_ColumnPropNameInTable="titleColumn" msprop:Generator_ColumnVarNameInTable="columntitle" msprop:Generator_UserColumnName="title" type="xs:string" minOccurs="0" />
+              <xs:element name="create_time" msprop:Generator_ColumnPropNameInRow="create_time" msprop:Generator_ColumnPropNameInTable="create_timeColumn" msprop:Generator_ColumnVarNameInTable="columncreate_time" msprop:Generator_UserColumnName="create_time" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="ScoreKey" msdata:PrimaryKey="true">
@@ -72,6 +83,10 @@
     </xs:unique>
     <xs:unique name="SegmentKey" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Segment" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="ArticleKey" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Article" />
       <xs:field xpath="mstns:id" />
     </xs:unique>
     <xs:keyref name="FK_Score_Advanced" refer="ScoreKey" msdata:ConstraintOnly="true" msdata:UpdateRule="None" msdata:DeleteRule="None">

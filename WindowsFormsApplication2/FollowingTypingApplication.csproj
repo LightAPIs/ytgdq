@@ -164,6 +164,12 @@
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="Validation.cs" />
+    <Compile Include="发文重写\ContentEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="发文重写\ContentEditor.Designer.cs">
+      <DependentUpon>ContentEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="检查更新\UpgradeModel.cs" />
     <Compile Include="检查更新\UpgradePro.cs">
       <SubType>Form</SubType>
@@ -280,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SpeedCheckPoint.resx">
       <DependentUpon>SpeedCheckPoint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="发文重写\ContentEditor.resx">
+      <DependentUpon>ContentEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="发文重写\SendTextStatic.resx">
       <DependentUpon>SendTextStatic.cs</DependentUpon>

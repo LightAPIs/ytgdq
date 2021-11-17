@@ -33,7 +33,10 @@ namespace WindowsFormsApplication2
         public static int 周期计数 = 0;
 
         public static bool 是否独练;
-        public static int 文章来源; // 0 自带文章 1自定义文章 2剪切板 3配置
+        /// <summary>
+        /// 0 内置文章 1自定义文章 2剪贴板 3保存的发文 4保存的配置
+        /// </summary>
+        public static int 文章来源;
         public static string 文章地址;
         public static int 已发字数 = 0;
         public static bool 是否自动 = false;

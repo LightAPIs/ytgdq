@@ -19,5 +19,23 @@
             }
             return null;
         }
+
+        /// <summary>
+        /// 通过 id 值获取文章数据
+        /// </summary>
+        /// <param name="articleData"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static ArticleRow GetArticleRowFromId(ArticleDataTable articleData, long id)
+        {
+            for (int i = 0; i < articleData.Count; i++)
+            {
+                if ((long)articleData[i]["id"] == id)
+                {
+                    return articleData[i];
+                }
+            }
+            return null;
+        }
     }
 }

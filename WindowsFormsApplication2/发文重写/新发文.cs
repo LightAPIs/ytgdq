@@ -11,12 +11,51 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions; //正则
 using System.Collections;
+using WindowsFormsApplication2.发文重写;
+using WindowsFormsApplication2.Storage;
 using TyDll;
+
 namespace WindowsFormsApplication2
 {
     public partial class 新发文 : Form
     {
         Form1 frm;
+
+        private int txtLocation = 0;
+
+        /// <summary>
+        /// 文章每页数量
+        /// </summary>
+        private readonly int ArticlePageSize = 30;
+
+        /// <summary>
+        /// 文章总数
+        /// </summary>
+        private int totalArticleCount = 0;
+
+        /// <summary>
+        /// 文章总页数
+        /// </summary>
+        private int ArticleTotalPage
+        {
+            get
+            {
+                return (int)Math.Ceiling((float)this.totalArticleCount / this.ArticlePageSize);
+            }
+        }
+
+        /// <summary>
+        /// 当前文章页数
+        /// </summary>
+        private int currentArticlePage = 0;
+
+        /// <summary>
+        /// 当前文章数据
+        /// </summary>
+        private StorageDataSet.ArticleDataTable currentArticleData = new StorageDataSet.ArticleDataTable();
+
+        private string articleSearchText = "";
+
         public 新发文(Form1 frm1)
         {
             frm = frm1;
@@ -34,6 +73,7 @@ namespace WindowsFormsApplication2
             NewSendText.起始段号 = 1;
             NewSendText.当前配置序列 = "";
             ReadAll(Application.StartupPath);
+            ReadSavedArticle();
             this.Text += "[当前群：" + frm.lblQuan.Text + "]";
             _Ini t2 = new _Ini("config.ini");
             this.cbxTickOut.Checked = bool.Parse(t2.IniReadValue("发文面板配置", "自动剔除空格", "True"));
@@ -47,7 +87,7 @@ namespace WindowsFormsApplication2
             }
         }
 
-        #region 改变TAB页时发生
+        #region Tab页切换
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClearAll();
@@ -57,21 +97,27 @@ namespace WindowsFormsApplication2
                 try
                 {
                     rtbClipboard.Text = Clipboard.GetText();
+                    tbxTitle.Text = "来自剪贴板";
                 }
                 catch (Exception err)
                 {
                     rtbClipboard.Text = err.Message + "，请自行粘贴！";
                 }
             }
-            else if (getid == 3)
-            {
-                iniRead();//更新配置
+            else if (getid == 4)
+            { // 保存的发文
+                // 后续处理时理论上不需要这部分，应当同"保存的文章"一样加载时初始化即可
+                iniRead();
+                // ------------------------------------------------------
             }
         }
         #endregion
 
-        #region 自带文章
-        private string GetText = "";//获取到的文章
+        #region 内置文章
+        /// <summary>
+        /// 获取到的文章内容
+        /// </summary>
+        private string GetText = "";
         private void lbxTextList_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = (sender as ListBox).SelectedIndex;
@@ -80,7 +126,7 @@ namespace WindowsFormsApplication2
                 GetText = TyDll.GetResources.GetText("Resources.TXT." + (sender as ListBox).Text + ".txt");
                 lblTitle.Text = (sender as ListBox).Text;
 
-                ComText(GetText); //确认文章信息
+                ComText(); //确认文章信息
             }
             switch (index)
             {
@@ -94,9 +140,6 @@ namespace WindowsFormsApplication2
                 default: rtbInfo.Text = "没有定义的内容"; break;
             }
             NewSendText.文章地址 = index.ToString();
-            //else {
-            //    (sender as ListBox).ClearSelected();
-            // }
         }
 
         /// <summary>
@@ -104,25 +147,25 @@ namespace WindowsFormsApplication2
         /// 预先判定类型，可后续手动更改；
         /// 只区分"文章"和"单字"；
         /// </summary>
-        /// <param name="Text">文本内容</param>
-        public void ComText(string Text)
+        /// <param name="auto">是否自动确认文章类型</param>
+        public void ComText(bool auto = true)
         {
-            string tickText = Text;
+            string tickText = GetText;
             // 注：只是采用去除空格和换行后的文本进行判定，但并没有修改原始的获取文本
             if (this.cbxTickOut.Checked)
             {
-                tickText = TickBlock(Text, "");
+                tickText = TickBlock(GetText, "");
             }
 
             if (tickText.Length != 0)
             {
                 if (tickText.Length > 300)
                 {
-                    rtbShowText.Text = Text.Substring(0, 300) + "[......未完]";
+                    rtbShowText.Text = tickText.Substring(0, 300) + "[......未完]";
                 }
                 else
                 {
-                    rtbShowText.Text = Text + "[已完]";
+                    rtbShowText.Text = tickText + "[已完]";
                 }
 
                 if (tickText.Length > 25)
@@ -131,12 +174,14 @@ namespace WindowsFormsApplication2
                 }
                 else
                 {
-                    //this.tbxSendCount.Text = (Text.Length / 2).ToString();
                     this.tbxSendCount.Text = tickText.Length.ToString(); // 在 25 字以下时默认发送全文
                 }
 
-                //确认文章类型
-                IsWords(tickText);
+
+                if (auto)
+                { // 确认文章类型
+                    IsWords(tickText);
+                }
                 lblTextCount.Text = tickText.Length.ToString();
 
                 tbxSendCount.Select();
@@ -164,7 +209,7 @@ namespace WindowsFormsApplication2
             {
                 lblTextCount.Text = getWords.Length.ToString();
                 ShowFlowText("找到" + getWords.Length + "个词组");
-                
+
             }
             else
             {
@@ -248,7 +293,11 @@ namespace WindowsFormsApplication2
             if (nowIndex == 2 && this.lblStyle.Text != "词组")
             {
                 this.cbxSplit.SelectedIndex = -1;
-                ShowFlowText("词组发送默认的乱序模式，暂不支持顺序。");
+                ShowFlowText("词组默认以乱序模式发送");
+            }
+            else if ((nowIndex == 0 || nowIndex == 1) && this.lblStyle.Text == "词组")
+            { // 恢复总字数，因为词组显示的是总词数
+                ComText(false);
             }
             this.lblStyle.Text = (sender as TabControl).TabPages[this.tabControl2.SelectedIndex].Text;
         }
@@ -273,14 +322,12 @@ namespace WindowsFormsApplication2
                 (sender as Label).ForeColor = Color.Black;
             }
         }
-        //显示改变时
-        private void rtbShowText_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         #endregion
 
         #region 清除所有信息
+        /// <summary>
+        /// 清除所有信息
+        /// </summary>
         private void ClearAll()
         {
             if (lblTitle.Text.Length != 0)
@@ -352,10 +399,10 @@ namespace WindowsFormsApplication2
                 if (nowtime > 0)
                 {
                     speed = (double)textcount * 60 / nowtime;
-                    if (speed < 300)
+                    if (speed <= 400)
                         this.lblspeed.Text = speed.ToString("0");
                     else
-                        this.lblspeed.Text = "0";
+                        this.lblspeed.Text = "起飞";
                 }
             }
             catch { this.lblspeed.Text = "0"; }
@@ -369,8 +416,8 @@ namespace WindowsFormsApplication2
             if (info.Item != null)
             {
                 string Hearder = listViewFile.Columns[0].Text;
-                if (info.Item.Text == "..") //返回上一层
-                {
+                if (info.Item.Text == "..")
+                { // 返回上一层
                     string path = "";
                     try
                     {
@@ -395,22 +442,22 @@ namespace WindowsFormsApplication2
                 else
                 {
                     if (Directory.Exists(info.Item.Text))
-                    {
-                        ReadAll(info.Item.Text);//返回到我的电脑
+                    { // 当前工作存在该目录
+                        ReadAll(info.Item.Text);
                     }
                     else
-                    {
-                        string Dir = "";
+                    { // 不存在目录
+                        string dir;
                         if (Hearder[Hearder.Length - 1] == '\\')
                         {
-                            Dir = Hearder + info.Item.Text;
+                            dir = Hearder + info.Item.Text;
                         }
                         else
                         {
-                            Dir = Hearder + "\\" + info.Item.Text;
+                            dir = Hearder + "\\" + info.Item.Text;
                         }
-                        if (Dir.Length != 0)
-                            ReadAll(Dir);//点开内容文件夹
+                        if (dir.Length != 0)
+                            ReadAll(dir); // 读取内容
                     }
                 }
             }
@@ -448,7 +495,10 @@ namespace WindowsFormsApplication2
             this.listViewFile.Focus();
         }
 
-        private int txtLocation = 0;
+        /// <summary>
+        /// 自定义文章读取方法
+        /// </summary>
+        /// <param name="path"></param>
         private void ReadAll(string path)
         {
             if (Directory.Exists(path))
@@ -481,13 +531,13 @@ namespace WindowsFormsApplication2
                 catch (Exception err) { MessageBox.Show(err.Message, "跟打器提示！"); }
             }
             else
-            { //获取到文章
+            { // 获取到文章
                 if (File.Exists(path))
                 {
                     StreamReader fm = new StreamReader(path, System.Text.Encoding.Default);
                     GetText = fm.ReadToEnd();
-                    lblTitle.Text = Path.GetFileNameWithoutExtension(path);
-                    ComText(GetText);
+                    FileTitleTextBox.Text = Path.GetFileNameWithoutExtension(path);
+                    ComText();
                     NewSendText.文章地址 = path;
                 }
             }
@@ -524,100 +574,17 @@ namespace WindowsFormsApplication2
 
         private void HeaderFresh(string dir)
         {
-            listViewFile.Clear();
-            ColumnHeader header1 = new ColumnHeader();
-            header1.Width = 245;
-            header1.Text = dir;
-            header1.TextAlign = HorizontalAlignment.Left;
-            ColumnHeader header2 = new ColumnHeader();
-            header2.Width = 65;
-            header2.Text = "类型";
-            header2.TextAlign = HorizontalAlignment.Center;
-            listViewFile.Columns.Add(header1);
-            listViewFile.Columns.Add(header2);
-        }
-
-        //鼠标右键
-        private void listViewFile_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right && listViewFile.SelectedItems.Count > 0)
-            {
-                cmsMenu.Items[0].Text = listViewFile.SelectedItems[0].Text;
-                cmsMenu.Show(this, e.Location);
-            }
-        }
-
-        private void cmsMenu_Opening(object sender, CancelEventArgs e)
-        {
-            if (listViewFile.SelectedItems.Count == 0)
-            {
-                e.Cancel = true;
-                return;
-            }
-        }
-        #endregion
-
-        #region 开始发文
-        private void btnGoSend_Click(object sender, EventArgs e)
-        {
-            rtbShowText.Text = "处理中...";
-            if (this.cbxTickOut.Checked)
-            { // 勾选"文章自动清除空格和换行时"
-                GetText = TickBlock(GetText, "");
-            }
-            if (GetText.Length == 0) {
-                rtbShowText.Text = "未获取到文章！";
-                MessageBox.Show("未获取到文章！");
-                return;
-            }
-
-            NewSendText.标题 = lblTitle.Text;
-            NewSendText.文章全文 = GetText;
-            NewSendText.发文全文 = NewSendText.文章全文;
-            NewSendText.类型 = lblStyle.Text;
-            if (NewSendText.类型 == "词组")
-            {
-                if (NewSendText.词组.Length <= 1)
-                {
-                    rtbShowText.Text = "未获取到词组！";
-                    MessageBox.Show("未获取到词组！");
-                    return;
-                }
-
-                NewSendText.词组发送分隔符 = this.tbxSendSplit.Text;
-            }
-
-            NewSendText.是否乱序 = rbnOutOrder.Checked;
-            NewSendText.乱序全段不重复 = this.cbx乱序全段不重复.Checked;
-            NewSendText.是否一句结束 = cbxOneEnd.Checked; //? 文章中强制开启，这个选项其实无法改动
-            try
-            {
-                NewSendText.字数 = int.Parse(tbxSendCount.Text);
-                NewSendText.标记 = int.Parse(tbxSendStart.Text);
-                NewSendText.起始段号 = int.Parse(this.tbxQisduan.Text);
-                Glob.Pre_Cout = NewSendText.起始段号.ToString();
-            }
-            catch { MessageBox.Show("请检查字数、标记或者起始段号是否设置错误？"); return; }
-            NewSendText.是否周期 = checkBox1.Checked;
-            NewSendText.周期 = (int)nudSendTimer.Value;
-            NewSendText.是否独练 = checkBox2.Checked;
-            NewSendText.是否自动 = cbxAuto.Checked;
-            NewSendText.文章来源 = tabControl1.SelectedIndex;
-            NewSendText.发文状态 = true;
-            if (NewSendText.是否周期)
-            {
-                frm.SendTTest();
-            }
-            else
-            {
-                frm.SendAOnce();
-            }
-            frm.发文状态ToolStripMenuItem.PerformClick(); // 模拟点击"发文"→"发文状态"菜单项，用于显示发文状态窗口
-            this.Close();
+            listViewFile.Items.Clear();
+            listViewFile.Columns[0].Text = dir;
         }
         #endregion
 
         #region 剪切板获取
+        /// <summary>
+        /// 重新获取剪贴板内容
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReGet_Click(object sender, EventArgs e)
         {
             try
@@ -626,46 +593,46 @@ namespace WindowsFormsApplication2
             }
             catch (Exception err)
             {
-                rtbClipboard.Text = err.Message + "，请自行粘贴！";
+                rtbClipboard.Text = err.Message + "，请自行编辑粘贴！";
             }
         }
 
         private void rtbClipboard_TextChanged(object sender, EventArgs e)
         {
             GetText = rtbClipboard.Text;
-            lblTitle.Text = "来自剪切板";
-            ComText(GetText);
+            lblTitle.Text = tbxTitle.Text;
+            ComText();
         }
+        #endregion
 
-        //文章标题
+        #region 文章标题处理
         private void tbxTitle_TextChanged(object sender, EventArgs e)
         {
             lblTitle.Text = (sender as TextBox).Text;
             if (lblTitle.Text.Length == 0)
             {
-                lblTitle.Text = "来自剪切板";
+                lblTitle.Text = "来自剪贴板";
+            }
+        }
+
+        private void FileTitleTextBox_TextChanged(object sender, EventArgs e)
+        {
+            lblTitle.Text = (sender as TextBox).Text;
+            if (lblTitle.Text.Length == 0)
+            {
+                lblTitle.Text = "自定义文章";
             }
         }
 
         private void label6_Click(object sender, EventArgs e)
         {
-            tbxTitle.Text = "来自剪切板";
-        }
-
-        private void btnTickBlock_Click(object sender, EventArgs e)
-        {
-            rtbClipboard.Text = TickBlock(rtbClipboard.Text, "");
-        }
-
-        private void btnFillIt_Click(object sender, EventArgs e)
-        {
-            rtbClipboard.Text = TickBlock(rtbClipboard.Text, ",");
+            tbxTitle.Text = "来自剪贴板";
         }
         #endregion
 
         #region 文章处理
         /// <summary>
-        /// 清除空格和换行
+        /// 替换字符
         /// </summary>
         /// <param name="text"></param>
         /// <param name="target"></param>
@@ -692,7 +659,6 @@ namespace WindowsFormsApplication2
                 {
                     int c = int.Parse(temp);
                     int cou = int.Parse(tbxSendCount.Text);
-                    //if (cou == 0) { } else {
                     try
                     {
                         rtbShowText.Text = GetText.Substring(c, cou) + "\r\n[...当前设置文段预览(非实际)]";
@@ -721,7 +687,7 @@ namespace WindowsFormsApplication2
             if (te.Length != 0)
             {
                 int cou = int.Parse(te);
-                if (cou > 0)
+                if (cou > 0 && tbxSendStart.Text != "")
                 {
                     int c = int.Parse(tbxSendStart.Text);
                     if (c + cou > GetText.Length)
@@ -747,7 +713,7 @@ namespace WindowsFormsApplication2
                 if (te.Length != 0)
                 {
                     int cou = int.Parse(te);
-                    if (cou > 0)
+                    if (cou > 0 && tbxSendStart.Text != "")
                     {
                         int c = int.Parse(tbxSendStart.Text);
                         if (c + cou <= GetText.Length)
@@ -812,8 +778,199 @@ namespace WindowsFormsApplication2
             this.Close();
         }
 
+        #region 保存的文章
+        /// <summary>
+        /// 保存的文章读取方法
+        /// </summary>
+        private void ReadSavedArticle()
+        {
+            if (string.IsNullOrEmpty(this.articleSearchText))
+            {
+                this.totalArticleCount = Glob.ArticleHistory.GetArticleCount();
+            }
+            else
+            {
+                this.totalArticleCount = Glob.ArticleHistory.GetArticleCountFromSubTitle(this.articleSearchText);
+            }
+            this.ArticleCountLabel.Text = this.totalArticleCount.ToString();
 
-        #region 配置载入
+            if (this.totalArticleCount > 0)
+            {
+                this.currentArticlePage = 1;
+                ShowSaveArticle();
+            }
+            else
+            {
+                this.currentArticlePage = 0;
+                this.ArticlePageLabel.Text = this.currentArticlePage.ToString();
+                listViewArticle.Items.Clear();
+            }
+        }
+
+        private void ShowSaveArticle()
+        {
+            listViewArticle.Items.Clear();
+            this.ArticlePageLabel.Text = this.currentArticlePage.ToString();
+            if (currentArticlePage > 0)
+            {
+                if (string.IsNullOrEmpty(this.articleSearchText))
+                {
+                    this.currentArticleData = Glob.ArticleHistory.GetArticle(this.currentArticlePage - 1, ArticlePageSize);
+                }
+                else
+                {
+                    this.currentArticleData = Glob.ArticleHistory.GetArticleFromSubTitle(this.articleSearchText, this.currentArticlePage - 1, ArticlePageSize);
+                }
+
+                foreach (var dataRow in this.currentArticleData)
+                {
+                    listViewArticle.Items.Add(new ListViewItem(new string[] { dataRow["id"].ToString(), dataRow["title"].ToString(), dataRow["create_time"].ToString() }));
+                }
+            }
+        }
+
+        private void ArticleFirstButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentArticlePage > 1)
+            {
+                this.currentArticlePage = 1;
+                this.ShowSaveArticle();
+            }
+        }
+
+        private void ArticlePreButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentArticlePage > 1)
+            {
+                this.currentArticlePage--;
+                this.ShowSaveArticle();
+            }
+        }
+
+        private void ArticleNextButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentArticlePage < this.ArticleTotalPage)
+            {
+                this.currentArticlePage++;
+                this.ShowSaveArticle();
+            }
+        }
+
+        private void ArticleLastButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentArticlePage < this.ArticleTotalPage)
+            {
+                this.currentArticlePage = this.ArticleTotalPage;
+                this.ShowSaveArticle();
+            }
+        }
+
+        private void listViewArticle_ItemActivate(object sender, EventArgs e)
+        {
+            if (this.listViewArticle.SelectedItems.Count > 0)
+            {
+                long id = long.Parse(this.listViewArticle.SelectedItems[0].SubItems[0].Text);
+                StorageDataSet.ArticleRow sd = StorageDataSet.GetArticleRowFromId(this.currentArticleData, id);
+                if (sd != null)
+                {
+                    lblTitle.Text = this.listViewArticle.SelectedItems[0].SubItems[1].Text;
+                    GetText = sd["content"].ToString();
+                    ComText();
+                }
+            }
+        }
+
+        private void ArticleEditTitleButton_Click(object sender, EventArgs e)
+        {
+            if (this.listViewArticle.SelectedItems.Count > 0)
+            {
+                string title = this.listViewArticle.SelectedItems[0].SubItems[1].Text;
+                long id = long.Parse(this.listViewArticle.SelectedItems[0].SubItems[0].Text);
+                ContentEditor cEditor = new ContentEditor(title);
+                if (cEditor.ShowDialog() == DialogResult.OK)
+                {
+                    string result = cEditor.OutValue;
+                    this.listViewArticle.SelectedItems[0].SubItems[1].Text = result;
+                    Glob.ArticleHistory.UpdateArticleTitle(id, result);
+                }
+            }
+        }
+
+        private void ArticleEditContentButton_Click(object sender, EventArgs e)
+        {
+            if (this.listViewArticle.SelectedItems.Count > 0)
+            {
+                long id = long.Parse(this.listViewArticle.SelectedItems[0].SubItems[0].Text);
+                StorageDataSet.ArticleRow sd = StorageDataSet.GetArticleRowFromId(this.currentArticleData, id);
+                if (sd != null)
+                {
+                    string content = sd["content"].ToString();
+                    ContentEditor cEditor = new ContentEditor(content);
+                    if (cEditor.ShowDialog() == DialogResult.OK)
+                    {
+                        string result = cEditor.OutValue;
+                        sd["content"] = result;
+                        Glob.ArticleHistory.UpdateArticleContent(id, result);
+                    }
+                }
+            }
+        }
+
+        private void ArticleSearchButton_Click(object sender, EventArgs e)
+        {
+            this.articleSearchText = this.ArticleSearchTextBox.Text;
+            this.ReadSavedArticle();
+        }
+
+        private void ArticleDeleteItemButton_Click(object sender, EventArgs e)
+        {
+            if (this.listViewArticle.SelectedItems.Count > 0)
+            {
+                long id = long.Parse(this.listViewArticle.SelectedItems[0].SubItems[0].Text);
+                StorageDataSet.ArticleRow sd = StorageDataSet.GetArticleRowFromId(this.currentArticleData, id);
+                if (sd != null)
+                {
+                    switch (MessageBox.Show("确认删除ID=" + id.ToString() + "的文章吗？", "删除询问", MessageBoxButtons.YesNo))
+                    {
+                        case DialogResult.Yes:
+                            if (Glob.ArticleHistory.DeleteArticleItemById(id))
+                            {
+                                this.totalArticleCount--;
+                                this.ArticleCountLabel.Text = this.totalArticleCount.ToString();
+                                if (this.totalArticleCount <= 0)
+                                {
+                                    this.totalArticleCount = 0;
+                                    this.currentArticlePage = 0;
+                                }
+                                else if (this.currentArticlePage > this.ArticleTotalPage)
+                                {
+                                    this.currentArticlePage = this.ArticleTotalPage;
+                                }
+                                this.ShowSaveArticle();
+                            }
+                            break;
+                        case DialogResult.No:
+                            break;
+                    }
+                }
+            }
+        }
+
+        private void ArticleDeleteAllButton_Click(object sender, EventArgs e)
+        {
+            switch (MessageBox.Show("确认删除所有保存的文章吗？", "删除询问", MessageBoxButtons.YesNo))
+            {
+                case DialogResult.Yes:
+                    Glob.ArticleHistory.DeleteAllArticle();
+                    this.ReadSavedArticle();
+                    break;
+                case DialogResult.No:
+                    break;
+            }
+        }
+        #endregion
+
+        #region 保存的配置
         private void btnRefreshIni_Click(object sender, EventArgs e)
         {
             iniRead();
@@ -865,8 +1022,8 @@ namespace WindowsFormsApplication2
                 {
                     case "0":
                         GetText = TyDll.GetResources.GetText("Resources.TXT." + this.lbxTextList.Items[int.Parse(getAll[2])].ToString() + ".txt");
-                        ComText(GetText);
-                        break;//自带文章
+                        ComText();
+                        break;//内置文章
                     case "1":
                         string path = getAll[2];
                         if (File.Exists(path))
@@ -874,7 +1031,7 @@ namespace WindowsFormsApplication2
                             StreamReader fm = new StreamReader(path, System.Text.Encoding.Default);
                             GetText = fm.ReadToEnd();
                             lblTitle.Text = Path.GetFileNameWithoutExtension(path);
-                            ComText(GetText);
+                            ComText();
                             NewSendText.文章地址 = path;
                         }
                         break;//自定义文章
@@ -962,6 +1119,7 @@ namespace WindowsFormsApplication2
         #region 发文整体配置
         private void cbxTickOut_CheckedChanged(object sender, EventArgs e)
         {
+            ComText(false);
             bool temp = (sender as CheckBox).Checked;
             _Ini t2 = new _Ini("config.ini");
             if (temp)
@@ -986,6 +1144,101 @@ namespace WindowsFormsApplication2
             {
                 t2.IniWriteValue("发文面板配置", "乱序全段不重复", "False");
             }
+        }
+        #endregion
+
+        #region 编辑发文内容
+        private void FileEditButton_Click(object sender, EventArgs e)
+        {
+            if (GetText != "")
+            {
+                ContentEditor cEditor = new ContentEditor(GetText);
+                if (cEditor.ShowDialog() == DialogResult.OK)
+                {
+                    GetText = cEditor.OutValue;
+                    ComText();
+                }
+            }
+        }
+
+        private void ClipboardEditButton_Click(object sender, EventArgs e)
+        {
+            if (GetText != "")
+            {
+                ContentEditor cEditor = new ContentEditor(GetText);
+                if (cEditor.ShowDialog() == DialogResult.OK)
+                {
+                    this.rtbClipboard.Text = cEditor.OutValue;
+                }
+            }
+        }
+        #endregion
+
+        #region 开始发文
+        private void btnGoSend_Click(object sender, EventArgs e)
+        {
+            rtbShowText.Text = "处理中...";
+            string sourceText = GetText; // 保留源文章内容
+            if (this.cbxTickOut.Checked)
+            { // 勾选"自动清除空格和换行时"
+                GetText = TickBlock(GetText, "");
+            }
+            if (GetText.Length == 0)
+            {
+                rtbShowText.Text = "未获取到文章！";
+                MessageBox.Show("未获取到文章！");
+                return;
+            }
+
+            NewSendText.标题 = lblTitle.Text;
+            NewSendText.文章全文 = GetText;
+            NewSendText.发文全文 = NewSendText.文章全文;
+            NewSendText.类型 = lblStyle.Text;
+            if (NewSendText.类型 == "词组")
+            {
+                if (NewSendText.词组.Length <= 1)
+                {
+                    rtbShowText.Text = "未获取到词组！";
+                    MessageBox.Show("未获取到词组！");
+                    return;
+                }
+
+                NewSendText.词组发送分隔符 = this.tbxSendSplit.Text;
+            }
+
+            NewSendText.是否乱序 = rbnOutOrder.Checked;
+            NewSendText.乱序全段不重复 = this.cbx乱序全段不重复.Checked;
+            NewSendText.是否一句结束 = cbxOneEnd.Checked; //? 文章中强制开启，这个选项其实无法改动
+            try
+            {
+                NewSendText.字数 = int.Parse(tbxSendCount.Text);
+                NewSendText.标记 = int.Parse(tbxSendStart.Text);
+                NewSendText.起始段号 = int.Parse(this.tbxQisduan.Text);
+                Glob.Pre_Cout = NewSendText.起始段号.ToString();
+            }
+            catch { MessageBox.Show("请检查字数、标记或者起始段号是否设置错误？"); return; }
+            NewSendText.是否周期 = checkBox1.Checked;
+            NewSendText.周期 = (int)nudSendTimer.Value;
+            NewSendText.是否独练 = checkBox2.Checked;
+            NewSendText.是否自动 = cbxAuto.Checked;
+            NewSendText.文章来源 = tabControl1.SelectedIndex;
+            // 勾选"保存文章"
+            if ((NewSendText.文章来源 == 1 && this.FileSaveCheckBox.Checked) || (NewSendText.文章来源 == 2 && this.ClipboardSaveCheckBox.Checked))
+            {
+                Glob.ArticleHistory.InsertArticle(sourceText, Validation.GetMd5Hash(sourceText), NewSendText.标题, DateTime.Now.ToString("s"));
+            }
+
+            NewSendText.发文状态 = true;
+            if (NewSendText.是否周期)
+            {
+                frm.SendTTest();
+            }
+            else
+            {
+                frm.SendAOnce();
+            }
+            frm.发文状态ToolStripMenuItem.PerformClick(); // 模拟点击"发文"→"发文状态"菜单项，用于显示发文状态窗口
+            this.Close();
         }
         #endregion
     }

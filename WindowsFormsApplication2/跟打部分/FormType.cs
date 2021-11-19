@@ -1058,6 +1058,7 @@ namespace WindowsFormsApplication2
             if (NewSendText.发文状态)
             {
                 this.CleanSpeedPoints();
+                this.cmsDuanList.Items.Clear();
                 //输入法状态
                 Glob.binput = true;
                 string TextAll = ""; // 要发送的文字
@@ -1242,6 +1243,8 @@ namespace WindowsFormsApplication2
             this.textBoxEx1.TextChanged -= new System.EventHandler(textBoxEx1_TextChanged);
             if (NewSendText.发文状态)
             {
+                this.CleanSpeedPoints();
+                this.cmsDuanList.Items.Clear();
                 //输入法状态
                 Glob.binput = true;
                 int textMaxLen = NewSendText.文章全文.Length;
@@ -1291,6 +1294,8 @@ namespace WindowsFormsApplication2
             this.textBoxEx1.TextChanged -= new System.EventHandler(textBoxEx1_TextChanged);
             if (NewSendText.发文状态)
             {
+                this.CleanSpeedPoints();
+                this.cmsDuanList.Items.Clear();
                 //输入法状态
                 Glob.binput = true;
                 int textMaxLen = NewSendText.文章全文.Length;
@@ -3158,6 +3163,7 @@ namespace WindowsFormsApplication2
 
                 //* 清理原测速点信息
                 this.CleanSpeedPoints();
+                this.cmsDuanList.Items.Clear();
 
                 Glob.CurSegmentNum = int.Parse(cout);
                 this.lblDuan.Text = "第" + Glob.CurSegmentNum.ToString() + "段";
@@ -4362,7 +4368,6 @@ namespace WindowsFormsApplication2
         {
             if (NewSendText.发文状态)
             {
-                this.CleanSpeedPoints();
                 int totalCount = Glob.TempSegmentRecord.Count;
                 if (Glob.SendCursor > 0)
                 {
@@ -4405,7 +4410,6 @@ namespace WindowsFormsApplication2
         {
             if (NewSendText.发文状态)
             {
-                this.CleanSpeedPoints();
                 if (NewSendText.是否周期)
                 {
                     timerTSend.Stop();
@@ -5280,7 +5284,10 @@ namespace WindowsFormsApplication2
 
         private void lblDuan_MouseClick(object sender, MouseEventArgs e)
         {
-            cmsDuanList.Show((sender as Label), 0, (sender as Label).Height);
+            if (cmsDuanList.Items.Count > 0)
+            {
+                cmsDuanList.Show((sender as Label), 0, (sender as Label).Height);
+            }
         }
 
         private static Regex getDuanList

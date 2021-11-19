@@ -485,8 +485,10 @@ namespace WindowsFormsApplication2
                     string path = "";
                     try
                     {
-                        if (Hearder.Length != 3)
+                        if (Hearder.Length != 3 || !Hearder.Contains(@":\"))
+                        {
                             path = Directory.GetParent(Hearder).FullName;//上一级目录
+                        }
                     }
                     catch { }
                     if (path.Length != 0)

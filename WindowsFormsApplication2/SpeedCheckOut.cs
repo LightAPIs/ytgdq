@@ -12,11 +12,23 @@ namespace WindowsFormsApplication2
 {
     public partial class SpeedCheckOut : Form
     {
-        Form1 frm;
-        public string getText;
+        private readonly Form1 frm;
+        /// <summary>
+        /// 提取标记前的文字数量
+        /// </summary>
+        private readonly int Count = 2;
+        /// <summary>
+        /// 寻找标记的正则
+        /// </summary>
         private Regex findIndex;
-        private Regex matchIndex = new Regex("单字|散文|小说|古文|新闻|政论|名言|笑话|短信");
-        private List<int> getIndex = new List<int>();
+        /// <summary>
+        /// 赛文常用分段名称
+        /// </summary>
+        private readonly Regex matchIndex = new Regex("单字|散文|小说|古文|新闻|政论|名言|笑话|短信|文章");
+        /// <summary>
+        /// 测速点坐标列表
+        /// </summary>
+        private readonly List<int> getIndex = new List<int>();
         public SpeedCheckOut(Form1 frm1)
         {
             frm = frm1;
@@ -28,12 +40,15 @@ namespace WindowsFormsApplication2
             Get(false);
         }
 
-        private void Get(bool r) { //r 用来控制是否显示提示
+        /// <summary>
+        /// 寻找测速点方法
+        /// </summary>
+        /// <param name="r">用来控制是否显示提示</param>
+        private void Get(bool r)
+        {
             try
             {
-                int c;
-                int count = int.TryParse(this.tbxC.Text, out c) ? c : 2;
-                getText = frm.richTextBox1.Text;
+                string getText = frm.richTextBox1.Text;
                 findIndex = new Regex(this.tbxP.Text);
                 MatchCollection m = findIndex.Matches(getText);
                 if (m.Count > 0)
@@ -42,16 +57,19 @@ namespace WindowsFormsApplication2
                     this.checkedListBox1.Items.Clear();
                     for (int i = 0; i < m.Count; i++)
                     {
-                        int index = (m[i].Index - count < 0) ? 0 : (m[i].Index - count);
-                        string g = getText.Substring(index, count);
+                        int index = (m[i].Index - Count < 0) ? 0 : (m[i].Index - Count);
+                        string g = getText.Substring(index, Count); // 分段名
                         bool check = matchIndex.IsMatch(g);
-                        getIndex.Add(index - 1);//跟列表同步写入
+                        getIndex.Add(index - 1);
                         this.checkedListBox1.Items.Add(g, check);
                     }
                 }
-                else {
+                else
+                {
                     if (r)
-                        MessageBox.Show("啥都没有找到。要不换个？");
+                    {
+                        MessageBox.Show("没有找有测速点，请修改分段标记后重新获取！");
+                    }
                 }
             }
             catch (Exception err) { MessageBox.Show(err.Message); }
@@ -64,8 +82,7 @@ namespace WindowsFormsApplication2
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            int selectC = this.checkedListBox1.CheckedItems.Count;
-            //MessageBox.Show(this.checkedListBox1.CheckedIndices[0] + "\n" + getIndex[2]);
+            int selectC = this.checkedListBox1.CheckedItems.Count; // 选择的测速点数量
             if (selectC > 0 && getIndex.Count > 0 && selectC <= 10)
             {
                 int idx;
@@ -75,26 +92,32 @@ namespace WindowsFormsApplication2
                     idx = getIndex[this.checkedListBox1.CheckedIndices[i]];
                     if (idx > 0)
                     {
-                        frm.setSpeedPoint(idx);
+                        frm.SetSpeedPoint(idx);
                         idc++;
                     }
                 }
+
                 if (idc > 0)
                 {
-                    //MessageBox.Show("设置完成！共" + selectC + "个测速点！\n(注：第一个测速点不显示；测速点以浅灰底色显示。)");
-                    frm.lblspeedcheck.Text = "测速" + idc;
+                    frm.ShowFlowText("共自动设置" + idc + "个测速点(注：起始测速点不计算在内；测速点以浅灰底色标识。)");
                     this.Close();
                 }
-                else {
-                    MessageBox.Show("啥都没有，怎么设置吖？亲？");
-                }
-                
-            }
-            else {
-                if (selectC > 10)
-                    MessageBox.Show("最多只能设置10个测速点！");
                 else
-                    MessageBox.Show("啥都没有，怎么设置吖？亲？");
+                {
+                    MessageBox.Show("请至少选择一个测速点！");
+                }
+
+            }
+            else
+            {
+                if (selectC > 10)
+                {
+                    MessageBox.Show("最多只能设置10个测速点！");
+                }
+                else
+                {
+                    MessageBox.Show("请至少选择一个测速点！");
+                }
             }
         }
 

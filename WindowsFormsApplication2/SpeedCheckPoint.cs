@@ -39,20 +39,21 @@ namespace WindowsFormsApplication2
                 this.Text = "第" + Glob.CurSegmentNum.ToString() + "段 测速信息 共" + Glob.SpeedPointCount + "个测速点";
                 Ti.Text = "第" + Glob.CurSegmentNum.ToString() + "段 字数" + Glob.TextLen + " 测速信息";
                 double GetSpeed = 0,MinSpeed = 500,MaxSpeed = 0;
+                //? 表格图上是以 1 为起点的，并且不会体现被减去的 Glob.TextJc 数量
                 for (int i = 0; i < Glob.SpeedPointCount + 1; i++) {
                     if (i == 0)
                     {
-                        int zis = Glob.SpeedPoint_[0] - Glob.TextJc;
+                        int zis = Glob.SpeedPoint_[0] + 1 - Glob.TextJc;
                         GetSpeed = (zis * 60 / ((Glob.SpeedTime[0] <= 0) ? 1 : Glob.SpeedTime[0]));
-                        //                                                                                                                                速度                                                       击键                       
+
                         this.dgvAllData.Rows.Add(i + 1,
                             frm.richTextBox1.Text.Substring(0,2), 
-                            Glob.TextJc ,Glob.SpeedPoint_[0], 
-                            zis + 1, 
+                            1, Glob.SpeedPoint_[0] + 1,
+                            Glob.SpeedPoint_[0] + 1, 
                             Math.Round(Glob.SpeedTime[0], 3),
                             GetSpeed.ToString("0.00"),
                             (Glob.SpeedJs[0]/Glob.SpeedTime[0]).ToString("0.00"),
-                            ((double)Glob.SpeedJs[0]/zis).ToString("0.00"),Glob.SpeedHg[0]);
+                            ((double)Glob.SpeedJs[0]/zis).ToString("0.00"), Glob.SpeedHg[0]);
                     }
                     else if (i < Glob.SpeedPointCount) {
                         int zis = Glob.SpeedPoint_[i] - Glob.SpeedPoint_[i - 1];
@@ -60,8 +61,8 @@ namespace WindowsFormsApplication2
                         GetSpeed = (zis * 60 / shi);
                         this.dgvAllData.Rows.Add(i + 1,
                                                  frm.richTextBox1.Text.Substring(Glob.SpeedPoint_[i - 1] + 1,2),
-                                                 Glob.SpeedPoint_[i - 1] + 1 , Glob.SpeedPoint_[i],
-                                                 zis - 1,
+                                                 Glob.SpeedPoint_[i - 1] + 2 , Glob.SpeedPoint_[i] + 1,
+                                                 zis,
                                                  Math.Round(shi,3),
                                                  GetSpeed.ToString("0.00"),
                                                  ((Glob.SpeedJs[i] - Glob.SpeedJs[i-1])/shi).ToString("0.00"),
@@ -70,14 +71,14 @@ namespace WindowsFormsApplication2
                         
                     }
                     else if (i == Glob.SpeedPointCount) {
-                        int zis  = Glob.TextLen - Glob.SpeedPoint_[i - 1];
+                        int zis  = Glob.TextLen - Glob.SpeedPoint_[i - 1] - 1;
                         double shi  = Glob.typeUseTime - Glob.SpeedTime[i - 1];
                         GetSpeed = (zis * 60 / shi);
                         int GetNow = Glob.SpeedPoint_[i - 1] + 1;
                         this.dgvAllData.Rows.Add(i + 1,
                             frm.richTextBox1.Text.Substring(GetNow, ((GetNow + 2 > Glob.TextLen) ? Glob.TextLen - GetNow : 2)),
-                                                 Glob.SpeedPoint_[i - 1] + 1, Glob.TextLen,
-                                                 zis - 1,
+                                                 Glob.SpeedPoint_[i - 1] + 2, Glob.TextLen,
+                                                 zis,
                                                  Math.Round(shi, 3),//时间
                                                  GetSpeed.ToString("0.00"),//速度
                                                  ((Glob.TextJs - Glob.SpeedJs[i - 1]) / shi).ToString("0.00"),//击键
@@ -96,8 +97,8 @@ namespace WindowsFormsApplication2
                 this.CA_.AxisY.Minimum = Min < 0 ? 0 : Min;//设定曲线最小值
                 this.dgvAllData.Rows.Add(Glob.SpeedPointCount + 2,
                                          "全文",
-                                         Glob.TextJc , Glob.TextLen, 
-                                         Glob.TextLen - Glob.TextJc,
+                                         1, Glob.TextLen, 
+                                         Glob.TextLen,
                                          Glob.typeUseTime.ToString("0.000"),
                                          Glob.TextSpeed,
                                          Glob.Textjj.ToString("0.00"),
@@ -118,7 +119,7 @@ namespace WindowsFormsApplication2
                 if (Index > 0) {
                     if (Index > 0 && Index <= this.dgvAllData.Rows.Count - 1) {
                         this.richTextBox1.Text = frm.richTextBox1.Text.Substring(
-                            (int)this.dgvAllData.Rows[Index].Cells[2].Value, 
+                            (int)this.dgvAllData.Rows[Index].Cells[2].Value - 1, 
                             (int)this.dgvAllData.Rows[Index].Cells[4].Value
                             );
                     }
@@ -136,6 +137,7 @@ namespace WindowsFormsApplication2
         {
             if (this.richTextBox1.TextLength > 0)
             {
+                frm.StopSendFun(); // 若处于发文中，停止发文
                 frm.richTextBox1.Text = this.richTextBox1.Text;
                 Glob.SpeedPoint_ = new int[10];//测速点控制
                 Glob.SpeedTime = new double[10];//测速点时间控制
@@ -164,7 +166,7 @@ namespace WindowsFormsApplication2
                 Font F = new Font("宋体", 9f);
                 string title = this.Ti.Text;
                 string detail = Glob.Form + "(" + Glob.Instration + ")";
-                string time = DateTime.Now.ToLongTimeString();
+                string time = Glob.TextTime.ToString("G");
                 SizeF detail_Sf = g.MeasureString(detail, F);
                 SizeF title_Sf = g.MeasureString(title, F);
                 g.DrawString(title, F, Brushes.Wheat, bmp.Width / 2 - title_Sf.Width / 2, 4);

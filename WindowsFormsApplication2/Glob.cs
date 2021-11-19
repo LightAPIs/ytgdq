@@ -69,7 +69,10 @@ namespace WindowsFormsApplication2
         public static string TextPreCout = "";
         public static bool ReTypePD = false;//重打判断
         public static int TextLen; //总字数
-        public static int TextJc = 0;//需要减去的数量
+        /// <summary>
+        /// 需要减去的数量
+        /// </summary>
+        public static int TextJc = 0;
         public static int TextCz = 0; //错字
         public static int TextiCz = 0; //正字计数（用来获取错字数量）
         public static int TextJs = 0; //键数
@@ -297,12 +300,27 @@ namespace WindowsFormsApplication2
         //分析
         public static bool Use分析 = false;
 
-        //测速点位置
-        public static int[] SpeedPoint_ = new int[10];//测速点控制
-        public static double[] SpeedTime = new double[10];//测速点时间控制
-        public static int[] SpeedJs = new int[10];//键数
-        public static int[] SpeedHg = new int[10];//回改
-        public static int SpeedPointCount = 0;//测速点数量控制
+        /// <summary>
+        /// 测速点控制
+        /// 注：存的是 index
+        /// </summary>
+        public static int[] SpeedPoint_ = new int[10];
+        /// <summary>
+        /// 测速点时间控制
+        /// </summary>
+        public static double[] SpeedTime = new double[10];
+        /// <summary>
+        /// 键数
+        /// </summary>
+        public static int[] SpeedJs = new int[10];
+        /// <summary>
+        /// 回改
+        /// </summary>
+        public static int[] SpeedHg = new int[10];
+        /// <summary>
+        /// 测速点数量控制
+        /// </summary>
+        public static int SpeedPointCount = 0;
         public static int SpeedControl = 0;
 
         //跟打报告

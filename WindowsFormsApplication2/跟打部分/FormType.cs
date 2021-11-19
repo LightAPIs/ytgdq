@@ -713,12 +713,6 @@ namespace WindowsFormsApplication2
             textBoxEx1.Font = Glob.font_2;
             this.richTextBox1.FontChanged += new EventHandler(richTextBox1_FontChanged);
             richTextBox1.Font = Glob.font_1;
-            //if (Glob.qqSersion == "2012") { this.toolStripDropDownButton1.Text = "QQ12"; qQ2012ToolStripMenuItem.Checked = true; qQ2009ToolStripMenuItem.Checked = false; } else { qQ2012ToolStripMenuItem.Checked = false; qQ2009ToolStripMenuItem.Checked = true; this.toolStripDropDownButton1.Text = "QQ09+"; }
-            //计算字大小
-            //Point a1 = richTextBox1.GetPositionFromCharIndex(1);
-            //Point a2 = richTextBox1.GetPositionFromCharIndex(richTextBox1.GetFirstCharIndexFromLine(1));
-            // Glob.oneH = (int)Glob.font_1.GetHeight();//a2.Y - a1.Y;
-            //MessageBox.Show(a1.Y + "\n" + a2.Y + "\n" + Glob.oneH);
             //获取发送成绩的排序顺序
             Glob.sortSend = IniRead("发送", "顺序", "ABCVDTSEFULGNORQ");
 
@@ -1063,6 +1057,7 @@ namespace WindowsFormsApplication2
             this.textBoxEx1.TextChanged -= new System.EventHandler(textBoxEx1_TextChanged);
             if (NewSendText.发文状态)
             {
+                this.CleanSpeedPoints();
                 //输入法状态
                 Glob.binput = true;
                 string TextAll = ""; // 要发送的文字
@@ -1792,8 +1787,6 @@ namespace WindowsFormsApplication2
                                         Glob.SpeedJs[i] = Glob.TextJs;
                                         Glob.SpeedHg[i] = Glob.TextHg;
                                         Glob.SpeedControl++;
-                                        //Glob.SpeedPoint.Add(Glob.typeUseTime);
-                                        //Glob.KickPoint.Add(Glob.TextJs);
                                         break;
                                     }
                                 }
@@ -3044,12 +3037,6 @@ namespace WindowsFormsApplication2
             LoadText(pretext, preduan, Glob.regexCout, getDuanAll);
         }
 
-        private void Form1_SizeChanged(object sender, EventArgs e)
-        {
-            //按钮更新位置
-            //this.lblClose.Location = new Point(this.Width - 50,0);
-        }
-
         /// <summary>
         /// 载文功能
         /// </summary>
@@ -3064,7 +3051,6 @@ namespace WindowsFormsApplication2
             Regex regexText, regexTitle;
             Match getText, getCout, getTitle;
             regexText = new Regex(@".+(?=\s" + pretext + ")");
-            //MessageBox.Show(preduan);
             regexTitle = new Regex(@".+(?=\s)");
             getText = regexText.Match(getDuanAll); //获取文章
             string ExgetText = getText.ToString().Trim();
@@ -3088,7 +3074,6 @@ namespace WindowsFormsApplication2
                     textBoxEx1.Clear();
                     this.textBoxEx1.TextChanged += new System.EventHandler(textBoxEx1_TextChanged); //重新绑定
                     Initialize(2);//显示初始化
-                    //Initialize(1);
                     //处理文章
                     lblTitle.Text = getTitle.ToString().Trim(); //文段标题
                     toolTip1.SetToolTip(lblTitle, getTitle.ToString().Trim());
@@ -3105,10 +3090,8 @@ namespace WindowsFormsApplication2
                     textBoxEx1.ReadOnly = false;
                     //richTextBox2.MaxLength = richTextBox1.TextLength; //设置最大输入字符数量
 
-                    //MessageBox.Show(Glob.LoadCount.ToString());
-
                     if (Glob.SpeedControl > 0)
-                    {   //找到新文段时间关闭测速
+                    {   //* 找到新文段时间关闭测速
                         Glob.SpeedPoint_ = new int[10];//测速点控制
                         Glob.SpeedTime = new double[10];//测速点时间控制
                         Glob.SpeedJs = new int[10];//键数
@@ -3173,6 +3156,9 @@ namespace WindowsFormsApplication2
                 //! 停止发文
                 this.StopSendFun();
 
+                //* 清理原测速点信息
+                this.CleanSpeedPoints();
+
                 Glob.CurSegmentNum = int.Parse(cout);
                 this.lblDuan.Text = "第" + Glob.CurSegmentNum.ToString() + "段";
                 this.lblTitle.Text = title;
@@ -3235,7 +3221,6 @@ namespace WindowsFormsApplication2
             this.textBoxEx1.TextChanged -= new System.EventHandler(textBoxEx1_TextChanged);
             textBoxEx1.Clear();
             this.textBoxEx1.TextChanged += new System.EventHandler(textBoxEx1_TextChanged);
-            //MessageBox.Show(richTextBox2.Text);
             if (Sw != 0)
             {
                 int typecount;
@@ -3273,7 +3258,7 @@ namespace WindowsFormsApplication2
                 Array.Clear(Glob.SpeedJs, 0, Glob.SpeedJs.Length);
                 Array.Clear(Glob.SpeedHg, 0, Glob.SpeedHg.Length);
                 Glob.SpeedControl = 0;
-                this.lblspeedcheck.Text = "测速" + Glob.SpeedPointCount;
+                this.lblspeedcheck.Text = "测速点:" + Glob.SpeedPointCount;
             }
             else
             {
@@ -3312,6 +3297,7 @@ namespace WindowsFormsApplication2
 
         /// <summary>
         /// 获取信息
+        /// - 自动替换英文标点在此处执行
         /// </summary>
         public void GetInfo()
         {
@@ -4376,6 +4362,7 @@ namespace WindowsFormsApplication2
         {
             if (NewSendText.发文状态)
             {
+                this.CleanSpeedPoints();
                 int totalCount = Glob.TempSegmentRecord.Count;
                 if (Glob.SendCursor > 0)
                 {
@@ -4418,6 +4405,7 @@ namespace WindowsFormsApplication2
         {
             if (NewSendText.发文状态)
             {
+                this.CleanSpeedPoints();
                 if (NewSendText.是否周期)
                 {
                     timerTSend.Stop();
@@ -5167,19 +5155,19 @@ namespace WindowsFormsApplication2
         private void 添加测速点ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (sw != 0) { ShowFlowText("请勿在跟打时建立测速点！"); return; }
-            if (Glob.TextLen <= 20) { ShowFlowText("文章字数过少，不建议使用此功能！"); return; }
+            if (Glob.TextLen <= 20) { ShowFlowText("文章字数过少，无法使用此功能！"); return; }
             int start = this.richTextBox1.SelectionStart - 1;
-            int count = Glob.SpeedPointCount;//SpeedPoint.Count;
+            int count = Glob.SpeedPointCount;
             if (count == 0)
             {
                 if (start > 10 && start < Glob.TextLen - 10)
                 {
-                    setSpeedPoint(start);
+                    SetSpeedPoint(start);
                 }
                 else
                 {
                     MessageBox.Show("请先鼠标左键点击确认光标位置，再选择添加此处为测速点！" +
-                        "\n并且不能位于文章末尾2字符内\n（注：测速点不要离开始点及结束点太近！）", "测速提示");
+                        "\n测速点不要离开始点及结束点太近！\n（注：不能位于文章首尾的10个字符内）", "测速提示");
                 }
             }
             else
@@ -5193,7 +5181,7 @@ namespace WindowsFormsApplication2
                     }
                     else
                     {
-                        setSpeedPoint(start);
+                        SetSpeedPoint(start);
                     }
                 }
                 else
@@ -5203,7 +5191,11 @@ namespace WindowsFormsApplication2
             }
         }
 
-        public void setSpeedPoint(int start)
+        /// <summary>
+        /// 设置测速点
+        /// </summary>
+        /// <param name="start"></param>
+        public void SetSpeedPoint(int start)
         {
             if (Glob.SpeedPointCount > 9)
             {
@@ -5217,8 +5209,8 @@ namespace WindowsFormsApplication2
                 this.richTextBox1.SelectionBackColor = Color.LightGray;
                 Glob.SpeedPoint_[Glob.SpeedPointCount] = start;
                 Glob.SpeedPointCount++;
+                this.lblspeedcheck.Text = "测速点:" + Glob.SpeedPointCount.ToString();
             }
-            //SpeedPoint.Add(start);
         }
 
         private void 测速数据ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -5233,7 +5225,6 @@ namespace WindowsFormsApplication2
             {
                 ShowFlowText("未找到测速信息！");
             }
-            //MessageBox.Show(Glob.SpeedPointCount + "\n" + Glob.SpeedTime[Glob.SpeedPointCount - 1]);
         }
 
         private void 自动寻找赛文标记ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -5256,7 +5247,10 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void 清除测速点ToolStripMenuItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 清理测速点的方法
+        /// </summary>
+        private void CleanSpeedPoints()
         {
             if (Glob.SpeedPointCount > 0)
             {
@@ -5270,6 +5264,11 @@ namespace WindowsFormsApplication2
                 Glob.SpeedControl = 0;
                 this.lblspeedcheck.Text = "时间";
             }
+        }
+        
+        private void 清除测速点ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.CleanSpeedPoints();
         }
         #endregion
 

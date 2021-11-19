@@ -1431,6 +1431,7 @@ namespace WindowsFormsApplication2
                 }
 
                 NewSendText.发文状态 = true;
+                frm.SetMatch(false);
                 if (NewSendText.是否周期)
                 {
                     frm.SendTTest();
@@ -1444,6 +1445,7 @@ namespace WindowsFormsApplication2
             {
                 NewSendText.文章来源 = tabControl1.SelectedIndex;
                 NewSendText.发文状态 = true;
+                frm.SetMatch(false);
                 frm.SendNextFun();
             }
 

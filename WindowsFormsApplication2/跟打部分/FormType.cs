@@ -3119,11 +3119,11 @@ namespace WindowsFormsApplication2
                     }
                     if (getCout.ToString() == "999")
                     { // 比赛认证段
-                        setMatch(true);
+                        SetMatch(true);
                     }
                     else
                     {
-                        setMatch(false);
+                        SetMatch(false);
                     }
 
                     this.BeginInvoke(new MethodInvoker(delegate
@@ -3189,7 +3189,7 @@ namespace WindowsFormsApplication2
             }
         }
 
-        public void setMatch(bool set)
+        public void SetMatch(bool set)
         {
             if (set)
             {
@@ -3210,13 +3210,20 @@ namespace WindowsFormsApplication2
 
         private void 转换为比赛文段ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Glob.isMatch)
+            if (!NewSendText.发文状态)
             {
-                setMatch(false);
+                if (Glob.isMatch)
+                {
+                    SetMatch(false);
+                }
+                else
+                {
+                    SetMatch(true);
+                }
             }
             else
             {
-                setMatch(true);
+                ShowFlowText("仅载文模式下可以使用~");
             }
         }
 
@@ -5240,12 +5247,12 @@ namespace WindowsFormsApplication2
                 }
                 else
                 {
-                    ShowFlowText("测速点已存在！请取消后再进行本程序！");
+                    ShowFlowText("测速点已存在！");
                 }
             }
             else
             {
-                ShowFlowText("非比赛认证段！无法使用！");
+                ShowFlowText("非比赛认证段！无法寻找赛文标记！");
             }
         }
 

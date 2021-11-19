@@ -83,7 +83,7 @@ namespace WindowsFormsApplication2
             string s = Glob.Form + "(" + Glob.Instration + ")";
             SizeF sF = g.MeasureString(s, F);
             g.DrawString(s, F, Brushes.White, this.chart1.Width - sF.Width + 2, this.chart1.Height + 4);
-            g.DrawString(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToShortTimeString(), F, Brushes.LightGray, 2, this.chart1.Height + 4);
+            g.DrawString(DateTime.Now.ToString("G"), F, Brushes.LightGray, 2, this.chart1.Height + 4);
             return bmp;
         }
     }

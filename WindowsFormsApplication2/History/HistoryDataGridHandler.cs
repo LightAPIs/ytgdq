@@ -54,12 +54,12 @@ namespace WindowsFormsApplication2.History
             StorageDataSet.ScoreRow sd = StorageDataSet.GetScoreRowFromTime(curData, curRow.Cells[1].Value.ToString());
             if (curRow != null && sd != null)
             {
-                string goal = "第" + curRow.Cells[2].Value + "段 ";
+                string goal = "第" + curRow.Cells[2].Value + "段";
                 for (int i = 3; i < this.historyDataGridView.Columns.Count - 1; i++)
                 {
-                    goal += this.historyDataGridView.Columns[i].Name + curRow.Cells[i].Value + " ";
+                    goal += " " + this.historyDataGridView.Columns[i].Name + curRow.Cells[i].Value;
                 }
-                goal += "校验:" + Validation.Validat(goal);
+                goal += " 校验:" + Validation.Validat(goal);
                 goal += " v" + Glob.Ver + "(" + sd["version"].ToString() + ") [复制成绩]";
                 ClipboardHandler.SetTextToClipboard(goal);
             }

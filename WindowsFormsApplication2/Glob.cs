@@ -23,7 +23,6 @@ namespace WindowsFormsApplication2
         /// 成绩版本
         /// </summary>
         public static string Instration = "s01";
-        //public static int su = 0;//测试用的
         public static string BianMa = ""; //编码查询
         /// <summary>
         /// 编码码表

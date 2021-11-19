@@ -3823,14 +3823,14 @@ namespace WindowsFormsApplication2
         {
             int table_c = this.dataGridView1.RowCount;
             StringBuilder sb = new StringBuilder();
-            if (table_c > 1)
+            if (table_c > 2)
             {
-                sb.Append("#平均 共" + (table_c - 1) + "段 速度" + this.dataGridView1.Rows[table_c - 1].Cells[3].Value);
+                sb.Append("#平均 共" + (table_c - 2) + "段 速度" + this.dataGridView1.Rows[table_c - 1].Cells[3].Value);
                 sb.Append(" 击键" + this.dataGridView1.Rows[table_c - 1].Cells[4].Value);
                 sb.Append(" 码长" + this.dataGridView1.Rows[table_c - 1].Cells[5].Value);
-                sb.Append(" 均时" + this.dataGridView1.Rows[table_c - 1].Cells[11].Value + "秒");
-                sb.Append(" 今日已跟" + Glob.todayTyping + "字 总跟打" + Glob.TextLenAll + "字 " + Glob.Instration);
-                if (MessageBox.Show(sb + "\n是否复制内容？", "当前平均成绩", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                sb.AppendLine(" 均时" + this.dataGridView1.Rows[table_c - 1].Cells[19].Value + "秒");
+                sb.Append(" 今日已跟打" + Glob.todayTyping + "字 总跟打" + Glob.TextLenAll + "字 " + Glob.Form + "(" + Glob.Instration + ")");
+                if (MessageBox.Show(sb + "\n\n是否复制内容？", "当前平均成绩", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     ClipboardHandler.SetTextToClipboard(sb.ToString());
                 }

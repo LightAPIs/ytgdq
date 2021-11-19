@@ -145,7 +145,10 @@ namespace WindowsFormsApplication2
 
         public static int LoadCount = 0;//载入次数 暂时是用来确定是否开启输入法
         public static double typeUseTime; //跟打用时
-        public static int HaveTypeCount = 0;//已跟打段数
+        /// <summary>
+        /// 已跟打段数
+        /// </summary>
+        public static int HaveTypeCount = 0;
         public static int HaveTypeCount_ = 0;//实际跟打段数
         public static double TotalUse = 0;//总用时
 

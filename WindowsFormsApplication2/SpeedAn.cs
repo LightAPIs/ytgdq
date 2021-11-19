@@ -40,11 +40,17 @@ namespace WindowsFormsApplication2
 
         private void SpeedAn_Load(object sender, EventArgs e)
         {
-            if (getData != "") { 
+            if (getData != "")
+            {
                 string[] data = getData.Split('|');//获取各项数据
                 if (data.Length == 16)
                 {
                     this.Text = "第" + nowCout + "段速度分析";
+                    if (Glob.PicName.Length > 0)
+                    {
+                        this.Text += "<" + Glob.PicName + ">";
+                    }
+
                     //准备画布
                     Bitmap bmp = new Bitmap(this.SpeedAnGet.Width + 2, this.SpeedAnGet.Height + 20);
                     Rectangle rect = new Rectangle(1, 1, this.SpeedAnGet.Width, this.SpeedAnGet.Height);
@@ -100,19 +106,19 @@ namespace WindowsFormsApplication2
                                 MC_ = "停留影响值：-" + TotalWidth.ToString("0.00");
                                 break;
                             case 12:
-                                Colour =Color.FromArgb(110, 88, 242);
+                                Colour = Color.FromArgb(110, 88, 242);
                                 MC_ = "错字影响值：-" + TotalWidth.ToString("0.00");
                                 break;
                             case 14:
-                                Colour =Color.FromArgb(164, 193, 65);
+                                Colour = Color.FromArgb(164, 193, 65);
                                 MC_ = "回车影响值：-" + TotalWidth.ToString("0.00");
                                 break;
                             default:
-                                Colour =Color.FromArgb(7, 153, 7);
+                                Colour = Color.FromArgb(7, 153, 7);
                                 MC_ = "XXX" + TotalWidth;
                                 break;
                         }
-                        Font F = new Font("宋体",9f);//画字字体
+                        Font F = new Font("宋体", 9f);//画字字体
                         double Width = TotalWidth * BmpWidth / allTotalWidth;
                         if (int.Parse(data[3]) > 0 && i == 5) TotalWidth = 0; //有暂停时 ，停留不计
                         if (TotalWidth.ToString("0.00") == "0.00")
@@ -121,7 +127,8 @@ namespace WindowsFormsApplication2
                             Colour = Color.Gray;
                             F = new Font("宋体", 9f, FontStyle.Strikeout);//画字字体
                         }
-                        else {
+                        else
+                        {
                             F = new Font("宋体", 9f);//画字字体
                         }
                         SB_TotalWidth = new SolidBrush(Colour);
@@ -131,8 +138,8 @@ namespace WindowsFormsApplication2
                         float Start = (float)X;
                         Color PLine_ = Color.LightGray;
                         int HeighP = 1;//偏移量
-                        Pen PLine = new Pen(Color.Gray,1);
-                        Pen PLine2 = new Pen(Color.LightGray,1);
+                        Pen PLine = new Pen(Color.Gray, 1);
+                        Pen PLine2 = new Pen(Color.LightGray, 1);
                         PLine2.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
                         if (i == 2)
                         {//第三行数据列
@@ -142,7 +149,7 @@ namespace WindowsFormsApplication2
                             g.DrawLine(PLine2, (float)X, Y + width + HeighP, Start, Y + width + HeighP);
                             g.DrawLine(PLine, Start, Y + width + HeighP, bmp.Width - 9, Y + width + HeighP);
                         }
-                        
+
                         PLine = new Pen(PLine_, 1);
                         //线条终
                         if (i != 2)
@@ -227,7 +234,7 @@ namespace WindowsFormsApplication2
             string s = Glob.Form + "(" + verInstration.Trim() + ")";
             SizeF sF = g.MeasureString(s, F);
             g.DrawString(s, F, Brushes.White, this.SpeedAnGet.Width - sF.Width + 2, bmp.Height - 15);
-            g.DrawString("第" + nowCout + "段速度分析",F,Brushes.White,3,4);
+            g.DrawString(this.Text, F, Brushes.White, 3, 4);
             g.DrawString(scoreTime, F, Brushes.LightGray, 2, bmp.Height - 15);
             return bmp;
         }

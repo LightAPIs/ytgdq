@@ -13,21 +13,18 @@ namespace WindowsFormsApplication2
     public class PicGoal_Class:IDisposable
     {
         /// <summary>
-        /// 标题
-        /// </summary>
-        public string Title = "无标题";
-        /// <summary>
         /// 需要显示的内容
         /// </summary>
-        public Size Pic_Size = new Size(280, 200);
+        public Size PicSize = new Size(280, 220);
         public Bitmap Pic_Bmp;
+
         /// <summary>
         /// 初始化类
         /// </summary>
         public PicGoal_Class() {
             if (Pic_Bmp == null)
             {
-                Pic_Bmp = new Bitmap(Pic_Size.Width, Pic_Size.Height);
+                Pic_Bmp = new Bitmap(PicSize.Width, PicSize.Height);
             }
         }
 
@@ -41,7 +38,7 @@ namespace WindowsFormsApplication2
             //填充颜色
             g.Clear(Color.FromArgb(240, 240, 240));//一种中蓝色
             //Font F = new Font("宋体",12f);
-            int StartH = 30;
+            int StartH = 50;
             //外框画笔
             Pen BorderP =new Pen(Brushes.DimGray);
             //画重打颜色 绿色为新打。红色为重打
@@ -96,7 +93,7 @@ namespace WindowsFormsApplication2
             
             //饼形图为键准
             int Jz_Rect = 80;
-            int Jz_X = 5,Jz_Y = 35;
+            int Jz_X = 5,Jz_Y = 55;
             g.FillPie(Brushes.LightGray, Jz_X, Jz_Y, Jz_Rect, Jz_Rect, -90, 360);
             if (accuracyRate > 0)
             {
@@ -110,7 +107,7 @@ namespace WindowsFormsApplication2
             g.DrawString("键准", L_, Brushes.White, Jz_X + 25, Jz_Y + Jz_Rect - 20);
             //效率 
             int Xl_Rect = 80;//效率半径
-            int Xl_StartX = 100,Xl_StartY = 35;
+            int Xl_StartX = 100, Xl_StartY = 55;
             g.FillPie(Brushes.LightGray, Xl_StartX, Xl_StartY, Xl_Rect, Xl_Rect, -90, 360);//底色绘画
             if (effciency <= 100)
             {
@@ -191,7 +188,15 @@ namespace WindowsFormsApplication2
 
             g.DrawString("文章标题: ", text_Font, Brushes.DimGray, 0, 1);
             g.DrawString(T_,title_Font,Brushes.PaleVioletRed,label_title.Width,1);
-            g.DrawString("跟打日期: " + time,text_Font,Brushes.DimGray,0,label_title.Height + 1);
+            if (Glob.PicName.Length > 0)
+            {
+                g.DrawString("跟打用户: " + Glob.PicName, text_Font, Brushes.DimGray, 0, label_title.Height + 3);
+                g.DrawString("跟打日期: " + time, text_Font, Brushes.DimGray, 0, label_title.Height * 2 + 5);
+            } 
+            else
+            {
+                g.DrawString("跟打日期: " + time, text_Font, Brushes.DimGray, 0, label_title.Height + 3);
+            }
 
             //* 跟打用时
             Pen borderCost = new Pen(Brushes.YellowGreen);
@@ -211,7 +216,6 @@ namespace WindowsFormsApplication2
             //int user_Rect = 100;//半径
             //g.FillPie(Brushes.YellowGreen, -user_Rect / 2, Pic_Bmp.Height - user_Rect/2, user_Rect, user_Rect, -90, 360);
             //g.DrawString("跟打者", text_Font, Brushes.DimGray, 0, LastFlagHeight - text_Size.Height);
-            ////获取用户 如果没有设置则找 QQ号，如果未设置QQ号，则返回空
             //string user = (Glob.PicName.Length > 0) ? Glob.PicName : (Glob.QQnumber.Length > 0) ? Glob.QQnumber : "";
             //if (user.Length > 0)
             //    g.DrawString(user, new Font("Verdana", 8,FontStyle.Bold), Brushes.DimGray, 0, LastFlagHeight);

@@ -31,7 +31,6 @@
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.GetPIC = new System.Windows.Forms.Button();
             this.GetText = new System.Windows.Forms.Button();
-            this.SendText = new System.Windows.Forms.Button();
             this.CloseW = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
@@ -47,10 +46,11 @@
             // 
             // GetPIC
             // 
-            this.GetPIC.ForeColor = System.Drawing.Color.Green;
-            this.GetPIC.Location = new System.Drawing.Point(3, 154);
+            this.GetPIC.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
+            this.GetPIC.ForeColor = System.Drawing.Color.Maroon;
+            this.GetPIC.Location = new System.Drawing.Point(80, 154);
             this.GetPIC.Name = "GetPIC";
-            this.GetPIC.Size = new System.Drawing.Size(61, 23);
+            this.GetPIC.Size = new System.Drawing.Size(67, 23);
             this.GetPIC.TabIndex = 1;
             this.GetPIC.Text = "复制图表";
             this.GetPIC.UseVisualStyleBackColor = true;
@@ -58,25 +58,13 @@
             // 
             // GetText
             // 
-            this.GetText.Location = new System.Drawing.Point(66, 154);
+            this.GetText.Location = new System.Drawing.Point(12, 154);
             this.GetText.Name = "GetText";
             this.GetText.Size = new System.Drawing.Size(62, 23);
             this.GetText.TabIndex = 2;
-            this.GetText.Text = "复制标题";
+            this.GetText.Text = "复制内容";
             this.GetText.UseVisualStyleBackColor = true;
             this.GetText.Click += new System.EventHandler(this.GetText_Click);
-            // 
-            // SendText
-            // 
-            this.SendText.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.SendText.ForeColor = System.Drawing.Color.Maroon;
-            this.SendText.Location = new System.Drawing.Point(131, 154);
-            this.SendText.Name = "SendText";
-            this.SendText.Size = new System.Drawing.Size(83, 23);
-            this.SendText.TabIndex = 3;
-            this.SendText.Text = "发送截图";
-            this.SendText.UseVisualStyleBackColor = true;
-            this.SendText.Click += new System.EventHandler(this.SendText_Click);
             // 
             // CloseW
             // 
@@ -95,7 +83,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.ClientSize = new System.Drawing.Size(342, 181);
             this.Controls.Add(this.CloseW);
-            this.Controls.Add(this.SendText);
             this.Controls.Add(this.GetText);
             this.Controls.Add(this.GetPIC);
             this.Controls.Add(this.chart1);
@@ -118,7 +105,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Button GetPIC;
         private System.Windows.Forms.Button GetText;
-        private System.Windows.Forms.Button SendText;
         private System.Windows.Forms.Button CloseW;
     }
 }

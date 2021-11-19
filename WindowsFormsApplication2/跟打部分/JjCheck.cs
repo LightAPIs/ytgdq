@@ -63,13 +63,6 @@ namespace WindowsFormsApplication2
             this.Close();
         }
 
-        //发送
-        private void SendText_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetImage(getPic());
-            frm.SendClipBoardToQQ();
-        }
-
         //复制
         private void GetText_Click(object sender, EventArgs e)
         {

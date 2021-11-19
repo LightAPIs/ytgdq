@@ -14,6 +14,16 @@ namespace WindowsFormsApplication2
         private readonly string defaultKeys;
         private string keys;
 
+        //[Flags]
+        //public enum KeyModifiers
+        //{
+        //    None = 0,
+        //    Alt = 1,
+        //    Control = 2,
+        //    Shift = 4,
+        //    WindowsKey = 8
+        //}
+
         public HotKey(string _id, string _defaultKeys)
         {
             this.id = _id;

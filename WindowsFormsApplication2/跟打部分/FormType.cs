@@ -24,10 +24,6 @@ using WindowsFormsApplication2.History;
 using WindowsFormsApplication2.KeyAnalysis;
 using Newtonsoft.Json;
 
-//发送桌面的快捷方式
-
-public delegate bool CallBack(int hwnd, int lParam);
-
 namespace WindowsFormsApplication2
 {
     public partial class Form1 : NewForm
@@ -197,21 +193,15 @@ namespace WindowsFormsApplication2
             //oThread.Join();
             //oThread.Abort();
             //MessageBox.Show(oThread.ThreadState.ToString());
-            //* 不再注册全局热键
-            //RegisterHotKey(this.Handle, 2, (int)KeyModifiers.None, (Keys.F4)); //获取
-            //RegisterHotKey(this.Handle, 3, (int)KeyModifiers.None, (Keys.F3)); //重打
-            //RegisterHotKey(this.Handle, 4, (int)KeyModifiers.None, (Keys.F5)); //重打
-            //RegisterHotKey(this.Handle, 5, (int)KeyModifiers.None, (Keys.F6)); //发文测试
-
-            //RegisterHotKey(this.Handle, 6, (int)KeyModifiers.None, (Keys.F8)); //接收挑战
 
             //* 数据库初始化
             Glob.ScoreHistory = new ScoreData("score");
             Glob.ScoreHistory.Init();
             Glob.ArticleHistory = new ArticleData("article");
             Glob.ArticleHistory.Init();
+            Glob.SentHistory = new SentData("sent");
+            Glob.SentHistory.Init();
 
-            F5();
             this.textBoxEx1.Select();
             try
             {
@@ -236,6 +226,7 @@ namespace WindowsFormsApplication2
                 //LoadTheme("", Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.ThemeBG);
             }
 
+            // 注册表格操作器
             this.gridHandler = new HistoryDataGridHandler(this.dataGridView1);
         }
 
@@ -282,29 +273,23 @@ namespace WindowsFormsApplication2
                     case "重打":
                         this.重打ToolStripMenuItem.ShortcutKeys = hotK;
                         break;
-                    case "载文":
-                        this.载文ToolStripMenuItem.ShortcutKeys = hotK;
-                        break;
-                    case "换群":
-                        this.换群ToolStripMenuItem1.ShortcutKeys = hotK;
-                        break;
-                    case "发送当前文段":
-                        this.发送正在跟打的文段ToolStripMenuItem1.ShortcutKeys = hotK;
-                        break;
                     case "暂停":
                         this.暂停ToolStripMenuItem.ShortcutKeys = hotK;
                         break;
-                    case "发送上次成绩":
+                    case "复制当前文段":
+                        this.复制跟打的文段ToolStripMenuItem1.ShortcutKeys = hotK;
+                        break;
+                    case "复制上次成绩":
                         this.上一次成绩ToolStripMenuItem1.ShortcutKeys = hotK;
                         break;
-                    case "历史记录":
-                        this.HistoryToolStripMenuItem.ShortcutKeys = hotK;
+                    case "复制图片成绩":
+                        this.复制图片成绩ToolStripMenuItem.ShortcutKeys = hotK;
                         break;
-                    case "窗口复位":
-                        this.窗口复位ToolStripMenuItem.ShortcutKeys = hotK;
+                    case "发上一段":
+                        this.SendPreToolStripMenuItem.ShortcutKeys = hotK;
                         break;
-                    case "查询当前编码":
-                        this.查询当前编码ToolStripMenuItem2.ShortcutKeys = hotK;
+                    case "发下一段":
+                        this.发下一段ToolStripMenuItem.ShortcutKeys = hotK;
                         break;
                     case "速度分析":
                         this.跟打分析ToolStripMenuItem.ShortcutKeys = hotK;
@@ -315,32 +300,38 @@ namespace WindowsFormsApplication2
                     case "按键统计":
                         this.KeyAnToolStripMenuItem.ShortcutKeys = hotK;
                         break;
+                    case "历史记录":
+                        this.HistoryToolStripMenuItem.ShortcutKeys = hotK;
+                        break;
+                    case "保存发文配置":
+                        this.SaveSendToolStripMenuItem.ShortcutKeys = hotK;
+                        break;
+                    case "乱序重打":
+                        this.DisorderToolStripMenuItem.ShortcutKeys = hotK;
+                        break;
+                    case "停止发文":
+                        this.停止发文ToolStripMenuItem1.ShortcutKeys = hotK;
+                        break;
+                    case "查询当前编码":
+                        this.查询当前编码ToolStripMenuItem2.ShortcutKeys = hotK;
+                        break;
                     case "打开练习":
                         this.DrillToolStripMenuItem.ShortcutKeys = hotK;
                         break;
                     case "测速数据":
                         this.测速数据ToolStripMenuItem.ShortcutKeys = hotK;
                         break;
-                    case "发下一段":
-                        this.发下一段ToolStripMenuItem.ShortcutKeys = hotK;
-                        break;
-                    case "复制图片成绩":
-                        this.复制图片成绩ToolStripMenuItem.ShortcutKeys = hotK;
-                        break;
-                    case "停止发文":
-                        this.停止发文ToolStripMenuItem1.ShortcutKeys = hotK;
+                    case "窗口复位":
+                        this.窗口复位ToolStripMenuItem.ShortcutKeys = hotK;
                         break;
                     case "检验真伪":
                         this.检验真伪ToolStripMenuItem.ShortcutKeys = hotK;
                         break;
-                    case "从剪贴板":
+                    case "直接载文":
                         this.从剪切板ToolStripMenuItem1.ShortcutKeys = hotK;
                         break;
-                    case "从QQ窗口":
-                        this.从QQ窗口手动ToolStripMenuItem1.ShortcutKeys = hotK;
-                        break;
-                    case "乱序重打":
-                        this.DisorderToolStripMenuItem.ShortcutKeys = hotK;
+                    case "格式载文":
+                        this.FormatLoadToolStripMenuItem1.ShortcutKeys = hotK;
                         break;
                     case "老板键":
                         if (Glob.HotKeyList[i].GetKeys() == "None")
@@ -441,7 +432,7 @@ namespace WindowsFormsApplication2
                     {
                         var s = richTextBox1.SelectionStart;
                         var text = s + 1 <= this.richTextBox1.TextLength ? this.richTextBox1.Text.Substring(s + 1, 1) : "";
-                        
+
                         if (!string.IsNullOrWhiteSpace(text))
                         {
                             if (";:'\"；：‘’“”".Contains(text))
@@ -584,7 +575,6 @@ namespace WindowsFormsApplication2
             this.lblDuan.BackColor = BG;
             this.lblTitle.BackColor = BG;
             this.lblCount.BackColor = BG;
-            this.lblQuan.BackColor = BG;
             this.lblSpeedText.BackColor = BG;
             this.lblJJText.BackColor = BG;
             this.lblMCText.BackColor = BG;
@@ -596,14 +586,12 @@ namespace WindowsFormsApplication2
             this.lblDuan.ForeColor = FC;
             this.lblTitle.ForeColor = FC;
             this.lblCount.ForeColor = FC;
-            this.lblQuan.ForeColor = FC;
             this.lblSpeedText.ForeColor = FC;
             this.lblJJText.ForeColor = FC;
             this.lblMCText.ForeColor = FC;
             this.lblMatchCount.ForeColor = FC;
 
             this.TSMI1.ForeColor = FC;
-            this.TSMI2.ForeColor = FC;
             this.TSMI3.ForeColor = FC;
             this.TSMI4.ForeColor = FC;
             this.TSMI5.ForeColor = FC;
@@ -613,8 +601,7 @@ namespace WindowsFormsApplication2
             this.labelCheckUD.ForeColor = FC;
             this.labelmcing.ForeColor = FC;
 
-            Color C = new Color();
-            C = Color.FromArgb(ColorTran(BG.R), ColorTran(BG.G), ColorTran(BG.B));
+            Color C = Color.FromArgb(ColorTran(BG.R), ColorTran(BG.G), ColorTran(BG.B));
             this.labelSpeeding.BackColor = C;
             this.labelJjing.BackColor = C;
             this.labelJiCheck.BackColor = C;
@@ -634,7 +621,7 @@ namespace WindowsFormsApplication2
         public void LoadSetup()
         {
             //创建表头
-            this.dataGridView1.Rows.Add("序", "时间", "段", "速度", "击键", "码长", "理论", "回改", "退格", "回车", "选重", "错字", "回改率", "键准", "效率", "键数", "字数", "打词", "打词率", "用时", "标题");
+            this.dataGridView1.Rows.Add("序", "时间", "段号", "速度", "击键", "码长", "理论", "回改", "退格", "回车", "选重", "错字", "回改率", "键准", "效率", "键数", "字数", "打词", "打词率", "用时", "标题");
             this.dataGridView1.Rows[0].Frozen = true;
             this.dataGridView1.Rows[0].DefaultCellStyle.Font = new Font("微软雅黑", 11f);
             this.dataGridView1.Rows[0].DefaultCellStyle.BackColor = Theme.ThemeColorBG;
@@ -704,7 +691,7 @@ namespace WindowsFormsApplication2
             textBoxEx1.BackColor = Color.FromArgb(int.Parse(IniRead("外观", "跟打区颜色", "-722948")));
             Glob.Right = Color.FromArgb(int.Parse(IniRead("外观", "打对颜色", "-8355712")));
             Glob.False = Color.FromArgb(int.Parse(IniRead("外观", "打错颜色", "-38294")));
-            
+
             //下方工具条颜色
             //this.toolStripButton1.BorderColor = Color.FromArgb(253,144,91);//替换
             //this.toolStripBtnLS.BorderColor = Color.FromArgb(255,127,24);//限制
@@ -713,9 +700,6 @@ namespace WindowsFormsApplication2
             //this.tsb标注.BorderColor = Color.FromArgb(255,0,10);
             //this.toolButton1.BorderColor = Color.FromArgb(0,192,180);//精五
 
-            //载入设置
-            savesetup.srf = IniRead("输入法", "惯用设置", ""); //输入法
-            Glob.DelaySend = int.Parse(IniRead("发送", "延时", "50")); //延时
             //载入个签
             Glob.InstraPre = IniRead("个签", "签名", "");
             Glob.InstraPre_ = IniRead("个签", "标志", "0");
@@ -736,7 +720,7 @@ namespace WindowsFormsApplication2
             // Glob.oneH = (int)Glob.font_1.GetHeight();//a2.Y - a1.Y;
             //MessageBox.Show(a1.Y + "\n" + a2.Y + "\n" + Glob.oneH);
             //获取发送成绩的排序顺序
-            Glob.sortSend = IniRead("发送", "顺序", "ABCVDTSEFULGNOPRQ");
+            Glob.sortSend = IniRead("发送", "顺序", "ABCVDTSEFULGNORQ");
 
             //载入前导
             Glob.isZdy = bool.Parse(IniRead("载入", "开启", "False"));
@@ -753,9 +737,6 @@ namespace WindowsFormsApplication2
             GetInfo(); //获取文段信息
             Glob.TextHgAll = int.Parse(IniRead("记录", "总回改", "0"));
 
-            Glob.GDQActon = bool.Parse(IniRead("发送", "激活", "false")); //是否激活载入
-            //载入方式
-            Glob.getStyle = bool.Parse(IniRead("载入", "方式", "false"));
             //今日跟打
             _Ini iniSetup = new _Ini("config.ini");
             // 记录天数
@@ -802,11 +783,9 @@ namespace WindowsFormsApplication2
             //FileInfo ty = new FileInfo(Application.StartupPath + "\\config.ini");
             // double totaldays = (double)(DateTime.Today - ty.LastAccessTime).TotalDays;
             //toolTip1.SetToolTip(this.labelHaveTyping,"今日跟打/总计数\n开始时间：" + ty.LastAccessTime.ToShortDateString() + "\n已开始第：" + totaldays.ToString("0.00") + "天\n平均每天：" + ((double)(Glob.TextLenAll/totaldays)).ToString("0.00") + "字\n本信息程序启动时更新");
-            //QQ号
-            Glob.isQQ = bool.Parse(IniRead("发送", "QQSta", "false"));
-            Glob.QQnumber = IniRead("发送", "QQ", "");
+
             //曲线
-            Glob.isShowSpline = bool.Parse(iniSetup.IniReadValue("拖动条", "曲线", "false"));
+            Glob.isShowSpline = bool.Parse(iniSetup.IniReadValue("拖动条", "曲线", "False"));
             this.splitContainer4.Panel1Collapsed = Glob.isShowSpline;
             this.tbnSpline.Checked = !Glob.isShowSpline;
             //停止用时
@@ -820,40 +799,26 @@ namespace WindowsFormsApplication2
             //极简设置
             Glob.simpleMoudle = bool.Parse(IniRead("发送", "极简状态", "False"));
             Glob.simpleSplite = IniRead("发送", "分隔符", "|");
-            this.toolStripButton2.Checked = Glob.simpleMoudle;
             //自动替换
             Glob.autoReplaceBiaodian = bool.Parse(IniRead("程序控制", "自动替换", "False"));
             this.toolStripButton1.Checked = Glob.autoReplaceBiaodian;
-            //潜水
-            Glob.isSub = bool.Parse(IniRead("发送", "潜水", "false"));
-            this.toolStripButton3.Checked = Glob.isSub;
-            //开始时间记录
 
-            //不显示即时
-            Glob.notShowjs = bool.Parse(IniRead("控制", "不显示即时", "False"));
-            // 不自动复制
-            Glob.notAutoCopy = bool.Parse(IniRead("控制", "不自动复制", "False"));
+            // 显示实时数据
+            Glob.ShowRealTimeData = bool.Parse(IniRead("控制", "实时数据", "True"));
+            this.RealTimeData.Checked = Glob.ShowRealTimeData;
+
+            // 自动复制
+            Glob.AutoCopy = bool.Parse(IniRead("控制", "自动复制", "False"));
+            this.toolStripButton3.Checked = Glob.AutoCopy;
             //不保存高阶
             Glob.DisableSaveAdvanced = bool.Parse(IniRead("控制", "不保存高阶", "False"));
             // 符号选重
             Glob.useSymbolSelect = bool.Parse(IniRead("控制", "符号选重", "False"));
-            //速度限制
-            Glob.速度限制 = double.Parse(IniRead("发送", "速度限制", "0.00"));
-            Glob.是否速度限制 = bool.Parse(IniRead("发送", "是否速度限制", "False"));
-            this.toolStripBtnLS.ToolTipText += "\n当前设置：" + Glob.速度限制;
-            if (Glob.是否速度限制)
-            {
-                this.toolStripBtnLS.Checked = true;
-            }
-            else
-            {
-                this.toolStripBtnLS.Checked = false;
-            }
             //载入词组信息
             _render = new RichEditBoxLineRender();
             InitCiKu();
             bool tick;
-            bool.TryParse(IniRead("程序控制", "标记", "false"), out tick);
+            bool.TryParse(IniRead("程序控制", "标记", "False"), out tick);
             if (tick)
             {
                 this.tsb标注.Checked = true;
@@ -867,10 +832,9 @@ namespace WindowsFormsApplication2
             this.picBmTips.Checked = bool.Parse(IniRead("程序控制", "编码", "False"));
             if (this.picBmTips.Checked) CheckBmFile();
 
-            //ini.IniWriteValue("程序控制", "编码", "False");
             //图片发送
             Glob.PicName = IniRead("发送", "昵称", "");
-            this.PicSend.Checked = bool.Parse(IniRead("发送", "图片", "false"));
+
             this.比赛时自动打开寻找测速点ToolStripMenuItem.Checked = bool.Parse(IniRead("程序控制", "自动打开寻找", "False"));
             LblHaveTypingChange();
         }
@@ -901,20 +865,6 @@ namespace WindowsFormsApplication2
         }
 
         #region dll
-        [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true)]
-        private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
-        [DllImport("user32.dll", EntryPoint = "GetWindowText")]
-        public static extern int GetWindowText(int hwnd, StringBuilder lpString, int cch);
-
-        [DllImport("user32.dll", CharSet = CharSet.Unicode, EntryPoint = "EnumWindows")]
-        public static extern int EnumWindows(CallBack x, int y);
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, EntryPoint = "GetClassName")]
-        public static extern int GetClassName(int hWnd, StringBuilder lpClassName, int nMaxCount);
-
-        [DllImport("user32.dll", EntryPoint = "SwitchToThisWindow")]
-        private static extern void SwitchToThisWindow(IntPtr hWnd, bool fAltTab);
-
         [DllImport("user32.dll")]
         public static extern bool UnregisterHotKey(IntPtr hWnd, int id); // 取消全局热键
 
@@ -1063,8 +1013,7 @@ namespace WindowsFormsApplication2
         /// 正式发文前的数据清理
         /// </summary>
         /// <param name="textAll">跟打区的文本内容</param>
-        /// <param name="textLen">剩余的发文字数</param>
-        private void CleanBeforeSending(string textAll, int textLen)
+        private void CleanBeforeSending(string textAll)
         {
             this.textBoxEx1.Clear(); // 清空跟打区
             this.richTextBox1.SelectAll();
@@ -1074,17 +1023,36 @@ namespace WindowsFormsApplication2
             Initialize(2);
             this.textBoxEx1.ReadOnly = false; // 激活跟打区
             this.textBoxEx1.Select();
-            Glob.Pre_Cout = NewSendText.起始段号.ToString(); // 设置当前段号为起始段号
-            this.lblDuan.Text = "第" + Glob.Pre_Cout.ToString() + "段";
+            Glob.CurSegmentNum++;
+            this.lblDuan.Text = "第" + Glob.CurSegmentNum.ToString() + "段";
             GetInfo(); // 获取信息
             Glob.reTypeCount = 0; // 重打次数归零
-            if (!NewSendText.是否独练)
-            {
-                NewSendTextToQQ(textAll, NewSendText.起始段号, NewSendText.标题, textLen);
-                this.Activate();
-            }
-            NewSendText.起始段号++;
             NewSendText.已发段数++;
+        }
+
+        /// <summary>
+        /// 倒序发文前的数据清理
+        /// </summary>
+        /// <param name="textAll"></param>
+        private void CleanBeforeReverseSending(string textAll)
+        {
+            this.textBoxEx1.Clear(); // 清空跟打区
+            this.richTextBox1.SelectAll();
+            this.richTextBox1.SelectionBackColor = Glob.r1Back;
+            this.richTextBox1.Text = textAll;
+            Initialize(1);
+            Initialize(2);
+            this.textBoxEx1.ReadOnly = false; // 激活跟打区
+            this.textBoxEx1.Select();
+            Glob.CurSegmentNum--;
+            if (Glob.CurSegmentNum < 1)
+            {
+                Glob.CurSegmentNum = 1;
+            }
+            this.lblDuan.Text = "第" + Glob.CurSegmentNum.ToString() + "段";
+            GetInfo(); // 获取信息
+            Glob.reTypeCount = 0; // 重打次数归零
+            NewSendText.已发段数--;
         }
 
         /// <summary>
@@ -1126,18 +1094,14 @@ namespace WindowsFormsApplication2
                                 }
                                 NewSendText.发文全文 = NewSendText.发文全文.Replace(" ", "");
                                 NewSendText.标记 += numlist.Length;
-                                CleanBeforeSending(TextAll, NewSendText.文章全文.Length);
+                                CleanBeforeSending(TextAll);
+                                //* 缓存文段内容
+                                Glob.TempSegmentRecord.Add(TextAll);
                             }
                             else
                             { // 剩余字数为零时
-                                if (!NewSendText.是否独练)
-                                {
-                                    sendtext("文已发空！");
-                                }
                                 ShowFlowText("文章全文已发送完毕，请重新换文！"); //* 仅弹出提示，不会自动停止发文
                                 NewSendText.标记 = 0;
-                                NewSendText.已发段数 = 0;
-                                NewSendText.已发字数 = 0;
                                 NewSendText.发文全文 = NewSendText.文章全文;
                             }
                         }
@@ -1149,40 +1113,36 @@ namespace WindowsFormsApplication2
                             {
                                 TextAll += NewSendText.发文全文[item];
                             }
-                            CleanBeforeSending(TextAll, TextLen);
+                            CleanBeforeSending(TextAll);
+                            //* 缓存文段内容
+                            Glob.TempSegmentRecord.Add(TextAll);
                         }
                     }
                     else
                     { //* 单字顺序
                         //? 此时 TextLen 指示总字数
-                        int limit = TextLen / NewSendText.字数;//总共只能发送多少段
-
-                        if (NewSendText.已发段数 < limit)
+                        if (NewSendText.标记 < TextLen)
                         {
-                            if (NewSendText.已发段数 == limit - 1)
-                            {
-                                TextAll = NewSendText.发文全文.Substring(NewSendText.标记, TextLen - NewSendText.标记);
-                                NewSendText.标记 = TextLen;
-                            }
-                            else
+                            int now = NewSendText.标记 + NewSendText.字数;
+                            if (now < TextLen)
                             {
                                 TextAll = NewSendText.发文全文.Substring(NewSendText.标记, NewSendText.字数);
                                 NewSendText.标记 += NewSendText.字数;
                             }
+                            else
+                            {
+                                TextAll = NewSendText.发文全文.Substring(NewSendText.标记, TextLen - NewSendText.标记);
+                                NewSendText.标记 = TextLen;
+                            }
 
-                            CleanBeforeSending(TextAll, TextLen);
+                            CleanBeforeSending(TextAll);
+                            //* 缓存文段内容
+                            Glob.TempSegmentRecord.Add(TextAll);
                         }
                         else
                         {
-                            if (!NewSendText.是否独练)
-                            {
-                                sendtext("文已发空！");
-                            }
                             ShowFlowText("文章全文已发送完毕，请重新换文！");
-                            
                             NewSendText.标记 = 0;
-                            NewSendText.已发段数 = 0;
-                            NewSendText.已发字数 = 0;                            
                         }
                     }
                 }
@@ -1200,81 +1160,75 @@ namespace WindowsFormsApplication2
                                       NewSendText.词组发送分隔符.Length);
                     }
 
-                    CleanBeforeSending(TextAll, TextLen);
+                    CleanBeforeSending(TextAll);
+                    //* 缓存文段内容
+                    Glob.TempSegmentRecord.Add(TextAll);
                 }
                 else if (NewSendText.类型 == "文章")
                 { //? 此时 TextLen 指示总字数
-                    if (NewSendText.是否一句结束)
-                    {
-                        if (NewSendText.标记 < TextLen)
-                        {  //标记必须小于长度
-                            int now = NewSendText.标记 + NewSendText.字数;
-                            if (now < TextLen)
-                            {
-                                int textlength = NewSendText.字数;
-                                if (IsCN.IsMatch(NewSendText.文章全文.Substring(now - 1, 1))) //? 当前的最后一个字是汉字或数字
-                                { //* 寻找潜在的符号
-                                    for (int i = now; i < now + 50; i++)
-                                    {
-                                        string nowIt = NewSendText.文章全文.Substring(i, 1);
-                                        if (!IsCN.IsMatch(nowIt))
-                                        {  //如果找到
-                                            try
+                    if (NewSendText.标记 < TextLen)
+                    {  //标记必须小于长度
+                        int now = NewSendText.标记 + NewSendText.字数;
+                        if (now < TextLen)
+                        {
+                            int textlength = NewSendText.字数;
+                            if (IsCN.IsMatch(NewSendText.文章全文.Substring(now - 1, 1))) //? 当前的最后一个字是汉字或数字
+                            { //* 寻找潜在的符号
+                                for (int i = now; i < now + 50; i++)
+                                {
+                                    string nowIt = NewSendText.文章全文.Substring(i, 1);
+                                    if (!IsCN.IsMatch(nowIt))
+                                    {  //如果找到
+                                        try
+                                        {
+                                            if (nowIt == "。" && NewSendText.文章全文.Substring(i + 1, 1) == "”")
                                             {
-                                                if (nowIt == "。" && NewSendText.文章全文.Substring(i + 1, 1) == "”")
-                                                {
-                                                    i++;
-                                                }
-
-                                                if (nowIt == "”" && NewSendText.文章全文.Substring(i + 1, 1) == "。")
-                                                {
-                                                    i++;
-                                                }
-
-                                                if (nowIt == "—" && NewSendText.文章全文.Substring(i + 1, 1) == "—")
-                                                {
-                                                    i++;
-                                                }
-
-                                                if (nowIt == "…" && NewSendText.文章全文.Substring(i + 1, 1) == "…")
-                                                {
-                                                    i++;
-                                                }
-
-                                                if (nowIt == "“" || nowIt == "‘")
-                                                { //? 不包括开引号
-                                                    i--;
-                                                }
+                                                i++;
                                             }
-                                            catch { }
-                                            textlength = i - NewSendText.标记 + 1;
-                                            break;
+
+                                            if (nowIt == "”" && NewSendText.文章全文.Substring(i + 1, 1) == "。")
+                                            {
+                                                i++;
+                                            }
+
+                                            if (nowIt == "—" && NewSendText.文章全文.Substring(i + 1, 1) == "—")
+                                            {
+                                                i++;
+                                            }
+
+                                            if (nowIt == "…" && NewSendText.文章全文.Substring(i + 1, 1) == "…")
+                                            {
+                                                i++;
+                                            }
+
+                                            if (nowIt == "“" || nowIt == "‘")
+                                            { //? 不包括开引号
+                                                i--;
+                                            }
                                         }
+                                        catch { }
+                                        textlength = i - NewSendText.标记 + 1;
+                                        break;
                                     }
                                 }
-                                TextAll = NewSendText.文章全文.Substring(NewSendText.标记, textlength);
-                                NewSendText.标记 += textlength;
                             }
-                            else
-                            {
-                                TextAll = NewSendText.文章全文.Substring(NewSendText.标记, TextLen - NewSendText.标记);
-                                NewSendText.标记 = TextLen;
-                            }
-
-                            CleanBeforeSending(TextAll, TextLen);
+                            TextAll = NewSendText.文章全文.Substring(NewSendText.标记, textlength);
+                            NewSendText.标记 += textlength;
                         }
                         else
                         {
-                            if (!NewSendText.是否独练)
-                            {
-                                sendtext("文已发空！继续则重复发送！");
-                            }
-                            ShowFlowText("文章全文已发送完毕，请重新换文！");
-                            
-                            NewSendText.已发段数 = 0;
-                            NewSendText.标记 = 0;
-                            NewSendText.已发字数 = 0;
+                            TextAll = NewSendText.文章全文.Substring(NewSendText.标记, TextLen - NewSendText.标记);
+                            NewSendText.标记 = TextLen;
                         }
+
+                        CleanBeforeSending(TextAll);
+                        //* 缓存文段内容
+                        Glob.TempSegmentRecord.Add(TextAll);
+                    }
+                    else
+                    {
+                        ShowFlowText("文章全文已发送完毕，请重新换文！");
+                        NewSendText.标记 = 0;
                     }
                 }
                 this.textBoxEx1.TextChanged += new System.EventHandler(textBoxEx1_TextChanged);
@@ -1284,51 +1238,126 @@ namespace WindowsFormsApplication2
             }
         }
 
-        public void NewSendTextToQQ(string text, int duan, string header, int TextAllCount)
-        {  //给QQ发送消息
-            if (text != "")
+        /// <summary>
+        /// 过去发文
+        /// </summary>
+        /// <param name="textAll">发文的内容</param>
+        private void SendAPast(string textAll)
+        {
+            this.textBoxEx1.TextChanged -= new System.EventHandler(textBoxEx1_TextChanged);
+            if (NewSendText.发文状态)
             {
-                string title = lblQuan.Text.ToString();
-                if (title != "所在群")
+                //输入法状态
+                Glob.binput = true;
+                int textMaxLen = NewSendText.文章全文.Length;
+                int textlength = textAll.Length;
+                this.lblTitle.Text = NewSendText.标题;
+                if (NewSendText.类型 == "单字")
                 {
-                    string pre = "-----第" + duan + "段";
-
-                    string least_pre = "-余" + (TextAllCount - NewSendText.标记) + "字-";
-
-                    string least = (NewSendText.类型 == "词组") ? "-共" + NewSendText.词组.Length + "词" : least_pre;
-                    if (NewSendText.类型 == "单字" & NewSendText.是否乱序) { least = "-乱序循环"; }
-                    if (NewSendText.是否周期) { least += "-" + NewSendText.周期 + "秒"; }
-                    //标题是否含有冒号
-                    header = (header.Contains(":") || header.Contains("：")) ? header : header + ":";
-                    string texttotal = header + "\r\n" + text + "\r\n" + pre + least + "-" + Glob.Instration;
-                    ClipboardHandler.SetTextToClipboard(texttotal);
-                    SwitchToThisWindow(FindWindow(null, title), true); //激活窗口
-                    Delay(Glob.DelaySend);
-                    SendKeys.SendWait("^v");
-                    Delay(20);
-                    SendKeys.SendWait("%s");
+                    if (NewSendText.是否乱序)
+                    {
+                        if (NewSendText.乱序全段不重复)
+                        {
+                            NewSendText.标记 += textlength;
+                            if (NewSendText.标记 > textMaxLen)
+                            {
+                                NewSendText.标记 -= textMaxLen;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        NewSendText.标记 += textlength;
+                        if (NewSendText.标记 > textMaxLen)
+                        {
+                            NewSendText.标记 -= textMaxLen;
+                        }
+                    }
                 }
+                else if (NewSendText.类型 == "文章")
+                {
+                    NewSendText.标记 += textlength;
+                    if (NewSendText.标记 > textMaxLen)
+                    {
+                        NewSendText.标记 -= textMaxLen;
+                    }
+                }
+
+                CleanBeforeSending(textAll);
+                this.textBoxEx1.TextChanged += new System.EventHandler(textBoxEx1_TextChanged);
+                NewSendText.已发字数 += textlength;
+                发文状态后处理();
+                this.Activate();
+            }
+        }
+
+        private void ReverseSendAPast(string textAll, int curTextLength)
+        {
+            this.textBoxEx1.TextChanged -= new System.EventHandler(textBoxEx1_TextChanged);
+            if (NewSendText.发文状态)
+            {
+                //输入法状态
+                Glob.binput = true;
+                int textMaxLen = NewSendText.文章全文.Length;
+                this.lblTitle.Text = NewSendText.标题;
+                if (NewSendText.类型 == "单字")
+                {
+                    if (NewSendText.是否乱序)
+                    {
+                        if (NewSendText.乱序全段不重复)
+                        {
+                            NewSendText.标记 -= curTextLength;
+                            if (NewSendText.标记 <= 0)
+                            {
+                                NewSendText.标记 += textMaxLen;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        NewSendText.标记 -= curTextLength;
+                        if (NewSendText.标记 <= 0)
+                        {
+                            NewSendText.标记 += textMaxLen;
+                        }
+                    }
+                }
+                else if (NewSendText.类型 == "文章")
+                {
+                    NewSendText.标记 -= curTextLength;
+                    if (NewSendText.标记 <= 0)
+                    {
+                        NewSendText.标记 += textMaxLen;
+                    }
+                }
+
+                CleanBeforeReverseSending(textAll);
+                this.textBoxEx1.TextChanged += new System.EventHandler(textBoxEx1_TextChanged);
+                NewSendText.已发字数 -= curTextLength;
+                发文状态后处理();
+                this.Activate();
             }
         }
 
         private void 发文状态后处理()
         {
             // MessageBox.Show("调用了发文状态后处理");
-            if (发文状态窗口 != null)
+            if (发文状态窗口 != null && !发文状态窗口.IsDisposed)
             {
-                if (!发文状态窗口.IsDisposed)
+                发文状态窗口.lblSendCounted.Text = NewSendText.已发字数.ToString();//已发字数
+                发文状态窗口.lblSendPCounted.Text = NewSendText.已发段数.ToString();//已发段数
+                发文状态窗口.lblMarkCount.Text = NewSendText.标记.ToString();//当前标记
+                发文状态窗口.tbxSendC.Text = NewSendText.字数.ToString();//一次发送字数
+                发文状态窗口.tbxNowStartCount.Text = Glob.CurSegmentNum.ToString();//当前段号
+                if (NewSendText.是否周期)
                 {
-                    发文状态窗口.lblSendCounted.Text = NewSendText.已发字数.ToString();//已发字数
-                    发文状态窗口.lblSendPCounted.Text = NewSendText.已发段数.ToString();//已发段数
-                    发文状态窗口.tbxNowStart.Text = NewSendText.标记.ToString();//当前标记
-                    发文状态窗口.tbxSendC.Text = NewSendText.字数.ToString();//一次发送字数
-                    发文状态窗口.tbxNowStartCount.Text = Glob.Pre_Cout;//当前段号
-                    if (NewSendText.是否周期)
-                    {
-                        发文状态窗口.lblNowTime.Text = NewSendText.周期计数.ToString();
-                        this.lblNowTime_.Text = NewSendText.周期计数.ToString();
-                    }
+                    发文状态窗口.lblNowTime.Text = NewSendText.周期计数.ToString();
                 }
+            }
+
+            if (NewSendText.是否周期)
+            {
+                this.lblNowTime_.Text = NewSendText.周期计数.ToString();
             }
         }
 
@@ -1356,87 +1385,57 @@ namespace WindowsFormsApplication2
         }
         #endregion
 
-        #region 自带发文
-        public void sendtext(string text)
-        {
-            if (text != "")
-            {
-                string title = lblQuan.Text.ToString();
-                if (title != "所在群")
-                {
-                    SwitchToThisWindow(FindWindow(null, this.Text), true); //激活窗口
-                    Delay(20);
-                    ClipboardHandler.SetTextToClipboard(text);
-                    SwitchToThisWindow(FindWindow(null, title), true); //激活窗口
-                    Delay(Glob.DelaySend);
-                    SendKeys.SendWait("^a^v%s");
-                    ClipboardHandler.SetTextToClipboard(Glob.theLastGoal);
-                }
-            }
-        }
-
-        public void SendClipBoardToQQ()
-        {
-            string title = lblQuan.Text.ToString();
-            if (title != "所在群")
-            {
-                SwitchToThisWindow(FindWindow(null, this.Text), true); //激活窗口
-                Delay(20);
-                SwitchToThisWindow(FindWindow(null, title), true); //激活窗口
-                Delay(Glob.DelaySend);
-                SendKeys.SendWait("^a^v%s");
-            }
-        }
-
+        #region 周期发文
         /// <summary>
-        /// 周期发文
+        /// 开始周期发文
         /// </summary>
         public void SendTTest()
         {
             NewSendText.周期计数 = NewSendText.周期;
             SendAOnce();
-            //if (!NewSendText.是否独练)
-            // {
-            //     sendtext("周期发文开始，发文周期：" +  NewSendText.周期 + "秒");
-            // }
             timerTSend.Start();
         }
 
         private void timerTSend_Tick(object sender, EventArgs e)
         {
-            NewSendText.周期计数 -= 1;
-            if (发文状态窗口 != null)
+            if (NewSendText.是否周期)
             {
-                if (!发文状态窗口.IsDisposed)
+                NewSendText.周期计数 -= 1;
+                if (发文状态窗口 != null && !发文状态窗口.IsDisposed)
                 {
-                    if (NewSendText.是否周期)
-                    {
-                        发文状态窗口.lblNowTime.Text = NewSendText.周期计数.ToString();
-                        this.lblNowTime_.Text = NewSendText.周期计数.ToString();
-                    }
+                    发文状态窗口.lblNowTime.Text = NewSendText.周期计数.ToString();
+                }
+
+                this.lblNowTime_.Text = NewSendText.周期计数.ToString();
+
+                if (NewSendText.周期计数 <= 0)
+                {
+                    SendNextFun();
                 }
             }
-            if (NewSendText.周期计数 <= 0)
+            else
             {
-                SendAOnce();
-                NewSendText.周期计数 = NewSendText.周期;
+                timerTSend.Stop();
             }
-            if (!NewSendText.是否周期) timerTSend.Stop();
         }
         #endregion
+
+        /// <summary>
+        /// ini的快捷读取
+        /// </summary>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
         public string IniRead(string section, string key, string def)
-        { //ini的快捷读取
+        {
             _Ini sing = new _Ini("config.ini");
             return sing.IniReadValue(section, key, def);
         }
 
-        public class savesetup
-        {
-            public static string srf;
-        }
-
         /// <summary>
         /// 初始化操作
+        /// 1 数值初始化；2 显示初始化
         /// </summary>
         /// <param name="Contr"></param>
         public void Initialize(int Contr)
@@ -1527,6 +1526,7 @@ namespace WindowsFormsApplication2
                     _render.SetCurrIndex(0);
                 }
             }
+
             try
             {
                 KH.Start();
@@ -1537,7 +1537,7 @@ namespace WindowsFormsApplication2
 
         #region 跟打过程
         /// <summary>
-        /// 记录
+        /// 记录跟打总字数
         /// </summary>
         /// <param name="count"></param>
         private void RecTextTypeCount(int count)
@@ -1552,12 +1552,12 @@ namespace WindowsFormsApplication2
             Glob.TextLenAll += count;//总字数
             labelHaveTyping.Text = Glob.todayTyping + "/" + 字数格式化(Glob.TextLenAll) + "/" + Glob.TextRecDays + "天/" + 字数格式化(Glob.TextLenAll + Glob.TextHgAll);
         }
+
         private int 上次输入标记 = 1;
         private int 跟打地图步进 = 0;
+
         private void richTextBox2_TextChanged(object sender, EventArgs e)
         {
-            //try
-            //{
             int TextLen = Glob.TextLen;
             if (TextLen > 1) //第一个字不算。如果文章超过2个字符才启用
             {
@@ -1577,7 +1577,7 @@ namespace WindowsFormsApplication2
                 //Application.DoEvents();
                 //MessageBox.Show(TextType + "\n" + Sw.ToString());
                 //再比较 当时的字符数量-1 就是原数组的序列
-                if (TextLenNow >= 0 & TextLenNow <= TextLen)
+                if (TextLenNow >= 0 && TextLenNow <= TextLen)
                 {
                     int getstart = richTextBox1.GetLineFromCharIndex(TextLenNow);
                     int getExend = richTextBox1.GetLineFromCharIndex(TextLen - 1);//获取最后一行的行号 也就是 总行号
@@ -1897,12 +1897,12 @@ namespace WindowsFormsApplication2
                     timer5.Stop(); //长时间不跟打自动重打
                     //MessageBox.Show("精确计时：" + " " + "\n标识计时：" + (eTime - sTime).TotalSeconds);
                     this.lblAutoReType.Text = "0";
-                    ///已跟打赋值
+                    //已跟打赋值
                     Glob.HaveTypeCount++;//已跟打段数
 
                     #region 跟打结束
                     //toolStripStatusLabelTest.Text = "起打时间：" + sTime.ToShortTimeString() + " 终止时间：" + eTime.ToShortTimeString() + " 标志用时：" + (eTime - sTime).TotalSeconds + "s";
-                    
+
                     Glob.jjAllC++;//跟打总段数
                     LblHaveTypingChange();
 
@@ -1963,34 +1963,24 @@ namespace WindowsFormsApplication2
                     if (Glob.TextCz <= (int)TextLen / 10)
                     {
                         //段号
-                        string duanhao = "第" + Glob.Pre_Cout + "段";
-                        if (!Glob.isMatch)
+                        string duanhao = "第" + Glob.CurSegmentNum.ToString() + "段";
+                        if (!Glob.isMatch && duanhao == "段号")
                         {
-                            if (duanhao == "段号")
-                            {
-                                duanhao = "自测";
-                            }
+                            duanhao = "自测";
+
                         }
-                        if (Glob.jwMatchMoudle) { duanhao = "第" + Glob.Pre_Cout + "期精五门比赛文段"; }
+
                         //个签
-                        string inistra;
+                        string inistra = "";
                         if (Glob.InstraPre_ != "0")
                         {
                             inistra = " 个签:" + Glob.InstraPre;
                         }
-                        else
-                        {
-                            inistra = "";
-                        }
                         //输入法签名
-                        string inistraSrf;
+                        string inistraSrf = "";
                         if (Glob.InstraSrf_ != "0")
                         {
                             inistraSrf = " 输入法:" + Glob.InstraSrf;
-                        }
-                        else
-                        {
-                            inistraSrf = "";
                         }
                         //打词
                         string atypewords;
@@ -2062,25 +2052,29 @@ namespace WindowsFormsApplication2
                         string sortsend = "", qidayu = "";
                         string TotalSend = "";
                         if (!Glob.isMatch)
-                        { //非比赛模式
+                        { // 非赛文
                             if (Glob.simpleMoudle)
                             {  //极简模式
-                                string string1 = Glob.Pre_Cout + Glob.simpleSplite + Spsend + Glob.simpleSplite + jj.ToString("0.00") + Glob.simpleSplite + mc.ToString("0.00") + Glob.simpleSplite + Glob.TextHg;
-                                TotalSend += string1 + Glob.simpleSplite;// +instration;
-                                if (Glob.InstraPre_ != "0") { TotalSend += Glob.InstraPre + Glob.simpleSplite; }
+                                string string1 = Glob.CurSegmentNum.ToString() + Glob.simpleSplite + speed2.ToString("0.00") + Glob.simpleSplite + jj.ToString("0.00") + Glob.simpleSplite + mc.ToString("0.00") + Glob.simpleSplite + this.lblMatchCount.Text;
+                                TotalSend += string1 + Glob.simpleSplite;
+                                if (Glob.InstraPre_ != "0")
+                                {
+                                    TotalSend += Glob.InstraPre + Glob.simpleSplite;
+                                }
                                 TotalSend += Glob.Instration;
-                            }
-                            else if (Glob.jwMatchMoudle)
-                            {
-                                // 精五比赛模式
-                                sortsend = "ABCDEGIH";
                             }
                             else
                             {
-                                sortsend = Glob.sortSend; qidayu = "";
+                                sortsend = Glob.sortSend;
+                                qidayu = "";
                             }
                         }
-                        else { sortsend = "ABDSTVCUEFGHIJKLWMNOPQR"; qidayu = " 起打于" + startTime.ToLongTimeString(); } //比赛全显示
+                        else
+                        { // 赛文全显示
+                            sortsend = "ABDSTVCUEFGHIJKLWMNOQR";
+                            qidayu = " 起打于" + startTime.ToLongTimeString();
+                        }
+
                         if (sortsend.Length != 0) //用 顺序是否为空为控制 流程
                         {
                             char[] TSend = sortsend.ToArray();
@@ -2096,10 +2090,6 @@ namespace WindowsFormsApplication2
                                             if (!(jj <= 3.2 && mc <= 1.3))
                                             {
                                                 TotalSend += " 击键" + jj.ToString("0.00");
-                                                //if (NowjjCount != -1)
-                                                //{
-                                                //    TotalSend += "(" + nowjjPer.ToString("0.00") + "%)";
-                                                //}
                                             }
                                         }
                                         break;
@@ -2157,35 +2147,18 @@ namespace WindowsFormsApplication2
                                 }
                             }
                             TotalSend += inistraSrf;
-                            if (Glob.jwMatchMoudle)
-                            {
-                                TotalSend += " 校验码:" + Validation.JingWuValidat((int)speed2, (int)jj, (int)mc, (int)(Glob.typeUseTime * 1000.0), Glob.QQnumber.ToString(), this.richTextBox1.Text);
-                            }
-                            if (Glob.isQQ)
-                                TotalSend += " QQ:" + Glob.QQnumber;
-
                             if (Glob.isMatch)
                             {
                                 TotalSend += qidayu + " 赛文验证:" + lblMatchCount.Text;
                             }
-
-                            if (Glob.isCheat)
-                            {
-                                TotalSend += " [CHEAT]";
-                                Glob.isCheat = false;
-                            }
-                            
-                            if (!Glob.jwMatchMoudle)
-                                TotalSend += " 校验:" + Validation.Validat(TotalSend);
+                            TotalSend += " 校验:" + Validation.Validat(TotalSend);
                             TotalSend += inistra + 暂停 + 版本;
                             Glob.theLastGoal = TotalSend;
                         }
                         picBar_Draw(0.0, Glob.TextLen + ",100%");
                         labelSpeeding.Text = speed.ToString("0.00");
-                        //changelabelcolor(jj, 1); //改变击键的颜色
                         labelJjing.Text = jj.ToString("0.00");
                         labelmcing.Text = mc.ToString("0.00");
-                        string title = lblQuan.Text == "所在群" ? "" : lblQuan.Text;
 
                         //平均数据
                         //this.SeriesSpeed.Points.AddXY(Glob.typeUseTime,speed2);
@@ -2214,9 +2187,9 @@ namespace WindowsFormsApplication2
                                 //速度
                                 (speed_Plus > 0 ? "+" : "") + speed_Plus.ToString("0.00"),
                                 //击键
-                                (jj_Plus > 0 ? "+" : "" ) + jj_Plus.ToString("0.00"),
+                                (jj_Plus > 0 ? "+" : "") + jj_Plus.ToString("0.00"),
                                 //码长
-                                (mc_Plus > 0 ? "+" : "" ) + mc_Plus.ToString("0.00")
+                                (mc_Plus > 0 ? "+" : "") + mc_Plus.ToString("0.00")
                                 );
                             RowCount++;
                             dataGridView1.Rows[RowCount].Height = 10;
@@ -2242,7 +2215,7 @@ namespace WindowsFormsApplication2
                             typeCountStr = Glob.HaveTypeCount_.ToString();
                         }
                         //* 成绩栏添加新数据行
-                        dataGridView1.Rows.Add(typeCountStr, Glob.TextTime.ToString("G"), Glob.Pre_Cout, Spsend, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserDcl, UserTime, this.lblTitle.Text);
+                        dataGridView1.Rows.Add(typeCountStr, Glob.TextTime.ToString("G"), Glob.CurSegmentNum.ToString(), Spsend, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserDcl, UserTime, this.lblTitle.Text);
                         //* 绑定右键菜单
                         dataGridView1.Rows[dataGridView1.RowCount - 1].ContextMenuStrip = this.ScoreContextMenuStrip;
                         Glob.TextPreCout = this.lblMatchCount.Text; // 记录本文段校验码
@@ -2279,49 +2252,19 @@ namespace WindowsFormsApplication2
                         }
                         catch { }
                         #region 自动将统计结果复制到剪贴板
-                        if (!Glob.notAutoCopy)
+                        if (Glob.AutoCopy)
                         {
-                            //* 已设置为可选操作
                             ClipboardHandler.SetTextToClipboard(TotalSend);
+                            //* 闪烁按钮
+                            timerSubFlash.Start();
                         }
                         #endregion
-                        if (NewSendText.发文状态)
-                        {
-                            if (NewSendText.是否自动)
-                            {  //自动模式
-                                F3();
-                                SendAOnce();
-                            }
-                            if (NewSendText.是否独练)
-                            { //自我练习
-                                return;
-                            }
-                        }
-                        if (Glob.isSub) { timerSubFlash.Start(); return; }
-                        if (!string.IsNullOrEmpty(title) && title != "所在群")
-                        {
-                            if (Glob.是否速度限制)
-                            {
-                                if (speed2 >= Glob.速度限制)
-                                {
-                                    isornoSend(TotalSend);
-                                }
-                                else
-                                {
-                                    timerBtnFlash.Start();
-                                }
-                            }
-                            else
-                            {
-                                isornoSend(TotalSend);
-                            }
-                        }
 
                         #region 保存成绩到数据库中
                         //* 保存文段
                         long databaseSegmentId = Glob.ScoreHistory.InsertSegment(Glob.TypeText, this.lblMatchCount.Text);
                         //* 保存成绩
-                        Glob.ScoreHistory.InsertScore(Glob.TextTime.ToString("s"), int.Parse(Glob.Pre_Cout), Spsend, jj, mc, Glob.词库理论码长, Glob.TextHg, Math.Abs(Glob.TextBg - Glob.TextHg), Glob.回车, Glob.选重, Glob.TextCz, Glob.TextHg_, UserJz, Glob.效率, Glob.TextJs, TextLen, Glob.aTypeWords, Glob.TextDc_, UserTime, databaseSegmentId, this.lblTitle.Text, Glob.Instration);
+                        Glob.ScoreHistory.InsertScore(Glob.TextTime.ToString("s"), Glob.CurSegmentNum, Spsend, jj, mc, Glob.词库理论码长, Glob.TextHg, Math.Abs(Glob.TextBg - Glob.TextHg), Glob.回车, Glob.选重, Glob.TextCz, Glob.TextHg_, UserJz, Glob.效率, Glob.TextJs, TextLen, Glob.aTypeWords, Glob.TextDc_, UserTime, databaseSegmentId, this.lblTitle.Text, Glob.Instration);
                         if (!Glob.DisableSaveAdvanced)
                         { // 保存高阶统计数据
                             string curveData = string.Join("|", Glob.ChartSpeedArr);
@@ -2335,7 +2278,7 @@ namespace WindowsFormsApplication2
                         #region 记录当前数据
                         StorageDataSet.ScoreRow scoreRow = this.currentScoreData.NewScoreRow();
                         scoreRow["score_time"] = Glob.TextTime;
-                        scoreRow["segment_num"] = int.Parse(Glob.Pre_Cout);
+                        scoreRow["segment_num"] = Glob.CurSegmentNum;
                         scoreRow["speed"] = Spsend;
                         scoreRow["keystroke"] = jj;
                         scoreRow["code_len"] = mc;
@@ -2359,8 +2302,13 @@ namespace WindowsFormsApplication2
                         this.currentScoreData.AddScoreRow(scoreRow);
                         #endregion
 
-                        //跟打完毕后，是否激活问题
-                        if (Glob.GDQActon) { SwitchToThisWindow(FindWindow(null, Glob.Form), true); }
+                        if (NewSendText.发文状态)
+                        {
+                            if (NewSendText.是否自动)
+                            {  // 自动模式
+                                SendNextFun();
+                            }
+                        }
                     }
                     #endregion
                 }
@@ -2467,7 +2415,7 @@ namespace WindowsFormsApplication2
         {
             if (Glob.Use分析)
             {
-                SpeedAn sa = new SpeedAn(Glob.TextTime.ToString("G"), Glob.Pre_Cout, SpeedAnalysis(), Glob.Instration, this);
+                SpeedAn sa = new SpeedAn(Glob.TextTime.ToString("G"), Glob.CurSegmentNum.ToString(), SpeedAnalysis(), Glob.Instration, this);
                 sa.ShowDialog();
             }
         }
@@ -2683,7 +2631,8 @@ namespace WindowsFormsApplication2
                     if (dt.Hour == 0)
                     {
                         return dt.ToString("m:ss.fff");
-                    } else
+                    }
+                    else
                     {
                         return dt.ToString("hh:mm:ss.fff");
                     }
@@ -2797,7 +2746,7 @@ namespace WindowsFormsApplication2
         {
             get
             {
-                string ins = " v" + Glob.Ver + "(" +  Glob.Instration + ")";
+                string ins = " v" + Glob.Ver + "(" + Glob.Instration + ")";
                 if (Glob.TextCz > 0)
                 {
                     ins += " [错1罚5]";
@@ -2885,66 +2834,6 @@ namespace WindowsFormsApplication2
             }
         }
 
-        public void isornoSend(string TotalSend)
-        {
-            if (Glob.sendOrNo)
-            {
-                if (NewSendText.发文状态)
-                {
-                    if (!NewSendText.是否独练)
-                    {
-                        if (MessageBox.Show(TotalSend, "是否发送成绩？是发送，否放入剪切板。", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                        {
-                            if (this.PicSend.Checked & !Glob.isMatch)
-                                send_picGoal();
-                            else
-                                sendtext(TotalSend);
-                        }
-                        else
-                        {
-                            ClipboardHandler.SetTextToClipboard(TotalSend);
-                        }
-
-                    }
-                }
-                else
-                {
-                    if (MessageBox.Show(TotalSend, "是否发送成绩？是发送，否放入剪切板。", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        if (this.PicSend.Checked & !Glob.isMatch)
-                            send_picGoal();
-                        else
-                            sendtext(TotalSend);
-                    }
-                    else
-                    {
-                        ClipboardHandler.SetTextToClipboard(TotalSend);
-                    }
-                }
-            }
-            else
-            {
-                if (NewSendText.发文状态)
-                {
-                    if (!NewSendText.是否独练)
-                    {
-                        if (this.PicSend.Checked & !Glob.isMatch)
-                            send_picGoal();
-                        else
-                            sendtext(TotalSend);
-                        SwitchToThisWindow(FindWindow(null, Glob.Form), true);
-                    }
-                }
-                else
-                {
-                    if (this.PicSend.Checked & !Glob.isMatch)
-                        send_picGoal();
-                    else
-                        sendtext(TotalSend);
-                }
-            }
-        }
-
         private void 复制图片成绩ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Glob.HaveTypeCount > 0)
@@ -2953,19 +2842,16 @@ namespace WindowsFormsApplication2
             }
         }
 
+        /// <summary>
+        /// 复制图片成绩到剪贴板中
+        /// </summary>
         private void CopyPicGoal()
         {
             using (PicGoal_Class pgc = new PicGoal_Class())
             {
-                Clipboard.SetImage(pgc.GetPic(this.lblTitle.Text, Glob.TextTime.ToString("G"), UserTime, UserJz, Glob.效率, Glob.TextLen, Glob.TextHg, Glob.TextCz, Glob.TextJs, Math.Abs(Glob.TextBg - Glob.TextHg), Glob.选重, Glob.Pre_Cout, Glob.TextSpeed, Glob.Textjj, Glob.Textmc, Glob.Instration));
+                Clipboard.SetImage(pgc.GetPic(this.lblTitle.Text, Glob.TextTime.ToString("G"), UserTime, UserJz, Glob.效率, Glob.TextLen, Glob.TextHg, Glob.TextCz, Glob.TextJs, Math.Abs(Glob.TextBg - Glob.TextHg), Glob.选重, Glob.CurSegmentNum.ToString(), Glob.TextSpeed, Glob.Textjj, Glob.Textmc, Glob.Instration));
                 pgc.Dispose();
             }
-        }
-
-        private void send_picGoal()
-        {
-            CopyPicGoal();
-            SendClipBoardToQQ();
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -2991,7 +2877,7 @@ namespace WindowsFormsApplication2
                 labelJsing.Text = Glob.TextJs.ToString();
                 Glob.nowStart = DateTime.Now; //停止用时
             }
-            
+
             //* 英文文章不存在选重
             if (e.KeyCode == Keys.ProcessKey)
             {
@@ -3041,50 +2927,10 @@ namespace WindowsFormsApplication2
         }
         #endregion
 
-
+        [DllImport("User32")]
+        public extern static bool GetCursorPos(ref Point cPoint); // 输出当前鼠标光标位置
 
         #region 全局快捷键设置
-
-        [Flags]
-        public enum KeyModifiers
-        {
-            None = 0,
-            Alt = 1,
-            Control = 2,
-            Shift = 4,
-            WindowsKey = 8
-        }
-
-        [DllImport("User32")]
-        public extern static bool GetCursorPos(ref Point cPoint);
-        [DllImport("user32.dll", EntryPoint = "GetForegroundWindow")]
-        public static extern IntPtr fGetForegroundWindow();
-        private string GetCheck()
-        {
-            string get_ = Clipboard.GetDataObject().GetData(DataFormats.StringFormat).ToString();
-            Regex checkIf = new Regex("\r(?!\n)");
-            if (checkIf.IsMatch(get_))
-            {
-                get_ = get_.Replace("\r", "\r\n");  //匹配则是QQ2009+
-            }
-            return get_;
-        }
-        public static string GetTextFromClipboard()
-        {
-            try
-            {
-                System.Windows.Forms.IDataObject data = System.Windows.Forms.Clipboard.GetDataObject();
-                if (data.GetDataPresent(System.Windows.Forms.DataFormats.UnicodeText))
-                {
-                    string strText = (string)data.GetData(System.Windows.Forms.DataFormats.UnicodeText);
-                    return strText;
-                }
-            }
-            catch
-            { }
-            return null;
-        }
-
         protected override void WndProc(ref Message m)
         {
             const int WM_HOTKEY = 0x0312;
@@ -3106,35 +2952,6 @@ namespace WindowsFormsApplication2
             switch (m.Msg)
             {
                 case WM_HOTKEY:
-                    //if ((int)m.WParam == 2)
-                    //{ //F4 获取文字
-                    //    F4();
-                    //}
-                    //else if ((int)m.WParam == 3) //重打全局
-                    //{
-                    //    SwitchToThisWindow(FindWindow(null, Glob.Form), true);
-                    //    if (GetForegroundWindow().ToInt32() != this.Handle.ToInt32())
-                    //    {
-                    //        this.Show();
-                    //        this.Activate();
-                    //        this.textBoxEx1.Select();
-                    //        if (Glob.TypeTextCount > 0 && this.textBoxEx1.TextLength != this.richTextBox2.TextLength)
-                    //            ShowFlowText("已激活跟打器，未设重打~");
-                    //        return;
-                    //    }
-                    //    F3();
-                    //}
-                    //else if ((int)m.WParam == 4)
-                    //{ //F6
-                    //    if (NewSendText.发文状态)// (zdSendText.isHand) //手动模式
-                    //    {
-                    //        //this.textBox1.TextChanged -= new System.EventHandler(textBoxEx1_TextChanged);
-                    //        SendAOnce();
-                    //        //SendAOnce();
-                    //        F3();
-                    //        //this.textBox1.TextChanged += new System.EventHandler(textBoxEx1_TextChanged);
-                    //    }
-                    //}
                     //* 现在只会处理老板键的全局热键
                     ProcessHotKey(m.WParam.ToInt32());
                     break;
@@ -3182,152 +2999,15 @@ namespace WindowsFormsApplication2
             }
         }
 
-        public string getQQText()
-        {
-            string title = lblQuan.Text;
-            if (title != "所在群")
-            {
-                //string isQQ2012 = FindWindow("TXGuiFoundation", "QQ2012").ToString();
-                //string isQQ2011 = FindWindow("TXGuiFoundation", "QQ2011").ToString();
-                //if (isQQ2011 != "0" && isQQ2012 != "0") { MessageBox.Show("含有多个版本的QQ，请关闭其他非跟打版本QQ，或者统一用同一版本QQ！"); return false; }
-                //if (isQQ2011 == "0" && isQQ2012 == "0") { isQQ2012 == "0"; }
-                Point mpos = new Point();
-                SwitchToThisWindow(FindWindow(null, Glob.Form), true);
-                IntPtr win = FindWindow(null, title);
-                if (win.ToString() != "0")
-                {
-                    Clipboard.Clear();
-                    SwitchToThisWindow(FindWindow(null, title), true); //激活窗口
-                    Delay(Glob.DelaySend);
-                    if (Glob.getStyle) //获取方式
-                    {
-                        SendKeys.SendWait("{TAB}");//跳到聊天窗口
-                    }
-                    else
-                    {
-                        GetCursorPos(ref mpos);
-                        RECT rect = new RECT();
-                        IntPtr get = FindWindow("TXGuiFoundation", title);
-                        GetWindowRect(get, ref rect);
-                        int width = rect.Right - rect.Left;
-                        int height = rect.Bottom - rect.Top;
-                        SetCursorPos(rect.Left + width / 2, rect.Top + height / 2);
-                        Delay(Glob.DelaySend);
-                        mouse_event(MouseEventFlag.LeftDown, 0, 0, 0, win);
-                        mouse_event(MouseEventFlag.LeftUp, 0, 0, 0, win);
-                        //Application.DoEvents();
-                    }
-
-                    Delay(Glob.DelaySend);
-                    SendKeys.SendWait("^a");//全选
-                    Delay(50);
-                    SendKeys.SendWait("^c");//复制
-                    Delay(80); //必须给定的延迟
-                    string get_ = "";
-                    try
-                    {
-                        var clipDataObject = Clipboard.GetDataObject();
-                        if (clipDataObject != null)
-                        {
-                            get_ = clipDataObject.GetData(DataFormats.StringFormat).ToString();
-                        }
-                        Regex checkIf = new Regex("\r(?!\n)");
-                        if (checkIf.IsMatch(get_))
-                        {
-                            get_ = get_.Replace("\r", "\r\n");  //匹配则是QQ2009+
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Console.WriteLine(ex.Message);
-                        System.Console.WriteLine(ex.StackTrace);
-                        this.Activate();
-                        Delay(Glob.DelaySend);
-                        SendKeys.SendWait("^s");
-                        Glob.F4Cut = false;
-                        return "";
-                        //}
-                    }
-                    if (!Glob.getStyle)
-                        SetCursorPos(mpos.X, mpos.Y); //放回鼠标
-                    return get_;
-                }
-                else
-                {
-                    if (!Glob.getStyle)
-                        SetCursorPos(mpos.X, mpos.Y); //放回鼠标
-                    return "";
-                }
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        public void F4()
-        {
-            if (sw != 0) { F3(); return; }
-            if (Glob.F4Cut) { Glob.F4Cut = false; return; }
-            Glob.F4Cut = true;
-            Point p = new Point(1, 1);
-            if (Sw != 0) { Sw = 0; F3(); }
-            string title = lblQuan.Text;
-            if (title != "所在群")
-            {
-                //! 停止发文
-                this.停止发文ToolStripMenuItem1.PerformClick();
-
-                GetCursorPos(ref p);
-                Glob.Text = getQQText(); //获取到跟打文字
-                if (Glob.Text.Length == 0)
-                {
-                    return;
-                }
-                string text_ = Glob.Text;
-                //MessageBox.Show(text_);
-                //SwitchToThisWindow(FindWindow(null, Glob.Form), true);
-                string pretext, preduan;
-                if (Glob.isZdy)
-                {
-                    pretext = Glob.PreText.Replace(@"\", @"\\");
-                    preduan = Glob.PreDuan.Replace("xx", @"\d+");
-                }
-                else
-                {
-                    pretext = "-----";
-                    preduan = @"第\d+段";
-                }
-
-                Regex regexAll = new Regex(@".+\s.+\s" + pretext + preduan + ".*", RegexOptions.RightToLeft); //获取发送的全部信息
-                Glob.getDuan = regexAll.Match(text_);
-                if (Glob.getDuan.Length == 0) //为空
-                {
-                    toolStripStatusLabelStatus.Text = "No";
-                    toolTip1.SetToolTip(toolStripStatusLabelStatus, "没有找到文段");
-                    ShowFlowText(Glob.jwMatchMoudle ? "精五模式状态下未找到文段" : "未找到文段");
-                    toolStripStatusLabelStatus.ForeColor = Color.IndianRed;
-                    Glob.F4Cut = false;
-                    return;
-                }
-                string getDuanAll = Glob.getDuan.ToString();
-                if (Glob.isZdy)
-                {
-                    Glob.regexCout = new Regex(@"(?<=" + preduan.Substring(0, 1) + @")\d+(?=" + preduan.Substring(4, 1) + ")", RegexOptions.RightToLeft);
-                }
-                else
-                    Glob.regexCout = new Regex(@"(?<=第)\d+(?=段)", RegexOptions.RightToLeft);
-                LoadText(pretext, preduan, Glob.regexCout, getDuanAll);
-                Glob.F4Cut = false;
-            }
-        }
-
+        /// <summary>
+        /// 格式载文
+        /// </summary>
         public void PutText()
         {
             Glob.Text = Clipboard.GetText().Trim(); //获取到跟打文字
             if (Glob.Text.Length == 0) { return; }
             //! 停止发文
-            this.停止发文ToolStripMenuItem1.PerformClick();
+            this.StopSendFun();
 
             string text_ = Glob.Text;
             //MessageBox.Show(text_);
@@ -3350,7 +3030,7 @@ namespace WindowsFormsApplication2
             {
                 toolStripStatusLabelStatus.Text = "No";
                 toolTip1.SetToolTip(toolStripStatusLabelStatus, "没有找到文段");
-                ShowFlowText(Glob.jwMatchMoudle ? "精五模式状态下未找到文段" : "未找到文段");
+                ShowFlowText("未找到文段");
                 toolStripStatusLabelStatus.ForeColor = Color.IndianRed;
                 return;
             }
@@ -3370,6 +3050,13 @@ namespace WindowsFormsApplication2
             //this.lblClose.Location = new Point(this.Width - 50,0);
         }
 
+        /// <summary>
+        /// 载文功能
+        /// </summary>
+        /// <param name="pretext">前导符</param>
+        /// <param name="preduan">段标</param>
+        /// <param name="regexCout">获取段号的正则</param>
+        /// <param name="getDuanAll">载文的所有段内容</param>
         public void LoadText(string pretext, string preduan, Regex regexCout, string getDuanAll)
         {
             Initialize(1);//数值初始化
@@ -3414,7 +3101,7 @@ namespace WindowsFormsApplication2
                         lblDuan.Text = "第" + getCout + "段";
                     }
                     this.title1.Text = lblDuan.Text + " -" + Glob.Instration;
-                    Glob.Pre_Cout = getCout.ToString();
+                    Glob.CurSegmentNum = int.Parse(getCout.ToString());
                     textBoxEx1.ReadOnly = false;
                     //richTextBox2.MaxLength = richTextBox1.TextLength; //设置最大输入字符数量
 
@@ -3430,8 +3117,14 @@ namespace WindowsFormsApplication2
                         Glob.SpeedControl = 0;
                         this.lblspeedcheck.Text = "时间";
                     }
-                    if (getCout.ToString() == "999") setMatch(true);//比赛认证段
-                    else setMatch(false);
+                    if (getCout.ToString() == "999")
+                    { // 比赛认证段
+                        setMatch(true);
+                    }
+                    else
+                    {
+                        setMatch(false);
+                    }
 
                     this.BeginInvoke(new MethodInvoker(delegate
                     {
@@ -3454,7 +3147,7 @@ namespace WindowsFormsApplication2
             {
                 toolStripStatusLabelStatus.Text = "No";
                 toolTip1.SetToolTip(toolStripStatusLabelStatus, "没有找到文段");
-                ShowFlowText(Glob.jwMatchMoudle ? "精五模式状态下未找到文段" : "未找到文段");
+                ShowFlowText("未找到文段");
                 toolStripStatusLabelStatus.ForeColor = Color.Red;
 
             }
@@ -3478,10 +3171,10 @@ namespace WindowsFormsApplication2
             if (content != "")
             {
                 //! 停止发文
-                this.停止发文ToolStripMenuItem1.PerformClick();
+                this.StopSendFun();
 
-                Glob.Pre_Cout = cout;
-                this.lblDuan.Text = "第" + Glob.Pre_Cout + "段";
+                Glob.CurSegmentNum = int.Parse(cout);
+                this.lblDuan.Text = "第" + Glob.CurSegmentNum.ToString() + "段";
                 this.lblTitle.Text = title;
                 Initialize(1);
                 Glob.reTypeCount = 0; //重打
@@ -3500,27 +3193,30 @@ namespace WindowsFormsApplication2
         {
             if (set)
             {
-                Glob.isMatch = true; lblDuan.Text = "比赛认证段";
+                Glob.isMatch = true;
+                lblDuan.Text = "比赛认证段";
                 if (this.比赛时自动打开寻找测速点ToolStripMenuItem.Checked)
+                {
                     this.自动寻找赛文标记ToolStripMenuItem.PerformClick();
-                ShowFlowText("当前为比赛认证段，已启用所有设置。");
+                }
+                ShowFlowText("当前为比赛认证段");
             }
             else
             {
                 Glob.isMatch = false;
-                lblDuan.Text = "第" + Glob.Pre_Cout + "段";
+                lblDuan.Text = "第" + Glob.CurSegmentNum.ToString() + "段";
             }
         }
 
         private void 转换为比赛文段ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!Glob.isMatch)
+            if (Glob.isMatch)
             {
-                setMatch(true);
+                setMatch(false);
             }
             else
             {
-                setMatch(false);
+                setMatch(true);
             }
         }
 
@@ -3579,14 +3275,6 @@ namespace WindowsFormsApplication2
             //GC.Collect();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-            F5();
-        }
-
-        [DllImport("user32.dll")]
-        static extern void mouse_event(MouseEventFlag flags, int dx, int dy, uint data, IntPtr extraInfo);
-
         [DllImport("User32")]
         public extern static void SetCursorPos(int x, int y);
 
@@ -3606,10 +3294,6 @@ namespace WindowsFormsApplication2
             Absolute = 0x8000
         }
 
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool GetWindowRect(IntPtr hWnd, ref RECT lpRect);
-
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT
         {
@@ -3617,37 +3301,6 @@ namespace WindowsFormsApplication2
             public int Top; //最上坐标
             public int Right; //最右坐标
             public int Bottom; //最下坐标
-        }
-
-        public void F5()
-        {
-            //mouse_event(MouseEventFlag.Move, 0, 0, 0, get);
-            try
-            {
-                Glob.GetWinC = 0;//初始化 获取窗口的数量
-                Glob.GetWin = new string[40, 2];//数组 初始化
-                CallBack myCallBack = new CallBack(EnumWindowsApp.Report);
-                EnumWindows(myCallBack, 0);
-                if (Glob.GetWinC > 0)
-                {
-                    lblQuan.Text = Glob.GetWin[Glob.WinSwitch, 0];//显示该群名
-                    Glob.WinSwitch++;
-                    if (Glob.WinSwitch >= Glob.GetWinC)
-                    {
-                        Glob.WinSwitch = 0;
-                    }
-                    if (Glob.GetWinC == 1) ShowFlowText("只找到一个群");
-                }
-                else
-                {
-                    lblQuan.Text = "所在群";
-                }
-                refreshQun();//更新换群菜单项目
-            }
-            catch (Exception err2)
-            {
-                lblQuan.Text = err2.Message;
-            }
         }
 
         /// <summary>
@@ -3681,63 +3334,25 @@ namespace WindowsFormsApplication2
             var chineseRegex = new Regex(@"[\u4E00-\u9FA5]");
             if (chineseRegex.IsMatch(this.richTextBox1.Text))
             {
-                //InputLan(savesetup.srf, this.textBoxEx1.Handle);
-                //SetIMM(1026, 0);//中文输入
                 Glob.binput = false;
                 Glob.文段类型 = true;
             }
             else
             {
-                //InputLan("简体中文 - 美式键盘", this.textBoxEx1.Handle);
-                //fSetIMM(257, 0);//转换为英文输入
                 Glob.binput = true;
                 Glob.文段类型 = false;
             }
         }
-        public class EnumWindowsApp
-        {
-            public static bool Report(int hwnd, int lParam)
-            {
-                var r = new Regex(@"QQ20\d{2}");
-                var ex = new[]
-                    {
-                        "QQ",
-                        "TXMenuWindow",
-                        "FaceSelector",
-                        "TXFloatingWnd",
-                        "腾讯",
-                        "消息盒子",
-                        "来自",
-                        "分类推荐",
-                        "更换房间头像",
-                        "网络设置",
-                        "消息管理器",
-                        "QQ数据线"
-                    };
-                var s = new StringBuilder(512);
-                GetWindowText(hwnd, s, s.Capacity);
-                var title = s.ToString();
-                if (!r.IsMatch(title) && !ex.Contains(title) && !string.IsNullOrEmpty(title))
-                //if (!title.Contains("QQ") && !title.Contains("TX") && !title.Contains("FaceSelector") && !title.Contains("腾讯网") && !title.Contains("消息盒子"))
-                {
-                    var g = new StringBuilder(512);
-                    GetClassName(hwnd, g, 256);
-                    if (g.ToString() == "TXGuiFoundation")
-                    {
-                        Glob.GetWin[Glob.GetWinC, 0] = title;//窗口标题
-                        Glob.GetWin[Glob.GetWinC, 1] = hwnd.ToString();
-                        Glob.GetWinC += 1;
-                    }
-                }
-                return true;
-            }
-        }
-
         #endregion
 
         #region 跟打过程中的控制
 
-        public static bool Delay(int delayTime) //延时函数
+        /// <summary>
+        /// 延时函数
+        /// </summary>
+        /// <param name="delayTime">毫秒</param>
+        /// <returns></returns>
+        public static bool Delay(int delayTime)
         {
             DateTime now = DateTime.Now;
             int s;
@@ -3851,7 +3466,7 @@ namespace WindowsFormsApplication2
                 double mc = (double)Glob.TextJs / (inputL - Glob.TextJc);
                 double jj = (double)Glob.TextJs / Glob.typeUseTime;
 
-                if (!Glob.notShowjs)
+                if (Glob.ShowRealTimeData)
                 {
                     labelmcing.Text = mc.ToString("0.00");
                     labelSpeeding.Text = speed2.ToString("0.00");
@@ -3868,31 +3483,6 @@ namespace WindowsFormsApplication2
                         Glob.MaxMc = mc;
                 }
             }
-        }
-        #endregion
-
-        #region 输入法
-
-
-        public void InputLan(string InputL, IntPtr intptr)
-        {
-            foreach (InputLanguage iL in InputLanguage.InstalledInputLanguages)
-            {
-                if (iL.LayoutName == InputL)
-                {
-                    InputLanguage.CurrentInputLanguage = iL;
-                    break;
-                }
-            }
-            //SetIMM(1026,0);
-        }
-
-        private void SetIMM(int iMode, int iSentence)
-        {
-            //iMode = 1025;
-            //iSentence = 0;
-            IntPtr prt = ImmGetContext(this.textBoxEx1.Handle);
-            ImmSetConversionStatus(prt, iMode, iSentence);
         }
         #endregion
 
@@ -3947,7 +3537,7 @@ namespace WindowsFormsApplication2
             iniSetup.IniWriteValue("记录", "总按键", string.Join("|", Glob.HistoryKeysTotal));
             iniSetup.IniWriteValue("今日跟打", DateTime.Today.ToShortDateString(), Glob.todayTyping.ToString());
             iniSetup.IniWriteValue("记录", "记录天数", Glob.TextRecDays.ToString());
-        
+
             for (int i = 0; i < 9; i++)
             {
                 iniSetup.IniWriteValue("记录", i.ToString(), Glob.jjPer[i].ToString());
@@ -4181,35 +3771,26 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void 发送正在跟打的文段ToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void 复制正在跟打的文段ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             string text = richTextBox1.Text;
-            if (lblDuan.Text != "段号")
+            if (text != "")
             {
-                if (text != "")
+                string textTitle = lblTitle.Text;
+                string pre = "-----第" + Glob.CurSegmentNum.ToString() + "段";
+                if (Glob.isMatch)
                 {
-                    string title = lblQuan.Text;
-                    if (title != "所在群")
-                    {
-                        string textTitle = "";
-                        if (lblTitle.Text != "引导语") { textTitle = lblTitle.Text; }
-                        string pre = "-----第" + Glob.Pre_Cout + "段";
-                        if (Glob.Pre_Cout == "999")
-                            pre += "-赛文验证:" + Validation.Validat(Validation.Validat(text));
-                        string texttotal = textTitle + "\r\n" + text + "\r\n" + pre + "-" + Glob.Instration + "-分享发文";
-                        ClipboardHandler.SetTextToClipboard(texttotal);
-                        SwitchToThisWindow(FindWindow(null, title), true); //激活窗口
-                        Delay(Glob.DelaySend);
-                        SendKeys.SendWait("^v");
-                        Delay(20);
-                        SendKeys.SendWait("%s");
-                    }
+                    pre += "-赛文验证:" + Validation.Validat(Validation.Validat(text));
                 }
+                string texttotal = textTitle + "\r\n" + text + "\r\n" + pre + "-" + Glob.Instration + "-分享发文";
+                ClipboardHandler.SetTextToClipboard(texttotal);
             }
             else
             {
                 MessageBox.Show("当前无文段！");
             }
+
+
         }
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -4241,7 +3822,7 @@ namespace WindowsFormsApplication2
         {
             if (Glob.theLastGoal.Length != 0)
             {
-                sendtext(Glob.theLastGoal + " *");
+                ClipboardHandler.SetTextToClipboard(Glob.theLastGoal + " *");
             }
         }
 
@@ -4256,78 +3837,14 @@ namespace WindowsFormsApplication2
                 sb.Append(" 码长" + this.dataGridView1.Rows[table_c - 1].Cells[5].Value);
                 sb.Append(" 均时" + this.dataGridView1.Rows[table_c - 1].Cells[11].Value + "秒");
                 sb.Append(" 今日已跟" + Glob.todayTyping + "字 总跟打" + Glob.TextLenAll + "字 " + Glob.Instration);
-                if (MessageBox.Show(sb + "\n是否发送至群？", "当前平均成绩", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(sb + "\n是否复制内容？", "当前平均成绩", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    sendtext(sb.ToString());
+                    ClipboardHandler.SetTextToClipboard(sb.ToString());
                 }
             }
         }
 
         #endregion
-
-        #region 换群菜单
-
-        private void refreshQun()
-        {
-            this.TSMI2.DropDownItems.Clear();
-            //MessageBox.Show(((int)(Keys.D2)).ToString());
-            this.TSMI2.DropDownItems.Add("刷新", null, new EventHandler(refreshQun2));
-            try
-            {
-                Glob.GetWinC = 0;//初始化 获取窗口的数量
-                Glob.GetWin = new string[10, 2];//数组 初始化
-                CallBack myCallBack = new CallBack(EnumWindowsApp.Report);
-                EnumWindows(myCallBack, 0);
-                this.TSMI2.DropDownItems.Add("-");
-                if (Glob.GetWinC > 0)
-                {
-                    ToolStripMenuItem[] ChangeQunList = new ToolStripMenuItem[Glob.GetWinC];
-                    for (int i = 0; i < Glob.GetWinC; i++)
-                    {
-                        ChangeQunList[i] = new ToolStripMenuItem(Glob.GetWin[i, 0], null, new EventHandler(ChangeQun), Keys.Control | (Keys)(49 + i));
-                    }
-                    //MessageBox.Show(Glob.GetWinC.ToString());
-                    this.TSMI2.DropDownItems.AddRange(ChangeQunList);
-                }
-                else
-                {
-                    this.TSMI2.DropDownItems.Add("未找到群");
-                }
-            }
-            catch
-            {
-            }
-        }
-
-        private void ChangeQun(object sender, EventArgs e)
-        {
-            this.lblQuan.Text = sender.ToString();
-        }
-
-        private void refreshQun2(object sender, EventArgs e)
-        {
-            refreshQun();
-            this.TSMI2.ShowDropDown();
-        }
-
-        private void label1_TextChanged(object sender, EventArgs e)
-        {
-            if (lblQuan.Text.Contains("五林风"))
-            {
-                lblQuan.ForeColor = Color.FromArgb(244, 207, 0);
-            }
-            else if (lblQuan.Text.Contains("舞指"))
-            {
-                lblQuan.ForeColor = Color.FromArgb(72, 255, 0);
-            }
-            else
-            {
-                lblQuan.ForeColor = Color.White;
-            }
-        }
-        #endregion
-
-
 
         #region 检查更新
 
@@ -4504,7 +4021,7 @@ namespace WindowsFormsApplication2
                 {
                     // ShowFlowText(string.Format("counts{0}\nGlob.BmAlls:{1}", counts, Glob.BmAlls.Count));
                     //计算理论码长 
-                    var strLen = ""; var tempMc = 0;
+                    var strLen = "";
                     for (int index = 1; index < Glob.BmAlls.Count; index++)
                     {
                         var bmAll = Glob.BmAlls[index];
@@ -4518,7 +4035,7 @@ namespace WindowsFormsApplication2
                     }
                     Glob.词库理论码长 = (strLen.Length * 1.00 / (Glob.TypeText.Length - Glob.BmAlls[0].查询的字.Length));
                     _render.Render();
-                    ShowFlowText(string.Format("第{0}段，计算码长为：{1}，用时：{2}", Glob.Pre_Cout, Glob.词库理论码长.ToString("0.00"), (DateTime.Now - startTime).TotalSeconds.ToString("0.00")));
+                    ShowFlowText(string.Format("第{0}段，计算码长为：{1}，用时：{2}", Glob.CurSegmentNum.ToString(), Glob.词库理论码长.ToString("0.00"), (DateTime.Now - startTime).TotalSeconds.ToString("0.00")));
                     picDoing.Visible = false;
                     已测 = this.lblMatchCount.Text;
                     mS1.Invalidate();
@@ -4646,7 +4163,6 @@ namespace WindowsFormsApplication2
 
                     if (Glob.BmAlls.Count != 0)
                     {
-                        var total = 0;
                         var count = Glob.BmAlls.Count;
                         var str = "";
                         for (int index = 0; index < count; index++)
@@ -4745,25 +4261,8 @@ namespace WindowsFormsApplication2
         }
         #endregion
 
-        #region 尾边按钮
-        private void toolStripStatusLabel3_Click_1(object sender, EventArgs e)
-        {
-            F4();
-        }
-
-        private void toolStripStatusLabel4_Click(object sender, EventArgs e)
-        {
-            F3();
-        }
-
-        private void toolStripStatusLabel1_Click_1(object sender, EventArgs e)
-        {
-            F5();
-        }
-        #endregion
-
         #region 按钮 快捷键
-        
+
         /// <summary>
         /// 快捷键定义
         /// </summary>
@@ -4775,7 +4274,7 @@ namespace WindowsFormsApplication2
             { // Ctrl + 右，载文下一段
                 if (sw != 0) return;
                 if (this.cmsDuanList.Items.Count <= 0) return;
-                int index = this.cmsDuanList.Items.IndexOfKey(Glob.Pre_Cout); // 注：是获得索引值，而不是段号
+                int index = this.cmsDuanList.Items.IndexOfKey(Glob.CurSegmentNum.ToString()); // 注：是获得索引值，而不是段号
                 index++;
                 if (index >= this.cmsDuanList.Items.Count)
                     index = 0;
@@ -4785,38 +4284,12 @@ namespace WindowsFormsApplication2
             { // Ctrl + 左，载文上一段
                 if (sw != 0) return;
                 if (this.cmsDuanList.Items.Count <= 0) return;
-                int index = this.cmsDuanList.Items.IndexOfKey(Glob.Pre_Cout);
+                int index = this.cmsDuanList.Items.IndexOfKey(Glob.CurSegmentNum.ToString());
                 index--;
                 if (index < 0)
                     index = this.cmsDuanList.Items.Count - 1;
                 this.cmsDuanList.Items[index].PerformClick();
             }
-            //else if (e.KeyCode == Keys.PageDown)
-            //{
-            //    int c = this.TSMI2.DropDownItems.Count;
-            //    if (c > 2)
-            //    {
-            //        if (c == 3)
-            //        {
-            //            if (this.TSMI2.DropDownItems[2].Text == "未找到群")
-            //            {
-            //                F5();
-            //            }
-            //        }
-            //        for (int i = 2; i < c; i++)
-            //        {
-            //            string getN = this.TSMI2.DropDownItems[i].Text;
-            //            if (getN == this.lblQuan.Text)
-            //            {
-            //                i++;
-            //                if (i >= c) { i = 2; }
-            //                this.TSMI2.DropDownItems[i].PerformClick();
-            //                break;
-            //            }
-            //        }
-            //    }
-            //}
-            //MessageBox.Show(e.KeyCode.ToString());
         }
 
         /// <summary>
@@ -4887,24 +4360,181 @@ namespace WindowsFormsApplication2
         #endregion
 
         #region 发文菜单部分
-        private void 发下一段ToolStripMenuItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 发上一段
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SendPreToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SendAOnce();
-            F3();
+            if (NewSendText.发文状态)
+            {
+                int totalCount = Glob.TempSegmentRecord.Count;
+                if (Glob.SendCursor > 0)
+                {
+                    Glob.SendCursor = 0;
+                }
+
+                if (Glob.SendCursor + totalCount > 1)
+                {
+                    if (NewSendText.是否周期)
+                    {
+                        timerTSend.Stop();
+                        NewSendText.周期计数 = NewSendText.周期;
+                    }
+
+                    int curTextLength = Glob.TempSegmentRecord[totalCount + Glob.SendCursor - 1].Length; //* 当前文段字数
+                    Glob.SendCursor--;
+                    ReverseSendAPast(Glob.TempSegmentRecord[totalCount + Glob.SendCursor - 1], curTextLength);
+
+                    if (NewSendText.是否周期)
+                    {
+                        timerTSend.Start();
+                    }
+                }
+                else
+                {
+                    Glob.SendCursor = 1 - totalCount;
+                    ShowFlowText("已经没有上一段文章内容了哦~");
+                }
+            }
+            else
+            {
+                ShowFlowText("仅处于发文状态中可以使用。");
+            }
         }
 
-        private void 停止发文ToolStripMenuItem1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 发下一段
+        /// </summary>
+        public void SendNextFun()
         {
-            //关闭发文
             if (NewSendText.发文状态)
             {
                 if (NewSendText.是否周期)
                 {
                     timerTSend.Stop();
+                    NewSendText.周期计数 = NewSendText.周期;
+                }
+
+                if (Glob.SendCursor < 0)
+                { // 还存在未发文的旧序列
+                    int totalCount = Glob.TempSegmentRecord.Count;
+                    if (totalCount + Glob.SendCursor < 1)
+                    { // 防止出错
+                        Glob.SendCursor = 1 - totalCount;
+                    }
+
+                    SendAPast(Glob.TempSegmentRecord[totalCount + Glob.SendCursor]);
+                    Glob.SendCursor++;
+                }
+                else
+                {
+                    SendAOnce();
+                }
+
+                if (NewSendText.是否周期)
+                {
+                    timerTSend.Start();
+                }
+
+                F3();
+            }
+        }
+
+        private void 发下一段ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (NewSendText.发文状态)
+            {
+                SendNextFun();
+            }
+            else
+            {
+                ShowFlowText("仅处于发文状态中可以使用。");
+            }
+        }
+
+        /// <summary>
+        /// 保存发文配置
+        /// </summary>
+        public void SaveSendFun()
+        {
+            if (NewSendText.发文状态)
+            {
+                if (NewSendText.标记 >= NewSendText.文章全文.Length)
+                {
+                    ShowFlowText("无法在当前文章的尽头保存配置哦~");
+                    return;
+                }
+
+                string phrases = (NewSendText.词组 != null && NewSendText.词组.Length > 0) ? JsonConvert.SerializeObject(NewSendText.词组) : "[]";
+                int type = 0;
+                switch (NewSendText.类型)
+                {
+                    case "单字":
+                        type = 0;
+                        break;
+                    case "文章":
+                        type = 1;
+                        break;
+                    case "词组":
+                        type = 2;
+                        break;
+                }
+                int disorder = NewSendText.是否乱序 ? 1 : 0;
+                int no_repeat = NewSendText.乱序全段不重复 ? 1 : 0;
+                string segmentRecord = JsonConvert.SerializeObject(Glob.TempSegmentRecord);
+                int cycle = NewSendText.是否周期 ? 1 : 0;
+                int auto = NewSendText.是否自动 ? 1 : 0;
+
+                if (NewSendText.SentId > 0 && Glob.SentHistory.FindIdInSent(NewSendText.SentId)) // 这里需要加一个判定 id 是否存在，不存在则同样是保存新配置
+                { //* 这是之前保存过的发文配置，更新配置
+                    Glob.SentHistory.UpdateSent(NewSendText.SentId, NewSendText.发文全文, NewSendText.标题, NewSendText.标记, segmentRecord, Glob.SendCursor, Glob.CurSegmentNum, NewSendText.已发段数, NewSendText.已发字数, cycle, NewSendText.周期, auto);
+
+                    //* 提示更新
+                    ShowFlowText("已更新配置" + NewSendText.SentId.ToString());
+                }
+                else
+                { //* 保存新配置
+                    NewSendText.SentId = Glob.SentHistory.InsertSent(DateTime.Now.ToString("s"), NewSendText.文章全文, NewSendText.发文全文, NewSendText.标题, phrases, NewSendText.词组发送分隔符, type, disorder, no_repeat, NewSendText.字数, NewSendText.标记, segmentRecord, Glob.SendCursor, Glob.CurSegmentNum, NewSendText.已发段数, NewSendText.已发字数, cycle, NewSendText.周期, auto);
+
+                    NewSendText.文章来源 = 4;
+                    //* 提示保存
+                    ShowFlowText("已将当前的发文保存为配置" + NewSendText.SentId.ToString());
+                    if (this.发文状态窗口 != null && !this.发文状态窗口.IsDisposed)
+                    {
+                        this.发文状态窗口.UpdateFromSave();
+                    }
+                }
+            }
+        }
+
+        private void SaveSendToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (NewSendText.发文状态)
+            {
+                SaveSendFun();
+            }
+            else
+            {
+                ShowFlowText("仅处于发文状态中可以使用。");
+            }
+        }
+
+        /// <summary>
+        /// 停止发文
+        /// </summary>
+        public void StopSendFun()
+        {
+            if (NewSendText.发文状态)
+            {
+                if (NewSendText.是否周期)
+                {
+                    NewSendText.是否周期 = false;
+                    timerTSend.Stop();
+                    this.lblNowTime_.Text = "";
                 }
                 NewSendText.发文状态 = false;
-                //if (!NewSendText.是否独练)
-                //  sendtext("停止发文，感谢跟打~~（" + Glob.Instration.Trim() + "）");
                 NewSendText.已发段数 = 0;
                 NewSendText.已发字数 = 0;
                 NewSendText.标记 = 0;
@@ -4912,17 +4542,29 @@ namespace WindowsFormsApplication2
                 {
                     发文状态窗口.Close();
                 }
+
+                //* 清空临时文段内容记录
+                Glob.TempSegmentRecord.Clear();
+                Glob.SendCursor = 0;
             }
+        }
+
+        private void 停止发文ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            StopSendFun();
+        }
+
+        /// <summary>
+        /// 设置标题
+        /// </summary>
+        /// <param name="title"></param>
+        public void ResetArticleTitle(string title)
+        {
+            this.lblTitle.Text = title;
         }
         #endregion
 
         #region 载文途径
-        private void 从QQ窗口手动ToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            PutText();
-        }
-
-        //粘贴测速
         private void 从剪切板ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             string get = Clipboard.GetText().Trim();//获取剪贴板内的文字
@@ -4931,6 +4573,11 @@ namespace WindowsFormsApplication2
                 this.TypeContentDirectly(get, Glob.AZpre.ToString(), "来自剪贴板");
                 Glob.AZpre++;
             }
+        }
+
+        private void FormatLoadToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            PutText();
         }
         #endregion
 
@@ -5005,6 +4652,9 @@ namespace WindowsFormsApplication2
 
         private void 将目前文章乱序ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //! 停止发文
+            this.StopSendFun();
+
             F3();
             int textlen = richTextBox1.TextLength;
             string Text1 = "";
@@ -5061,8 +4711,8 @@ namespace WindowsFormsApplication2
         {
             text = ReFullAsHalf(text); // 全角转半角
 
-            string[] Ebiaodian = new string[] {",", ";", ":", "?", "!", "｢", "｣", "(", ")", "<", ">", @"\(", @"\)" };
-            string[] Cbiaodian = new string[] {"，", "；", "：", "？", "！", "「", "」", "（", "）", "《", "》", "（", "）" };
+            string[] Ebiaodian = new string[] { ",", ";", ":", "?", "!", "｢", "｣", "(", ")", "<", ">", @"\(", @"\)" };
+            string[] Cbiaodian = new string[] { "，", "；", "：", "？", "！", "「", "」", "（", "）", "《", "》", "（", "）" };
             for (int i = 0; i < Ebiaodian.Length; i++)
             {
                 text = text.Replace(Ebiaodian[i], Cbiaodian[i]);
@@ -5114,30 +4764,13 @@ namespace WindowsFormsApplication2
                 }
                 else
                 {
-                    MessageBox.Show("文件空！", "雨天跟打器载文提示");
+                    MessageBox.Show("文件内容为空！", "雨天跟打器载文提示");
                 }
             }
         }
         #endregion
 
         #region 下方工具条
-        //极简
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            _Ini ini = new _Ini("config.ini");
-            if (Glob.simpleMoudle)
-            {
-                Glob.simpleMoudle = false;
-                this.toolStripButton2.Checked = false;
-                ini.IniWriteValue("发送", "极简状态", "False");
-            }
-            else
-            {
-                Glob.simpleMoudle = true;
-                this.toolStripButton2.Checked = true;
-                ini.IniWriteValue("发送", "极简状态", "True");
-            }
-        }
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             _Ini ini = new _Ini("config.ini");
@@ -5155,37 +4788,39 @@ namespace WindowsFormsApplication2
             }
         }
 
-        //潜水
+        //* 自动复制成绩
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             _Ini ini = new _Ini("config.ini");
-            if (Glob.isSub)
+            if (Glob.AutoCopy)
             {
-                Glob.isSub = false;
+                Glob.AutoCopy = false;
                 this.toolStripButton3.Checked = false;
-                ini.IniWriteValue("发送", "潜水", "False");
+                ini.IniWriteValue("控制", "自动复制成绩", "False");
             }
             else
             {
-                Glob.isSub = true;
+                Glob.AutoCopy = true;
                 this.toolStripButton3.Checked = true;
-                ini.IniWriteValue("发送", "潜水", "true");
+                ini.IniWriteValue("控制", "自动复制成绩", "True");
             }
         }
 
-        private void PicSend_Click(object sender, EventArgs e)
+        private void ShowRealTimeData_Click(object sender, EventArgs e)
         {
             _Ini ini = new _Ini("config.ini");
             bool b = (sender as ToolButton).Checked;
             if (b)
             {
-                this.PicSend.Checked = false;
-                ini.IniWriteValue("发送", "图片", "False");
+                this.RealTimeData.Checked = false;
+                Glob.ShowRealTimeData = false;
+                ini.IniWriteValue("控制", "实时数据", "False");
             }
             else
             {
-                this.PicSend.Checked = true;
-                ini.IniWriteValue("发送", "图片", "true");
+                this.RealTimeData.Checked = true;
+                Glob.ShowRealTimeData = true;
+                ini.IniWriteValue("控制", "实时数据", "True");
             }
         }
         #endregion
@@ -5206,10 +4841,6 @@ namespace WindowsFormsApplication2
                     this.WindowState = FormWindowState.Normal;
                 }
                 this.Activate();
-                //* 不再注册全局热键
-                //RegisterHotKey(this.Handle, 2, (int)KeyModifiers.None, (Keys.F4)); //获取
-                //RegisterHotKey(this.Handle, 3, (int)KeyModifiers.None, (Keys.F3)); //重打
-                //RegisterHotKey(this.Handle, 4, (int)KeyModifiers.None, (Keys.F6)); //发文测试
             }
         }
 
@@ -5244,10 +4875,6 @@ namespace WindowsFormsApplication2
                 this.WindowState = FormWindowState.Normal;
             }
             this.Activate();
-            //* 不再注册全局热键
-            //RegisterHotKey(this.Handle, 2, (int)KeyModifiers.None, (Keys.F4)); //获取
-            //RegisterHotKey(this.Handle, 3, (int)KeyModifiers.None, (Keys.F3)); //重打
-            //RegisterHotKey(this.Handle, 4, (int)KeyModifiers.None, (Keys.F6)); //发文测试
         }
 
         private bool isShowAll = false;
@@ -5298,7 +4925,12 @@ namespace WindowsFormsApplication2
         #endregion
 
         #region 检验真伪
-        public string checkTF(string goal)
+        /// <summary>
+        /// 检验真伪
+        /// </summary>
+        /// <param name="goal"></param>
+        /// <returns></returns>
+        public string CheckTF(string goal)
         {
             string jg;
             Regex getit = new Regex(@".+(?= 校验)");
@@ -5332,7 +4964,7 @@ namespace WindowsFormsApplication2
                 string getC = Clipboard.GetText();
                 if (getC.Length != 0 && getC.Length <= 300)
                 {
-                    string g = checkTF(getC);
+                    string g = CheckTF(getC);
                     MessageBox.Show(this, "成绩数据：" + getC + "\n" + "检验结果：" + g, "雨天跟打器成绩检验结果");
                 }
                 else
@@ -5420,31 +5052,18 @@ namespace WindowsFormsApplication2
         #endregion
 
         #region 闪烁
-        //速度限制的闪烁
-        private static bool BtnFlash = true;
-        private static int BtnFlashCount = 0;
-        private void timerBtnFlash_Tick(object sender, EventArgs e)
-        {
-            //tSBtnTableMoudle.Text = BtnFlashCount.ToString();
-            if (BtnFlashCount > 5) { timerBtnFlash.Stop(); BtnFlash = true; BtnFlashCount = 0; this.toolStripBtnLS.ForeColor = Color.White; }
-            if (BtnFlash)
-            {
-                this.toolStripBtnLS.Enabled = true;
-                BtnFlash = false;
-            }
-            else
-            {
-                this.toolStripBtnLS.Enabled = false;
-                BtnFlash = true;
-            }
-            BtnFlashCount++;
-        }
-        //潜水的闪烁
+        //* 自动复制成绩的闪烁
         private static bool BtnSubFlash = true;
         private static int BtnSubFlashCount = 0;
         private void timerSubFlash_Tick(object sender, EventArgs e)
         {
-            if (BtnSubFlashCount > 5) { timerSubFlash.Stop(); BtnSubFlash = true; BtnSubFlashCount = 0; this.toolStripButton3.ForeColor = Color.White; }
+            if (BtnSubFlashCount > 5)
+            {
+                timerSubFlash.Stop();
+                BtnSubFlash = true;
+                BtnSubFlashCount = 0;
+                this.toolStripButton3.ForeColor = Color.White;
+            }
             if (BtnSubFlash)
             {
                 this.toolStripButton3.Enabled = true;
@@ -5456,42 +5075,6 @@ namespace WindowsFormsApplication2
                 BtnSubFlash = true;
             }
             BtnSubFlashCount++;
-        }
-        #endregion
-
-        #region 速度限制
-        private void toolStripBtnLS_Click(object sender, EventArgs e)
-        {
-            if (Glob.是否速度限制)
-            {
-                _Ini Setupini = new _Ini("config.ini");
-                this.toolStripBtnLS.Checked = false;
-                Glob.是否速度限制 = false;
-                Setupini.IniWriteValue("发送", "是否速度限制", "False");
-            }
-            else
-            {
-                _Ini Setupini = new _Ini("config.ini");
-                this.toolStripBtnLS.Checked = true;
-                Glob.是否速度限制 = true;
-                Setupini.IniWriteValue("发送", "是否速度限制", "True");
-            }
-        }
-        #endregion
-
-        #region 精五比赛
-        private void 精五比赛成绩生成ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Glob.theLastGoal.Length != 0)
-            {
-                精五成绩生成 jw = new 精五成绩生成(this, Glob.theLastGoal, Glob.typeUseTime.ToString(), Glob.QQnumber);
-                jw.ShowDialog();
-            }
-            else
-            {
-                //MessageBox.Show("请在跟打后，打开此项！","精五成绩转换提示");
-                ShowFlowText("请在跟打后，打开此项！");
-            }
         }
         #endregion
 
@@ -5570,7 +5153,7 @@ namespace WindowsFormsApplication2
             else
             {
                 ts.Checked = true;
-                ini.IniWriteValue("程序控制", "自动打开寻找", "true");
+                ini.IniWriteValue("程序控制", "自动打开寻找", "True");
             }
         }
 
@@ -5679,46 +5262,6 @@ namespace WindowsFormsApplication2
                 Glob.SpeedPointCount = 0;//测速点数量控制
                 Glob.SpeedControl = 0;
                 this.lblspeedcheck.Text = "时间";
-            }
-        }
-        #endregion
-
-        #region 精五比赛启用
-        private void tsbJw_Click(object sender, EventArgs e)
-        {
-            if (Glob.jwMatchMoudle)
-            {
-                Glob.PreText = "-----";
-                Glob.PreDuan = "第xx段";
-                this.toolButton1.Checked = false;
-                Glob.jwMatchMoudle = false;
-                Glob.InstraSrf_ = "0";
-                Glob.isQQ = false;
-                Glob.isZdy = false;
-                ShowFlowText("已取消精五模式");
-            }
-            else
-            {
-                if (Glob.InstraSrf.Length == 0) { ShowFlowText("请在设置里面填写输入法！"); return; }
-                if (Glob.QQnumber.Length == 0) { ShowFlowText("请在设置里面填写QQ号！"); return; }
-                Glob.jwMatchMoudle = true;
-                Glob.PreText = "------";
-                Glob.PreDuan = "第xx期精五门[比|补]赛文段";
-                this.toolButton1.Checked = true;
-                Glob.InstraSrf_ = "1";
-                Glob.isQQ = true;
-                Glob.isZdy = true;
-                ShowFlowText("已设置为精五模式");
-            }
-        }
-        #endregion
-
-        #region 右键弹窗
-        private void toolStripBtnLS_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-
             }
         }
         #endregion
@@ -5899,16 +5442,6 @@ namespace WindowsFormsApplication2
             F3();
         }
 
-        private void 载文ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            F4();
-        }
-
-        private void 换群ToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            F5();
-        }
-
         //发送到桌面的快捷方式
         private void 发送到桌面的快捷方式ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -5951,7 +5484,6 @@ namespace WindowsFormsApplication2
                      System.IO.File.Copy(exeDir, startupPath + "\\雨天跟打器.lnk", true);
                }*/
         }
-        //////
         #endregion
 
 
@@ -6030,7 +5562,7 @@ namespace WindowsFormsApplication2
             this.gridHandler.SetMouseLocation(e);
             this.ItemToolStripTextBox.Text = this.gridHandler.MenuGetScoreTime();
         }
-        
+
         private void CopyScoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.gridHandler.CopyScore(this.currentScoreData);
@@ -6083,13 +5615,13 @@ namespace WindowsFormsApplication2
             if (this.tbnSpline.Checked)
             {
                 splitContainer4.Panel1Collapsed = true;
-                Setupini.IniWriteValue("拖动条", "曲线", "true");
+                Setupini.IniWriteValue("拖动条", "曲线", "True");
                 this.tbnSpline.Checked = false;
             }
             else
             {
                 splitContainer4.Panel1Collapsed = false;
-                Setupini.IniWriteValue("拖动条", "曲线", "false");
+                Setupini.IniWriteValue("拖动条", "曲线", "False");
                 this.tbnSpline.Checked = true;
             }
         }

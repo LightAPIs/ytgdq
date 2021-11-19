@@ -321,9 +321,9 @@ namespace WindowsFormsApplication2.Storage
         /// </summary>
         public void DeleteAllScore()
         {
-            this.cmd.CommandText = $"DELETE FROM score;";
+            this.cmd.CommandText = "DELETE FROM score;";
             this.cmd.ExecuteNonQuery();
-            this.cmd.CommandText = $"DELETE FROM sqlite_sequence WHERE name='segment';";
+            this.cmd.CommandText = "DELETE FROM sqlite_sequence WHERE name='segment';";
             this.cmd.ExecuteNonQuery();
             this.CleanDisk();
         }
@@ -380,7 +380,7 @@ namespace WindowsFormsApplication2.Storage
         /// <returns></returns>
         public int GetArticleCount()
         {
-            this.cmd.CommandText = $"SELECT COUNT(1) FROM article";
+            this.cmd.CommandText = "SELECT COUNT(1) FROM article";
             object readNum = this.cmd.ExecuteScalar();
 
             if (readNum == null)
@@ -466,9 +466,154 @@ namespace WindowsFormsApplication2.Storage
         /// </summary>
         public void DeleteAllArticle()
         {
-            this.cmd.CommandText = $"DELETE FROM article;";
+            this.cmd.CommandText = "DELETE FROM article;";
             this.cmd.ExecuteNonQuery();
-            this.cmd.CommandText = $"DELETE FROM sqlite_sequence WHERE name ='article';";
+            this.cmd.CommandText = "DELETE FROM sqlite_sequence WHERE name ='article';";
+            this.cmd.ExecuteNonQuery();
+            this.CleanDisk();
+        }
+    }
+
+    public class SentData : Database
+    {
+        public SentData(string _dbName) : base(_dbName) { }
+
+        public override void Init()
+        {
+            this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS sent(id INTEGER PRIMARY KEY AUTOINCREMENT, create_time DATETIME NOT NULL, article TEXT NOT NULL, full_text TEXT NOT NULL, title TEXT NOT NULL, phrases TEXT, separator TEXT, type INT DEFAULT 0, disorder INT DEFAULT 0, no_repeat INT DEFAULT 0, count INT, mark INT, segment_record TEXT NOT NULL, segment_cursor INT DEFAULT 0, cur_segment_num INT, sent_num INT, sent_count INT, cycle INT DEFAULT 0, cycle_value INT, auto INT DEFAULT 0);";
+            this.cmd.ExecuteNonQuery();
+        }
+
+        public long InsertSent(string create_time, string article, string full_text, string title, string phrases, string separator, int type, int disorder, int no_repeat, int count, int mark, string segment_record, int segment_cursor, int cur_segment_num, int sent_num, int sent_count, int cycle, int cycle_value, int auto)
+        {
+            this.cmd.CommandText = $"INSERT INTO sent VALUES(NULL,'{create_time}','{ConvertText(article)}','{ConvertText(full_text)}','{ConvertText(title)}','{ConvertText(phrases)}','{ConvertText(separator)}',{type},{disorder},{no_repeat},{count},{mark},'{ConvertText(segment_record)}',{segment_cursor},{cur_segment_num},{sent_num},{sent_count},{cycle},{cycle_value},{auto}); SELECT last_insert_rowid();";
+            object readId = this.cmd.ExecuteScalar();
+            return Convert.ToInt64(readId);
+        }
+
+        public void UpdateSent(long id, string full_text, string title, int mark, string segment_record, int segment_cursor, int cur_segment_num, int sent_num, int sent_count, int cycle, int cycle_value, int auto)
+        {
+            this.cmd.CommandText = $"UPDATE sent SET full_text='{ConvertText(full_text)}', title='{ConvertText(title)}', mark={mark}, segment_record='{ConvertText(segment_record)}', segment_cursor={segment_cursor}, cur_segment_num={cur_segment_num}, sent_num={sent_num}, sent_count={sent_count}, cycle={cycle}, cycle_value={cycle_value}, auto={auto} WHERE id={id};";
+            this.cmd.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// 更新配置标题
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="title"></param>
+        public void UpdateSentTitle(long id, string title)
+        {
+            this.cmd.CommandText = $"UPDATE sent SET title='{this.ConvertText(title)}' WHERE id={id};";
+            this.cmd.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// 获取发文配置
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="limit"></param>
+        /// <returns></returns>
+        public StorageDataSet.SentDataTable GetSent(int start, int limit)
+        {
+            this.cmd.CommandText = $"SELECT * FROM sent LIMIT {limit} OFFSET {start}";
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(this.cmd);
+            StorageDataSet.SentDataTable mySent = new StorageDataSet.SentDataTable();
+            adapter.Fill(mySent);
+            return mySent;
+        }
+
+        /// <summary>
+        /// 获取配置总数量
+        /// </summary>
+        /// <returns></returns>
+        public int GetSentCount()
+        {
+            this.cmd.CommandText = "SELECT COUNT(1) FROM sent";
+            object readNum = this.cmd.ExecuteScalar();
+
+            if (readNum == null)
+            {
+                return 0;
+            }
+            return Convert.ToInt32(readNum);
+        }
+
+        /// <summary>
+        /// 搜索包含指定标题文本的配置
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="start"></param>
+        /// <param name="limit"></param>
+        /// <returns></returns>
+        public StorageDataSet.SentDataTable GetSentFromSubTitle(string title, int start, int limit)
+        {
+            this.cmd.CommandText = $"SELECT * FROM sent WHERE title LIKE '%{this.ConvertText(title).Replace("%", "/%").Replace("_", "/_")}%' LIMIT {limit} OFFSET {start}";
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(this.cmd);
+            StorageDataSet.SentDataTable mySent = new StorageDataSet.SentDataTable();
+            adapter.Fill(mySent);
+            return mySent;
+        }
+
+        /// <summary>
+        /// 搜索包含指定标题文本的配置数量
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public int GetSentCountFromSubTitle(string title)
+        {
+            this.cmd.CommandText = $"SELECT COUNT(1) FROM sent WHERE title LIKE '%{this.ConvertText(title).Replace("%", "/%").Replace("_", "/_")}%'";
+            object readNum = this.cmd.ExecuteScalar();
+
+            if (readNum == null)
+            {
+                return 0;
+            }
+            return Convert.ToInt32(readNum);
+        }
+
+        /// <summary>
+        /// 查找是否存在 id 值
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool FindIdInSent(long id)
+        {
+            this.cmd.CommandText = $"SELECT COUNT(1) FROM sent WHERE id={id}";
+            object readNum = this.cmd.ExecuteScalar();
+
+            if (readNum == null)
+            {
+                return false;
+            }
+            if (Convert.ToInt32(readNum) == 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// 根据 id 删除配置
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool DeleteSentItemById(long id)
+        {
+            this.cmd.CommandText = $"DELETE FROM sent WHERE id={id}";
+            int rows = this.cmd.ExecuteNonQuery();
+            if (rows > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void DeleteAllSent()
+        {
+            this.cmd.CommandText = "DELETE FROM sent;";
+            this.cmd.ExecuteNonQuery();
+            this.cmd.CommandText = "DELETE FROM sqlite_sequence WHERE name='sent';";
             this.cmd.ExecuteNonQuery();
             this.CleanDisk();
         }

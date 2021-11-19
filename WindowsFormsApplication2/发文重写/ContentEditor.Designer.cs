@@ -31,9 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.ContentRichTextBox = new System.Windows.Forms.RichTextBox();
-            this.RemoveSpaceButton = new System.Windows.Forms.Button();
-            this.FillPunctuationButton = new System.Windows.Forms.Button();
             this.OKButton = new System.Windows.Forms.Button();
+            this.FillPunctuationButton = new System.Windows.Forms.Button();
+            this.RemoveSpaceButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -72,17 +72,17 @@
             this.ContentRichTextBox.TabIndex = 0;
             this.ContentRichTextBox.Text = "";
             // 
-            // RemoveSpaceButton
+            // OKButton
             // 
-            this.RemoveSpaceButton.Location = new System.Drawing.Point(12, 9);
-            this.RemoveSpaceButton.Name = "RemoveSpaceButton";
-            this.RemoveSpaceButton.Size = new System.Drawing.Size(75, 23);
-            this.RemoveSpaceButton.TabIndex = 2;
-            this.RemoveSpaceButton.TabStop = false;
-            this.RemoveSpaceButton.Text = "去除空格";
-            this.toolTip1.SetToolTip(this.RemoveSpaceButton, "移除内容中的空格和换行");
-            this.RemoveSpaceButton.UseVisualStyleBackColor = true;
-            this.RemoveSpaceButton.Click += new System.EventHandler(this.RemoveSpaceButton_Click);
+            this.OKButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.OKButton.Location = new System.Drawing.Point(713, 9);
+            this.OKButton.Name = "OKButton";
+            this.OKButton.Size = new System.Drawing.Size(75, 23);
+            this.OKButton.TabIndex = 1;
+            this.OKButton.TabStop = false;
+            this.OKButton.Text = "确定";
+            this.OKButton.UseVisualStyleBackColor = true;
+            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
             // FillPunctuationButton
             // 
@@ -96,16 +96,17 @@
             this.FillPunctuationButton.UseVisualStyleBackColor = true;
             this.FillPunctuationButton.Click += new System.EventHandler(this.FillPunctuationButton_Click);
             // 
-            // OKButton
+            // RemoveSpaceButton
             // 
-            this.OKButton.Location = new System.Drawing.Point(713, 9);
-            this.OKButton.Name = "OKButton";
-            this.OKButton.Size = new System.Drawing.Size(75, 23);
-            this.OKButton.TabIndex = 1;
-            this.OKButton.TabStop = false;
-            this.OKButton.Text = "确定";
-            this.OKButton.UseVisualStyleBackColor = true;
-            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
+            this.RemoveSpaceButton.Location = new System.Drawing.Point(12, 9);
+            this.RemoveSpaceButton.Name = "RemoveSpaceButton";
+            this.RemoveSpaceButton.Size = new System.Drawing.Size(75, 23);
+            this.RemoveSpaceButton.TabIndex = 2;
+            this.RemoveSpaceButton.TabStop = false;
+            this.RemoveSpaceButton.Text = "去除空格";
+            this.toolTip1.SetToolTip(this.RemoveSpaceButton, "移除内容中的空格和换行");
+            this.RemoveSpaceButton.UseVisualStyleBackColor = true;
+            this.RemoveSpaceButton.Click += new System.EventHandler(this.RemoveSpaceButton_Click);
             // 
             // ContentEditor
             // 

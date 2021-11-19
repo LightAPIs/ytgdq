@@ -28,6 +28,11 @@ namespace WindowsFormsApplication2
         /// </summary>
         private Button[] allModBtn;
 
+        /// <summary>
+        /// 格式控制选项
+        /// </summary>
+        private CheckBox[] allCheckBox;
+
         public TSetup(Form1 frm1)
         {
             frm = frm1;
@@ -40,9 +45,7 @@ namespace WindowsFormsApplication2
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Setup_Load(object sender, EventArgs e)
-        {
-            ShowInputLan();//显示所有的安装的输入法
-            this.comboBox1.SelectedItem = IniRead("输入法", "惯用设置", "未设置");
+        {   
             string gq = IniRead("个签", "标志", "0");
             if (gq != "0") //个签初始化
             {
@@ -52,10 +55,6 @@ namespace WindowsFormsApplication2
                 this.checkBox1.Checked = false;
             }
             this.textBox1.Text = IniRead("个签", "签名", ""); 
-            //延时初始化
-            int delay = int.Parse(IniRead("发送","延时","50"));
-            this.trackBar1.Value = delay;
-            this.label19.Text = delay.ToString();
 
             //输入法签名初始化
             string srfsave = IniRead("输入法", "标志", "0");
@@ -67,43 +66,59 @@ namespace WindowsFormsApplication2
                 this.checkBox3.Checked = false;
             }
             this.textBox2.Text = IniRead("输入法", "签名", "");
+
+            allCheckBox = new CheckBox[22]
+            {
+                this.checkBoxSpeed,
+                this.checkBox4,
+                this.checkBox5,
+                this.checkBox6,
+                this.checkBox7,
+                this.checkBox8,
+                this.checkBox9,
+                this.checkBox10,
+                this.checkBox11,
+                this.checkBox12,
+                this.checkBox2,
+                this.checkBox15,
+                this.checkBox14,
+                this.checkBox17,
+                this.checkBox18,
+                this.checkBox20,
+                this.checkBox24,
+                this.checkBox25,
+                this.checkBox26,
+                this.checkBox27,
+                this.checkBox29,
+                this.checkBox31
+            };
+
             //排序顺序初始化
-            sortsend();
+            SortSend();
+
             //载入字体
             FontConverter fc = new FontConverter();
             fo1 = (Font)fc.ConvertFromString(IniRead("外观", "对照区字体", "宋体, 21.75pt"));
             fo2 = (Font)fc.ConvertFromString(IniRead("外观", "跟打区字体", "宋体, 12pt"));
             this.button3.Text = fo1.FontFamily.GetName(0) + " - " + fo1.Size;
             this.button4.Text = fo2.FontFamily.GetName(0) + " - " + fo2.Size;
-            //速度计初始化
-            _Ini setupini = new _Ini("config.ini");
+            
             //各个外观配置初始化
             buttoncolor1.BackColor = frm.richTextBox1.BackColor; //对照区底色
             buttoncolor2.BackColor = frm.textBoxEx1.BackColor; //跟打区底色
             this.pictureBoxRight.BackColor = Glob.Right;
             this.pictureBoxFalse.BackColor = Glob.False;
 
-            //是否发送初始化
-            this.checkBox16.Checked = Glob.sendOrNo;
-            this.checkBoxGDQAction.Checked = bool.Parse(IniRead("发送", "激活", "false"));
             //载入初始化
             string pretext = IniRead("载入", "前导", "-----");
             string preduan = IniRead("载入", "段标", "第xx段");
-            bool ison = bool.Parse(IniRead("载入","开启","false"));
+            bool ison = bool.Parse(IniRead("载入","开启","False"));
             this.checkBox19.Checked = ison;
             this.textBoxPreText.Text = pretext;
             this.textBoxDuan.Text = preduan;
-            bool get = bool.Parse(IniRead("载入", "方式", "false"));
-            if (get)
-            {
-                this.radioButtonTab.Checked = true;
-            }
-            else {
-                this.radioButton4.Checked = true;   
-            }
-            //QQ
-            this.checkBox21.Checked = bool.Parse(IniRead("发送","QQSta","false"));
-            this.textBoxQQ.Text = IniRead("发送","QQ","");
+
+            // 昵称
+            this.tbxName.Text = IniRead("发送", "昵称", this.tbxName.Text);
             //停止时间初始化
             int StopTime = int.Parse(IniRead("控制", "停止", "1"));
             if (StopTime < 1 || StopTime > 10) {
@@ -112,15 +127,8 @@ namespace WindowsFormsApplication2
             this.trackBar2.Value = StopTime;
             this.label17.Text = StopTime + "分";
             //极简设置
-            this.checkBox23.Checked = Glob.simpleMoudle;
-            this.textBox4.Text = Glob.simpleSplite;
-            this.checkBox28.Checked = bool.Parse(IniRead("控制", "不显示即时", "False"));
-            this.checkBox32.Checked = bool.Parse(IniRead("控制", "不自动复制", "False"));
-            this.checkBox30.Checked = bool.Parse(IniRead("发送", "是否速度限制", "False"));
-            this.numericUpDown1.Value =  decimal.Parse(IniRead("发送", "速度限制", "0.00"));
-            this.tbxName.Text = IniRead("发送", "昵称", this.tbxName.Text);
-            //bool c;
-            //this.checkBox31.Checked = bool.TryParse(IniRead("控制", "自动获取", "True"), out c) ? c : true;
+            this.SimpleCheckBox.Checked = Glob.simpleMoudle;
+            this.SimpleTextBox.Text = Glob.simpleSplite;
 
             //* 禁止保存高阶统计
             this.AdvancedCheckBox.Checked = Glob.DisableSaveAdvanced;
@@ -193,19 +201,6 @@ namespace WindowsFormsApplication2
             return sing.IniReadValue(section, key, def);
         }
 
-        public void ShowInputLan()
-        {
-            InputLanguageCollection iLc = InputLanguage.InstalledInputLanguages;
-            foreach (InputLanguage iL in iLc)
-            {
-               this.comboBox1.Items.Add(iL.LayoutName);
-            }
-            int InputCount = this.comboBox1.SelectedIndex;
-            if (InputCount != 0) {
-                this.comboBox1.SelectedIndex = 0;
-            }
-        }
-
         /// <summary>
         /// 确认按钮点击事件
         /// </summary>
@@ -214,17 +209,8 @@ namespace WindowsFormsApplication2
         private void button1_Click(object sender, EventArgs e)
         {
             _Ini Setupini = new _Ini("config.ini");
-            string srf = Setupini.IniReadValue("输入法","惯用设置","0");
-            if (srf != this.comboBox1.Text) {
-                Setupini.IniWriteValue("输入法","惯用设置", this.comboBox1.Text);
-                Glob.InstraSrf = this.comboBox1.Text;
-            }
+            
             gQ();//保存个签
-            //保存延时
-            Setupini.IniWriteValue("发送","延时",this.trackBar1.Value.ToString());
-            //保存QQ
-            Setupini.IniWriteValue("发送", "QQ", this.textBoxQQ.Text);
-            Setupini.IniWriteValue("发送", "QQSta", this.checkBox21.Checked.ToString());
             //保存输入法签名
             srfSave();
             //颜色设置
@@ -261,46 +247,18 @@ namespace WindowsFormsApplication2
             else {
                 Setupini.IniWriteValue("载入", "开启", this.checkBox19.Checked.ToString());
             }
-            //跟打完后 是否 激活
-            if (checkBoxGDQAction.Checked)
-            {
-                Glob.GDQActon = true;
-                Setupini.IniWriteValue("发送", "激活", "true");
-            }
-            else
-            {
-                Glob.GDQActon = false;
-                Setupini.IniWriteValue("发送", "激活", "false");
-            }
 
             //停止时间
             Setupini.IniWriteValue("控制", "停止", this.trackBar2.Value.ToString());
             Glob.StopUse = this.trackBar2.Value;
             frm.toolTip1.SetToolTip(frm.lblAutoReType,"跟打停止时间，大于" + this.trackBar2.Value +"分钟时自动停止跟打");
 
-            //速度限制
-            Setupini.IniWriteValue("发送", "速度限制", this.numericUpDown1.Value.ToString());
-            Glob.速度限制 = (double)this.numericUpDown1.Value;
-            Glob.是否速度限制 = this.checkBox30.Checked;
-            if (Glob.是否速度限制)
-            {
-                Glob.是否速度限制 = true;
-                Setupini.IniWriteValue("发送", "是否速度限制", "True");
-                frm.toolStripBtnLS.ForeColor = Color.White;
-                string tips = frm.toolStripBtnLS.ToolTipText;
-                frm.toolStripBtnLS.ToolTipText = tips.Remove(tips.IndexOf('：') + 1) + Glob.速度限制;
-            }
-            else {
-                Glob.是否速度限制 = false;
-                Setupini.IniWriteValue("发送", "是否速度限制", "False");
-                frm.toolStripBtnLS.ForeColor = Color.Silver;
-            }
             //极简模式
-            Setupini.IniWriteValue("发送", "极简状态", this.checkBox23.Checked.ToString());
-            Setupini.IniWriteValue("发送","分隔符",this.textBox4.Text);
-            Glob.simpleMoudle = this.checkBox23.Checked;
-            Glob.simpleSplite = this.textBox4.Text;
-            frm.toolStripButton2.Checked = this.checkBox23.Checked;
+            Setupini.IniWriteValue("发送", "极简状态", this.SimpleCheckBox.Checked.ToString());
+            Setupini.IniWriteValue("发送","分隔符",this.SimpleTextBox.Text);
+            Glob.simpleMoudle = this.SimpleCheckBox.Checked;
+            Glob.simpleSplite = this.SimpleTextBox.Text;
+
             if (!saveSort())
             {
                 MessageBox.Show(this, "含有错误排序字符，请重新检查！", "雨天跟打器排序提示");
@@ -308,27 +266,6 @@ namespace WindowsFormsApplication2
             }
             else {
                 Setupini.IniWriteValue("发送", "顺序", textBox3.Text);
-            }
-            //跟打过程中不显示即时数据
-            if (this.checkBox28.Checked)
-            {
-                Setupini.IniWriteValue("控制", "不显示即时", "True");
-                Glob.notShowjs = true;
-            }
-            else {
-                Setupini.IniWriteValue("控制", "不显示即时", "False");
-                Glob.notShowjs = false;
-            }
-
-            if (this.checkBox32.Checked)
-            {
-                Setupini.IniWriteValue("控制", "不自动复制", "True");
-                Glob.notAutoCopy = true;
-            }
-            else
-            {
-                Setupini.IniWriteValue("控制", "不自动复制", "False");
-                Glob.notAutoCopy = false;
             }
 
             if (this.AdvancedCheckBox.Checked)
@@ -365,7 +302,6 @@ namespace WindowsFormsApplication2
             Glob.InstraSrf = this.textBox2.Text; //输入法签名
             Glob.InstraSrf_ = IniRead("输入法", "标志", "0");
             Glob.binput = true;//输入法修改
-            Glob.DelaySend = int.Parse(IniRead("发送", "延时", "50"));
             
             Glob.sortSend = this.textBox3.Text;
             Glob.Right = pictureBoxRight.BackColor;
@@ -383,13 +319,11 @@ namespace WindowsFormsApplication2
                 Glob.PreText = "-----";
                 Glob.PreDuan = "第xx段";
             }
-            Glob.isQQ = this.checkBox21.Checked;
-            Glob.QQnumber = this.textBoxQQ.Text;
 
             //图片成绩发送昵称
             Setupini.IniWriteValue("发送", "昵称", this.tbxName.Text);
             Glob.PicName = this.tbxName.Text;
-           // Setupini.IniWriteValue("控制", "自动获取", this.checkBox31.Checked.ToString());
+
             if (File.Exists("config.ini"))
             {
                 this.Close();
@@ -447,16 +381,16 @@ namespace WindowsFormsApplication2
             }
         } //输入法
         //排序顺序
-        public void sortsend() {
-            string sort = IniRead("发送", "顺序", "ABCVDTSEFULGNOPRQ");
+        public void SortSend() {
+            string sort = IniRead("发送", "顺序", "ABCVDTSEFULGNORQ");
             textBox3.Text = sort;
             try
             {
                 char[] g = sort.ToArray();
-                checkallout();//清空所有选择
+                CheckAllOut();//清空所有选择
                 for (int i = 0; i < g.Length; i++)
                 {
-                    testit(g[i]); //根据当前输入 选中 或者取消选中
+                    TestIt(g[i]); //根据当前输入 选中 或者取消选中
                 }
             }
             catch (Exception err) {
@@ -490,24 +424,6 @@ namespace WindowsFormsApplication2
             else {
                 this.textBox1.ReadOnly = true;
                 this.textBox1.BackColor = Color.Gray;
-            }
-        }
-        private void CloseRefresh(object sender, FormClosedEventArgs e)
-        {
-            
-            //Glob.isAutoGet = this.checkBox31.Checked;
-        } //关闭时 更新
-
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-            this.label19.Text = this.trackBar1.Value.ToString();
-        }
-
-        private void OnlyInputMath(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar != '\b' && !Char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
             }
         }
 
@@ -550,7 +466,7 @@ namespace WindowsFormsApplication2
             }
         }
         
-        #region 发送排序
+        #region 数据排序
         private void textBox3Press(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar != '\b' && !Char.IsLetter(e.KeyChar))
@@ -587,11 +503,11 @@ namespace WindowsFormsApplication2
             string get2 = "";
             if (get != "")
             {
-                checkallout();//清空所有选择
+                CheckAllOut();//清空所有选择
                 for (int i = 0; i < g.Length; i++)
                 {
-                    get2 += getit(g[i]);
-                    testit(g[i]); //根据当前输入 选中 或者取消选中
+                    get2 += GetIt(g[i]);
+                    TestIt(g[i]); //根据当前输入 选中 或者取消选中
                 }
 
                 if (!get2.Contains("[错误]"))
@@ -609,38 +525,35 @@ namespace WindowsFormsApplication2
             }
         }
 
-        void checkallout() {
-            foreach (var item in this.panel9.Controls) {
-                if (item is CheckBox)
+        /// <summary>
+        /// 清空所有选择
+        /// </summary>
+        private void CheckAllOut() {
+            foreach (var item in this.allCheckBox) {
+                if (item.Checked)
                 {
-                    if ((item as CheckBox).Checked)
-                    {
-                        (item as CheckBox).Checked = false;
-                    }
+                    item.Checked = false;
                 }
             }
-        } //清空所有选择
-        void testit(char a) {
-            foreach (var item in this.panel9.Controls)
+        }
+        private void TestIt(char a) {
+            foreach (var item in this.allCheckBox)
             {
-                if (item is CheckBox)
+                string checktext = CheckIt(a);
+                if (checktext != "")
                 {
-                    string checktext = checkit(a);
-                    if (checktext != "")
+                    if (item.Text == checktext)
                     {
-                        if ((item as CheckBox).Text == checktext)
+                        if (!item.Checked)
                         {
-                            if (!(item as CheckBox).Checked)
-                            {
-                                (item as CheckBox).Checked = true;
-                            }
-                            break;
+                            item.Checked = true;
                         }
+                        break;
                     }
                 }
             }
         }
-        string checkit(char a) {
+        private string CheckIt(char a) {
             switch (a) {
                 case 'A': return "速度[A]";
                 case 'B': return "击键[B]";
@@ -668,7 +581,7 @@ namespace WindowsFormsApplication2
                 default: return "";
             }
         }
-        string getit(char a)
+        private string GetIt(char a)
         {//返回成绩
             switch (a) {
                 case 'A': return "速度161.53 ";
@@ -686,7 +599,7 @@ namespace WindowsFormsApplication2
                 case 'M': return "回改率0.00% ";
                 case 'N': return "停留[字]XX秒";
                 case 'O': return "效率100%";
-                case 'P': return "校验码:05555";
+                case 'P': return "校验:05555";
                 case 'Q': return "撤销2";
                 case 'R': return "键法";
                 case 'S': return " 退格";
@@ -700,35 +613,28 @@ namespace WindowsFormsApplication2
 
         private void buttonSelectAll_Click(object sender, EventArgs e) //全选
         {
-            foreach (var item in this.panel9.Controls)
+            foreach (var item in this.allCheckBox)
             {
-                if (item is CheckBox) {
-                     if (!(item as CheckBox).Checked)
-                     {
-                          (item as CheckBox).Checked = true;
-                     }
+                if (!item.Checked)
+                {
+                    item.Checked = true;
                 }
             }
         }
 
         private void buttonCleanAll_Click(object sender, EventArgs e)
         {
-            foreach (var item in this.panel9.Controls)
+            foreach (var item in this.allCheckBox)
             {
-                if (item is CheckBox)
+                if (item.Checked)
                 {
-                    if ((item as CheckBox).Checked)
-                    {
-                        (item as CheckBox).Checked = false;
-                    }
+                    item.Checked = false;
                 }
             }
         }
-         //发送排序
         #endregion
 
-        //字体
-        
+        #region 字体
         private void button3_Click(object sender, EventArgs e)
         {
             this.fontDialog1.ShowEffects = false;
@@ -748,18 +654,6 @@ namespace WindowsFormsApplication2
             {
                 this.button4.Text = fontDialog1.Font.FontFamily.GetName(0) + " - " + fontDialog1.Font.Size;
                 fo2 = fontDialog1.Font;
-            }
-        }
-
-        #region 是否发送 消息不保存
-        private void checkBox16_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox16.Checked)
-            {
-                Glob.sendOrNo = true;
-            }
-            else {
-                Glob.sendOrNo = false;
             }
         }
         #endregion
@@ -785,26 +679,6 @@ namespace WindowsFormsApplication2
         }
         #endregion
 
-        //获取方式
-        private void radioButton4_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton4.Checked)
-            {
-                _Ini Setupini = new _Ini("config.ini");
-                Glob.getStyle = false;
-                Setupini.IniWriteValue("载入","方式","false");
-            }
-        }
-
-        private void radioButtonTab_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButtonTab.Checked) {
-                _Ini Setupini = new _Ini("config.ini");
-                Glob.getStyle = true;
-                Setupini.IniWriteValue("载入", "方式", "true");
-            }
-        }
-
         #region 验证
         private void button7_Click(object sender, EventArgs e)
         {
@@ -813,23 +687,9 @@ namespace WindowsFormsApplication2
 
         private void richTextBox2_TextChanged(object sender, EventArgs e)
         {
-            this.labelTF.Text = frm.checkTF(richTextBox2.Text);
+            this.labelTF.Text = frm.CheckTF(richTextBox2.Text);
         }
         #endregion
-
-        //QQ
-        private void checkBox21_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox21.Checked)
-            {
-               this.textBoxQQ.BackColor = Color.White;
-               this.textBoxQQ.ReadOnly = false;
-            }
-            else {
-                this.textBoxQQ.BackColor = Color.Gray;
-                this.textBoxQQ.ReadOnly = true;
-            }
-        }
 
         //颜色设置
         private void pictureBoxRight_Click(object sender, EventArgs e)
@@ -942,11 +802,6 @@ namespace WindowsFormsApplication2
             Change(checkBox18);
         }
 
-        private void checkBox13_CheckedChanged(object sender, EventArgs e)
-        {
-            Change(checkBox13);
-        }
-
         private void checkBox20_CheckedChanged(object sender, EventArgs e)
         {
             Change(checkBox20);
@@ -990,20 +845,6 @@ namespace WindowsFormsApplication2
                 }
             }
         }
-        #endregion
-
-        #region 速度限制发送
-        private void checkBox30_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as CheckBox).Checked)
-            {
-                this.numericUpDown1.Enabled = true;
-            }
-            else {
-                this.numericUpDown1.Enabled = false;
-            }
-        }
-        #endregion
 
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -1012,17 +853,9 @@ namespace WindowsFormsApplication2
                 e.Handled = true;
             }
         }
+        #endregion
 
-        [DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
-
-        [DllImport("user32.dll", EntryPoint = "SendMessageA")]
-        private static extern int SendMessage(System.IntPtr ptr, int wMsg, int wParam, int lParam);
-
-        public const int WM_SYSCOMMAND = 0x0112;
-        public const int SC_MOVE = 0xF010;
-        public const int HTCAPTION = 0x0002;
-
+        #region 快捷键处理
         private void HotKeyModButtonClick(object sender, EventArgs e)
         {
             int index = int.Parse((sender as Button).Tag.ToString());
@@ -1154,6 +987,17 @@ namespace WindowsFormsApplication2
                 e.SuppressKeyPress = true;
             }
         }
+        #endregion
+
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        [DllImport("user32.dll", EntryPoint = "SendMessageA")]
+        private static extern int SendMessage(System.IntPtr ptr, int wMsg, int wParam, int lParam);
+
+        public const int WM_SYSCOMMAND = 0x0112;
+        public const int SC_MOVE = 0xF010;
+        public const int HTCAPTION = 0x0002;
 
         private void TSetup_MouseDown(object sender, MouseEventArgs e)
         {

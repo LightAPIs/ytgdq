@@ -29,35 +29,35 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle52 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle55 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle56 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle54 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblMatchCount = new System.Windows.Forms.Label();
@@ -65,17 +65,16 @@
             this.cmsSetMatch = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.转换为比赛文段ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.比赛时自动打开寻找测速点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblQuan = new System.Windows.Forms.Label();
             this.labelmcing = new System.Windows.Forms.Label();
             this.lblMCText = new System.Windows.Forms.Label();
             this.labelSpeeding = new System.Windows.Forms.Label();
-            this.lblCount = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.labelJjing = new System.Windows.Forms.Label();
             this.lblJJText = new System.Windows.Forms.Label();
             this.lblSpeedText = new System.Windows.Forms.Label();
             this.labelJiCheck = new System.Windows.Forms.Label();
             this.labelCheckUD = new System.Windows.Forms.Label();
+            this.lblCount = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -167,15 +166,12 @@
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton4 = new WindowsFormsApplication2.ToolButton();
-            this.tsb标注 = new WindowsFormsApplication2.ToolButton();
+            this.RealTimeData = new WindowsFormsApplication2.ToolButton();
+            this.tbnSpline = new WindowsFormsApplication2.ToolButton();
             this.toolStripButton1 = new WindowsFormsApplication2.ToolButton();
             this.toolStripButton3 = new WindowsFormsApplication2.ToolButton();
-            this.toolStripBtnLS = new WindowsFormsApplication2.ToolButton();
-            this.toolStripButton2 = new WindowsFormsApplication2.ToolButton();
-            this.tbnSpline = new WindowsFormsApplication2.ToolButton();
             this.picBmTips = new WindowsFormsApplication2.ToolButton();
-            this.PicSend = new WindowsFormsApplication2.ToolButton();
-            this.toolButton1 = new WindowsFormsApplication2.ToolButton();
+            this.tsb标注 = new WindowsFormsApplication2.ToolButton();
             this.mS1 = new WindowsFormsApplication2.NewMenu();
             this.TSMI1 = new System.Windows.Forms.ToolStripMenuItem();
             this.设置ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -191,41 +187,37 @@
             this.保持窗口最前ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMI4 = new System.Windows.Forms.ToolStripMenuItem();
             this.新发文ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.载文ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.载文途径ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.从剪切板ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.从QQ窗口手动ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.FormatLoadToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.DrillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.重打ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DisorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.暂停ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.发文状态ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveSendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.SendPreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.发下一段ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.停止发文ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMI3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.换群ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
-            this.发送正在跟打的文段ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.复制跟打的文段ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.上一次成绩ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.复制图片成绩ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.平均成绩ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.击键统计ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测速数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.跟打分析ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.跟打报告ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.KeyAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.平均成绩ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.击键统计ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.编码提示设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.智能测词ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.其它功能ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.查询当前编码ToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.检验真伪ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.精五比赛成绩生成ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMI2 = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMI5 = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.检查更新ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -254,7 +246,6 @@
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.显示ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.timerBtnFlash = new System.Windows.Forms.Timer(this.components);
             this.timerSubFlash = new System.Windows.Forms.Timer(this.components);
             this.timerLblTime = new System.Windows.Forms.Timer(this.components);
             this.panelMain = new System.Windows.Forms.Panel();
@@ -308,17 +299,16 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.9304F));
             this.tableLayoutPanel1.Controls.Add(this.lblMatchCount, 8, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblDuan, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblQuan, 7, 0);
             this.tableLayoutPanel1.Controls.Add(this.labelmcing, 7, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblMCText, 6, 1);
             this.tableLayoutPanel1.Controls.Add(this.labelSpeeding, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblCount, 6, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblTitle, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.labelJjing, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblJJText, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblSpeedText, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.labelJiCheck, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.labelCheckUD, 5, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblCount, 7, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.ForeColor = System.Drawing.Color.DimGray;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 15);
@@ -327,7 +317,8 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 53F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(400, 36);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(688, 36);
             this.tableLayoutPanel1.TabIndex = 12;
             this.tableLayoutPanel1.TabStop = true;
             // 
@@ -341,13 +332,13 @@
             this.lblMatchCount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblMatchCount.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Bold);
             this.lblMatchCount.ForeColor = System.Drawing.Color.Transparent;
-            this.lblMatchCount.Location = new System.Drawing.Point(348, 19);
+            this.lblMatchCount.Location = new System.Drawing.Point(592, 19);
             this.lblMatchCount.Margin = new System.Windows.Forms.Padding(0);
             this.lblMatchCount.Name = "lblMatchCount";
-            this.lblMatchCount.Size = new System.Drawing.Size(52, 17);
+            this.lblMatchCount.Size = new System.Drawing.Size(96, 17);
             this.lblMatchCount.TabIndex = 11;
             this.lblMatchCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.lblMatchCount, "赛文验证：文章唯一编码标识");
+            this.toolTip1.SetToolTip(this.lblMatchCount, "赛文验证：文段唯一编码标识");
             // 
             // lblDuan
             // 
@@ -361,11 +352,11 @@
             this.lblDuan.Margin = new System.Windows.Forms.Padding(0);
             this.lblDuan.Name = "lblDuan";
             this.lblDuan.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.lblDuan.Size = new System.Drawing.Size(66, 19);
+            this.lblDuan.Size = new System.Drawing.Size(123, 19);
             this.lblDuan.TabIndex = 3;
             this.lblDuan.Text = "段号";
             this.lblDuan.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.lblDuan, "左键点击列出当前所有文段\r\n右键可以选择赛文与普通文段的转换");
+            this.toolTip1.SetToolTip(this.lblDuan, "左键点击列出当前所有载文文段");
             this.lblDuan.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lblDuan_MouseClick);
             // 
             // cmsSetMatch
@@ -391,28 +382,6 @@
             this.比赛时自动打开寻找测速点ToolStripMenuItem.Text = "比赛时自动打开寻找测速点";
             this.比赛时自动打开寻找测速点ToolStripMenuItem.Click += new System.EventHandler(this.比赛时自动打开寻找测速点ToolStripMenuItem_Click);
             // 
-            // lblQuan
-            // 
-            this.lblQuan.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblQuan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(129)))), ((int)(((byte)(97)))));
-            this.tableLayoutPanel1.SetColumnSpan(this.lblQuan, 2);
-            this.lblQuan.Font = new System.Drawing.Font("宋体", 9F);
-            this.lblQuan.ForeColor = System.Drawing.Color.White;
-            this.lblQuan.Location = new System.Drawing.Point(316, 0);
-            this.lblQuan.Margin = new System.Windows.Forms.Padding(0);
-            this.lblQuan.Name = "lblQuan";
-            this.lblQuan.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.lblQuan.Size = new System.Drawing.Size(84, 19);
-            this.lblQuan.TabIndex = 2;
-            this.lblQuan.Tag = "";
-            this.lblQuan.Text = "所在群";
-            this.lblQuan.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.lblQuan, "所在群【快捷键F5 或 点我换群】");
-            this.lblQuan.TextChanged += new System.EventHandler(this.label1_TextChanged);
-            this.lblQuan.Click += new System.EventHandler(this.label1_Click);
-            // 
             // labelmcing
             // 
             this.labelmcing.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -421,10 +390,10 @@
             this.labelmcing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(181)))), ((int)(((byte)(157)))));
             this.labelmcing.Font = new System.Drawing.Font("Verdana", 8.25F);
             this.labelmcing.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.labelmcing.Location = new System.Drawing.Point(316, 19);
+            this.labelmcing.Location = new System.Drawing.Point(531, 19);
             this.labelmcing.Margin = new System.Windows.Forms.Padding(0);
             this.labelmcing.Name = "labelmcing";
-            this.labelmcing.Size = new System.Drawing.Size(32, 17);
+            this.labelmcing.Size = new System.Drawing.Size(61, 17);
             this.labelmcing.TabIndex = 9;
             this.labelmcing.Tag = "";
             this.labelmcing.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -435,11 +404,11 @@
             this.lblMCText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblMCText.Font = new System.Drawing.Font("宋体", 9F);
             this.lblMCText.ForeColor = System.Drawing.Color.White;
-            this.lblMCText.Location = new System.Drawing.Point(267, 19);
+            this.lblMCText.Location = new System.Drawing.Point(439, 19);
             this.lblMCText.Margin = new System.Windows.Forms.Padding(0);
             this.lblMCText.Name = "lblMCText";
             this.lblMCText.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.lblMCText.Size = new System.Drawing.Size(49, 17);
+            this.lblMCText.Size = new System.Drawing.Size(92, 17);
             this.lblMCText.TabIndex = 8;
             this.lblMCText.Text = "码长";
             this.lblMCText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -454,41 +423,27 @@
             this.labelSpeeding.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.labelSpeeding.Font = new System.Drawing.Font("Verdana", 8.25F);
             this.labelSpeeding.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.labelSpeeding.Location = new System.Drawing.Point(66, 19);
+            this.labelSpeeding.Location = new System.Drawing.Point(123, 19);
             this.labelSpeeding.Margin = new System.Windows.Forms.Padding(0);
             this.labelSpeeding.Name = "labelSpeeding";
-            this.labelSpeeding.Size = new System.Drawing.Size(46, 17);
+            this.labelSpeeding.Size = new System.Drawing.Size(85, 17);
             this.labelSpeeding.TabIndex = 5;
             this.labelSpeeding.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolTip1.SetToolTip(this.labelSpeeding, "速度即时获取");
             // 
-            // lblCount
-            // 
-            this.lblCount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(129)))), ((int)(((byte)(97)))));
-            this.lblCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCount.ForeColor = System.Drawing.Color.White;
-            this.lblCount.Location = new System.Drawing.Point(267, 0);
-            this.lblCount.Margin = new System.Windows.Forms.Padding(0);
-            this.lblCount.Name = "lblCount";
-            this.lblCount.Size = new System.Drawing.Size(49, 19);
-            this.lblCount.TabIndex = 1;
-            this.lblCount.Text = "字数";
-            this.lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.lblCount, "文章字数");
-            // 
             // lblTitle
             // 
             this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(129)))), ((int)(((byte)(97)))));
-            this.tableLayoutPanel1.SetColumnSpan(this.lblTitle, 5);
+            this.tableLayoutPanel1.SetColumnSpan(this.lblTitle, 6);
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblTitle.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(66, 0);
+            this.lblTitle.Location = new System.Drawing.Point(123, 0);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.lblTitle.Size = new System.Drawing.Size(201, 19);
+            this.lblTitle.Size = new System.Drawing.Size(408, 19);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "引导语";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -502,10 +457,10 @@
             this.labelJjing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(181)))), ((int)(((byte)(157)))));
             this.labelJjing.Font = new System.Drawing.Font("Verdana", 8.25F);
             this.labelJjing.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.labelJjing.Location = new System.Drawing.Point(161, 19);
+            this.labelJjing.Location = new System.Drawing.Point(300, 19);
             this.labelJjing.Margin = new System.Windows.Forms.Padding(0);
             this.labelJjing.Name = "labelJjing";
-            this.labelJjing.Size = new System.Drawing.Size(38, 17);
+            this.labelJjing.Size = new System.Drawing.Size(71, 17);
             this.labelJjing.TabIndex = 7;
             this.labelJjing.Tag = "";
             this.labelJjing.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -516,11 +471,11 @@
             this.lblJJText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblJJText.Font = new System.Drawing.Font("宋体", 9F);
             this.lblJJText.ForeColor = System.Drawing.Color.White;
-            this.lblJJText.Location = new System.Drawing.Point(112, 19);
+            this.lblJJText.Location = new System.Drawing.Point(208, 19);
             this.lblJJText.Margin = new System.Windows.Forms.Padding(0);
             this.lblJJText.Name = "lblJJText";
             this.lblJJText.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.lblJJText.Size = new System.Drawing.Size(49, 17);
+            this.lblJJText.Size = new System.Drawing.Size(92, 17);
             this.lblJJText.TabIndex = 6;
             this.lblJJText.Text = "击键";
             this.lblJJText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -536,7 +491,7 @@
             this.lblSpeedText.Margin = new System.Windows.Forms.Padding(0);
             this.lblSpeedText.Name = "lblSpeedText";
             this.lblSpeedText.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.lblSpeedText.Size = new System.Drawing.Size(66, 17);
+            this.lblSpeedText.Size = new System.Drawing.Size(123, 17);
             this.lblSpeedText.TabIndex = 4;
             this.lblSpeedText.Text = "速度";
             this.lblSpeedText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -550,7 +505,7 @@
             this.labelJiCheck.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(181)))), ((int)(((byte)(157)))));
             this.labelJiCheck.Font = new System.Drawing.Font("Verdana", 7.8F);
             this.labelJiCheck.ForeColor = System.Drawing.Color.White;
-            this.labelJiCheck.Location = new System.Drawing.Point(199, 19);
+            this.labelJiCheck.Location = new System.Drawing.Point(371, 19);
             this.labelJiCheck.Margin = new System.Windows.Forms.Padding(0);
             this.labelJiCheck.Name = "labelJiCheck";
             this.labelJiCheck.Size = new System.Drawing.Size(50, 17);
@@ -564,12 +519,29 @@
             this.labelCheckUD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(181)))), ((int)(((byte)(157)))));
             this.labelCheckUD.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelCheckUD.ForeColor = System.Drawing.Color.DimGray;
-            this.labelCheckUD.Location = new System.Drawing.Point(249, 19);
+            this.labelCheckUD.Location = new System.Drawing.Point(421, 19);
             this.labelCheckUD.Margin = new System.Windows.Forms.Padding(0);
             this.labelCheckUD.Name = "labelCheckUD";
             this.labelCheckUD.Size = new System.Drawing.Size(18, 17);
             this.labelCheckUD.TabIndex = 13;
             this.labelCheckUD.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblCount
+            // 
+            this.lblCount.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(129)))), ((int)(((byte)(97)))));
+            this.tableLayoutPanel1.SetColumnSpan(this.lblCount, 2);
+            this.lblCount.ForeColor = System.Drawing.Color.White;
+            this.lblCount.Location = new System.Drawing.Point(531, 0);
+            this.lblCount.Margin = new System.Windows.Forms.Padding(0);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(157, 19);
+            this.lblCount.TabIndex = 1;
+            this.lblCount.Text = "字数";
+            this.lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lblCount, "文段字数");
             // 
             // timer1
             // 
@@ -581,24 +553,24 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle29.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.White;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle29;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(201)))), ((int)(((byte)(196)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(201)))), ((int)(((byte)(196)))));
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("微软雅黑", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle30;
             this.dataGridView1.ColumnHeadersHeight = 20;
             this.dataGridView1.ColumnHeadersVisible = false;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -623,14 +595,14 @@
             this.打词率,
             this.用时,
             this.标题});
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle51.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle51.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle51.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle51.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle51.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle51.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle51.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle51;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.EnableHeadersVisualStyles = false;
@@ -641,30 +613,30 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle52.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle52.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle52.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle52.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle52.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle52.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle52.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle52;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 18;
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Arial", 9F);
-            dataGridViewCellStyle25.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
-            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.Color.White;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle53.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            dataGridViewCellStyle53.Font = new System.Drawing.Font("Arial", 9F);
+            dataGridViewCellStyle53.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle53.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
+            dataGridViewCellStyle53.SelectionForeColor = System.Drawing.Color.White;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle53;
             this.dataGridView1.RowTemplate.Height = 18;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowCellToolTips = false;
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.ShowRowErrors = false;
-            this.dataGridView1.Size = new System.Drawing.Size(400, 55);
+            this.dataGridView1.Size = new System.Drawing.Size(688, 46);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.TabStop = false;
             this.toolTip1.SetToolTip(this.dataGridView1, "跟打历史区");
@@ -685,9 +657,9 @@
             // 时间
             // 
             this.时间.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.时间.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle31.BackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle31.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.时间.DefaultCellStyle = dataGridViewCellStyle31;
             this.时间.HeaderText = "时间";
             this.时间.Name = "时间";
             this.时间.ReadOnly = true;
@@ -697,11 +669,11 @@
             // 段号
             // 
             this.段号.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.段号.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle32.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle32.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.段号.DefaultCellStyle = dataGridViewCellStyle32;
             this.段号.HeaderText = "段号";
             this.段号.MinimumWidth = 10;
             this.段号.Name = "段号";
@@ -713,12 +685,12 @@
             // 速度
             // 
             this.速度.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.速度.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle33.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle33.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.速度.DefaultCellStyle = dataGridViewCellStyle33;
             this.速度.FillWeight = 80F;
             this.速度.HeaderText = "速度";
             this.速度.Name = "速度";
@@ -729,12 +701,12 @@
             // 击键
             // 
             this.击键.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.击键.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle34.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle34.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.击键.DefaultCellStyle = dataGridViewCellStyle34;
             this.击键.FillWeight = 80F;
             this.击键.HeaderText = "击键";
             this.击键.Name = "击键";
@@ -745,12 +717,12 @@
             // 码长
             // 
             this.码长.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.码长.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle35.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.码长.DefaultCellStyle = dataGridViewCellStyle35;
             this.码长.FillWeight = 80F;
             this.码长.HeaderText = "码长";
             this.码长.Name = "码长";
@@ -761,11 +733,11 @@
             // 理论
             // 
             this.理论.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Bisque;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.DimGray;
-            this.理论.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle36.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle36.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.Color.Bisque;
+            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.Color.DimGray;
+            this.理论.DefaultCellStyle = dataGridViewCellStyle36;
             this.理论.FillWeight = 80F;
             this.理论.HeaderText = "理论";
             this.理论.Name = "理论";
@@ -776,11 +748,11 @@
             // 回改
             // 
             this.回改.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.回改.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle37.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle37.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.回改.DefaultCellStyle = dataGridViewCellStyle37;
             this.回改.FillWeight = 50F;
             this.回改.HeaderText = "回改";
             this.回改.Name = "回改";
@@ -791,11 +763,11 @@
             // 退格
             // 
             this.退格.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Bisque;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.DimGray;
-            this.退格.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle38.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle38.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.Color.Bisque;
+            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.Color.DimGray;
+            this.退格.DefaultCellStyle = dataGridViewCellStyle38;
             this.退格.FillWeight = 50F;
             this.退格.HeaderText = "退格";
             this.退格.Name = "退格";
@@ -806,11 +778,11 @@
             // 回车
             // 
             this.回车.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Bisque;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.DimGray;
-            this.回车.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle39.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle39.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.Color.Bisque;
+            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.Color.DimGray;
+            this.回车.DefaultCellStyle = dataGridViewCellStyle39;
             this.回车.FillWeight = 50F;
             this.回车.HeaderText = "回车";
             this.回车.Name = "回车";
@@ -821,11 +793,11 @@
             // 选重
             // 
             this.选重.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Bisque;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.DimGray;
-            this.选重.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle40.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle40.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.Color.Bisque;
+            dataGridViewCellStyle40.SelectionForeColor = System.Drawing.Color.DimGray;
+            this.选重.DefaultCellStyle = dataGridViewCellStyle40;
             this.选重.FillWeight = 50F;
             this.选重.HeaderText = "选重";
             this.选重.Name = "选重";
@@ -836,11 +808,11 @@
             // 错字
             // 
             this.错字.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.错字.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle41.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle41.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle41.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle41.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.错字.DefaultCellStyle = dataGridViewCellStyle41;
             this.错字.FillWeight = 50F;
             this.错字.HeaderText = "错字";
             this.错字.Name = "错字";
@@ -851,11 +823,11 @@
             // 回改率
             // 
             this.回改率.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Bisque;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.DimGray;
-            this.回改率.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle42.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle42.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.Color.Bisque;
+            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.Color.DimGray;
+            this.回改率.DefaultCellStyle = dataGridViewCellStyle42;
             this.回改率.HeaderText = "回改率";
             this.回改率.Name = "回改率";
             this.回改率.ReadOnly = true;
@@ -865,11 +837,11 @@
             // 键准
             // 
             this.键准.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.Bisque;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.DimGray;
-            this.键准.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle43.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle43.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.Color.Bisque;
+            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.Color.DimGray;
+            this.键准.DefaultCellStyle = dataGridViewCellStyle43;
             this.键准.HeaderText = "键准";
             this.键准.Name = "键准";
             this.键准.ReadOnly = true;
@@ -879,11 +851,11 @@
             // 效率
             // 
             this.效率.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.Bisque;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.DimGray;
-            this.效率.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle44.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle44.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.Color.Bisque;
+            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.Color.DimGray;
+            this.效率.DefaultCellStyle = dataGridViewCellStyle44;
             this.效率.HeaderText = "效率";
             this.效率.Name = "效率";
             this.效率.ReadOnly = true;
@@ -893,11 +865,11 @@
             // 键数
             // 
             this.键数.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.键数.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle45.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle45.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle45.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle45.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.键数.DefaultCellStyle = dataGridViewCellStyle45;
             this.键数.HeaderText = "键数";
             this.键数.Name = "键数";
             this.键数.ReadOnly = true;
@@ -907,11 +879,11 @@
             // 字数
             // 
             this.字数.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.字数.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle46.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle46.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle46.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle46.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.字数.DefaultCellStyle = dataGridViewCellStyle46;
             this.字数.FillWeight = 80F;
             this.字数.HeaderText = "字数";
             this.字数.Name = "字数";
@@ -922,11 +894,11 @@
             // 打词
             // 
             this.打词.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.打词.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle47.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle47.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle47.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle47.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.打词.DefaultCellStyle = dataGridViewCellStyle47;
             this.打词.FillWeight = 80F;
             this.打词.HeaderText = "打词";
             this.打词.Name = "打词";
@@ -937,11 +909,11 @@
             // 打词率
             // 
             this.打词率.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Bisque;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.DimGray;
-            this.打词率.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle48.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle48.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle48.SelectionBackColor = System.Drawing.Color.Bisque;
+            dataGridViewCellStyle48.SelectionForeColor = System.Drawing.Color.DimGray;
+            this.打词率.DefaultCellStyle = dataGridViewCellStyle48;
             this.打词率.HeaderText = "打词率";
             this.打词率.Name = "打词率";
             this.打词率.ReadOnly = true;
@@ -950,11 +922,11 @@
             // 用时
             // 
             this.用时.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.用时.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle49.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle49.ForeColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle49.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle49.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.用时.DefaultCellStyle = dataGridViewCellStyle49;
             this.用时.HeaderText = "用时";
             this.用时.Name = "用时";
             this.用时.ReadOnly = true;
@@ -964,12 +936,12 @@
             // 标题
             // 
             this.标题.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.Bisque;
-            this.标题.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle50.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle50.ForeColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle50.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle50.SelectionForeColor = System.Drawing.Color.Bisque;
+            this.标题.DefaultCellStyle = dataGridViewCellStyle50;
             this.标题.HeaderText = "标题";
             this.标题.Name = "标题";
             this.标题.ReadOnly = true;
@@ -987,12 +959,12 @@
             this.chartSpeed.Margin = new System.Windows.Forms.Padding(0);
             this.chartSpeed.Name = "chartSpeed";
             this.chartSpeed.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series1.BorderWidth = 2;
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.MarkerSize = 1;
-            series1.Name = "Series1";
-            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.chartSpeed.Series.Add(series1);
+            series2.BorderWidth = 2;
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.MarkerSize = 1;
+            series2.Name = "Series1";
+            series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.chartSpeed.Series.Add(series2);
             this.chartSpeed.Size = new System.Drawing.Size(206, 100);
             this.chartSpeed.TabIndex = 0;
             this.chartSpeed.TabStop = false;
@@ -1014,7 +986,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox1.Size = new System.Drawing.Size(400, 130);
+            this.richTextBox1.Size = new System.Drawing.Size(688, 181);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.TabStop = false;
             this.richTextBox1.Text = "当你还在被世间诸多繁杂所束缚，心神不宁，不妨静下心来坐在电脑前跟打上一段文章。";
@@ -1182,13 +1154,13 @@
             this.textBoxEx1.ForeColor = System.Drawing.Color.Black;
             this.textBoxEx1.HideSelection = false;
             this.textBoxEx1.ImeMode = System.Windows.Forms.ImeMode.Hangul;
-            this.textBoxEx1.Location = new System.Drawing.Point(0, 31);
+            this.textBoxEx1.Location = new System.Drawing.Point(0, 33);
             this.textBoxEx1.MaxUndoRedoSteps = 50;
             this.textBoxEx1.Multiline = true;
             this.textBoxEx1.Name = "textBoxEx1";
             this.textBoxEx1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxEx1.ShortcutsEnabled = false;
-            this.textBoxEx1.Size = new System.Drawing.Size(396, 27);
+            this.textBoxEx1.Size = new System.Drawing.Size(688, 16);
             this.textBoxEx1.TabIndex = 2;
             this.toolTip1.SetToolTip(this.textBoxEx1, "跟打区");
             this.textBoxEx1.TextChanged += new System.EventHandler(this.textBoxEx1_TextChanged);
@@ -1203,10 +1175,10 @@
             this.lblNowTime_.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNowTime_.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.lblNowTime_.ForeColor = System.Drawing.Color.Black;
-            this.lblNowTime_.Location = new System.Drawing.Point(245, 1);
+            this.lblNowTime_.Location = new System.Drawing.Point(423, 1);
             this.lblNowTime_.Margin = new System.Windows.Forms.Padding(0, 1, 1, 0);
             this.lblNowTime_.Name = "lblNowTime_";
-            this.lblNowTime_.Size = new System.Drawing.Size(30, 14);
+            this.lblNowTime_.Size = new System.Drawing.Size(52, 14);
             this.lblNowTime_.TabIndex = 20;
             this.lblNowTime_.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.lblNowTime_, "发文周期计数");
@@ -1220,10 +1192,10 @@
             this.labelHaveTyping.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.labelHaveTyping.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.labelHaveTyping.ForeColor = System.Drawing.Color.Black;
-            this.labelHaveTyping.Location = new System.Drawing.Point(276, 1);
+            this.labelHaveTyping.Location = new System.Drawing.Point(476, 1);
             this.labelHaveTyping.Margin = new System.Windows.Forms.Padding(0, 1, 1, 0);
             this.labelHaveTyping.Name = "labelHaveTyping";
-            this.labelHaveTyping.Size = new System.Drawing.Size(123, 14);
+            this.labelHaveTyping.Size = new System.Drawing.Size(211, 14);
             this.labelHaveTyping.TabIndex = 8;
             this.labelHaveTyping.Text = "0";
             this.labelHaveTyping.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1237,10 +1209,10 @@
             this.toolStripStatusLabelStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.toolStripStatusLabelStatus.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.toolStripStatusLabelStatus.ForeColor = System.Drawing.Color.Black;
-            this.toolStripStatusLabelStatus.Location = new System.Drawing.Point(212, 1);
+            this.toolStripStatusLabelStatus.Location = new System.Drawing.Point(366, 1);
             this.toolStripStatusLabelStatus.Margin = new System.Windows.Forms.Padding(0, 1, 1, 0);
             this.toolStripStatusLabelStatus.Name = "toolStripStatusLabelStatus";
-            this.toolStripStatusLabelStatus.Size = new System.Drawing.Size(32, 14);
+            this.toolStripStatusLabelStatus.Size = new System.Drawing.Size(56, 14);
             this.toolStripStatusLabelStatus.TabIndex = 6;
             this.toolStripStatusLabelStatus.Text = "-";
             this.toolStripStatusLabelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1254,10 +1226,10 @@
             this.labelhgstatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.labelhgstatus.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.labelhgstatus.ForeColor = System.Drawing.Color.Black;
-            this.labelhgstatus.Location = new System.Drawing.Point(146, 1);
+            this.labelhgstatus.Location = new System.Drawing.Point(252, 1);
             this.labelhgstatus.Margin = new System.Windows.Forms.Padding(0, 1, 1, 0);
             this.labelhgstatus.Name = "labelhgstatus";
-            this.labelhgstatus.Size = new System.Drawing.Size(32, 14);
+            this.labelhgstatus.Size = new System.Drawing.Size(56, 14);
             this.labelhgstatus.TabIndex = 9;
             this.labelhgstatus.Text = "0";
             this.labelhgstatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1273,10 +1245,10 @@
             this.labelTimeFlys.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.labelTimeFlys.Font = new System.Drawing.Font("Tahoma", 8F);
             this.labelTimeFlys.ForeColor = System.Drawing.Color.Black;
-            this.labelTimeFlys.Location = new System.Drawing.Point(34, 1);
+            this.labelTimeFlys.Location = new System.Drawing.Point(59, 1);
             this.labelTimeFlys.Margin = new System.Windows.Forms.Padding(0, 1, 1, 0);
             this.labelTimeFlys.Name = "labelTimeFlys";
-            this.labelTimeFlys.Size = new System.Drawing.Size(52, 14);
+            this.labelTimeFlys.Size = new System.Drawing.Size(90, 14);
             this.labelTimeFlys.TabIndex = 1;
             this.labelTimeFlys.Text = "00:00.00";
             this.labelTimeFlys.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1294,7 +1266,7 @@
             this.labelJsing.Location = new System.Drawing.Point(0, 1);
             this.labelJsing.Margin = new System.Windows.Forms.Padding(0, 1, 1, 0);
             this.labelJsing.Name = "labelJsing";
-            this.labelJsing.Size = new System.Drawing.Size(33, 14);
+            this.labelJsing.Size = new System.Drawing.Size(58, 14);
             this.labelJsing.TabIndex = 0;
             this.labelJsing.Text = "0";
             this.labelJsing.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1308,10 +1280,10 @@
             this.labelBM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.labelBM.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.labelBM.ForeColor = System.Drawing.Color.Black;
-            this.labelBM.Location = new System.Drawing.Point(179, 1);
+            this.labelBM.Location = new System.Drawing.Point(309, 1);
             this.labelBM.Margin = new System.Windows.Forms.Padding(0, 1, 1, 0);
             this.labelBM.Name = "labelBM";
-            this.labelBM.Size = new System.Drawing.Size(32, 14);
+            this.labelBM.Size = new System.Drawing.Size(56, 14);
             this.labelBM.TabIndex = 12;
             this.labelBM.Text = "0";
             this.labelBM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1328,7 +1300,7 @@
             this.lbl键准.Location = new System.Drawing.Point(0, 16);
             this.lbl键准.Margin = new System.Windows.Forms.Padding(0, 1, 1, 1);
             this.lbl键准.Name = "lbl键准";
-            this.lbl键准.Size = new System.Drawing.Size(33, 13);
+            this.lbl键准.Size = new System.Drawing.Size(58, 13);
             this.lbl键准.TabIndex = 13;
             this.lbl键准.Text = "100%";
             this.lbl键准.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1342,10 +1314,10 @@
             this.lbl地图长度.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.lbl地图长度.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.lbl地图长度.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.lbl地图长度.Location = new System.Drawing.Point(245, 16);
+            this.lbl地图长度.Location = new System.Drawing.Point(423, 16);
             this.lbl地图长度.Margin = new System.Windows.Forms.Padding(0, 1, 1, 1);
             this.lbl地图长度.Name = "lbl地图长度";
-            this.lbl地图长度.Size = new System.Drawing.Size(30, 13);
+            this.lbl地图长度.Size = new System.Drawing.Size(52, 13);
             this.lbl地图长度.TabIndex = 21;
             this.lbl地图长度.Text = "100%";
             this.lbl地图长度.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1357,10 +1329,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.picMap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.picMap.Location = new System.Drawing.Point(276, 16);
+            this.picMap.Location = new System.Drawing.Point(476, 16);
             this.picMap.Margin = new System.Windows.Forms.Padding(0, 1, 1, 1);
             this.picMap.Name = "picMap";
-            this.picMap.Size = new System.Drawing.Size(123, 13);
+            this.picMap.Size = new System.Drawing.Size(211, 13);
             this.picMap.TabIndex = 19;
             this.picMap.TabStop = false;
             this.toolTip1.SetToolTip(this.picMap, "跟打地图");
@@ -1394,14 +1366,14 @@
             this.Column17,
             this.Column18});
             this.dataGridView2.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("宋体", 8F);
-            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle55.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle55.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle55.Font = new System.Drawing.Font("宋体", 8F);
+            dataGridViewCellStyle55.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle55.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle55.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle55.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle55;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView2.EnableHeadersVisualStyles = false;
@@ -1412,19 +1384,19 @@
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("Verdana", 7F);
-            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle56.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle56.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            dataGridViewCellStyle56.Font = new System.Drawing.Font("Verdana", 7F);
+            dataGridViewCellStyle56.ForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle56.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle56.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle56;
             this.dataGridView2.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.DarkGray;
             this.dataGridView2.RowTemplate.Height = 23;
             this.dataGridView2.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView2.ShowCellToolTips = false;
-            this.dataGridView2.Size = new System.Drawing.Size(400, 15);
+            this.dataGridView2.Size = new System.Drawing.Size(688, 15);
             this.dataGridView2.TabIndex = 20;
             this.dataGridView2.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView2_CellFormatting);
             // 
@@ -1439,8 +1411,8 @@
             // Column2
             // 
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle26.ForeColor = System.Drawing.Color.White;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle54.ForeColor = System.Drawing.Color.White;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle54;
             this.Column2.HeaderText = "Column2";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
@@ -1595,8 +1567,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel2MinSize = 50;
-            this.splitContainer1.Size = new System.Drawing.Size(400, 244);
-            this.splitContainer1.SplitterDistance = 130;
+            this.splitContainer1.Size = new System.Drawing.Size(688, 282);
+            this.splitContainer1.SplitterDistance = 181;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 3;
             this.splitContainer1.TabStop = false;
@@ -1607,7 +1579,7 @@
             this.picDoing.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.picDoing.BackColor = System.Drawing.Color.White;
             this.picDoing.Image = global::WindowsFormsApplication2.Properties.Resources.doing;
-            this.picDoing.Location = new System.Drawing.Point(359, 105);
+            this.picDoing.Location = new System.Drawing.Point(647, 156);
             this.picDoing.Name = "picDoing";
             this.picDoing.Size = new System.Drawing.Size(22, 22);
             this.picDoing.TabIndex = 23;
@@ -1630,7 +1602,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer2.Panel2MinSize = 0;
-            this.splitContainer2.Size = new System.Drawing.Size(400, 111);
+            this.splitContainer2.Size = new System.Drawing.Size(688, 98);
             this.splitContainer2.SplitterIncrement = 2;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 5;
@@ -1653,8 +1625,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer3.Size = new System.Drawing.Size(400, 111);
-            this.splitContainer3.SplitterDistance = 52;
+            this.splitContainer3.Size = new System.Drawing.Size(688, 98);
+            this.splitContainer3.SplitterDistance = 48;
             this.splitContainer3.TabIndex = 0;
             this.splitContainer3.TabStop = false;
             // 
@@ -1695,17 +1667,17 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(400, 30);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(688, 30);
             this.tableLayoutPanel2.TabIndex = 10;
             // 
             // lblBmTips
             // 
             this.lblBmTips.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.lblBmTips.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblBmTips.Location = new System.Drawing.Point(87, 1);
+            this.lblBmTips.Location = new System.Drawing.Point(150, 1);
             this.lblBmTips.Margin = new System.Windows.Forms.Padding(0, 1, 1, 0);
             this.lblBmTips.Name = "lblBmTips";
-            this.lblBmTips.Size = new System.Drawing.Size(58, 14);
+            this.lblBmTips.Size = new System.Drawing.Size(101, 14);
             this.lblBmTips.TabIndex = 23;
             this.lblBmTips.TabStop = false;
             // 
@@ -1715,10 +1687,10 @@
             this.lblAutoReType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblAutoReType.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAutoReType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.lblAutoReType.Location = new System.Drawing.Point(212, 16);
+            this.lblAutoReType.Location = new System.Drawing.Point(366, 16);
             this.lblAutoReType.Margin = new System.Windows.Forms.Padding(0, 1, 1, 1);
             this.lblAutoReType.Name = "lblAutoReType";
-            this.lblAutoReType.Size = new System.Drawing.Size(32, 13);
+            this.lblAutoReType.Size = new System.Drawing.Size(56, 13);
             this.lblAutoReType.TabIndex = 18;
             this.lblAutoReType.Text = "0";
             this.lblAutoReType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1729,10 +1701,10 @@
             this.lbl错字显示.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbl错字显示.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl错字显示.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.lbl错字显示.Location = new System.Drawing.Point(179, 15);
+            this.lbl错字显示.Location = new System.Drawing.Point(309, 15);
             this.lbl错字显示.Margin = new System.Windows.Forms.Padding(0, 0, 1, 1);
             this.lbl错字显示.Name = "lbl错字显示";
-            this.lbl错字显示.Size = new System.Drawing.Size(32, 14);
+            this.lbl错字显示.Size = new System.Drawing.Size(56, 14);
             this.lbl错字显示.TabIndex = 17;
             this.lbl错字显示.Text = "错字";
             this.lbl错字显示.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1743,10 +1715,10 @@
             this.lbl回改显示.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbl回改显示.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl回改显示.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.lbl回改显示.Location = new System.Drawing.Point(146, 15);
+            this.lbl回改显示.Location = new System.Drawing.Point(252, 15);
             this.lbl回改显示.Margin = new System.Windows.Forms.Padding(0, 0, 1, 1);
             this.lbl回改显示.Name = "lbl回改显示";
-            this.lbl回改显示.Size = new System.Drawing.Size(32, 14);
+            this.lbl回改显示.Size = new System.Drawing.Size(56, 14);
             this.lbl回改显示.TabIndex = 16;
             this.lbl回改显示.Text = "回改";
             this.lbl回改显示.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1757,10 +1729,10 @@
             this.lblspeedcheck.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblspeedcheck.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblspeedcheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.lblspeedcheck.Location = new System.Drawing.Point(34, 15);
+            this.lblspeedcheck.Location = new System.Drawing.Point(59, 15);
             this.lblspeedcheck.Margin = new System.Windows.Forms.Padding(0, 0, 1, 1);
             this.lblspeedcheck.Name = "lblspeedcheck";
-            this.lblspeedcheck.Size = new System.Drawing.Size(52, 14);
+            this.lblspeedcheck.Size = new System.Drawing.Size(90, 14);
             this.lblspeedcheck.TabIndex = 14;
             this.lblspeedcheck.Text = "时间";
             this.lblspeedcheck.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1769,10 +1741,10 @@
             // 
             this.picBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.picBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picBar.Location = new System.Drawing.Point(87, 16);
+            this.picBar.Location = new System.Drawing.Point(150, 16);
             this.picBar.Margin = new System.Windows.Forms.Padding(0, 1, 1, 1);
             this.picBar.Name = "picBar";
-            this.picBar.Size = new System.Drawing.Size(58, 13);
+            this.picBar.Size = new System.Drawing.Size(101, 13);
             this.picBar.TabIndex = 22;
             this.picBar.TabStop = false;
             // 
@@ -1794,7 +1766,7 @@
             // 
             this.splitContainer4.Panel2.Controls.Add(this.dataGridView1);
             this.splitContainer4.Panel2.Controls.Add(this.richTextBox2);
-            this.splitContainer4.Size = new System.Drawing.Size(400, 55);
+            this.splitContainer4.Size = new System.Drawing.Size(688, 46);
             this.splitContainer4.SplitterDistance = 206;
             this.splitContainer4.SplitterWidth = 1;
             this.splitContainer4.TabIndex = 1;
@@ -1822,21 +1794,18 @@
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton4,
-            this.tsb标注,
+            this.RealTimeData,
+            this.tbnSpline,
             this.toolStripButton1,
             this.toolStripButton3,
-            this.toolStripBtnLS,
-            this.toolStripButton2,
-            this.tbnSpline,
             this.picBmTips,
-            this.PicSend,
-            this.toolButton1});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 343);
+            this.tsb标注});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 381);
             this.toolStrip1.Margin = new System.Windows.Forms.Padding(0, 0, 2, 2);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(400, 22);
+            this.toolStrip1.Size = new System.Drawing.Size(688, 22);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.Paint += new System.Windows.Forms.PaintEventHandler(this.toolStrip1_Paint_1);
@@ -1860,21 +1829,39 @@
             this.toolStripButton4.CheckedChanged += new System.EventHandler(this.toolStripButton4_CheckedChanged);
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
-            // tsb标注
+            // RealTimeData
             // 
-            this.tsb标注.AutoToolTip = false;
-            this.tsb标注.BackColor = System.Drawing.Color.Transparent;
-            this.tsb标注.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(10)))));
-            this.tsb标注.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsb标注.ForeColor = System.Drawing.Color.Black;
-            this.tsb标注.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsb标注.Name = "tsb标注";
-            this.tsb标注.Size = new System.Drawing.Size(36, 19);
-            this.tsb标注.Text = "标记";
-            this.tsb标注.ToolTipText = "打开自动标记词组\r\n(技术提供：hwj，感谢hwj)\r\n如果您挂有码表并且开启智能测词，则会从您的码表\r\n文件中提取当前文段所有词汇显示\r\n蓝色：一重 | 红色：" +
-    "二重 | 紫色：三重 | 粉色：四重及以上\r\n实线：全码 | 虚线：非全码";
-            this.tsb标注.WdithAdjust = 0;
-            this.tsb标注.Click += new System.EventHandler(this.PointIt);
+            this.RealTimeData.AutoSize = false;
+            this.RealTimeData.AutoToolTip = false;
+            this.RealTimeData.BackColor = System.Drawing.Color.Transparent;
+            this.RealTimeData.BorderColor = System.Drawing.Color.DarkOrange;
+            this.RealTimeData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.RealTimeData.ForeColor = System.Drawing.Color.DimGray;
+            this.RealTimeData.Image = ((System.Drawing.Image)(resources.GetObject("RealTimeData.Image")));
+            this.RealTimeData.ImageTransparentColor = System.Drawing.Color.Indigo;
+            this.RealTimeData.Name = "RealTimeData";
+            this.RealTimeData.Size = new System.Drawing.Size(35, 19);
+            this.RealTimeData.Text = "实时";
+            this.RealTimeData.ToolTipText = "跟打过程中显示实时数据";
+            this.RealTimeData.WdithAdjust = 0;
+            this.RealTimeData.Click += new System.EventHandler(this.ShowRealTimeData_Click);
+            // 
+            // tbnSpline
+            // 
+            this.tbnSpline.AutoSize = false;
+            this.tbnSpline.AutoToolTip = false;
+            this.tbnSpline.BackColor = System.Drawing.Color.Transparent;
+            this.tbnSpline.BorderColor = System.Drawing.Color.Turquoise;
+            this.tbnSpline.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbnSpline.ForeColor = System.Drawing.Color.DimGray;
+            this.tbnSpline.Image = ((System.Drawing.Image)(resources.GetObject("tbnSpline.Image")));
+            this.tbnSpline.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbnSpline.Name = "tbnSpline";
+            this.tbnSpline.Size = new System.Drawing.Size(35, 19);
+            this.tbnSpline.Text = "曲线";
+            this.tbnSpline.ToolTipText = "显示与隐藏曲线界面\r\n不影响曲线统计";
+            this.tbnSpline.WdithAdjust = 2;
+            this.tbnSpline.Click += new System.EventHandler(this.tbnSpline_Click);
             // 
             // toolStripButton1
             // 
@@ -1901,58 +1888,10 @@
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(36, 19);
-            this.toolStripButton3.Text = "潜水";
-            this.toolStripButton3.ToolTipText = "不发送成绩";
+            this.toolStripButton3.Text = "复制";
+            this.toolStripButton3.ToolTipText = "跟打结束后自动复制成绩";
             this.toolStripButton3.WdithAdjust = 0;
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
-            // 
-            // toolStripBtnLS
-            // 
-            this.toolStripBtnLS.AutoToolTip = false;
-            this.toolStripBtnLS.BackColor = System.Drawing.Color.Transparent;
-            this.toolStripBtnLS.BorderColor = System.Drawing.Color.HotPink;
-            this.toolStripBtnLS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripBtnLS.ForeColor = System.Drawing.Color.Silver;
-            this.toolStripBtnLS.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnLS.Name = "toolStripBtnLS";
-            this.toolStripBtnLS.Size = new System.Drawing.Size(36, 19);
-            this.toolStripBtnLS.Text = "限制";
-            this.toolStripBtnLS.ToolTipText = "左键开启，再次左键关闭\r\n请在设置、高级功能里设定限制速度值\r\n超过设置速度，才发送成绩";
-            this.toolStripBtnLS.WdithAdjust = 0;
-            this.toolStripBtnLS.Click += new System.EventHandler(this.toolStripBtnLS_Click);
-            this.toolStripBtnLS.MouseDown += new System.Windows.Forms.MouseEventHandler(this.toolStripBtnLS_MouseDown);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.AutoToolTip = false;
-            this.toolStripButton2.BackColor = System.Drawing.Color.Transparent;
-            this.toolStripButton2.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.ForeColor = System.Drawing.Color.Silver;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(36, 19);
-            this.toolStripButton2.Text = "极简";
-            this.toolStripButton2.ToolTipText = "成绩发送以极简模式";
-            this.toolStripButton2.WdithAdjust = 0;
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
-            // 
-            // tbnSpline
-            // 
-            this.tbnSpline.AutoSize = false;
-            this.tbnSpline.AutoToolTip = false;
-            this.tbnSpline.BackColor = System.Drawing.Color.Transparent;
-            this.tbnSpline.BorderColor = System.Drawing.Color.Turquoise;
-            this.tbnSpline.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbnSpline.ForeColor = System.Drawing.Color.DimGray;
-            this.tbnSpline.Image = ((System.Drawing.Image)(resources.GetObject("tbnSpline.Image")));
-            this.tbnSpline.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbnSpline.Name = "tbnSpline";
-            this.tbnSpline.Size = new System.Drawing.Size(35, 19);
-            this.tbnSpline.Text = "曲线";
-            this.tbnSpline.ToolTipText = "显示与隐藏曲线界面\r\n不影响曲线统计";
-            this.tbnSpline.WdithAdjust = 2;
-            this.tbnSpline.Click += new System.EventHandler(this.tbnSpline_Click);
             // 
             // picBmTips
             // 
@@ -1971,37 +1910,21 @@
             this.picBmTips.WdithAdjust = 0;
             this.picBmTips.Click += new System.EventHandler(this.picBmTips_Click);
             // 
-            // PicSend
+            // tsb标注
             // 
-            this.PicSend.AutoSize = false;
-            this.PicSend.AutoToolTip = false;
-            this.PicSend.BackColor = System.Drawing.Color.Transparent;
-            this.PicSend.BorderColor = System.Drawing.Color.DarkOrange;
-            this.PicSend.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.PicSend.ForeColor = System.Drawing.Color.DimGray;
-            this.PicSend.Image = ((System.Drawing.Image)(resources.GetObject("PicSend.Image")));
-            this.PicSend.ImageTransparentColor = System.Drawing.Color.Indigo;
-            this.PicSend.Name = "PicSend";
-            this.PicSend.Size = new System.Drawing.Size(35, 19);
-            this.PicSend.Text = "图片";
-            this.PicSend.ToolTipText = "以图片发送成绩";
-            this.PicSend.WdithAdjust = 0;
-            this.PicSend.Click += new System.EventHandler(this.PicSend_Click);
-            // 
-            // toolButton1
-            // 
-            this.toolButton1.AutoToolTip = false;
-            this.toolButton1.BackColor = System.Drawing.Color.Transparent;
-            this.toolButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(180)))));
-            this.toolButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolButton1.ForeColor = System.Drawing.Color.Silver;
-            this.toolButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolButton1.Name = "toolButton1";
-            this.toolButton1.Size = new System.Drawing.Size(36, 19);
-            this.toolButton1.Text = "精五";
-            this.toolButton1.ToolTipText = "参加精五比赛时启用(beta0.2)";
-            this.toolButton1.WdithAdjust = 0;
-            this.toolButton1.Click += new System.EventHandler(this.tsbJw_Click);
+            this.tsb标注.AutoToolTip = false;
+            this.tsb标注.BackColor = System.Drawing.Color.Transparent;
+            this.tsb标注.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(10)))));
+            this.tsb标注.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsb标注.ForeColor = System.Drawing.Color.Black;
+            this.tsb标注.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb标注.Name = "tsb标注";
+            this.tsb标注.Size = new System.Drawing.Size(36, 19);
+            this.tsb标注.Text = "标记";
+            this.tsb标注.ToolTipText = "打开自动标记词组\r\n(技术提供：hwj，感谢hwj)\r\n如果您挂有码表并且开启智能测词，则会从您的码表\r\n文件中提取当前文段所有词汇显示\r\n蓝色：一重 | 红色：" +
+    "二重 | 紫色：三重 | 粉色：四重及以上\r\n实线：全码 | 虚线：非全码";
+            this.tsb标注.WdithAdjust = 0;
+            this.tsb标注.Click += new System.EventHandler(this.PointIt);
             // 
             // mS1
             // 
@@ -2014,13 +1937,12 @@
             this.TSMI1,
             this.TSMI4,
             this.TSMI3,
-            this.TSMI2,
             this.TSMI5});
             this.mS1.Location = new System.Drawing.Point(3, 26);
             this.mS1.Name = "mS1";
             this.mS1.Padding = new System.Windows.Forms.Padding(0);
             this.mS1.ShowItemToolTips = true;
-            this.mS1.Size = new System.Drawing.Size(400, 22);
+            this.mS1.Size = new System.Drawing.Size(688, 22);
             this.mS1.TabIndex = 1;
             this.mS1.TabStop = true;
             this.mS1.Text = "menuStrip1";
@@ -2070,7 +1992,7 @@
             this.外观ToolStripMenuItem.ForeColor = System.Drawing.Color.Green;
             this.外观ToolStripMenuItem.Name = "外观ToolStripMenuItem";
             this.外观ToolStripMenuItem.Size = new System.Drawing.Size(196, 24);
-            this.外观ToolStripMenuItem.Text = "外观...";
+            this.外观ToolStripMenuItem.Text = "主题...";
             this.外观ToolStripMenuItem.Click += new System.EventHandler(this.外观ToolStripMenuItem_Click);
             // 
             // toolStripSeparator6
@@ -2141,7 +2063,6 @@
             // 
             this.TSMI4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.新发文ToolStripMenuItem,
-            this.载文ToolStripMenuItem,
             this.载文途径ToolStripMenuItem1,
             this.DrillToolStripMenuItem,
             this.重打ToolStripMenuItem,
@@ -2149,7 +2070,9 @@
             this.暂停ToolStripMenuItem,
             this.toolStripSeparator13,
             this.发文状态ToolStripMenuItem,
+            this.SaveSendToolStripMenuItem,
             this.toolStripSeparator3,
+            this.SendPreToolStripMenuItem,
             this.发下一段ToolStripMenuItem,
             this.停止发文ToolStripMenuItem1});
             this.TSMI4.ForeColor = System.Drawing.Color.White;
@@ -2165,26 +2088,17 @@
             this.新发文ToolStripMenuItem.Name = "新发文ToolStripMenuItem";
             this.新发文ToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.新发文ToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.新发文ToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
+            this.新发文ToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
             this.新发文ToolStripMenuItem.Text = "发文...";
             this.新发文ToolStripMenuItem.Click += new System.EventHandler(this.新发文ToolStripMenuItem_Click);
-            // 
-            // 载文ToolStripMenuItem
-            // 
-            this.载文ToolStripMenuItem.Name = "载文ToolStripMenuItem";
-            this.载文ToolStripMenuItem.ShortcutKeyDisplayString = "";
-            this.载文ToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.载文ToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
-            this.载文ToolStripMenuItem.Text = "载文";
-            this.载文ToolStripMenuItem.Click += new System.EventHandler(this.载文ToolStripMenuItem_Click);
             // 
             // 载文途径ToolStripMenuItem1
             // 
             this.载文途径ToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.从剪切板ToolStripMenuItem1,
-            this.从QQ窗口手动ToolStripMenuItem1});
+            this.FormatLoadToolStripMenuItem1});
             this.载文途径ToolStripMenuItem1.Name = "载文途径ToolStripMenuItem1";
-            this.载文途径ToolStripMenuItem1.Size = new System.Drawing.Size(184, 24);
+            this.载文途径ToolStripMenuItem1.Size = new System.Drawing.Size(205, 24);
             this.载文途径ToolStripMenuItem1.Text = "从剪贴板载文";
             // 
             // 从剪切板ToolStripMenuItem1
@@ -2197,22 +2111,22 @@
             this.从剪切板ToolStripMenuItem1.ToolTipText = "不处理前导符等格式，直接载入原文";
             this.从剪切板ToolStripMenuItem1.Click += new System.EventHandler(this.从剪切板ToolStripMenuItem1_Click);
             // 
-            // 从QQ窗口手动ToolStripMenuItem1
+            // FormatLoadToolStripMenuItem1
             // 
-            this.从QQ窗口手动ToolStripMenuItem1.Name = "从QQ窗口手动ToolStripMenuItem1";
-            this.从QQ窗口手动ToolStripMenuItem1.ShortcutKeyDisplayString = "";
-            this.从QQ窗口手动ToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
-            this.从QQ窗口手动ToolStripMenuItem1.Size = new System.Drawing.Size(174, 24);
-            this.从QQ窗口手动ToolStripMenuItem1.Text = "格式载文";
-            this.从QQ窗口手动ToolStripMenuItem1.ToolTipText = "载入处理前导符等格式后得到的文段";
-            this.从QQ窗口手动ToolStripMenuItem1.Click += new System.EventHandler(this.从QQ窗口手动ToolStripMenuItem1_Click);
+            this.FormatLoadToolStripMenuItem1.Name = "FormatLoadToolStripMenuItem1";
+            this.FormatLoadToolStripMenuItem1.ShortcutKeyDisplayString = "";
+            this.FormatLoadToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
+            this.FormatLoadToolStripMenuItem1.Size = new System.Drawing.Size(174, 24);
+            this.FormatLoadToolStripMenuItem1.Text = "格式载文";
+            this.FormatLoadToolStripMenuItem1.ToolTipText = "载入处理前导符等格式后得到的文段";
+            this.FormatLoadToolStripMenuItem1.Click += new System.EventHandler(this.FormatLoadToolStripMenuItem1_Click);
             // 
             // DrillToolStripMenuItem
             // 
             this.DrillToolStripMenuItem.Name = "DrillToolStripMenuItem";
             this.DrillToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.DrillToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.DrillToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
+            this.DrillToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
             this.DrillToolStripMenuItem.Text = "打开练习";
             this.DrillToolStripMenuItem.ToolTipText = "直接打开所选文本进行练习，跟打器不作任何处理。\r\n请先设定好文本内容";
             this.DrillToolStripMenuItem.Click += new System.EventHandler(this.打开练习ToolStripMenuItem_Click);
@@ -2222,7 +2136,7 @@
             this.重打ToolStripMenuItem.Name = "重打ToolStripMenuItem";
             this.重打ToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.重打ToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.重打ToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
+            this.重打ToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
             this.重打ToolStripMenuItem.Text = "重打";
             this.重打ToolStripMenuItem.Click += new System.EventHandler(this.重打ToolStripMenuItem_Click);
             // 
@@ -2231,8 +2145,9 @@
             this.DisorderToolStripMenuItem.Name = "DisorderToolStripMenuItem";
             this.DisorderToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.DisorderToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
-            this.DisorderToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
+            this.DisorderToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
             this.DisorderToolStripMenuItem.Text = "乱序重打";
+            this.DisorderToolStripMenuItem.ToolTipText = "将当前文段乱序并重打\r\n若处于发文中将自动停止发文";
             this.DisorderToolStripMenuItem.Click += new System.EventHandler(this.将目前文章乱序ToolStripMenuItem_Click);
             // 
             // 暂停ToolStripMenuItem
@@ -2240,8 +2155,8 @@
             this.暂停ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9.2F, System.Drawing.FontStyle.Bold);
             this.暂停ToolStripMenuItem.Name = "暂停ToolStripMenuItem";
             this.暂停ToolStripMenuItem.ShortcutKeyDisplayString = "";
-            this.暂停ToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
-            this.暂停ToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
+            this.暂停ToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
+            this.暂停ToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
             this.暂停ToolStripMenuItem.Text = "暂停";
             this.暂停ToolStripMenuItem.ToolTipText = "暂停跟打，失去焦点的时候，也会自动暂停。";
             this.暂停ToolStripMenuItem.Click += new System.EventHandler(this.暂停ToolStripMenuItem_Click);
@@ -2249,27 +2164,44 @@
             // toolStripSeparator13
             // 
             this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(181, 6);
+            this.toolStripSeparator13.Size = new System.Drawing.Size(202, 6);
             // 
             // 发文状态ToolStripMenuItem
             // 
             this.发文状态ToolStripMenuItem.Name = "发文状态ToolStripMenuItem";
             this.发文状态ToolStripMenuItem.ShortcutKeyDisplayString = "";
-            this.发文状态ToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
+            this.发文状态ToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
             this.发文状态ToolStripMenuItem.Text = "发文状态";
             this.发文状态ToolStripMenuItem.Click += new System.EventHandler(this.发文状态ToolStripMenuItem_Click);
+            // 
+            // SaveSendToolStripMenuItem
+            // 
+            this.SaveSendToolStripMenuItem.ForeColor = System.Drawing.Color.SeaGreen;
+            this.SaveSendToolStripMenuItem.Name = "SaveSendToolStripMenuItem";
+            this.SaveSendToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.SaveSendToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
+            this.SaveSendToolStripMenuItem.Text = "保存发文配置";
+            this.SaveSendToolStripMenuItem.Click += new System.EventHandler(this.SaveSendToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(181, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(202, 6);
+            // 
+            // SendPreToolStripMenuItem
+            // 
+            this.SendPreToolStripMenuItem.Name = "SendPreToolStripMenuItem";
+            this.SendPreToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.SendPreToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
+            this.SendPreToolStripMenuItem.Text = "发上一段";
+            this.SendPreToolStripMenuItem.Click += new System.EventHandler(this.SendPreToolStripMenuItem_Click);
             // 
             // 发下一段ToolStripMenuItem
             // 
             this.发下一段ToolStripMenuItem.Name = "发下一段ToolStripMenuItem";
             this.发下一段ToolStripMenuItem.ShortcutKeyDisplayString = "";
-            this.发下一段ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.发下一段ToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
+            this.发下一段ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.发下一段ToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
             this.发下一段ToolStripMenuItem.Text = "发下一段";
             this.发下一段ToolStripMenuItem.Click += new System.EventHandler(this.发下一段ToolStripMenuItem_Click);
             // 
@@ -2280,68 +2212,53 @@
             this.停止发文ToolStripMenuItem1.Name = "停止发文ToolStripMenuItem1";
             this.停止发文ToolStripMenuItem1.ShortcutKeyDisplayString = "";
             this.停止发文ToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
-            this.停止发文ToolStripMenuItem1.Size = new System.Drawing.Size(184, 24);
+            this.停止发文ToolStripMenuItem1.Size = new System.Drawing.Size(205, 24);
             this.停止发文ToolStripMenuItem1.Text = "停止发文";
             this.停止发文ToolStripMenuItem1.Click += new System.EventHandler(this.停止发文ToolStripMenuItem1_Click);
             // 
             // TSMI3
             // 
             this.TSMI3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.换群ToolStripMenuItem1,
-            this.toolStripSeparator14,
-            this.发送正在跟打的文段ToolStripMenuItem1,
+            this.复制跟打的文段ToolStripMenuItem1,
             this.上一次成绩ToolStripMenuItem1,
             this.复制图片成绩ToolStripMenuItem,
             this.toolStripSeparator5,
-            this.平均成绩ToolStripMenuItem,
-            this.击键统计ToolStripMenuItem,
             this.测速数据ToolStripMenuItem,
             this.跟打分析ToolStripMenuItem,
             this.跟打报告ToolStripMenuItem,
             this.KeyAnToolStripMenuItem,
             this.toolStripSeparator12,
+            this.平均成绩ToolStripMenuItem,
+            this.击键统计ToolStripMenuItem,
             this.编码提示设置ToolStripMenuItem,
             this.智能测词ToolStripMenuItem,
             this.toolStripSeparator7,
-            this.其它功能ToolStripMenuItem});
+            this.查询当前编码ToolStripMenuItem2,
+            this.检验真伪ToolStripMenuItem});
             this.TSMI3.ForeColor = System.Drawing.Color.White;
             this.TSMI3.Name = "TSMI3";
             this.TSMI3.Padding = new System.Windows.Forms.Padding(0);
             this.TSMI3.Size = new System.Drawing.Size(39, 22);
             this.TSMI3.Text = "功能";
             // 
-            // 换群ToolStripMenuItem1
+            // 复制跟打的文段ToolStripMenuItem1
             // 
-            this.换群ToolStripMenuItem1.Name = "换群ToolStripMenuItem1";
-            this.换群ToolStripMenuItem1.ShortcutKeyDisplayString = "";
-            this.换群ToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.换群ToolStripMenuItem1.Size = new System.Drawing.Size(204, 24);
-            this.换群ToolStripMenuItem1.Text = "换群";
-            this.换群ToolStripMenuItem1.Click += new System.EventHandler(this.换群ToolStripMenuItem1_Click);
-            // 
-            // toolStripSeparator14
-            // 
-            this.toolStripSeparator14.Name = "toolStripSeparator14";
-            this.toolStripSeparator14.Size = new System.Drawing.Size(201, 6);
-            // 
-            // 发送正在跟打的文段ToolStripMenuItem1
-            // 
-            this.发送正在跟打的文段ToolStripMenuItem1.Name = "发送正在跟打的文段ToolStripMenuItem1";
-            this.发送正在跟打的文段ToolStripMenuItem1.ShortcutKeyDisplayString = "";
-            this.发送正在跟打的文段ToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F7;
-            this.发送正在跟打的文段ToolStripMenuItem1.Size = new System.Drawing.Size(204, 24);
-            this.发送正在跟打的文段ToolStripMenuItem1.Text = "发送当前文段";
-            this.发送正在跟打的文段ToolStripMenuItem1.ToolTipText = "发送正在跟打的文段";
-            this.发送正在跟打的文段ToolStripMenuItem1.Click += new System.EventHandler(this.发送正在跟打的文段ToolStripMenuItem1_Click);
+            this.复制跟打的文段ToolStripMenuItem1.Name = "复制跟打的文段ToolStripMenuItem1";
+            this.复制跟打的文段ToolStripMenuItem1.ShortcutKeyDisplayString = "";
+            this.复制跟打的文段ToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.复制跟打的文段ToolStripMenuItem1.Size = new System.Drawing.Size(213, 24);
+            this.复制跟打的文段ToolStripMenuItem1.Text = "复制当前文段";
+            this.复制跟打的文段ToolStripMenuItem1.ToolTipText = "复制正在跟打的文段";
+            this.复制跟打的文段ToolStripMenuItem1.Click += new System.EventHandler(this.复制正在跟打的文段ToolStripMenuItem1_Click);
             // 
             // 上一次成绩ToolStripMenuItem1
             // 
             this.上一次成绩ToolStripMenuItem1.Name = "上一次成绩ToolStripMenuItem1";
             this.上一次成绩ToolStripMenuItem1.ShortcutKeyDisplayString = "";
-            this.上一次成绩ToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F9;
-            this.上一次成绩ToolStripMenuItem1.Size = new System.Drawing.Size(204, 24);
-            this.上一次成绩ToolStripMenuItem1.Text = "发送上次成绩";
-            this.上一次成绩ToolStripMenuItem1.ToolTipText = "发送上一次成绩";
+            this.上一次成绩ToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F6;
+            this.上一次成绩ToolStripMenuItem1.Size = new System.Drawing.Size(213, 24);
+            this.上一次成绩ToolStripMenuItem1.Text = "复制跟打成绩";
+            this.上一次成绩ToolStripMenuItem1.ToolTipText = "复制跟打的成绩";
             this.上一次成绩ToolStripMenuItem1.Click += new System.EventHandler(this.上一次成绩ToolStripMenuItem1_Click);
             // 
             // 复制图片成绩ToolStripMenuItem
@@ -2349,7 +2266,7 @@
             this.复制图片成绩ToolStripMenuItem.Name = "复制图片成绩ToolStripMenuItem";
             this.复制图片成绩ToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.复制图片成绩ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
-            this.复制图片成绩ToolStripMenuItem.Size = new System.Drawing.Size(204, 24);
+            this.复制图片成绩ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.复制图片成绩ToolStripMenuItem.Text = "复制图片成绩";
             this.复制图片成绩ToolStripMenuItem.ToolTipText = "复制当前图片的成绩";
             this.复制图片成绩ToolStripMenuItem.Click += new System.EventHandler(this.复制图片成绩ToolStripMenuItem_Click);
@@ -2357,27 +2274,7 @@
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(201, 6);
-            // 
-            // 平均成绩ToolStripMenuItem
-            // 
-            this.平均成绩ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9.2F);
-            this.平均成绩ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.平均成绩ToolStripMenuItem.Name = "平均成绩ToolStripMenuItem";
-            this.平均成绩ToolStripMenuItem.Size = new System.Drawing.Size(204, 24);
-            this.平均成绩ToolStripMenuItem.Text = "平均成绩...";
-            this.平均成绩ToolStripMenuItem.Click += new System.EventHandler(this.平均成绩ToolStripMenuItem_Click);
-            // 
-            // 击键统计ToolStripMenuItem
-            // 
-            this.击键统计ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9.2F);
-            this.击键统计ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.击键统计ToolStripMenuItem.Name = "击键统计ToolStripMenuItem";
-            this.击键统计ToolStripMenuItem.ShortcutKeyDisplayString = "";
-            this.击键统计ToolStripMenuItem.Size = new System.Drawing.Size(204, 24);
-            this.击键统计ToolStripMenuItem.Text = "击键评定...";
-            this.击键统计ToolStripMenuItem.ToolTipText = "至少跟打100段，才可使用此功能。";
-            this.击键统计ToolStripMenuItem.Click += new System.EventHandler(this.击键统计ToolStripMenuItem_Click);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(210, 6);
             // 
             // 测速数据ToolStripMenuItem
             // 
@@ -2385,8 +2282,8 @@
             this.测速数据ToolStripMenuItem.ForeColor = System.Drawing.Color.Green;
             this.测速数据ToolStripMenuItem.Name = "测速数据ToolStripMenuItem";
             this.测速数据ToolStripMenuItem.ShortcutKeyDisplayString = "";
-            this.测速数据ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.测速数据ToolStripMenuItem.Size = new System.Drawing.Size(204, 24);
+            this.测速数据ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
+            this.测速数据ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.测速数据ToolStripMenuItem.Text = "测速数据...";
             this.测速数据ToolStripMenuItem.Click += new System.EventHandler(this.测速数据ToolStripMenuItem_Click);
             // 
@@ -2397,7 +2294,7 @@
             this.跟打分析ToolStripMenuItem.Name = "跟打分析ToolStripMenuItem";
             this.跟打分析ToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.跟打分析ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
-            this.跟打分析ToolStripMenuItem.Size = new System.Drawing.Size(204, 24);
+            this.跟打分析ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.跟打分析ToolStripMenuItem.Text = "速度分析...";
             this.跟打分析ToolStripMenuItem.Click += new System.EventHandler(this.跟打分析ToolStripMenuItem_Click);
             // 
@@ -2407,7 +2304,7 @@
             this.跟打报告ToolStripMenuItem.Name = "跟打报告ToolStripMenuItem";
             this.跟打报告ToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.跟打报告ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.J)));
-            this.跟打报告ToolStripMenuItem.Size = new System.Drawing.Size(204, 24);
+            this.跟打报告ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.跟打报告ToolStripMenuItem.Text = "跟打报告...";
             this.跟打报告ToolStripMenuItem.Click += new System.EventHandler(this.跟打报告ToolStripMenuItem_Click);
             // 
@@ -2416,26 +2313,46 @@
             this.KeyAnToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(90)))), ((int)(((byte)(220)))));
             this.KeyAnToolStripMenuItem.Name = "KeyAnToolStripMenuItem";
             this.KeyAnToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
-            this.KeyAnToolStripMenuItem.Size = new System.Drawing.Size(204, 24);
+            this.KeyAnToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.KeyAnToolStripMenuItem.Text = "按键统计...";
             this.KeyAnToolStripMenuItem.Click += new System.EventHandler(this.KeyAnToolStripMenuItem_Click);
             // 
             // toolStripSeparator12
             // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(201, 6);
+            this.toolStripSeparator12.Size = new System.Drawing.Size(210, 6);
+            // 
+            // 平均成绩ToolStripMenuItem
+            // 
+            this.平均成绩ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9.2F);
+            this.平均成绩ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.平均成绩ToolStripMenuItem.Name = "平均成绩ToolStripMenuItem";
+            this.平均成绩ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.平均成绩ToolStripMenuItem.Text = "平均成绩...";
+            this.平均成绩ToolStripMenuItem.Click += new System.EventHandler(this.平均成绩ToolStripMenuItem_Click);
+            // 
+            // 击键统计ToolStripMenuItem
+            // 
+            this.击键统计ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9.2F);
+            this.击键统计ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.击键统计ToolStripMenuItem.Name = "击键统计ToolStripMenuItem";
+            this.击键统计ToolStripMenuItem.ShortcutKeyDisplayString = "";
+            this.击键统计ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.击键统计ToolStripMenuItem.Text = "击键评定...";
+            this.击键统计ToolStripMenuItem.ToolTipText = "至少跟打100段，才可使用此功能。";
+            this.击键统计ToolStripMenuItem.Click += new System.EventHandler(this.击键统计ToolStripMenuItem_Click);
             // 
             // 编码提示设置ToolStripMenuItem
             // 
             this.编码提示设置ToolStripMenuItem.Name = "编码提示设置ToolStripMenuItem";
-            this.编码提示设置ToolStripMenuItem.Size = new System.Drawing.Size(204, 24);
+            this.编码提示设置ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.编码提示设置ToolStripMenuItem.Text = "编码提示测试...";
             this.编码提示设置ToolStripMenuItem.Click += new System.EventHandler(this.编码提示设置ToolStripMenuItem_Click);
             // 
             // 智能测词ToolStripMenuItem
             // 
             this.智能测词ToolStripMenuItem.Name = "智能测词ToolStripMenuItem";
-            this.智能测词ToolStripMenuItem.Size = new System.Drawing.Size(204, 24);
+            this.智能测词ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.智能测词ToolStripMenuItem.Text = "智能测词";
             this.智能测词ToolStripMenuItem.ToolTipText = "根据编码文件智能测量词组并显示最短码长";
             this.智能测词ToolStripMenuItem.Click += new System.EventHandler(this.智能测词ToolStripMenuItem_Click);
@@ -2443,17 +2360,7 @@
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(201, 6);
-            // 
-            // 其它功能ToolStripMenuItem
-            // 
-            this.其它功能ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.查询当前编码ToolStripMenuItem2,
-            this.检验真伪ToolStripMenuItem,
-            this.精五比赛成绩生成ToolStripMenuItem});
-            this.其它功能ToolStripMenuItem.Name = "其它功能ToolStripMenuItem";
-            this.其它功能ToolStripMenuItem.Size = new System.Drawing.Size(204, 24);
-            this.其它功能ToolStripMenuItem.Text = "其它功能";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(210, 6);
             // 
             // 查询当前编码ToolStripMenuItem2
             // 
@@ -2473,21 +2380,6 @@
             this.检验真伪ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.检验真伪ToolStripMenuItem.Text = "检验真伪";
             this.检验真伪ToolStripMenuItem.Click += new System.EventHandler(this.检验真伪ToolStripMenuItem_Click);
-            // 
-            // 精五比赛成绩生成ToolStripMenuItem
-            // 
-            this.精五比赛成绩生成ToolStripMenuItem.Name = "精五比赛成绩生成ToolStripMenuItem";
-            this.精五比赛成绩生成ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.精五比赛成绩生成ToolStripMenuItem.Text = "精五成绩生成工具...";
-            this.精五比赛成绩生成ToolStripMenuItem.Click += new System.EventHandler(this.精五比赛成绩生成ToolStripMenuItem_Click);
-            // 
-            // TSMI2
-            // 
-            this.TSMI2.ForeColor = System.Drawing.Color.White;
-            this.TSMI2.Name = "TSMI2";
-            this.TSMI2.Padding = new System.Windows.Forms.Padding(0);
-            this.TSMI2.Size = new System.Drawing.Size(39, 22);
-            this.TSMI2.Text = "换群";
             // 
             // TSMI5
             // 
@@ -2543,7 +2435,7 @@
             this.panel5.Location = new System.Drawing.Point(0, 51);
             this.panel5.Margin = new System.Windows.Forms.Padding(0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(400, 244);
+            this.panel5.Size = new System.Drawing.Size(688, 282);
             this.panel5.TabIndex = 18;
             // 
             // timer3
@@ -2702,11 +2594,6 @@
             // 
             this.openFileDialog1.Filter = "文本文档|*.txt";
             // 
-            // timerBtnFlash
-            // 
-            this.timerBtnFlash.Interval = 200;
-            this.timerBtnFlash.Tick += new System.EventHandler(this.timerBtnFlash_Tick);
-            // 
             // timerSubFlash
             // 
             this.timerSubFlash.Interval = 200;
@@ -2727,7 +2614,7 @@
             this.panelMain.Location = new System.Drawing.Point(3, 48);
             this.panelMain.Margin = new System.Windows.Forms.Padding(0);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(400, 317);
+            this.panelMain.Size = new System.Drawing.Size(688, 355);
             this.panelMain.TabIndex = 22;
             // 
             // cmsDuanList
@@ -2742,7 +2629,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(406, 368);
+            this.ClientSize = new System.Drawing.Size(694, 406);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.mS1);
@@ -2804,7 +2691,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblCount;
-        private System.Windows.Forms.Label lblDuan;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblSpeedText;
         private System.Windows.Forms.Label labelSpeeding;
@@ -2822,7 +2708,6 @@
         private System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.ContextMenuStrip ScoreContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem CopyScoreToolStripMenuItem;
-        public System.Windows.Forms.Label lblQuan;
         public System.Windows.Forms.Timer timerTSend;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripMain;
         public System.Windows.Forms.Label lblTitle;
@@ -2837,8 +2722,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartSpeed;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private ToolButton toolStripButton1;
-        public ToolButton toolStripButton2;
-        private ToolButton toolStripButton3;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private NewMenu mS1;
         private System.Windows.Forms.ToolStripMenuItem TSMI1;
@@ -2846,9 +2729,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripMenuItem 保持窗口最前ToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem TSMI2;
         private System.Windows.Forms.ToolStripMenuItem TSMI3;
-        private System.Windows.Forms.ToolStripMenuItem 发送正在跟打的文段ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 复制跟打的文段ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 上一次成绩ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem TSMI4;
         private System.Windows.Forms.ToolStripMenuItem 停止发文ToolStripMenuItem1;
@@ -2860,9 +2742,7 @@
         private System.Windows.Forms.ToolStripMenuItem 平均成绩ToolStripMenuItem;
         public TextBoxEx textBoxEx1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Timer timerBtnFlash;
         private System.Windows.Forms.Timer timerSubFlash;
-        public ToolButton toolStripBtnLS;
         private System.Windows.Forms.ToolStripMenuItem 内部测速ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 前五百单字ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -2901,9 +2781,8 @@
         private System.Windows.Forms.Label labelJiCheck;
         private System.Windows.Forms.Label labelCheckUD;
         private System.Windows.Forms.ToolStripMenuItem 跟打分析ToolStripMenuItem;
-        private ToolButton toolButton1;
         public System.Windows.Forms.ToolTip toolTip1;
-        private ToolButton PicSend;
+        private ToolButton RealTimeData;
         private System.Windows.Forms.ToolStripMenuItem 复制图片成绩ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 比赛时自动打开寻找测速点ToolStripMenuItem;
         private System.Windows.Forms.Panel panelMain;
@@ -2952,21 +2831,14 @@
         private System.Windows.Forms.ToolStripMenuItem 新发文ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 载文途径ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 从剪切板ToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem 从QQ窗口手动ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem FormatLoadToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 暂停ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
-        private System.Windows.Forms.ToolStripMenuItem 其它功能ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 查询当前编码ToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem 检验真伪ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 精五比赛成绩生成ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 老板键ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 重打ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 载文ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DisorderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DrillToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 换群ToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
         private System.Windows.Forms.ToolStripMenuItem HistoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem KeyAnToolStripMenuItem;
@@ -3003,6 +2875,12 @@
         private System.Windows.Forms.ToolStripTextBox ItemToolStripTextBox;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
         private System.Windows.Forms.ToolStripMenuItem CopyTitleToolStripMenuItem;
+        private ToolButton toolStripButton3;
+        private System.Windows.Forms.ToolStripMenuItem SaveSendToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SendPreToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 查询当前编码ToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem 检验真伪ToolStripMenuItem;
+        public System.Windows.Forms.Label lblDuan;
     }
 }
 

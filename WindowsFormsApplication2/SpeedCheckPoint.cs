@@ -36,8 +36,8 @@ namespace WindowsFormsApplication2
         private void SpeedCheckPoint_Load(object sender, EventArgs e)
         {
             if (Glob.SpeedPointCount > 0) {
-                this.Text = "第" + Glob.Pre_Cout + "段 测速信息 共" + Glob.SpeedPointCount + "个测速点";
-                Ti.Text = "第" + Glob.Pre_Cout + "段 字数" + Glob.TextLen + " 测速信息";
+                this.Text = "第" + Glob.CurSegmentNum.ToString() + "段 测速信息 共" + Glob.SpeedPointCount + "个测速点";
+                Ti.Text = "第" + Glob.CurSegmentNum.ToString() + "段 字数" + Glob.TextLen + " 测速信息";
                 double GetSpeed = 0,MinSpeed = 500,MaxSpeed = 0;
                 for (int i = 0; i < Glob.SpeedPointCount + 1; i++) {
                     if (i == 0)
@@ -152,12 +152,6 @@ namespace WindowsFormsApplication2
         private void btnCopyPic_Click(object sender, EventArgs e)
         {
             GetPic();
-        }
-
-        private void btnSendPic_Click(object sender, EventArgs e)
-        {
-            GetPic();
-            frm.SendClipBoardToQQ();
         }
 
         private void GetPic() {

@@ -51,7 +51,7 @@ namespace WindowsFormsApplication2.发文重写
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-            this.OutValue = this.ContentRichTextBox.Text;
+            this.OutValue = this.ContentRichTextBox.Text.Trim();
         }
 
         /// <summary>

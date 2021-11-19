@@ -31,20 +31,15 @@
             this.components = new System.ComponentModel.Container();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.cbxSingleTest = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.lblNowIni = new System.Windows.Forms.Label();
-            this.lblAll = new System.Windows.Forms.Label();
             this.btnChangePreCout = new System.Windows.Forms.Button();
             this.btnCancelTime = new System.Windows.Forms.Button();
             this.lblNowTime = new System.Windows.Forms.Label();
             this.btnSendTime = new System.Windows.Forms.Button();
-            this.btnOnceSC = new System.Windows.Forms.Button();
-            this.btnFixStart = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.btnFixNowTitle = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label12 = new System.Windows.Forms.Label();
@@ -59,16 +54,16 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lblTextSources = new System.Windows.Forms.Label();
-            this.tbxNowStart = new System.Windows.Forms.TextBox();
             this.lblTextStyle = new System.Windows.Forms.Label();
             this.lblSendCounted = new System.Windows.Forms.Label();
             this.lblSendPCounted = new System.Windows.Forms.Label();
             this.lblTotalCount = new System.Windows.Forms.Label();
             this.lblLeastCount = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.tbxSendC = new System.Windows.Forms.TextBox();
             this.tbxSendTime = new System.Windows.Forms.TextBox();
             this.tbxNowStartCount = new System.Windows.Forms.TextBox();
+            this.lblMarkCount = new System.Windows.Forms.Label();
+            this.tbxSendC = new System.Windows.Forms.Label();
             this.gbstatic = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -100,41 +95,17 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // cbxSingleTest
-            // 
-            this.cbxSingleTest.AutoSize = true;
-            this.cbxSingleTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbxSingleTest.Location = new System.Drawing.Point(12, 327);
-            this.cbxSingleTest.Name = "cbxSingleTest";
-            this.cbxSingleTest.Size = new System.Drawing.Size(45, 16);
-            this.cbxSingleTest.TabIndex = 3;
-            this.cbxSingleTest.Text = "独练";
-            this.toolTip1.SetToolTip(this.cbxSingleTest, "点击转换独练与分享练习模式");
-            this.cbxSingleTest.UseVisualStyleBackColor = true;
-            this.cbxSingleTest.CheckedChanged += new System.EventHandler(this.cbxSingleTest_CheckedChanged);
-            // 
             // lblNowIni
             // 
             this.lblNowIni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblNowIni.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblNowIni.Location = new System.Drawing.Point(68, 0);
+            this.lblNowIni.Location = new System.Drawing.Point(153, 1);
             this.lblNowIni.Name = "lblNowIni";
-            this.lblNowIni.Size = new System.Drawing.Size(49, 20);
+            this.lblNowIni.Size = new System.Drawing.Size(80, 19);
             this.lblNowIni.TabIndex = 1;
             this.lblNowIni.Text = "无";
             this.lblNowIni.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.lblNowIni, "当前配置序列，如果保存则会覆盖");
-            // 
-            // lblAll
-            // 
-            this.lblAll.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblAll.Location = new System.Drawing.Point(180, 0);
-            this.lblAll.Name = "lblAll";
-            this.lblAll.Size = new System.Drawing.Size(53, 20);
-            this.lblAll.TabIndex = 3;
-            this.lblAll.Text = "0";
-            this.lblAll.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.lblAll, "已保存的配置总项目数量");
             // 
             // btnChangePreCout
             // 
@@ -145,7 +116,7 @@
             this.btnChangePreCout.Size = new System.Drawing.Size(24, 19);
             this.btnChangePreCout.TabIndex = 30;
             this.btnChangePreCout.Text = "修";
-            this.toolTip1.SetToolTip(this.btnChangePreCout, "修改下一段的段号");
+            this.toolTip1.SetToolTip(this.btnChangePreCout, "修改当前的段号");
             this.btnChangePreCout.UseVisualStyleBackColor = true;
             this.btnChangePreCout.Click += new System.EventHandler(this.btnChangePreCout_Click);
             // 
@@ -189,32 +160,6 @@
             this.btnSendTime.UseVisualStyleBackColor = true;
             this.btnSendTime.Click += new System.EventHandler(this.btnSendTime_Click);
             // 
-            // btnOnceSC
-            // 
-            this.btnOnceSC.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnOnceSC.Location = new System.Drawing.Point(203, 187);
-            this.btnOnceSC.Margin = new System.Windows.Forms.Padding(0, 3, 0, 1);
-            this.btnOnceSC.Name = "btnOnceSC";
-            this.btnOnceSC.Size = new System.Drawing.Size(24, 19);
-            this.btnOnceSC.TabIndex = 21;
-            this.btnOnceSC.Text = "修";
-            this.toolTip1.SetToolTip(this.btnOnceSC, "修改当前一次发送字数");
-            this.btnOnceSC.UseVisualStyleBackColor = true;
-            this.btnOnceSC.Click += new System.EventHandler(this.btnOnceSC_Click);
-            // 
-            // btnFixStart
-            // 
-            this.btnFixStart.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnFixStart.Location = new System.Drawing.Point(203, 164);
-            this.btnFixStart.Margin = new System.Windows.Forms.Padding(0, 3, 0, 1);
-            this.btnFixStart.Name = "btnFixStart";
-            this.btnFixStart.Size = new System.Drawing.Size(24, 19);
-            this.btnFixStart.TabIndex = 17;
-            this.btnFixStart.Text = "修";
-            this.toolTip1.SetToolTip(this.btnFixStart, "修改当前发文起始点");
-            this.btnFixStart.UseVisualStyleBackColor = true;
-            this.btnFixStart.Click += new System.EventHandler(this.btnFixStart_Click);
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -245,8 +190,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Silver;
-            this.panel1.Controls.Add(this.lblAll);
-            this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.lblNowIni);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -255,24 +198,14 @@
             this.panel1.Size = new System.Drawing.Size(234, 21);
             this.panel1.TabIndex = 1;
             // 
-            // label14
-            // 
-            this.label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label14.Location = new System.Drawing.Point(116, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(65, 20);
-            this.label14.TabIndex = 2;
-            this.label14.Text = "总序列：";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label13
             // 
             this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label13.Location = new System.Drawing.Point(0, 0);
+            this.label13.Location = new System.Drawing.Point(0, 1);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(70, 20);
+            this.label13.Size = new System.Drawing.Size(153, 19);
             this.label13.TabIndex = 0;
-            this.label13.Text = "当前序列：";
+            this.label13.Text = "当前发文配置ID：";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel2
@@ -295,22 +228,20 @@
             this.tableLayoutPanel2.Controls.Add(this.label7, 0, 6);
             this.tableLayoutPanel2.Controls.Add(this.label8, 0, 7);
             this.tableLayoutPanel2.Controls.Add(this.lblTextSources, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.tbxNowStart, 1, 7);
             this.tableLayoutPanel2.Controls.Add(this.lblTextStyle, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.lblSendCounted, 1, 3);
             this.tableLayoutPanel2.Controls.Add(this.lblSendPCounted, 1, 4);
             this.tableLayoutPanel2.Controls.Add(this.lblTotalCount, 1, 5);
             this.tableLayoutPanel2.Controls.Add(this.lblLeastCount, 1, 6);
-            this.tableLayoutPanel2.Controls.Add(this.btnFixStart, 2, 7);
             this.tableLayoutPanel2.Controls.Add(this.label9, 0, 8);
-            this.tableLayoutPanel2.Controls.Add(this.tbxSendC, 1, 8);
-            this.tableLayoutPanel2.Controls.Add(this.btnOnceSC, 2, 8);
             this.tableLayoutPanel2.Controls.Add(this.tbxSendTime, 1, 9);
             this.tableLayoutPanel2.Controls.Add(this.btnSendTime, 2, 9);
             this.tableLayoutPanel2.Controls.Add(this.lblNowTime, 1, 10);
             this.tableLayoutPanel2.Controls.Add(this.btnCancelTime, 2, 10);
             this.tableLayoutPanel2.Controls.Add(this.tbxNowStartCount, 1, 11);
             this.tableLayoutPanel2.Controls.Add(this.btnChangePreCout, 2, 11);
+            this.tableLayoutPanel2.Controls.Add(this.lblMarkCount, 1, 7);
+            this.tableLayoutPanel2.Controls.Add(this.tbxSendC, 1, 8);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -373,7 +304,7 @@
             this.tbxTitle.BackColor = System.Drawing.Color.DarkGray;
             this.tbxTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbxTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxTitle.Font = new System.Drawing.Font("宋体", 9F);
+            this.tbxTitle.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbxTitle.Location = new System.Drawing.Point(65, 3);
             this.tbxTitle.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.tbxTitle.Name = "tbxTitle";
@@ -479,21 +410,6 @@
             this.lblTextSources.TabIndex = 10;
             this.lblTextSources.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tbxNowStart
-            // 
-            this.tbxNowStart.BackColor = System.Drawing.Color.DarkGray;
-            this.tbxNowStart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxNowStart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxNowStart.Font = new System.Drawing.Font("宋体", 9F);
-            this.tbxNowStart.Location = new System.Drawing.Point(65, 164);
-            this.tbxNowStart.Name = "tbxNowStart";
-            this.tbxNowStart.ReadOnly = true;
-            this.tbxNowStart.Size = new System.Drawing.Size(135, 21);
-            this.tbxNowStart.TabIndex = 11;
-            this.tbxNowStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbxNowStart.TextChanged += new System.EventHandler(this.tbxNowStart_TextChanged);
-            this.tbxNowStart.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxNowStart_KeyPress);
-            // 
             // lblTextStyle
             // 
             this.lblTextStyle.AutoSize = true;
@@ -554,7 +470,6 @@
             this.lblLeastCount.Size = new System.Drawing.Size(135, 18);
             this.lblLeastCount.TabIndex = 16;
             this.lblLeastCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblLeastCount.TextChanged += new System.EventHandler(this.lblLeastCount_TextChanged);
             // 
             // label9
             // 
@@ -567,20 +482,6 @@
             this.label9.TabIndex = 19;
             this.label9.Text = "发送字数";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tbxSendC
-            // 
-            this.tbxSendC.BackColor = System.Drawing.Color.DarkGray;
-            this.tbxSendC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxSendC.Font = new System.Drawing.Font("宋体", 9F);
-            this.tbxSendC.Location = new System.Drawing.Point(65, 187);
-            this.tbxSendC.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.tbxSendC.Name = "tbxSendC";
-            this.tbxSendC.ReadOnly = true;
-            this.tbxSendC.Size = new System.Drawing.Size(135, 21);
-            this.tbxSendC.TabIndex = 20;
-            this.tbxSendC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbxSendC.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxSendC_KeyPress);
             // 
             // tbxSendTime
             // 
@@ -609,6 +510,31 @@
             this.tbxNowStartCount.TabIndex = 29;
             this.tbxNowStartCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // lblMarkCount
+            // 
+            this.lblMarkCount.AutoSize = true;
+            this.lblMarkCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblMarkCount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblMarkCount.Location = new System.Drawing.Point(65, 164);
+            this.lblMarkCount.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
+            this.lblMarkCount.Name = "lblMarkCount";
+            this.lblMarkCount.Size = new System.Drawing.Size(135, 18);
+            this.lblMarkCount.TabIndex = 31;
+            this.lblMarkCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMarkCount.TextChanged += new System.EventHandler(this.lblMarkCount_TextChanged);
+            // 
+            // tbxSendC
+            // 
+            this.tbxSendC.AutoSize = true;
+            this.tbxSendC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbxSendC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxSendC.Location = new System.Drawing.Point(65, 187);
+            this.tbxSendC.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
+            this.tbxSendC.Name = "tbxSendC";
+            this.tbxSendC.Size = new System.Drawing.Size(135, 18);
+            this.tbxSendC.TabIndex = 32;
+            this.tbxSendC.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // gbstatic
             // 
             this.gbstatic.Controls.Add(this.tableLayoutPanel2);
@@ -623,7 +549,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBox1.Location = new System.Drawing.Point(71, 327);
+            this.checkBox1.Location = new System.Drawing.Point(12, 326);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(45, 16);
             this.checkBox1.TabIndex = 31;
@@ -646,7 +572,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(234, 373);
             this.Controls.Add(this.label15);
-            this.Controls.Add(this.cbxSingleTest);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.panel1);
@@ -675,11 +600,7 @@
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.CheckBox cbxSingleTest;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lblAll;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label lblNowIni;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label12;
@@ -696,16 +617,12 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblTextSources;
-        public System.Windows.Forms.TextBox tbxNowStart;
         private System.Windows.Forms.Label lblTextStyle;
         public System.Windows.Forms.Label lblSendCounted;
         public System.Windows.Forms.Label lblSendPCounted;
         private System.Windows.Forms.Label lblTotalCount;
         public System.Windows.Forms.Label lblLeastCount;
-        private System.Windows.Forms.Button btnFixStart;
         private System.Windows.Forms.Label label9;
-        public System.Windows.Forms.TextBox tbxSendC;
-        private System.Windows.Forms.Button btnOnceSC;
         private System.Windows.Forms.TextBox tbxSendTime;
         private System.Windows.Forms.Button btnSendTime;
         public System.Windows.Forms.Label lblNowTime;
@@ -715,5 +632,8 @@
         private System.Windows.Forms.GroupBox gbstatic;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label15;
+        public System.Windows.Forms.Label lblMarkCount;
+        public System.Windows.Forms.Label tbxSendC;
+        public System.Windows.Forms.Label lblNowIni;
     }
 }

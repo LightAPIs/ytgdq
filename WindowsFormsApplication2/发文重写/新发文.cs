@@ -13,6 +13,7 @@ using System.Text.RegularExpressions; //正则
 using System.Collections;
 using WindowsFormsApplication2.发文重写;
 using WindowsFormsApplication2.Storage;
+using Newtonsoft.Json;
 using TyDll;
 
 namespace WindowsFormsApplication2
@@ -54,7 +55,46 @@ namespace WindowsFormsApplication2
         /// </summary>
         private StorageDataSet.ArticleDataTable currentArticleData = new StorageDataSet.ArticleDataTable();
 
+        /// <summary>
+        /// 文章搜索文本
+        /// </summary>
         private string articleSearchText = "";
+
+        /// <summary>
+        /// 配置每页数量
+        /// </summary>
+        private readonly int SentPageSize = 30;
+
+        /// <summary>
+        /// 配置总数
+        /// </summary>
+        private int totalSentCount = 0;
+
+        /// <summary>
+        /// 配置总页数
+        /// </summary>
+        private int SentTotalPage
+        {
+            get
+            {
+                return (int)Math.Ceiling((float)this.totalSentCount / this.SentPageSize);
+            }
+        }
+
+        /// <summary>
+        /// 当前配置页数
+        /// </summary>
+        private int currentSentPage = 0;
+
+        /// <summary>
+        /// 当前配置数据
+        /// </summary>
+        private StorageDataSet.SentDataTable currentSentData = new StorageDataSet.SentDataTable();
+
+        /// <summary>
+        /// 配置搜索文本
+        /// </summary>
+        private string sentSearchText = "";
 
         public 新发文(Form1 frm1)
         {
@@ -69,15 +109,14 @@ namespace WindowsFormsApplication2
             //foreach (DriveInfo Dirs in Drives) {
             //    listViewFile.Items.Add(new ListViewItem(new string[] {Dirs.Name,"磁盘"}));
             //}
-            NewSendText.已发段数 = 0;
-            NewSendText.起始段号 = 1;
-            NewSendText.当前配置序列 = "";
+
+            NewSendText.SentId = -1;
             ReadAll(Application.StartupPath);
             ReadSavedArticle();
-            this.Text += "[当前群：" + frm.lblQuan.Text + "]";
+            ReadSavedSent();
+
             _Ini t2 = new _Ini("config.ini");
             this.cbxTickOut.Checked = bool.Parse(t2.IniReadValue("发文面板配置", "自动剔除空格", "True"));
-            this.cbx乱序全段不重复.Checked = bool.Parse(t2.IniReadValue("发文面板配置", "乱序全段不重复", "False"));
             if (!File.Exists(Application.StartupPath + "\\TyDll.dll"))
             {
                 this.lbxTextList.Items.Clear();
@@ -104,11 +143,21 @@ namespace WindowsFormsApplication2
                     rtbClipboard.Text = err.Message + "，请自行粘贴！";
                 }
             }
-            else if (getid == 4)
-            { // 保存的发文
-                // 后续处理时理论上不需要这部分，应当同"保存的文章"一样加载时初始化即可
-                iniRead();
-                // ------------------------------------------------------
+
+            if (getid == 4)
+            { // 保存的发文配置，需要锁定一些控件
+                this.cbxTickOut.Enabled = false;
+                this.cbx乱序全段不重复.Enabled = false;
+                this.tabControl2.Enabled = false;
+                this.groupBox1.Enabled = false;
+            }
+            else
+            {
+                NewSendText.SentId = -1;
+                this.cbxTickOut.Enabled = true;
+                this.cbx乱序全段不重复.Enabled = true;
+                this.tabControl2.Enabled = true;
+                this.groupBox1.Enabled = true;
             }
         }
         #endregion
@@ -139,7 +188,6 @@ namespace WindowsFormsApplication2
                 case 6: rtbInfo.Text = "前1500字整体"; break;
                 default: rtbInfo.Text = "没有定义的内容"; break;
             }
-            NewSendText.文章地址 = index.ToString();
         }
 
         /// <summary>
@@ -177,11 +225,12 @@ namespace WindowsFormsApplication2
                     this.tbxSendCount.Text = tickText.Length.ToString(); // 在 25 字以下时默认发送全文
                 }
 
-
                 if (auto)
                 { // 确认文章类型
                     IsWords(tickText);
                 }
+                this.label2.Text = "总字数";
+                this.label4.Text = "字数";
                 lblTextCount.Text = tickText.Length.ToString();
 
                 tbxSendCount.Select();
@@ -293,10 +342,15 @@ namespace WindowsFormsApplication2
             if (nowIndex == 2 && this.lblStyle.Text != "词组")
             {
                 this.cbxSplit.SelectedIndex = -1;
-                ShowFlowText("词组默认以乱序模式发送");
+                this.label2.Text = "总词数";
+                this.label4.Text = "词数";
+                if (NewSendText.SentId < 0)
+                {
+                    ShowFlowText("请选择词组分隔符来检索词组内容");
+                }
             }
             else if ((nowIndex == 0 || nowIndex == 1) && this.lblStyle.Text == "词组")
-            { // 恢复总字数，因为词组显示的是总词数
+            {
                 ComText(false);
             }
             this.lblStyle.Text = (sender as TabControl).TabPages[this.tabControl2.SelectedIndex].Text;
@@ -338,12 +392,18 @@ namespace WindowsFormsApplication2
                 rtbInfo.ResetText();
                 rtbShowText.ResetText();
                 GetText = "";
-                NewSendText.当前配置序列 = "";
+                NewSendText.SentId = -1;
             }
         }
         #endregion
 
         #region 程序控制
+        //? 自动与周期是不能同时开始的
+        /// <summary>
+        /// 周期开关
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if ((sender as CheckBox).Checked)
@@ -360,7 +420,11 @@ namespace WindowsFormsApplication2
             }
         }
 
-        //自动发文
+        /// <summary>
+        /// 自动开关
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbxAuto_CheckedChanged(object sender, EventArgs e)
         {
             if ((sender as CheckBox).Checked)
@@ -538,7 +602,6 @@ namespace WindowsFormsApplication2
                     GetText = fm.ReadToEnd();
                     FileTitleTextBox.Text = Path.GetFileNameWithoutExtension(path);
                     ComText();
-                    NewSendText.文章地址 = path;
                 }
             }
         }
@@ -579,7 +642,7 @@ namespace WindowsFormsApplication2
         }
         #endregion
 
-        #region 剪切板获取
+        #region 剪贴板获取
         /// <summary>
         /// 重新获取剪贴板内容
         /// </summary>
@@ -971,155 +1034,293 @@ namespace WindowsFormsApplication2
         #endregion
 
         #region 保存的配置
-        private void btnRefreshIni_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 保存的发文配置读取方法
+        /// </summary>
+        private void ReadSavedSent()
         {
-            iniRead();
+            if (string.IsNullOrEmpty(this.sentSearchText))
+            {
+                this.totalSentCount = Glob.SentHistory.GetSentCount();
+            }
+            else
+            {
+                this.totalSentCount = Glob.SentHistory.GetSentCountFromSubTitle(this.sentSearchText);
+            }
+            this.SentCountLabel.Text = this.totalSentCount.ToString();
+
+            if (this.totalSentCount > 0)
+            {
+                this.currentSentPage = 1;
+                ShowSaveSent();
+            }
+            else
+            {
+                this.currentSentPage = 0;
+                this.SentPageLabel.Text = this.currentSentPage.ToString();
+                listViewSent.Items.Clear();
+            }
         }
 
-        private bool iniRead()
+        private void ShowSaveSent()
         {
-            try
+            listViewSent.Items.Clear();
+            this.SentPageLabel.Text = this.currentSentPage.ToString();
+            if (currentSentPage > 0)
             {
-                this.lbxIni.Items.Clear();
-                _Ini getData = new _Ini("config.ini");
-                ArrayList getini = ReadKeys("发文配置");
-                int count = getini.Count;
-                for (int i = 0; i < count; i++)
+                if (string.IsNullOrEmpty(this.sentSearchText))
                 {
-                    string getit = getData.IniReadValue("发文配置", getini[i].ToString(), "0");
-                    if (getit == "0") return false;
-                    string[] get = getit.ToString().Split('|');
-                    this.lbxIni.Items.Add(getini[i] + " | " + get[3] + " | " + get[12]);
+                    this.currentSentData = Glob.SentHistory.GetSent(this.currentSentPage - 1, SentPageSize);
                 }
-                return true;
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
-                return false;
-            }
-        }
-
-        private void lbxIni_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string select = "";
-            _Ini getdata = new _Ini("config.ini");
-            try
-            {
-                select = (sender as ListBox).SelectedItem.ToString();
-            }
-            catch
-            {
-                return;
-            }
-            string[] idget = select.Split('|');
-            string get = getdata.IniReadValue("发文配置", idget[0].Trim(), "0");
-            if (get != "0")
-            {
-                string[] getAll = get.Split('|');
-                //确定文章
-                switch (getAll[1])
-                {
-                    case "0":
-                        GetText = TyDll.GetResources.GetText("Resources.TXT." + this.lbxTextList.Items[int.Parse(getAll[2])].ToString() + ".txt");
-                        ComText();
-                        break;//内置文章
-                    case "1":
-                        string path = getAll[2];
-                        if (File.Exists(path))
-                        {
-                            StreamReader fm = new StreamReader(path, System.Text.Encoding.Default);
-                            GetText = fm.ReadToEnd();
-                            lblTitle.Text = Path.GetFileNameWithoutExtension(path);
-                            ComText();
-                            NewSendText.文章地址 = path;
-                        }
-                        break;//自定义文章
-                }
-                //显式信息写入
-                lblTitle.Text = getAll[3];//文章标题
-                if (bool.Parse(getAll[8])) //是否乱序
-                    rbnOutOrder.PerformClick();
                 else
-                    rbninOrder.PerformClick();
-                tbxSendCount.Text = getAll[5];//字数
-                tbxSendStart.Text = getAll[4];//标记
-                this.checkBox1.Checked = bool.Parse(getAll[9]); //周期
-                if (this.checkBox1.Checked) nudSendTimer.Value = int.Parse(getAll[10]);
-                this.checkBox2.Checked = bool.Parse(getAll[11]);
-                //隐式信息写入
-                NewSendText.起始段号 = int.Parse(getAll[7]) + 1;
-                this.tbxQisduan.Text = NewSendText.起始段号.ToString();
-                NewSendText.文章来源 = int.Parse(getAll[1]);
-                NewSendText.已发字数 = int.Parse(getAll[6]);
-                NewSendText.当前配置序列 = getAll[0];
+                {
+                    this.currentSentData = Glob.SentHistory.GetSentFromSubTitle(this.sentSearchText, this.currentSentPage - 1, SentPageSize);
+                }
+
+                foreach (var dataRow in this.currentSentData)
+                {
+                    listViewSent.Items.Add(new ListViewItem(new string[] { dataRow["id"].ToString(), dataRow["title"].ToString(), dataRow["create_time"].ToString() }));
+                }
             }
         }
-        //删除
-        private void btnDelini_Click(object sender, EventArgs e)
+
+        private void SentFirstButton_Click(object sender, EventArgs e)
         {
-            try
+            if (this.currentSentPage > 1)
             {
-                if (this.lbxIni.Items.Count > 0)
+                this.currentSentPage = 1;
+                this.ShowSaveSent();
+            }
+        }
+
+        private void SentPreButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentSentPage > 1)
+            {
+                this.currentSentPage--;
+                this.ShowSaveSent();
+            }
+        }
+
+        private void SentNextButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentSentPage < this.SentTotalPage)
+            {
+                this.currentSentPage++;
+                this.ShowSaveSent();
+            }
+        }
+
+        private void SentLastButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentSentPage < this.SentTotalPage)
+            {
+                this.currentSentPage = this.SentTotalPage;
+                this.ShowSaveSent();
+            }
+        }
+
+        private void listViewSent_ItemActivate(object sender, EventArgs e)
+        {
+            if (this.listViewSent.SelectedItems.Count > 0)
+            {
+                long id = long.Parse(this.listViewSent.SelectedItems[0].SubItems[0].Text);
+                StorageDataSet.SentRow sd = StorageDataSet.GetSentRowFromId(this.currentSentData, id);
+                if (sd != null)
                 {
-                    _Ini ini = new _Ini("config.ini");
-                    string select = this.lbxIni.SelectedItem.ToString();
-                    string[] idget = select.Split('|');
-                    string get = idget[0].Trim();
-                    ini.IniWriteValue("发文配置", get, null);
-                    string temp = ini.IniReadValue("发文面板配置", "总序列", "0");
-                    if (temp != "0")
+                    NewSendText.SentId = id;
+                    NewSendText.文章全文 = sd["article"].ToString();
+                    GetText = NewSendText.文章全文;
+                    if (GetText.Length > 300)
                     {
-                        if (ini.IniReadValue("发文配置", get, "NO") == "NO")
-                        {
-                            if (temp.Contains(get))
+                        rtbShowText.Text = GetText.Substring(0, 300) + "[......未完]";
+                    }
+                    else
+                    {
+                        rtbShowText.Text = GetText + "[已完]";
+                    }
+
+                    NewSendText.发文全文 = sd["full_text"].ToString();
+                    NewSendText.标题 = this.listViewSent.SelectedItems[0].SubItems[1].Text.Trim();
+                    lblTitle.Text = NewSendText.标题;
+
+                    NewSendText.词组 = JsonConvert.DeserializeObject<string[]>(sd["phrases"].ToString());
+                    NewSendText.词组发送分隔符 = sd["separator"].ToString();
+                    if ((int)sd["disorder"] == 0)
+                    {
+                        NewSendText.是否乱序 = false;
+                        this.rbninOrder.Checked = true;
+                        this.rbnOutOrder.Checked = false;
+                    }
+                    else
+                    {
+                        NewSendText.是否乱序 = true;
+                        this.rbninOrder.Checked = false;
+                        this.rbnOutOrder.Checked = true;
+                    }
+                    if ((int)sd["no_repeat"] == 0)
+                    {
+                        NewSendText.乱序全段不重复 = false;
+                        this.cbx乱序全段不重复.Checked = false;
+                    }
+                    else
+                    {
+                        NewSendText.乱序全段不重复 = true;
+                        this.cbx乱序全段不重复.Checked = true;
+                    }
+
+                    switch ((int)sd["type"])
+                    {
+                        case 1:
+                            NewSendText.类型 = "文章";
+                            lblStyle.Text = "文章";
+                            tabControl2.SelectedIndex = 1;
+                            lblTextCount.Text = GetText.Length.ToString();
+                            this.label2.Text = "总字数";
+                            this.label4.Text = "字数";
+                            break;
+                        case 2:
+                            NewSendText.类型 = "词组";
+                            lblStyle.Text = "词组";
+                            tabControl2.SelectedIndex = 2;
+                            tbxSendSplit.Text = NewSendText.词组发送分隔符;
+                            lblTextCount.Text = NewSendText.词组.Length.ToString();
+                            this.label2.Text = "总词数";
+                            this.label4.Text = "词数";
+                            break;
+                        case 0:
+                        default:
+                            NewSendText.类型 = "单字";
+                            lblStyle.Text = "单字";
+                            tabControl2.SelectedIndex = 0;
+                            lblTextCount.Text = GetText.Length.ToString();
+                            this.label2.Text = "总字数";
+                            this.label4.Text = "字数";
+                            break;
+                    }
+
+                    NewSendText.字数 = (int)sd["count"];
+                    NewSendText.标记 = (int)sd["mark"];
+                    tbxSendCount.Text = NewSendText.字数.ToString();
+                    tbxSendStart.Text = NewSendText.标记.ToString();
+                    tbxSendCount.MaxLength = lblTextCount.Text.Length;
+                    tbxSendStart.MaxLength = lblTextCount.Text.Length;
+
+                    Glob.TempSegmentRecord.Clear();
+                    Glob.TempSegmentRecord = JsonConvert.DeserializeObject<List<string>>(sd["segment_record"].ToString());
+                    Glob.SendCursor = (int)sd["segment_cursor"];
+
+                    Glob.CurSegmentNum = (int)sd["cur_segment_num"];
+                    tbxQisduan.Text = (Glob.CurSegmentNum + 1).ToString(); //* 起始段号，因为开始时是在发下一段
+
+                    NewSendText.已发段数 = (int)sd["sent_num"];
+                    NewSendText.已发字数 = (int)sd["sent_count"];
+
+                    if ((int)sd["cycle"] == 1)
+                    {
+                        NewSendText.是否周期 = true;
+                        checkBox1.Checked = true;
+                    }
+                    else
+                    {
+                        NewSendText.是否周期 = false;
+                        checkBox1.Checked = false;
+                    }
+                    NewSendText.周期 = (int)sd["cycle_value"];
+                    nudSendTimer.Value = NewSendText.周期;
+
+                    if ((int)sd["auto"] == 1)
+                    {
+                        NewSendText.是否自动 = true;
+                        cbxAuto.Checked = true;
+                    }
+                    else
+                    {
+                        NewSendText.是否自动 = false;
+                        cbxAuto.Checked = false;
+                    }
+                }
+            }
+        }
+
+        private void SentEditTitleButton_Click(object sender, EventArgs e)
+        {
+            if (this.listViewSent.SelectedItems.Count > 0)
+            {
+                string title = this.listViewSent.SelectedItems[0].SubItems[1].Text;
+                long id = long.Parse(this.listViewSent.SelectedItems[0].SubItems[0].Text);
+                ContentEditor cEditor = new ContentEditor(title);
+                if (cEditor.ShowDialog() == DialogResult.OK)
+                {
+                    string result = cEditor.OutValue;
+                    this.listViewSent.SelectedItems[0].SubItems[1].Text = result;
+                    Glob.SentHistory.UpdateSentTitle(id, result);
+                }
+            }
+        }
+
+        private void SentSearchButton_Click(object sender, EventArgs e)
+        {
+            this.sentSearchText = this.SentSearchTextBox.Text;
+            this.ReadSavedSent();
+        }
+
+        private void SentDeleteButton_Click(object sender, EventArgs e)
+        {
+            if (this.listViewSent.SelectedItems.Count > 0)
+            {
+                long id = long.Parse(this.listViewSent.SelectedItems[0].SubItems[0].Text);
+                StorageDataSet.SentRow sd = StorageDataSet.GetSentRowFromId(this.currentSentData, id);
+                if (sd != null)
+                {
+                    switch (MessageBox.Show("确认删除ID=" + id.ToString() + "的发文配置吗？", "删除询问", MessageBoxButtons.YesNo))
+                    {
+                        case DialogResult.Yes:
+                            if (Glob.SentHistory.DeleteSentItemById(id))
                             {
-                                temp = temp.Remove(temp.IndexOf(get), 2);
-                                ini.IniWriteValue("发文面板配置", "总序列", temp);
+                                this.totalSentCount--;
+                                this.SentCountLabel.Text = this.totalSentCount.ToString();
+                                if (this.totalSentCount <= 0)
+                                {
+                                    this.totalSentCount = 0;
+                                    this.currentSentPage = 0;
+                                }
+                                else if (this.currentSentPage > this.SentTotalPage)
+                                {
+                                    this.currentSentPage = this.SentTotalPage;
+                                }
+                                this.ShowSaveSent();
                             }
-                            iniRead();
-                            ClearAll();
-                        }
+                            break;
+                        case DialogResult.No:
+                            break;
                     }
                 }
             }
-            catch { }
         }
 
-        [DllImport("kernel32.dll")]
-        public extern static int GetPrivateProfileStringA(string segName, string keyName, string sDefault, byte[] buffer, int iLen, string fileName); // ANSI版本
-        //遍历键值
-        public ArrayList ReadKeys(string sectionName)
+        private void SentDeleteAllButton_Click(object sender, EventArgs e)
         {
-            string str1 = Application.StartupPath;
-            byte[] buffer = new byte[5120];
-            int rel = GetPrivateProfileStringA(sectionName, null, "", buffer, buffer.GetUpperBound(0), str1 + "\\config.ini");
-
-            int iCnt, iPos;
-            ArrayList arrayList = new ArrayList();
-            string tmp;
-            if (rel > 0)
+            switch (MessageBox.Show("确认删除所有保存的发文配置吗？", "删除询问", MessageBoxButtons.YesNo))
             {
-                iCnt = 0; iPos = 0;
-                for (iCnt = 0; iCnt < rel; iCnt++)
-                {
-                    if (buffer[iCnt] == 0x00)
-                    {
-                        tmp = System.Text.ASCIIEncoding.Default.GetString(buffer, iPos, iCnt - iPos).Trim();
-                        iPos = iCnt + 1;
-                        if (tmp != "")
-                            arrayList.Add(tmp);
-                    }
-                }
+                case DialogResult.Yes:
+                    Glob.SentHistory.DeleteAllSent();
+                    this.ReadSavedSent();
+                    break;
+                case DialogResult.No:
+                    break;
             }
-            return arrayList;
         }
         #endregion
 
         #region 发文整体配置
         private void cbxTickOut_CheckedChanged(object sender, EventArgs e)
         {
-            ComText(false);
+            if (NewSendText.SentId < 0)
+            {
+                ComText(false);
+            }
+
             bool temp = (sender as CheckBox).Checked;
             _Ini t2 = new _Ini("config.ini");
             if (temp)
@@ -1129,20 +1330,6 @@ namespace WindowsFormsApplication2
             else
             {
                 t2.IniWriteValue("发文面板配置", "自动剔除空格", "False");
-            }
-        }
-
-        private void cbx乱序全段不重复_CheckedChanged(object sender, EventArgs e)
-        {
-            bool temp = (sender as CheckBox).Checked;
-            _Ini t2 = new _Ini("config.ini");
-            if (temp)
-            {
-                t2.IniWriteValue("发文面板配置", "乱序全段不重复", "True");
-            }
-            else
-            {
-                t2.IniWriteValue("发文面板配置", "乱序全段不重复", "False");
             }
         }
         #endregion
@@ -1177,66 +1364,89 @@ namespace WindowsFormsApplication2
         #region 开始发文
         private void btnGoSend_Click(object sender, EventArgs e)
         {
-            rtbShowText.Text = "处理中...";
-            string sourceText = GetText; // 保留源文章内容
-            if (this.cbxTickOut.Checked)
-            { // 勾选"自动清除空格和换行时"
-                GetText = TickBlock(GetText, "");
-            }
-            if (GetText.Length == 0)
+            if (NewSendText.SentId < 0)
             {
-                rtbShowText.Text = "未获取到文章！";
-                MessageBox.Show("未获取到文章！");
-                return;
-            }
-
-            NewSendText.标题 = lblTitle.Text;
-            NewSendText.文章全文 = GetText;
-            NewSendText.发文全文 = NewSendText.文章全文;
-            NewSendText.类型 = lblStyle.Text;
-            if (NewSendText.类型 == "词组")
-            {
-                if (NewSendText.词组.Length <= 1)
+                rtbShowText.Text = "处理中...";
+                string sourceText = GetText; // 保留源文章内容
+                if (this.cbxTickOut.Checked)
+                { // 勾选"自动清除空格和换行时"
+                    GetText = TickBlock(GetText, "");
+                }
+                if (GetText.Length == 0)
                 {
-                    rtbShowText.Text = "未获取到词组！";
-                    MessageBox.Show("未获取到词组！");
+                    rtbShowText.Text = "未获取到文章！";
+                    MessageBox.Show("未获取到文章！");
+                    return;
+                }
+                string theTitle = lblTitle.Text.Trim();
+                if (theTitle.Length == 0)
+                {
+                    rtbShowText.Text = "标题为空！";
+                    MessageBox.Show("标题为空！");
                     return;
                 }
 
-                NewSendText.词组发送分隔符 = this.tbxSendSplit.Text;
-            }
+                Glob.TempSegmentRecord.Clear();
+                Glob.SendCursor = 0;
+                NewSendText.已发段数 = 0;
+                NewSendText.已发字数 = 0;
+                NewSendText.标题 = theTitle;
+                NewSendText.文章全文 = GetText;
+                NewSendText.发文全文 = NewSendText.文章全文;
+                NewSendText.类型 = lblStyle.Text;
+                if (NewSendText.类型 == "词组")
+                {
+                    if (NewSendText.词组.Length <= 1)
+                    {
+                        rtbShowText.Text = "未获取到词组！";
+                        MessageBox.Show("未获取到词组！");
+                        return;
+                    }
 
-            NewSendText.是否乱序 = rbnOutOrder.Checked;
-            NewSendText.乱序全段不重复 = this.cbx乱序全段不重复.Checked;
-            NewSendText.是否一句结束 = cbxOneEnd.Checked; //? 文章中强制开启，这个选项其实无法改动
-            try
-            {
-                NewSendText.字数 = int.Parse(tbxSendCount.Text);
-                NewSendText.标记 = int.Parse(tbxSendStart.Text);
-                NewSendText.起始段号 = int.Parse(this.tbxQisduan.Text);
-                Glob.Pre_Cout = NewSendText.起始段号.ToString();
-            }
-            catch { MessageBox.Show("请检查字数、标记或者起始段号是否设置错误？"); return; }
-            NewSendText.是否周期 = checkBox1.Checked;
-            NewSendText.周期 = (int)nudSendTimer.Value;
-            NewSendText.是否独练 = checkBox2.Checked;
-            NewSendText.是否自动 = cbxAuto.Checked;
-            NewSendText.文章来源 = tabControl1.SelectedIndex;
-            // 勾选"保存文章"
-            if ((NewSendText.文章来源 == 1 && this.FileSaveCheckBox.Checked) || (NewSendText.文章来源 == 2 && this.ClipboardSaveCheckBox.Checked))
-            {
-                Glob.ArticleHistory.InsertArticle(sourceText, Validation.GetMd5Hash(sourceText), NewSendText.标题, DateTime.Now.ToString("s"));
-            }
+                    NewSendText.词组发送分隔符 = this.tbxSendSplit.Text;
+                }
+                else
+                { //! 非词组时清空，防止保存发文配置时存储冗余信息
+                    NewSendText.词组 = new string[0];
+                }
 
-            NewSendText.发文状态 = true;
-            if (NewSendText.是否周期)
-            {
-                frm.SendTTest();
+                NewSendText.是否乱序 = rbnOutOrder.Checked;
+                NewSendText.乱序全段不重复 = this.cbx乱序全段不重复.Checked;
+                try
+                {
+                    NewSendText.字数 = int.Parse(tbxSendCount.Text);
+                    NewSendText.标记 = int.Parse(tbxSendStart.Text);
+                    int startSegmentNum = int.Parse(this.tbxQisduan.Text);
+                    Glob.CurSegmentNum = startSegmentNum - 1; // SendAOnce() 里会先自加一次，所以需要提前减一
+                }
+                catch { MessageBox.Show("请检查字数、标记或者起始段号是否设置错误？"); return; }
+                NewSendText.是否周期 = checkBox1.Checked;
+                NewSendText.周期 = (int)nudSendTimer.Value;
+                NewSendText.是否自动 = cbxAuto.Checked;
+                NewSendText.文章来源 = tabControl1.SelectedIndex;
+                // 勾选"保存文章"
+                if ((NewSendText.文章来源 == 1 && this.FileSaveCheckBox.Checked) || (NewSendText.文章来源 == 2 && this.ClipboardSaveCheckBox.Checked))
+                {
+                    Glob.ArticleHistory.InsertArticle(sourceText, Validation.GetMd5Hash(sourceText), NewSendText.标题, DateTime.Now.ToString("s"));
+                }
+
+                NewSendText.发文状态 = true;
+                if (NewSendText.是否周期)
+                {
+                    frm.SendTTest();
+                }
+                else
+                {
+                    frm.SendAOnce();
+                }
             }
             else
             {
-                frm.SendAOnce();
+                NewSendText.文章来源 = tabControl1.SelectedIndex;
+                NewSendText.发文状态 = true;
+                frm.SendNextFun();
             }
+
             frm.发文状态ToolStripMenuItem.PerformClick(); // 模拟点击"发文"→"发文状态"菜单项，用于显示发文状态窗口
             this.Close();
         }

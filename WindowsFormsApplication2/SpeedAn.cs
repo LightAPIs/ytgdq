@@ -142,12 +142,7 @@ namespace WindowsFormsApplication2
                             g.DrawLine(PLine2, (float)X, Y + width + HeighP, Start, Y + width + HeighP);
                             g.DrawLine(PLine, Start, Y + width + HeighP, bmp.Width - 9, Y + width + HeighP);
                         }
-                        else
-                        {
-                            PLine_ = Color.LightGray;
-                            HeighP = 1;
-                            Start = (float)X;
-                        }
+                        
                         PLine = new Pen(PLine_, 1);
                         //线条终
                         if (i != 2)
@@ -214,11 +209,6 @@ namespace WindowsFormsApplication2
             Clipboard.SetText(CreateText());
         }
 
-        private void SendText_Click(object sender, EventArgs e)
-        {
-            frm.sendtext(CreateText());
-        }
-
         //截图类
         private void GetPic_Click(object sender, EventArgs e)
         {
@@ -240,12 +230,6 @@ namespace WindowsFormsApplication2
             g.DrawString("第" + nowCout + "段速度分析",F,Brushes.White,3,4);
             g.DrawString(scoreTime, F, Brushes.LightGray, 2, bmp.Height - 15);
             return bmp;
-        }
-
-        private void SendPic_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetImage(GetPicMethod());
-            frm.SendClipBoardToQQ();
         }
     }
 }

@@ -32,31 +32,33 @@ namespace WindowsFormsApplication2
 
         //控制类
         /// <summary>
-        /// 不显示即时数据
+        /// 显示实时数据
         /// </summary>
-        public static bool notShowjs = false;
+        public static bool ShowRealTimeData = false;
         /// <summary>
-        /// 不自动复制成绩
+        /// 自动复制成绩
         /// </summary>
-        public static bool notAutoCopy = false;
+        public static bool AutoCopy = false;
         /// <summary>
         /// 使用符号选重
         /// </summary>
         public static bool useSymbolSelect = false;
-        public static bool getStyle = false;//默认鼠标
 
         /// <summary>
         /// 当前段号
         /// </summary>
-        public static string Pre_Cout = "1225";
+        public static int CurSegmentNum = 1225;
         
         public static int Time = 0;
-        public static string[,] GetWin = new string[40, 2];//获取的窗口
-        public static int GetWinC = 0;//获取窗口的总数
-        public static int WinSwitch = 0;//窗口切换控制
         public static string Text;//跟打文字*****
-        public static string TypeText;//跟打文章
-        public static int TypeTextCount = 0;//已跟打字数
+        /// <summary>
+        /// 跟打的文段内容
+        /// </summary>
+        public static string TypeText;
+        /// <summary>
+        /// 已跟打字数
+        /// </summary>
+        public static int TypeTextCount = 0;
         public static double TextSpeed; //以下为上次成绩
         public static double Textjj;
         public static double Textmc;
@@ -69,7 +71,7 @@ namespace WindowsFormsApplication2
         public static int TextLen; //总字数
         public static int TextJc = 0;//需要减去的数量
         public static int TextCz = 0; //错字
-        public static int TextiCz = 0; //正字计数（用来    获取错字数量）
+        public static int TextiCz = 0; //正字计数（用来获取错字数量）
         public static int TextJs = 0; //键数
 
         public static int TextMc = 0;  //码长完美计数
@@ -82,15 +84,22 @@ namespace WindowsFormsApplication2
         public static int 回车 = 0;
         public static int 选重 = 0;
         public static bool 是否选重 = true;
-        public static bool 文段类型 = true; //真 为中文 假为英文
+        /// <summary>
+        /// 真为中文；假为英文
+        /// </summary>
+        public static bool 文段类型 = true;
         public static int 撤销 = 0;
         public static int 撤销用量 = 0;
-        public static double 速度限制 = 0.00;
-        public static bool 是否速度限制 = false;
+        
         //检查过程是否一直持续
         public static DateTime nowStart;
-        //段数
+        /// <summary>
+        /// 载文的段数
+        /// </summary>
         public static Match getDuan;
+        /// <summary>
+        /// 获取载文段号用的正则表达式
+        /// </summary>
         public static Regex regexCout;
         //颜色 
         public static Color Right;
@@ -132,16 +141,29 @@ namespace WindowsFormsApplication2
         public static double TextHg_ = 0;//回改率
         public static double TextDc_ = 0; // 打词率
 
-        public static string InstraPre = "";//个签
-        public static string InstraPre_ = "";//是否启用了个签
-
         public static int LoadCount = 0;//载入次数 暂时是用来确定是否开启输入法
         public static double typeUseTime; //跟打用时
         public static int HaveTypeCount = 0;//已跟打段数
         public static int HaveTypeCount_ = 0;//实际跟打段数
         public static double TotalUse = 0;//总用时
-        public static string InstraSrf = "";//输入法签名
-        public static string InstraSrf_ = "";//是否启用了输入法签名
+
+        /// <summary>
+        /// 个性签名
+        /// </summary>
+        public static string InstraPre = "";
+        /// <summary>
+        /// 是否使用个性签名
+        /// </summary>
+        public static string InstraPre_ = "";
+
+        /// <summary>
+        /// 输入法签名
+        /// </summary>
+        public static string InstraSrf = "";
+        /// <summary>
+        /// 是否启用输入法签名
+        /// </summary>
+        public static string InstraSrf_ = "";
 
         /// <summary>
         /// 打词次数
@@ -167,11 +189,8 @@ namespace WindowsFormsApplication2
         /// </summary>
         public static int 效率 = 0;
         //发送的控制
-        public static string sortSend = "ABCVDTSEFULGNOPRQ";
+        public static string sortSend = "ABCVDTSEFULGNORQ";
         public static int LastInput = 0;//末字错时不发送 可以继续跟打
-        public static int DelaySend = 50;//打完发送延时
-        public static bool sendOrNo = false;//是否 显示 发送框 默认 否
-        public static bool GDQActon = false;//跟打完后 是否激活跟打器
 
         //跟打历史
         public static int TypeCount = 0;//跟打次数
@@ -179,9 +198,18 @@ namespace WindowsFormsApplication2
         //发文标记
         public static int SendNow = 0;
 
-        public static string PreText;//前导
-        public static string PreDuan;//段标
-        public static bool isZdy;//自定义开启
+        /// <summary>
+        /// 前导符
+        /// </summary>
+        public static string PreText;
+        /// <summary>
+        /// 段标
+        /// </summary>
+        public static string PreDuan;
+        /// <summary>
+        /// 是否开启自定义前导符
+        /// </summary>
+        public static bool isZdy;
 
         public static string getName = "";//发文配置的名称
 
@@ -200,15 +228,16 @@ namespace WindowsFormsApplication2
 
         //今日已跟打
         public static int todayTyping = 0;
+        /// <summary>
+        /// 是否为赛文
+        /// </summary>
+        public static bool isMatch = false;
 
-        //比赛验证
-        public static bool isMatch = false;//比赛
-
-        //上一次跟打
+        /// <summary>
+        /// 上一次跟打成绩
+        /// </summary>
         public static string theLastGoal = "";
-
-        public static bool isQQ = false;
-        public static string QQnumber;
+        
         //随机段数
         public static int AZpre = 88;
         //错次
@@ -219,27 +248,41 @@ namespace WindowsFormsApplication2
         //拖动条
         public static int p1;
         public static int p2;
-        //曲线界面
-        public static bool isShowSpline = false; //默认显示
-        //停止用时
+
+        /// <summary>
+        /// 曲线界面
+        /// 默认显示
+        /// </summary>
+        public static bool isShowSpline = false;
+        /// <summary>
+        /// 停止用时
+        /// </summary>
         public static int StopUse = 1;
-        //曲线极值
+        /// <summary>
+        /// 曲线极值
+        /// </summary>
         public static double MinSplite = 500;
-        //极简模式
+        /// <summary>
+        /// 极简模式
+        /// </summary>
         public static bool simpleMoudle = false;
-        public static string simpleSplite = "|";//分隔符
-        public static bool jwMatchMoudle = false;//精五比赛模式
-        //自动替换英转中
+        /// <summary>
+        /// 极简模式的分隔符
+        /// </summary>
+        public static string simpleSplite = "|";
+        /// <summary>
+        /// 自动替换英转中
+        /// </summary>
         public static bool autoReplaceBiaodian = false;
-        //是否潜水
-        public static bool isSub = false;
-        //暂停次数
+
+        /// <summary>
+        /// 暂停次数
+        /// </summary>
         public static int PauseTimes = 0;
         //击键比例
         public static int[] jjPer = new int[9];
         public static int jjAllC = 0;
-        //对因剪切板问题导致的无法获取 采用自动手动功能
-        public static bool F4Cut = false;//F4阻拦器
+        
         //跟打地图
         public static Graphics Type_Map;
         public static Color Type_Map_Color = Color.Green;
@@ -250,9 +293,6 @@ namespace WindowsFormsApplication2
 
         //打开标记
         public static bool isPointIt = false;
-
-        //作弊
-        public static bool isCheat = false;
 
         //分析
         public static bool Use分析 = false;
@@ -268,7 +308,9 @@ namespace WindowsFormsApplication2
         //跟打报告
         public static List<TypeDate> TypeReport = new List<TypeDate>();
 
-        //图片成绩发送昵称
+        /// <summary>
+        /// 图片成绩发送昵称
+        /// </summary>
         public static string PicName = "";
 
         public static DateTime TextTime;
@@ -292,26 +334,26 @@ namespace WindowsFormsApplication2
             new HotKey("设置", "F1"),
             new HotKey("发文", "F2"),
             new HotKey("重打", "F3"),
-            new HotKey("载文", "F4"),
-            new HotKey("换群", "F5"),
-            new HotKey("发送当前文段", "F7"),
-            new HotKey("暂停", "F8"),
-            new HotKey("发送上次成绩", "F9"),
-            new HotKey("历史记录", "Ctrl+H"),
-            new HotKey("窗口复位", "Ctrl+D"),
-            new HotKey("查询当前编码", "Ctrl+F"),
+            new HotKey("暂停", "F4"),
+            new HotKey("复制当前文段", "F5"),
+            new HotKey("复制上次成绩", "F6"),
+            new HotKey("复制图片成绩", "Ctrl+T"),
+            new HotKey("发上一段", "Ctrl+P"),
+            new HotKey("发下一段", "Ctrl+N"),
             new HotKey("速度分析", "Ctrl+G"),
             new HotKey("跟打报告", "Ctrl+J"),
             new HotKey("按键统计", "Ctrl+K"),
-            new HotKey("打开练习", "Ctrl+O"),
-            new HotKey("测速数据", "Ctrl+P"),
-            new HotKey("发下一段", "Ctrl+R"),
-            new HotKey("复制图片成绩", "Ctrl+T"),
-            new HotKey("停止发文", "Ctrl+W"),
-            new HotKey("检验真伪", "Alt+D"),
-            new HotKey("从剪贴板", "Alt+E"),
-            new HotKey("从QQ窗口", "Alt+S"),
+            new HotKey("历史记录", "Ctrl+H"),
+            new HotKey("保存发文配置", "Ctrl+S"),
             new HotKey("乱序重打", "Ctrl+L"),
+            new HotKey("停止发文", "Ctrl+W"),
+            new HotKey("查询当前编码", "Ctrl+F"),
+            new HotKey("打开练习", "Ctrl+O"),
+            new HotKey("测速数据", "Ctrl+I"),
+            new HotKey("窗口复位", "Ctrl+D"),
+            new HotKey("检验真伪", "Alt+D"),
+            new HotKey("直接载文", "Alt+E"),
+            new HotKey("格式载文", "Alt+S"),
             new HotKey("老板键", "Alt+Q"),
         };
 
@@ -331,6 +373,18 @@ namespace WindowsFormsApplication2
         public static int[] HistoryKeysTotal = new int[50];
 
         /// <summary>
+        /// 临时文段保存器
+        /// 主要用于实现"发上一段"的功能
+        /// </summary>
+        public static List<string> TempSegmentRecord = new List<string> ();
+
+        /// <summary>
+        /// 发文游标
+        /// 主要用于"发上一段"的功能
+        /// </summary>
+        public static int SendCursor = 0;
+
+        /// <summary>
         /// 历史成绩
         /// </summary>
         public static ScoreData ScoreHistory;
@@ -338,6 +392,10 @@ namespace WindowsFormsApplication2
         /// 历史文章
         /// </summary>
         public static ArticleData ArticleHistory;
+        /// <summary>
+        /// 历史发文配置
+        /// </summary>
+        public static SentData SentHistory;
     }
 
     /// <summary>

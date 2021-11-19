@@ -74,27 +74,31 @@
             this.ArticleCountLabel = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.gropbox = new System.Windows.Forms.GroupBox();
-            this.btnRefreshIni = new System.Windows.Forms.Button();
-            this.btnDelini = new System.Windows.Forms.Button();
-            this.lbxIni = new System.Windows.Forms.ListBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.SentEditTitleButton = new System.Windows.Forms.Button();
+            this.SentDeleteAllButton = new System.Windows.Forms.Button();
+            this.SentDeleteButton = new System.Windows.Forms.Button();
+            this.SentLastButton = new System.Windows.Forms.Button();
+            this.SentFirstButton = new System.Windows.Forms.Button();
+            this.SentSearchButton = new System.Windows.Forms.Button();
+            this.SentPageLabel = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.SentSearchTextBox = new System.Windows.Forms.TextBox();
+            this.SentNextButton = new System.Windows.Forms.Button();
+            this.listViewSent = new System.Windows.Forms.ListView();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.SentPreButton = new System.Windows.Forms.Button();
+            this.SentCountLabel = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.cbx乱序全段不重复 = new System.Windows.Forms.CheckBox();
             this.cbxTickOut = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.rtbShowText = new System.Windows.Forms.RichTextBox();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.rbninOrder = new System.Windows.Forms.RadioButton();
-            this.rbnOutOrder = new System.Windows.Forms.RadioButton();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.cbxOneEnd = new System.Windows.Forms.CheckBox();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.tbxSendSplit = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.tbxsplit = new System.Windows.Forms.TextBox();
-            this.cbxSplit = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnGoSend = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tbxSendStart = new System.Windows.Forms.TextBox();
@@ -111,12 +115,22 @@
             this.nudSendTimer = new System.Windows.Forms.NumericUpDown();
             this.btnAllText = new System.Windows.Forms.Button();
             this.lblspeed = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.btnGoSend = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.tbxQisduan = new System.Windows.Forms.TextBox();
             this.cbxAuto = new System.Windows.Forms.CheckBox();
+            this.tbxQisduan = new System.Windows.Forms.TextBox();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.rbninOrder = new System.Windows.Forms.RadioButton();
+            this.rbnOutOrder = new System.Windows.Forms.RadioButton();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.tbxSendSplit = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbxsplit = new System.Windows.Forms.TextBox();
+            this.cbxSplit = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -126,15 +140,16 @@
             this.tabPage4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabPage8.SuspendLayout();
-            this.gropbox.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSendTimer)).BeginInit();
             this.tabControl2.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage7.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSendTimer)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -729,7 +744,8 @@
             // 
             // tabPage8
             // 
-            this.tabPage8.Controls.Add(this.gropbox);
+            this.tabPage8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage8.Controls.Add(this.panel3);
             this.tabPage8.Location = new System.Drawing.Point(4, 25);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Size = new System.Drawing.Size(424, 165);
@@ -737,75 +753,267 @@
             this.tabPage8.Text = "保存的发文";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
-            // gropbox
+            // panel3
             // 
-            this.gropbox.Controls.Add(this.btnRefreshIni);
-            this.gropbox.Controls.Add(this.btnDelini);
-            this.gropbox.Controls.Add(this.lbxIni);
-            this.gropbox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gropbox.Location = new System.Drawing.Point(0, 0);
-            this.gropbox.Name = "gropbox";
-            this.gropbox.Size = new System.Drawing.Size(424, 103);
-            this.gropbox.TabIndex = 1;
-            this.gropbox.TabStop = false;
-            this.gropbox.Text = "配置";
+            this.panel3.Controls.Add(this.SentEditTitleButton);
+            this.panel3.Controls.Add(this.SentDeleteAllButton);
+            this.panel3.Controls.Add(this.SentDeleteButton);
+            this.panel3.Controls.Add(this.SentLastButton);
+            this.panel3.Controls.Add(this.SentFirstButton);
+            this.panel3.Controls.Add(this.SentSearchButton);
+            this.panel3.Controls.Add(this.SentPageLabel);
+            this.panel3.Controls.Add(this.label17);
+            this.panel3.Controls.Add(this.SentSearchTextBox);
+            this.panel3.Controls.Add(this.SentNextButton);
+            this.panel3.Controls.Add(this.listViewSent);
+            this.panel3.Controls.Add(this.SentPreButton);
+            this.panel3.Controls.Add(this.SentCountLabel);
+            this.panel3.Controls.Add(this.label19);
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(420, 161);
+            this.panel3.TabIndex = 3;
             // 
-            // btnRefreshIni
+            // SentEditTitleButton
             // 
-            this.btnRefreshIni.Location = new System.Drawing.Point(351, 69);
-            this.btnRefreshIni.Name = "btnRefreshIni";
-            this.btnRefreshIni.Size = new System.Drawing.Size(50, 23);
-            this.btnRefreshIni.TabIndex = 2;
-            this.btnRefreshIni.Text = "刷新";
-            this.toolTip1.SetToolTip(this.btnRefreshIni, "刷新配置");
-            this.btnRefreshIni.UseVisualStyleBackColor = true;
-            this.btnRefreshIni.Click += new System.EventHandler(this.btnRefreshIni_Click);
+            this.SentEditTitleButton.BackColor = System.Drawing.Color.DarkGray;
+            this.SentEditTitleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SentEditTitleButton.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SentEditTitleButton.ForeColor = System.Drawing.Color.SeaGreen;
+            this.SentEditTitleButton.Location = new System.Drawing.Point(342, 0);
+            this.SentEditTitleButton.Name = "SentEditTitleButton";
+            this.SentEditTitleButton.Size = new System.Drawing.Size(75, 23);
+            this.SentEditTitleButton.TabIndex = 17;
+            this.SentEditTitleButton.Text = "编辑标题";
+            this.toolTip1.SetToolTip(this.SentEditTitleButton, "编辑配置的标题");
+            this.SentEditTitleButton.UseVisualStyleBackColor = false;
+            this.SentEditTitleButton.Click += new System.EventHandler(this.SentEditTitleButton_Click);
             // 
-            // btnDelini
+            // SentDeleteAllButton
             // 
-            this.btnDelini.Location = new System.Drawing.Point(351, 20);
-            this.btnDelini.Name = "btnDelini";
-            this.btnDelini.Size = new System.Drawing.Size(50, 23);
-            this.btnDelini.TabIndex = 1;
-            this.btnDelini.Text = "删除";
-            this.toolTip1.SetToolTip(this.btnDelini, "删除配置");
-            this.btnDelini.UseVisualStyleBackColor = true;
-            this.btnDelini.Click += new System.EventHandler(this.btnDelini_Click);
+            this.SentDeleteAllButton.BackColor = System.Drawing.Color.DarkGray;
+            this.SentDeleteAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SentDeleteAllButton.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SentDeleteAllButton.ForeColor = System.Drawing.Color.Crimson;
+            this.SentDeleteAllButton.Location = new System.Drawing.Point(342, 135);
+            this.SentDeleteAllButton.Name = "SentDeleteAllButton";
+            this.SentDeleteAllButton.Size = new System.Drawing.Size(75, 23);
+            this.SentDeleteAllButton.TabIndex = 16;
+            this.SentDeleteAllButton.Text = "删除所有";
+            this.toolTip1.SetToolTip(this.SentDeleteAllButton, "删除所有保存的发文配置");
+            this.SentDeleteAllButton.UseVisualStyleBackColor = false;
+            this.SentDeleteAllButton.Click += new System.EventHandler(this.SentDeleteAllButton_Click);
             // 
-            // lbxIni
+            // SentDeleteButton
             // 
-            this.lbxIni.FormattingEnabled = true;
-            this.lbxIni.ItemHeight = 12;
-            this.lbxIni.Location = new System.Drawing.Point(6, 16);
-            this.lbxIni.Name = "lbxIni";
-            this.lbxIni.Size = new System.Drawing.Size(339, 76);
-            this.lbxIni.TabIndex = 0;
-            this.lbxIni.SelectedIndexChanged += new System.EventHandler(this.lbxIni_SelectedIndexChanged);
+            this.SentDeleteButton.BackColor = System.Drawing.Color.DarkGray;
+            this.SentDeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SentDeleteButton.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SentDeleteButton.ForeColor = System.Drawing.Color.Crimson;
+            this.SentDeleteButton.Location = new System.Drawing.Point(342, 106);
+            this.SentDeleteButton.Name = "SentDeleteButton";
+            this.SentDeleteButton.Size = new System.Drawing.Size(75, 23);
+            this.SentDeleteButton.TabIndex = 15;
+            this.SentDeleteButton.Text = "删除配置";
+            this.toolTip1.SetToolTip(this.SentDeleteButton, "删除所选的配置");
+            this.SentDeleteButton.UseVisualStyleBackColor = false;
+            this.SentDeleteButton.Click += new System.EventHandler(this.SentDeleteButton_Click);
+            // 
+            // SentLastButton
+            // 
+            this.SentLastButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SentLastButton.Font = new System.Drawing.Font("宋体", 9F);
+            this.SentLastButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.SentLastButton.Location = new System.Drawing.Point(297, 0);
+            this.SentLastButton.Margin = new System.Windows.Forms.Padding(0);
+            this.SentLastButton.Name = "SentLastButton";
+            this.SentLastButton.Size = new System.Drawing.Size(23, 23);
+            this.SentLastButton.TabIndex = 14;
+            this.SentLastButton.Text = "尾";
+            this.toolTip1.SetToolTip(this.SentLastButton, "末页");
+            this.SentLastButton.UseVisualStyleBackColor = true;
+            this.SentLastButton.Click += new System.EventHandler(this.SentLastButton_Click);
+            // 
+            // SentFirstButton
+            // 
+            this.SentFirstButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SentFirstButton.Font = new System.Drawing.Font("宋体", 9F);
+            this.SentFirstButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.SentFirstButton.Location = new System.Drawing.Point(190, 0);
+            this.SentFirstButton.Margin = new System.Windows.Forms.Padding(0);
+            this.SentFirstButton.Name = "SentFirstButton";
+            this.SentFirstButton.Size = new System.Drawing.Size(23, 23);
+            this.SentFirstButton.TabIndex = 13;
+            this.SentFirstButton.Text = "首";
+            this.toolTip1.SetToolTip(this.SentFirstButton, "首页");
+            this.SentFirstButton.UseVisualStyleBackColor = true;
+            this.SentFirstButton.Click += new System.EventHandler(this.SentFirstButton_Click);
+            // 
+            // SentSearchButton
+            // 
+            this.SentSearchButton.BackColor = System.Drawing.Color.DarkGray;
+            this.SentSearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SentSearchButton.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SentSearchButton.ForeColor = System.Drawing.Color.Purple;
+            this.SentSearchButton.Location = new System.Drawing.Point(342, 77);
+            this.SentSearchButton.Name = "SentSearchButton";
+            this.SentSearchButton.Size = new System.Drawing.Size(75, 23);
+            this.SentSearchButton.TabIndex = 12;
+            this.SentSearchButton.Text = "搜索标题";
+            this.toolTip1.SetToolTip(this.SentSearchButton, "点击搜索标题");
+            this.SentSearchButton.UseVisualStyleBackColor = false;
+            this.SentSearchButton.Click += new System.EventHandler(this.SentSearchButton_Click);
+            // 
+            // SentPageLabel
+            // 
+            this.SentPageLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SentPageLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SentPageLabel.Location = new System.Drawing.Point(152, 0);
+            this.SentPageLabel.Name = "SentPageLabel";
+            this.SentPageLabel.Size = new System.Drawing.Size(40, 23);
+            this.SentPageLabel.TabIndex = 11;
+            this.SentPageLabel.Text = "0";
+            this.SentPageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.SentPageLabel, "点击我将自动跳转到第一个文章处");
+            // 
+            // label17
+            // 
+            this.label17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label17.Location = new System.Drawing.Point(108, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(44, 23);
+            this.label17.TabIndex = 10;
+            this.label17.Text = "页数：";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // SentSearchTextBox
+            // 
+            this.SentSearchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SentSearchTextBox.Location = new System.Drawing.Point(342, 55);
+            this.SentSearchTextBox.MaxLength = 20;
+            this.SentSearchTextBox.Name = "SentSearchTextBox";
+            this.SentSearchTextBox.Size = new System.Drawing.Size(75, 21);
+            this.SentSearchTextBox.TabIndex = 6;
+            this.SentSearchTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.SentSearchTextBox, "输入要搜索的标题");
+            // 
+            // SentNextButton
+            // 
+            this.SentNextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SentNextButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.SentNextButton.Location = new System.Drawing.Point(256, 0);
+            this.SentNextButton.Margin = new System.Windows.Forms.Padding(0);
+            this.SentNextButton.Name = "SentNextButton";
+            this.SentNextButton.Size = new System.Drawing.Size(41, 23);
+            this.SentNextButton.TabIndex = 3;
+            this.SentNextButton.Text = "下页";
+            this.toolTip1.SetToolTip(this.SentNextButton, "下一页");
+            this.SentNextButton.UseVisualStyleBackColor = true;
+            this.SentNextButton.Click += new System.EventHandler(this.SentNextButton_Click);
+            // 
+            // listViewSent
+            // 
+            this.listViewSent.AutoArrange = false;
+            this.listViewSent.BackColor = System.Drawing.Color.White;
+            this.listViewSent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listViewSent.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8});
+            this.listViewSent.ForeColor = System.Drawing.Color.Black;
+            this.listViewSent.FullRowSelect = true;
+            this.listViewSent.GridLines = true;
+            this.listViewSent.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listViewSent.HideSelection = false;
+            this.listViewSent.Location = new System.Drawing.Point(0, 23);
+            this.listViewSent.Margin = new System.Windows.Forms.Padding(0);
+            this.listViewSent.MultiSelect = false;
+            this.listViewSent.Name = "listViewSent";
+            this.listViewSent.Size = new System.Drawing.Size(336, 138);
+            this.listViewSent.TabIndex = 0;
+            this.toolTip1.SetToolTip(this.listViewSent, "双击配置以加载数据");
+            this.listViewSent.UseCompatibleStateImageBehavior = false;
+            this.listViewSent.View = System.Windows.Forms.View.Details;
+            this.listViewSent.ItemActivate += new System.EventHandler(this.listViewSent_ItemActivate);
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "ID";
+            this.columnHeader6.Width = 40;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "标题";
+            this.columnHeader7.Width = 140;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "创建时间";
+            this.columnHeader8.Width = 130;
+            // 
+            // SentPreButton
+            // 
+            this.SentPreButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SentPreButton.Font = new System.Drawing.Font("宋体", 9F);
+            this.SentPreButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.SentPreButton.Location = new System.Drawing.Point(213, 0);
+            this.SentPreButton.Margin = new System.Windows.Forms.Padding(0);
+            this.SentPreButton.Name = "SentPreButton";
+            this.SentPreButton.Size = new System.Drawing.Size(43, 23);
+            this.SentPreButton.TabIndex = 2;
+            this.SentPreButton.Text = "上页";
+            this.toolTip1.SetToolTip(this.SentPreButton, "上一页");
+            this.SentPreButton.UseVisualStyleBackColor = true;
+            this.SentPreButton.Click += new System.EventHandler(this.SentPreButton_Click);
+            // 
+            // SentCountLabel
+            // 
+            this.SentCountLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SentCountLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SentCountLabel.Location = new System.Drawing.Point(68, 0);
+            this.SentCountLabel.Name = "SentCountLabel";
+            this.SentCountLabel.Size = new System.Drawing.Size(40, 23);
+            this.SentCountLabel.TabIndex = 1;
+            this.SentCountLabel.Text = "0";
+            this.SentCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.SentCountLabel, "点击我将自动跳转到第一个文章处");
+            // 
+            // label19
+            // 
+            this.label19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label19.Location = new System.Drawing.Point(0, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(68, 23);
+            this.label19.TabIndex = 0;
+            this.label19.Text = "配置数量：";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cbx乱序全段不重复
             // 
             this.cbx乱序全段不重复.AutoSize = true;
+            this.cbx乱序全段不重复.Checked = true;
+            this.cbx乱序全段不重复.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbx乱序全段不重复.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbx乱序全段不重复.Location = new System.Drawing.Point(204, 200);
+            this.cbx乱序全段不重复.Location = new System.Drawing.Point(23, 40);
             this.cbx乱序全段不重复.Margin = new System.Windows.Forms.Padding(10, 0, 3, 0);
             this.cbx乱序全段不重复.Name = "cbx乱序全段不重复";
             this.cbx乱序全段不重复.Size = new System.Drawing.Size(129, 16);
             this.cbx乱序全段不重复.TabIndex = 2;
             this.cbx乱序全段不重复.Text = "乱序时全文段不重复";
             this.cbx乱序全段不重复.UseVisualStyleBackColor = true;
-            this.cbx乱序全段不重复.CheckedChanged += new System.EventHandler(this.cbx乱序全段不重复_CheckedChanged);
             // 
             // cbxTickOut
             // 
             this.cbxTickOut.AutoSize = true;
-            this.cbxTickOut.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.SetColumnSpan(this.cbxTickOut, 3);
             this.cbxTickOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbxTickOut.Location = new System.Drawing.Point(10, 200);
-            this.cbxTickOut.Margin = new System.Windows.Forms.Padding(10, 0, 3, 0);
+            this.cbxTickOut.Location = new System.Drawing.Point(3, 166);
             this.cbxTickOut.Name = "cbxTickOut";
-            this.cbxTickOut.Size = new System.Drawing.Size(181, 16);
+            this.cbxTickOut.Size = new System.Drawing.Size(189, 16);
             this.cbxTickOut.TabIndex = 1;
-            this.cbxTickOut.Text = "单字/文章自动剔除空格/换行";
+            this.cbxTickOut.Text = "单字和文章自动剔除空格及换行";
             this.cbxTickOut.UseVisualStyleBackColor = true;
             this.cbxTickOut.CheckedChanged += new System.EventHandler(this.cbxTickOut_CheckedChanged);
             // 
@@ -814,194 +1022,89 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 194F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 244F));
-            this.tableLayoutPanel1.Controls.Add(this.rtbShowText, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.cbxTickOut, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.rtbShowText, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.tabControl1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tabControl2, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.cbx乱序全段不重复, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tabControl2, 0, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(438, 432);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(438, 457);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // rtbShowText
             // 
             this.rtbShowText.BackColor = System.Drawing.Color.LightSteelBlue;
             this.rtbShowText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtbShowText.Location = new System.Drawing.Point(3, 320);
+            this.rtbShowText.Location = new System.Drawing.Point(3, 304);
             this.rtbShowText.Name = "rtbShowText";
-            this.rtbShowText.Size = new System.Drawing.Size(188, 108);
+            this.tableLayoutPanel1.SetRowSpan(this.rtbShowText, 2);
+            this.rtbShowText.Size = new System.Drawing.Size(188, 147);
             this.rtbShowText.TabIndex = 1;
             this.rtbShowText.Text = "";
             this.toolTip1.SetToolTip(this.rtbShowText, "显示文段摘要");
             // 
-            // tabControl2
+            // tableLayoutPanel3
             // 
-            this.tabControl2.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.tabControl2.Controls.Add(this.tabPage5);
-            this.tabControl2.Controls.Add(this.tabPage6);
-            this.tabControl2.Controls.Add(this.tabPage7);
-            this.tabControl2.HotTrack = true;
-            this.tabControl2.ItemSize = new System.Drawing.Size(20, 20);
-            this.tabControl2.Location = new System.Drawing.Point(3, 219);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(188, 95);
-            this.tabControl2.TabIndex = 2;
-            this.tabControl2.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl2_Selecting);
+            this.tableLayoutPanel3.ColumnCount = 3;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.15152F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 59.84848F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 92F));
+            this.tableLayoutPanel3.Controls.Add(this.btnExit, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnGoSend, 1, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(197, 421);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(238, 33);
+            this.tableLayoutPanel3.TabIndex = 3;
             // 
-            // tabPage5
+            // btnExit
             // 
-            this.tabPage5.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.tabPage5.Controls.Add(this.rbninOrder);
-            this.tabPage5.Controls.Add(this.rbnOutOrder);
-            this.tabPage5.ForeColor = System.Drawing.Color.Black;
-            this.tabPage5.Location = new System.Drawing.Point(4, 24);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(180, 67);
-            this.tabPage5.TabIndex = 0;
-            this.tabPage5.Text = "单字";
+            this.btnExit.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Location = new System.Drawing.Point(150, 4);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(5, 4, 3, 3);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(85, 26);
+            this.btnExit.TabIndex = 1;
+            this.btnExit.Text = "关闭";
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // rbninOrder
+            // btnGoSend
             // 
-            this.rbninOrder.AutoSize = true;
-            this.rbninOrder.Location = new System.Drawing.Point(10, 23);
-            this.rbninOrder.Name = "rbninOrder";
-            this.rbninOrder.Size = new System.Drawing.Size(47, 16);
-            this.rbninOrder.TabIndex = 1;
-            this.rbninOrder.Text = "顺序";
-            this.rbninOrder.UseVisualStyleBackColor = true;
-            // 
-            // rbnOutOrder
-            // 
-            this.rbnOutOrder.AutoSize = true;
-            this.rbnOutOrder.Checked = true;
-            this.rbnOutOrder.Location = new System.Drawing.Point(121, 23);
-            this.rbnOutOrder.Name = "rbnOutOrder";
-            this.rbnOutOrder.Size = new System.Drawing.Size(47, 16);
-            this.rbnOutOrder.TabIndex = 0;
-            this.rbnOutOrder.TabStop = true;
-            this.rbnOutOrder.Text = "乱序";
-            this.toolTip1.SetToolTip(this.rbnOutOrder, "默认乱序无限发文\r\n可勾选\"乱序时全文段不重复\"限制字数");
-            this.rbnOutOrder.UseVisualStyleBackColor = true;
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.tabPage6.Controls.Add(this.cbxOneEnd);
-            this.tabPage6.ForeColor = System.Drawing.Color.Black;
-            this.tabPage6.Location = new System.Drawing.Point(4, 24);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(180, 67);
-            this.tabPage6.TabIndex = 1;
-            this.tabPage6.Text = "文章";
-            // 
-            // cbxOneEnd
-            // 
-            this.cbxOneEnd.AutoSize = true;
-            this.cbxOneEnd.Checked = true;
-            this.cbxOneEnd.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxOneEnd.Enabled = false;
-            this.cbxOneEnd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbxOneEnd.Location = new System.Drawing.Point(40, 21);
-            this.cbxOneEnd.Name = "cbxOneEnd";
-            this.cbxOneEnd.Size = new System.Drawing.Size(105, 16);
-            this.cbxOneEnd.TabIndex = 0;
-            this.cbxOneEnd.Text = "以一句作为结束";
-            this.cbxOneEnd.UseVisualStyleBackColor = true;
-            // 
-            // tabPage7
-            // 
-            this.tabPage7.Controls.Add(this.tbxSendSplit);
-            this.tabPage7.Controls.Add(this.label11);
-            this.tabPage7.Controls.Add(this.label10);
-            this.tabPage7.Controls.Add(this.tbxsplit);
-            this.tabPage7.Controls.Add(this.cbxSplit);
-            this.tabPage7.Controls.Add(this.label9);
-            this.tabPage7.Location = new System.Drawing.Point(4, 24);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(180, 67);
-            this.tabPage7.TabIndex = 2;
-            this.tabPage7.Text = "词组";
-            this.tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // tbxSendSplit
-            // 
-            this.tbxSendSplit.Location = new System.Drawing.Point(80, 45);
-            this.tbxSendSplit.MaxLength = 3;
-            this.tbxSendSplit.Name = "tbxSendSplit";
-            this.tbxSendSplit.Size = new System.Drawing.Size(94, 21);
-            this.tbxSendSplit.TabIndex = 5;
-            this.tbxSendSplit.Text = "，";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(14, 51);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(65, 12);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "发送分隔：";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(14, 30);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(65, 12);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "其他字符：";
-            // 
-            // tbxsplit
-            // 
-            this.tbxsplit.Location = new System.Drawing.Point(80, 23);
-            this.tbxsplit.Name = "tbxsplit";
-            this.tbxsplit.Size = new System.Drawing.Size(94, 21);
-            this.tbxsplit.TabIndex = 2;
-            this.tbxsplit.TextChanged += new System.EventHandler(this.tbxsplit_TextChanged);
-            // 
-            // cbxSplit
-            // 
-            this.cbxSplit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxSplit.FormattingEnabled = true;
-            this.cbxSplit.Items.AddRange(new object[] {
-            "空格",
-            "换行",
-            "TAB",
-            "其他字符"});
-            this.cbxSplit.Location = new System.Drawing.Point(80, 2);
-            this.cbxSplit.Name = "cbxSplit";
-            this.cbxSplit.Size = new System.Drawing.Size(94, 20);
-            this.cbxSplit.TabIndex = 1;
-            this.cbxSplit.SelectedIndexChanged += new System.EventHandler(this.cbxSplit_SelectedIndexChanged);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 6);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(77, 12);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "词组分隔符：";
+            this.btnGoSend.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnGoSend.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnGoSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGoSend.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnGoSend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnGoSend.Location = new System.Drawing.Point(58, 4);
+            this.btnGoSend.Margin = new System.Windows.Forms.Padding(0, 4, 0, 3);
+            this.btnGoSend.Name = "btnGoSend";
+            this.btnGoSend.Size = new System.Drawing.Size(87, 26);
+            this.btnGoSend.TabIndex = 11;
+            this.btnGoSend.Text = "开启发文";
+            this.btnGoSend.UseVisualStyleBackColor = false;
+            this.btnGoSend.Click += new System.EventHandler(this.btnGoSend_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tableLayoutPanel2);
             this.groupBox1.ForeColor = System.Drawing.Color.Black;
-            this.groupBox1.Location = new System.Drawing.Point(197, 219);
+            this.groupBox1.Location = new System.Drawing.Point(197, 203);
             this.groupBox1.Name = "groupBox1";
             this.tableLayoutPanel1.SetRowSpan(this.groupBox1, 2);
-            this.groupBox1.Size = new System.Drawing.Size(238, 213);
+            this.groupBox1.Size = new System.Drawing.Size(238, 212);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "文章信息";
@@ -1026,25 +1129,24 @@
             this.tableLayoutPanel2.Controls.Add(this.nudSendTimer, 1, 5);
             this.tableLayoutPanel2.Controls.Add(this.btnAllText, 2, 3);
             this.tableLayoutPanel2.Controls.Add(this.lblspeed, 2, 5);
-            this.tableLayoutPanel2.Controls.Add(this.checkBox2, 0, 7);
-            this.tableLayoutPanel2.Controls.Add(this.btnGoSend, 1, 7);
-            this.tableLayoutPanel2.Controls.Add(this.btnExit, 2, 7);
             this.tableLayoutPanel2.Controls.Add(this.label8, 0, 6);
-            this.tableLayoutPanel2.Controls.Add(this.tbxQisduan, 1, 6);
             this.tableLayoutPanel2.Controls.Add(this.cbxAuto, 2, 6);
+            this.tableLayoutPanel2.Controls.Add(this.tbxQisduan, 1, 6);
+            this.tableLayoutPanel2.Controls.Add(this.cbxTickOut, 0, 7);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 20);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 9;
+            this.tableLayoutPanel2.RowCount = 8;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 13F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(232, 189);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 17F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(232, 188);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // tbxSendStart
@@ -1253,55 +1355,8 @@
             this.lblspeed.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.lblspeed, "当前周期下的理论跟打速度");
             // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBox2.Location = new System.Drawing.Point(3, 164);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(54, 20);
-            this.checkBox2.TabIndex = 13;
-            this.checkBox2.Text = "独练";
-            this.toolTip1.SetToolTip(this.checkBox2, "自己练习");
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // btnGoSend
-            // 
-            this.btnGoSend.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnGoSend.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnGoSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGoSend.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnGoSend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnGoSend.Location = new System.Drawing.Point(60, 162);
-            this.btnGoSend.Margin = new System.Windows.Forms.Padding(0, 4, 0, 3);
-            this.btnGoSend.Name = "btnGoSend";
-            this.btnGoSend.Size = new System.Drawing.Size(82, 22);
-            this.btnGoSend.TabIndex = 11;
-            this.btnGoSend.Text = "开启发文";
-            this.btnGoSend.UseVisualStyleBackColor = false;
-            this.btnGoSend.Click += new System.EventHandler(this.btnGoSend_Click);
-            // 
-            // btnExit
-            // 
-            this.btnExit.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Location = new System.Drawing.Point(147, 162);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(5, 4, 3, 3);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(82, 22);
-            this.btnExit.TabIndex = 1;
-            this.btnExit.Text = "关闭";
-            this.btnExit.UseVisualStyleBackColor = false;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.Location = new System.Drawing.Point(3, 138);
             this.label8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 0);
             this.label8.Name = "label8";
@@ -1309,20 +1364,6 @@
             this.label8.TabIndex = 16;
             this.label8.Text = "始段号";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tbxQisduan
-            // 
-            this.tbxQisduan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxQisduan.Font = new System.Drawing.Font("宋体", 9F);
-            this.tbxQisduan.Location = new System.Drawing.Point(63, 137);
-            this.tbxQisduan.Margin = new System.Windows.Forms.Padding(3, 1, 3, 3);
-            this.tbxQisduan.Name = "tbxQisduan";
-            this.tbxQisduan.Size = new System.Drawing.Size(76, 21);
-            this.tbxQisduan.TabIndex = 17;
-            this.tbxQisduan.Text = "1";
-            this.tbxQisduan.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.tbxQisduan, "起始段号");
-            this.tbxQisduan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxQisduan_KeyPress);
             // 
             // cbxAuto
             // 
@@ -1338,13 +1379,177 @@
             this.cbxAuto.UseVisualStyleBackColor = true;
             this.cbxAuto.CheckedChanged += new System.EventHandler(this.cbxAuto_CheckedChanged);
             // 
+            // tbxQisduan
+            // 
+            this.tbxQisduan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbxQisduan.Font = new System.Drawing.Font("宋体", 9F);
+            this.tbxQisduan.Location = new System.Drawing.Point(63, 138);
+            this.tbxQisduan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
+            this.tbxQisduan.Name = "tbxQisduan";
+            this.tbxQisduan.Size = new System.Drawing.Size(76, 21);
+            this.tbxQisduan.TabIndex = 17;
+            this.tbxQisduan.Text = "1";
+            this.tbxQisduan.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.tbxQisduan, "起始段号");
+            this.tbxQisduan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxQisduan_KeyPress);
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.tabControl2.Controls.Add(this.tabPage5);
+            this.tabControl2.Controls.Add(this.tabPage6);
+            this.tabControl2.Controls.Add(this.tabPage7);
+            this.tabControl2.HotTrack = true;
+            this.tabControl2.ItemSize = new System.Drawing.Size(20, 20);
+            this.tabControl2.Location = new System.Drawing.Point(3, 203);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(188, 95);
+            this.tabControl2.TabIndex = 2;
+            this.tabControl2.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl2_Selecting);
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage5.Controls.Add(this.rbninOrder);
+            this.tabPage5.Controls.Add(this.rbnOutOrder);
+            this.tabPage5.Controls.Add(this.cbx乱序全段不重复);
+            this.tabPage5.ForeColor = System.Drawing.Color.Black;
+            this.tabPage5.Location = new System.Drawing.Point(4, 24);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(180, 67);
+            this.tabPage5.TabIndex = 0;
+            this.tabPage5.Text = "单字";
+            // 
+            // rbninOrder
+            // 
+            this.rbninOrder.AutoSize = true;
+            this.rbninOrder.Location = new System.Drawing.Point(6, 6);
+            this.rbninOrder.Name = "rbninOrder";
+            this.rbninOrder.Size = new System.Drawing.Size(47, 16);
+            this.rbninOrder.TabIndex = 1;
+            this.rbninOrder.Text = "顺序";
+            this.rbninOrder.UseVisualStyleBackColor = true;
+            // 
+            // rbnOutOrder
+            // 
+            this.rbnOutOrder.AutoSize = true;
+            this.rbnOutOrder.Checked = true;
+            this.rbnOutOrder.Location = new System.Drawing.Point(123, 6);
+            this.rbnOutOrder.Name = "rbnOutOrder";
+            this.rbnOutOrder.Size = new System.Drawing.Size(47, 16);
+            this.rbnOutOrder.TabIndex = 0;
+            this.rbnOutOrder.TabStop = true;
+            this.rbnOutOrder.Text = "乱序";
+            this.toolTip1.SetToolTip(this.rbnOutOrder, "默认乱序无限发文\r\n可勾选\"乱序时全文段不重复\"限制字数");
+            this.rbnOutOrder.UseVisualStyleBackColor = true;
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage6.Controls.Add(this.label13);
+            this.tabPage6.ForeColor = System.Drawing.Color.Black;
+            this.tabPage6.Location = new System.Drawing.Point(4, 24);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(180, 67);
+            this.tabPage6.TabIndex = 1;
+            this.tabPage6.Text = "文章";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label13.Location = new System.Drawing.Point(20, 18);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(137, 36);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "文章始终以一句结束。\r\n若需要固定字数，可以按\r\n单字顺序发文";
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.tbxSendSplit);
+            this.tabPage7.Controls.Add(this.label11);
+            this.tabPage7.Controls.Add(this.label10);
+            this.tabPage7.Controls.Add(this.tbxsplit);
+            this.tabPage7.Controls.Add(this.cbxSplit);
+            this.tabPage7.Controls.Add(this.label9);
+            this.tabPage7.Location = new System.Drawing.Point(4, 24);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(180, 67);
+            this.tabPage7.TabIndex = 2;
+            this.tabPage7.Text = "词组";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // tbxSendSplit
+            // 
+            this.tbxSendSplit.Location = new System.Drawing.Point(80, 45);
+            this.tbxSendSplit.MaxLength = 3;
+            this.tbxSendSplit.Name = "tbxSendSplit";
+            this.tbxSendSplit.Size = new System.Drawing.Size(94, 21);
+            this.tbxSendSplit.TabIndex = 5;
+            this.tbxSendSplit.Text = "，";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(14, 51);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 12);
+            this.label11.TabIndex = 4;
+            this.label11.Text = "发送分隔：";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(14, 30);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(65, 12);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "其他字符：";
+            // 
+            // tbxsplit
+            // 
+            this.tbxsplit.Location = new System.Drawing.Point(80, 23);
+            this.tbxsplit.Name = "tbxsplit";
+            this.tbxsplit.Size = new System.Drawing.Size(94, 21);
+            this.tbxsplit.TabIndex = 2;
+            this.tbxsplit.TextChanged += new System.EventHandler(this.tbxsplit_TextChanged);
+            // 
+            // cbxSplit
+            // 
+            this.cbxSplit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxSplit.FormattingEnabled = true;
+            this.cbxSplit.Items.AddRange(new object[] {
+            "空格",
+            "换行",
+            "TAB",
+            "其他字符"});
+            this.cbxSplit.Location = new System.Drawing.Point(80, 2);
+            this.cbxSplit.Name = "cbxSplit";
+            this.cbxSplit.Size = new System.Drawing.Size(94, 20);
+            this.cbxSplit.TabIndex = 1;
+            this.cbxSplit.SelectedIndexChanged += new System.EventHandler(this.cbxSplit_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 6);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(77, 12);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "词组分隔符：";
+            // 
             // 新发文
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(438, 434);
+            this.ClientSize = new System.Drawing.Size(438, 458);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -1365,9 +1570,14 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.tabPage8.ResumeLayout(false);
-            this.gropbox.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSendTimer)).EndInit();
             this.tabControl2.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
@@ -1375,10 +1585,6 @@
             this.tabPage6.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSendTimer)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1413,9 +1619,7 @@
         private System.Windows.Forms.NumericUpDown nudSendTimer;
         private System.Windows.Forms.RadioButton rbninOrder;
         private System.Windows.Forms.RadioButton rbnOutOrder;
-        private System.Windows.Forms.CheckBox cbxOneEnd;
         private System.Windows.Forms.RichTextBox rtbInfo;
-        private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ListView listViewFile;
         private System.Windows.Forms.Button btnReGet;
@@ -1460,10 +1664,6 @@
         private System.Windows.Forms.Label ArticleCountLabel;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TabPage tabPage8;
-        private System.Windows.Forms.GroupBox gropbox;
-        private System.Windows.Forms.Button btnRefreshIni;
-        private System.Windows.Forms.Button btnDelini;
-        private System.Windows.Forms.ListBox lbxIni;
         private System.Windows.Forms.Button ArticleLastButton;
         private System.Windows.Forms.Button ArticleFirstButton;
         private System.Windows.Forms.ColumnHeader columnHeader1;
@@ -1474,5 +1674,25 @@
         private System.Windows.Forms.Button ArticleDeleteAllButton;
         private System.Windows.Forms.Button ArticleDeleteItemButton;
         private System.Windows.Forms.Button ArticleEditTitleButton;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button SentEditTitleButton;
+        private System.Windows.Forms.Button SentDeleteAllButton;
+        private System.Windows.Forms.Button SentDeleteButton;
+        private System.Windows.Forms.Button SentLastButton;
+        private System.Windows.Forms.Button SentFirstButton;
+        private System.Windows.Forms.Button SentSearchButton;
+        private System.Windows.Forms.Label SentPageLabel;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox SentSearchTextBox;
+        private System.Windows.Forms.Button SentNextButton;
+        private System.Windows.Forms.ListView listViewSent;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.Button SentPreButton;
+        private System.Windows.Forms.Label SentCountLabel;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
     }
 }

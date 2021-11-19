@@ -37,5 +37,23 @@
             }
             return null;
         }
+
+        /// <summary>
+        /// 通过 id 值获取配置数据
+        /// </summary>
+        /// <param name="sentData"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static SentRow GetSentRowFromId(SentDataTable sentData, long id)
+        {
+            for (int i = 0; i < sentData.Count; i++)
+            {
+                if ((long)sentData[i]["id"] == id)
+                {
+                    return sentData[i];
+                }
+            }
+            return null;
+        }
     }
 }

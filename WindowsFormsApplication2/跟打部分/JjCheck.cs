@@ -12,13 +12,11 @@ namespace WindowsFormsApplication2
 {
     public partial class JjCheck : Form
     {
-        Form1 frm;
         private ChartArea CA_ = new ChartArea();//创建图表区域
         private Series SJJ_ = new Series("比例");//创建线条
         private Title Ti = new Title("击键评定");
-        public JjCheck(Form1 frm1)
+        public JjCheck()
         {
-            frm = frm1;
             InitializeComponent();
             this.chart1.ChartAreas.Add(CA_);
             this.chart1.Series.Add(SJJ_);
@@ -36,8 +34,6 @@ namespace WindowsFormsApplication2
             double jjP;
             int jjC = 0;
             double jjC_ = 0;
-            //StringBuilder sb = new StringBuilder();
-            //sb.AppendLine("击键历史总计及分析：\r\n您总共跟打了" + Glob.jjAllC + "段");
             for (int i = 0; i < 9; i++)
             {
                 jjP = (double)Glob.jjPer[i] / Glob.jjAllC;
@@ -54,7 +50,7 @@ namespace WindowsFormsApplication2
             }
             if (jjC != 0)
             {
-                Ti.Text = "您总共跟打了[ " + Glob.jjAllC + " ]段 击键评定为[ " + (jjC + jjC_).ToString("0.000")+" ]";
+                Ti.Text = "您总共跟打了[ " + Glob.jjAllC + " ]段 击键等级评定为[ " + (jjC + jjC_).ToString("0.000")+" ]";
             }
         }
 

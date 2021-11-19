@@ -283,6 +283,9 @@ namespace WindowsFormsApplication2
         public static int PauseTimes = 0;
         //击键比例
         public static int[] jjPer = new int[9];
+        /// <summary>
+        /// 总跟打段数
+        /// </summary>
         public static int jjAllC = 0;
         
         //跟打地图

@@ -4305,12 +4305,12 @@ namespace WindowsFormsApplication2
         {
             if (Glob.jjAllC >= 100)
             {
-                JjCheck JjC = new JjCheck(this);
+                JjCheck JjC = new JjCheck();
                 JjC.ShowDialog(this);
             }
             else
             {
-                MessageBox.Show("击键记录段数小于100项，请多多参打哟。项目越多计算越准！", "提示");
+                MessageBox.Show("记录段数小于100项，项目越多击键等级计算越准！", "提示");
             }
         }
 

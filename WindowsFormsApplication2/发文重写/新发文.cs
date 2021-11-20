@@ -122,7 +122,6 @@ namespace WindowsFormsApplication2
                 this.lbxTextList.Items.Clear();
                 this.lbxTextList.SelectedIndexChanged -= new EventHandler(lbxTextList_SelectedIndexChanged);
                 MessageBox.Show("未找到TyDll.dll文件！");
-
             }
         }
 
@@ -162,7 +161,7 @@ namespace WindowsFormsApplication2
         }
         #endregion
 
-        #region 内置文章
+        #region 文章处理
         /// <summary>
         /// 获取到的文章内容
         /// </summary>
@@ -182,10 +181,13 @@ namespace WindowsFormsApplication2
                 case 0: rtbInfo.Text = "选用标准常用字前一千五百的【前五百】个单字"; break;
                 case 1: rtbInfo.Text = "选用标准常用字前一千五百的【中五百】个单字"; break;
                 case 2: rtbInfo.Text = "选用标准常用字前一千五百的【后五百】个单字"; break;
-                case 3: rtbInfo.Text = "选用标准常用词组前二百个词组 (以空格作为词组分隔符)"; break;
-                case 4: rtbInfo.Text = "选【为人民服务】现代文一篇"; break;
-                case 5: rtbInfo.Text = "选【岳阳楼记】古文一篇"; break;
-                case 6: rtbInfo.Text = "选用标准常用字前一千五百个单字整体"; break;
+                case 3: rtbInfo.Text = "选用标准常用字前一千五百个单字整体"; break;
+                case 4: rtbInfo.Text = "选用标准常用词组前二百个词组 (以空格作为词组分隔符)"; break;
+                case 5: rtbInfo.Text = "选【心的出口】现代文一篇"; break;
+                case 6: rtbInfo.Text = "选【冰灯】现代文一篇"; break;
+                case 7: rtbInfo.Text = "选【为人民服务】现代文节选一篇"; break;
+                case 8: rtbInfo.Text = "选【从百草园到三味书屋】白话文一篇，收录于鲁迅作品《朝花夕拾》"; break;
+                case 9: rtbInfo.Text = "选【岳阳楼记】古文一篇"; break;
                 default: rtbInfo.Text = "没有定义的内容"; break;
             }
         }

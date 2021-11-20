@@ -206,10 +206,13 @@
             "常用单字前五百",
             "常用单字中五百",
             "常用单字后五百",
+            "常用单字前一千五",
             "常用词组前二百",
+            "心的出口",
+            "冰灯",
             "为人民服务节选",
-            "岳阳楼记",
-            "前1500单字"});
+            "从百草园到三味书屋",
+            "岳阳楼记"});
             this.lbxTextList.Location = new System.Drawing.Point(6, 5);
             this.lbxTextList.Name = "lbxTextList";
             this.lbxTextList.Size = new System.Drawing.Size(283, 154);

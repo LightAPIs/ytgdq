@@ -68,7 +68,7 @@
     <EmbeddedResource Include="Resources\TXT\常用单字中五百.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\TXT\前1500单字.txt" />
+    <EmbeddedResource Include="Resources\TXT\常用单字前一千五.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\TXT\为人民服务节选.txt" />
@@ -99,6 +99,9 @@
     <Content Include="Resources\QQ\ContextMenu\menu_check.png" />
     <Content Include="Resources\QQ\ContextMenu\menu_cutling.png" />
     <Content Include="Resources\QQ\ContextMenu\menu_highlight.png" />
+    <EmbeddedResource Include="Resources\TXT\从百草园到三味书屋.txt" />
+    <EmbeddedResource Include="Resources\TXT\心的出口.txt" />
+    <EmbeddedResource Include="Resources\TXT\冰灯.txt" />
     <EmbeddedResource Include="Resources\QQ\FormFrame\ContactFilter_splitter.png" />
     <EmbeddedResource Include="Resources\QQ\FormFrame\fringe_bkg.png" />
     <Content Include="Resources\QQ\head.png" />

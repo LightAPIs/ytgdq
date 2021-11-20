@@ -1055,7 +1055,7 @@
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.15152F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 59.84848F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 92F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93F));
             this.tableLayoutPanel3.Controls.Add(this.btnExit, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnGoSend, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1072,10 +1072,10 @@
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Location = new System.Drawing.Point(150, 4);
+            this.btnExit.Location = new System.Drawing.Point(149, 4);
             this.btnExit.Margin = new System.Windows.Forms.Padding(5, 4, 3, 3);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(85, 26);
+            this.btnExit.Size = new System.Drawing.Size(86, 26);
             this.btnExit.TabIndex = 1;
             this.btnExit.Text = "关闭";
             this.btnExit.UseVisualStyleBackColor = false;
@@ -1091,7 +1091,7 @@
             this.btnGoSend.Location = new System.Drawing.Point(58, 4);
             this.btnGoSend.Margin = new System.Windows.Forms.Padding(0, 4, 0, 3);
             this.btnGoSend.Name = "btnGoSend";
-            this.btnGoSend.Size = new System.Drawing.Size(87, 26);
+            this.btnGoSend.Size = new System.Drawing.Size(86, 26);
             this.btnGoSend.TabIndex = 11;
             this.btnGoSend.Text = "开启发文";
             this.btnGoSend.UseVisualStyleBackColor = false;

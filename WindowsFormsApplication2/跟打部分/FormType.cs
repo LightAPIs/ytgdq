@@ -2757,7 +2757,13 @@ namespace WindowsFormsApplication2
         {
             try
             {
-                int g = int.Parse(this.labelBM.Text);
+                int g = 0;
+                string lbm = this.labelBM.Text;
+                if (!string.IsNullOrEmpty(lbm) && lbm != "-")
+                {
+                    g = int.Parse(lbm);
+                }
+                
                 if (g > 0)
                 {
                     this.labelBM.ForeColor = Color.IndianRed;

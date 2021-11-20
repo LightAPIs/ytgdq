@@ -4736,28 +4736,6 @@ namespace WindowsFormsApplication2
             return text;
         }
 
-        private void 英文标点换中文标点ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!Glob.autoReplaceBiaodian) // 之前没有开自动替换标点的前提下
-            {
-                richTextBox1.Text = ReText(richTextBox1.Text);
-                GetInfo();
-            }
-        }
-
-        private void 删除空格包含全角ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string s = richTextBox1.Text;
-            s = s.Replace(" ", "");
-            s = s.Replace("　", "");
-            s = s.Replace("\r\n", "");
-            s = s.Replace("\r", "");
-            s = s.Replace("\n", "");
-            richTextBox1.Text = s;
-            GetInfo();
-        }
-
-
         private void 打开练习ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.openFileDialog1.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)

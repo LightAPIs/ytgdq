@@ -182,10 +182,10 @@ namespace WindowsFormsApplication2
                 case 0: rtbInfo.Text = "选用标准常用字前一千五百的【前五百】个单字"; break;
                 case 1: rtbInfo.Text = "选用标准常用字前一千五百的【中五百】个单字"; break;
                 case 2: rtbInfo.Text = "选用标准常用字前一千五百的【后五百】个单字"; break;
-                case 3: rtbInfo.Text = "选用标准常用词组前二百个常用词组"; break;
+                case 3: rtbInfo.Text = "选用标准常用词组前二百个词组 (以空格作为词组分隔符)"; break;
                 case 4: rtbInfo.Text = "选【为人民服务】现代文一篇"; break;
                 case 5: rtbInfo.Text = "选【岳阳楼记】古文一篇"; break;
-                case 6: rtbInfo.Text = "前1500字整体"; break;
+                case 6: rtbInfo.Text = "选用标准常用字前一千五百个单字整体"; break;
                 default: rtbInfo.Text = "没有定义的内容"; break;
             }
         }
@@ -346,6 +346,18 @@ namespace WindowsFormsApplication2
                 this.label4.Text = "词数";
                 if (NewSendText.SentId < 0)
                 {
+                    //* 恢复显示原文，因为词组是不受自动移除空格换行影响的
+                    if (GetText.Length != 0)
+                    {
+                        if (GetText.Length > 300)
+                        {
+                            this.rtbShowText.Text = GetText.Substring(0, 300) + "[......未完]";
+                        }
+                        else
+                        {
+                            this.rtbShowText.Text = GetText + "[已完]";
+                        }
+                    }
                     ShowFlowText("请选择词组分隔符来检索词组内容");
                 }
             }

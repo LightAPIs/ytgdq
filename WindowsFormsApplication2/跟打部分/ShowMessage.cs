@@ -25,11 +25,11 @@ namespace WindowsFormsApplication2
             F = new Form();//新建
             try
             {
-                foreach (Form item in Application.OpenForms)
+                for (int i = 0; i < Application.OpenForms.Count; i++)
                 {
-                    if (item.Name == "MessageShow")
+                    if (Application.OpenForms[i] != null && Application.OpenForms[i].Name == "MessageShow")
                     {
-                        item.Close();
+                        Application.OpenForms[i].Close();
                     }
                 }
             }

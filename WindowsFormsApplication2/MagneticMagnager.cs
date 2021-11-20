@@ -81,37 +81,22 @@ namespace WindowsFormsApplication2
                 int height;
                 try
                 {
-                    var v = (Form1)MainForm;
-                    height = MainForm.Top + v.splitContainer1.Location.Y + v.splitContainer1.SplitterDistance + 97 - LengthMessage.Height;
+                    if (MainForm is Form1 v)
+                    {
+                        height = MainForm.Top + v.splitContainer1.Location.Y + v.splitContainer1.SplitterDistance + 97 - LengthMessage.Height;   
+                    }
+                    else
+                    {
+                        height = MainForm.Top - LengthMessage.Height + 220;   
+                    }
                 }
                 catch {
-                    height = MainForm.Height - LengthMessage.Height - 30;
+                    height = MainForm.Top - LengthMessage.Height + 220;
                 }
                 
-                LocationPt = new Point(MainForm.Location.X + MainForm.Width / 2 - LengthMessage.Width/2, height);// 
+                LocationPt = new Point(MainForm.Location.X + MainForm.Width / 2 - LengthMessage.Width/2, height);
             }
             ChildForm.Location = LocationPt;
-        }
-        void ChildForm_LocationChanged(object sender, EventArgs e)//当窗体位置移动后
-        {
-            //if (!IsFirstPos)
-            //{
-            //    IsFirstPos = true;
-            //    return;
-            //}
-            OnMove();//委托
-            //MainForm.BeginInvoke(del);//调用
-        }
-
-        void OnMove()//移动子窗体
-        {
-            int distance = Math.Abs(ChildForm.Right - MainForm.Left);
-            if (distance <= 50 && distance > 0)
-            {
-                LocationPt = new Point(MainForm.Left - ChildForm.Width, MainForm.Top);
-                ChildForm.Location = LocationPt;
-
-            }
         }
     }
     public enum MagneticPosition//磁性窗体的位置属性

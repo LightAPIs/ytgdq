@@ -5090,49 +5090,6 @@ namespace WindowsFormsApplication2
         }
         #endregion
 
-        #region 打开测速
-        private void InTestSpeed(string text)
-        {
-            string getText = "";
-            try
-            {
-                getText = TyDll.GetResources.GetText("Resources.TXT." + text + ".txt");
-            }
-            catch
-            {
-            }
-            if (getText.Length != 0)
-            {
-                this.richTextBox1.Text = getText;
-                GetInfo();
-            }
-        }
-        private void 前五百单字ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            InTestSpeed((sender as ToolStripMenuItem).Text);
-        }
-
-        private void 中五百单字ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            InTestSpeed((sender as ToolStripMenuItem).Text);
-        }
-
-        private void 后五百单字ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            InTestSpeed((sender as ToolStripMenuItem).Text);
-        }
-
-        private void 岳阳楼记ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            InTestSpeed((sender as ToolStripMenuItem).Text);
-        }
-
-        private void 为人民服务节选ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            InTestSpeed((sender as ToolStripMenuItem).Text);
-        }
-        #endregion
-
         #region 表格处理
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {

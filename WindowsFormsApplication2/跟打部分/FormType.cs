@@ -4664,9 +4664,6 @@ namespace WindowsFormsApplication2
 
         private void 将目前文章乱序ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //! 停止发文
-            this.StopSendFun();
-
             F3();
             int textlen = richTextBox1.TextLength;
             string Text1 = "";

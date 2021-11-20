@@ -3743,7 +3743,10 @@ namespace WindowsFormsApplication2
                                 发文状态窗口.Close();
                         }
                         新发文 NewSendTextForm = new 新发文(this);
-                        NewSendTextForm.ShowDialog();
+                        if (NewSendTextForm.ShowDialog() == DialogResult.Cancel)
+                        {
+                            this.textBoxEx1.Focus();
+                        }
                         break;
                     case System.Windows.Forms.DialogResult.No:
                         if (发文状态窗口 != null)
@@ -3771,8 +3774,12 @@ namespace WindowsFormsApplication2
             else
             {
                 新发文 NewSendTextForm = new 新发文(this);
-                //NewSendText.MdiParent = this;
-                NewSendTextForm.ShowDialog();
+                if (NewSendTextForm.ShowDialog() == DialogResult.Cancel)
+                { //! 用于处理跟打区会出现无法获取到输入焦点的问题。即：若打开发文设置前焦点在跟打区以外的控件时，关闭窗口后焦点也只会返还到原控件上。
+                  //? 测试在发文设置窗口完全关闭前，在发文方法中给予跟打区焦点的方法都是无法生效的。
+                  //? 因为这是一个 ShowDialog 窗口，所以在完全关闭前窗口的焦点仍旧只能位于最前端发文设置窗口中。
+                    this.textBoxEx1.Focus();
+                }
             }
         }
 
@@ -3794,8 +3801,6 @@ namespace WindowsFormsApplication2
             {
                 MessageBox.Show("当前无文段！");
             }
-
-
         }
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -4396,6 +4401,8 @@ namespace WindowsFormsApplication2
                     {
                         timerTSend.Start();
                     }
+
+                    F3();
                 }
                 else
                 {
@@ -5229,7 +5236,10 @@ namespace WindowsFormsApplication2
             {
                 if (sw > 0) { return; }
                 SpeedCheckPoint scp = new SpeedCheckPoint(this);
-                scp.ShowDialog();
+                if (scp.ShowDialog() == DialogResult.Cancel)
+                {
+                    this.textBoxEx1.Focus();
+                }
             }
             else
             {
@@ -5555,7 +5565,10 @@ namespace WindowsFormsApplication2
         private void HistoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             History.History his = new History.History(this);
-            his.ShowDialog();
+            if (his.ShowDialog() == DialogResult.Cancel)
+            { //* 处理重打文段时获取焦点
+                this.textBoxEx1.Focus();
+            }
         }
         #endregion
 

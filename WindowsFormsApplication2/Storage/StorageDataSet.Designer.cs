@@ -1963,6 +1963,16 @@ namespace WindowsFormsApplication2.Storage {
             
             private global::System.Data.DataColumn columnauto;
             
+            private global::System.Data.DataColumn columnauto_condition;
+            
+            private global::System.Data.DataColumn columnauto_key;
+            
+            private global::System.Data.DataColumn columnauto_operator;
+            
+            private global::System.Data.DataColumn columnauto_number;
+            
+            private global::System.Data.DataColumn columnauto_no;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public SentDataTable() {
@@ -2158,6 +2168,46 @@ namespace WindowsFormsApplication2.Storage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn auto_conditionColumn {
+                get {
+                    return this.columnauto_condition;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn auto_keyColumn {
+                get {
+                    return this.columnauto_key;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn auto_operatorColumn {
+                get {
+                    return this.columnauto_operator;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn auto_numberColumn {
+                get {
+                    return this.columnauto_number;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn auto_noColumn {
+                get {
+                    return this.columnauto_no;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2213,7 +2263,12 @@ namespace WindowsFormsApplication2.Storage {
                         int sent_count, 
                         int cycle, 
                         int cycle_value, 
-                        int auto) {
+                        int auto, 
+                        int auto_condition, 
+                        int auto_key, 
+                        int auto_operator, 
+                        double auto_number, 
+                        int auto_no) {
                 SentRow rowSentRow = ((SentRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         id,
@@ -2235,7 +2290,12 @@ namespace WindowsFormsApplication2.Storage {
                         sent_count,
                         cycle,
                         cycle_value,
-                        auto};
+                        auto,
+                        auto_condition,
+                        auto_key,
+                        auto_operator,
+                        auto_number,
+                        auto_no};
                 rowSentRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSentRow);
                 return rowSentRow;
@@ -2285,6 +2345,11 @@ namespace WindowsFormsApplication2.Storage {
                 this.columncycle = base.Columns["cycle"];
                 this.columncycle_value = base.Columns["cycle_value"];
                 this.columnauto = base.Columns["auto"];
+                this.columnauto_condition = base.Columns["auto_condition"];
+                this.columnauto_key = base.Columns["auto_key"];
+                this.columnauto_operator = base.Columns["auto_operator"];
+                this.columnauto_number = base.Columns["auto_number"];
+                this.columnauto_no = base.Columns["auto_no"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2330,6 +2395,16 @@ namespace WindowsFormsApplication2.Storage {
                 base.Columns.Add(this.columncycle_value);
                 this.columnauto = new global::System.Data.DataColumn("auto", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnauto);
+                this.columnauto_condition = new global::System.Data.DataColumn("auto_condition", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnauto_condition);
+                this.columnauto_key = new global::System.Data.DataColumn("auto_key", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnauto_key);
+                this.columnauto_operator = new global::System.Data.DataColumn("auto_operator", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnauto_operator);
+                this.columnauto_number = new global::System.Data.DataColumn("auto_number", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnauto_number);
+                this.columnauto_no = new global::System.Data.DataColumn("auto_no", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnauto_no);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("SentKey", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AllowDBNull = false;
@@ -2345,6 +2420,8 @@ namespace WindowsFormsApplication2.Storage {
                 this.columnsegment_cursor.DefaultValue = ((int)(0));
                 this.columncycle.DefaultValue = ((int)(0));
                 this.columnauto.DefaultValue = ((int)(0));
+                this.columnauto_condition.DefaultValue = ((int)(0));
+                this.columnauto_no.DefaultValue = ((int)(0));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3732,6 +3809,86 @@ namespace WindowsFormsApplication2.Storage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int auto_condition {
+                get {
+                    try {
+                        return ((int)(this[this.tableSent.auto_conditionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Sent”中列“auto_condition”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSent.auto_conditionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int auto_key {
+                get {
+                    try {
+                        return ((int)(this[this.tableSent.auto_keyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Sent”中列“auto_key”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSent.auto_keyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int auto_operator {
+                get {
+                    try {
+                        return ((int)(this[this.tableSent.auto_operatorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Sent”中列“auto_operator”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSent.auto_operatorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public double auto_number {
+                get {
+                    try {
+                        return ((double)(this[this.tableSent.auto_numberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Sent”中列“auto_number”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSent.auto_numberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int auto_no {
+                get {
+                    try {
+                        return ((int)(this[this.tableSent.auto_noColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Sent”中列“auto_no”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSent.auto_noColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsphrasesNull() {
                 return this.IsNull(this.tableSent.phrasesColumn);
             }
@@ -3896,6 +4053,66 @@ namespace WindowsFormsApplication2.Storage {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetautoNull() {
                 this[this.tableSent.autoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Isauto_conditionNull() {
+                return this.IsNull(this.tableSent.auto_conditionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setauto_conditionNull() {
+                this[this.tableSent.auto_conditionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Isauto_keyNull() {
+                return this.IsNull(this.tableSent.auto_keyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setauto_keyNull() {
+                this[this.tableSent.auto_keyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Isauto_operatorNull() {
+                return this.IsNull(this.tableSent.auto_operatorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setauto_operatorNull() {
+                this[this.tableSent.auto_operatorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Isauto_numberNull() {
+                return this.IsNull(this.tableSent.auto_numberColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setauto_numberNull() {
+                this[this.tableSent.auto_numberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Isauto_noNull() {
+                return this.IsNull(this.tableSent.auto_noColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setauto_noNull() {
+                this[this.tableSent.auto_noColumn] = global::System.Convert.DBNull;
             }
         }
         

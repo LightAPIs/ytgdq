@@ -2303,8 +2303,71 @@ namespace WindowsFormsApplication2
                         if (NewSendText.发文状态)
                         {
                             if (NewSendText.是否自动)
-                            {  // 自动模式
-                                SendNextFun();
+                            { // 自动模式
+                                if (NewSendText.AutoCondition)
+                                {
+                                    bool isNext = false;
+                                    switch (NewSendText.AutoKey)
+                                    {
+                                        case NewSendText.AutoKeyValue.Speed:
+                                            isNext = CompareAutoCondition(speed2, NewSendText.AutoNumber);
+                                            break;
+                                        case NewSendText.AutoKeyValue.Keystroke:
+                                            isNext = CompareAutoCondition(jj, NewSendText.AutoNumber);
+                                            break;
+                                        case NewSendText.AutoKeyValue.CodeLen:
+                                            isNext = CompareAutoCondition(mc, NewSendText.AutoNumber);
+                                            break;
+                                        case NewSendText.AutoKeyValue.AccuracyRate:
+                                            isNext = CompareAutoCondition(UserJz, NewSendText.AutoNumber);
+                                            break;
+                                        case NewSendText.AutoKeyValue.BackChange:
+                                            isNext = CompareAutoCondition(Glob.TextHg, NewSendText.AutoNumber);
+                                            break;
+                                        case NewSendText.AutoKeyValue.Error:
+                                            isNext = CompareAutoCondition(Glob.TextCz, NewSendText.AutoNumber);
+                                            break;
+                                        case NewSendText.AutoKeyValue.BackRate:
+                                            isNext = CompareAutoCondition(Glob.TextHg_, NewSendText.AutoNumber);
+                                            break;
+                                        case NewSendText.AutoKeyValue.TypeWords:
+                                            isNext = CompareAutoCondition(Glob.aTypeWords, NewSendText.AutoNumber);
+                                            break;
+                                        case NewSendText.AutoKeyValue.WordsRate:
+                                            isNext = CompareAutoCondition(Glob.TextDc_, NewSendText.AutoNumber);
+                                            break;
+                                        case NewSendText.AutoKeyValue.Effciency:
+                                            isNext = CompareAutoCondition(Glob.效率, NewSendText.AutoNumber);
+                                            break;
+                                        default:
+                                            isNext = false;
+                                            break;
+                                    }
+
+                                    if (isNext)
+                                    {
+                                        SendNextFun();
+                                    }
+                                    else
+                                    {
+                                        switch (NewSendText.AutoNo)
+                                        {
+                                            case NewSendText.AutoNoValue.Retype:
+                                                F3();
+                                                break;
+                                            case NewSendText.AutoNoValue.Disorder:
+                                                this.DisorderToolStripMenuItem.PerformClick();
+                                                break;
+                                            case NewSendText.AutoNoValue.None:
+                                            default:
+                                                break;
+                                        }
+                                    }
+                                }
+                                else
+                                { // 无条件，直接发下一段
+                                    SendNextFun();
+                                }
                             }
                         }
                     }
@@ -2321,8 +2384,28 @@ namespace WindowsFormsApplication2
                 this.lblAutoReType.Text = "0";
                 ShowFlowText("字数过少！");
             }
-            // }
-            //catch (Exception err) { MessageBox.Show(err.Message); }
+        }
+
+        /// <summary>
+        /// 比较自动的条件
+        /// </summary>
+        /// <param name="cur"></param>
+        /// <param name="setting"></param>
+        private bool CompareAutoCondition(double cur, double setting)
+        {
+            switch (NewSendText.AutoOperator)
+            {
+                case NewSendText.AutoOperatorValue.DY:
+                    return cur > setting;
+                case NewSendText.AutoOperatorValue.DYDY:
+                    return cur >= setting;
+                case NewSendText.AutoOperatorValue.XY:
+                    return cur < setting;
+                case NewSendText.AutoOperatorValue.XYDY:
+                    return cur <= setting;
+                default:
+                    return false;
+            }
         }
 
         //显示回改地点
@@ -2688,7 +2771,7 @@ namespace WindowsFormsApplication2
             get
             {
                 if (Glob.TextJs <= 0) return 0;
-                int Low = Glob.TextJs - Math.Abs((Glob.TextBg - Glob.TextHg)) * 2 - Glob.TextMcc;
+                int Low = Glob.TextJs - Math.Abs(Glob.TextBg - Glob.TextHg) * 2 - Glob.TextMcc;
                 if (Low <= 0 || Glob.TextJs <= 0) return 0;
                 double 键准度 = (double)Low * 100 / Glob.TextJs;
                 //MessageBox.Show(Low + "\n" + Glob.TextJs + "\n" + 键准度 );
@@ -4498,17 +4581,18 @@ namespace WindowsFormsApplication2
                 string segmentRecord = JsonConvert.SerializeObject(Glob.TempSegmentRecord);
                 int cycle = NewSendText.是否周期 ? 1 : 0;
                 int auto = NewSendText.是否自动 ? 1 : 0;
+                int autoCondition = NewSendText.AutoCondition ? 1 : 0;
 
                 if (NewSendText.SentId > 0 && Glob.SentHistory.FindIdInSent(NewSendText.SentId)) // 这里需要加一个判定 id 是否存在，不存在则同样是保存新配置
                 { //* 这是之前保存过的发文配置，更新配置
-                    Glob.SentHistory.UpdateSent(NewSendText.SentId, NewSendText.发文全文, NewSendText.标题, NewSendText.标记, segmentRecord, Glob.SendCursor, Glob.CurSegmentNum, NewSendText.已发段数, NewSendText.已发字数, cycle, NewSendText.周期, auto);
+                    Glob.SentHistory.UpdateSent(NewSendText.SentId, NewSendText.发文全文, NewSendText.标题, NewSendText.标记, segmentRecord, Glob.SendCursor, Glob.CurSegmentNum, NewSendText.已发段数, NewSendText.已发字数, cycle, NewSendText.周期, auto, autoCondition, (int)NewSendText.AutoKey, (int)NewSendText.AutoOperator, NewSendText.AutoNumber, (int)NewSendText.AutoNo);
 
                     //* 提示更新
                     ShowFlowText("已更新配置" + NewSendText.SentId.ToString());
                 }
                 else
                 { //* 保存新配置
-                    NewSendText.SentId = Glob.SentHistory.InsertSent(DateTime.Now.ToString("s"), NewSendText.文章全文, NewSendText.发文全文, NewSendText.标题, phrases, NewSendText.词组发送分隔符, type, disorder, no_repeat, NewSendText.字数, NewSendText.标记, segmentRecord, Glob.SendCursor, Glob.CurSegmentNum, NewSendText.已发段数, NewSendText.已发字数, cycle, NewSendText.周期, auto);
+                    NewSendText.SentId = Glob.SentHistory.InsertSent(DateTime.Now.ToString("s"), NewSendText.文章全文, NewSendText.发文全文, NewSendText.标题, phrases, NewSendText.词组发送分隔符, type, disorder, no_repeat, NewSendText.字数, NewSendText.标记, segmentRecord, Glob.SendCursor, Glob.CurSegmentNum, NewSendText.已发段数, NewSendText.已发字数, cycle, NewSendText.周期, auto, autoCondition, (int)NewSendText.AutoKey, (int)NewSendText.AutoOperator, NewSendText.AutoNumber, (int)NewSendText.AutoNo);
 
                     NewSendText.文章来源 = 4;
                     //* 提示保存
@@ -4662,7 +4746,12 @@ namespace WindowsFormsApplication2
             return result;
         }
 
-        private void 将目前文章乱序ToolStripMenuItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 乱序重打
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DisorderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             F3();
             int textlen = richTextBox1.TextLength;

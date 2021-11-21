@@ -45,5 +45,61 @@ namespace WindowsFormsApplication2
         /// </summary>
         public static long SentId = -1;
 
+        /// <summary>
+        /// 条件自动
+        /// </summary>
+        public static bool AutoCondition = false;
+        /// <summary>
+        /// 条件基准
+        /// </summary>
+        public static AutoKeyValue AutoKey = AutoKeyValue.Speed;
+        /// <summary>
+        /// 条件关系运算符
+        /// </summary>
+        public static AutoOperatorValue AutoOperator = AutoOperatorValue.DY;
+        /// <summary>
+        /// 条件数值
+        /// </summary>
+        public static double AutoNumber = 0;
+        /// <summary>
+        /// 条件否操作
+        /// </summary>
+        public static AutoNoValue AutoNo = AutoNoValue.None;
+
+        /// <summary>
+        /// 条件基准 Enum
+        /// </summary>
+        public enum AutoKeyValue
+        {
+            Speed = 0,
+            Keystroke = 1,
+            CodeLen = 2,
+            AccuracyRate = 3,
+            BackChange = 4,
+            Error = 5,
+            BackRate = 6,
+            TypeWords = 7,
+            WordsRate = 8,
+            Effciency = 9
+        }
+        /// <summary>
+        /// 条件关系运算符 Enum
+        /// </summary>
+        public enum AutoOperatorValue
+        {
+            DY = 0,
+            DYDY = 1,
+            XY = 2,
+            XYDY = 3
+        }
+        /// <summary>
+        /// 条件否操作 Enum
+        /// </summary>
+        public enum AutoNoValue
+        {
+            None = 0,
+            Retype = 1,
+            Disorder = 2
+        }
     }
 }

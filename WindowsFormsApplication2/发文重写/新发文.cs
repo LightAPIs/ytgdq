@@ -111,6 +111,9 @@ namespace WindowsFormsApplication2
             //}
 
             NewSendText.SentId = -1;
+            AutoKeyComboBox.SelectedIndex = 0;
+            AutoOperatorComboBox.SelectedIndex = 0;
+            AutoNoComboBox.SelectedIndex = 0;
             ReadAll(Application.StartupPath);
             ReadSavedArticle();
             ReadSavedSent();
@@ -444,10 +447,49 @@ namespace WindowsFormsApplication2
             if ((sender as CheckBox).Checked)
             {
                 this.checkBox1.Enabled = false;
+                this.AutoConditionCheckBox.Enabled = true;
+                if (AutoConditionCheckBox.Checked)
+                {
+                    this.AutoKeyComboBox.Enabled = true;
+                    this.AutoOperatorComboBox.Enabled = true;
+                    this.AutoNumberTextBox.Enabled = true;
+                    this.AutoNoComboBox.Enabled = true;
+                }
             }
             else
             {
                 this.checkBox1.Enabled = true;
+                this.AutoConditionCheckBox.Enabled = false;
+                if (AutoConditionCheckBox.Checked)
+                {
+                    this.AutoKeyComboBox.Enabled = false;
+                    this.AutoOperatorComboBox.Enabled = false;
+                    this.AutoNumberTextBox.Enabled = false;
+                    this.AutoNoComboBox.Enabled = false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 条件自动
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AutoConditionCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as CheckBox).Checked)
+            {
+                this.AutoKeyComboBox.Enabled = true;
+                this.AutoOperatorComboBox.Enabled = true;
+                this.AutoNumberTextBox.Enabled = true;
+                this.AutoNoComboBox.Enabled = true;
+            }
+            else
+            {
+                this.AutoKeyComboBox.Enabled = false;
+                this.AutoOperatorComboBox.Enabled = false;
+                this.AutoNumberTextBox.Enabled = false;
+                this.AutoNoComboBox.Enabled = false;
             }
         }
 
@@ -846,6 +888,14 @@ namespace WindowsFormsApplication2
         private void tbxQisduan_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar != '\b' && !Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void AutoNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\b' && e.KeyChar != '.' && !Char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -1255,6 +1305,29 @@ namespace WindowsFormsApplication2
                         NewSendText.是否自动 = false;
                         cbxAuto.Checked = false;
                     }
+
+                    if ((int)sd["auto_condition"] == 1)
+                    {
+                        NewSendText.AutoCondition = true;
+                        AutoConditionCheckBox.Checked = true;
+                    }
+                    else
+                    {
+                        NewSendText.AutoCondition = false;
+                        AutoConditionCheckBox.Checked = false;
+                    }
+
+                    NewSendText.AutoKey = (NewSendText.AutoKeyValue)int.Parse(sd["auto_key"].ToString());
+                    AutoKeyComboBox.SelectedIndex = (int)NewSendText.AutoKey;
+
+                    NewSendText.AutoOperator = (NewSendText.AutoOperatorValue)int.Parse(sd["auto_operator"].ToString());
+                    AutoOperatorComboBox.SelectedIndex = (int)NewSendText.AutoOperator;
+
+                    NewSendText.AutoNumber = (double)sd["auto_number"];
+                    AutoNumberTextBox.Text = NewSendText.AutoNumber.ToString();
+
+                    NewSendText.AutoNo = (NewSendText.AutoNoValue)int.Parse(sd["auto_no"].ToString());
+                    AutoNoComboBox.SelectedIndex = (int)NewSendText.AutoNo;
                 }
             }
         }
@@ -1438,7 +1511,30 @@ namespace WindowsFormsApplication2
                 catch { MessageBox.Show("请检查字数、标记或者起始段号是否设置错误？"); return; }
                 NewSendText.是否周期 = checkBox1.Checked;
                 NewSendText.周期 = (int)nudSendTimer.Value;
+
                 NewSendText.是否自动 = cbxAuto.Checked;
+                NewSendText.AutoCondition = AutoConditionCheckBox.Checked;
+                NewSendText.AutoKey = (NewSendText.AutoKeyValue)AutoKeyComboBox.SelectedIndex;
+                NewSendText.AutoOperator = (NewSendText.AutoOperatorValue)AutoOperatorComboBox.SelectedIndex;
+                if (NewSendText.是否自动 && NewSendText.AutoCondition)
+                {
+                    string autoNumberText = AutoNumberTextBox.Text;
+                    if (autoNumberText.Length == 0)
+                    {
+                        NewSendText.AutoNumber = 0;
+                    }
+                    else
+                    {
+                        double.TryParse(autoNumberText, out double aNum);
+                        NewSendText.AutoNumber = aNum;
+                    }
+                }
+                else
+                {
+                    NewSendText.AutoNumber = 0;
+                }
+                NewSendText.AutoNo = (NewSendText.AutoNoValue)AutoNoComboBox.SelectedIndex;
+
                 NewSendText.文章来源 = tabControl1.SelectedIndex;
                 // 勾选"保存文章"
                 if ((NewSendText.文章来源 == 1 && this.FileSaveCheckBox.Checked) || (NewSendText.文章来源 == 2 && this.ClipboardSaveCheckBox.Checked))

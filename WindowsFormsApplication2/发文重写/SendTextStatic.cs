@@ -24,7 +24,6 @@ namespace WindowsFormsApplication2
         private void SendTextStatic_Load(object sender, EventArgs e)
         {
             this.Location = new Point(MainPos.X - this.Width, MainPos.Y);
-            //MessageBox.Show(MainPos + "\n" + this.Width);
             FillData();
             frm.ShowFlowText("发文已开启...");
         }
@@ -45,21 +44,48 @@ namespace WindowsFormsApplication2
             
             if (NewSendText.是否周期)
             {
+                this.CycleCheckBox.Checked = true;
+                this.btnSendTime.Enabled = true;
                 tbxSendTime.Text = NewSendText.周期.ToString();
+                lblNowTime.Text = NewSendText.周期计数.ToString();
+                this.checkBox1.Enabled = false;
             }
-            else {
+            else
+            {
+                this.CycleCheckBox.Checked = false;
+                this.btnSendTime.Enabled = false;
                 tbxSendTime.Text = "-";
-                lblNowTime.Text = "无周期手动";
-                btnCancelTime.Text = "开";
+                lblNowTime.Text = "无";
+                this.checkBox1.Enabled = true;
             }
 
             if (NewSendText.是否自动)
             {
                 this.checkBox1.Checked = true;
+                this.checkBox2.Enabled = true;
+                this.CycleCheckBox.Enabled = false;
             }
             else
             {
                 this.checkBox1.Checked = false;
+                this.checkBox2.Enabled = false;
+                this.CycleCheckBox.Enabled = true;
+            }
+
+            if (NewSendText.AutoCondition)
+            {
+                this.checkBox2.Checked = true;
+                if (NewSendText.是否自动)
+                {
+                    this.comboBox1.Enabled = true;
+                    this.comboBox2.Enabled = true;
+                    this.comboBox3.Enabled = true;
+                    this.AutoNumberButton.Enabled = true;
+                }
+            }
+            else
+            {
+                this.checkBox2.Checked = false;
             }
         }
 
@@ -128,15 +154,11 @@ namespace WindowsFormsApplication2
         }
 
         #region 修改字段
-        private void btnCancelTime_TextChanged(object sender, EventArgs e)
-        {
-            string text = (sender as Button).Text;
-            if (text == "开")
-                toolTip1.SetToolTip(btnCancelTime,"打开周期发文");
-            else
-                toolTip1.SetToolTip(btnCancelTime, "关闭周期发文");
-        }
-        //文章标题
+        /// <summary>
+        /// 修改标题
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnFixNowTitle_Click(object sender, EventArgs e)
         {
             string now = (sender as Button).Text;
@@ -162,7 +184,7 @@ namespace WindowsFormsApplication2
         }
 
         /// <summary>
-        /// 周期修改
+        /// 修改周期
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -180,14 +202,14 @@ namespace WindowsFormsApplication2
             {
                 try
                 {
-                    int get = int.Parse(this.tbxSendTime.Text);
-                    if (get >= 10 && get <= 1800)
+                    int value = int.Parse(this.tbxSendTime.Text);
+                    if (value >= 10 && value <= 1800)
                     {
                         this.tbxSendTime.ReadOnly = true;
                         this.tbxSendTime.BackColor = Color.DarkGray;
                         (sender as Button).Text = "修";
-                        NewSendText.周期 = get;
-                        NewSendText.周期计数 = get;
+                        NewSendText.周期 = value;
+                        NewSendText.周期计数 = value;
                     }
                     else
                     {
@@ -198,32 +220,42 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void btnCancelTime_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 修改自动条件值
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AutoNumberButton_Click(object sender, EventArgs e)
         {
-            if (NewSendText.是否周期)
+            if ((sender as Button).Text == "修")
             {
-                NewSendText.是否周期 = false;
-                lblNowTime.Text = "无周期手动";
-                btnCancelTime.Text = "开";
+                this.AutoNumberTextBox.ReadOnly = false;
+                this.AutoNumberTextBox.BackColor = Color.White;
+                this.AutoNumberTextBox.Focus();
+                (sender as Button).Text = "定";
             }
-            else {
-                NewSendText.是否周期 = true;
-                tbxSendTime.Text = NewSendText.周期.ToString();
-                lblNowTime.Text = NewSendText.周期计数.ToString();
-                btnCancelTime.Text = "停";
-                frm.SendNextFun();
+            else
+            {
+                try
+                {
+                    double.TryParse(this.AutoNumberTextBox.Text, out double value);
+                    this.AutoNumberTextBox.ReadOnly = true;
+                    this.AutoNumberTextBox.BackColor = Color.DarkGray;
+                    (sender as Button).Text = "修";
+                    NewSendText.AutoNumber = value;
+                }
+                catch { }
             }
         }
 
         /// <summary>
-        /// 当前段号修改
+        /// 修改当前段号
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnChangePreCout_Click(object sender, EventArgs e)
         {
-            string now = (sender as Button).Text;
-            if (now == "修")
+            if ((sender as Button).Text == "修")
             {
                 this.tbxNowStartCount.ReadOnly = false;
                 this.tbxNowStartCount.BackColor = Color.White;
@@ -232,13 +264,13 @@ namespace WindowsFormsApplication2
             }
             else
             {
-                int get = int.Parse(this.tbxNowStartCount.Text);
-                if (get > 0)
+                int value = int.Parse(this.tbxNowStartCount.Text);
+                if (value > 0)
                 {
                     this.tbxNowStartCount.ReadOnly = true;
                     this.tbxNowStartCount.BackColor = Color.DarkGray;
                     (sender as Button).Text = "修";
-                    Glob.CurSegmentNum = get;
+                    Glob.CurSegmentNum = value;
                     frm.lblDuan.Text = "第" + Glob.CurSegmentNum.ToString() + "段";
                 }
                 else
@@ -246,11 +278,6 @@ namespace WindowsFormsApplication2
                     MessageBox.Show("定义超出总范围，请重设！");
                 }
             }
-        }
-
-        private void lblNowTime_Click(object sender, EventArgs e)
-        {
-            NewSendText.周期计数--;
         }
         #endregion
 
@@ -272,17 +299,147 @@ namespace WindowsFormsApplication2
         }
         #endregion
 
-        #region 自动
+        #region 功能开关
+        private void CycleCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as CheckBox).Checked)
+            {
+                if (!NewSendText.是否周期)
+                {
+                    NewSendText.是否周期 = true;
+                    this.btnSendTime.Enabled = true;
+                    this.tbxSendTime.Text = NewSendText.周期.ToString();
+                    this.lblNowTime.Text = NewSendText.周期计数.ToString();
+                    NewSendText.是否自动 = false;
+                    this.checkBox1.Enabled = false;
+                    this.checkBox2.Enabled = false;
+                    this.AutoNumberButton.Enabled = false;
+                    this.AutoNumberButton.Text = "修";
+                    this.AutoNumberTextBox.ReadOnly = true;
+                    this.AutoNumberTextBox.BackColor = Color.DarkGray;
+                    this.comboBox1.Enabled = false;
+                    this.comboBox2.Enabled = false;
+                    this.comboBox3.Enabled = false;
+                    frm.SendNextFun();
+                }
+            }
+            else
+            {
+                NewSendText.是否周期 = false;
+                this.btnSendTime.Enabled = false;
+                this.btnSendTime.Text = "修";
+                this.tbxSendTime.Text = "-";
+                this.tbxSendTime.ReadOnly = true;
+                this.tbxSendTime.BackColor = Color.DarkGray;
+                this.lblNowTime.Text = "无";
+                this.checkBox1.Enabled = true;
+            }
+        }
+
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.checkBox1.Checked && !NewSendText.是否自动)
+            if ((sender as CheckBox).Checked)
             {
-                NewSendText.是否自动 = true;
+                if (!NewSendText.是否自动)
+                {
+                    NewSendText.是否自动 = true;
+                    this.checkBox2.Enabled = true;
+                    if (this.checkBox2.Checked)
+                    {
+                        this.AutoNumberButton.Enabled = true;
+                        this.comboBox1.Enabled = true;
+                        this.comboBox2.Enabled = true;
+                        this.comboBox3.Enabled = true;
+                        this.AutoNumberTextBox.Text = NewSendText.AutoNumber.ToString();
+                        this.comboBox1.SelectedIndex = (int)NewSendText.AutoKey;
+                        this.comboBox2.SelectedIndex = (int)NewSendText.AutoOperator;
+                        this.comboBox3.SelectedIndex = (int)NewSendText.AutoNo;
+                    }
+                }
             }
-            else if (!this.checkBox1.Checked && NewSendText.是否自动)
+            else
             {
                 NewSendText.是否自动 = false;
+                this.CycleCheckBox.Enabled = true;
+                this.checkBox2.Enabled = false;
+                this.AutoNumberButton.Enabled = false;
+                this.AutoNumberButton.Text = "修";
+                this.AutoNumberTextBox.ReadOnly = true;
+                this.AutoNumberTextBox.BackColor = Color.DarkGray;
+                this.comboBox1.Enabled = false;
+                this.comboBox1.Enabled = false;
+                this.comboBox3.Enabled = false;
             }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as CheckBox).Checked)
+            {
+                NewSendText.AutoCondition = true;
+                this.AutoNumberButton.Enabled = true;
+                this.comboBox1.Enabled = true;
+                this.comboBox2.Enabled = true;
+                this.comboBox3.Enabled = true;
+                this.AutoNumberTextBox.Text = NewSendText.AutoNumber.ToString();
+                this.comboBox1.SelectedIndex = (int)NewSendText.AutoKey;
+                this.comboBox2.SelectedIndex = (int)NewSendText.AutoOperator;
+                this.comboBox3.SelectedIndex = (int)NewSendText.AutoNo;
+            }
+            else
+            {
+                NewSendText.AutoCondition = false;
+                this.AutoNumberButton.Enabled = false;
+                this.AutoNumberButton.Text = "修";
+                this.AutoNumberTextBox.ReadOnly = true;
+                this.AutoNumberTextBox.BackColor = Color.DarkGray;
+                this.comboBox1.Enabled = false;
+                this.comboBox2.Enabled = false;
+                this.comboBox3.Enabled = false;
+            }
+        }
+        #endregion
+
+        #region 输入限制
+        private void tbxSendTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\b' && !Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void AutoNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\b' && e.KeyChar != '.' && !Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbxNowStartCount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\b' && !Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        #endregion
+
+        #region 选择功能
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            NewSendText.AutoKey = (NewSendText.AutoKeyValue)(sender as ComboBox).SelectedIndex;
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            NewSendText.AutoOperator = (NewSendText.AutoOperatorValue)(sender as ComboBox).SelectedIndex;
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            NewSendText.AutoNo = (NewSendText.AutoNoValue)(sender as ComboBox).SelectedIndex;
         }
         #endregion
     }

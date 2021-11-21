@@ -2035,7 +2035,7 @@
             this.DisorderToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
             this.DisorderToolStripMenuItem.Text = "乱序重打";
             this.DisorderToolStripMenuItem.ToolTipText = "将当前文段乱序并重打\r\n若处于发文中将自动停止发文";
-            this.DisorderToolStripMenuItem.Click += new System.EventHandler(this.将目前文章乱序ToolStripMenuItem_Click);
+            this.DisorderToolStripMenuItem.Click += new System.EventHandler(this.DisorderToolStripMenuItem_Click);
             // 
             // 暂停ToolStripMenuItem
             // 

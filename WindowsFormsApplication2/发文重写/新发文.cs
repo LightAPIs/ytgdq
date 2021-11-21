@@ -406,6 +406,7 @@ namespace WindowsFormsApplication2
                 lblTitle.ResetText();
                 rtbInfo.ResetText();
                 rtbShowText.ResetText();
+                tbxSendStart.Text = "0";
                 GetText = "";
                 NewSendText.SentId = -1;
             }

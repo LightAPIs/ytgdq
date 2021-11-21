@@ -22,8 +22,6 @@ namespace WindowsFormsApplication2
     {
         Form1 frm;
 
-        private int txtLocation = 0;
-
         /// <summary>
         /// 文章每页数量
         /// </summary>
@@ -645,7 +643,6 @@ namespace WindowsFormsApplication2
                             listViewFile.Items.Add(item);
                             item.ForeColor = Color.Green;
                             findCount++;
-                            if (findCount == 1) txtLocation = listViewFile.Items.Count;
                         }
                     }
                     this.lblFindTXTCount.Text = findCount.ToString();//找到文章数量
@@ -668,7 +665,10 @@ namespace WindowsFormsApplication2
         {
             try
             {
-                this.listViewFile.TopItem = this.listViewFile.Items[txtLocation - 1];
+                if (this.listViewFile.Items.Count > 0)
+                {
+                    this.listViewFile.TopItem = this.listViewFile.Items[0];
+                }
             }
             catch { }
         }
@@ -1097,6 +1097,18 @@ namespace WindowsFormsApplication2
                     break;
             }
         }
+
+        private void ArticlePageLabel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.listViewArticle.Items.Count > 0)
+                {
+                    this.listViewArticle.TopItem = this.listViewArticle.Items[0];
+                }
+            }
+            catch { }
+        }
         #endregion
 
         #region 保存的配置
@@ -1399,6 +1411,18 @@ namespace WindowsFormsApplication2
                 case DialogResult.No:
                     break;
             }
+        }
+
+        private void SentPageLabel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.listViewSent.Items.Count > 0)
+                {
+                    this.listViewSent.TopItem = this.listViewSent.Items[0];
+                }
+            }
+            catch { }
         }
         #endregion
 

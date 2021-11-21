@@ -625,6 +625,7 @@
             this.ArticlePageLabel.Text = "0";
             this.ArticlePageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.ArticlePageLabel, "点击我将自动跳转到第一个文章处");
+            this.ArticlePageLabel.Click += new System.EventHandler(this.ArticlePageLabel_Click);
             // 
             // label16
             // 
@@ -740,7 +741,6 @@
             this.ArticleCountLabel.TabIndex = 1;
             this.ArticleCountLabel.Text = "0";
             this.ArticleCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.ArticleCountLabel, "点击我将自动跳转到第一个文章处");
             // 
             // label15
             // 
@@ -886,7 +886,8 @@
             this.SentPageLabel.TabIndex = 11;
             this.SentPageLabel.Text = "0";
             this.SentPageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.SentPageLabel, "点击我将自动跳转到第一个文章处");
+            this.toolTip1.SetToolTip(this.SentPageLabel, "点击我将自动跳转到第一个配置处");
+            this.SentPageLabel.Click += new System.EventHandler(this.SentPageLabel_Click);
             // 
             // label17
             // 
@@ -987,7 +988,6 @@
             this.SentCountLabel.TabIndex = 1;
             this.SentCountLabel.Text = "0";
             this.SentCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.SentCountLabel, "点击我将自动跳转到第一个文章处");
             // 
             // label19
             // 

@@ -9,7 +9,7 @@
     <Shape ID="DesignTable:Score" ZOrder="7" X="12" Y="8" Height="486" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="482" />
     <Shape ID="DesignTable:Advanced" ZOrder="6" X="291" Y="11" Height="124" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="120" />
     <Shape ID="DesignTable:Segment" ZOrder="4" X="286" Y="178" Height="86" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="82" />
-    <Shape ID="DesignTable:Article" ZOrder="2" X="490" Y="8" Height="124" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="120" />
+    <Shape ID="DesignTable:Article" ZOrder="2" X="490" Y="8" Height="143" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="139" />
     <Shape ID="DesignTable:Sent" ZOrder="1" X="660" Y="11" Height="543" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="539" />
   </Shapes>
   <Connectors>

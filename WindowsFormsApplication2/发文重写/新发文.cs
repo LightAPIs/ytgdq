@@ -954,7 +954,7 @@ namespace WindowsFormsApplication2
 
                 foreach (var dataRow in this.currentArticleData)
                 {
-                    listViewArticle.Items.Add(new ListViewItem(new string[] { dataRow["id"].ToString(), dataRow["title"].ToString(), dataRow["create_time"].ToString() }));
+                    listViewArticle.Items.Add(new ListViewItem(new string[] { dataRow["id"].ToString(), dataRow["title"].ToString(), dataRow["count"].ToString() + "字", dataRow["create_time"].ToString() }));
                 }
             }
         }
@@ -1040,6 +1040,7 @@ namespace WindowsFormsApplication2
                     {
                         string result = cEditor.OutValue;
                         sd["content"] = result;
+                        this.listViewArticle.SelectedItems[0].SubItems[2].Text = result.Length.ToString() + "字";
                         Glob.ArticleHistory.UpdateArticleContent(id, result);
                     }
                 }

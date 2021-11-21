@@ -138,6 +138,7 @@
             this.cbxSplit = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -685,7 +686,8 @@
             this.listViewArticle.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader5});
+            this.columnHeader5,
+            this.columnHeader9});
             this.listViewArticle.ForeColor = System.Drawing.Color.Black;
             this.listViewArticle.FullRowSelect = true;
             this.listViewArticle.GridLines = true;
@@ -710,12 +712,12 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "标题";
-            this.columnHeader4.Width = 230;
+            this.columnHeader4.Width = 170;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "创建时间";
-            this.columnHeader5.Width = 130;
+            this.columnHeader5.Text = "字数";
+            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // ArticlePreButton
             // 
@@ -962,6 +964,7 @@
             // columnHeader8
             // 
             this.columnHeader8.Text = "创建时间";
+            this.columnHeader8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader8.Width = 130;
             // 
             // SentPreButton
@@ -1663,6 +1666,12 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "词组分隔符：";
             // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "创建时间";
+            this.columnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader9.Width = 130;
+            // 
             // 新发文
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1820,5 +1829,6 @@
         private System.Windows.Forms.TextBox AutoNumberTextBox;
         private System.Windows.Forms.ComboBox AutoNoComboBox;
         private System.Windows.Forms.RichTextBox rtbShowText;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
     }
 }

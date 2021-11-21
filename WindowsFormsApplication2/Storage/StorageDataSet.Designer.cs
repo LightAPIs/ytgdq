@@ -1616,6 +1616,8 @@ namespace WindowsFormsApplication2.Storage {
             
             private global::System.Data.DataColumn columntitle;
             
+            private global::System.Data.DataColumn columncount;
+            
             private global::System.Data.DataColumn columncreate_time;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1685,6 +1687,14 @@ namespace WindowsFormsApplication2.Storage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn countColumn {
+                get {
+                    return this.columncount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn create_timeColumn {
                 get {
                     return this.columncreate_time;
@@ -1728,13 +1738,14 @@ namespace WindowsFormsApplication2.Storage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ArticleRow AddArticleRow(long id, string content, string md5, string title, System.DateTime create_time) {
+            public ArticleRow AddArticleRow(long id, string content, string md5, string title, int count, System.DateTime create_time) {
                 ArticleRow rowArticleRow = ((ArticleRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         id,
                         content,
                         md5,
                         title,
+                        count,
                         create_time};
                 rowArticleRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowArticleRow);
@@ -1769,6 +1780,7 @@ namespace WindowsFormsApplication2.Storage {
                 this.columncontent = base.Columns["content"];
                 this.columnmd5 = base.Columns["md5"];
                 this.columntitle = base.Columns["title"];
+                this.columncount = base.Columns["count"];
                 this.columncreate_time = base.Columns["create_time"];
             }
             
@@ -1783,6 +1795,8 @@ namespace WindowsFormsApplication2.Storage {
                 base.Columns.Add(this.columnmd5);
                 this.columntitle = new global::System.Data.DataColumn("title", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntitle);
+                this.columncount = new global::System.Data.DataColumn("count", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncount);
                 this.columncreate_time = new global::System.Data.DataColumn("create_time", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncreate_time);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("ArticleKey", new global::System.Data.DataColumn[] {
@@ -3457,6 +3471,22 @@ namespace WindowsFormsApplication2.Storage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int count {
+                get {
+                    try {
+                        return ((int)(this[this.tableArticle.countColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Article”中列“count”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableArticle.countColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public System.DateTime create_time {
                 get {
                     return ((global::System.DateTime)(this[this.tableArticle.create_timeColumn]));
@@ -3500,6 +3530,18 @@ namespace WindowsFormsApplication2.Storage {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SettitleNull() {
                 this[this.tableArticle.titleColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IscountNull() {
+                return this.IsNull(this.tableArticle.countColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetcountNull() {
+                this[this.tableArticle.countColumn] = global::System.Convert.DBNull;
             }
         }
         

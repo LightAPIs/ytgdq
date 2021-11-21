@@ -335,7 +335,7 @@ namespace WindowsFormsApplication2.Storage
 
         public override void Init()
         {
-            this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS article(id INTEGER PRIMARY KEY AUTOINCREMENT, content TEXT, md5 VARCHAR(32), title TEXT, create_time DATETIME NOT NULL)";
+            this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS article(id INTEGER PRIMARY KEY AUTOINCREMENT, content TEXT, md5 VARCHAR(32), title TEXT, count INT, create_time DATETIME NOT NULL)";
             this.cmd.ExecuteNonQuery();
         }
 
@@ -354,7 +354,8 @@ namespace WindowsFormsApplication2.Storage
 
             if (readId == null)
             {
-                this.cmd.CommandText = $"INSERT INTO article VALUES(NULL,'{newContent}','{md5}','{this.ConvertText(title)}','{create_time}');";
+                int count = content.Length;
+                this.cmd.CommandText = $"INSERT INTO article VALUES(NULL,'{newContent}','{md5}','{this.ConvertText(title)}',{count},'{create_time}');";
                 this.cmd.ExecuteNonQuery();
             }
         }
@@ -436,12 +437,14 @@ namespace WindowsFormsApplication2.Storage
 
         /// <summary>
         /// 更新文章内容
+        /// - 内部会自动更新字数
         /// </summary>
         /// <param name="id"></param>
         /// <param name="content"></param>
         public void UpdateArticleContent(long id, string content)
         {
-            this.cmd.CommandText = $"UPDATE article SET content='{this.ConvertText(content)}' WHERE id={id};";
+            int count = content.Length;
+            this.cmd.CommandText = $"UPDATE article SET content='{this.ConvertText(content)}', count={count} WHERE id={id};";
             this.cmd.ExecuteNonQuery();
         }
 

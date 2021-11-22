@@ -70,6 +70,7 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ArticlePreButton = new System.Windows.Forms.Button();
             this.ArticleCountLabel = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -138,7 +139,6 @@
             this.cbxSplit = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -718,6 +718,12 @@
             // 
             this.columnHeader5.Text = "字数";
             this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "创建时间";
+            this.columnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader9.Width = 130;
             // 
             // ArticlePreButton
             // 
@@ -1665,12 +1671,6 @@
             this.label9.Size = new System.Drawing.Size(77, 12);
             this.label9.TabIndex = 0;
             this.label9.Text = "词组分隔符：";
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "创建时间";
-            this.columnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader9.Width = 130;
             // 
             // 新发文
             // 

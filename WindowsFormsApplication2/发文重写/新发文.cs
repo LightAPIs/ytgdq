@@ -656,6 +656,7 @@ namespace WindowsFormsApplication2
                 {
                     StreamReader fm = new StreamReader(path, System.Text.Encoding.Default);
                     GetText = fm.ReadToEnd();
+                    fm.Close();
                     FileTitleTextBox.Text = Path.GetFileNameWithoutExtension(path);
                     ComText();
                 }

@@ -148,20 +148,16 @@ namespace WindowsFormsApplication2
             }
             catch { this.lbl键准.Text = "NA"; }
             this.textBoxEx1.LostFocus += new System.EventHandler(textBoxEx1_LostFocus);
+
             //载入主题
             GetTheme();
-            if (Theme.ThemeApply)
-            {
-                if (Theme.isBackBmp)
-                    LoadTheme(Theme.ThemeBackBmp, Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.ThemeBG);
-                else
-                    LoadTheme("纯色", Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.ThemeBG);
+            if (Theme.IsBackBmp)
+            { //* 启用主题背景图
+                LoadTheme(Theme.ThemeBackBmp, Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.ThemeBG);
             }
             else
-            {
+            { //* 纯色
                 LoadTheme("纯色", Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.ThemeBG);
-                // 采用默认的图片显示
-                //LoadTheme("", Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.ThemeBG);
             }
 
             // 注册表格操作器
@@ -442,13 +438,11 @@ namespace WindowsFormsApplication2
         public void GetTheme()
         {
             _Ini ini = new _Ini("config.ini");
-            Theme.ThemeApply = bool.Parse(ini.IniReadValue("主题", "是否启用主题", "False"));
-            Theme.isBackBmp = bool.Parse(ini.IniReadValue("主题", "是否应用主题背景", "False"));
+            Theme.IsBackBmp = bool.Parse(ini.IniReadValue("主题", "是否应用主题背景", "False"));
             Theme.ThemeBackBmp = ini.IniReadValue("主题", "背景路径", "程序默认");
             Theme.ThemeBG = Color.FromArgb(int.Parse(ini.IniReadValue("主题", "纯色", "-13089719")));
-            Theme.ThemeColorBG = Color.FromArgb(int.Parse(ini.IniReadValue("主题", "主题颜色", "-12365738")));//-12500671
+            Theme.ThemeColorBG = Color.FromArgb(int.Parse(ini.IniReadValue("主题", "主题颜色", "-13089719")));
             Theme.ThemeColorFC = Color.FromArgb(int.Parse(ini.IniReadValue("主题", "字体颜色", "-1")));
-            Theme.ReView = bool.Parse(ini.IniReadValue("主题", "预览", "False"));
         }
 
         /// <summary>
@@ -505,6 +499,7 @@ namespace WindowsFormsApplication2
                     this.BackgroundImage = null;
                 }
             }
+
             this.MaximizedBounds = Screen.PrimaryScreen.WorkingArea;
             // this.mS1.ThemeColor = BG;
             // this.mS1.BackColor = BG;

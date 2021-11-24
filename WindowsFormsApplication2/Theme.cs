@@ -8,35 +8,28 @@ namespace WindowsFormsApplication2
     public class Theme
     {
         /// <summary>
-        /// 主题控制
+        /// 是否应用背景图片
         /// </summary>
-        public static bool ThemeApply = false;
+        public static bool IsBackBmp = false;
         /// <summary>
-        /// 主题背景颜色
-        /// </summary>
-        public static Color ThemeColorBG = Color.FromArgb(74, 129, 97);
-        /// <summary>
-        /// 主题前景色
-        /// </summary>
-        public static Color ThemeColorFC = Color.White;
-
-        /// <summary>
-        /// 纯色
-        /// </summary>
-        public static Color ThemeBG = Color.DimGray;
-        /// <summary>
-        /// 是否应用了主题背景
-        /// </summary>
-        public static bool isBackBmp = false;
-        /// <summary>
-        /// 主题背景
+        /// 图片背景路径
         /// </summary>
         public static string ThemeBackBmp = "";
 
         /// <summary>
-        /// 是否启用了预览
+        /// 纯色背景
         /// </summary>
-        public static bool ReView = false;
+        public static Color ThemeBG = Color.FromArgb(56, 68, 73);
+
+        /// <summary>
+        /// 主题背景色
+        /// </summary>
+        public static Color ThemeColorBG = Color.FromArgb(56, 68, 73);
+        /// <summary>
+        /// 主题前景色
+        /// - 字体颜色
+        /// </summary>
+        public static Color ThemeColorFC = Color.White;
     }
 
 }

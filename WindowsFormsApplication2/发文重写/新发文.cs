@@ -784,7 +784,12 @@ namespace WindowsFormsApplication2
                     int cou = int.Parse(tbxSendCount.Text);
                     try
                     {
-                        rtbShowText.Text = GetText.Substring(c, cou) + "\r\n[...当前设置文段预览(非实际)]";
+                        string tickText = GetText;
+                        if (this.cbxTickOut.Checked && this.tabControl2.SelectedIndex != 2)
+                        {
+                            tickText = TickBlock(GetText, "");
+                        }
+                        rtbShowText.Text = tickText.Substring(c, cou) + "\r\n[...当前设置文段预览(非实际)]";
                         rtbShowText.ForeColor = Color.Black;
                         btnGoSend.Enabled = true;
                     }
@@ -843,7 +848,12 @@ namespace WindowsFormsApplication2
                         {
                             try
                             {
-                                rtbShowText.Text = GetText.Substring(c, cou) + "\r\n[...当前设置文段预览(非实际)]";
+                                string tickText = GetText;
+                                if (this.cbxTickOut.Checked && this.tabControl2.SelectedIndex != 2)
+                                {
+                                    tickText = TickBlock(GetText, "");
+                                }
+                                rtbShowText.Text = tickText.Substring(c, cou) + "\r\n[...当前设置文段预览(非实际)]";
                                 rtbShowText.ForeColor = Color.Black;
                                 btnGoSend.Enabled = true;
                             }

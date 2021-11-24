@@ -1068,7 +1068,7 @@
             this.rtbShowText.Size = new System.Drawing.Size(217, 233);
             this.rtbShowText.TabIndex = 1;
             this.rtbShowText.Text = "";
-            this.toolTip1.SetToolTip(this.rtbShowText, "显示文段摘要");
+            this.toolTip1.SetToolTip(this.rtbShowText, "显示文段摘要预览(非实际)");
             // 
             // tableLayoutPanel3
             // 

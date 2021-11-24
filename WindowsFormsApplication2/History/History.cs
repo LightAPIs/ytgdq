@@ -333,6 +333,11 @@ namespace WindowsFormsApplication2.History
             this.gridHandler.KeyAn();
         }
 
+        private void CalcKeysToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.gridHandler.CalcKeys();
+        }
+
         private void SearchTitleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string articleTitle = this.gridHandler.GetArticleTitle();

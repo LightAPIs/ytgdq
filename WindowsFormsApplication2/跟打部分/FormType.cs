@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-//using System.Xml;
 using System.IO;
 using System.Text.RegularExpressions; //正则
 using System.Collections;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.Reflection;
 using System.Drawing.Text;
@@ -22,6 +22,7 @@ using WindowsFormsApplication2.编码提示;
 using WindowsFormsApplication2.Storage;
 using WindowsFormsApplication2.History;
 using WindowsFormsApplication2.KeyAnalysis;
+using WindowsFormsApplication2.CodeTable;
 using Newtonsoft.Json;
 
 namespace WindowsFormsApplication2
@@ -30,7 +31,15 @@ namespace WindowsFormsApplication2
     {
         public int[] HisSave = new int[2]; //得到每次输入的字符数量
         public int[] HisLine = new int[2]; //调整滚动条
-        public int Sw = 0, sw = 0; //开关
+        /// <summary>
+        /// 当前已输入的字数
+        /// </summary>
+        public int Sw = 0;
+        /// <summary>
+        /// 开关
+        /// - 大于 0 时表示处于跟打中
+        /// </summary>
+        public int sw = 0;
         public DateTime sTime, eTime, startTime;
         public double ts;
         private Series SeriesSpeed = new Series("速度");
@@ -41,12 +50,23 @@ namespace WindowsFormsApplication2
         /// </summary>
         private KeyBordHook KH = new KeyBordHook();
         public TimeSpan TimeStopAll = new TimeSpan();//暂停时间的累加
-        private WordInfoUtil _wordInfoUtil = new WordInfoUtil();
-        private RichEditBoxLineRender _render = new RichEditBoxLineRender();
-        private FormBMTipsModel bmTips;//编码提示
-        //private Stopwatch UseStopTime = new Stopwatch();
 
         private SendTextStatic 发文状态窗口;
+
+        /// <summary>
+        /// 测词委托
+        /// </summary>
+        /// <param name="_text"></param>
+        private delegate void checkWordsDelegate();
+        /// <summary>
+        /// 开始测词委托
+        /// </summary>
+        private checkWordsDelegate 开始测词委托;
+
+        /// <summary>
+        /// 智能测词任务
+        /// </summary>
+        private Task checkWordTask;
 
         /// <summary>
         /// 判断是否为汉字或数字
@@ -66,81 +86,26 @@ namespace WindowsFormsApplication2
         /// <summary>
         /// 特殊字符替换字典
         /// </summary>
-        private readonly static Dictionary<string, char> CharReDict = new Dictionary<string, char> {
-                {
-                    "0x3008", '《'
-                },
-                {
-                    "0x3009", '》'
-                },
-                {
-                    "0xfe43", '『'
-                },
-                {
-                    "0xfe44", '』'
-                },
-                {
-                    "0xfe4f", '_'
-                },
-                {
-                    "0xffe5", '$'
-                }
-            };
-
-        /// <summary>
-        /// 按键列表
-        /// </summary>
-        private readonly static List<Keys> KeysList = new List<Keys> {
-            Keys.Oemtilde,
-            Keys.D1,
-            Keys.D2,
-            Keys.D3,
-            Keys.D4,
-            Keys.D5,
-            Keys.D6,
-            Keys.D7,
-            Keys.D8,
-            Keys.D9,
-            Keys.D0,
-            Keys.OemMinus,
-            Keys.Oemplus,
-            Keys.Back,
-            Keys.Q,
-            Keys.W,
-            Keys.E,
-            Keys.R,
-            Keys.T,
-            Keys.Y,
-            Keys.U,
-            Keys.I,
-            Keys.O,
-            Keys.P,
-            Keys.OemOpenBrackets,
-            Keys.OemCloseBrackets,
-            Keys.OemPipe,
-            Keys.A,
-            Keys.S,
-            Keys.D,
-            Keys.F,
-            Keys.G,
-            Keys.H,
-            Keys.J,
-            Keys.K,
-            Keys.L,
-            Keys.OemSemicolon,
-            Keys.OemQuotes,
-            Keys.Enter,
-            Keys.Z,
-            Keys.X,
-            Keys.C,
-            Keys.V,
-            Keys.B,
-            Keys.N,
-            Keys.M,
-            Keys.Oemcomma,
-            Keys.OemPeriod,
-            Keys.OemQuestion,
-            Keys.Space,
+        private readonly static Dictionary<string, char> CharReDict = new Dictionary<string, char>
+        {
+            {
+                "0x3008", '《'
+            },
+            {
+                "0x3009", '》'
+            },
+            {
+                "0xfe43", '『'
+            },
+            {
+                "0xfe44", '』'
+            },
+            {
+                "0xfe4f", '_'
+            },
+            {
+                "0xffe5", '$'
+            }
         };
 
         public Form1()
@@ -148,19 +113,7 @@ namespace WindowsFormsApplication2
             InitializeComponent();
             int spX, spY;
             int spW, spH;
-            /*
-             this.Size = new Size(443,443);
-            this.splitContainer1.Panel1Collapsed = false;
-            this.splitContainer1.Panel2Collapsed = false;
-            this.splitContainer1.SplitterDistance = 145;
-            this.splitContainer3.Panel1Collapsed = false;
-            this.splitContainer3.Panel2Collapsed = false;
-            this.splitContainer3.SplitterDistance = 80;
-            this.splitContainer4.Panel1Collapsed = false;
-            this.splitContainer4.Panel2Collapsed = false;
-            this.splitContainer4.SplitterDistance = 206;
-            this.textBoxEx1.Focus();
-             */
+            
             spX = int.TryParse(IniRead("窗口位置", "横", "200"), out spX) ? spX < 0 ? 200 : spX : 200;
             spY = int.TryParse(IniRead("窗口位置", "纵", "200"), out spY) ? spY < 0 ? 200 : spY : 200;
             spW = int.TryParse(IniRead("窗口位置", "宽", "1080"), out spW) ? spW < 200 ? 520 : spW : 520;
@@ -168,9 +121,8 @@ namespace WindowsFormsApplication2
             Point pos = new Point(spX, spY);
             this.Location = pos;
             this.Size = new Size(spW, spH);
-            //this.Show();
-            bool t4;
-            this.toolStripButton4.Checked = bool.TryParse(IniRead("程序控制", "详细信息", "True"), out t4) ? t4 : true;
+
+            this.toolStripButton4.Checked = !bool.TryParse(IniRead("程序控制", "详细信息", "True"), out bool t4) || t4;
             int p11H = int.TryParse(IniRead("拖动条", "高1", "142"), out p11H) ? p11H : 142;
             int p31H = int.TryParse(IniRead("拖动条", "高2", "89"), out p31H) ? p31H : 89;
             this.splitContainer1.SplitterDistance = p11H;
@@ -187,20 +139,6 @@ namespace WindowsFormsApplication2
             //改变窗口标题
             this.Text = Glob.Form;
             Glob.Text = richTextBox1.Text;
-            //Control.CheckForIllegalCrossThreadCalls = false;
-            //Thread oThread = new Thread(new ThreadStart(this.LoadSetup));
-            //oThread.Start();
-            //oThread.Join();
-            //oThread.Abort();
-            //MessageBox.Show(oThread.ThreadState.ToString());
-
-            //* 数据库初始化
-            Glob.ScoreHistory = new ScoreData("score");
-            Glob.ScoreHistory.Init();
-            Glob.ArticleHistory = new ArticleData("article");
-            Glob.ArticleHistory.Init();
-            Glob.SentHistory = new SentData("sent");
-            Glob.SentHistory.Init();
 
             this.textBoxEx1.Select();
             try
@@ -222,12 +160,35 @@ namespace WindowsFormsApplication2
             else
             {
                 LoadTheme("纯色", Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.ThemeBG);
-                //采用默认的图片显示
+                // 采用默认的图片显示
                 //LoadTheme("", Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.ThemeBG);
             }
 
             // 注册表格操作器
             this.gridHandler = new HistoryDataGridHandler(this.dataGridView1);
+
+            //* 数据库初始化
+            Glob.ScoreHistory = new ScoreData("score");
+            Glob.ScoreHistory.Init();
+            Glob.ArticleHistory = new ArticleData("article");
+            Glob.ArticleHistory.Init();
+            Glob.SentHistory = new SentData("sent");
+            Glob.SentHistory.Init();
+            Glob.CodeHistory = new CodeData("code");
+            Glob.CodeHistory.Init();
+
+            //* 码表处理
+            Glob.UsedTableIndex = Glob.CodeHistory.GetUsedTableIndex();
+            Glob.WordMaxLen = Glob.CodeHistory.GetMaxLen();
+            Glob.WordLenType = Glob.CodeHistory.GetLenType();
+            if (!string.IsNullOrEmpty(Glob.UsedTableIndex))
+            { //! 此处读取 4 个基本码表字典
+                Task t1 = new Task(() =>
+                {
+                    CodeTableBox.DefaultCodeTableHandler(Glob.UsedTableIndex);
+                });
+                t1.Start();
+            }
         }
 
 
@@ -299,6 +260,9 @@ namespace WindowsFormsApplication2
                         break;
                     case "按键统计":
                         this.KeyAnToolStripMenuItem.ShortcutKeys = hotK;
+                        break;
+                    case "理论按键统计":
+                        this.CalcKeysToolStripMenuItem.ShortcutKeys = hotK;
                         break;
                     case "历史记录":
                         this.HistoryToolStripMenuItem.ShortcutKeys = hotK;
@@ -463,11 +427,11 @@ namespace WindowsFormsApplication2
                 }
 
                 //! 统计具体按键
-                int index = KeysList.IndexOf(e.KeyCode);
-                if (index != -1)
+                if (KeyObj.KeysDic.ContainsKey(e.KeyCode))
                 {
+                    int index = KeyObj.KeysDic[e.KeyCode];
                     Glob.KeysTotal[index]++;
-                    Glob.HistoryKeysTotal[index]++; // 历史总按键
+                    Glob.HistoryKeysTotal[index]++;
                 }
             }
         }
@@ -487,25 +451,6 @@ namespace WindowsFormsApplication2
             Theme.ReView = bool.Parse(ini.IniReadValue("主题", "预览", "False"));
         }
 
-        //图标及标题的设置
-        /*
-        private void Form1_Paint(object sender, PaintEventArgs e)
-        {
-            Graphics g = e.Graphics;
-            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            g.DrawImage(this.Icon.ToBitmap(),0,0,24,24);
-            Font F = new System.Drawing.Font("微软雅黑", 12f, FontStyle.Bold);
-            Font F_ = new Font("微软雅黑", 9f);
-            SizeF sf = g.MeasureString(Glob.Form, F);
-            g.DrawString(Glob.Form, F, new SolidBrush(Theme.ThemeColorFC), 22, 2);
-            if (Glob.Ver.Length != 0)
-            {
-                string s = "测试版本" + Glob.Ver;
-                g.DrawString(s, F_, new SolidBrush(Theme.ThemeColorFC), sf.Width + 22, sf.Height - g.MeasureString(s,F_).Height + 2);
-            }
-        }
-        */
         /// <summary>
         /// 设置主题
         /// </summary>
@@ -692,14 +637,6 @@ namespace WindowsFormsApplication2
             Glob.Right = Color.FromArgb(int.Parse(IniRead("外观", "打对颜色", "-8355712")));
             Glob.False = Color.FromArgb(int.Parse(IniRead("外观", "打错颜色", "-38294")));
 
-            //下方工具条颜色
-            //this.toolStripButton1.BorderColor = Color.FromArgb(253,144,91);//替换
-            //this.toolStripBtnLS.BorderColor = Color.FromArgb(255,127,24);//限制
-            //this.toolStripButton3.BorderColor = Color.Yellow;//潜水
-            //this.toolStripButton4.BorderColor = Color.FromArgb(0, 198, 37);//详细
-            //this.tsb标注.BorderColor = Color.FromArgb(255,0,10);
-            //this.toolButton1.BorderColor = Color.FromArgb(0,192,180);//精五
-
             //载入个签
             Glob.InstraPre = IniRead("个签", "签名", "");
             Glob.InstraPre_ = IniRead("个签", "标志", "0");
@@ -728,7 +665,7 @@ namespace WindowsFormsApplication2
                 Glob.PreText = "-----";
                 Glob.PreDuan = "第xx段";
             }
-            GetInfo(); //获取文段信息
+            
             Glob.TextHgAll = int.Parse(IniRead("记录", "总回改", "0"));
 
             //今日跟打
@@ -774,9 +711,6 @@ namespace WindowsFormsApplication2
             //lblMatchCount.Text = Glob.Instration.Trim();
             lblMatchCount.Text = Validation.Validat(Validation.Validat(richTextBox1.Text));
             labelHaveTyping.Text = Glob.todayTyping + "/" + 字数格式化(Glob.TextLenAll) + "/" + Glob.TextRecDays + "天/" + 字数格式化(Glob.TextLenAll + Glob.TextHgAll);
-            //FileInfo ty = new FileInfo(Application.StartupPath + "\\config.ini");
-            // double totaldays = (double)(DateTime.Today - ty.LastAccessTime).TotalDays;
-            //toolTip1.SetToolTip(this.labelHaveTyping,"今日跟打/总计数\n开始时间：" + ty.LastAccessTime.ToShortDateString() + "\n已开始第：" + totaldays.ToString("0.00") + "天\n平均每天：" + ((double)(Glob.TextLenAll/totaldays)).ToString("0.00") + "字\n本信息程序启动时更新");
 
             //曲线
             Glob.isShowSpline = bool.Parse(iniSetup.IniReadValue("拖动条", "曲线", "False"));
@@ -808,29 +742,33 @@ namespace WindowsFormsApplication2
             Glob.DisableSaveAdvanced = bool.Parse(IniRead("控制", "不保存高阶", "False"));
             // 符号选重
             Glob.useSymbolSelect = bool.Parse(IniRead("控制", "符号选重", "False"));
-            //载入词组信息
-            _render = new RichEditBoxLineRender();
-            InitCiKu();
-            bool tick;
-            bool.TryParse(IniRead("程序控制", "标记", "False"), out tick);
-            if (tick)
+
+            // 编码提示
+            this.picBmTips.Checked = bool.Parse(IniRead("程序控制", "编码", "False"));
+            // 智能测词
+            Glob.是否智能测词 = bool.Parse(IniRead("程序控制", "智能测词", "False"));
+            this.CheckWordToolButton.Checked = Glob.是否智能测词;
+            // 标记功能
+            Glob.IsPointIt = bool.Parse(IniRead("程序控制", "标记", "False"));
+
+            if (Glob.是否智能测词)
             {
-                this.tsb标注.Checked = true;
-                Glob.isPointIt = true;
+                this.tsb标注.Enabled = true;
+                this.tsb标注.Checked = Glob.IsPointIt;
             }
             else
             {
-                Glob.isPointIt = false;
+                this.tsb标注.Enabled = false;
+                this.tsb标注.Checked = false;
             }
-            //编码提示
-            this.picBmTips.Checked = bool.Parse(IniRead("程序控制", "编码", "False"));
-            if (this.picBmTips.Checked) CheckBmFile();
 
             //图片发送
             Glob.PicName = IniRead("发送", "昵称", "");
 
             this.比赛时自动打开寻找测速点ToolStripMenuItem.Checked = bool.Parse(IniRead("程序控制", "自动打开寻找", "False"));
             LblHaveTypingChange();
+
+            GetInfo(); //获取文段信息
         }
 
         /// <summary>
@@ -845,16 +783,15 @@ namespace WindowsFormsApplication2
                                                                      "记录字数：" + (Glob.TextLenAll + Glob.TextHgAll).ToString() + "字\n" +
                                                                      "平均每天：" + ((Glob.TextLenAll + Glob.TextHgAll) / Glob.TextRecDays).ToString("0.00") + "字"));
         }
+
+
         void richTextBox1_FontChanged(object sender, EventArgs e)
         {
             Glob.oneH = (int)this.richTextBox1.Font.GetHeight() + 4;
-            if (Glob.isPointIt)
+
+            if (this.tsb标注.Checked)
             {
-                using (System.Drawing.Graphics graph = this.richTextBox1.CreateGraphics())
-                {
-                    _render._charSize = graph.MeasureString("测", this.richTextBox1.Font);
-                }
-                _render.Render();
+                this.richTextBox1.Render(Glob.BmAlls, Glob.Right);
             }
         }
 
@@ -867,16 +804,6 @@ namespace WindowsFormsApplication2
 
         [DllImport("user32.dll", EntryPoint = "SendMessageA")]
         private static extern int SendMessage(System.IntPtr ptr, int wMsg, int wParam, int lParam);
-        //输入法
-        [DllImport("imm32.dll")]
-        public static extern IntPtr ImmGetContext(IntPtr hWnd);
-
-        [DllImport("imm32.dll")]
-        public static extern bool ImmGetConversionStatus(IntPtr hIMC,
-        ref int conversion, ref int sentence);
-
-        [DllImport("imm32.dll")]
-        public static extern bool ImmSetConversionStatus(IntPtr hIMC, int conversion, int sentence);
         #endregion
 
         #region HookKey
@@ -1520,10 +1447,9 @@ namespace WindowsFormsApplication2
                 {
                     g.Clear(Theme.ThemeColorBG);
                 }
-                if (Glob.isPointIt)
+                if (this.tsb标注.Checked)
                 {
-                    //_render.Render();
-                    _render.SetCurrIndex(0);
+                    this.richTextBox1.SetCurIndex(0);
                 }
             }
 
@@ -1565,7 +1491,6 @@ namespace WindowsFormsApplication2
 
                 //获取文章
                 string TextAlticle = richTextBox1.Text;
-                //MessageBox.Show(Glob.Text);
                 string TextType = richTextBox2.Text;
                 int TextLenNow = TextType.Length;
                 if (TextLenNow <= TextLen)
@@ -1622,7 +1547,6 @@ namespace WindowsFormsApplication2
                         //! 从而造成跟打报告中第 2 项数据记录录异常的问题
                         Glob.typeUseTime = 0;
                         timer1.Start(); //没有开启则
-                        //UseStopTime.Start();
                         timer2.Start();
                         timer3.Start(); //图表
                         timer5.Start();
@@ -1853,8 +1777,10 @@ namespace WindowsFormsApplication2
                     Type_Map(Glob.Type_Map_Color, 跟打地图步进, 1);
                     //更新错字
                     this.labelBM.Text = Glob.FWords.Count.ToString();
-                    if (Glob.isPointIt)
-                        _render.SetCurrIndex(TextLenNow);
+                    if (this.tsb标注.Checked)
+                    {
+                        this.richTextBox1.SetCurIndex(TextLenNow);
+                    }
                 }
 
                 if (TextLenNow == TextLen)
@@ -1881,7 +1807,6 @@ namespace WindowsFormsApplication2
                         }
                     }
                     eTime = DateTime.Now;
-                    //UseStopTime.Stop();
                     //MessageBox.Show("TextLenNow:" + TextLenNow + "\n TextLen:" + TextLen + "\n LastInput:" + Glob.LastInput);
                     //timer1.Enabled = false;
                     if (Glob.LastInput == 1)
@@ -2270,6 +2195,11 @@ namespace WindowsFormsApplication2
                             string typeAnalysisData = JsonConvert.SerializeObject(Glob.TypeReport);
                             string keyAnalysisData = string.Join("|", Glob.KeysTotal);
                             Glob.ScoreHistory.InsertAdvanced(Glob.TextTime.ToString("s"), curveData, speedAnalysisData, typeAnalysisData, keyAnalysisData);
+                            if (!string.IsNullOrEmpty(Glob.UsedTableIndex) && Glob.词库理论码长 > 0)
+                            {
+                                string calcKeys = string.Join("|", Glob.CalcKeysTotal);
+                                Glob.ScoreHistory.InsertCalc(Glob.TextTime.ToString("s"), calcKeys);
+                            }
                         }
                         #endregion
 
@@ -2353,6 +2283,7 @@ namespace WindowsFormsApplication2
                                         switch (NewSendText.AutoNo)
                                         {
                                             case NewSendText.AutoNoValue.Retype:
+                                                GetInfo();
                                                 F3();
                                                 break;
                                             case NewSendText.AutoNoValue.Disorder:
@@ -2497,7 +2428,7 @@ namespace WindowsFormsApplication2
             if (Glob.Use分析)
             {
                 SpeedAn sa = new SpeedAn(Glob.TextTime.ToString("G"), Glob.CurSegmentNum.ToString(), SpeedAnalysis(), Glob.Instration, this);
-                sa.ShowDialog();
+                sa.Show();
             }
         }
 
@@ -2846,7 +2777,7 @@ namespace WindowsFormsApplication2
                 {
                     g = int.Parse(lbm);
                 }
-                
+
                 if (g > 0)
                 {
                     this.labelBM.ForeColor = Color.IndianRed;
@@ -3005,11 +2936,12 @@ namespace WindowsFormsApplication2
 
         private void textBoxEx1_TextChanged(object sender, EventArgs e)
         {
-            richTextBox2.Text = textBoxEx1.Text;
+            richTextBox2.Text = textBoxEx1.Text; // 将跟打区内的文字传递至文本处理区(不可见)
             Glob.TypeTextCount = textBoxEx1.TextLength;
-            if (this.picBmTips.Checked && Glob.BmTips.Count > 0)
+
+            if (this.picBmTips.Checked && !string.IsNullOrEmpty(Glob.UsedTableIndex))
             {
-                查询当前编码ToolStripMenuItem2_Click(sender, null);
+                QueryWordCode();
             }
         }
         #endregion
@@ -3262,9 +3194,9 @@ namespace WindowsFormsApplication2
                 this.textBoxEx1.TextChanged -= new System.EventHandler(textBoxEx1_TextChanged);
                 this.textBoxEx1.Clear();
                 this.textBoxEx1.TextChanged += new System.EventHandler(textBoxEx1_TextChanged); //重新绑定
-                F3();
                 this.richTextBox1.Text = content;
                 GetInfo();
+                F3();
                 timer1.Stop();
                 timer3.Stop();
             }
@@ -3335,7 +3267,6 @@ namespace WindowsFormsApplication2
             Initialize(2);//显示初始化
 
             textBoxEx1.Select();
-            GetInfo();
             timer5.Stop();
             Glob.nowStart = DateTime.Now;
             this.lblAutoReType.Text = "0";
@@ -3400,35 +3331,61 @@ namespace WindowsFormsApplication2
             { //* 标点替换
                 this.richTextBox1.Text = ReText(this.richTextBox1.Text);
             }
+
             var tl = richTextBox1.TextLength;
             Glob.TextLen = tl;
-            Glob.TypeText = richTextBox1.Text;//跟打文字 存储
+            Glob.TypeText = richTextBox1.Text; // 存储跟打文字
             textBoxEx1.MaxLength = tl;
             lblCount.Text = tl.ToString() + "字";
             lblMatchCount.Text = Validation.Validat(Validation.Validat(richTextBox1.Text));
-            if (Glob.isPointIt && !Glob.是否智能测词)
-                TickIt();
-            //智能测词
-            if (Glob.TextPreCout != this.lblMatchCount.Text)
-                if (Glob.是否智能测词)
+
+            //? 为了能处理中途更换或停用码表等特殊情况，在手动按下重打时也会重新计算
+            Glob.BmAlls.Clear();
+            Array.Clear(Glob.CalcKeysTotal, 0, 50); // 清空按键统计
+            Glob.词库理论码长 = 0;
+
+            if (!string.IsNullOrEmpty(Glob.UsedTableIndex))
+            {
+                if (checkWordTask != null)
                 {
-                    if (已测 != this.lblMatchCount.Text)
+                    checkWordTask.Dispose();
+                    Glob.IsChecking = false;
+                }
+
+                if (Glob.是否智能测词)
+                { //* 智能测词
+                    if (开始测词委托 == null)
                     {
-                        委托测词();
+                        开始测词委托 = new checkWordsDelegate(SmartCheckWords);
                     }
                 }
-            //标记功能
-            if (!Glob.binput) return;
-            var chineseRegex = new Regex(@"[\u4E00-\u9FA5]");
-            if (chineseRegex.IsMatch(this.richTextBox1.Text))
-            {
-                Glob.binput = false;
-                Glob.文段类型 = true;
+                else
+                { //* 不测词，根据单字字典计算理论码长
+                    if (开始测词委托 == null)
+                    {
+                        开始测词委托 = new checkWordsDelegate(CalcSingleCodeLen);
+                    }
+                }
+
+                checkWordTask = Task.Factory.StartNew(() =>
+                {
+                    this.richTextBox1.BeginInvoke(开始测词委托);
+                });
             }
-            else
+
+            if (Glob.binput)
             {
-                Glob.binput = true;
-                Glob.文段类型 = false;
+                var chineseRegex = new Regex(@"[\u4E00-\u9FA5]");
+                if (chineseRegex.IsMatch(Glob.TypeText))
+                {
+                    Glob.binput = false;
+                    Glob.文段类型 = true;
+                }
+                else
+                {
+                    Glob.binput = true;
+                    Glob.文段类型 = false;
+                }
             }
         }
         #endregion
@@ -3469,7 +3426,7 @@ namespace WindowsFormsApplication2
 
         public bool PauseType()
         {
-            if (!isPause && sw > 0 && this.richTextBox1.TextLength != this.textBoxEx1.TextLength)
+            if (!isPause && sw > 0 && this.richTextBox1.Text.Length != this.textBoxEx1.Text.Length)
             {
                 try
                 {
@@ -3479,7 +3436,7 @@ namespace WindowsFormsApplication2
                     timer5.Stop();//重打时间计时
                     TimeStopAll += TimeStopA_;
                     isPause = true;
-                    this.labelSpeeding.Text = (this.textBoxEx1.TextLength * 60 / Glob.typeUseTime).ToString("0.00");
+                    this.labelSpeeding.Text = (this.textBoxEx1.Text.Length * 60 / Glob.typeUseTime).ToString("0.00");
                     //labelTimeFlys.ForeColor = Color.IndianRed;
                     timerLblTime.Start();
                     this.Text += " [已暂停]";
@@ -3631,6 +3588,12 @@ namespace WindowsFormsApplication2
                 iniSetup.IniWriteValue("记录", i.ToString(), Glob.jjPer[i].ToString());
             }
             iniSetup.IniWriteValue("记录", "总数", Glob.jjAllC.ToString());
+
+            // 关闭数据库
+            Glob.ScoreHistory.CloseDatabase();
+            Glob.ArticleHistory.CloseDatabase();
+            Glob.SentHistory.CloseDatabase();
+            Glob.CodeHistory.CloseDatabase();
         }
 
         #endregion
@@ -3960,7 +3923,6 @@ namespace WindowsFormsApplication2
 
         #region 编码查询
 
-        private delegate void 测词委托();
         /// <summary>
         /// 菜单栏重绘用于显示理论码长 及 词组的编码提示
         /// </summary>
@@ -3968,240 +3930,465 @@ namespace WindowsFormsApplication2
         /// <param name="e"></param>
         private void mS1_Paint(object sender, PaintEventArgs e)
         {
-            if (!Glob.isPointIt || !Glob.是否智能测词) return;
-            if (Glob.词库理论码长 == 0) return;
-            var g = e.Graphics;
-            var str = Glob.词组编码 + "理论：" + Glob.词库理论码长.ToString("0.00");
-            var siz = g.MeasureString(str, mS1.Font);
-            g.DrawString(str, mS1.Font, new SolidBrush(Theme.ThemeColorFC), mS1.Width - siz.Width,
-                         mS1.Height - siz.Height);
+            if (!string.IsNullOrEmpty(Glob.UsedTableIndex) && picBmTips.Checked && Glob.词库理论码长 > 0)
+            {
+                var g = e.Graphics;
+                var str = Glob.词组编码 + "理论：" + Glob.词库理论码长.ToString("0.00");
+                var siz = g.MeasureString(str, mS1.Font);
+                g.DrawString(str, mS1.Font, new SolidBrush(Theme.ThemeColorFC), mS1.Width - siz.Width,
+                             mS1.Height - siz.Height);
+            }
         }
 
-        private bool 是否正在测词中 = false;
-        private void 智能测词()
+        /// <summary>
+        /// 智能测词
+        /// </summary>
+        private void SmartCheckWords()
         {
-            if (Glob.BmTips.Count == 0) return;
-            if (Glob.TypeText.Length == 0) return;
-            if (是否正在测词中) return;
-            是否正在测词中 = true;
-            var textLen = Glob.TypeText.Length;
-            Glob.BmAlls.Clear();
-            Glob.词库理论码长 = 0;
-            var startTime = DateTime.Now;
-            const string bd =
-                @"，。“”！（）()~·#￥%&*_[]{}‘’/\<>,.《》？：；、—…1234567890";//abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRSTUVWXYZ
-            const string bd2 = @"“”（）！《》？";
-            BeginInvoke(new MethodInvoker(() =>
-                {
-                    _render.ClearLabel();
-                    picDoing.BackColor = richTextBox1.BackColor;
-                    toolTip1.SetToolTip(picDoing, "正在智能测词中...");
-                    picDoing.Location = new Point(Width - picDoing.Width - 22, splitContainer1.Location.Y + splitContainer1.SplitterDistance - picDoing.Height);
-                    picDoing.Visible = true;
-                }));
-            var counts = 0;
-            for (var i = 0; i < textLen; i++)
+            string _text = Glob.TypeText;
+            if (string.IsNullOrEmpty(Glob.UsedTableIndex))
             {
-                var 起点字符 = Glob.TypeText[i].ToString();
-                if (bd.Contains(起点字符))
-                {
-                    //标点
-                    counts++;
-                    Glob.BmAlls.Add(new BmAll { 查询的字 = 起点字符, 编码 = 起点字符, 重数 = 0, 起点 = i, 终点 = i + 1 });
+                return;
+            }
+            if (string.IsNullOrEmpty(_text))
+            {
+                return;
+            }
+            if (Glob.IsChecking)
+            {
+                return;
+            }
+
+            int textLen = _text.Length;
+            DateTime startTime = DateTime.Now;
+
+            Invoke(new MethodInvoker(() =>
+            {
+                picDoing.BackColor = richTextBox1.BackColor;
+                toolTip1.SetToolTip(picDoing, "正在智能测词中...");
+                picDoing.Location = new Point(Width - picDoing.Width - 22, splitContainer1.Location.Y + splitContainer1.SplitterDistance - picDoing.Height);
+                picDoing.Visible = true;
+            }));
+
+            for (int i = 0; i < textLen; i++)
+            {
+                string startStr = _text[i].ToString();
+                if (!Glob.AllWordDic.ContainsKey(startStr))
+                { // 不在码表中，可能是符号或未收录的字等
+                    Glob.BmAlls.Add(new BmAll
+                    {
+                        查询的字 = startStr,
+                        编码 = KeyObj.TransCode(startStr),
+                        重数 = 0,
+                        起点 = i,
+                        终点 = i + 1
+                    });
                     continue;
                 }
-                var end = i + 1;
-                var temp_search = 0;
+
+                int end = i + 1;
+                int tempSearch = 0; // 继续搜索的长度
                 for (int j = i + 1; j < textLen; j++)
                 {
-                    if (temp_search >= 10) break;
-                    var temp = Glob.TypeText[j].ToString();
-                    if (bd.Contains(temp))
+                    if (tempSearch >= Glob.WordMaxLen - 1)
                     {
-                        end = j;
                         break;
                     }
-                    temp_search++;
-                }
-                end += temp_search;
-                if (end >= textLen) end = textLen - 1;
-                for (int j = end; j > i; j--)
-                {
-                    var str = Glob.TypeText.Substring(i, j - i);
-                    var find = Glob.BmTips.FindAll(o => o.Contains(str));
-                    var min = find.FindIndex(k => k[0].Length == find.Min(o => o[0].Length));
-                    if (min == -1)
+                    string temp = _text[j].ToString();
+                    if (!Glob.AllWordDic.ContainsKey(temp))
                     {
-                        if (str.Length == 1)
+                        break;
+                    }
+                    tempSearch++;
+                }
+                end += tempSearch;
+
+                if (end > textLen)
+                { // 防止溢出
+                    end = textLen;
+                }
+
+                for (int k = end; k > i; k--)
+                {
+                    if (k - i > Glob.WordMaxLen || Glob.WordLenType[k - i - 1] == 0)
+                    { // 过长或码表中不存在该长度的词
+                        continue;
+                    }
+
+                    string curStr = _text.Substring(i, k - i);
+                    if (Glob.AllWordDic.ContainsKey(curStr))
+                    { // 存在该词条
+                        string bm = Glob.AllWordDic[curStr];
+                        int findit = 1;
+                        if (Glob.AllCodeDic.ContainsKey(bm) && Glob.AllCodeDic[bm] != curStr)
                         {
-                            if (bd.Contains(str))
+                            int tempIndex = 2;
+                            while (Glob.AllCodeDic.ContainsKey(bm + tempIndex.ToString()) && Glob.AllCodeDic[bm + tempIndex.ToString()] != curStr)
                             {
-                                counts++;
-                                Glob.BmAlls.Add(new BmAll { 查询的字 = str, 编码 = str, 重数 = 0, 起点 = i, 终点 = j - 1 });
-                                break;
+                                tempIndex++;
+                            }
+                            findit = tempIndex;
+                        }
+
+                        Glob.BmAlls.Add(new BmAll
+                        {
+                            查询的字 = curStr,
+                            编码 = bm,
+                            重数 = findit - 1,
+                            起点 = i,
+                            终点 = k,
+                        });
+                        i = k - 1; //? 因为 for 循环中 i 会自加
+                        break;
+                    }
+                }
+            }
+
+            if (Glob.BmAlls.Count == 0)
+            {
+                this.UIThread(() =>
+                {
+                    ShowFlowText("没有查询到任何编码！");
+                    picDoing.Visible = false;
+                    this.richTextBox1.ClearLines();
+                });
+                Glob.IsChecking = false;
+                return;
+            }
+
+            if (this.tsb标注.Checked)
+            {
+                this.richTextBox1.Render(Glob.BmAlls, Glob.Right); //* 绘制标注线条
+            }
+
+            BeginInvoke(new MethodInvoker(() =>
+            { // 计算理论码长
+                string codeStr = "";
+                for (int index = 0; index < Glob.BmAlls.Count; index++)
+                {
+                    BmAll curBm = Glob.BmAlls[index];
+                    string cStr = curBm.编码;
+                    if (curBm.重数 == 0)
+                    {
+                        if (index + 1 < Glob.BmAlls.Count)
+                        {
+                            BmAll nextBm = Glob.BmAlls[index + 1];
+                            if (Glob.AllCodeDic.ContainsKey(cStr + nextBm.编码[0]))
+                            {
+                                cStr += " ";
+                            }
+                        }
+                        else
+                        { // 当前为最后一组
+                            if (Glob.AllWordDic.ContainsKey(curBm.查询的字))
+                            {
+                                cStr += " ";
                             }
                         }
                     }
                     else
                     {
-                        counts++;
-                        Glob.BmAlls.Add(new BmAll { 查询的字 = str, 编码 = find[min][0].Trim(), 重数 = find[min].FindIndex(o => o.Contains(str)), 起点 = i, 终点 = j - 1 });
-                        i = j - 1;
-                        break;
+                        int pageNum = (curBm.重数 + 1) / 10;
+                        for (int n = 0; n < pageNum; n++)
+                        {
+                            cStr += "+";
+                        }
+                        int selectNum = (curBm.重数 + 1) % 10;
+
+                        if (selectNum == 1)
+                        {
+                            cStr += " ";
+                        }
+                        else if (selectNum == 2)
+                        {
+                            if (Glob.useSymbolSelect)
+                            {
+                                cStr += ";";
+                            }
+                            else
+                            {
+                                cStr += "2";
+                            }
+                        }
+                        else if (selectNum == 3)
+                        {
+                            if (Glob.useSymbolSelect)
+                            {
+                                cStr += "'";
+                            }
+                            else
+                            {
+                                cStr += "3";
+                            }
+                        }
+                        else
+                        {
+                            cStr += selectNum.ToString();
+                        }
+                    }
+
+                    codeStr += cStr;
+                }
+
+                Glob.词库理论码长 = (double)codeStr.Length / textLen;
+
+                for (int c = 0; c < codeStr.Length; c++)
+                {
+                    if (KeyObj.KeysStringDic.ContainsKey(codeStr[c].ToString()))
+                    {
+                        Glob.CalcKeysTotal[KeyObj.KeysStringDic[codeStr[c].ToString()]]++;
                     }
                 }
+
+                ShowFlowText(string.Format("第{0}段，计算码长为：{1}，用时：{2}秒", Glob.CurSegmentNum.ToString(), Glob.词库理论码长.ToString("0.00"), (DateTime.Now - startTime).TotalSeconds.ToString("0.000")));
+
+                picDoing.Visible = false;
+                mS1.Invalidate();
+                Glob.IsChecking = false;
+            }));
+        }
+
+        /// <summary>
+        /// 仅计算单字情况下码长
+        /// - 未启用智能测词时
+        /// </summary>
+        private void CalcSingleCodeLen()
+        {
+            string _text = Glob.TypeText;
+            if (string.IsNullOrEmpty(Glob.UsedTableIndex))
+            {
+                return;
+            }
+            if (string.IsNullOrEmpty(_text))
+            {
+                return;
+            }
+            if (Glob.IsChecking)
+            {
+                return;
             }
 
-            //for (var i = 0; i < count; i++)
-            //{
-            //    var v = i + 1;
-            //    if (i < count - 1)
-            //    {
-            //        for (var j = i + 1; j < count; j++)
-            //        {
-            //            var str = Glob.TypeText.Substring(i, j - i);
-            //            var find = Glob.BmTips.FindAll(o => o.Contains(str));
-            //            var min = find.FindIndex(k => k[0].Length == find.Min(o => o[0].Length));
-            //            if (min == -1)
-            //            {
-            //                if (bd.Contains(str))
-            //                {
-            //                    if (str.Length == 1)
-            //                    {
-            //                        bmTemp = str;
-            //                        bm重数 = 0;
-            //                    }
-            //                }
-            //                break;
-            //            }
-            //            v = j;
-            //            bmTemp = find[min][0];
-            //            bm重数 = find[min].FindIndex(o => o == str);
-            //        }
-            //    }
-            //    var temp = Glob.TypeText.Substring(i, v - i);
-            //    Glob.BmAlls.Add(new BmAll { 查询的字 = temp, 编码 = bmTemp, 重数 = bm重数 });
-            //    if (v - 1 < count) i = v - 1;
-            //}
+            int textLen = _text.Length;
+            DateTime startTime = DateTime.Now;
+
+            Invoke(new MethodInvoker(() =>
+            {
+                picDoing.BackColor = richTextBox1.BackColor;
+                toolTip1.SetToolTip(picDoing, "正在计算理论码长...");
+                picDoing.Location = new Point(Width - picDoing.Width - 22, splitContainer1.Location.Y + splitContainer1.SplitterDistance - picDoing.Height);
+                picDoing.Visible = true;
+            }));
+
+            for (int i = 0; i < textLen; i++)
+            {
+                string singleStr = _text[i].ToString();
+                if (Glob.SingleWordDic.ContainsKey(singleStr))
+                { // 存在这个字
+                    string bm = Glob.SingleWordDic[singleStr];
+                    int findit = 1;
+                    if (Glob.SingleCodeDic.ContainsKey(bm) && Glob.SingleCodeDic[bm] != singleStr)
+                    {
+                        int tempIndex = 2;
+                        while (Glob.SingleCodeDic.ContainsKey(bm + tempIndex.ToString()) && Glob.SingleCodeDic[bm + tempIndex.ToString()] != singleStr)
+                        {
+                            tempIndex++;
+                        }
+                        findit = tempIndex;
+                    }
+
+                    Glob.BmAlls.Add(new BmAll
+                    {
+                        查询的字 = singleStr,
+                        编码 = bm,
+                        重数 = findit - 1,
+                        起点 = i,
+                        终点 = i + 1
+                    });
+                }
+                else
+                { // 不在码表中，可能是符号或未收录的字等
+                    Glob.BmAlls.Add(new BmAll
+                    {
+                        查询的字 = singleStr,
+                        编码 = KeyObj.TransCode(singleStr),
+                        重数 = 0,
+                        起点 = i,
+                        终点 = i + 1
+                    });
+                }
+            }
 
             if (Glob.BmAlls.Count == 0)
             {
-                已测 = "";
                 this.UIThread(() =>
-                    {
-                        ShowFlowText("没有找到词组~~");
-                        picDoing.Visible = false;
-                        _render.ClearLabel();
-                    });
-                是否正在测词中 = false;
+                {
+                    ShowFlowText("没有查询到任何编码！");
+                    picDoing.Visible = false;
+                    this.richTextBox1.ClearLines();
+                });
+                Glob.IsChecking = false;
                 return;
             }
-            try
-            {
-                var total = Glob.BmAlls.Sum(o => o.查询的字.Length);
-                if (total < Glob.TypeText.Length)
-                {
-                    var temp = Glob.TypeText.Substring(total, Glob.TypeText.Length - total);
-                    Glob.BmAlls.Add(new BmAll { 查询的字 = temp, 编码 = temp, 重数 = 0 });
-                }
-            }
-            catch { }
-            _wordInfoUtil = new WordInfoUtil();
-            _wordInfoUtil.SetCiKu();
-            var wordInfos = _wordInfoUtil.GetWordInfos(Glob.TypeText);
-            _render.Init(wordInfos, richTextBox1, Glob.Right);
+
             BeginInvoke(new MethodInvoker(() =>
+            { // 计算理论码长
+                string codeStr = "";
+                for (int index = 0; index < Glob.BmAlls.Count; index++)
                 {
-                    // ShowFlowText(string.Format("counts{0}\nGlob.BmAlls:{1}", counts, Glob.BmAlls.Count));
-                    //计算理论码长 
-                    var strLen = "";
-                    for (int index = 1; index < Glob.BmAlls.Count; index++)
+                    BmAll curBm = Glob.BmAlls[index];
+                    string cStr = curBm.编码;
+                    if (curBm.重数 == 0)
                     {
-                        var bmAll = Glob.BmAlls[index];
-                        var v = "";
-                        if (bmAll.重数 == 0) if (bd2.Contains(bmAll.查询的字)) v = "  ";
-                        if (bmAll.重数 == 1) if (bmAll.编码.Length < 4) v = " ";
-                        if (bmAll.重数 == 2) v = ";";
-                        if (bmAll.重数 == 3) v = "'";
-                        if (bmAll.重数 >= 4) v = bmAll.重数.ToString();
-                        strLen += bmAll.编码 + v;
+                        if (index + 1 < Glob.BmAlls.Count)
+                        {
+                            BmAll nextBm = Glob.BmAlls[index + 1];
+                            if (Glob.SingleCodeDic.ContainsKey(cStr + nextBm.编码[0]))
+                            {
+                                cStr += " ";
+                            }
+                        }
+                        else
+                        { // 当前为最后一组
+                            if (Glob.SingleWordDic.ContainsKey(curBm.查询的字))
+                            {
+                                cStr += " ";
+                            }
+                        }
                     }
-                    Glob.词库理论码长 = (strLen.Length * 1.00 / (Glob.TypeText.Length - Glob.BmAlls[0].查询的字.Length));
-                    _render.Render();
-                    ShowFlowText(string.Format("第{0}段，计算码长为：{1}，用时：{2}", Glob.CurSegmentNum.ToString(), Glob.词库理论码长.ToString("0.00"), (DateTime.Now - startTime).TotalSeconds.ToString("0.00")));
-                    picDoing.Visible = false;
-                    已测 = this.lblMatchCount.Text;
-                    mS1.Invalidate();
-                    是否正在测词中 = false;
-                }));
+                    else
+                    {
+                        int pageNum = (curBm.重数 + 1) / 10;
+                        for (int n = 0; n < pageNum; n++)
+                        {
+                            cStr += "+";
+                        }
+                        int selectNum = (curBm.重数 + 1) % 10;
+
+                        if (selectNum == 1)
+                        {
+                            cStr += " ";
+                        }
+                        else if (selectNum == 2)
+                        {
+                            if (Glob.useSymbolSelect)
+                            {
+                                cStr += ";";
+                            }
+                            else
+                            {
+                                cStr += "2";
+                            }
+                        }
+                        else if (selectNum == 3)
+                        {
+                            if (Glob.useSymbolSelect)
+                            {
+                                cStr += "'";
+                            }
+                            else
+                            {
+                                cStr += "3";
+                            }
+                        }
+                        else
+                        {
+                            cStr += selectNum.ToString();
+                        }
+                    }
+
+                    codeStr += cStr;
+                }
+
+                Glob.词库理论码长 = (double)codeStr.Length / textLen;
+
+                for (int c = 0; c < codeStr.Length; c++)
+                {
+                    if (KeyObj.KeysStringDic.ContainsKey(codeStr[c].ToString()))
+                    {
+                        Glob.CalcKeysTotal[KeyObj.KeysStringDic[codeStr[c].ToString()]]++;
+                    }
+                }
+
+                ShowFlowText(string.Format("第{0}段，计算码长为：{1}，用时：{2}秒", Glob.CurSegmentNum.ToString(), Glob.词库理论码长.ToString("0.00"), (DateTime.Now - startTime).TotalSeconds.ToString("0.000")));
+
+                picDoing.Visible = false;
+                mS1.Invalidate();
+                Glob.IsChecking = false;
+            }));
         }
 
-        private string 已测 = "";
-        private 测词委托 开始测词委托;
-        private void 委托测词()
-        {
-            if (开始测词委托 == null)
-                开始测词委托 = new 测词委托(智能测词);
-            开始测词委托.BeginInvoke(null, null);
-        }
-        private void 智能测词ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CheckWordToolButton_Click(object sender, EventArgs e)
         {
             var ini = new _Ini("config.ini");
             if (Glob.是否智能测词)
             {
                 Glob.是否智能测词 = false;
-                this.智能测词ToolStripMenuItem.Checked = false;
+                this.CheckWordToolButton.Checked = false;
                 ini.IniWriteValue("程序控制", "智能测词", "False");
-                InitCiKu();
-                TickIt();
+                this.tsb标注.Checked = false; // 关闭智能测词时，标注功能也将关闭
+                this.tsb标注.Enabled = false;
+                开始测词委托 = null;
+                this.richTextBox1.ClearLines();
             }
             else
             {
-                委托测词();
-                this.智能测词ToolStripMenuItem.Checked = true;
+                Glob.是否智能测词 = true;
+                this.CheckWordToolButton.Checked = true;
                 ini.IniWriteValue("程序控制", "智能测词", "True");
+                this.tsb标注.Enabled = true;
+                this.tsb标注.Checked = Glob.IsPointIt; // 开启智能测词时，读取原先记录的标注功能状态
+                开始测词委托 = null;
             }
         }
 
         public delegate void BianMaCheck(string param, int flag);
 
-        public void BimaCheck(string word, int flag)
+        /// <summary>
+        /// 编码检查
+        /// </summary>
+        /// <param name="word"></param>
+        /// <param name="flag"></param>
+        public void CodeCheck(string word, int flag)
         {
-            var bm = word;
-            var findit = 0;
-            const string bd =
-                @"，。“”！（）()~·#￥%&*_[]{}‘’/\<>,.《》？：；、—…1234567890";//abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRSTUVWXYZ
-            if (!bd.Contains(word))
-            {
-                var find = Glob.BmTips.FindAll(o => o.Contains(word));
-                var min = find.FindIndex(k => k[0].Length == find.Min(o => o[0].Length));
-                if (min != -1)
-                {
-                    findit = find[min].FindIndex(o => o == word);
-                    bm = find[min][0];
-                }
-                else
-                {
-                    findit = 0;
-                    bm = "";
-                }
-            }
-            if (flag != 1)
-            {
-                BeginInvoke(new MethodInvoker(() => ShowBmTips(word, bm, findit)));
+            string bm = word;
+            int findit = 0;
+            if (!Glob.AllWordDic.ContainsKey(word))
+            { // 不在码表中，可能是符号或未收录的字等
+                findit = 1;
+                bm = "";
             }
             else
             {
-                var s = "";
-                if (findit != 0)
+                findit = 1;
+                bm = Glob.AllWordDic[word];
+                if (Glob.AllCodeDic.ContainsKey(bm) && Glob.AllCodeDic[bm] != word)
                 {
-                    s = string.Format("【{0}】 · 【{1}】 · 【{2}重】", word, bm, findit);
+                    int tempIndex = 2;
+                    while (Glob.AllCodeDic.ContainsKey(bm + tempIndex.ToString()) && Glob.AllCodeDic[bm + tempIndex.ToString()] != word)
+                    {
+                        tempIndex++;
+                    }
+                    findit = tempIndex;
                 }
-                if (findit == 0)
+            }
+
+            if (flag == 0)
+            {
+                BeginInvoke(new MethodInvoker(() => ShowBmTips(word, bm, findit - 1)));
+            }
+            else if (flag == 1)
+            {
+                string s = "";
+                if (findit > 0)
+                {
+                    s = string.Format("【{0}】 · 【{1}】 · 【{2}重】", word, bm, findit - 1);
+                }
+                else
                 {
                     s = string.Format("【{0}】 的编码未找到。", word);
                 }
-                if (s.Length != 0)
+
+                if (s.Length > 0)
                 {
                     BeginInvoke(new MethodInvoker(() => ShowFlowText(s)));
                 }
@@ -4213,6 +4400,7 @@ namespace WindowsFormsApplication2
             lblBmTips.Text = s;
             PicSetBmTips(word, s, flag);
         }
+
         /// <summary>
         /// 设置编码提示的显示
         /// </summary>
@@ -4235,8 +4423,8 @@ namespace WindowsFormsApplication2
                         g.DrawLine(BasePen, splitLineWidth + bmp.Height, 0, splitLineWidth + bmp.Height, bmp.Height);
                         //画重
                         int radius = bmp.Height - 2;
-                        g.FillPie(new SolidBrush(bmCong(flag)), 2, 1, radius, radius, -360, 360);
-                        g.FillRectangle(new SolidBrush(bmCong(flag)), 1, 1, bmp.Height + 1, bmp.Height - 2);
+                        g.FillPie(new SolidBrush(this.richTextBox1.GetColor(flag)), 2, 1, radius, radius, -360, 360);
+                        g.FillRectangle(new SolidBrush(this.richTextBox1.GetColor(flag)), 1, 1, bmp.Height + 1, bmp.Height - 2);
                         //画字
                         SizeF ziSizeF = g.MeasureString(zi, ziFont);
                         g.DrawString(zi, ziFont, solidBrush, splitLineWidth / 2 - ziSizeF.Width / 2 + bmp.Height + 2,
@@ -4254,14 +4442,14 @@ namespace WindowsFormsApplication2
                     }
                     lblBmTips.Image = bmp;
 
-                    if (Glob.BmAlls.Count != 0)
+                    if (this.picBmTips.Checked && Glob.BmAlls.Count > 0)
                     {
-                        var count = Glob.BmAlls.Count;
-                        var str = "";
+                        int count = Glob.BmAlls.Count;
+                        string str = "";
                         for (int index = 0; index < count; index++)
                         {
-                            var bmAll = Glob.BmAlls[index];
-                            var now = this.textBoxEx1.TextLength;
+                            BmAll bmAll = Glob.BmAlls[index];
+                            int now = this.textBoxEx1.TextLength;
                             if (now == bmAll.起点)
                             {
                                 //显示当前
@@ -4282,45 +4470,26 @@ namespace WindowsFormsApplication2
                     }
                 });
         }
-        private Color bmCong(int flag)
+
+        /// <summary>
+        /// 查询文字编码
+        /// </summary>
+        private void QueryWordCode()
         {
-            return Glob.BmColors[flag > 4 ? 3 : flag == 0 ? 0 : flag - 1];
-        }
-        private void 查询当前编码ToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            CheckBmFile();
-            var bianMa = new BianMaCheck(BimaCheck);
+            var bianMa = new BianMaCheck(CodeCheck);
             var s =
                 Glob.TypeText[Glob.TypeTextCount == Glob.TextLen ? Glob.TypeTextCount - 1 : Glob.TypeTextCount].ToString();
             bianMa.BeginInvoke(s, 0, null, null);
         }
-        /// <summary>
-        /// 检查编码文件
-        /// </summary>
-        private void CheckBmFile()
-        {
-            if (Glob.BmTips.Count != 0) return;
-            //读取编码
-            using (bmTips = new FormBMTipsModel())
-            {
-                if (bmTips.ReadState != State.Done)
-                {
-                    ShowFlowText("编码引擎异常，请检查文件！或按CTRL+F重载尝试！");
-                    this.picBmTips.Enabled = false;
-                    return;
-                }
-                Glob.BmTips = bmTips.Dic.ToList();
-                toolTip1.SetToolTip(lblBmTips, "当前找到" + Glob.BmTips.Count + "个编码。\n显示格式：\n重数|查询的字|编码");
-                this.picBmTips.Checked = true;
-            }
 
-            //智能测词
-            var ini = new _Ini("config.ini");
-            var b = false;
-            bool.TryParse(ini.IniReadValue("程序控制", "智能测词", "False"), out b);
-            Glob.是否智能测词 = b;
-            智能测词ToolStripMenuItem.Checked = b;
+        private void 查询当前编码ToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(Glob.UsedTableIndex))
+            {
+                QueryWordCode();
+            }
         }
+
         private void picBmTips_Click(object sender, EventArgs e)
         {
             var ini = new _Ini("config.ini");
@@ -4334,7 +4503,6 @@ namespace WindowsFormsApplication2
             else
             {
                 //开启
-                CheckBmFile();
                 this.picBmTips.Checked = true;
                 ini.IniWriteValue("程序控制", "编码", "True");
             }
@@ -4347,8 +4515,7 @@ namespace WindowsFormsApplication2
         /// <param name="e"></param>
         private void tsmiFindSelectionBm_Click(object sender, EventArgs e)
         {
-            CheckBmFile();
-            var bianMa = new BianMaCheck(BimaCheck);
+            var bianMa = new BianMaCheck(CodeCheck);
             var s = this.richTextBox1.SelectedText;
             bianMa.BeginInvoke(s, 1, null, null);
         }
@@ -5306,7 +5473,7 @@ namespace WindowsFormsApplication2
                 this.lblspeedcheck.Text = "时间";
             }
         }
-        
+
         private void 清除测速点ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.CleanSpeedPoints();
@@ -5416,79 +5583,53 @@ namespace WindowsFormsApplication2
 
         #region 标记
 
-
         private void PointIt(object sender, EventArgs e)
         {
             _Ini ini = new _Ini("config.ini");
-            if (Glob.isPointIt)
+            if (Glob.IsPointIt)
             {
                 this.tsb标注.Checked = false;
-                Glob.isPointIt = false;
-                _render.ClearLabel();
+                Glob.IsPointIt = false;
                 ini.IniWriteValue("程序控制", "标记", "False");
+                this.richTextBox1.ClearLines();
             }
             else
             {
                 this.tsb标注.Checked = true;
-                Glob.isPointIt = true;
-                TickIt();
+                Glob.IsPointIt = true;
                 ini.IniWriteValue("程序控制", "标记", "True");
             }
         }
 
-        private void TickIt()
-        {
-            List<WordInfo> wordInfos = _wordInfoUtil.GetWordInfos(this.richTextBox1.Text, Color.Blue, Color.Red);
-            //string show = wordInfos.Count > 0 ? "词量" + wordInfos.Count : "剩余字数";
-            //this.label8.Text = show;
-            _render.Init(wordInfos, this.richTextBox1, Glob.Right);
-            _render.Render();
-        }
-
-        private void InitCiKu()
-        {
-            string fileName = Application.StartupPath + "\\ci.txt";
-            if (System.IO.File.Exists(fileName))
-            {
-                string ciku = System.IO.File.ReadAllText(fileName, System.Text.Encoding.Default);
-                ciku = ciku.Replace("\r\n", "\r");
-                ciku = ciku.Replace("\n", "\r");
-                string[] astr = ciku.Split(new string[] { "\r" }, StringSplitOptions.RemoveEmptyEntries);
-
-                _wordInfoUtil = new WordInfoUtil();
-                _wordInfoUtil.SetCiKu(astr);
-            }
-            else
-            {
-                this.tsb标注.Enabled = false;
-                this.tsb标注.ToolTipText = "请将词组标记文件ci.txt放置跟打器根目录后重启";
-                //this.label8.Text = "剩余字数";
-            }
-
-        }
-
         private void richTextBox1_VScroll(object sender, EventArgs e)
         {
-            if (Glob.isPointIt)
-                _render.Render();
+            if (this.tsb标注.Checked)
+            {
+                this.richTextBox1.Render(Glob.BmAlls, Glob.Right);
+            }
         }
 
         private void richTextBox1_HScroll(object sender, EventArgs e)
         {
-            if (Glob.isPointIt)
-                _render.Render();
+            if (this.tsb标注.Checked)
+            {
+                this.richTextBox1.Render(Glob.BmAlls, Glob.Right);
+            }
         }
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            if (Glob.isPointIt)
-                _render.Render();
+            if (this.tsb标注.Checked)
+            {
+                this.richTextBox1.Render(Glob.BmAlls, Glob.Right);
+            }
         }
         #endregion
 
         #region 快捷键列表
         private void 重打ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            GetInfo();
             F3();
         }
 
@@ -5597,14 +5738,23 @@ namespace WindowsFormsApplication2
         private void KeyAnToolStripMenuItem_Click(object sender, EventArgs e)
         {
             KeyAn kan = new KeyAn(Glob.KeysTotal, Glob.TextTime.ToString("G"));
-            kan.ShowDialog();
+            kan.Show();
+        }
+
+        private void CalcKeysToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(Glob.UsedTableIndex) && Glob.词库理论码长 > 0)
+            {
+                KeyAn kan = new KeyAn(Glob.CalcKeysTotal, Glob.TextTime.ToString("G"), "理论按键统计");
+                kan.Show();
+            }
         }
         #endregion
 
         #region 历史按键热图
         private void HistoryKeysToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            KeyAn kan = new KeyAn(Glob.HistoryKeysTotal, "历史按键热图");
+            KeyAn kan = new KeyAn(Glob.HistoryKeysTotal, "历史按键热图", "历史按键统计");
             kan.ShowDialog();
         }
         #endregion
@@ -5651,6 +5801,11 @@ namespace WindowsFormsApplication2
             this.gridHandler.KeyAn();
         }
 
+        private void GridCalcKeysToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.gridHandler.CalcKeys();
+        }
+
         private void GridRetypeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string[] result = this.gridHandler.GetRetype(this.currentScoreData);
@@ -5658,6 +5813,14 @@ namespace WindowsFormsApplication2
             {
                 this.TypeContentDirectly(result[0], result[1], result[2]);
             }
+        }
+        #endregion
+
+        #region 码表管理
+        private void CodeTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CodeTableBox ctb = new CodeTableBox();
+            ctb.ShowDialog();
         }
         #endregion
 
@@ -5679,17 +5842,11 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void 编码提示设置ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var formBmTips = new FormBMTips();
-            formBmTips.ShowDialog();
-        }
-
         #region 跟打报告
         private void 跟打报告ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             WindowsFormsApplication2.跟打报告.TypeAnalysis tya = new 跟打报告.TypeAnalysis(Glob.TextTime.ToString("G"), Glob.TypeReport, Glob.TypeText, Glob.TextSpeed.ToString("0.00"), Glob.TextHg, Glob.Instration);
-            tya.ShowDialog();
+            tya.Show();
         }
         #endregion
     }

@@ -26,15 +26,19 @@ namespace WindowsFormsApplication2.KeyAnalysis
         /// </summary>
         private Button[] allKeyButton;
 
-        public KeyAn(int[] keys_data, string _flag)
+        private readonly string titleText;
+
+        public KeyAn(int[] keys_data, string _flag, string title = "")
         {
             this.keysData = keys_data;
             this.flag = _flag;
+            this.titleText = title.Length > 0 ? title : "按键统计";
             InitializeComponent();
         }
 
         private void KeyAn_Load(object sender, EventArgs e)
         {
+            this.Text = this.titleText;
             this.allKeyButton = new Button[50]
             {
                 KeyOemtildeButton,

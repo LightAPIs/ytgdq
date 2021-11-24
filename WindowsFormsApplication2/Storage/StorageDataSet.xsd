@@ -67,7 +67,7 @@
               <xs:element name="content" msprop:Generator_ColumnPropNameInTable="contentColumn" msprop:Generator_ColumnPropNameInRow="content" msprop:Generator_UserColumnName="content" msprop:Generator_ColumnVarNameInTable="columncontent" type="xs:string" minOccurs="0" />
               <xs:element name="md5" msprop:Generator_ColumnPropNameInTable="md5Column" msprop:Generator_ColumnPropNameInRow="md5" msprop:Generator_UserColumnName="md5" msprop:Generator_ColumnVarNameInTable="columnmd5" type="xs:string" minOccurs="0" />
               <xs:element name="title" msprop:Generator_ColumnPropNameInTable="titleColumn" msprop:Generator_ColumnPropNameInRow="title" msprop:Generator_UserColumnName="title" msprop:Generator_ColumnVarNameInTable="columntitle" type="xs:string" minOccurs="0" />
-              <xs:element name="count" msprop:Generator_ColumnPropNameInRow="count" msprop:Generator_ColumnPropNameInTable="countColumn" msprop:Generator_ColumnVarNameInTable="columncount" msprop:Generator_UserColumnName="count" type="xs:int" minOccurs="0" />
+              <xs:element name="count" msprop:Generator_ColumnPropNameInTable="countColumn" msprop:Generator_ColumnPropNameInRow="count" msprop:Generator_UserColumnName="count" msprop:Generator_ColumnVarNameInTable="columncount" type="xs:int" minOccurs="0" />
               <xs:element name="create_time" msprop:Generator_ColumnPropNameInTable="create_timeColumn" msprop:Generator_ColumnPropNameInRow="create_time" msprop:Generator_UserColumnName="create_time" msprop:Generator_ColumnVarNameInTable="columncreate_time" type="xs:dateTime" />
             </xs:sequence>
           </xs:complexType>
@@ -95,11 +95,53 @@
               <xs:element name="cycle" msprop:Generator_ColumnPropNameInTable="cycleColumn" msprop:Generator_ColumnPropNameInRow="cycle" msprop:Generator_UserColumnName="cycle" msprop:Generator_ColumnVarNameInTable="columncycle" type="xs:int" default="0" minOccurs="0" />
               <xs:element name="cycle_value" msprop:Generator_ColumnPropNameInTable="cycle_valueColumn" msprop:Generator_ColumnPropNameInRow="cycle_value" msprop:Generator_UserColumnName="cycle_value" msprop:Generator_ColumnVarNameInTable="columncycle_value" type="xs:int" minOccurs="0" />
               <xs:element name="auto" msprop:Generator_ColumnPropNameInTable="autoColumn" msprop:Generator_ColumnPropNameInRow="auto" msprop:Generator_UserColumnName="auto" msprop:Generator_ColumnVarNameInTable="columnauto" type="xs:int" default="0" minOccurs="0" />
-              <xs:element name="auto_condition" msprop:Generator_UserColumnName="auto_condition" msprop:Generator_ColumnPropNameInTable="auto_conditionColumn" msprop:Generator_ColumnPropNameInRow="auto_condition" msprop:Generator_ColumnVarNameInTable="columnauto_condition" type="xs:int" default="0" minOccurs="0" />
-              <xs:element name="auto_key" msprop:Generator_UserColumnName="auto_key" msprop:Generator_ColumnPropNameInTable="auto_keyColumn" msprop:Generator_ColumnPropNameInRow="auto_key" msprop:Generator_ColumnVarNameInTable="columnauto_key" type="xs:int" minOccurs="0" />
-              <xs:element name="auto_operator" msprop:Generator_UserColumnName="auto_operator" msprop:Generator_ColumnPropNameInTable="auto_operatorColumn" msprop:Generator_ColumnPropNameInRow="auto_operator" msprop:Generator_ColumnVarNameInTable="columnauto_operator" type="xs:int" minOccurs="0" />
-              <xs:element name="auto_number" msprop:Generator_UserColumnName="auto_number" msprop:Generator_ColumnPropNameInTable="auto_numberColumn" msprop:Generator_ColumnPropNameInRow="auto_number" msprop:Generator_ColumnVarNameInTable="columnauto_number" type="xs:double" minOccurs="0" />
-              <xs:element name="auto_no" msprop:Generator_UserColumnName="auto_no" msprop:Generator_ColumnPropNameInTable="auto_noColumn" msprop:Generator_ColumnPropNameInRow="auto_no" msprop:Generator_ColumnVarNameInTable="columnauto_no" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="auto_condition" msprop:Generator_ColumnPropNameInTable="auto_conditionColumn" msprop:Generator_ColumnPropNameInRow="auto_condition" msprop:Generator_UserColumnName="auto_condition" msprop:Generator_ColumnVarNameInTable="columnauto_condition" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="auto_key" msprop:Generator_ColumnPropNameInTable="auto_keyColumn" msprop:Generator_ColumnPropNameInRow="auto_key" msprop:Generator_UserColumnName="auto_key" msprop:Generator_ColumnVarNameInTable="columnauto_key" type="xs:int" minOccurs="0" />
+              <xs:element name="auto_operator" msprop:Generator_ColumnPropNameInTable="auto_operatorColumn" msprop:Generator_ColumnPropNameInRow="auto_operator" msprop:Generator_UserColumnName="auto_operator" msprop:Generator_ColumnVarNameInTable="columnauto_operator" type="xs:int" minOccurs="0" />
+              <xs:element name="auto_number" msprop:Generator_ColumnPropNameInTable="auto_numberColumn" msprop:Generator_ColumnPropNameInRow="auto_number" msprop:Generator_UserColumnName="auto_number" msprop:Generator_ColumnVarNameInTable="columnauto_number" type="xs:double" minOccurs="0" />
+              <xs:element name="auto_no" msprop:Generator_ColumnPropNameInTable="auto_noColumn" msprop:Generator_ColumnPropNameInRow="auto_no" msprop:Generator_UserColumnName="auto_no" msprop:Generator_ColumnVarNameInTable="columnauto_no" type="xs:int" default="0" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Code" msprop:Generator_RowEvHandlerName="CodeRowChangeEventHandler" msprop:Generator_RowDeletedName="CodeRowDeleted" msprop:Generator_RowDeletingName="CodeRowDeleting" msprop:Generator_RowEvArgName="CodeRowChangeEvent" msprop:Generator_TablePropName="Code" msprop:Generator_RowChangedName="CodeRowChanged" msprop:Generator_UserTableName="Code" msprop:Generator_RowChangingName="CodeRowChanging" msprop:Generator_RowClassName="CodeRow" msprop:Generator_TableClassName="CodeDataTable" msprop:Generator_TableVarName="tableCode">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnVarNameInTable="columnid" type="xs:unsignedLong" />
+              <xs:element name="word" msprop:Generator_ColumnPropNameInTable="wordColumn" msprop:Generator_ColumnPropNameInRow="word" msprop:Generator_UserColumnName="word" msprop:Generator_ColumnVarNameInTable="columnword" type="xs:string" />
+              <xs:element name="coding" msprop:Generator_ColumnPropNameInTable="codingColumn" msprop:Generator_ColumnPropNameInRow="coding" msprop:Generator_UserColumnName="coding" msprop:Generator_ColumnVarNameInTable="columncoding" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CodeTableIndex" msprop:Generator_RowEvHandlerName="CodeTableIndexRowChangeEventHandler" msprop:Generator_RowDeletedName="CodeTableIndexRowDeleted" msprop:Generator_RowDeletingName="CodeTableIndexRowDeleting" msprop:Generator_RowEvArgName="CodeTableIndexRowChangeEvent" msprop:Generator_TablePropName="CodeTableIndex" msprop:Generator_RowChangedName="CodeTableIndexRowChanged" msprop:Generator_UserTableName="CodeTableIndex" msprop:Generator_RowChangingName="CodeTableIndexRowChanging" msprop:Generator_RowClassName="CodeTableIndexRow" msprop:Generator_TableClassName="CodeTableIndexDataTable" msprop:Generator_TableVarName="tableCodeTableIndex">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnVarNameInTable="columnname" type="xs:string" />
+              <xs:element name="seq" msprop:Generator_ColumnPropNameInTable="seqColumn" msprop:Generator_ColumnPropNameInRow="seq" msprop:Generator_UserColumnName="seq" msprop:Generator_ColumnVarNameInTable="columnseq" type="xs:long" />
+              <xs:element name="max_len" msprop:Generator_ColumnPropNameInTable="max_lenColumn" msprop:Generator_ColumnPropNameInRow="max_len" msprop:Generator_UserColumnName="max_len" msprop:Generator_ColumnVarNameInTable="columnmax_len" type="xs:int" default="1" />
+              <xs:element name="len_type" msprop:Generator_UserColumnName="len_type" msprop:Generator_ColumnPropNameInTable="len_typeColumn" msprop:Generator_ColumnPropNameInRow="len_type" msprop:Generator_ColumnVarNameInTable="columnlen_type" type="xs:string" minOccurs="0" />
+              <xs:element name="used_id" msprop:Generator_ColumnPropNameInTable="used_idColumn" msprop:Generator_ColumnPropNameInRow="used_id" msprop:Generator_UserColumnName="used_id" msprop:Generator_ColumnVarNameInTable="columnused_id" type="xs:long" default="-1" minOccurs="0" />
+              <xs:element name="used_table_index" msprop:Generator_UserColumnName="used_table_index" msprop:Generator_ColumnPropNameInTable="used_table_indexColumn" msprop:Generator_ColumnPropNameInRow="used_table_index" msprop:Generator_ColumnVarNameInTable="columnused_table_index" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CodeTableInfo" msprop:Generator_RowEvHandlerName="CodeTableInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="CodeTableInfoRowDeleted" msprop:Generator_RowDeletingName="CodeTableInfoRowDeleting" msprop:Generator_RowEvArgName="CodeTableInfoRowChangeEvent" msprop:Generator_TablePropName="CodeTableInfo" msprop:Generator_RowChangedName="CodeTableInfoRowChanged" msprop:Generator_UserTableName="CodeTableInfo" msprop:Generator_RowChangingName="CodeTableInfoRowChanging" msprop:Generator_RowClassName="CodeTableInfoRow" msprop:Generator_TableClassName="CodeTableInfoDataTable" msprop:Generator_TableVarName="tableCodeTableInfo">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnVarNameInTable="columnid" type="xs:long" />
+              <xs:element name="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnVarNameInTable="columnname" type="xs:string" minOccurs="0" />
+              <xs:element name="count" msprop:Generator_ColumnPropNameInTable="countColumn" msprop:Generator_ColumnPropNameInRow="count" msprop:Generator_UserColumnName="count" msprop:Generator_ColumnVarNameInTable="columncount" type="xs:int" minOccurs="0" />
+              <xs:element name="create_time" msprop:Generator_ColumnPropNameInTable="create_timeColumn" msprop:Generator_ColumnPropNameInRow="create_time" msprop:Generator_UserColumnName="create_time" msprop:Generator_ColumnVarNameInTable="columncreate_time" type="xs:dateTime" />
+              <xs:element name="table_index" msprop:Generator_ColumnPropNameInTable="table_indexColumn" msprop:Generator_ColumnPropNameInRow="table_index" msprop:Generator_UserColumnName="table_index" msprop:Generator_ColumnVarNameInTable="columntable_index" type="xs:string" />
+              <xs:element name="max_len" msprop:Generator_ColumnPropNameInTable="max_lenColumn" msprop:Generator_ColumnPropNameInRow="max_len" msprop:Generator_UserColumnName="max_len" msprop:Generator_ColumnVarNameInTable="columnmax_len" type="xs:int" default="1" minOccurs="0" />
+              <xs:element name="len_type" msprop:Generator_UserColumnName="len_type" msprop:Generator_ColumnPropNameInTable="len_typeColumn" msprop:Generator_ColumnPropNameInRow="len_type" msprop:Generator_ColumnVarNameInTable="columnlen_type" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Calc" msprop:Generator_RowEvHandlerName="CalcRowChangeEventHandler" msprop:Generator_RowDeletedName="CalcRowDeleted" msprop:Generator_RowDeletingName="CalcRowDeleting" msprop:Generator_RowEvArgName="CalcRowChangeEvent" msprop:Generator_TablePropName="Calc" msprop:Generator_RowChangedName="CalcRowChanged" msprop:Generator_RowChangingName="CalcRowChanging" msprop:Generator_TableClassName="CalcDataTable" msprop:Generator_RowClassName="CalcRow" msprop:Generator_TableVarName="tableCalc" msprop:Generator_UserTableName="Calc">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="score_time" msprop:Generator_ColumnPropNameInRow="score_time" msprop:Generator_ColumnPropNameInTable="score_timeColumn" msprop:Generator_ColumnVarNameInTable="columnscore_time" msprop:Generator_UserColumnName="score_time" type="xs:dateTime" />
+              <xs:element name="keys" msprop:Generator_ColumnPropNameInRow="keys" msprop:Generator_ColumnPropNameInTable="keysColumn" msprop:Generator_ColumnVarNameInTable="columnkeys" msprop:Generator_UserColumnName="keys" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -125,6 +167,30 @@
       <xs:selector xpath=".//mstns:Sent" />
       <xs:field xpath="mstns:id" />
     </xs:unique>
+    <xs:unique name="CodeKey" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Code" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="CodeTableIndexKey" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CodeTableIndex" />
+      <xs:field xpath="mstns:name" />
+    </xs:unique>
+    <xs:unique name="CodeTableInfoKey" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CodeTableInfo" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="Constraint1">
+      <xs:selector xpath=".//mstns:CodeTableInfo" />
+      <xs:field xpath="mstns:table_index" />
+    </xs:unique>
+    <xs:unique name="CalcKey" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Calc" />
+      <xs:field xpath="mstns:score_time" />
+    </xs:unique>
+    <xs:keyref name="FK_Score_Calc" refer="ScoreKey" msdata:ConstraintOnly="true">
+      <xs:selector xpath=".//mstns:Calc" />
+      <xs:field xpath="mstns:score_time" />
+    </xs:keyref>
     <xs:keyref name="FK_Score_Advanced" refer="ScoreKey" msdata:ConstraintOnly="true" msdata:UpdateRule="None" msdata:DeleteRule="None">
       <xs:selector xpath=".//mstns:Advanced" />
       <xs:field xpath="mstns:score_time" />

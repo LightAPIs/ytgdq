@@ -103,7 +103,20 @@
   <ItemGroup>
     <Compile Include="CellHighlight.cs" />
     <Compile Include="ClipboardHandler.cs" />
+    <Compile Include="CodeTable\CodeTableBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeTable\CodeTableBox.Designer.cs">
+      <DependentUpon>CodeTableBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlExtensions.cs" />
+    <Compile Include="DrawLine\LineInfo.cs" />
+    <Compile Include="DrawLine\RichEditBoxLineRender.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DrawLine\RichEditBoxLineRender.Designer.cs">
+      <DependentUpon>RichEditBoxLineRender.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTheme.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +139,7 @@
     <Compile Include="KeyAnalysis\KeyAn.Designer.cs">
       <DependentUpon>KeyAn.cs</DependentUpon>
     </Compile>
+    <Compile Include="KeyAnalysis\KeyObj.cs" />
     <Compile Include="NewButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -179,14 +193,6 @@
     </Compile>
     <Compile Include="检查更新\VersionObject.cs" />
     <Compile Include="编码提示\BmAll.cs" />
-    <Compile Include="编码提示\FormBMTips.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="编码提示\FormBMTips.Designer.cs">
-      <DependentUpon>FormBMTips.cs</DependentUpon>
-    </Compile>
-    <Compile Include="编码提示\FormBMTipsModel.cs" />
-    <Compile Include="编码提示\State.cs" />
     <Compile Include="跟打报告\TypeAnalysis.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,9 +220,6 @@
       <DependentUpon>JjCheck.cs</DependentUpon>
     </Compile>
     <Compile Include="MagneticMagnager.cs" />
-    <Compile Include="跟打部分\RichEditBoxLineRender.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="SpeedCheckOut.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,7 +229,6 @@
     <Compile Include="ToolButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="跟打部分\WordInfo.cs" />
     <Compile Include="_Ini.cs" />
     <Compile Include="发文重写\SendTextStatic.cs">
       <SubType>Form</SubType>
@@ -264,6 +266,9 @@
     </Compile>
     <Compile Include="跟打部分\Win32.cs" />
     <Compile Include="PicGoal_Class.cs" />
+    <EmbeddedResource Include="CodeTable\CodeTableBox.resx">
+      <DependentUpon>CodeTableBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormTheme.resx">
       <DependentUpon>FormTheme.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -300,10 +305,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="检查更新\UpgradePro.resx">
       <DependentUpon>UpgradePro.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="编码提示\FormBMTips.resx">
-      <DependentUpon>FormBMTips.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="设置部分\Setup.resx">
       <DependentUpon>Setup.cs</DependentUpon>

@@ -134,7 +134,7 @@ namespace WindowsFormsApplication2
             this.AdvancedCheckBox.Checked = Glob.DisableSaveAdvanced;
 
             //* 快捷键设置
-            allTBox = new TextBox[24] {
+            allTBox = new TextBox[25] {
                 HotKeyTextBox0,
                 HotKeyTextBox1,
                 HotKeyTextBox2,
@@ -159,8 +159,9 @@ namespace WindowsFormsApplication2
                 HotKeyTextBox21,
                 HotKeyTextBox22,
                 HotKeyTextBox23,
+                HotKeyTextBox24
             };
-            allModBtn = new Button[24]
+            allModBtn = new Button[25]
             {
                 HotKeyModButton0,
                 HotKeyModButton1,
@@ -186,6 +187,7 @@ namespace WindowsFormsApplication2
                 HotKeyModButton21,
                 HotKeyModButton22,
                 HotKeyModButton23,
+                HotKeyModButton24
             };
             // 读取保存的快捷键
             for (int i = 0; i < allTBox.Length; i++)

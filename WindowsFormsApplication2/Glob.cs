@@ -14,20 +14,22 @@ using WindowsFormsApplication2.Storage;
 
 namespace WindowsFormsApplication2
 {
+    /// <summary>
+    /// 全局变量
+    /// </summary>
     public class Glob
-    { //一些全局变量
+    {
         public static string Ver = "1.0.0";
 
         public static string Form = "雨天跟打器v" + Ver;
         /// <summary>
         /// 成绩版本
         /// </summary>
-        public static string Instration = "s01";
-        public static string BianMa = ""; //编码查询
-        /// <summary>
-        /// 编码码表
-        /// </summary>
-        public static List<List<string>> BmTips = new List<List<string>>();
+        public static string Instration = "s02";
+        ///// <summary>
+        ///// 编码码表
+        ///// </summary>
+        //public static List<List<string>> BmTips = new List<List<string>>();
 
         //控制类
         /// <summary>
@@ -103,8 +105,16 @@ namespace WindowsFormsApplication2
         /// 获取载文段号用的正则表达式
         /// </summary>
         public static Regex regexCout;
-        //颜色 
+
+        /// <summary>
+        /// 对照区正确字的背景色
+        /// - Right
+        /// </summary>
         public static Color Right;
+        /// <summary>
+        /// 颜色
+        /// - False
+        /// </summary>
         public static Color False;
 
         public static Color r1Back;
@@ -183,7 +193,10 @@ namespace WindowsFormsApplication2
         public static Font font_2; //跟打区字体大小
 
         public static bool binput = true;
-        public static int oneH; //一行高度
+        /// <summary>
+        /// 一行高度
+        /// </summary>
+        public static int oneH;
         /// <summary>
         /// 重打次数
         /// </summary>
@@ -284,7 +297,9 @@ namespace WindowsFormsApplication2
         /// 暂停次数
         /// </summary>
         public static int PauseTimes = 0;
-        //击键比例
+        /// <summary>
+        /// 击键比例
+        /// </summary>
         public static int[] jjPer = new int[9];
         /// <summary>
         /// 总跟打段数
@@ -299,8 +314,11 @@ namespace WindowsFormsApplication2
         public static int 地图长度 = 0;
         public static bool Type_Map_Level = true;//优先级
 
-        //打开标记
-        public static bool isPointIt = false;
+        /// <summary>
+        /// 打开标记
+        /// - 这是一个记录，真正使用的是 this.tsb标注.Checked
+        /// </summary>
+        public static bool IsPointIt = false;
 
         //分析
         public static bool Use分析 = false;
@@ -328,7 +346,9 @@ namespace WindowsFormsApplication2
         public static int SpeedPointCount = 0;
         public static int SpeedControl = 0;
 
-        //跟打报告
+        /// <summary>
+        /// 跟打报告
+        /// </summary>
         public static List<TypeDate> TypeReport = new List<TypeDate>();
 
         /// <summary>
@@ -338,12 +358,22 @@ namespace WindowsFormsApplication2
 
         public static DateTime TextTime;
 
-        //是否开启智能测词
+        /// <summary>
+        /// 是否开启智能测词
+        /// </summary>
         public static bool 是否智能测词 = false;
+        /// <summary>
+        /// 编码记录
+        /// </summary>
         public static List<BmAll> BmAlls = new List<BmAll>();
         public static double 词库理论码长 = 0;
         public static string 词组编码 = "";
-        public static Color[] BmColors = new Color[] {Color.Blue,Color.Red,Color.Purple,Color.DeepPink};
+        
+
+        /// <summary>
+        /// 是否正在测词中
+        /// </summary>
+        public static bool IsChecking = false;
 
         /// <summary>
         /// 禁止保存高阶统计
@@ -366,6 +396,7 @@ namespace WindowsFormsApplication2
             new HotKey("速度分析", "Ctrl+G"),
             new HotKey("跟打报告", "Ctrl+J"),
             new HotKey("按键统计", "Ctrl+K"),
+            new HotKey("理论按键统计", "Ctrl+M"),
             new HotKey("历史记录", "Ctrl+H"),
             new HotKey("保存发文配置", "Ctrl+S"),
             new HotKey("乱序重打", "Ctrl+L"),
@@ -389,6 +420,11 @@ namespace WindowsFormsApplication2
         /// 按键统计
         /// </summary>
         public static int[] KeysTotal = new int[50];
+
+        /// <summary>
+        /// 理论按键统计
+        /// </summary>
+        public static int[] CalcKeysTotal = new int[50];
 
         /// <summary>
         /// 历史总按键统计
@@ -419,6 +455,50 @@ namespace WindowsFormsApplication2
         /// 历史发文配置
         /// </summary>
         public static SentData SentHistory;
+        /// <summary>
+        /// 码表历史记录
+        /// </summary>
+        public static CodeData CodeHistory;
+
+        /// <summary>
+        /// 所使用的码表
+        /// </summary>
+        public static string UsedTableIndex;
+
+        /// <summary>
+        /// 单字字典
+        /// - 字索引
+        /// </summary>
+        public static Dictionary<string, string> SingleWordDic = new Dictionary<string, string>();
+
+        /// <summary>
+        /// 单字字典
+        /// - 编码索引
+        /// </summary>
+        public static Dictionary<string, string> SingleCodeDic = new Dictionary<string, string>();
+
+        /// <summary>
+        /// 全字字典
+        /// - 字索引
+        /// </summary>
+        public static Dictionary<string, string> AllWordDic = new Dictionary<string, string>();
+
+        /// <summary>
+        /// 全字字典
+        /// - 编码索引
+        /// </summary>
+        public static Dictionary<string, string> AllCodeDic = new Dictionary<string, string>();
+
+        /// <summary>
+        /// 码表词条最大长度
+        /// - 限定小于等于 10
+        /// </summary>
+        public static int WordMaxLen = 1;
+
+        /// <summary>
+        /// 码表词条各长度分布
+        /// </summary>
+        public static int[] WordLenType = new int[10];
     }
 
     /// <summary>

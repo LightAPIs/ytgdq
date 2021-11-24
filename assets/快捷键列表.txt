@@ -11,6 +11,7 @@
 速度分析	Ctrl+G
 跟打报告	Ctrl+J
 按键统计	Ctrl+K
+理论按键统计	Ctrl+M
 历史记录	Ctrl+H
 保存发文配置	Ctrl+S
 乱序重打	Ctrl+L

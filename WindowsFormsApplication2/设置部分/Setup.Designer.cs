@@ -257,9 +257,15 @@
             this.HotKeyTextBox23 = new System.Windows.Forms.TextBox();
             this.label43 = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.newButton1 = new WindowsFormsApplication2.NewButton();
             this.label10 = new System.Windows.Forms.Label();
             this.newButton2 = new WindowsFormsApplication2.NewButton();
-            this.newButton1 = new WindowsFormsApplication2.NewButton();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.HotKeyDisButton24 = new System.Windows.Forms.Button();
+            this.HotKeyModButton24 = new System.Windows.Forms.Button();
+            this.HotKeyResetButton24 = new System.Windows.Forms.Button();
+            this.HotKeyTextBox24 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFalse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRight)).BeginInit();
@@ -304,6 +310,7 @@
             this.panel34.SuspendLayout();
             this.panel35.SuspendLayout();
             this.panel12.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -1367,6 +1374,7 @@
             this.flowLayoutPanel1.Controls.Add(this.panel33);
             this.flowLayoutPanel1.Controls.Add(this.panel34);
             this.flowLayoutPanel1.Controls.Add(this.panel35);
+            this.flowLayoutPanel1.Controls.Add(this.panel2);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -2331,9 +2339,9 @@
             this.label32.ForeColor = System.Drawing.Color.White;
             this.label32.Location = new System.Drawing.Point(14, 9);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(53, 12);
+            this.label32.Size = new System.Drawing.Size(77, 12);
             this.label32.TabIndex = 0;
-            this.label32.Text = "历史记录";
+            this.label32.Text = "理论按键统计";
             // 
             // panel25
             // 
@@ -2405,9 +2413,9 @@
             this.label33.ForeColor = System.Drawing.Color.White;
             this.label33.Location = new System.Drawing.Point(14, 9);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(77, 12);
+            this.label33.Size = new System.Drawing.Size(53, 12);
             this.label33.TabIndex = 0;
-            this.label33.Text = "保存发文配置";
+            this.label33.Text = "历史记录";
             // 
             // panel26
             // 
@@ -2479,9 +2487,9 @@
             this.label34.ForeColor = System.Drawing.Color.White;
             this.label34.Location = new System.Drawing.Point(14, 9);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(53, 12);
+            this.label34.Size = new System.Drawing.Size(77, 12);
             this.label34.TabIndex = 0;
-            this.label34.Text = "乱序重打";
+            this.label34.Text = "保存发文配置";
             // 
             // panel27
             // 
@@ -2555,7 +2563,7 @@
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(53, 12);
             this.label35.TabIndex = 0;
-            this.label35.Text = "停止发文";
+            this.label35.Text = "乱序重打";
             // 
             // panel28
             // 
@@ -2627,9 +2635,9 @@
             this.label36.ForeColor = System.Drawing.Color.White;
             this.label36.Location = new System.Drawing.Point(14, 9);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(77, 12);
+            this.label36.Size = new System.Drawing.Size(53, 12);
             this.label36.TabIndex = 0;
-            this.label36.Text = "查询当前编码";
+            this.label36.Text = "停止发文";
             // 
             // panel29
             // 
@@ -2701,9 +2709,9 @@
             this.label37.ForeColor = System.Drawing.Color.White;
             this.label37.Location = new System.Drawing.Point(14, 9);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(53, 12);
+            this.label37.Size = new System.Drawing.Size(77, 12);
             this.label37.TabIndex = 0;
-            this.label37.Text = "打开练习";
+            this.label37.Text = "查询当前编码";
             // 
             // panel30
             // 
@@ -2777,7 +2785,7 @@
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(53, 12);
             this.label38.TabIndex = 0;
-            this.label38.Text = "测速数据";
+            this.label38.Text = "打开练习";
             // 
             // panel31
             // 
@@ -2851,7 +2859,7 @@
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(53, 12);
             this.label39.TabIndex = 0;
-            this.label39.Text = "窗口复位";
+            this.label39.Text = "测速数据";
             // 
             // panel32
             // 
@@ -2925,7 +2933,7 @@
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(53, 12);
             this.label40.TabIndex = 0;
-            this.label40.Text = "检验真伪";
+            this.label40.Text = "窗口复位";
             // 
             // panel33
             // 
@@ -2997,9 +3005,9 @@
             this.label41.ForeColor = System.Drawing.Color.White;
             this.label41.Location = new System.Drawing.Point(14, 9);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(89, 12);
+            this.label41.Size = new System.Drawing.Size(53, 12);
             this.label41.TabIndex = 0;
-            this.label41.Text = "剪贴板直接载文";
+            this.label41.Text = "检验真伪";
             // 
             // panel34
             // 
@@ -3073,7 +3081,7 @@
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(89, 12);
             this.label42.TabIndex = 0;
-            this.label42.Text = "剪贴板格式载文";
+            this.label42.Text = "剪贴板直接载文";
             // 
             // panel35
             // 
@@ -3145,9 +3153,9 @@
             this.label43.ForeColor = System.Drawing.Color.White;
             this.label43.Location = new System.Drawing.Point(14, 9);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(41, 12);
+            this.label43.Size = new System.Drawing.Size(89, 12);
             this.label43.TabIndex = 0;
-            this.label43.Text = "老板键";
+            this.label43.Text = "剪贴板格式载文";
             // 
             // panel12
             // 
@@ -3157,6 +3165,21 @@
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(397, 356);
             this.panel12.TabIndex = 13;
+            // 
+            // newButton1
+            // 
+            this.newButton1.BackColor = System.Drawing.Color.Gray;
+            this.newButton1.ForeColor = System.Drawing.Color.White;
+            this.newButton1.Location = new System.Drawing.Point(316, 334);
+            this.newButton1.Name = "newButton1";
+            this.newButton1.Size = new System.Drawing.Size(74, 16);
+            this.newButton1.SS = System.Drawing.ContentAlignment.BottomCenter;
+            this.newButton1.TabIndex = 2;
+            this.newButton1.Text = "确认";
+            this.newButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.newButton1.进入背景色 = System.Drawing.Color.Green;
+            this.newButton1.默认背景色 = System.Drawing.Color.Gray;
+            this.newButton1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label10
             // 
@@ -3184,20 +3207,79 @@
             this.newButton2.默认背景色 = System.Drawing.Color.Gray;
             this.newButton2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // newButton1
+            // panel2
             // 
-            this.newButton1.BackColor = System.Drawing.Color.Gray;
-            this.newButton1.ForeColor = System.Drawing.Color.White;
-            this.newButton1.Location = new System.Drawing.Point(316, 334);
-            this.newButton1.Name = "newButton1";
-            this.newButton1.Size = new System.Drawing.Size(74, 16);
-            this.newButton1.SS = System.Drawing.ContentAlignment.BottomCenter;
-            this.newButton1.TabIndex = 2;
-            this.newButton1.Text = "确认";
-            this.newButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.newButton1.进入背景色 = System.Drawing.Color.Green;
-            this.newButton1.默认背景色 = System.Drawing.Color.Gray;
-            this.newButton1.Click += new System.EventHandler(this.button1_Click);
+            this.panel2.Controls.Add(this.HotKeyDisButton24);
+            this.panel2.Controls.Add(this.HotKeyModButton24);
+            this.panel2.Controls.Add(this.HotKeyResetButton24);
+            this.panel2.Controls.Add(this.HotKeyTextBox24);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Location = new System.Drawing.Point(3, 915);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(347, 32);
+            this.panel2.TabIndex = 15;
+            // 
+            // HotKeyDisButton24
+            // 
+            this.HotKeyDisButton24.BackColor = System.Drawing.Color.Tan;
+            this.HotKeyDisButton24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton24.Location = new System.Drawing.Point(293, 4);
+            this.HotKeyDisButton24.Name = "HotKeyDisButton24";
+            this.HotKeyDisButton24.Size = new System.Drawing.Size(51, 23);
+            this.HotKeyDisButton24.TabIndex = 4;
+            this.HotKeyDisButton24.Tag = "24";
+            this.HotKeyDisButton24.Text = "停用";
+            this.HotKeyDisButton24.UseVisualStyleBackColor = false;
+            this.HotKeyDisButton24.Click += new System.EventHandler(this.HotKeyDisButtonClick);
+            // 
+            // HotKeyModButton24
+            // 
+            this.HotKeyModButton24.BackColor = System.Drawing.Color.LightGreen;
+            this.HotKeyModButton24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyModButton24.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton24.Location = new System.Drawing.Point(179, 4);
+            this.HotKeyModButton24.Name = "HotKeyModButton24";
+            this.HotKeyModButton24.Size = new System.Drawing.Size(51, 23);
+            this.HotKeyModButton24.TabIndex = 2;
+            this.HotKeyModButton24.Tag = "24";
+            this.HotKeyModButton24.Text = "修改";
+            this.HotKeyModButton24.UseVisualStyleBackColor = false;
+            this.HotKeyModButton24.Click += new System.EventHandler(this.HotKeyModButtonClick);
+            // 
+            // HotKeyResetButton24
+            // 
+            this.HotKeyResetButton24.BackColor = System.Drawing.Color.OrangeRed;
+            this.HotKeyResetButton24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton24.Location = new System.Drawing.Point(236, 4);
+            this.HotKeyResetButton24.Name = "HotKeyResetButton24";
+            this.HotKeyResetButton24.Size = new System.Drawing.Size(51, 23);
+            this.HotKeyResetButton24.TabIndex = 3;
+            this.HotKeyResetButton24.Tag = "24";
+            this.HotKeyResetButton24.Text = "重置";
+            this.HotKeyResetButton24.UseVisualStyleBackColor = false;
+            this.HotKeyResetButton24.Click += new System.EventHandler(this.HotKeyResetButtonClick);
+            // 
+            // HotKeyTextBox24
+            // 
+            this.HotKeyTextBox24.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.HotKeyTextBox24.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.HotKeyTextBox24.Location = new System.Drawing.Point(101, 6);
+            this.HotKeyTextBox24.Name = "HotKeyTextBox24";
+            this.HotKeyTextBox24.ReadOnly = true;
+            this.HotKeyTextBox24.Size = new System.Drawing.Size(72, 21);
+            this.HotKeyTextBox24.TabIndex = 1;
+            this.HotKeyTextBox24.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.HotKeyTextBox24.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HotKeyTextBoxKeyDown);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(14, 9);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 12);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "老板键";
             // 
             // TSetup
             // 
@@ -3297,6 +3379,8 @@
             this.panel35.ResumeLayout(false);
             this.panel35.PerformLayout();
             this.panel12.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3534,5 +3618,11 @@
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.CheckBox checkBoxSpeed;
         private System.Windows.Forms.CheckBox checkBox10;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button HotKeyDisButton24;
+        private System.Windows.Forms.Button HotKeyModButton24;
+        private System.Windows.Forms.Button HotKeyResetButton24;
+        private System.Windows.Forms.TextBox HotKeyTextBox24;
+        private System.Windows.Forms.Label label6;
     }
 }

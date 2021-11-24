@@ -55,5 +55,23 @@
             }
             return null;
         }
+
+        /// <summary>
+        /// 通过 id 值获取码表表单信息
+        /// </summary>
+        /// <param name="infoData"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static CodeTableInfoRow GetCodeTableInfoRowFromId(CodeTableInfoDataTable infoData, long id)
+        {
+            for (int i = 0; i <= infoData.Count; i++)
+            {
+                if ((long)infoData[i]["id"] == id)
+                {
+                    return infoData[i];
+                }
+            }
+            return null;
+        }
     }
 }

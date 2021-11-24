@@ -15,19 +15,29 @@ namespace WindowsFormsApplication2.Storage
         {
             this.cmd.CommandText = "PRAGMA foreign_keys = ON;";
             this.cmd.ExecuteNonQuery();
+
             this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS segment(id INTEGER PRIMARY KEY AUTOINCREMENT, content TEXT, check_code VARCHAR(5));";
             this.cmd.ExecuteNonQuery();
+
             this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS score(score_time DATETIME PRIMARY KEY NOT NULL, segment_num INT, speed TEXT, keystroke DOUBLE, code_len DOUBLE, calc_len DOUBLE, back_change INT, backspace INT, enter INT, duplicate INT, error INT, back_rate DOUBLE, accuracy_rate DOUBLE, effciency INT, keys INT, count INT, type_words INT, words_rate DOUBLE, cost_time TEXT, segment_id INTEGER NOT NULL, article_title TEXT, version TEXT, CONSTRAINT fk_segment_score FOREIGN KEY (segment_id) REFERENCES segment(id));";
             this.cmd.ExecuteNonQuery();
+
             this.cmd.CommandText = "CREATE INDEX IF NOT EXISTS score_segment_id ON score (segment_id);";
             this.cmd.ExecuteNonQuery();
+
             this.cmd.CommandText = "CREATE INDEX IF NOT EXISTS score_article_title ON score (article_title)";
             this.cmd.ExecuteNonQuery();
-            this.cmd.CommandText = "CREATE TRIGGER IF NOT EXISTS score_delete_before BEFORE DELETE ON score FOR EACH ROW BEGIN DELETE FROM advanced WHERE score_time=old.score_time; END;";
+
+            this.cmd.CommandText = "CREATE TRIGGER IF NOT EXISTS score_delete_before BEFORE DELETE ON score FOR EACH ROW BEGIN DELETE FROM advanced WHERE score_time=old.score_time; DELETE FROM calc WHERE score_time=old.score_time; END;";
             this.cmd.ExecuteNonQuery();
+
             this.cmd.CommandText = "CREATE TRIGGER IF NOT EXISTS score_delete_after AFTER DELETE ON score FOR EACH ROW WHEN (SELECT COUNT(1) FROM score WHERE segment_id=old.segment_id) = 0 BEGIN DELETE FROM segment WHERE id=old.segment_id; END;";
             this.cmd.ExecuteNonQuery();
+
             this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS advanced(score_time DATETIME PRIMARY KEY NOT NULL, curve TEXT, speed_analysis TEXT, type_analysis TEXT, key_analysis TEXT, CONSTRAINT fk_score_advanced FOREIGN KEY (score_time) REFERENCES score(score_time));";
+            this.cmd.ExecuteNonQuery();
+
+            this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS calc(score_time DATETIME PRIMARY KEY NOT NULL, keys TEXT, CONSTRAINT fk_score_calc FOREIGN KEY (score_time) REFERENCES score(score_time));";
             this.cmd.ExecuteNonQuery();
         }
 
@@ -72,6 +82,17 @@ namespace WindowsFormsApplication2.Storage
         public void InsertAdvanced(string score_time, string curve, string speed_analysis, string type_analysis, string key_analysis)
         {
             this.cmd.CommandText = $"INSERT INTO advanced VALUES('{score_time}','{curve}','{speed_analysis}','{type_analysis}','{key_analysis}');";
+            this.cmd.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// 插入理论按键统计
+        /// </summary>
+        /// <param name="score_time"></param>
+        /// <param name="keys"></param>
+        public void InsertCalc(string score_time, string keys)
+        {
+            this.cmd.CommandText = $"INSERT INTO calc VALUES('{score_time}','{keys}');";
             this.cmd.ExecuteNonQuery();
         }
 
@@ -255,6 +276,18 @@ namespace WindowsFormsApplication2.Storage
         public string GetAdvancedDataFromTime(string time, string dataType)
         {
             this.cmd.CommandText = $"SELECT {dataType} FROM advanced WHERE score_time='{time.Replace(" ", "T")}'";
+            object readStr = this.cmd.ExecuteScalar();
+            return readStr == null ? "" : readStr.ToString();
+        }
+
+        /// <summary>
+        /// 根据时间获取理论按键数据
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        public string GetCalcDataFromTime(string time)
+        {
+            this.cmd.CommandText = $"SELECT keys FROM calc WHERE score_time='{time.Replace(" ", "T")}'";
             object readStr = this.cmd.ExecuteScalar();
             return readStr == null ? "" : readStr.ToString();
         }
@@ -619,6 +652,208 @@ namespace WindowsFormsApplication2.Storage
             this.cmd.CommandText = "DELETE FROM sqlite_sequence WHERE name='sent';";
             this.cmd.ExecuteNonQuery();
             this.CleanDisk();
+        }
+    }
+
+    public class CodeData : Database
+    {
+        public CodeData(string _dbName) : base(_dbName) { }
+
+        public override void Init()
+        {
+            this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS code_table_info(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, count INT, create_time DATETIME NOT NULL, table_index TEXT NOT NULL UNIQUE, max_len INT DEFAULT 1, len_type TEXT);";
+            this.cmd.ExecuteNonQuery();
+
+            this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS code_table_index(name TEXT PRIMARY KEY, seq INTEGER NOT NULL, max_len INT DEFAULT 1, len_type TEXT, used_id INTEGER DEFAULT -1, used_table_index TEXT);";
+            this.cmd.ExecuteNonQuery();
+
+            this.cmd.CommandText = "SELECT COUNT(1) FROM code_table_index WHERE name='home';";
+            object readNum = this.cmd.ExecuteScalar();
+
+            if (readNum == null || Convert.ToInt32(readNum) == 0)
+            {
+                this.cmd.CommandText = "INSERT INTO code_table_index VALUES('home',0,1,'1|0|0|0|0|0|0|0|0|0',-1,'')";
+                this.cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void UpdateCodeTableIndex(int max_len, string len_type, long used_id, string used_table_index)
+        {
+            this.cmd.CommandText = $"UPDATE code_table_index SET max_len={max_len}, len_type='{len_type}', used_id={used_id}, used_table_index='{used_table_index}' WHERE name='home';";
+            this.cmd.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// 获取前表单索引值
+        /// </summary>
+        /// <returns></returns>
+        public long GetSeq()
+        {
+            this.cmd.CommandText = "SELECT seq FROM code_table_index WHERE name='home'";
+            object readSeq = this.cmd.ExecuteScalar();
+
+            if (readSeq != null)
+            {
+                return Convert.ToInt64(readSeq);
+            }
+            return 0;
+        }
+
+        public void UpdateSeq(long seq)
+        {
+            this.cmd.CommandText = $"UPDATE code_table_index SET seq={seq} WHERE name='home';";
+            this.cmd.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// 获取正在使用的码表
+        /// </summary>
+        /// <returns></returns>
+        public string GetUsedTableIndex()
+        {
+            this.cmd.CommandText = "SELECT used_table_index FROM code_table_index WHERE name='home'";
+            object readUsedTableIndex = this.cmd.ExecuteScalar();
+
+            if (readUsedTableIndex != null)
+            {
+                return readUsedTableIndex.ToString();
+            }
+            return "";
+        }
+
+        /// <summary>
+        /// 获取正在使用的 CodeTableInfo 的 id
+        /// </summary>
+        /// <returns></returns>
+        public long GetUsedId()
+        {
+            this.cmd.CommandText = "SELECT used_id FROM code_table_index WHERE name='home'";
+            object readUsedId = this.cmd.ExecuteScalar();
+
+            if (readUsedId != null)
+            {
+                return Convert.ToInt64(readUsedId);
+            }
+            return -1;
+        }
+
+        /// <summary>
+        /// 获取码表中的最大词条长度
+        /// - 注：最大值限定为 10 
+        /// </summary>
+        /// <returns></returns>
+        public int GetMaxLen()
+        {
+            this.cmd.CommandText = "SELECT max_len FROM code_table_index WHERE name='home'";
+            object maxLen = this.cmd.ExecuteScalar();
+
+            if (maxLen != null)
+            {
+                int len = Convert.ToInt32(maxLen);
+                return  len <= 10 ? len : 10;
+            }
+            return 1;
+        }
+
+        public int[] GetLenType()
+        {
+            this.cmd.CommandText = "SELECT len_type FROM code_table_index WHERE name='home'";
+            object readLenType = this.cmd.ExecuteScalar();
+
+            if (readLenType != null && !string.IsNullOrEmpty(readLenType.ToString()))
+            {
+                return Array.ConvertAll(readLenType.ToString().Split('|'), s => int.Parse(s));
+            }
+            return new int[10];
+        }
+
+        /// <summary>
+        /// 获取所有保存表单的信息
+        /// </summary>
+        /// <returns></returns>
+        public StorageDataSet.CodeTableInfoDataTable GetCodeTableInfo()
+        {
+            this.cmd.CommandText = "SELECT * FROM code_table_info;";
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(this.cmd);
+            StorageDataSet.CodeTableInfoDataTable myCodeTableInfo = new StorageDataSet.CodeTableInfoDataTable();
+            adapter.Fill(myCodeTableInfo);
+            return myCodeTableInfo;
+        }
+
+        public void InsertCodeTableInfo(string name, int count, string create_time, string table_index, int max_len, string len_type)
+        {
+            this.cmd.CommandText = $"INSERT INTO code_table_info VALUES(NULL,'{ConvertText(name)}',{count},'{create_time}','{table_index}',{max_len},'{len_type}');";
+            this.cmd.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// 创建新的码表
+        /// </summary>
+        /// <param name="table_name"></param>
+        /// <param name="allWordDic"></param>
+        public void CreateCodeTable(string table_name, Dictionary<string, string> allWordDic)
+        {
+            string name = "code_table_" + ConvertText(table_name);
+            this.cmd.CommandText = $"CREATE TABLE IF NOT EXISTS {name} (id INTEGER PRIMARY KEY AUTOINCREMENT, word TEXT NOT NULL, coding TEXT NOT NULL);";
+            this.cmd.ExecuteNonQuery();
+
+            this.InsertDicToWord(name, allWordDic);
+        }
+
+        /// <summary>
+        /// 删除码表
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="table_name"></param>
+        public void DropCodeTable(long id, string table_name)
+        {
+            this.cmd.CommandText = $"DELETE FROM code_table_info WHERE id={id}";
+            this.cmd.ExecuteNonQuery();
+
+            string name = "code_table_" + ConvertText(table_name);
+            this.cmd.CommandText = $"DROP TABLE {name};";
+            this.cmd.ExecuteNonQuery();
+
+            this.CleanDisk();
+        }
+
+        public StorageDataSet.CodeDataTable GetCodeTableFromTableName(string table_name)
+        {
+            string name = "code_table_" + ConvertText(table_name);
+            this.cmd.CommandText = $"SELECT * FROM {name}";
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(this.cmd);
+            StorageDataSet.CodeDataTable myCode = new StorageDataSet.CodeDataTable();
+            adapter.Fill(myCode);
+            return myCode;
+        }
+
+        private void InsertDicToWord(string name, Dictionary<string, string> dic)
+        {
+            this.cmd.CommandText = "PRAGMA synchronous = 0;";
+            this.cmd.ExecuteNonQuery();
+
+            using (SQLiteTransaction tran = this.cn.BeginTransaction())
+            {
+                try
+                {
+                    using (SQLiteCommand command = new SQLiteCommand($"INSERT INTO {name}(word, coding) VALUES(@word, @coding)", this.cn))
+                    {
+                        foreach (var co in dic)
+                        {
+                            command.Parameters.Add(new SQLiteParameter("@word", co.Key));
+                            command.Parameters.Add(new SQLiteParameter("@coding", co.Value));
+                            command.ExecuteNonQuery();
+                            command.Parameters.Clear();
+                        }
+                    }
+                    tran.Commit();
+                }
+                catch
+                {
+                    tran.Rollback();
+                    throw;
+                }
+            }
         }
     }
 }

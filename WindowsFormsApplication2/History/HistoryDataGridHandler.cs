@@ -141,7 +141,7 @@ namespace WindowsFormsApplication2.History
                     string vi = sd["version"].ToString();
 
                     SpeedAn sa = new SpeedAn(scoreTime, sn, adv, vi, frm);
-                    sa.ShowDialog();
+                    sa.Show();
                 }
                 else
                 {
@@ -172,7 +172,7 @@ namespace WindowsFormsApplication2.History
                         string vi = sd["version"].ToString();
 
                         WindowsFormsApplication2.跟打报告.TypeAnalysis tya = new 跟打报告.TypeAnalysis(scoreTime, td, content, speed.Last(), bc, vi);
-                        tya.ShowDialog();
+                        tya.Show();
                     }
                     catch
                     {
@@ -199,11 +199,33 @@ namespace WindowsFormsApplication2.History
                 {
                     int[] keysData = Array.ConvertAll(adv.Split('|'), s => int.Parse(s));
                     KeyAn kan = new KeyAn(keysData, scoreTime);
-                    kan.ShowDialog();
+                    kan.Show();
                 }
                 else
                 {
                     MessageBox.Show("没有找到高阶统计数据！");
+                }
+            }
+        }
+
+        /// <summary>
+        /// 理论按键统计
+        /// </summary>
+        public void CalcKeys()
+        {
+            string scoreTime = this.MenuGetScoreTime();
+            if (!string.IsNullOrEmpty(scoreTime))
+            {
+                string keys = Glob.ScoreHistory.GetCalcDataFromTime(scoreTime);
+                if (!string.IsNullOrEmpty(keys))
+                {
+                    int[] keysData = Array.ConvertAll(keys.Split('|'), s => int.Parse(s));
+                    KeyAn kan = new KeyAn(keysData, scoreTime, "理论按键统计");
+                    kan.Show();
+                }
+                else
+                {
+                    MessageBox.Show("没有找到理论按键统计数据！");
                 }
             }
         }

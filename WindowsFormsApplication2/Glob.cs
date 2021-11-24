@@ -154,7 +154,10 @@ namespace WindowsFormsApplication2
         public static double TextDc_ = 0; // 打词率
 
         public static int LoadCount = 0;//载入次数 暂时是用来确定是否开启输入法
-        public static double typeUseTime; //跟打用时
+        /// <summary>
+        /// 跟打用时
+        /// </summary>
+        public static double TypeUseTime;
         /// <summary>
         /// 已跟打段数
         /// </summary>

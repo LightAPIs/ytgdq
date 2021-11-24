@@ -72,7 +72,7 @@ namespace WindowsFormsApplication2
                     }
                     else if (i == Glob.SpeedPointCount) {
                         int zis  = Glob.TextLen - Glob.SpeedPoint_[i - 1] - 1;
-                        double shi  = Glob.typeUseTime - Glob.SpeedTime[i - 1];
+                        double shi  = Glob.TypeUseTime - Glob.SpeedTime[i - 1];
                         GetSpeed = (zis * 60 / shi);
                         int GetNow = Glob.SpeedPoint_[i - 1] + 1;
                         this.dgvAllData.Rows.Add(i + 1,
@@ -99,7 +99,7 @@ namespace WindowsFormsApplication2
                                          "全文",
                                          1, Glob.TextLen, 
                                          Glob.TextLen,
-                                         Glob.typeUseTime.ToString("0.000"),
+                                         Glob.TypeUseTime.ToString("0.000"),
                                          Glob.TextSpeed,
                                          Glob.Textjj.ToString("0.00"),
                                          Glob.Textmc.ToString("0.00"),

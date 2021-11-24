@@ -1545,7 +1545,7 @@ namespace WindowsFormsApplication2
                         startTime = sTime;
                         //! 由于可能会出现 timer1_Tick() 还未触发的情况，导致 Glob.typeUseTime 中的值还保留为上一段结束的值，
                         //! 从而造成跟打报告中第 2 项数据记录录异常的问题
-                        Glob.typeUseTime = 0;
+                        Glob.TypeUseTime = 0;
                         timer1.Start(); //没有开启则
                         timer2.Start();
                         timer3.Start(); //图表
@@ -1576,7 +1576,7 @@ namespace WindowsFormsApplication2
                         HisSave[0] = HisSave[1];
                         HisSave[1] = TextLenNow;
                         //跟打报告
-                        Glob.TypeReport.Add(new TypeDate { Index = Sw, Start = HisSave[0], End = HisSave[1], Length = HisSave[1] - HisSave[0], NowTime = Math.Round(Glob.typeUseTime, 4), TotalTime = Math.Round(Glob.typeUseTime - Glob.TypeReport[Glob.TypeReport.Count - 1].NowTime, 4), Tick = Glob.TextJs, TotalTick = Glob.TextJs - Glob.TypeReport[Glob.TypeReport.Count - 1].Tick });
+                        Glob.TypeReport.Add(new TypeDate { Index = Sw, Start = HisSave[0], End = HisSave[1], Length = HisSave[1] - HisSave[0], NowTime = Math.Round(Glob.TypeUseTime, 4), TotalTime = Math.Round(Glob.TypeUseTime - Glob.TypeReport[Glob.TypeReport.Count - 1].NowTime, 4), Tick = Glob.TextJs, TotalTick = Glob.TextJs - Glob.TypeReport[Glob.TypeReport.Count - 1].Tick });
                         int last = HisSave[0];
                         跟打地图步进++;
                         Glob.地图长度++;
@@ -1712,7 +1712,7 @@ namespace WindowsFormsApplication2
                                 {
                                     if (Glob.SpeedPoint_[i] == j)
                                     {
-                                        Glob.SpeedTime[i] = Glob.typeUseTime;
+                                        Glob.SpeedTime[i] = Glob.TypeUseTime;
                                         Glob.SpeedJs[i] = Glob.TextJs;
                                         Glob.SpeedHg[i] = Glob.TextHg;
                                         Glob.SpeedControl++;
@@ -1830,9 +1830,9 @@ namespace WindowsFormsApplication2
                     LblHaveTypingChange();
 
                     textBoxEx1.ReadOnly = true;
-                    ts = Glob.typeUseTime;
+                    ts = Glob.TypeUseTime;
                     Sw = 0; //初始化
-                    Glob.TotalUse += Glob.typeUseTime;
+                    Glob.TotalUse += Glob.TypeUseTime;
                     //处理数据
                     double speed = Math.Round((double)((TextLen - Glob.TextJc) * 60) / ts, 2); // 不处理错字
                     double mc = Math.Round((double)Glob.TextJs / (TextLen - Glob.TextJc), 2);
@@ -1882,8 +1882,8 @@ namespace WindowsFormsApplication2
                     }
                     Cz = " 错字" + Glob.TextCz.ToString();
                     //末尾描述
-                    //? 错字超过 10% 时不处理
-                    if (Glob.TextCz <= (int)TextLen / 10)
+                    //? 跟打用时小于 1s 以及错字超过 10% 时不处理
+                    if (Glob.TypeUseTime >= 1 && Glob.TextCz <= (int)TextLen / 10)
                     {
                         //段号
                         string duanhao = "第" + Glob.CurSegmentNum.ToString() + "段";
@@ -2442,10 +2442,10 @@ namespace WindowsFormsApplication2
             if (Glob.HaveTypeCount <= 0) return speedAnGet;
             double plus = 0;
             //回改影响速度值
-            double jj_1 = (double)Glob.TextJs / Glob.typeUseTime;
+            double jj_1 = (double)Glob.TextJs / Glob.TypeUseTime;
             double mc_1 = (double)Glob.TextJs / (Glob.TextLen - Glob.TextJc);
-            double speed_1 = (double)(Glob.TextLen - Glob.TextJc) * 60 / (Glob.typeUseTime - Glob.hgAllUse);
-            double speed_ = (double)(Glob.TextLen - Glob.TextJc) * 60 / Glob.typeUseTime;
+            double speed_1 = (double)(Glob.TextLen - Glob.TextJc) * 60 / (Glob.TypeUseTime - Glob.hgAllUse);
+            double speed_ = (double)(Glob.TextLen - Glob.TextJc) * 60 / Glob.TypeUseTime;
             double Hg_speed = speed_1 - speed_;
             //退格影响速度值
             double mc_2 = (double)(Glob.TextJs - Math.Abs(Glob.TextBg - Glob.TextHg)) / (Glob.TextLen - Glob.TextJc);
@@ -2456,16 +2456,16 @@ namespace WindowsFormsApplication2
             double speed_4 = jj_1 * 60 / mc_3;
             double En_speed = speed_4 - speed_;
             //停留影响速度值
-            double 平均停留 = (double)Glob.typeUseTime / (Glob.TextLen - Glob.TextJc);
+            double 平均停留 = (double)Glob.TypeUseTime / (Glob.TextLen - Glob.TextJc);
             double 停留 = Glob.TypeReport.Where(o => o.Length > 0).Max(o => o.TotalTime) - 平均停留;
-            if (停留 >= Glob.typeUseTime)
+            if (停留 >= Glob.TypeUseTime)
             {
                 停留 = 0;
             }
-            double speed_5 = (double)(Glob.TextLen - Glob.TextJc) * 60 / (Glob.typeUseTime - 停留);
+            double speed_5 = (double)(Glob.TextLen - Glob.TextJc) * 60 / (Glob.TypeUseTime - 停留);
             double St_speed = Math.Abs(speed_5 - speed_);
             //错字影响速度值
-            double speed_6 = (double)(Glob.TextLen - Glob.TextJc - Glob.TextCz * 5) * 60 / Glob.typeUseTime;
+            double speed_6 = (double)(Glob.TextLen - Glob.TextJc - Glob.TextCz * 5) * 60 / Glob.TypeUseTime;
             double Cz_speed = speed_ - speed_6;
             //键准理论值
             int Low = Glob.TextJs - Math.Abs((Glob.TextBg - Glob.TextHg)) * 2 - Glob.TextMcc;
@@ -2637,9 +2637,9 @@ namespace WindowsFormsApplication2
         {
             get
             {
-                if (Glob.typeUseTime > 0)
+                if (Glob.TypeUseTime > 0)
                 {
-                    DateTime dt = new DateTime().AddSeconds(Glob.typeUseTime);
+                    DateTime dt = new DateTime().AddSeconds(Glob.TypeUseTime);
                     if (dt.Hour == 0)
                     {
                         return dt.ToString("m:ss.fff");
@@ -3436,7 +3436,7 @@ namespace WindowsFormsApplication2
                     timer5.Stop();//重打时间计时
                     TimeStopAll += TimeStopA_;
                     isPause = true;
-                    this.labelSpeeding.Text = (this.textBoxEx1.Text.Length * 60 / Glob.typeUseTime).ToString("0.00");
+                    this.labelSpeeding.Text = (this.textBoxEx1.Text.Length * 60 / Glob.TypeUseTime).ToString("0.00");
                     //labelTimeFlys.ForeColor = Color.IndianRed;
                     timerLblTime.Start();
                     this.Text += " [已暂停]";
@@ -3496,7 +3496,7 @@ namespace WindowsFormsApplication2
             span += TimeStopAll;
             DateTime n = new DateTime(span.Ticks);
             labelTimeFlys.Text = n.ToString("mm:ss.ff"); //显示时间
-            Glob.typeUseTime = span.TotalSeconds; //计算总秒数 小数点后两位
+            Glob.TypeUseTime = span.TotalSeconds; //计算总秒数 小数点后两位
         }
 
         private void timer2_Tick(object sender, EventArgs e)
@@ -3505,11 +3505,11 @@ namespace WindowsFormsApplication2
             if (inputL > Glob.TextJc)
             {
                 int len = richTextBox2.TextLength - Glob.TextJc;
-                double speed2 = (double)len * 60 / Glob.typeUseTime;
+                double speed2 = (double)len * 60 / Glob.TypeUseTime;
                 if (speed2 > 999) { speed2 = 999; }
                 Glob.chartSpeedTo = speed2;
                 double mc = (double)Glob.TextJs / (inputL - Glob.TextJc);
-                double jj = (double)Glob.TextJs / Glob.typeUseTime;
+                double jj = (double)Glob.TextJs / Glob.TypeUseTime;
 
                 if (Glob.ShowRealTimeData)
                 {

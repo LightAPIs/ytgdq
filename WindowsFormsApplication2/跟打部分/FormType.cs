@@ -113,7 +113,7 @@ namespace WindowsFormsApplication2
             InitializeComponent();
             int spX, spY;
             int spW, spH;
-            
+
             spX = int.TryParse(IniRead("窗口位置", "横", "200"), out spX) ? spX < 0 ? 200 : spX : 200;
             spY = int.TryParse(IniRead("窗口位置", "纵", "200"), out spY) ? spY < 0 ? 200 : spY : 200;
             spW = int.TryParse(IniRead("窗口位置", "宽", "1080"), out spW) ? spW < 200 ? 520 : spW : 520;
@@ -366,7 +366,7 @@ namespace WindowsFormsApplication2
         /// <param name="sender"></param>
         /// <param name="e"></param>
         void KH_OnKeyDownEvent(object sender, KeyEventArgs e)
-        {
+        { //! 键盘钩子的触发是在跟打区 KeyDown 事件之前
             if (sw != 0 && this.textBoxEx1.Focused)
             {
                 Glob.TextMc++; //计数 用于计量回车及回车产生前的量
@@ -386,41 +386,6 @@ namespace WindowsFormsApplication2
                     Glob.TextMc = 0;
 
                 }
-                else if (k == 186 || k == 222 || k >= 48 && k <= 57)
-                {
-                    if (Glob.文段类型 && Glob.是否选重)
-                    {
-                        var s = richTextBox1.SelectionStart;
-                        var text = s + 1 <= this.richTextBox1.TextLength ? this.richTextBox1.Text.Substring(s + 1, 1) : "";
-
-                        if (!string.IsNullOrWhiteSpace(text))
-                        {
-                            if (";:'\"；：‘’“”".Contains(text))
-                            {
-                                //System.Diagnostics.Debug.WriteLine("由于是打了标点，所以不计选重");
-                            }
-                            else if (k == 186 || k == 222)
-                            {
-                                if (Glob.useSymbolSelect)
-                                {
-                                    // 符号选重的情况
-                                    Glob.选重++;
-                                    //System.Diagnostics.Debug.WriteLine("符号选重，记录一次");
-                                }
-                                else
-                                {
-                                    //System.Diagnostics.Debug.WriteLine("未开启符号选重，所以不计选重");
-                                }
-                            }
-                            else
-                            {
-                                // 数字选重的情况
-                                Glob.选重++;
-                                //System.Diagnostics.Debug.WriteLine("数字选重，记录一次");
-                            }
-                        }
-                    }
-                }
 
                 //! 统计具体按键
                 if (KeyObj.KeysDic.ContainsKey(e.KeyCode))
@@ -430,6 +395,8 @@ namespace WindowsFormsApplication2
                     Glob.HistoryKeysTotal[index]++;
                 }
             }
+
+            Glob.TheKeyValue = e.KeyValue;
         }
 
         /// <summary>
@@ -660,7 +627,7 @@ namespace WindowsFormsApplication2
                 Glob.PreText = "-----";
                 Glob.PreDuan = "第xx段";
             }
-            
+
             Glob.TextHgAll = int.Parse(IniRead("记录", "总回改", "0"));
 
             //今日跟打
@@ -2877,7 +2844,7 @@ namespace WindowsFormsApplication2
         }
 
         private void textBoxEx1_KeyDown(object sender, KeyEventArgs e)
-        {
+        { //! 键盘钩子的触发是在跟打区 KeyDown 事件之前
             if (e.Alt)
             {
                 e.Handled = true;
@@ -2899,6 +2866,25 @@ namespace WindowsFormsApplication2
             else
             {
                 Glob.是否选重 = false;
+            }
+
+            if (Glob.文段类型 && Glob.是否选重 && Glob.TheKeyValue != -1)
+            {
+                //? 这种方法存在一定的风险，如果出现键盘钩子触发在本事件之后的情况时，会丢失统计
+                //? 但如果在键盘钩子触发中判定，由于 Glob.是否选重 的变动置后，当在跟打区中错误地按下数字等键时将无法与提取的字符匹配，会被统计成选重
+                //? 所以这种方法会更准确
+
+                if (Glob.TheKeyValue == 186 || Glob.TheKeyValue == 222)
+                {
+                    if (Glob.useSymbolSelect)
+                    { // 符号选重的情况
+                        Glob.选重++;
+                    }
+                }
+                else if (Glob.TheKeyValue >= 48 && Glob.TheKeyValue <= 57)
+                { // 数字选重的情况
+                    Glob.选重++;
+                }
             }
 
             if (e.KeyCode == Keys.Back)

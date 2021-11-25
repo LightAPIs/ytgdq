@@ -25,7 +25,7 @@ namespace WindowsFormsApplication2
         /// <summary>
         /// 成绩版本
         /// </summary>
-        public static string Instration = "s02";
+        public static string Instration = "s03";
         ///// <summary>
         ///// 编码码表
         ///// </summary>
@@ -88,6 +88,14 @@ namespace WindowsFormsApplication2
         public static int 回车 = 0;
         public static int 选重 = 0;
         public static bool 是否选重 = true;
+
+        /// <summary>
+        /// 记录着本次按下的键
+        /// - 用于处理中文后接数字时会被判定为选重的情况
+        /// - 因为键盘钩子的触发是在跟打区 KeyDown 事件之前，所以需要将值先记录下来，放到实际处理 Glob.是否选重 的布尔值后再进行选重判定
+        /// </summary>
+        public static int TheKeyValue = -1;
+
         /// <summary>
         /// 真为中文；假为英文
         /// </summary>

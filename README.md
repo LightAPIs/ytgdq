@@ -13,9 +13,18 @@
 
 雨天跟打器是一款免费开源的便携打字练习软件，该软件基于[添雨跟打器旧版本](https://github.com/taliove/tygdq)项目修改构建。
 
+## 运行要求
+
+- .NET Framework 4.0
+
 ## 使用说明
 
 [wiki](https://github.com/LightAPIs/ytgdq/wiki)
+
+## 下载地址
+
+- [Releases](https://github.com/LightAPIs/ytgdq/releases)
+- [永硕E盘](http://dogegg.ys168.com/)
 
 ## 相关项目
 

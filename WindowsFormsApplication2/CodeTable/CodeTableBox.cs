@@ -198,14 +198,26 @@ namespace WindowsFormsApplication2.CodeTable
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            string sText = this.SearchTextBox.Text;
+            string sText = this.SearchTextBox.Text.Trim();
             if (!string.IsNullOrEmpty(sText))
             {
                 if (!string.IsNullOrEmpty(Glob.UsedTableIndex))
                 {
                     if (Glob.AllWordDic.ContainsKey(sText))
                     {
-                        this.SearchResultLabel.Text = Glob.AllWordDic[sText];
+                        string bm = Glob.AllWordDic[sText];
+                        int findit = 1;
+                        if (Glob.AllCodeDic.ContainsKey(bm) && Glob.AllCodeDic[bm] != sText)
+                        {
+                            int tempIndex = 2;
+                            while (Glob.AllCodeDic.ContainsKey(bm + tempIndex.ToString()) && Glob.AllCodeDic[bm + tempIndex.ToString()] != sText)
+                            {
+                                tempIndex++;
+                            }
+                            findit = tempIndex;
+                        }
+
+                        this.SearchResultLabel.Text = $"{bm} 【{findit - 1}重】";
                     }
                     else
                     {

@@ -32,7 +32,7 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private DateTime Start = new DateTime(2021, 11, 2);
+        private DateTime Start = new DateTime(2021, 11, 25);
         private void Start_Load(object sender, EventArgs e)
         {
             var ts = DateTime.Now - Start;

@@ -13,7 +13,10 @@
 
 雨天跟打器是一款免费开源的便携打字练习软件，该软件基于[添雨跟打器旧版本](https://github.com/taliove/tygdq)项目修改构建。
 
-## 修改内容
+## 使用说明
+
+[wiki](https://github.com/LightAPIs/ytgdq/wiki)
+
 ## 相关项目
 
 - [taliove/tygdq](https://github.com/taliove/tygdq) ([Apache-2.0 License](https://github.com/taliove/tygdq/blob/master/LICENSE))

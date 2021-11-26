@@ -2816,7 +2816,7 @@ namespace WindowsFormsApplication2
 
         private void 复制图片成绩ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Glob.HaveTypeCount > 0)
+            if (Glob.Use分析)
             {
                 CopyPicGoal();
             }

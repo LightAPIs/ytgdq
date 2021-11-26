@@ -791,13 +791,13 @@ namespace WindowsFormsApplication2.Storage
         /// </summary>
         /// <param name="table_name"></param>
         /// <param name="allWordDic"></param>
-        public void CreateCodeTable(string table_name, Dictionary<string, string> allWordDic)
+        public void CreateCodeTable(string table_name, List<string[]> allWordList)
         {
             string name = "code_table_" + ConvertText(table_name);
             this.cmd.CommandText = $"CREATE TABLE IF NOT EXISTS {name} (id INTEGER PRIMARY KEY AUTOINCREMENT, word TEXT NOT NULL, coding TEXT NOT NULL);";
             this.cmd.ExecuteNonQuery();
 
-            this.InsertDicToWord(name, allWordDic);
+            this.InsertDicToWord(name, allWordList);
         }
 
         /// <summary>
@@ -827,7 +827,7 @@ namespace WindowsFormsApplication2.Storage
             return myCode;
         }
 
-        private void InsertDicToWord(string name, Dictionary<string, string> dic)
+        private void InsertDicToWord(string name, List<string[]> vs)
         {
             this.cmd.CommandText = "PRAGMA synchronous = 0;";
             this.cmd.ExecuteNonQuery();
@@ -838,10 +838,10 @@ namespace WindowsFormsApplication2.Storage
                 {
                     using (SQLiteCommand command = new SQLiteCommand($"INSERT INTO {name}(word, coding) VALUES(@word, @coding)", this.cn))
                     {
-                        foreach (var co in dic)
+                        foreach (var co in vs)
                         {
-                            command.Parameters.Add(new SQLiteParameter("@word", co.Key));
-                            command.Parameters.Add(new SQLiteParameter("@coding", co.Value));
+                            command.Parameters.Add(new SQLiteParameter("@word", co[0]));
+                            command.Parameters.Add(new SQLiteParameter("@coding", co[1]));
                             command.ExecuteNonQuery();
                             command.Parameters.Clear();
                         }

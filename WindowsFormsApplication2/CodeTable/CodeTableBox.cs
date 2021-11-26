@@ -68,7 +68,8 @@ namespace WindowsFormsApplication2.CodeTable
                     string readTxt = sr.ReadToEnd();
                     sr.Close();
                     string[] readLines = Array.ConvertAll(readTxt.Split('\n'), s => s.Trim());
-                    Dictionary<string, string> map = new Dictionary<string, string>();
+                    //Dictionary<string, string> map = new Dictionary<string, string>();
+                    List<string[]> mapList = new List<string[]>();
                     int maxLen = 1;
                     int[] lenType = new int[10];
                     foreach (string line in readLines)
@@ -78,46 +79,36 @@ namespace WindowsFormsApplication2.CodeTable
                             //! 码表采用多多格式
                             string[] l = Array.ConvertAll(line.Split('\t'), s => s.Trim());
                             if (l.Length == 2 && !InvalidChar.IsMatch(l[0]) && ValidChar.IsMatch(l[1]) && l[0].Length <= 10)
-                            {
+                            { //* 不会去处理码表文件可能存在的重复词条，交由转换成字典时处理
+                                mapList.Add(l);
                                 int wordLen = l[0].Length;
-                                if (map.ContainsKey(l[0]))
+                                if (maxLen < 10 && wordLen > maxLen)
                                 {
-                                    if (l[1].Length < map[l[0]].Length)
-                                    { //? 取编码少的
-                                        map[l[0]] = l[1];
-                                    }
+                                    maxLen = wordLen;
                                 }
-                                else
-                                {
-                                    map[l[0]] = l[1];
-                                    if (maxLen < 10 && wordLen > maxLen)
-                                    {
-                                        maxLen = wordLen;
-                                    }
 
-                                    if (lenType[wordLen - 1] != 1)
-                                    {
-                                        lenType[wordLen - 1] = 1;
-                                    }
-                                }
+                                if (lenType[wordLen - 1] != 1)
+                                {
+                                    lenType[wordLen - 1] = 1;
+                                }                                
                             }
                         }
                     }
 
-                    if (map.Count > 0)
+                    if (mapList.Count > 0)
                     {
                         string txtName = Path.GetFileNameWithoutExtension(filePath);
                         long seq = Glob.CodeHistory.GetSeq();
                         seq++;
-                        Glob.CodeHistory.CreateCodeTable(seq.ToString(), map);
+                        Glob.CodeHistory.CreateCodeTable(seq.ToString(), mapList);
                         Glob.CodeHistory.UpdateSeq(seq);
-                        Glob.CodeHistory.InsertCodeTableInfo(txtName, map.Count, DateTime.Now.ToString("s"), seq.ToString(), maxLen, string.Join("|", lenType));
+                        Glob.CodeHistory.InsertCodeTableInfo(txtName, mapList.Count, DateTime.Now.ToString("s"), seq.ToString(), maxLen, string.Join("|", lenType));
                         ReadData();
                     }
 
                     readLines = null;
-                    map.Clear();
-                    map = null;
+                    mapList.Clear();
+                    mapList = null;
                 }
             }
         }
@@ -259,11 +250,22 @@ namespace WindowsFormsApplication2.CodeTable
 
                 if (rWord.Length == 1)
                 {
-                    Glob.SingleWordDic[rWord] = rCode;
-                    if (Glob.SingleCodeDic.ContainsKey(rCode))
+                    if (Glob.SingleWordDic.ContainsKey(rWord))
+                    { // 单字字典中已经存在该单字
+                        if (Glob.SingleWordDic[rWord].Length > rCode.Length)
+                        { // 取简码
+                            Glob.SingleWordDic[rWord] = rCode;
+                        }
+                    }
+                    else
                     {
+                        Glob.SingleWordDic[rWord] = rCode;
+                    }
+                    
+                    if (Glob.SingleCodeDic.ContainsKey(rCode) && Glob.SingleCodeDic[rCode] != rWord)
+                    { // 编码字典中已存在该编码且对应的字不相同时
                         int tempIndex = 2;
-                        while (Glob.SingleCodeDic.ContainsKey(rCode + tempIndex.ToString()))
+                        while (Glob.SingleCodeDic.ContainsKey(rCode + tempIndex.ToString()) && Glob.SingleCodeDic[rCode + tempIndex.ToString()] != rWord)
                         {
                             tempIndex++;
                         }
@@ -275,11 +277,22 @@ namespace WindowsFormsApplication2.CodeTable
                     }
                 }
 
-                Glob.AllWordDic[rWord] = rCode;
-                if (Glob.AllCodeDic.ContainsKey(rCode))
+                if (Glob.AllWordDic.ContainsKey(rWord))
+                {
+                    if (Glob.AllWordDic[rWord].Length > rCode.Length)
+                    {
+                        Glob.AllWordDic[rWord] = rCode;
+                    }
+                }
+                else
+                {
+                    Glob.AllWordDic[rWord] = rCode;
+                }
+
+                if (Glob.AllCodeDic.ContainsKey(rCode) && Glob.AllCodeDic[rCode] != rWord)
                 {
                     int tempIndex = 2;
-                    while (Glob.AllCodeDic.ContainsKey(rCode + tempIndex.ToString()))
+                    while (Glob.AllCodeDic.ContainsKey(rCode + tempIndex.ToString()) && Glob.AllCodeDic[rCode + tempIndex.ToString()] != rWord)
                     {
                         tempIndex++;
                     }

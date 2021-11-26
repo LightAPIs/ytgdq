@@ -238,5 +238,10 @@ namespace WindowsFormsApplication2
             g.DrawString(scoreTime, F, Brushes.LightGray, 2, bmp.Height - 15);
             return bmp;
         }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

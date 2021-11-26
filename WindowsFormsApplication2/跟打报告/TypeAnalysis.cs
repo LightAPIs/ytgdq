@@ -247,5 +247,10 @@ namespace WindowsFormsApplication2.跟打报告
         {
             Clipboard.SetImage(this.pic_analysis.Image);
         }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

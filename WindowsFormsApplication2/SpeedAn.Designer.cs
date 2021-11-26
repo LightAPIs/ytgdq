@@ -79,8 +79,9 @@
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(82, 23);
             this.btnExit.TabIndex = 5;
-            this.btnExit.Text = "退出";
+            this.btnExit.Text = "关闭";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // SpeedAn
             // 

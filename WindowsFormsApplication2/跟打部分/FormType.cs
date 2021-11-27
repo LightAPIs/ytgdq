@@ -108,6 +108,11 @@ namespace WindowsFormsApplication2
             }
         };
 
+        /// <summary>
+        /// 编码中的有效字符
+        /// </summary>
+        private readonly static string ValidChars = @"abcdefghizklmnopqrstuvwxyz0123456789;',./";
+
         public Form1()
         {
             InitializeComponent();
@@ -702,8 +707,14 @@ namespace WindowsFormsApplication2
             this.toolStripButton3.Checked = Glob.AutoCopy;
             //不保存高阶
             Glob.DisableSaveAdvanced = bool.Parse(IniRead("控制", "不保存高阶", "False"));
+            // 顶功输入法
+            Glob.UseDGInput = bool.Parse(IniRead("控制", "顶功输入", "False"));
+            // 四码唯一自动上屏
+            Glob.UseAutoInput = bool.Parse(IniRead("控制", "四码唯一", "False"));
             // 符号选重
-            Glob.useSymbolSelect = bool.Parse(IniRead("控制", "符号选重", "False"));
+            Glob.UseSymbolSelect = bool.Parse(IniRead("控制", "符号选重", "False"));
+            // Z 键复打
+            Glob.UseZRetype = bool.Parse(IniRead("控制", "Z键复打", "False"));
 
             // 编码提示
             this.picBmTips.Checked = bool.Parse(IniRead("程序控制", "编码", "False"));
@@ -2876,7 +2887,7 @@ namespace WindowsFormsApplication2
 
                 if (Glob.TheKeyValue == 186 || Glob.TheKeyValue == 222)
                 {
-                    if (Glob.useSymbolSelect)
+                    if (Glob.UseSymbolSelect)
                     { // 符号选重的情况
                         Glob.选重++;
                     }
@@ -4044,72 +4055,7 @@ namespace WindowsFormsApplication2
 
             BeginInvoke(new MethodInvoker(() =>
             { // 计算理论码长
-                string codeStr = "";
-                for (int index = 0; index < Glob.BmAlls.Count; index++)
-                {
-                    BmAll curBm = Glob.BmAlls[index];
-                    string cStr = curBm.编码;
-                    if (curBm.重数 == 0)
-                    {
-                        if (index + 1 < Glob.BmAlls.Count)
-                        {
-                            BmAll nextBm = Glob.BmAlls[index + 1];
-                            if (Glob.AllCodeDic.ContainsKey(cStr + nextBm.编码[0]))
-                            {
-                                cStr += " ";
-                            }
-                        }
-                        else
-                        { // 当前为最后一组
-                            if (Glob.AllWordDic.ContainsKey(curBm.查询的字))
-                            {
-                                cStr += " ";
-                            }
-                        }
-                    }
-                    else
-                    {
-                        int pageNum = (curBm.重数 + 1) / 10;
-                        for (int n = 0; n < pageNum; n++)
-                        {
-                            cStr += "+";
-                        }
-                        int selectNum = (curBm.重数 + 1) % 10;
-
-                        if (selectNum == 1)
-                        {
-                            cStr += " ";
-                        }
-                        else if (selectNum == 2)
-                        {
-                            if (Glob.useSymbolSelect)
-                            {
-                                cStr += ";";
-                            }
-                            else
-                            {
-                                cStr += "2";
-                            }
-                        }
-                        else if (selectNum == 3)
-                        {
-                            if (Glob.useSymbolSelect)
-                            {
-                                cStr += "'";
-                            }
-                            else
-                            {
-                                cStr += "3";
-                            }
-                        }
-                        else
-                        {
-                            cStr += selectNum.ToString();
-                        }
-                    }
-
-                    codeStr += cStr;
-                }
+                string codeStr = CalcCodeString(Glob.BmAlls, Glob.AllWordDic, Glob.AllCodeDic);
 
                 Glob.词库理论码长 = (double)codeStr.Length / textLen;
 
@@ -4213,72 +4159,7 @@ namespace WindowsFormsApplication2
 
             BeginInvoke(new MethodInvoker(() =>
             { // 计算理论码长
-                string codeStr = "";
-                for (int index = 0; index < Glob.BmAlls.Count; index++)
-                {
-                    BmAll curBm = Glob.BmAlls[index];
-                    string cStr = curBm.编码;
-                    if (curBm.重数 == 0)
-                    {
-                        if (index + 1 < Glob.BmAlls.Count)
-                        {
-                            BmAll nextBm = Glob.BmAlls[index + 1];
-                            if (Glob.SingleCodeDic.ContainsKey(cStr + nextBm.编码[0]))
-                            {
-                                cStr += " ";
-                            }
-                        }
-                        else
-                        { // 当前为最后一组
-                            if (Glob.SingleWordDic.ContainsKey(curBm.查询的字))
-                            {
-                                cStr += " ";
-                            }
-                        }
-                    }
-                    else
-                    {
-                        int pageNum = (curBm.重数 + 1) / 10;
-                        for (int n = 0; n < pageNum; n++)
-                        {
-                            cStr += "+";
-                        }
-                        int selectNum = (curBm.重数 + 1) % 10;
-
-                        if (selectNum == 1)
-                        {
-                            cStr += " ";
-                        }
-                        else if (selectNum == 2)
-                        {
-                            if (Glob.useSymbolSelect)
-                            {
-                                cStr += ";";
-                            }
-                            else
-                            {
-                                cStr += "2";
-                            }
-                        }
-                        else if (selectNum == 3)
-                        {
-                            if (Glob.useSymbolSelect)
-                            {
-                                cStr += "'";
-                            }
-                            else
-                            {
-                                cStr += "3";
-                            }
-                        }
-                        else
-                        {
-                            cStr += selectNum.ToString();
-                        }
-                    }
-
-                    codeStr += cStr;
-                }
+                string codeStr = CalcCodeString(Glob.BmAlls, Glob.SingleWordDic, Glob.SingleCodeDic);
 
                 Glob.词库理论码长 = (double)codeStr.Length / textLen;
 
@@ -4296,6 +4177,216 @@ namespace WindowsFormsApplication2
                 mS1.Invalidate();
                 Glob.IsChecking = false;
             }));
+        }
+
+        /// <summary>
+        /// 理论编码字符串计算
+        /// </summary>
+        /// <param name="wordDic"></param>
+        /// <param name="CodeDic"></param>
+        /// <returns></returns>
+        private string CalcCodeString(List<BmAll> bmAlls, Dictionary<string, string> wordDic, Dictionary<string, string> codeDic)
+        {
+            string codeStr = "";
+            for (int index = 0; index < bmAlls.Count; index++)
+            {
+                BmAll curBm = bmAlls[index];
+                string cStr = curBm.编码;
+
+                if (curBm.重数 == 0)
+                { //* 0 重数可能会存在自动上屏或顶屏的情况
+                    if (wordDic.ContainsKey(curBm.查询的字))
+                    {
+                        if (Glob.UseDGInput)
+                        { //! 顶功输入法
+                            if (index + 1 < bmAlls.Count)
+                            { //* 非最后一组
+                                BmAll nextBm = bmAlls[index + 1];
+                                if (Glob.UseZRetype && curBm.查询的字 == nextBm.查询的字 && nextBm.编码.Length > 1)
+                                {
+                                    int reNum = 0;
+                                    while (curBm.查询的字 == nextBm.查询的字 && index + 1 < bmAlls.Count)
+                                    {
+                                        reNum++;
+                                        if (codeDic.ContainsKey(cStr + "z"))
+                                        {
+                                            if (codeDic.ContainsKey(cStr + nextBm.编码[0]))
+                                            {
+                                                cStr += " z ";
+
+                                            }
+                                            else
+                                            {
+                                                if (nextBm.编码.Length == 2)
+                                                {
+                                                    cStr += nextBm.编码;
+                                                }
+                                                else
+                                                {
+                                                    cStr += reNum > 0 ? "z " : " z ";
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            cStr += "z ";
+                                        }
+
+                                        index++; //* 已处理过该字
+                                        if (index + 1 < bmAlls.Count)
+                                        { //* 判定接下去的一组字词，即连续出现重复
+                                            nextBm = bmAlls[index + 1];
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (codeDic.ContainsKey(cStr + nextBm.编码[0]))
+                                    { //* 无法自动顶屏
+                                        cStr += " ";
+                                    }
+                                    else if (Glob.UseSymbolSelect && ";'".Contains(KeyObj.TransSingleQuotation(nextBm.编码[0].ToString())))
+                                    { //* 若输入方案有使用符号选重，需要判定
+                                        for (int ci = 0; ci < ValidChars.Length; ci++)
+                                        {
+                                            if (codeDic.ContainsKey(cStr + ValidChars[ci]))
+                                            { //* 不唯一，即不会自动上屏
+                                                cStr += " ";
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    else if ("0123456789-=".Contains(nextBm.编码[0]))
+                                    {
+                                        for (int ci = 0; ci < ValidChars.Length; ci++)
+                                        {
+                                            if (codeDic.ContainsKey(cStr + ValidChars[ci]))
+                                            { //* 不唯一，即不会自动上屏
+                                                cStr += " ";
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            { // 最后一组
+                                for (int ci = 0; ci < ValidChars.Length; ci++)
+                                {
+                                    if (codeDic.ContainsKey(cStr + ValidChars[ci]))
+                                    { //* 不唯一，即不会自动上屏
+                                        cStr += " ";
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        { //* 非顶功输入法
+                            if (Glob.UseAutoInput)
+                            {
+                                if (cStr.Length < 4)
+                                {
+                                    cStr += " ";
+                                }
+                                else
+                                {
+                                    for (int ci = 0; ci < ValidChars.Length; ci++)
+                                    {
+                                        if (codeDic.ContainsKey(cStr + ValidChars[ci]))
+                                        {
+                                            cStr += " ";
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                cStr += " ";
+                            }
+
+                            if (Glob.UseZRetype && index + 1 < bmAlls.Count)
+                            {
+                                BmAll nextBm = bmAlls[index + 1];
+                                if (curBm.查询的字 == nextBm.查询的字 && nextBm.查询的字.Length > 1)
+                                {
+                                    while (curBm.查询的字 == nextBm.查询的字 && index + 1 < bmAlls.Count)
+                                    {
+                                        cStr += "z ";
+                                        index++;
+                                        if (index + 1 < bmAlls.Count)
+                                        { //* 判定接下去的一组字词，即连续出现重复
+                                            nextBm = bmAlls[index + 1];
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                { //? 当一个词条重数大于 0 时，那它一定是存在于字典当中的
+                    int pageNum = (curBm.重数 + 1) / 10;
+                    for (int n = 0; n < pageNum; n++)
+                    {
+                        cStr += "+";
+                    }
+                    int selectNum = (curBm.重数 + 1) % 10;
+
+                    if (selectNum == 1)
+                    {
+                        cStr += " ";
+                    }
+                    else if (selectNum == 2)
+                    {
+                        if (Glob.UseSymbolSelect)
+                        {
+                            cStr += ";";
+                        }
+                        else
+                        {
+                            cStr += "2";
+                        }
+                    }
+                    else if (selectNum == 3)
+                    {
+                        if (Glob.UseSymbolSelect)
+                        {
+                            cStr += "'";
+                        }
+                        else
+                        {
+                            cStr += "3";
+                        }
+                    }
+                    else
+                    {
+                        cStr += selectNum.ToString();
+                    }
+
+                    if (Glob.UseZRetype && index + 1 < bmAlls.Count)
+                    {
+                        BmAll nextBm = bmAlls[index + 1];
+                        if (curBm.查询的字 == nextBm.查询的字 && nextBm.编码.Length > 1)
+                        {
+                            while (curBm.查询的字 == nextBm.查询的字 && index + 1 < bmAlls.Count)
+                            {
+                                cStr += "z ";
+                                index++; //* 已处理过该字
+                                if (index + 1 < bmAlls.Count)
+                                { //* 判定接下去的一组字词，即连续出现重复
+                                    nextBm = bmAlls[index + 1];
+                                }
+                            }
+                        }
+                    }
+                }
+
+                codeStr += cStr;
+            }
+
+            return codeStr;
         }
 
         private void CheckWordToolButton_Click(object sender, EventArgs e)

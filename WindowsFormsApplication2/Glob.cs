@@ -26,12 +26,7 @@ namespace WindowsFormsApplication2
         /// 成绩版本
         /// </summary>
         public static string Instration = "s03";
-        ///// <summary>
-        ///// 编码码表
-        ///// </summary>
-        //public static List<List<string>> BmTips = new List<List<string>>();
 
-        //控制类
         /// <summary>
         /// 显示实时数据
         /// </summary>
@@ -41,9 +36,21 @@ namespace WindowsFormsApplication2
         /// </summary>
         public static bool AutoCopy = false;
         /// <summary>
+        /// 使用顶功类输入法
+        /// </summary>
+        public static bool UseDGInput = false;
+        /// <summary>
+        /// 支持四码唯一自动上屏
+        /// </summary>
+        public static bool UseAutoInput = false;
+        /// <summary>
         /// 使用符号选重
         /// </summary>
-        public static bool useSymbolSelect = false;
+        public static bool UseSymbolSelect = false;
+        /// <summary>
+        /// 使用 Z 键复打
+        /// </summary>
+        public static bool UseZRetype = false;
 
         /// <summary>
         /// 当前段号

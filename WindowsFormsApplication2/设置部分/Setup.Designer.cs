@@ -107,7 +107,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.AdvancedCheckBox = new System.Windows.Forms.CheckBox();
-            this.checkBox33 = new System.Windows.Forms.CheckBox();
+            this.SymbolCheckBox = new System.Windows.Forms.CheckBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -256,16 +256,19 @@
             this.HotKeyResetButton23 = new System.Windows.Forms.Button();
             this.HotKeyTextBox23 = new System.Windows.Forms.TextBox();
             this.label43 = new System.Windows.Forms.Label();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.newButton1 = new WindowsFormsApplication2.NewButton();
-            this.label10 = new System.Windows.Forms.Label();
-            this.newButton2 = new WindowsFormsApplication2.NewButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.HotKeyDisButton24 = new System.Windows.Forms.Button();
             this.HotKeyModButton24 = new System.Windows.Forms.Button();
             this.HotKeyResetButton24 = new System.Windows.Forms.Button();
             this.HotKeyTextBox24 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.ZCheckBox = new System.Windows.Forms.CheckBox();
+            this.DGCheckBox = new System.Windows.Forms.CheckBox();
+            this.newButton1 = new WindowsFormsApplication2.NewButton();
+            this.newButton2 = new WindowsFormsApplication2.NewButton();
+            this.AutoInputCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFalse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRight)).BeginInit();
@@ -309,8 +312,8 @@
             this.panel33.SuspendLayout();
             this.panel34.SuspendLayout();
             this.panel35.SuspendLayout();
-            this.panel12.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel12.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -439,7 +442,7 @@
             // trackBar2
             // 
             this.trackBar2.AutoSize = false;
-            this.trackBar2.Location = new System.Drawing.Point(175, 61);
+            this.trackBar2.Location = new System.Drawing.Point(176, 135);
             this.trackBar2.Minimum = 1;
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(104, 18);
@@ -850,7 +853,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(397, 331);
+            this.tabControl1.Size = new System.Drawing.Size(397, 408);
             this.tabControl1.TabIndex = 11;
             // 
             // tabPage1
@@ -863,7 +866,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(389, 305);
+            this.tabPage1.Size = new System.Drawing.Size(389, 358);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "基础设置";
             // 
@@ -948,7 +951,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(389, 305);
+            this.tabPage2.Size = new System.Drawing.Size(389, 358);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "成绩格式";
             // 
@@ -960,7 +963,7 @@
             this.panel9.ForeColor = System.Drawing.Color.White;
             this.panel9.Location = new System.Drawing.Point(3, 3);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(383, 299);
+            this.panel9.Size = new System.Drawing.Size(383, 352);
             this.panel9.TabIndex = 0;
             // 
             // groupBox4
@@ -1183,7 +1186,7 @@
             this.tabPage3.Controls.Add(this.groupBox1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(389, 305);
+            this.tabPage3.Size = new System.Drawing.Size(389, 382);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "控制、载入及验证";
             // 
@@ -1193,9 +1196,8 @@
             this.groupBox3.Controls.Add(this.button5);
             this.groupBox3.Controls.Add(this.checkBox19);
             this.groupBox3.Controls.Add(this.panelTextIn);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(0, 94);
+            this.groupBox3.Location = new System.Drawing.Point(0, 168);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(389, 79);
             this.groupBox3.TabIndex = 2;
@@ -1208,7 +1210,6 @@
             this.panelTextIn.Controls.Add(this.textBoxDuan);
             this.panelTextIn.Controls.Add(this.textBoxPreText);
             this.panelTextIn.Controls.Add(this.label12);
-            this.panelTextIn.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelTextIn.Enabled = false;
             this.panelTextIn.Location = new System.Drawing.Point(3, 17);
             this.panelTextIn.Name = "panelTextIn";
@@ -1244,9 +1245,9 @@
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox2.Location = new System.Drawing.Point(0, 173);
+            this.groupBox2.Location = new System.Drawing.Point(0, 253);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(389, 132);
+            this.groupBox2.Size = new System.Drawing.Size(389, 129);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "验证";
@@ -1284,8 +1285,11 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.DimGray;
+            this.groupBox1.Controls.Add(this.AutoInputCheckBox);
+            this.groupBox1.Controls.Add(this.DGCheckBox);
+            this.groupBox1.Controls.Add(this.ZCheckBox);
             this.groupBox1.Controls.Add(this.AdvancedCheckBox);
-            this.groupBox1.Controls.Add(this.checkBox33);
+            this.groupBox1.Controls.Add(this.SymbolCheckBox);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.trackBar2);
             this.groupBox1.Controls.Add(this.label16);
@@ -1293,7 +1297,7 @@
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(389, 94);
+            this.groupBox1.Size = new System.Drawing.Size(389, 162);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "程序控制";
@@ -1301,28 +1305,28 @@
             // AdvancedCheckBox
             // 
             this.AdvancedCheckBox.AutoSize = true;
-            this.AdvancedCheckBox.Location = new System.Drawing.Point(10, 42);
+            this.AdvancedCheckBox.Location = new System.Drawing.Point(11, 110);
             this.AdvancedCheckBox.Name = "AdvancedCheckBox";
             this.AdvancedCheckBox.Size = new System.Drawing.Size(204, 16);
             this.AdvancedCheckBox.TabIndex = 12;
             this.AdvancedCheckBox.Text = "禁止将高阶统计保存到历史记录中";
             this.AdvancedCheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkBox33
+            // SymbolCheckBox
             // 
-            this.checkBox33.AutoSize = true;
-            this.checkBox33.ForeColor = System.Drawing.Color.White;
-            this.checkBox33.Location = new System.Drawing.Point(10, 20);
-            this.checkBox33.Name = "checkBox33";
-            this.checkBox33.Size = new System.Drawing.Size(216, 16);
-            this.checkBox33.TabIndex = 11;
-            this.checkBox33.Text = "使用 ;\' 符号选重（影响选重统计）";
-            this.checkBox33.UseVisualStyleBackColor = true;
+            this.SymbolCheckBox.AutoSize = true;
+            this.SymbolCheckBox.ForeColor = System.Drawing.Color.White;
+            this.SymbolCheckBox.Location = new System.Drawing.Point(11, 66);
+            this.SymbolCheckBox.Name = "SymbolCheckBox";
+            this.SymbolCheckBox.Size = new System.Drawing.Size(348, 16);
+            this.SymbolCheckBox.TabIndex = 11;
+            this.SymbolCheckBox.Text = "输入方案使用 ;\' 符号选重（影响选重统计和理论码长计算）";
+            this.SymbolCheckBox.UseVisualStyleBackColor = true;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(286, 61);
+            this.label17.Location = new System.Drawing.Point(286, 135);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(23, 12);
             this.label17.TabIndex = 8;
@@ -1331,7 +1335,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(8, 61);
+            this.label16.Location = new System.Drawing.Point(9, 135);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(161, 12);
             this.label16.TabIndex = 6;
@@ -1343,7 +1347,7 @@
             this.tabPage4.Controls.Add(this.flowLayoutPanel1);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(389, 305);
+            this.tabPage4.Size = new System.Drawing.Size(389, 358);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "快捷键设置";
             // 
@@ -1378,7 +1382,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(389, 305);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(389, 358);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // panel10
@@ -3157,56 +3161,6 @@
             this.label43.TabIndex = 0;
             this.label43.Text = "剪贴板格式载文";
             // 
-            // panel12
-            // 
-            this.panel12.Controls.Add(this.newButton1);
-            this.panel12.Controls.Add(this.tabControl1);
-            this.panel12.Location = new System.Drawing.Point(6, 21);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(397, 356);
-            this.panel12.TabIndex = 13;
-            // 
-            // newButton1
-            // 
-            this.newButton1.BackColor = System.Drawing.Color.Gray;
-            this.newButton1.ForeColor = System.Drawing.Color.White;
-            this.newButton1.Location = new System.Drawing.Point(316, 334);
-            this.newButton1.Name = "newButton1";
-            this.newButton1.Size = new System.Drawing.Size(74, 16);
-            this.newButton1.SS = System.Drawing.ContentAlignment.BottomCenter;
-            this.newButton1.TabIndex = 2;
-            this.newButton1.Text = "确认";
-            this.newButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.newButton1.进入背景色 = System.Drawing.Color.Green;
-            this.newButton1.默认背景色 = System.Drawing.Color.Gray;
-            this.newButton1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(3, -1);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(122, 21);
-            this.label10.TabIndex = 14;
-            this.label10.Text = "雨天跟打器设置";
-            // 
-            // newButton2
-            // 
-            this.newButton2.BackColor = System.Drawing.Color.Gray;
-            this.newButton2.ForeColor = System.Drawing.Color.White;
-            this.newButton2.Location = new System.Drawing.Point(359, -1);
-            this.newButton2.Name = "newButton2";
-            this.newButton2.Size = new System.Drawing.Size(40, 16);
-            this.newButton2.SS = System.Drawing.ContentAlignment.BottomCenter;
-            this.newButton2.TabIndex = 3;
-            this.newButton2.Text = "关闭";
-            this.newButton2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.newButton2.进入背景色 = System.Drawing.Color.Red;
-            this.newButton2.默认背景色 = System.Drawing.Color.Gray;
-            this.newButton2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.HotKeyDisButton24);
@@ -3281,13 +3235,96 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "老板键";
             // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.tabControl1);
+            this.panel12.Location = new System.Drawing.Point(6, 21);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(397, 411);
+            this.panel12.TabIndex = 13;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(3, -1);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(122, 21);
+            this.label10.TabIndex = 14;
+            this.label10.Text = "雨天跟打器设置";
+            // 
+            // ZCheckBox
+            // 
+            this.ZCheckBox.AutoSize = true;
+            this.ZCheckBox.ForeColor = System.Drawing.Color.White;
+            this.ZCheckBox.Location = new System.Drawing.Point(11, 88);
+            this.ZCheckBox.Name = "ZCheckBox";
+            this.ZCheckBox.Size = new System.Drawing.Size(342, 16);
+            this.ZCheckBox.TabIndex = 13;
+            this.ZCheckBox.Text = "输入方案使用 Z 键重复上一次输出（影响理论码长的计算）";
+            this.ZCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // DGCheckBox
+            // 
+            this.DGCheckBox.AutoSize = true;
+            this.DGCheckBox.ForeColor = System.Drawing.Color.White;
+            this.DGCheckBox.Location = new System.Drawing.Point(11, 22);
+            this.DGCheckBox.Name = "DGCheckBox";
+            this.DGCheckBox.Size = new System.Drawing.Size(276, 16);
+            this.DGCheckBox.TabIndex = 14;
+            this.DGCheckBox.Text = "输入方案为顶功类输入法(影响理论码长的计算)";
+            this.DGCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // newButton1
+            // 
+            this.newButton1.BackColor = System.Drawing.Color.Gray;
+            this.newButton1.ForeColor = System.Drawing.Color.White;
+            this.newButton1.Location = new System.Drawing.Point(329, 437);
+            this.newButton1.Name = "newButton1";
+            this.newButton1.Size = new System.Drawing.Size(74, 16);
+            this.newButton1.SS = System.Drawing.ContentAlignment.BottomCenter;
+            this.newButton1.TabIndex = 2;
+            this.newButton1.Text = "确认";
+            this.newButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.newButton1.进入背景色 = System.Drawing.Color.Green;
+            this.newButton1.默认背景色 = System.Drawing.Color.Gray;
+            this.newButton1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // newButton2
+            // 
+            this.newButton2.BackColor = System.Drawing.Color.Gray;
+            this.newButton2.ForeColor = System.Drawing.Color.White;
+            this.newButton2.Location = new System.Drawing.Point(359, -1);
+            this.newButton2.Name = "newButton2";
+            this.newButton2.Size = new System.Drawing.Size(40, 16);
+            this.newButton2.SS = System.Drawing.ContentAlignment.BottomCenter;
+            this.newButton2.TabIndex = 3;
+            this.newButton2.Text = "关闭";
+            this.newButton2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.newButton2.进入背景色 = System.Drawing.Color.Red;
+            this.newButton2.默认背景色 = System.Drawing.Color.Gray;
+            this.newButton2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // AutoInputCheckBox
+            // 
+            this.AutoInputCheckBox.AutoSize = true;
+            this.AutoInputCheckBox.ForeColor = System.Drawing.Color.White;
+            this.AutoInputCheckBox.Location = new System.Drawing.Point(11, 44);
+            this.AutoInputCheckBox.Name = "AutoInputCheckBox";
+            this.AutoInputCheckBox.Size = new System.Drawing.Size(324, 16);
+            this.AutoInputCheckBox.TabIndex = 15;
+            this.AutoInputCheckBox.Text = "输入方案支持四码唯一时自动上屏(影响理论码长的计算)";
+            this.AutoInputCheckBox.UseVisualStyleBackColor = true;
+            // 
             // TSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(408, 379);
+            this.ClientSize = new System.Drawing.Size(408, 460);
+            this.Controls.Add(this.newButton1);
             this.Controls.Add(this.newButton2);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.panel12);
@@ -3378,9 +3415,9 @@
             this.panel34.PerformLayout();
             this.panel35.ResumeLayout(false);
             this.panel35.PerformLayout();
-            this.panel12.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel12.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3436,7 +3473,7 @@
         private System.Windows.Forms.TextBox tbxName;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.CheckBox checkBox33;
+        private System.Windows.Forms.CheckBox SymbolCheckBox;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Button HotKeyDisButton0;
@@ -3624,5 +3661,8 @@
         private System.Windows.Forms.Button HotKeyResetButton24;
         private System.Windows.Forms.TextBox HotKeyTextBox24;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox ZCheckBox;
+        private System.Windows.Forms.CheckBox DGCheckBox;
+        private System.Windows.Forms.CheckBox AutoInputCheckBox;
     }
 }

@@ -45,16 +45,17 @@ namespace WindowsFormsApplication2
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Setup_Load(object sender, EventArgs e)
-        {   
+        {
             string gq = IniRead("个签", "标志", "0");
             if (gq != "0") //个签初始化
             {
                 this.checkBox1.Checked = true;
             }
-            else {
+            else
+            {
                 this.checkBox1.Checked = false;
             }
-            this.textBox1.Text = IniRead("个签", "签名", ""); 
+            this.textBox1.Text = IniRead("个签", "签名", "");
 
             //输入法签名初始化
             string srfsave = IniRead("输入法", "标志", "0");
@@ -62,7 +63,8 @@ namespace WindowsFormsApplication2
             {
                 this.checkBox3.Checked = true;
             }
-            else {
+            else
+            {
                 this.checkBox3.Checked = false;
             }
             this.textBox2.Text = IniRead("输入法", "签名", "");
@@ -102,7 +104,7 @@ namespace WindowsFormsApplication2
             fo2 = (Font)fc.ConvertFromString(IniRead("外观", "跟打区字体", "宋体, 12pt"));
             this.button3.Text = fo1.FontFamily.GetName(0) + " - " + fo1.Size;
             this.button4.Text = fo2.FontFamily.GetName(0) + " - " + fo2.Size;
-            
+
             //各个外观配置初始化
             buttoncolor1.BackColor = frm.richTextBox1.BackColor; //对照区底色
             buttoncolor2.BackColor = frm.textBoxEx1.BackColor; //跟打区底色
@@ -112,7 +114,7 @@ namespace WindowsFormsApplication2
             //载入初始化
             string pretext = IniRead("载入", "前导", "-----");
             string preduan = IniRead("载入", "段标", "第xx段");
-            bool ison = bool.Parse(IniRead("载入","开启","False"));
+            bool ison = bool.Parse(IniRead("载入", "开启", "False"));
             this.checkBox19.Checked = ison;
             this.textBoxPreText.Text = pretext;
             this.textBoxDuan.Text = preduan;
@@ -121,7 +123,8 @@ namespace WindowsFormsApplication2
             this.tbxName.Text = IniRead("发送", "昵称", this.tbxName.Text);
             //停止时间初始化
             int StopTime = int.Parse(IniRead("控制", "停止", "1"));
-            if (StopTime < 1 || StopTime > 10) {
+            if (StopTime < 1 || StopTime > 10)
+            {
                 StopTime = 1;
             }
             this.trackBar2.Value = StopTime;
@@ -129,6 +132,18 @@ namespace WindowsFormsApplication2
             //极简设置
             this.SimpleCheckBox.Checked = Glob.simpleMoudle;
             this.SimpleTextBox.Text = Glob.simpleSplite;
+
+            //* 使用顶功输入法
+            this.DGCheckBox.Checked = Glob.UseDGInput;
+
+            //* 四码唯一自动上屏
+            this.AutoInputCheckBox.Checked = Glob.UseAutoInput;
+
+            //* 使用 ;' 选重
+            this.SymbolCheckBox.Checked = Glob.UseSymbolSelect;
+
+            //* 使用 Z 键复打
+            this.ZCheckBox.Checked = Glob.UseZRetype;
 
             //* 禁止保存高阶统计
             this.AdvancedCheckBox.Checked = Glob.DisableSaveAdvanced;
@@ -211,12 +226,12 @@ namespace WindowsFormsApplication2
         private void button1_Click(object sender, EventArgs e)
         {
             _Ini Setupini = new _Ini("config.ini");
-            
+
             gQ();//保存个签
             //保存输入法签名
             srfSave();
             //颜色设置
-            Setupini.IniWriteValue("外观","对照区颜色",buttoncolor1.BackColor.ToArgb().ToString());
+            Setupini.IniWriteValue("外观", "对照区颜色", buttoncolor1.BackColor.ToArgb().ToString());
             Glob.r1Back = buttoncolor1.BackColor;
             Setupini.IniWriteValue("外观", "跟打区颜色", buttoncolor2.BackColor.ToArgb().ToString());
             Setupini.IniWriteValue("外观", "打对颜色", this.pictureBoxRight.BackColor.ToArgb().ToString());
@@ -246,18 +261,19 @@ namespace WindowsFormsApplication2
                     return;
                 }
             }
-            else {
+            else
+            {
                 Setupini.IniWriteValue("载入", "开启", this.checkBox19.Checked.ToString());
             }
 
             //停止时间
             Setupini.IniWriteValue("控制", "停止", this.trackBar2.Value.ToString());
             Glob.StopUse = this.trackBar2.Value;
-            frm.toolTip1.SetToolTip(frm.lblAutoReType,"跟打停止时间，大于" + this.trackBar2.Value +"分钟时自动停止跟打");
+            frm.toolTip1.SetToolTip(frm.lblAutoReType, "跟打停止时间，大于" + this.trackBar2.Value + "分钟时自动停止跟打");
 
             //极简模式
             Setupini.IniWriteValue("发送", "极简状态", this.SimpleCheckBox.Checked.ToString());
-            Setupini.IniWriteValue("发送","分隔符",this.SimpleTextBox.Text);
+            Setupini.IniWriteValue("发送", "分隔符", this.SimpleTextBox.Text);
             Glob.simpleMoudle = this.SimpleCheckBox.Checked;
             Glob.simpleSplite = this.SimpleTextBox.Text;
 
@@ -266,7 +282,8 @@ namespace WindowsFormsApplication2
                 MessageBox.Show(this, "含有错误排序字符，请重新检查！", "雨天跟打器排序提示");
                 return;
             }
-            else {
+            else
+            {
                 Setupini.IniWriteValue("发送", "顺序", textBox3.Text);
             }
 
@@ -281,15 +298,48 @@ namespace WindowsFormsApplication2
                 Glob.DisableSaveAdvanced = false;
             }
 
-            if (this.checkBox33.Checked)
+            if (this.DGCheckBox.Checked)
+            {
+                Setupini.IniWriteValue("控制", "顶功输入", "True");
+                Glob.UseDGInput = true;
+            }
+            else
+            {
+                Setupini.IniWriteValue("控制", "顶功输入", "False");
+                Glob.UseDGInput = false;
+            }
+
+            if (this.AutoInputCheckBox.Checked)
+            {
+                Setupini.IniWriteValue("控制", "四码唯一", "True");
+                Glob.UseAutoInput = true;
+            }
+            else
+            {
+                Setupini.IniWriteValue("控制", "四码唯一", "False");
+                Glob.UseAutoInput = false;
+            }
+
+            if (this.SymbolCheckBox.Checked)
             {
                 Setupini.IniWriteValue("控制", "符号选重", "True");
-                Glob.useSymbolSelect = true;
+                Glob.UseSymbolSelect = true;
             }
             else
             {
                 Setupini.IniWriteValue("控制", "符号选重", "False");
-                Glob.useSymbolSelect = false;
+                Glob.UseSymbolSelect = false;
+            }
+
+            if (this.ZCheckBox.Checked)
+            {
+                Setupini.IniWriteValue("控制", "Z键复打", "True");
+                Glob.UseZRetype = true;
+            }
+            else
+            {
+                Setupini.IniWriteValue("控制", "Z键复打", "False");
+                Glob.UseZRetype = false;
             }
 
             if (this.checkBox1.Checked)
@@ -304,7 +354,7 @@ namespace WindowsFormsApplication2
             Glob.InstraSrf = this.textBox2.Text; //输入法签名
             Glob.InstraSrf_ = IniRead("输入法", "标志", "0");
             Glob.binput = true;//输入法修改
-            
+
             Glob.sortSend = this.textBox3.Text;
             Glob.Right = pictureBoxRight.BackColor;
             Glob.False = pictureBoxFalse.BackColor;
@@ -330,7 +380,8 @@ namespace WindowsFormsApplication2
             {
                 this.Close();
             }
-            else {
+            else
+            {
                 MessageBox.Show("文件丢失！");
             }
 
@@ -344,7 +395,8 @@ namespace WindowsFormsApplication2
             frm.HotKeyHandler();
         }
 
-        public void gQ() {  
+        public void gQ()
+        {
             _Ini Setupini = new _Ini("config.ini");
             if (this.checkBox1.Checked)
             {
@@ -364,7 +416,8 @@ namespace WindowsFormsApplication2
             }
         }//个签
 
-        public void srfSave() {
+        public void srfSave()
+        {
             _Ini Setupini = new _Ini("config.ini");
             if (this.checkBox3.Checked)
             {
@@ -378,12 +431,14 @@ namespace WindowsFormsApplication2
                     Setupini.IniWriteValue("输入法", "标志", "0");
                 }
             }
-            else {
+            else
+            {
                 Setupini.IniWriteValue("输入法", "标志", "0");
             }
         } //输入法
         //排序顺序
-        public void SortSend() {
+        public void SortSend()
+        {
             string sort = IniRead("发送", "顺序", "ABCVDTSEFULGNORQ");
             textBox3.Text = sort;
             try
@@ -395,11 +450,12 @@ namespace WindowsFormsApplication2
                     TestIt(g[i]); //根据当前输入 选中 或者取消选中
                 }
             }
-            catch (Exception err) {
+            catch (Exception err)
+            {
                 MessageBox.Show(err.Message);
             }
         }
-        
+
         /// <summary>
         /// 关闭按钮事件
         /// </summary>
@@ -423,7 +479,8 @@ namespace WindowsFormsApplication2
                 this.textBox1.ReadOnly = false;
                 this.textBox1.BackColor = Color.White;
             }
-            else {
+            else
+            {
                 this.textBox1.ReadOnly = true;
                 this.textBox1.BackColor = Color.Gray;
             }
@@ -444,7 +501,8 @@ namespace WindowsFormsApplication2
                 textBox2.BackColor = Color.White;
                 textBox2.ReadOnly = false;
             }
-            else {
+            else
+            {
                 textBox2.BackColor = Color.Gray;
                 textBox2.ReadOnly = true;
             }
@@ -467,7 +525,7 @@ namespace WindowsFormsApplication2
                 this.buttoncolor2.BackColor = colorDialog1.Color;
             }
         }
-        
+
         #region 数据排序
         private void textBox3Press(object sender, KeyPressEventArgs e)
         {
@@ -484,21 +542,26 @@ namespace WindowsFormsApplication2
 
         private void buttonGet_Click(object sender, EventArgs e)
         {
-            string get = "",output="";
-            foreach (var item in this.panel9.Controls) {
-                if (item is CheckBox) { 
-                    if ((item as CheckBox).Checked) { //如果是选中状态
-                        get = get + (item as CheckBox).Text.Substring(3,1);
+            string get = "", output = "";
+            foreach (var item in this.panel9.Controls)
+            {
+                if (item is CheckBox)
+                {
+                    if ((item as CheckBox).Checked)
+                    { //如果是选中状态
+                        get = get + (item as CheckBox).Text.Substring(3, 1);
                     }
                 }
             }
-            for (int i = get.Length; i > 0; i--) {
-                output += get.Substring(i-1,1);
+            for (int i = get.Length; i > 0; i--)
+            {
+                output += get.Substring(i - 1, 1);
             }
             textBox3.Text = output;
         }
 
-        private bool saveSort() {
+        private bool saveSort()
+        {
             string get = textBox3.Text.ToUpper();
             textBox3.Text = get;
             char[] g = get.ToArray();
@@ -530,15 +593,18 @@ namespace WindowsFormsApplication2
         /// <summary>
         /// 清空所有选择
         /// </summary>
-        private void CheckAllOut() {
-            foreach (var item in this.allCheckBox) {
+        private void CheckAllOut()
+        {
+            foreach (var item in this.allCheckBox)
+            {
                 if (item.Checked)
                 {
                     item.Checked = false;
                 }
             }
         }
-        private void TestIt(char a) {
+        private void TestIt(char a)
+        {
             foreach (var item in this.allCheckBox)
             {
                 string checktext = CheckIt(a);
@@ -555,8 +621,10 @@ namespace WindowsFormsApplication2
                 }
             }
         }
-        private string CheckIt(char a) {
-            switch (a) {
+        private string CheckIt(char a)
+        {
+            switch (a)
+            {
                 case 'A': return "速度[A]";
                 case 'B': return "击键[B]";
                 case 'C': return "码长[C]";
@@ -585,7 +653,8 @@ namespace WindowsFormsApplication2
         }
         private string GetIt(char a)
         {//返回成绩
-            switch (a) {
+            switch (a)
+            {
                 case 'A': return "速度161.53 ";
                 case 'B': return "击键8.38 ";
                 case 'C': return "码长3.11 ";
@@ -641,8 +710,9 @@ namespace WindowsFormsApplication2
         {
             this.fontDialog1.ShowEffects = false;
             this.fontDialog1.Font = fo1;
-            if (this.fontDialog1.ShowDialog(this) == DialogResult.OK) {
-                
+            if (this.fontDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+
                 this.button3.Text = fontDialog1.Font.FontFamily.GetName(0) + " - " + fontDialog1.Font.Size;
                 fo1 = fontDialog1.Font;
             }
@@ -668,7 +738,8 @@ namespace WindowsFormsApplication2
                 this.panelTextIn.Enabled = true;
                 this.textBoxPreText.Focus();
             }
-            else {
+            else
+            {
                 this.panelTextIn.Enabled = false;
             }
         }
@@ -830,8 +901,9 @@ namespace WindowsFormsApplication2
             Change(checkBox31);
         }
 
-        private void Change(CheckBox C) {
-            string w = C.Text.Substring(3,1);
+        private void Change(CheckBox C)
+        {
+            string w = C.Text.Substring(3, 1);
             if (C.Checked)
             {
                 if (!textBox3.Text.Contains(w))

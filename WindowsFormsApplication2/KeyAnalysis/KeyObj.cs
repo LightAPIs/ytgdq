@@ -546,5 +546,23 @@ namespace WindowsFormsApplication2.KeyAnalysis
             }
             return res;
         }
+
+        /// <summary>
+        /// 转换单引号
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static string TransSingleQuotation(string source)
+        {
+            string res = source;
+            if (source.Length == 1 && KeysStringDic.ContainsKey(source))
+            {
+                if (source == "‘" || source == "’")
+                {
+                    res = "'";
+                }
+            }
+            return res;
+        }
     }
 }

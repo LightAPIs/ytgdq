@@ -59,7 +59,7 @@
             // 
             this.lblcls.BackColor = System.Drawing.Color.Gray;
             this.lblcls.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblcls.Location = new System.Drawing.Point(319, 1);
+            this.lblcls.Location = new System.Drawing.Point(320, 2);
             this.lblcls.Name = "lblcls";
             this.lblcls.Size = new System.Drawing.Size(40, 20);
             this.lblcls.TabIndex = 0;
@@ -86,7 +86,6 @@
             this.panel1.Controls.Add(this.newButton4);
             this.panel1.Controls.Add(this.lblSelectFCColor);
             this.panel1.Controls.Add(this.lblThemeFCShow);
-            this.panel1.Controls.Add(this.btnOk);
             this.panel1.Controls.Add(this.lblSelectBGColor);
             this.panel1.Controls.Add(this.lblThemeBGShow);
             this.panel1.Controls.Add(this.label3);
@@ -98,7 +97,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(11, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(349, 174);
+            this.panel1.Size = new System.Drawing.Size(349, 158);
             this.panel1.TabIndex = 1;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
@@ -293,9 +292,9 @@
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOk.BackColor = System.Drawing.Color.DimGray;
             this.btnOk.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnOk.Location = new System.Drawing.Point(290, 156);
+            this.btnOk.Location = new System.Drawing.Point(302, 185);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(58, 16);
+            this.btnOk.Size = new System.Drawing.Size(58, 20);
             this.btnOk.SS = System.Drawing.ContentAlignment.BottomCenter;
             this.btnOk.TabIndex = 9;
             this.btnOk.Text = "保存";
@@ -348,7 +347,7 @@
             this.SwitchB1.Name = "SwitchB1";
             this.SwitchB1.Size = new System.Drawing.Size(60, 16);
             this.SwitchB1.TabIndex = 3;
-            this.SwitchB1.ValueA = "背景";
+            this.SwitchB1.ValueA = "图片";
             this.SwitchB1.ValueB = "纯色";
             this.SwitchB1.CChange += new WindowsFormsApplication2.SwitchButton.CheckedChange(this.SwitchB1_CChange);
             // 
@@ -377,6 +376,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblcls);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnOk);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormTheme";

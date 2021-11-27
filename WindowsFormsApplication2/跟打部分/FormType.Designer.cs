@@ -975,7 +975,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox1.Size = new System.Drawing.Size(688, 105);
+            this.richTextBox1.Size = new System.Drawing.Size(688, 106);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.TabStop = false;
             this.richTextBox1.Text = "当你还在被世间诸多繁杂所束缚，心神不宁，不妨静下心来坐在电脑前跟打上一段文章。";
@@ -1049,7 +1049,7 @@
             this.textBoxEx1.Name = "textBoxEx1";
             this.textBoxEx1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxEx1.ShortcutsEnabled = false;
-            this.textBoxEx1.Size = new System.Drawing.Size(688, 83);
+            this.textBoxEx1.Size = new System.Drawing.Size(688, 82);
             this.textBoxEx1.TabIndex = 0;
             this.toolTip1.SetToolTip(this.textBoxEx1, "跟打区");
             this.textBoxEx1.TextChanged += new System.EventHandler(this.textBoxEx1_TextChanged);
@@ -1457,7 +1457,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel2MinSize = 50;
             this.splitContainer1.Size = new System.Drawing.Size(688, 282);
-            this.splitContainer1.SplitterDistance = 105;
+            this.splitContainer1.SplitterDistance = 106;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 3;
             this.splitContainer1.TabStop = false;
@@ -1468,7 +1468,7 @@
             this.picDoing.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.picDoing.BackColor = System.Drawing.Color.White;
             this.picDoing.Image = global::WindowsFormsApplication2.Properties.Resources.doing;
-            this.picDoing.Location = new System.Drawing.Point(647, 80);
+            this.picDoing.Location = new System.Drawing.Point(647, 81);
             this.picDoing.Name = "picDoing";
             this.picDoing.Size = new System.Drawing.Size(22, 22);
             this.picDoing.TabIndex = 23;
@@ -1491,7 +1491,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer2.Panel2MinSize = 0;
-            this.splitContainer2.Size = new System.Drawing.Size(688, 174);
+            this.splitContainer2.Size = new System.Drawing.Size(688, 173);
             this.splitContainer2.SplitterIncrement = 2;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 5;
@@ -1514,8 +1514,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer3.Size = new System.Drawing.Size(688, 174);
-            this.splitContainer3.SplitterDistance = 115;
+            this.splitContainer3.Size = new System.Drawing.Size(688, 173);
+            this.splitContainer3.SplitterDistance = 114;
             this.splitContainer3.TabIndex = 0;
             this.splitContainer3.TabStop = false;
             // 
@@ -2269,7 +2269,7 @@
             this.查询当前编码ToolStripMenuItem2.ShortcutKeyDisplayString = "";
             this.查询当前编码ToolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
             this.查询当前编码ToolStripMenuItem2.Size = new System.Drawing.Size(219, 24);
-            this.查询当前编码ToolStripMenuItem2.Text = "查询当前编码...";
+            this.查询当前编码ToolStripMenuItem2.Text = "查询当前编码";
             this.查询当前编码ToolStripMenuItem2.ToolTipText = "测试功能";
             this.查询当前编码ToolStripMenuItem2.Click += new System.EventHandler(this.查询当前编码ToolStripMenuItem2_Click);
             // 
@@ -2279,7 +2279,7 @@
             this.检验真伪ToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.检验真伪ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.D)));
             this.检验真伪ToolStripMenuItem.Size = new System.Drawing.Size(219, 24);
-            this.检验真伪ToolStripMenuItem.Text = "检验真伪";
+            this.检验真伪ToolStripMenuItem.Text = "检验真伪...";
             this.检验真伪ToolStripMenuItem.Click += new System.EventHandler(this.检验真伪ToolStripMenuItem_Click);
             // 
             // TSMI5

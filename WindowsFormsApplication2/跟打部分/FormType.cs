@@ -982,13 +982,17 @@ namespace WindowsFormsApplication2
                                 { // 剩余字数大于需要发送的字数时
                                     numlist = GetRandomUnrepeatArray(0, TextLen - 1, NewSendText.字数);
                                 }
-                                Random ro = new Random((int)DateTime.Now.Ticks);
+
+                                //? 由于 String.Replace 方法是替换所有字符，当原文中存在重复的文字时，会被一并替换掉
+                                //? 所以换用 StringBuilder 对象来处理
+                                StringBuilder tempSb = new StringBuilder(NewSendText.发文全文);
                                 foreach (int item in numlist)
                                 {
                                     TextAll += NewSendText.发文全文[item];
-                                    NewSendText.发文全文 = NewSendText.发文全文.Replace(NewSendText.发文全文[item].ToString(), " "); // 将已发送的文字从全文当中剔除
+                                    tempSb.Replace(NewSendText.发文全文[item], ' ', item, 1); // 将已发送的单个文字从全文当中剔除
                                 }
-                                NewSendText.发文全文 = NewSendText.发文全文.Replace(" ", "");
+
+                                NewSendText.发文全文 = tempSb.ToString().Replace(" ", "");
                                 NewSendText.标记 += numlist.Length;
                                 CleanBeforeSending(TextAll);
                                 //* 缓存文段内容
@@ -1004,7 +1008,7 @@ namespace WindowsFormsApplication2
                         else
                         { //* 乱序无限
                             numlist = GetRandomUnrepeatArray(0, TextLen - 1, NewSendText.字数);
-                            Random ro = new Random((int)DateTime.Now.Ticks);
+                            
                             foreach (int item in numlist)
                             {
                                 TextAll += NewSendText.发文全文[item];

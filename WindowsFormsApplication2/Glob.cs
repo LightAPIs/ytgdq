@@ -19,13 +19,13 @@ namespace WindowsFormsApplication2
     /// </summary>
     public class Glob
     {
-        public static string Ver = "1.0.0";
+        public static string Ver = "1.1.0";
 
         public static string Form = "雨天跟打器v" + Ver;
         /// <summary>
         /// 成绩版本
         /// </summary>
-        public static string Instration = "s03";
+        public static string Instration = "s04";
 
         /// <summary>
         /// 显示实时数据

@@ -123,16 +123,68 @@ namespace WindowsFormsApplication2
 
         /// <summary>
         /// 对照区正确字的背景色
-        /// - Right
         /// </summary>
-        public static Color Right;
+        public static Color RightBGColor;
         /// <summary>
-        /// 颜色
-        /// - False
+        /// 对照区错误字的背景色
         /// </summary>
-        public static Color False;
+        public static Color FalseBGColor;
 
-        public static Color r1Back;
+        /// <summary>
+        /// 对照区背景色
+        /// </summary>
+        public static Color R1Back;
+
+        /// <summary>
+        /// 跟打区背景色
+        /// </summary>
+        public static Color R2Back;
+
+        /// <summary>
+        /// 对照区文字颜色
+        /// </summary>
+        public static Color R1Color;
+
+        /// <summary>
+        /// 跟打区文字颜色
+        /// </summary>
+        public static Color R2Color;
+
+        /// <summary>
+        /// 跟打结束后回改标记颜色
+        /// </summary>
+        public static Color BackChangeColor;
+
+        /// <summary>
+        /// 跟打结束后用时最多的标记背景色
+        /// </summary>
+        public static Color TimeLongColor;
+
+        /// <summary>
+        /// 词组标记 0 重颜色
+        /// </summary>
+        public static Color Words0Color;
+
+        /// <summary>
+        /// 词组标记 1 重颜色
+        /// </summary>
+        public static Color Words1Color;
+
+        /// <summary>
+        /// 词组标记 2 重颜色
+        /// </summary>
+        public static Color Words2Color;
+
+        /// <summary>
+        /// 词组标记 3 重颜色
+        /// </summary>
+        public static Color Words3Color;
+
+        /// <summary>
+        /// 测速点标记颜色
+        /// </summary>
+        public static Color TestMarkColor;
+
         //峰值
         public static double MaxSpeed = 0;
         public static double MaxJj = 0;
@@ -207,8 +259,14 @@ namespace WindowsFormsApplication2
         /// </summary>
         public static int aTypeWordsCount = 0;
 
-        public static Font font_1; //对照区字体大小
-        public static Font font_2; //跟打区字体大小
+        /// <summary>
+        /// 对照区字体及大小
+        /// </summary>
+        public static Font Font_1;
+        /// <summary>
+        /// 跟打区字体及大小
+        /// </summary>
+        public static Font Font_2;
 
         public static bool binput = true;
         /// <summary>
@@ -235,17 +293,17 @@ namespace WindowsFormsApplication2
         public static int SendNow = 0;
 
         /// <summary>
-        /// 前导符
+        /// 载文前导符
         /// </summary>
         public static string PreText;
         /// <summary>
-        /// 段标
+        /// 载文段标
         /// </summary>
         public static string PreDuan;
         /// <summary>
         /// 是否开启自定义前导符
         /// </summary>
-        public static bool isZdy;
+        public static bool IsZdyPre;
 
         public static string getName = "";//发文配置的名称
 
@@ -293,7 +351,7 @@ namespace WindowsFormsApplication2
         /// <summary>
         /// 停止用时
         /// </summary>
-        public static int StopUse = 1;
+        public static int StopUseTime = 1;
         /// <summary>
         /// 曲线极值
         /// </summary>
@@ -301,11 +359,11 @@ namespace WindowsFormsApplication2
         /// <summary>
         /// 极简模式
         /// </summary>
-        public static bool simpleMoudle = false;
+        public static bool SimpleMoudle = false;
         /// <summary>
         /// 极简模式的分隔符
         /// </summary>
-        public static string simpleSplite = "|";
+        public static string SimpleSplite = "|";
         /// <summary>
         /// 自动替换英转中
         /// </summary>

@@ -13,10 +13,6 @@ namespace WindowsFormsApplication2
 {
     public partial class RichEditBoxLineRender : RichTextBox
     {
-        /// <summary>
-        /// 词条下划线颜色
-        /// </summary>
-        private readonly Color[] BmColors = new Color[] { Color.Blue, Color.Red, Color.Purple, Color.DeepPink };
         private readonly List<Label> floatLines = new List<Label>();
         private readonly List<LineInfo> lineInfos = new List<LineInfo>();
         private int floatIndex = 0;
@@ -107,11 +103,17 @@ namespace WindowsFormsApplication2
         /// <returns></returns>
         public Color GetColor(int n)
         {
-            if (n <= 3)
+            switch (n)
             {
-                return BmColors[n];
+                case 0:
+                    return Glob.Words0Color;
+                case 1:
+                    return Glob.Words1Color;
+                case 2:
+                    return Glob.Words2Color;
+                default:
+                    return Glob.Words3Color;
             }
-            return BmColors[3];
         }
 
         public void SetCurIndex(int cur)

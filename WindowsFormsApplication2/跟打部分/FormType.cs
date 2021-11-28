@@ -412,9 +412,9 @@ namespace WindowsFormsApplication2
             _Ini ini = new _Ini("config.ini");
             Theme.IsBackBmp = bool.Parse(ini.IniReadValue("主题", "是否应用主题背景", "False"));
             Theme.ThemeBackBmp = ini.IniReadValue("主题", "背景路径", "程序默认");
-            Theme.ThemeBG = Color.FromArgb(int.Parse(ini.IniReadValue("主题", "纯色", "-13089719")));
-            Theme.ThemeColorBG = Color.FromArgb(int.Parse(ini.IniReadValue("主题", "主题颜色", "-13089719")));
-            Theme.ThemeColorFC = Color.FromArgb(int.Parse(ini.IniReadValue("主题", "字体颜色", "-1")));
+            Theme.ThemeBG = Color.FromArgb(int.Parse(ini.IniReadValue("主题", "纯色", "-13089719"))); // #384449
+            Theme.ThemeColorBG = Color.FromArgb(int.Parse(ini.IniReadValue("主题", "主题颜色", "-13089719"))); // #384449
+            Theme.ThemeColorFC = Color.FromArgb(int.Parse(ini.IniReadValue("主题", "字体颜色", "-1"))); // #FFFFFF
         }
 
         /// <summary>
@@ -596,13 +596,38 @@ namespace WindowsFormsApplication2
             jjPerCheck(0);
             this.dataGridView2.Rows[0].Cells[16].Value = "12+";
             this.dataGridView2.Rows[0].Cells[16].Style.BackColor = Color.FromArgb(219, 219, 219);
+            
+            //* 载入颜色设置
+            Glob.R1Back = Color.FromArgb(int.Parse(IniRead("外观", "对照区颜色", "-722948"))); // #F4F7FC
+            richTextBox1.BackColor = Glob.R1Back;
+            Glob.R2Back = Color.FromArgb(int.Parse(IniRead("外观", "跟打区颜色", "-722948"))); // #F4F7FC
+            textBoxEx1.BackColor = Glob.R2Back;
+
+            Glob.R1Color = Color.FromArgb(int.Parse(IniRead("外观", "对照区文字色", "-16777216"))); // #000000
+            richTextBox1.ForeColor = Glob.R1Color;
+            Glob.R2Color = Color.FromArgb(int.Parse(IniRead("外观", "跟打区文字色", "-16777216"))); // #000000
+            textBoxEx1.ForeColor = Glob.R2Color;
+
+            Glob.RightBGColor = Color.FromArgb(int.Parse(IniRead("外观", "打对颜色", "-8355712"))); // #808080
+            Glob.FalseBGColor = Color.FromArgb(int.Parse(IniRead("外观", "打错颜色", "-38294"))); // #FF6A6A
+            Glob.BackChangeColor = Color.FromArgb(int.Parse(IniRead("外观", "回改颜色", "-5374161"))); // #ADFF2F
+            Glob.TimeLongColor = Color.FromArgb(int.Parse(IniRead("外观", "用时背景色", "-6632142"))); // #9ACD32
+
+            Glob.Words0Color = Color.FromArgb(int.Parse(IniRead("外观", "词组0重色", "-16776961"))); // #0000FF
+            Glob.Words1Color = Color.FromArgb(int.Parse(IniRead("外观", "词组1重色", "-65536"))); // #FF0000
+            Glob.Words2Color = Color.FromArgb(int.Parse(IniRead("外观", "词组2重色", "-8388480"))); // #800080
+            Glob.Words3Color = Color.FromArgb(int.Parse(IniRead("外观", "词组3重色", "-60269"))); // #FF1493
+
+            Glob.TestMarkColor = Color.FromArgb(int.Parse(IniRead("外观", "测速点颜色", "-2894893"))); // #D3D3D3
+
             //字体
-            //载入颜色设置
-            Glob.r1Back = Color.FromArgb(int.Parse(IniRead("外观", "对照区颜色", "-722948")));
-            richTextBox1.BackColor = Glob.r1Back;
-            textBoxEx1.BackColor = Color.FromArgb(int.Parse(IniRead("外观", "跟打区颜色", "-722948")));
-            Glob.Right = Color.FromArgb(int.Parse(IniRead("外观", "打对颜色", "-8355712")));
-            Glob.False = Color.FromArgb(int.Parse(IniRead("外观", "打错颜色", "-38294")));
+            FontConverter fc = new FontConverter();
+            Glob.Font_1 = (Font)fc.ConvertFromString(IniRead("外观", "对照区字体", "宋体, 21.75pt"));
+            Glob.Font_2 = (Font)fc.ConvertFromString(IniRead("外观", "跟打区字体", "宋体, 12pt"));
+            richTextBox1.ForeColor = Color.Black;
+            textBoxEx1.Font = Glob.Font_2;
+            this.richTextBox1.FontChanged += new EventHandler(richTextBox1_FontChanged);
+            richTextBox1.Font = Glob.Font_1;
 
             //载入个签
             Glob.InstraPre = IniRead("个签", "签名", "");
@@ -610,19 +635,13 @@ namespace WindowsFormsApplication2
             //载入输入法签名
             Glob.InstraSrf = IniRead("输入法", "签名", "");
             Glob.InstraSrf_ = IniRead("输入法", "标志", "0");
-            FontConverter fc = new FontConverter();
-            Glob.font_1 = (Font)fc.ConvertFromString(IniRead("外观", "对照区字体", "宋体, 21.75pt"));
-            Glob.font_2 = (Font)fc.ConvertFromString(IniRead("外观", "跟打区字体", "宋体, 12pt"));
-            richTextBox1.ForeColor = Color.Black;
-            textBoxEx1.Font = Glob.font_2;
-            this.richTextBox1.FontChanged += new EventHandler(richTextBox1_FontChanged);
-            richTextBox1.Font = Glob.font_1;
+
             //获取发送成绩的排序顺序
             Glob.sortSend = IniRead("发送", "顺序", "ABCVDTSEFULGNORQ");
 
             //载入前导
-            Glob.isZdy = bool.Parse(IniRead("载入", "开启", "False"));
-            if (Glob.isZdy)
+            Glob.IsZdyPre = bool.Parse(IniRead("载入", "开启", "False"));
+            if (Glob.IsZdyPre)
             {
                 Glob.PreText = IniRead("载入", "前导", "-----");
                 Glob.PreDuan = IniRead("载入", "段标", "第xx段");
@@ -675,7 +694,6 @@ namespace WindowsFormsApplication2
                 }
             }
 
-            //lblMatchCount.Text = Glob.Instration.Trim();
             lblMatchCount.Text = Validation.Validat(Validation.Validat(richTextBox1.Text));
             labelHaveTyping.Text = Glob.todayTyping + "/" + 字数格式化(Glob.TextLenAll) + "/" + Glob.TextRecDays + "天/" + 字数格式化(Glob.TextLenAll + Glob.TextHgAll);
 
@@ -684,16 +702,16 @@ namespace WindowsFormsApplication2
             this.splitContainer4.Panel1Collapsed = Glob.isShowSpline;
             this.tbnSpline.Checked = !Glob.isShowSpline;
             //停止用时
-            int StopTime = int.Parse(IniRead("控制", "停止", "1"));
-            if (StopTime < 1 || StopTime > 10)
+            int stopTime = int.Parse(IniRead("控制", "停止", "1"));
+            if (stopTime < 1 || stopTime > 10)
             {
-                StopTime = 1;
+                stopTime = 1;
             }
-            Glob.StopUse = StopTime;
-            this.toolTip1.SetToolTip(this.lblAutoReType, "跟打停止时间，大于" + Glob.StopUse + "分钟时自动停止跟打");
+            Glob.StopUseTime = stopTime;
+            this.toolTip1.SetToolTip(this.lblAutoReType, "跟打停止时间，大于" + Glob.StopUseTime + "分钟时自动停止跟打");
             //极简设置
-            Glob.simpleMoudle = bool.Parse(IniRead("发送", "极简状态", "False"));
-            Glob.simpleSplite = IniRead("发送", "分隔符", "|");
+            Glob.SimpleMoudle = bool.Parse(IniRead("发送", "极简状态", "False"));
+            Glob.SimpleSplite = IniRead("发送", "分隔符", "|");
             //自动替换
             Glob.autoReplaceBiaodian = bool.Parse(IniRead("程序控制", "自动替换", "False"));
             this.toolStripButton1.Checked = Glob.autoReplaceBiaodian;
@@ -735,7 +753,7 @@ namespace WindowsFormsApplication2
                 this.tsb标注.Checked = false;
             }
 
-            //图片发送
+            // 图片发送
             Glob.PicName = IniRead("发送", "昵称", "");
 
             this.比赛时自动打开寻找测速点ToolStripMenuItem.Checked = bool.Parse(IniRead("程序控制", "自动打开寻找", "False"));
@@ -764,7 +782,7 @@ namespace WindowsFormsApplication2
 
             if (this.tsb标注.Checked)
             {
-                this.richTextBox1.Render(Glob.BmAlls, Glob.Right);
+                this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor);
             }
         }
 
@@ -911,7 +929,7 @@ namespace WindowsFormsApplication2
         {
             this.textBoxEx1.Clear(); // 清空跟打区
             this.richTextBox1.SelectAll();
-            this.richTextBox1.SelectionBackColor = Glob.r1Back;
+            this.richTextBox1.SelectionBackColor = Glob.R1Back;
             this.richTextBox1.Text = textAll;
             Initialize(1);
             Initialize(2);
@@ -932,7 +950,7 @@ namespace WindowsFormsApplication2
         {
             this.textBoxEx1.Clear(); // 清空跟打区
             this.richTextBox1.SelectAll();
-            this.richTextBox1.SelectionBackColor = Glob.r1Back;
+            this.richTextBox1.SelectionBackColor = Glob.R1Back;
             this.richTextBox1.Text = textAll;
             Initialize(1);
             Initialize(2);
@@ -1391,8 +1409,8 @@ namespace WindowsFormsApplication2
                 richTextBox1.SelectionStart = 0;
                 richTextBox1.ScrollToCaret();
                 richTextBox1.SelectionLength = richTextBox1.TextLength;
-                richTextBox1.SelectionBackColor = Glob.r1Back;
-                richTextBox1.SelectionColor = Color.Black;
+                richTextBox1.SelectionBackColor = Glob.R1Back;
+                richTextBox1.SelectionColor = Glob.R1Color;
                 richTextBox1.SelectionFont = richTextBox1.Font;
 
                 labelJjing.Text = "";
@@ -1607,7 +1625,7 @@ namespace WindowsFormsApplication2
                                 {
                                     richTextBox1.SelectionStart = i;
                                     richTextBox1.SelectionLength = 1;
-                                    richTextBox1.SelectionBackColor = Glob.Right;
+                                    richTextBox1.SelectionBackColor = Glob.RightBGColor;
                                     if (Glob.FWords.Contains(i))//以标识来计算错误量
                                     {
                                         Glob.FWords.Remove(i);
@@ -1618,7 +1636,7 @@ namespace WindowsFormsApplication2
                                 {
                                     richTextBox1.SelectionStart = i;
                                     richTextBox1.SelectionLength = 1;
-                                    richTextBox1.SelectionBackColor = Glob.False;
+                                    richTextBox1.SelectionBackColor = Glob.FalseBGColor;
                                     if (!Glob.FWords.Contains(i))//以标识来计算错误量
                                     {
                                         Glob.FWords.Add(i);
@@ -1661,7 +1679,7 @@ namespace WindowsFormsApplication2
                                 {
                                     richTextBox1.SelectionStart = i;
                                     richTextBox1.SelectionLength = 1;
-                                    richTextBox1.SelectionBackColor = Glob.Right;
+                                    richTextBox1.SelectionBackColor = Glob.RightBGColor;
                                     if (Glob.FWords.Contains(i))//以标识来计算错误量
                                     {
                                         Glob.FWords.Remove(i);
@@ -1671,7 +1689,7 @@ namespace WindowsFormsApplication2
                                 {
                                     richTextBox1.SelectionStart = i;
                                     richTextBox1.SelectionLength = 1;
-                                    richTextBox1.SelectionBackColor = Glob.False;
+                                    richTextBox1.SelectionBackColor = Glob.FalseBGColor;
                                     if (!Glob.FWords.Contains(i))//以标识来计算错误量
                                     {
                                         Glob.FWords.Add(i);
@@ -1713,7 +1731,7 @@ namespace WindowsFormsApplication2
                         {
                             richTextBox1.SelectionStart = HisSave[1];
                             richTextBox1.SelectionLength = istep;
-                            richTextBox1.SelectionBackColor = Glob.r1Back;
+                            richTextBox1.SelectionBackColor = Glob.R1Back;
                             for (int i = HisSave[1]; i <= HisSave[0]; i++)
                             {
                                 if (Glob.FWords.Contains(i))//以标识来计算错误量
@@ -1731,7 +1749,7 @@ namespace WindowsFormsApplication2
                             {
                                 richTextBox1.SelectionStart = i;
                                 richTextBox1.SelectionLength = 1;
-                                richTextBox1.SelectionBackColor = Glob.Right;
+                                richTextBox1.SelectionBackColor = Glob.RightBGColor;
                                 if (Glob.FWords.Contains(i))//以标识来计算错误量
                                 {
                                     Glob.FWords.Remove(i);
@@ -1741,7 +1759,7 @@ namespace WindowsFormsApplication2
                             {
                                 richTextBox1.SelectionStart = i;
                                 richTextBox1.SelectionLength = 1;
-                                richTextBox1.SelectionBackColor = Glob.False;
+                                richTextBox1.SelectionBackColor = Glob.FalseBGColor;
                                 if (!Glob.FWords.Contains(i))//以标识来计算错误量
                                 {
                                     Glob.FWords.Add(i);
@@ -1801,8 +1819,6 @@ namespace WindowsFormsApplication2
                     Glob.HaveTypeCount++;//已跟打段数
 
                     #region 跟打结束
-                    //toolStripStatusLabelTest.Text = "起打时间：" + sTime.ToShortTimeString() + " 终止时间：" + eTime.ToShortTimeString() + " 标志用时：" + (eTime - sTime).TotalSeconds + "s";
-
                     Glob.jjAllC++;//跟打总段数
                     LblHaveTypingChange();
 
@@ -1905,7 +1921,7 @@ namespace WindowsFormsApplication2
                         //停留
                         //MessageBox.Show(stayHighTime[0,0].ToString());
 
-                        var stay = "";
+                        string stay = "";
                         try
                         {
                             const string bd =
@@ -1923,7 +1939,7 @@ namespace WindowsFormsApplication2
                                                      typeDate.TotalTime.ToString("0.00") + "s");
                                 richTextBox1.SelectionStart = typeDate.Start;
                                 richTextBox1.SelectionLength = typeDate.Length;
-                                richTextBox1.SelectionBackColor = Color.YellowGreen;
+                                richTextBox1.SelectionBackColor = Glob.TimeLongColor;
                                 break;
                             }
                         }
@@ -1953,13 +1969,13 @@ namespace WindowsFormsApplication2
                         string TotalSend = "";
                         if (!Glob.isMatch)
                         { // 非赛文
-                            if (Glob.simpleMoudle)
+                            if (Glob.SimpleMoudle)
                             {  //极简模式
-                                string string1 = Glob.CurSegmentNum.ToString() + Glob.simpleSplite + speed2.ToString("0.00") + Glob.simpleSplite + jj.ToString("0.00") + Glob.simpleSplite + mc.ToString("0.00") + Glob.simpleSplite + this.lblMatchCount.Text;
-                                TotalSend += string1 + Glob.simpleSplite;
+                                string string1 = Glob.CurSegmentNum.ToString() + Glob.SimpleSplite + speed2.ToString("0.00") + Glob.SimpleSplite + jj.ToString("0.00") + Glob.SimpleSplite + mc.ToString("0.00") + Glob.SimpleSplite + this.lblMatchCount.Text;
+                                TotalSend += string1 + Glob.SimpleSplite;
                                 if (Glob.InstraPre_ != "0")
                                 {
-                                    TotalSend += Glob.InstraPre + Glob.simpleSplite;
+                                    TotalSend += Glob.InstraPre + Glob.SimpleSplite;
                                 }
                                 TotalSend += Glob.Instration;
                             }
@@ -2207,6 +2223,7 @@ namespace WindowsFormsApplication2
                         this.currentScoreData.AddScoreRow(scoreRow);
                         #endregion
 
+                        #region 自动发文
                         if (NewSendText.发文状态)
                         {
                             if (NewSendText.是否自动)
@@ -2278,6 +2295,7 @@ namespace WindowsFormsApplication2
                                 }
                             }
                         }
+                        #endregion
                     }
                     #endregion
                 }
@@ -2329,7 +2347,9 @@ namespace WindowsFormsApplication2
                         this.richTextBox1.SelectionLength = 1;
                         //Font font = new Font(this.richTextBox1.SelectionFont, FontStyle.Underline);
                         //this.richTextBox1.SelectionFont = font;
-                        this.richTextBox1.SelectionColor = Color.GreenYellow;
+
+                        //? 显示回改地点的执行位于标识跟打用时最多的词条后
+                        this.richTextBox1.SelectionColor = Glob.BackChangeColor;
                     }
                 }
             }
@@ -2799,7 +2819,7 @@ namespace WindowsFormsApplication2
                 TimeSpan span = DateTime.Now - Glob.nowStart;
                 int now = (int)span.TotalSeconds;
                 this.lblAutoReType.Text = now.ToString();
-                if (now > Glob.StopUse * 60)
+                if (now > Glob.StopUseTime * 60)
                 {
                     F3();
 
@@ -2812,8 +2832,8 @@ namespace WindowsFormsApplication2
         private void lblAutoReType_TextChanged(object sender, EventArgs e)
         {
             int get = int.Parse(lblAutoReType.Text);
-            if (get <= Glob.StopUse * 18) { lblAutoReType.ForeColor = Color.Black; }
-            else if (get > Glob.StopUse * 18 && get <= Glob.StopUse * 36) { lblAutoReType.ForeColor = Color.DarkGreen; }
+            if (get <= Glob.StopUseTime * 18) { lblAutoReType.ForeColor = Color.Black; }
+            else if (get > Glob.StopUseTime * 18 && get <= Glob.StopUseTime * 36) { lblAutoReType.ForeColor = Color.DarkGreen; }
             else { lblAutoReType.ForeColor = Color.IndianRed; }
         }
 
@@ -3028,7 +3048,7 @@ namespace WindowsFormsApplication2
             //MessageBox.Show(text_);
             //SwitchToThisWindow(FindWindow(null, Glob.Form), true);
             string pretext, preduan;
-            if (Glob.isZdy)
+            if (Glob.IsZdyPre)
             {
                 pretext = Glob.PreText.Replace(@"\", @"\\");
                 preduan = Glob.PreDuan.Replace("xx", @"\d+");
@@ -3050,7 +3070,7 @@ namespace WindowsFormsApplication2
                 return;
             }
             string getDuanAll = Glob.getDuan.ToString();
-            if (Glob.isZdy)
+            if (Glob.IsZdyPre)
             {
                 Glob.regexCout = new Regex(@"(?<=" + preduan.Substring(0, 1) + @")\d+(?=" + preduan.Substring(4, 1) + ")", RegexOptions.RightToLeft);
             }
@@ -3274,7 +3294,7 @@ namespace WindowsFormsApplication2
                 {
                     this.richTextBox1.SelectionStart = Glob.SpeedPoint_[i];
                     this.richTextBox1.SelectionLength = 1;
-                    this.richTextBox1.SelectionBackColor = Color.LightGray;
+                    this.richTextBox1.SelectionBackColor = Glob.TestMarkColor;
                 }
                 Array.Clear(Glob.SpeedTime, 0, Glob.SpeedTime.Length);
                 Array.Clear(Glob.SpeedJs, 0, Glob.SpeedJs.Length);
@@ -3527,14 +3547,6 @@ namespace WindowsFormsApplication2
         }
         #endregion
 
-        #region 设置窗口的打开
-        private void button1_Click(object sender, EventArgs e)
-        {
-            TSetup SetupA = new TSetup(this);
-            SetupA.ShowDialog();
-        }
-        #endregion
-
         #region 关闭后的设置
         private void CloseTyping(object sender, FormClosedEventArgs e)
         {
@@ -3594,65 +3606,6 @@ namespace WindowsFormsApplication2
 
         #endregion
 
-        #region 标记功能
-        private void richtextBoxEx1_TextChanged(object sender, EventArgs e) //对照区的值改变时
-        {
-            //MarkIt();
-            //richTextBox1.Rtf += @"";// + richTextBox1.Rtf;
-            //Application.DoEvents();
-        }
-
-        public void MarkIt()
-        {
-            string x = richTextBox1.Text;
-            for (int i = 0; i < x.Length; i++)
-            {
-                if (x[i] == ' ')
-                {
-                    Color c = Color.FromName(getStrColor());
-                    richTextBox1.SelectionStart = i;
-                    richTextBox1.SelectionLength = 1;
-                    richTextBox1.SelectionBackColor = Color.LightGray;
-                }
-            }
-        }
-
-        private static Random rand = new Random();
-        public static string getStrColor()
-        {
-            Color color = Color.FromArgb(rand.Next());
-            string strColor = "#" + Convert.ToString(color.ToArgb(), 16).PadLeft(8, '0').Substring(2, 6);
-            return strColor;
-        }
-
-        /*public void BlockMark() { //空格标记
-            string strRTF = richTextBox1.Rtf;
-            richTextBox1.Clear();
-
-            int iCTableStart = strRTF.IndexOf("colortbl;");
-            if (iCTableStart != -1)
-            {
-                int iCTableEnd = strRTF.IndexOf('}', iCTableStart);
-                strRTF = strRTF.Remove(iCTableStart, iCTableEnd - iCTableStart);
-                strRTF = strRTF.Insert(iCTableStart, "colortbl;\\red255\\green0\\blue0;\\red0\\green128\\blue0;red0\\green0\\blue255;}");
-            }
-            else
-            {
-                int iRTFloc = strRTF.IndexOf("\\rtf");
-                int iInsertLoc = strRTF.IndexOf('{', iRTFloc);
-                if (iInsertLoc == -1) iInsertLoc = strRTF.IndexOf('}', iRTFloc - 1);
-                strRTF = strRTF.Insert(iInsertLoc, "{\\colortbl;\\red128\\green0\\blue0;\\red0\\green128\\blue0;red0\\green0\\blue255;}");
-            }
-            //MarkIt(strRTF);
-            int s = strRTF.IndexOf(' ');
-            //MessageBox.Show(s.ToString());
-            strRTF = strRTF.Replace(" ", @"{\ulwave\cf3  }");
-            richTextBox1.Rtf = strRTF;
-        }
-        */
-
-        #endregion  //尝试
-
         #region 跟打历史
         private void CellContentClick(object sender, DataGridViewCellEventArgs e)//表格按钮点击
         {
@@ -3705,7 +3658,6 @@ namespace WindowsFormsApplication2
             }
         }
         #endregion
-
 
         #region 即时图表 1000ms
         private void timer3_Tick(object sender, EventArgs e)
@@ -3766,8 +3718,8 @@ namespace WindowsFormsApplication2
                 UnregisterHotKey(this.Handle, 100);
             }
 
-            TSetup SetupA = new TSetup(this);
-            SetupA.ShowDialog();
+            TSetup setupBox = new TSetup(this);
+            setupBox.ShowDialog();
         }
 
         private void 新发文ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -4054,7 +4006,7 @@ namespace WindowsFormsApplication2
 
             if (this.tsb标注.Checked)
             {
-                this.richTextBox1.Render(Glob.BmAlls, Glob.Right); //* 绘制标注线条
+                this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor); //* 绘制标注线条
             }
 
             BeginInvoke(new MethodInvoker(() =>
@@ -5487,7 +5439,7 @@ namespace WindowsFormsApplication2
             {
                 this.richTextBox1.SelectionStart = start;
                 this.richTextBox1.SelectionLength = 1;
-                this.richTextBox1.SelectionBackColor = Color.LightGray;
+                this.richTextBox1.SelectionBackColor = Glob.TestMarkColor;
                 Glob.SpeedPoint_[Glob.SpeedPointCount] = start;
                 Glob.SpeedPointCount++;
                 this.lblspeedcheck.Text = "测速点:" + Glob.SpeedPointCount.ToString();
@@ -5574,7 +5526,7 @@ namespace WindowsFormsApplication2
         {
             get
             {
-                if (Glob.isZdy)
+                if (Glob.IsZdyPre)
                 {
                     string pretext = Glob.PreText.Replace(@"\", @"\\");
                     string preduan = Glob.PreDuan.Replace("xx", @"\d+");
@@ -5623,7 +5575,7 @@ namespace WindowsFormsApplication2
             string pretext, preduan;
             //System.Diagnostics.Debug.Write("sender.ToString() = " + sender.ToString() + "\n");
             //System.Diagnostics.Debug.Write("Glob.PreDuan = " + Glob.PreDuan + "\n");
-            if (Glob.isZdy)
+            if (Glob.IsZdyPre)
             {
                 pretext = Glob.PreText.Replace(@"\", @"\\");
                 preduan = Glob.PreDuan.Replace("xx", sender.ToString());
@@ -5645,7 +5597,7 @@ namespace WindowsFormsApplication2
                 return;
             }
             string getDuanAll = Glob.getDuan.ToString();
-            if (Glob.isZdy)
+            if (Glob.IsZdyPre)
             {
                 Glob.regexCout = new Regex(@"(?<=" + Glob.PreDuan.Replace("xx", @")" + sender.ToString() + "(?=") + ")", RegexOptions.RightToLeft);
             }
@@ -5681,7 +5633,7 @@ namespace WindowsFormsApplication2
         {
             if (this.tsb标注.Checked)
             {
-                this.richTextBox1.Render(Glob.BmAlls, Glob.Right);
+                this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor);
             }
         }
 
@@ -5689,7 +5641,7 @@ namespace WindowsFormsApplication2
         {
             if (this.tsb标注.Checked)
             {
-                this.richTextBox1.Render(Glob.BmAlls, Glob.Right);
+                this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor);
             }
         }
 
@@ -5697,7 +5649,7 @@ namespace WindowsFormsApplication2
         {
             if (this.tsb标注.Checked)
             {
-                this.richTextBox1.Render(Glob.BmAlls, Glob.Right);
+                this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor);
             }
         }
         #endregion

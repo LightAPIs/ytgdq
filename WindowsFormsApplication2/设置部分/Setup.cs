@@ -8,15 +8,13 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using System.Text.RegularExpressions; //正则
 
 namespace WindowsFormsApplication2
 {
     public partial class TSetup : Form
     {
-        readonly Form1 frm;
-        public Font fo1, fo2;
+        private readonly Form1 frm;
+        private Font fo1, fo2;
 
         /// <summary>
         /// 快捷键输入框
@@ -46,28 +44,13 @@ namespace WindowsFormsApplication2
         /// <param name="e"></param>
         private void Setup_Load(object sender, EventArgs e)
         {
-            string gq = IniRead("个签", "标志", "0");
-            if (gq != "0") //个签初始化
-            {
-                this.checkBox1.Checked = true;
-            }
-            else
-            {
-                this.checkBox1.Checked = false;
-            }
-            this.textBox1.Text = IniRead("个签", "签名", "");
+            // 个签初始化
+            this.checkBox1.Checked = Glob.InstraPre_ != "0";
+            this.textBox1.Text = Glob.InstraPre;
 
             //输入法签名初始化
-            string srfsave = IniRead("输入法", "标志", "0");
-            if (srfsave != "0")
-            {
-                this.checkBox3.Checked = true;
-            }
-            else
-            {
-                this.checkBox3.Checked = false;
-            }
-            this.textBox2.Text = IniRead("输入法", "签名", "");
+            this.checkBox3.Checked = Glob.InstraSrf_ != "0";
+            this.textBox2.Text = Glob.InstraSrf;
 
             allCheckBox = new CheckBox[22]
             {
@@ -95,43 +78,53 @@ namespace WindowsFormsApplication2
                 this.checkBox31
             };
 
-            //排序顺序初始化
+            // 排序顺序初始化
             SortSend();
 
-            //载入字体
-            FontConverter fc = new FontConverter();
-            fo1 = (Font)fc.ConvertFromString(IniRead("外观", "对照区字体", "宋体, 21.75pt"));
-            fo2 = (Font)fc.ConvertFromString(IniRead("外观", "跟打区字体", "宋体, 12pt"));
+            // 载入字体
+            fo1 = Glob.Font_1;
+            fo2 = Glob.Font_2;
             this.button3.Text = fo1.FontFamily.GetName(0) + " - " + fo1.Size;
             this.button4.Text = fo2.FontFamily.GetName(0) + " - " + fo2.Size;
+            this.toolTip1.SetToolTip(this.button3, this.button3.Text);
+            this.toolTip1.SetToolTip(this.button4, this.button4.Text);
 
-            //各个外观配置初始化
-            buttoncolor1.BackColor = frm.richTextBox1.BackColor; //对照区底色
-            buttoncolor2.BackColor = frm.textBoxEx1.BackColor; //跟打区底色
-            this.pictureBoxRight.BackColor = Glob.Right;
-            this.pictureBoxFalse.BackColor = Glob.False;
+            // 各个外观配置初始化
+            this.buttoncolor1.BackColor = Glob.R1Back; //对照区底色
+            this.buttoncolor1.ForeColor = Glob.R1Color;
+            this.pictureBox1.BackColor = Glob.R1Color;
+            this.buttoncolor2.BackColor = Glob.R2Back; //跟打区底色
+            this.buttoncolor2.ForeColor = Glob.R2Color;
+            this.pictureBox2.BackColor = Glob.R2Color;
 
-            //载入初始化
-            string pretext = IniRead("载入", "前导", "-----");
-            string preduan = IniRead("载入", "段标", "第xx段");
-            bool ison = bool.Parse(IniRead("载入", "开启", "False"));
-            this.checkBox19.Checked = ison;
-            this.textBoxPreText.Text = pretext;
-            this.textBoxDuan.Text = preduan;
+            this.pictureBoxRight.BackColor = Glob.RightBGColor;
+            this.pictureBoxFalse.BackColor = Glob.FalseBGColor;
+
+            this.pictureBox3.BackColor = Glob.BackChangeColor;
+            this.pictureBox4.BackColor = Glob.TimeLongColor;
+
+            this.pictureBox5.BackColor = Glob.Words0Color;
+            this.pictureBox6.BackColor = Glob.Words1Color;
+            this.pictureBox7.BackColor = Glob.Words2Color;
+            this.pictureBox8.BackColor = Glob.Words3Color;
+
+            this.pictureBox9.BackColor = Glob.TestMarkColor;
+
+            // 载文初始化
+            this.checkBox19.Checked = Glob.IsZdyPre;
+            this.textBoxPreText.Text = Glob.PreText;
+            this.textBoxDuan.Text = Glob.PreDuan;
 
             // 昵称
-            this.tbxName.Text = IniRead("发送", "昵称", this.tbxName.Text);
-            //停止时间初始化
-            int StopTime = int.Parse(IniRead("控制", "停止", "1"));
-            if (StopTime < 1 || StopTime > 10)
-            {
-                StopTime = 1;
-            }
-            this.trackBar2.Value = StopTime;
-            this.label17.Text = StopTime + "分";
-            //极简设置
-            this.SimpleCheckBox.Checked = Glob.simpleMoudle;
-            this.SimpleTextBox.Text = Glob.simpleSplite;
+            this.tbxName.Text = Glob.PicName;
+
+            // 停止时间初始化
+            this.trackBar2.Value = Glob.StopUseTime;
+            this.label17.Text = Glob.StopUseTime + "分";
+
+            // 极简设置
+            this.SimpleCheckBox.Checked = Glob.SimpleMoudle;
+            this.SimpleTextBox.Text = Glob.SimpleSplite;
 
             //* 使用顶功输入法
             this.DGCheckBox.Checked = Glob.UseDGInput;
@@ -207,7 +200,7 @@ namespace WindowsFormsApplication2
             // 读取保存的快捷键
             for (int i = 0; i < allTBox.Length; i++)
             {
-                allTBox[i].Text = IniRead("快捷键", Glob.HotKeyList[i].GetId(), Glob.HotKeyList[i].GetDefaultKeys());
+                allTBox[i].Text = Glob.HotKeyList[i].GetKeys();
                 allTBox[i].Tag = allTBox[i].Text;
             }
         }
@@ -227,26 +220,20 @@ namespace WindowsFormsApplication2
         {
             _Ini Setupini = new _Ini("config.ini");
 
-            gQ();//保存个签
-            //保存输入法签名
-            srfSave();
-            //颜色设置
-            Setupini.IniWriteValue("外观", "对照区颜色", buttoncolor1.BackColor.ToArgb().ToString());
-            Glob.r1Back = buttoncolor1.BackColor;
-            Setupini.IniWriteValue("外观", "跟打区颜色", buttoncolor2.BackColor.ToArgb().ToString());
-            Setupini.IniWriteValue("外观", "打对颜色", this.pictureBoxRight.BackColor.ToArgb().ToString());
-            Glob.Right = this.pictureBoxRight.BackColor;
-            Setupini.IniWriteValue("外观", "打错颜色", this.pictureBoxFalse.BackColor.ToArgb().ToString());
-            Glob.Right = this.pictureBoxFalse.BackColor;
-            //字体设置
-            FontConverter fc = new FontConverter();
-            Setupini.IniWriteValue("外观", "对照区字体", fc.ConvertToInvariantString(fo1));
-            Setupini.IniWriteValue("外观", "跟打区字体", fc.ConvertToInvariantString(fo2));
-            //Point a1 = frm.richTextBox1.GetPositionFromCharIndex(1);
-            //Point a2 = frm.richTextBox1.GetPositionFromCharIndex(frm.richTextBox1.GetFirstCharIndexFromLine(1));
-            frm.richTextBox1.Font = fo1;
-            frm.textBoxEx1.Font = fo2;
-            //前导
+            if (!File.Exists("config.ini"))
+            {
+                MessageBox.Show("文件丢失！");
+                return;
+                
+            }
+
+            if (!SaveSort())
+            {
+                MessageBox.Show(this, "含有错误排序字符，请重新检查！", "雨天跟打器排序提示");
+                return;
+            }
+
+            // 载文
             if (checkBox19.Checked)
             {
                 if (this.textBoxDuan.Text.Contains("xx"))
@@ -254,6 +241,9 @@ namespace WindowsFormsApplication2
                     Setupini.IniWriteValue("载入", "前导", this.textBoxPreText.Text);
                     Setupini.IniWriteValue("载入", "段标", this.textBoxDuan.Text);
                     Setupini.IniWriteValue("载入", "开启", this.checkBox19.Checked.ToString());
+                    Glob.PreText = this.textBoxPreText.Text;
+                    Glob.PreDuan = this.textBoxDuan.Text;
+                    Glob.IsZdyPre = true;
                 }
                 else
                 {
@@ -264,28 +254,116 @@ namespace WindowsFormsApplication2
             else
             {
                 Setupini.IniWriteValue("载入", "开启", this.checkBox19.Checked.ToString());
+                Glob.PreText = "-----";
+                Glob.PreDuan = "第xx段";
+                Glob.IsZdyPre = false;
             }
+
+            Setupini.IniWriteValue("发送", "顺序", textBox3.Text);
+            Glob.sortSend = this.textBox3.Text;
+
+            // 保存个签
+            if (this.checkBox1.Checked)
+            {
+                if (this.textBox1.Text != "")
+                {
+                    Setupini.IniWriteValue("个签", "签名", this.textBox1.Text);
+                    Setupini.IniWriteValue("个签", "标志", "1");
+                    Glob.InstraPre_ = "1";
+                    Glob.InstraPre = this.textBox1.Text;
+                }
+                else
+                {
+                    Setupini.IniWriteValue("个签", "标志", "0"); // 0 表示未设置
+                    Glob.InstraPre_ = "0";
+                }
+            }
+            else
+            {
+                Setupini.IniWriteValue("个签", "标志", "0"); // 0 表示未设置
+                Glob.InstraPre_ = "0";
+            }
+            
+            // 保存输入法签名
+            if (this.checkBox3.Checked)
+            {
+                if (this.textBox2.Text != "")
+                {
+                    Setupini.IniWriteValue("输入法", "签名", this.textBox2.Text);
+                    Setupini.IniWriteValue("输入法", "标志", "1");
+                    Glob.InstraSrf_ = "1";
+                    Glob.InstraSrf = this.textBox2.Text;
+                }
+                else
+                {
+                    Setupini.IniWriteValue("输入法", "标志", "0");
+                    Glob.InstraSrf_ = "0";
+                }
+            }
+            else
+            {
+                Setupini.IniWriteValue("输入法", "标志", "0");
+                Glob.InstraSrf_ = "0";
+            }
+
+            //图片成绩发送昵称
+            Setupini.IniWriteValue("发送", "昵称", this.tbxName.Text);
+            Glob.PicName = this.tbxName.Text;
+
+            //颜色设置
+            Setupini.IniWriteValue("外观", "对照区颜色", buttoncolor1.BackColor.ToArgb().ToString());
+            Glob.R1Back = buttoncolor1.BackColor;
+            frm.richTextBox1.BackColor = Glob.R1Back;
+            Setupini.IniWriteValue("外观", "跟打区颜色", buttoncolor2.BackColor.ToArgb().ToString());
+            Glob.R2Back = buttoncolor2.BackColor;
+            frm.textBoxEx1.BackColor = Glob.R2Back;
+            Setupini.IniWriteValue("外观", "对照区文字色", this.pictureBox1.BackColor.ToArgb().ToString());
+            Glob.R1Color = this.pictureBox1.BackColor;
+            frm.richTextBox1.ForeColor = Glob.R1Color;
+            Setupini.IniWriteValue("外观", "跟打区文字色", this.pictureBox2.BackColor.ToArgb().ToString());
+            Glob.R2Color = this.pictureBox2.BackColor;
+            frm.textBoxEx1.ForeColor = Glob.R2Color;
+
+            Setupini.IniWriteValue("外观", "打对颜色", this.pictureBoxRight.BackColor.ToArgb().ToString());
+            Glob.RightBGColor = this.pictureBoxRight.BackColor;
+            Setupini.IniWriteValue("外观", "打错颜色", this.pictureBoxFalse.BackColor.ToArgb().ToString());
+            Glob.FalseBGColor = this.pictureBoxFalse.BackColor;
+
+            Setupini.IniWriteValue("外观", "回改颜色", this.pictureBox3.BackColor.ToArgb().ToString());
+            Glob.BackChangeColor = this.pictureBox3.BackColor;
+            Setupini.IniWriteValue("外观", "用时背景色", this.pictureBox4.BackColor.ToArgb().ToString());
+            Glob.TimeLongColor = this.pictureBox4.BackColor;
+
+            Setupini.IniWriteValue("外观", "词组0重色", this.pictureBox5.BackColor.ToArgb().ToString());
+            Glob.Words0Color = this.pictureBox5.BackColor;
+            Setupini.IniWriteValue("外观", "词组1重色", this.pictureBox6.BackColor.ToArgb().ToString());
+            Glob.Words1Color = this.pictureBox6.BackColor;
+            Setupini.IniWriteValue("外观", "词组2重色", this.pictureBox7.BackColor.ToArgb().ToString());
+            Glob.Words2Color = this.pictureBox7.BackColor;
+            Setupini.IniWriteValue("外观", "词组3重色", this.pictureBox8.BackColor.ToArgb().ToString());
+            Glob.Words3Color = this.pictureBox8.BackColor;
+            Setupini.IniWriteValue("外观", "测速点颜色", this.pictureBox9.BackColor.ToArgb().ToString());
+            Glob.TestMarkColor = this.pictureBox9.BackColor;
+
+            //字体设置
+            FontConverter fc = new FontConverter();
+            Setupini.IniWriteValue("外观", "对照区字体", fc.ConvertToInvariantString(fo1));
+            Setupini.IniWriteValue("外观", "跟打区字体", fc.ConvertToInvariantString(fo2));
+            frm.richTextBox1.Font = fo1;
+            frm.textBoxEx1.Font = fo2;
+            Glob.Font_1 = fo1;
+            Glob.Font_2 = fo2;
 
             //停止时间
             Setupini.IniWriteValue("控制", "停止", this.trackBar2.Value.ToString());
-            Glob.StopUse = this.trackBar2.Value;
+            Glob.StopUseTime = this.trackBar2.Value;
             frm.toolTip1.SetToolTip(frm.lblAutoReType, "跟打停止时间，大于" + this.trackBar2.Value + "分钟时自动停止跟打");
 
             //极简模式
             Setupini.IniWriteValue("发送", "极简状态", this.SimpleCheckBox.Checked.ToString());
             Setupini.IniWriteValue("发送", "分隔符", this.SimpleTextBox.Text);
-            Glob.simpleMoudle = this.SimpleCheckBox.Checked;
-            Glob.simpleSplite = this.SimpleTextBox.Text;
-
-            if (!saveSort())
-            {
-                MessageBox.Show(this, "含有错误排序字符，请重新检查！", "雨天跟打器排序提示");
-                return;
-            }
-            else
-            {
-                Setupini.IniWriteValue("发送", "顺序", textBox3.Text);
-            }
+            Glob.SimpleMoudle = this.SimpleCheckBox.Checked;
+            Glob.SimpleSplite = this.SimpleTextBox.Text;
 
             if (this.AdvancedCheckBox.Checked)
             {
@@ -342,108 +420,28 @@ namespace WindowsFormsApplication2
                 Glob.UseZRetype = false;
             }
 
-            if (this.checkBox1.Checked)
-            {
-                Glob.InstraPre_ = "1";
-            }
-            else
-            {
-                Glob.InstraPre_ = "0";
-            }
-            Glob.InstraPre = this.textBox1.Text; //个签
-            Glob.InstraSrf = this.textBox2.Text; //输入法签名
-            Glob.InstraSrf_ = IniRead("输入法", "标志", "0");
-            Glob.binput = true;//输入法修改
-
-            Glob.sortSend = this.textBox3.Text;
-            Glob.Right = pictureBoxRight.BackColor;
-            Glob.False = pictureBoxFalse.BackColor;
-            frm.richTextBox1.BackColor = this.buttoncolor1.BackColor;
-            frm.textBoxEx1.BackColor = this.buttoncolor2.BackColor;
-            if (checkBox19.Checked)
-            {
-                Glob.PreText = this.textBoxPreText.Text;
-                Glob.PreDuan = this.textBoxDuan.Text;
-                Glob.isZdy = true;
-            }
-            else
-            {
-                Glob.PreText = "-----";
-                Glob.PreDuan = "第xx段";
-            }
-
-            //图片成绩发送昵称
-            Setupini.IniWriteValue("发送", "昵称", this.tbxName.Text);
-            Glob.PicName = this.tbxName.Text;
-
-            if (File.Exists("config.ini"))
-            {
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("文件丢失！");
-            }
-
             //* 保存快捷键设置
             for (int i = 0; i < allTBox.Length; i++)
             {
                 Glob.HotKeyList[i].SetKeys(allTBox[i].Tag.ToString());
                 Setupini.IniWriteValue("快捷键", Glob.HotKeyList[i].GetId(), Glob.HotKeyList[i].GetKeys());
             }
+
             //* 快捷键处理
             frm.HotKeyHandler();
+
+            this.Close();
         }
-
-        public void gQ()
-        {
-            _Ini Setupini = new _Ini("config.ini");
-            if (this.checkBox1.Checked)
-            {
-                if (this.textBox1.Text != "")
-                {
-                    Setupini.IniWriteValue("个签", "签名", this.textBox1.Text);
-                    Setupini.IniWriteValue("个签", "标志", "1");
-                }
-                else
-                {
-                    Setupini.IniWriteValue("个签", "标志", "0"); // 0 表示未设置
-                }
-            }
-            else
-            {
-                Setupini.IniWriteValue("个签", "标志", "0"); // 0 表示未设置
-            }
-        }//个签
-
-        public void srfSave()
-        {
-            _Ini Setupini = new _Ini("config.ini");
-            if (this.checkBox3.Checked)
-            {
-                if (this.textBox2.Text != "")
-                {
-                    Setupini.IniWriteValue("输入法", "签名", this.textBox2.Text);
-                    Setupini.IniWriteValue("输入法", "标志", "1");
-                }
-                else
-                {
-                    Setupini.IniWriteValue("输入法", "标志", "0");
-                }
-            }
-            else
-            {
-                Setupini.IniWriteValue("输入法", "标志", "0");
-            }
-        } //输入法
-        //排序顺序
+        
+        /// <summary>
+        /// 排序顺序
+        /// </summary>
         public void SortSend()
         {
-            string sort = IniRead("发送", "顺序", "ABCVDTSEFULGNORQ");
-            textBox3.Text = sort;
+            this.textBox3.Text = Glob.sortSend;
             try
             {
-                char[] g = sort.ToArray();
+                char[] g = Glob.sortSend.ToArray();
                 CheckAllOut();//清空所有选择
                 for (int i = 0; i < g.Length; i++)
                 {
@@ -486,14 +484,6 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void textBoxQQ_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar != '\b' && !Char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
         private void checkBox3_CheckedChanged(object sender, EventArgs e) //输入法签名开关
         {
             if (checkBox3.Checked)
@@ -508,24 +498,6 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void buttoncolor1_Click(object sender, EventArgs e)
-        {
-            this.colorDialog1.Color = buttoncolor1.BackColor;
-            if (this.colorDialog1.ShowDialog(this) == DialogResult.OK)
-            {
-                this.buttoncolor1.BackColor = colorDialog1.Color;
-            }
-        }
-
-        private void buttoncolor2_Click(object sender, EventArgs e)
-        {
-            this.colorDialog1.Color = buttoncolor2.BackColor;
-            if (this.colorDialog1.ShowDialog(this) == DialogResult.OK)
-            {
-                this.buttoncolor2.BackColor = colorDialog1.Color;
-            }
-        }
-
         #region 数据排序
         private void textBox3Press(object sender, KeyPressEventArgs e)
         {
@@ -535,32 +507,7 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void textBox3KDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void buttonGet_Click(object sender, EventArgs e)
-        {
-            string get = "", output = "";
-            foreach (var item in this.panel9.Controls)
-            {
-                if (item is CheckBox)
-                {
-                    if ((item as CheckBox).Checked)
-                    { //如果是选中状态
-                        get = get + (item as CheckBox).Text.Substring(3, 1);
-                    }
-                }
-            }
-            for (int i = get.Length; i > 0; i--)
-            {
-                output += get.Substring(i - 1, 1);
-            }
-            textBox3.Text = output;
-        }
-
-        private bool saveSort()
+        private bool SaveSort()
         {
             string get = textBox3.Text.ToUpper();
             textBox3.Text = get;
@@ -714,6 +661,7 @@ namespace WindowsFormsApplication2
             {
 
                 this.button3.Text = fontDialog1.Font.FontFamily.GetName(0) + " - " + fontDialog1.Font.Size;
+                this.toolTip1.SetToolTip(this.button3, this.button3.Text);
                 fo1 = fontDialog1.Font;
             }
         }
@@ -725,6 +673,7 @@ namespace WindowsFormsApplication2
             if (this.fontDialog1.ShowDialog(this) == DialogResult.OK)
             {
                 this.button4.Text = fontDialog1.Font.FontFamily.GetName(0) + " - " + fontDialog1.Font.Size;
+                this.toolTip1.SetToolTip(this.button4, this.button4.Text);
                 fo2 = fontDialog1.Font;
             }
         }
@@ -764,10 +713,28 @@ namespace WindowsFormsApplication2
         }
         #endregion
 
-        //颜色设置
+        #region 颜色设置
+        private void buttoncolor1_Click(object sender, EventArgs e)
+        {
+            this.colorDialog1.Color = Glob.R1Back;
+            if (this.colorDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                this.buttoncolor1.BackColor = colorDialog1.Color;
+            }
+        }
+
+        private void buttoncolor2_Click(object sender, EventArgs e)
+        {
+            this.colorDialog1.Color = Glob.R2Back;
+            if (this.colorDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                this.buttoncolor2.BackColor = colorDialog1.Color;
+            }
+        }
+
         private void pictureBoxRight_Click(object sender, EventArgs e)
         {
-            this.colorDialog1.Color = Glob.Right;
+            this.colorDialog1.Color = Glob.RightBGColor;
             if (colorDialog1.ShowDialog(this) == DialogResult.OK)
             {
                 this.pictureBoxRight.BackColor = colorDialog1.Color;
@@ -776,19 +743,102 @@ namespace WindowsFormsApplication2
 
         private void pictureBoxFalse_Click(object sender, EventArgs e)
         {
-            this.colorDialog1.Color = Glob.False;
+            this.colorDialog1.Color = Glob.FalseBGColor;
             if (colorDialog1.ShowDialog(this) == DialogResult.OK)
             {
                 this.pictureBoxFalse.BackColor = colorDialog1.Color;
             }
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.colorDialog1.Color = Glob.R1Color;
+            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                this.pictureBox1.BackColor = colorDialog1.Color;
+                this.buttoncolor1.ForeColor = colorDialog1.Color;
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.colorDialog1.Color = Glob.R2Color;
+            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                this.pictureBox2.BackColor = colorDialog1.Color;
+                this.buttoncolor2.ForeColor = colorDialog1.Color;
+            }
+        }
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            this.colorDialog1.Color = Glob.BackChangeColor;
+            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                this.pictureBox3.BackColor = colorDialog1.Color;
+            }
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            this.colorDialog1.Color = Glob.TimeLongColor;
+            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                this.pictureBox4.BackColor = colorDialog1.Color;
+            }
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            this.colorDialog1.Color = Glob.Words0Color;
+            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                this.pictureBox4.BackColor = colorDialog1.Color;
+            }
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            this.colorDialog1.Color = Glob.Words1Color;
+            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                this.pictureBox5.BackColor = colorDialog1.Color;
+            }
+        }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            this.colorDialog1.Color = Glob.Words2Color;
+            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                this.pictureBox6.BackColor = colorDialog1.Color;
+            }
+        }
+
+        private void pictureBox8_Click(object sender, EventArgs e)
+        {
+            this.colorDialog1.Color = Glob.Words3Color;
+            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                this.pictureBox7.BackColor = colorDialog1.Color;
+            }
+        }
+
+        private void pictureBox9_Click(object sender, EventArgs e)
+        {
+            this.colorDialog1.Color = Glob.TestMarkColor;
+            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                this.pictureBox8.BackColor = colorDialog1.Color;
+            }
+        }
+        #endregion
+
         private void trackBar2_Scroll(object sender, EventArgs e)
         {
             this.label17.Text = trackBar2.Value + "分";
         }
 
-        #region 各项顺利控制
+        #region 各项成绩格式控制
         //速度
         private void checkBoxSpeed_CheckedChanged(object sender, EventArgs e)
         {
@@ -1059,6 +1109,68 @@ namespace WindowsFormsApplication2
 
                 e.Handled = true;
                 e.SuppressKeyPress = true;
+            }
+        }
+        #endregion
+
+        #region 重置基本设置
+        private void BaseResetButton_Click(object sender, EventArgs e)
+        {
+            int index = int.Parse((sender as Button).Tag.ToString());
+            FontConverter fc = new FontConverter();
+            switch (index)
+            {
+                case 0:
+                    this.buttoncolor1.BackColor = Color.FromArgb(244, 247, 252);
+                    break;
+                case 1:
+                    this.pictureBox1.BackColor = Color.FromArgb(0, 0, 0);
+                    this.buttoncolor1.ForeColor = Color.FromArgb(0, 0, 0);
+                    break;
+                case 2:
+                    this.button3.Text = "宋体 - 21.75";
+                    this.toolTip1.SetToolTip(this.button3, this.button3.Text);
+                    fo1 = (Font)fc.ConvertFromString("宋体, 21.75pt");
+                    break;
+                case 3:
+                    this.buttoncolor2.BackColor = Color.FromArgb(244, 247, 252);
+                    break;
+                case 4:
+                    this.pictureBox2.BackColor = Color.FromArgb(0, 0, 0);
+                    this.buttoncolor2.ForeColor = Color.FromArgb(0, 0, 0);
+                    break;
+                case 5:
+                    this.button4.Text = "宋体 - 12";
+                    this.toolTip1.SetToolTip(this.button4 , this.button4.Text);
+                    fo2 = (Font)fc.ConvertFromString("宋体, 12pt");
+                    break;
+                case 6:
+                    this.pictureBoxRight.BackColor = Color.FromArgb(128, 128, 128);
+                    break;
+                case 7:
+                    this.pictureBoxFalse.BackColor = Color.FromArgb(255, 106, 106);
+                    break;
+                case 8:
+                    this.pictureBox3.BackColor = Color.FromArgb(173, 255, 47);
+                    break;
+                case 9:
+                    this.pictureBox4.BackColor = Color.FromArgb(154, 205, 50);
+                    break;
+                case 10:
+                    this.pictureBox5.BackColor = Color.FromArgb(0, 0, 255);
+                    break;
+                case 11:
+                    this.pictureBox6.BackColor = Color.FromArgb(255, 0, 0);
+                    break;
+                case 12:
+                    this.pictureBox7.BackColor = Color.FromArgb(128, 0, 128);
+                    break;
+                case 13:
+                    this.pictureBox8.BackColor = Color.FromArgb(255, 20, 147);
+                    break;
+                case 14:
+                    this.pictureBox9.BackColor = Color.FromArgb(211, 211, 211);
+                    break;
             }
         }
         #endregion

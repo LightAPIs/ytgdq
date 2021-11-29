@@ -1099,29 +1099,25 @@ namespace WindowsFormsApplication2
                                     {  //如果找到
                                         try
                                         {
-                                            if (nowIt == "。" && NewSendText.文章全文.Substring(i + 1, 1) == "”")
-                                            {
-                                                i++;
-                                            }
-
-                                            if (nowIt == "”" && NewSendText.文章全文.Substring(i + 1, 1) == "。")
-                                            {
-                                                i++;
-                                            }
-
-                                            if (nowIt == "—" && NewSendText.文章全文.Substring(i + 1, 1) == "—")
-                                            {
-                                                i++;
-                                            }
-
-                                            if (nowIt == "…" && NewSendText.文章全文.Substring(i + 1, 1) == "…")
-                                            {
-                                                i++;
-                                            }
-
                                             if (nowIt == "“" || nowIt == "‘")
                                             { //? 不包括开引号
                                                 i--;
+                                            }
+                                            else if (NewSendText.文章全文.Substring(i + 1, 1) == "”" || NewSendText.文章全文.Substring(i + 1, 1) == "’")
+                                            { //? 取闭引号
+                                                i++;
+                                            }
+                                            else if (nowIt == "”" && (NewSendText.文章全文.Substring(i + 1, 1) == "。" || NewSendText.文章全文.Substring(i + 1, 1) == ","))
+                                            {
+                                                i++;
+                                            }
+                                            else if (nowIt == "—" && NewSendText.文章全文.Substring(i + 1, 1) == "—")
+                                            {
+                                                i++;
+                                            }
+                                            else if (nowIt == "…" && NewSendText.文章全文.Substring(i + 1, 1) == "…")
+                                            {
+                                                i++;
                                             }
                                         }
                                         catch { }

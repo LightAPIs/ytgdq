@@ -29,6 +29,7 @@
 ## 相关项目
 
 - [taliove/tygdq](https://github.com/taliove/tygdq) ([Apache-2.0 License](https://github.com/taliove/tygdq/blob/master/LICENSE))
+- [LightAPIs/article-storage](https://github.com/LightAPIs/article-storage)
 
 ## 许可证
 

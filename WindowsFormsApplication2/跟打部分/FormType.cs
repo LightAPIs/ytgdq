@@ -5705,7 +5705,6 @@ namespace WindowsFormsApplication2
         }
         #endregion
 
-
         #region 透明背景处
         [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
@@ -5852,6 +5851,7 @@ namespace WindowsFormsApplication2
         }
         #endregion
 
+        #region 曲线显示的控制
         private void tbnSpline_Click(object sender, EventArgs e)
         {
             _Ini Setupini = new _Ini("config.ini");
@@ -5869,6 +5869,7 @@ namespace WindowsFormsApplication2
                 this.tbnSpline.Checked = true;
             }
         }
+        #endregion
 
         #region 跟打报告
         private void 跟打报告ToolStripMenuItem_Click(object sender, EventArgs e)

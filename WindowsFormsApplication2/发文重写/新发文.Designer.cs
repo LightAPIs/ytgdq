@@ -1547,7 +1547,7 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.BackColor = System.Drawing.Color.White;
+            this.lblTitle.BackColor = System.Drawing.Color.Gainsboro;
             this.lblTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tableLayoutPanel2.SetColumnSpan(this.lblTitle, 2);
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1585,7 +1585,7 @@
             // 
             // lblStyle
             // 
-            this.lblStyle.BackColor = System.Drawing.Color.White;
+            this.lblStyle.BackColor = System.Drawing.Color.Gainsboro;
             this.lblStyle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tableLayoutPanel2.SetColumnSpan(this.lblStyle, 2);
             this.lblStyle.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1599,7 +1599,7 @@
             // 
             // lblTextCount
             // 
-            this.lblTextCount.BackColor = System.Drawing.Color.White;
+            this.lblTextCount.BackColor = System.Drawing.Color.Gainsboro;
             this.lblTextCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tableLayoutPanel2.SetColumnSpan(this.lblTextCount, 2);
             this.lblTextCount.Dock = System.Windows.Forms.DockStyle.Fill;

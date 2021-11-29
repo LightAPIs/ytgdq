@@ -338,13 +338,13 @@
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.button1.Location = new System.Drawing.Point(220, 0);
+            this.button1.Image = global::WindowsFormsApplication2.Properties.Resources.root;
+            this.button1.Location = new System.Drawing.Point(189, 0);
             this.button1.Margin = new System.Windows.Forms.Padding(0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 23);
+            this.button1.Size = new System.Drawing.Size(37, 23);
             this.button1.TabIndex = 3;
-            this.button1.Text = "返回程序目录";
-            this.toolTip1.SetToolTip(this.button1, "返回跟打器的根目录");
+            this.toolTip1.SetToolTip(this.button1, "返回至跟打器程序目录");
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -388,12 +388,12 @@
             this.btnUP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUP.Font = new System.Drawing.Font("宋体", 9F);
             this.btnUP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnUP.Image = global::WindowsFormsApplication2.Properties.Resources.back;
             this.btnUP.Location = new System.Drawing.Point(152, 0);
             this.btnUP.Margin = new System.Windows.Forms.Padding(0);
             this.btnUP.Name = "btnUP";
-            this.btnUP.Size = new System.Drawing.Size(68, 23);
+            this.btnUP.Size = new System.Drawing.Size(37, 23);
             this.btnUP.TabIndex = 2;
-            this.btnUP.Text = "返回上层";
             this.toolTip1.SetToolTip(this.btnUP, "返回上级文件夹");
             this.btnUP.UseVisualStyleBackColor = true;
             this.btnUP.Click += new System.EventHandler(this.btnUP_Click);
@@ -560,12 +560,12 @@
             this.WebArticleRootButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.WebArticleRootButton.Font = new System.Drawing.Font("宋体", 9F);
             this.WebArticleRootButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.WebArticleRootButton.Location = new System.Drawing.Point(376, 0);
+            this.WebArticleRootButton.Image = global::WindowsFormsApplication2.Properties.Resources.root;
+            this.WebArticleRootButton.Location = new System.Drawing.Point(399, 0);
             this.WebArticleRootButton.Margin = new System.Windows.Forms.Padding(0);
             this.WebArticleRootButton.Name = "WebArticleRootButton";
-            this.WebArticleRootButton.Size = new System.Drawing.Size(59, 23);
+            this.WebArticleRootButton.Size = new System.Drawing.Size(37, 23);
             this.WebArticleRootButton.TabIndex = 20;
-            this.WebArticleRootButton.Text = "根目录";
             this.toolTip1.SetToolTip(this.WebArticleRootButton, "直接返回至根目录");
             this.WebArticleRootButton.UseVisualStyleBackColor = true;
             this.WebArticleRootButton.Click += new System.EventHandler(this.WebArticleRootButton_Click);
@@ -575,12 +575,12 @@
             this.WebArticleBackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.WebArticleBackButton.Font = new System.Drawing.Font("宋体", 9F);
             this.WebArticleBackButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.WebArticleBackButton.Location = new System.Drawing.Point(336, 0);
+            this.WebArticleBackButton.Image = global::WindowsFormsApplication2.Properties.Resources.back;
+            this.WebArticleBackButton.Location = new System.Drawing.Point(362, 0);
             this.WebArticleBackButton.Margin = new System.Windows.Forms.Padding(0);
             this.WebArticleBackButton.Name = "WebArticleBackButton";
-            this.WebArticleBackButton.Size = new System.Drawing.Size(40, 23);
+            this.WebArticleBackButton.Size = new System.Drawing.Size(37, 23);
             this.WebArticleBackButton.TabIndex = 19;
-            this.WebArticleBackButton.Text = "返回";
             this.toolTip1.SetToolTip(this.WebArticleBackButton, "返回至上一级目录");
             this.WebArticleBackButton.UseVisualStyleBackColor = true;
             this.WebArticleBackButton.Click += new System.EventHandler(this.WebArticleBackButton_Click);
@@ -640,13 +640,13 @@
             this.WebArticleLastButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.WebArticleLastButton.Font = new System.Drawing.Font("宋体", 9F);
             this.WebArticleLastButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.WebArticleLastButton.Location = new System.Drawing.Point(315, 0);
+            this.WebArticleLastButton.Image = global::WindowsFormsApplication2.Properties.Resources.last;
+            this.WebArticleLastButton.Location = new System.Drawing.Point(325, 0);
             this.WebArticleLastButton.Margin = new System.Windows.Forms.Padding(0);
             this.WebArticleLastButton.Name = "WebArticleLastButton";
-            this.WebArticleLastButton.Size = new System.Drawing.Size(21, 23);
+            this.WebArticleLastButton.Size = new System.Drawing.Size(37, 23);
             this.WebArticleLastButton.TabIndex = 14;
-            this.WebArticleLastButton.Text = "末";
-            this.toolTip1.SetToolTip(this.WebArticleLastButton, "最后一页");
+            this.toolTip1.SetToolTip(this.WebArticleLastButton, "跳转到最后一页");
             this.WebArticleLastButton.UseVisualStyleBackColor = true;
             this.WebArticleLastButton.Click += new System.EventHandler(this.WebArticleLastButton_Click);
             // 
@@ -655,13 +655,13 @@
             this.WebArticleHomeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.WebArticleHomeButton.Font = new System.Drawing.Font("宋体", 9F);
             this.WebArticleHomeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.WebArticleHomeButton.Image = global::WindowsFormsApplication2.Properties.Resources.first;
             this.WebArticleHomeButton.Location = new System.Drawing.Point(214, 0);
             this.WebArticleHomeButton.Margin = new System.Windows.Forms.Padding(0);
             this.WebArticleHomeButton.Name = "WebArticleHomeButton";
-            this.WebArticleHomeButton.Size = new System.Drawing.Size(21, 23);
+            this.WebArticleHomeButton.Size = new System.Drawing.Size(37, 23);
             this.WebArticleHomeButton.TabIndex = 13;
-            this.WebArticleHomeButton.Text = "首";
-            this.toolTip1.SetToolTip(this.WebArticleHomeButton, "第一页");
+            this.toolTip1.SetToolTip(this.WebArticleHomeButton, "跳转到第一页");
             this.WebArticleHomeButton.UseVisualStyleBackColor = true;
             this.WebArticleHomeButton.Click += new System.EventHandler(this.WebArticleFirstButton_Click);
             // 
@@ -735,12 +735,12 @@
             // 
             this.WebArticleNextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.WebArticleNextButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.WebArticleNextButton.Location = new System.Drawing.Point(275, 0);
+            this.WebArticleNextButton.Image = global::WindowsFormsApplication2.Properties.Resources.next;
+            this.WebArticleNextButton.Location = new System.Drawing.Point(288, 0);
             this.WebArticleNextButton.Margin = new System.Windows.Forms.Padding(0);
             this.WebArticleNextButton.Name = "WebArticleNextButton";
-            this.WebArticleNextButton.Size = new System.Drawing.Size(40, 23);
+            this.WebArticleNextButton.Size = new System.Drawing.Size(37, 23);
             this.WebArticleNextButton.TabIndex = 3;
-            this.WebArticleNextButton.Text = "下页";
             this.toolTip1.SetToolTip(this.WebArticleNextButton, "下一页");
             this.WebArticleNextButton.UseVisualStyleBackColor = true;
             this.WebArticleNextButton.Click += new System.EventHandler(this.WebArticleNextButton_Click);
@@ -799,12 +799,12 @@
             this.WebArticlePreButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.WebArticlePreButton.Font = new System.Drawing.Font("宋体", 9F);
             this.WebArticlePreButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.WebArticlePreButton.Location = new System.Drawing.Point(235, 0);
+            this.WebArticlePreButton.Image = global::WindowsFormsApplication2.Properties.Resources.prev;
+            this.WebArticlePreButton.Location = new System.Drawing.Point(251, 0);
             this.WebArticlePreButton.Margin = new System.Windows.Forms.Padding(0);
             this.WebArticlePreButton.Name = "WebArticlePreButton";
-            this.WebArticlePreButton.Size = new System.Drawing.Size(40, 23);
+            this.WebArticlePreButton.Size = new System.Drawing.Size(37, 23);
             this.WebArticlePreButton.TabIndex = 2;
-            this.WebArticlePreButton.Text = "上页";
             this.toolTip1.SetToolTip(this.WebArticlePreButton, "上一页");
             this.WebArticlePreButton.UseVisualStyleBackColor = true;
             this.WebArticlePreButton.Click += new System.EventHandler(this.WebArticlePreButton_Click);
@@ -915,13 +915,13 @@
             this.ArticleLastButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ArticleLastButton.Font = new System.Drawing.Font("宋体", 9F);
             this.ArticleLastButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.ArticleLastButton.Location = new System.Drawing.Point(361, 0);
+            this.ArticleLastButton.Image = global::WindowsFormsApplication2.Properties.Resources.last;
+            this.ArticleLastButton.Location = new System.Drawing.Point(325, 0);
             this.ArticleLastButton.Margin = new System.Windows.Forms.Padding(0);
             this.ArticleLastButton.Name = "ArticleLastButton";
-            this.ArticleLastButton.Size = new System.Drawing.Size(45, 23);
+            this.ArticleLastButton.Size = new System.Drawing.Size(37, 23);
             this.ArticleLastButton.TabIndex = 14;
-            this.ArticleLastButton.Text = "末页";
-            this.toolTip1.SetToolTip(this.ArticleLastButton, "最后一页");
+            this.toolTip1.SetToolTip(this.ArticleLastButton, "跳转到最后一页");
             this.ArticleLastButton.UseVisualStyleBackColor = true;
             this.ArticleLastButton.Click += new System.EventHandler(this.ArticleLastButton_Click);
             // 
@@ -930,13 +930,13 @@
             this.ArticleFirstButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ArticleFirstButton.Font = new System.Drawing.Font("宋体", 9F);
             this.ArticleFirstButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.ArticleFirstButton.Image = global::WindowsFormsApplication2.Properties.Resources.first;
             this.ArticleFirstButton.Location = new System.Drawing.Point(214, 0);
             this.ArticleFirstButton.Margin = new System.Windows.Forms.Padding(0);
             this.ArticleFirstButton.Name = "ArticleFirstButton";
-            this.ArticleFirstButton.Size = new System.Drawing.Size(43, 23);
+            this.ArticleFirstButton.Size = new System.Drawing.Size(37, 23);
             this.ArticleFirstButton.TabIndex = 13;
-            this.ArticleFirstButton.Text = "首页";
-            this.toolTip1.SetToolTip(this.ArticleFirstButton, "第一页");
+            this.toolTip1.SetToolTip(this.ArticleFirstButton, "跳转到第一页");
             this.ArticleFirstButton.UseVisualStyleBackColor = true;
             this.ArticleFirstButton.Click += new System.EventHandler(this.ArticleFirstButton_Click);
             // 
@@ -1010,12 +1010,13 @@
             // 
             this.ArticleNextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ArticleNextButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.ArticleNextButton.Location = new System.Drawing.Point(309, 0);
+            this.ArticleNextButton.Image = global::WindowsFormsApplication2.Properties.Resources.next;
+            this.ArticleNextButton.Location = new System.Drawing.Point(288, 0);
             this.ArticleNextButton.Margin = new System.Windows.Forms.Padding(0);
             this.ArticleNextButton.Name = "ArticleNextButton";
-            this.ArticleNextButton.Size = new System.Drawing.Size(52, 23);
+            this.ArticleNextButton.Size = new System.Drawing.Size(37, 23);
             this.ArticleNextButton.TabIndex = 3;
-            this.ArticleNextButton.Text = "下一页";
+            this.toolTip1.SetToolTip(this.ArticleNextButton, "下一页");
             this.ArticleNextButton.UseVisualStyleBackColor = true;
             this.ArticleNextButton.Click += new System.EventHandler(this.ArticleNextButton_Click);
             // 
@@ -1071,12 +1072,13 @@
             this.ArticlePreButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ArticlePreButton.Font = new System.Drawing.Font("宋体", 9F);
             this.ArticlePreButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.ArticlePreButton.Location = new System.Drawing.Point(257, 0);
+            this.ArticlePreButton.Image = global::WindowsFormsApplication2.Properties.Resources.prev;
+            this.ArticlePreButton.Location = new System.Drawing.Point(251, 0);
             this.ArticlePreButton.Margin = new System.Windows.Forms.Padding(0);
             this.ArticlePreButton.Name = "ArticlePreButton";
-            this.ArticlePreButton.Size = new System.Drawing.Size(52, 23);
+            this.ArticlePreButton.Size = new System.Drawing.Size(37, 23);
             this.ArticlePreButton.TabIndex = 2;
-            this.ArticlePreButton.Text = "上一页";
+            this.toolTip1.SetToolTip(this.ArticlePreButton, "上一页");
             this.ArticlePreButton.UseVisualStyleBackColor = true;
             this.ArticlePreButton.Click += new System.EventHandler(this.ArticlePreButton_Click);
             // 
@@ -1185,13 +1187,13 @@
             this.SentLastButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SentLastButton.Font = new System.Drawing.Font("宋体", 9F);
             this.SentLastButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.SentLastButton.Location = new System.Drawing.Point(361, 0);
+            this.SentLastButton.Image = global::WindowsFormsApplication2.Properties.Resources.last;
+            this.SentLastButton.Location = new System.Drawing.Point(325, 0);
             this.SentLastButton.Margin = new System.Windows.Forms.Padding(0);
             this.SentLastButton.Name = "SentLastButton";
-            this.SentLastButton.Size = new System.Drawing.Size(45, 23);
+            this.SentLastButton.Size = new System.Drawing.Size(37, 23);
             this.SentLastButton.TabIndex = 14;
-            this.SentLastButton.Text = "末页";
-            this.toolTip1.SetToolTip(this.SentLastButton, "最后一页");
+            this.toolTip1.SetToolTip(this.SentLastButton, "跳转到最后一页");
             this.SentLastButton.UseVisualStyleBackColor = true;
             this.SentLastButton.Click += new System.EventHandler(this.SentLastButton_Click);
             // 
@@ -1200,13 +1202,13 @@
             this.SentFirstButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SentFirstButton.Font = new System.Drawing.Font("宋体", 9F);
             this.SentFirstButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.SentFirstButton.Image = global::WindowsFormsApplication2.Properties.Resources.first;
             this.SentFirstButton.Location = new System.Drawing.Point(214, 0);
             this.SentFirstButton.Margin = new System.Windows.Forms.Padding(0);
             this.SentFirstButton.Name = "SentFirstButton";
-            this.SentFirstButton.Size = new System.Drawing.Size(43, 23);
+            this.SentFirstButton.Size = new System.Drawing.Size(37, 23);
             this.SentFirstButton.TabIndex = 13;
-            this.SentFirstButton.Text = "首页";
-            this.toolTip1.SetToolTip(this.SentFirstButton, "第一页");
+            this.toolTip1.SetToolTip(this.SentFirstButton, "跳转到第一页");
             this.SentFirstButton.UseVisualStyleBackColor = true;
             this.SentFirstButton.Click += new System.EventHandler(this.SentFirstButton_Click);
             // 
@@ -1265,12 +1267,13 @@
             // 
             this.SentNextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SentNextButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.SentNextButton.Location = new System.Drawing.Point(309, 0);
+            this.SentNextButton.Image = global::WindowsFormsApplication2.Properties.Resources.next;
+            this.SentNextButton.Location = new System.Drawing.Point(288, 0);
             this.SentNextButton.Margin = new System.Windows.Forms.Padding(0);
             this.SentNextButton.Name = "SentNextButton";
-            this.SentNextButton.Size = new System.Drawing.Size(52, 23);
+            this.SentNextButton.Size = new System.Drawing.Size(37, 23);
             this.SentNextButton.TabIndex = 3;
-            this.SentNextButton.Text = "下一页";
+            this.toolTip1.SetToolTip(this.SentNextButton, "下一页");
             this.SentNextButton.UseVisualStyleBackColor = true;
             this.SentNextButton.Click += new System.EventHandler(this.SentNextButton_Click);
             // 
@@ -1320,12 +1323,13 @@
             this.SentPreButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SentPreButton.Font = new System.Drawing.Font("宋体", 9F);
             this.SentPreButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.SentPreButton.Location = new System.Drawing.Point(257, 0);
+            this.SentPreButton.Image = global::WindowsFormsApplication2.Properties.Resources.prev;
+            this.SentPreButton.Location = new System.Drawing.Point(251, 0);
             this.SentPreButton.Margin = new System.Windows.Forms.Padding(0);
             this.SentPreButton.Name = "SentPreButton";
-            this.SentPreButton.Size = new System.Drawing.Size(52, 23);
+            this.SentPreButton.Size = new System.Drawing.Size(37, 23);
             this.SentPreButton.TabIndex = 2;
-            this.SentPreButton.Text = "上一页";
+            this.toolTip1.SetToolTip(this.SentPreButton, "上一页");
             this.SentPreButton.UseVisualStyleBackColor = true;
             this.SentPreButton.Click += new System.EventHandler(this.SentPreButton_Click);
             // 

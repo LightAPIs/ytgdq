@@ -402,6 +402,12 @@
     <Content Include="rain.ico" />
     <EmbeddedResource Include="Resources\bg.jpg" />
     <None Include="Resources\search.png" />
+    <None Include="Resources\next.png" />
+    <None Include="Resources\prev.png" />
+    <None Include="Resources\back.png" />
+    <None Include="Resources\root.png" />
+    <None Include="Resources\first.png" />
+    <None Include="Resources\last.png" />
     <Content Include="SQLite.Interop.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

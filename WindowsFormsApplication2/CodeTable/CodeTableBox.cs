@@ -90,7 +90,7 @@ namespace WindowsFormsApplication2.CodeTable
                                 if (lenType[wordLen - 1] != 1)
                                 {
                                     lenType[wordLen - 1] = 1;
-                                }                                
+                                }
                             }
                         }
                     }
@@ -173,16 +173,19 @@ namespace WindowsFormsApplication2.CodeTable
                 if (sd != null)
                 {
                     this.UsedIdLabel.Text = "设定中...";
+                    this.UsedIdLabel.Refresh();
 
                     string tableIndex = sd["table_index"].ToString();
-                    DefaultCodeTableHandler(tableIndex);
+                    this.BeginInvoke(new MethodInvoker(() => {
+                        DefaultCodeTableHandler(tableIndex);
 
-                    //* 写入到数据库中
-                    Glob.UsedTableIndex = sd["table_index"].ToString();
-                    Glob.WordMaxLen = (int)sd["max_len"];
-                    Glob.WordLenType = Array.ConvertAll(sd["len_type"].ToString().Split('|'), s => int.Parse(s));
-                    Glob.CodeHistory.UpdateCodeTableIndex(Glob.WordMaxLen, sd["len_type"].ToString(), id, Glob.UsedTableIndex);
-                    this.UsedIdLabel.Text = id.ToString();
+                        //* 写入到数据库中
+                        Glob.UsedTableIndex = sd["table_index"].ToString();
+                        Glob.WordMaxLen = (int)sd["max_len"];
+                        Glob.WordLenType = Array.ConvertAll(sd["len_type"].ToString().Split('|'), s => int.Parse(s));
+                        Glob.CodeHistory.UpdateCodeTableIndex(Glob.WordMaxLen, sd["len_type"].ToString(), id, Glob.UsedTableIndex);
+                        this.UsedIdLabel.Text = id.ToString();
+                    }));
                 }
             }
         }
@@ -261,7 +264,7 @@ namespace WindowsFormsApplication2.CodeTable
                     {
                         Glob.SingleWordDic[rWord] = rCode;
                     }
-                    
+
                     if (Glob.SingleCodeDic.ContainsKey(rCode) && Glob.SingleCodeDic[rCode] != rWord)
                     { // 编码字典中已存在该编码且对应的字不相同时
                         int tempIndex = 2;

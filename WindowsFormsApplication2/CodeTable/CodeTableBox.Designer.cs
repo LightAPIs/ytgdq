@@ -34,6 +34,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.CancelTableButton = new System.Windows.Forms.Button();
             this.DefaultButton = new System.Windows.Forms.Button();
             this.DelButton = new System.Windows.Forms.Button();
             this.AddButton = new System.Windows.Forms.Button();
@@ -44,7 +45,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.SearchButton = new System.Windows.Forms.Button();
             this.SearchTextBox = new System.Windows.Forms.TextBox();
-            this.CancelTableButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -117,6 +117,18 @@
             this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader4.Width = 130;
             // 
+            // CancelTableButton
+            // 
+            this.CancelTableButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.CancelTableButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.CancelTableButton.Location = new System.Drawing.Point(13, 177);
+            this.CancelTableButton.Name = "CancelTableButton";
+            this.CancelTableButton.Size = new System.Drawing.Size(153, 23);
+            this.CancelTableButton.TabIndex = 6;
+            this.CancelTableButton.Text = "取消默认码表";
+            this.CancelTableButton.UseVisualStyleBackColor = false;
+            this.CancelTableButton.Click += new System.EventHandler(this.CancelTableButton_Click);
+            // 
             // DefaultButton
             // 
             this.DefaultButton.BackColor = System.Drawing.Color.DodgerBlue;
@@ -157,7 +169,7 @@
             // 
             this.UsedIdLabel.AutoSize = true;
             this.UsedIdLabel.ForeColor = System.Drawing.Color.Crimson;
-            this.UsedIdLabel.Location = new System.Drawing.Point(118, 234);
+            this.UsedIdLabel.Location = new System.Drawing.Point(108, 234);
             this.UsedIdLabel.Name = "UsedIdLabel";
             this.UsedIdLabel.Size = new System.Drawing.Size(17, 12);
             this.UsedIdLabel.TabIndex = 2;
@@ -167,10 +179,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(11, 234);
+            this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 12);
+            this.label2.Size = new System.Drawing.Size(95, 12);
             this.label2.TabIndex = 1;
-            this.label2.Text = "当前默认码表ID：";
+            this.label2.Text = "当前默认码表ID:";
             // 
             // groupBox1
             // 
@@ -221,18 +234,6 @@
             this.SearchTextBox.Size = new System.Drawing.Size(100, 21);
             this.SearchTextBox.TabIndex = 0;
             this.SearchTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SearchTextBox_KeyPress);
-            // 
-            // CancelTableButton
-            // 
-            this.CancelTableButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.CancelTableButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.CancelTableButton.Location = new System.Drawing.Point(13, 177);
-            this.CancelTableButton.Name = "CancelTableButton";
-            this.CancelTableButton.Size = new System.Drawing.Size(153, 23);
-            this.CancelTableButton.TabIndex = 6;
-            this.CancelTableButton.Text = "取消默认码表";
-            this.CancelTableButton.UseVisualStyleBackColor = false;
-            this.CancelTableButton.Click += new System.EventHandler(this.CancelTableButton_Click);
             // 
             // CodeTableBox
             // 

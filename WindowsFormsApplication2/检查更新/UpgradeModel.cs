@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text;
-using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
 namespace WindowsFormsApplication2.检查更新
@@ -19,9 +16,7 @@ namespace WindowsFormsApplication2.检查更新
 
         protected virtual void OnHasUpdated(bool b)
         {
-            hasUp handler = HasUpdated;
-            if (handler != null) handler(this, b);
-
+            HasUpdated?.Invoke(this, b);
         }
 
         #endregion
@@ -91,19 +86,11 @@ namespace WindowsFormsApplication2.检查更新
         public void GetWebRequest()
         {
             IsError = false;
-            Uri uri = new Uri(_url);
-            WebRequest myReq = WebRequest.Create(uri);
-            try
+            YTWebRequest ytReq = new YTWebRequest(_url);
+            string strJson = ytReq.Request();
+            if (!string.IsNullOrEmpty(strJson))
             {
-                WebResponse result = myReq.GetResponse();
-                Stream receviceStream = result.GetResponseStream();
-                StreamReader readerOfStream = new StreamReader(receviceStream, System.Text.Encoding.UTF8);
-                string strJSON = readerOfStream.ReadToEnd();
-                readerOfStream.Close();
-                receviceStream.Close();
-                result.Close();
-
-                VersionList = JsonConvert.DeserializeObject<List<VersionObject>>(strJSON);
+                VersionList = JsonConvert.DeserializeObject<List<VersionObject>>(strJson);
 
                 var localVersion = Glob.Ver;
                 VersionValue = localVersion;
@@ -111,7 +98,7 @@ namespace WindowsFormsApplication2.检查更新
                 InstraValue = "";
                 ContentValue = "";
                 OtherValue = "";
-                NewVersionList = new List<VersionObject> ();
+                NewVersionList = new List<VersionObject>();
                 IsUpdate = false;
                 foreach (VersionObject vo in VersionList)
                 {
@@ -144,15 +131,13 @@ namespace WindowsFormsApplication2.检查更新
                     OtherValue = NewVersionList[0].Other;
                 }
             }
-            catch (Exception)
+            else
             {
                 IsError = true;
                 IsUpdate = false;
             }
-            finally
-            {
-                OnHasUpdated(IsUpdate);
-            }
+
+            OnHasUpdated(IsUpdate);
         }
 
         /// <summary>

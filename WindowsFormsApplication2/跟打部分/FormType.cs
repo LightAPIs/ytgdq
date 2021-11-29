@@ -4789,7 +4789,7 @@ namespace WindowsFormsApplication2
                 { //* 保存新配置
                     NewSendText.SentId = Glob.SentHistory.InsertSent(DateTime.Now.ToString("s"), NewSendText.文章全文, NewSendText.发文全文, NewSendText.标题, phrases, NewSendText.词组发送分隔符, type, disorder, no_repeat, NewSendText.字数, NewSendText.标记, segmentRecord, Glob.SendCursor, Glob.CurSegmentNum, NewSendText.已发段数, NewSendText.已发字数, cycle, NewSendText.周期, auto, autoCondition, (int)NewSendText.AutoKey, (int)NewSendText.AutoOperator, NewSendText.AutoNumber, (int)NewSendText.AutoNo);
 
-                    NewSendText.文章来源 = 4;
+                    NewSendText.ArticleSource = NewSendText.ArticleSourceValue.Sent;
                     //* 提示保存
                     ShowFlowText("已将当前的发文保存为配置" + NewSendText.SentId.ToString());
                     if (this.发文状态窗口 != null && !this.发文状态窗口.IsDisposed)

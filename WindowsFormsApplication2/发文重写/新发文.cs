@@ -20,8 +20,107 @@ namespace WindowsFormsApplication2
 {
     public partial class 新发文 : Form
     {
-        Form1 frm;
+        private readonly Form1 frm;
 
+        #region 网络文章数据
+        /// <summary>
+        /// 网络文章主地址
+        /// </summary>
+        private readonly string WebSourceRoot = "https://cdn.jsdelivr.net/gh/LightAPIs/article-storage@main/";
+
+        /// <summary>
+        /// 网络文章通用列表文件名称
+        /// </summary>
+        private readonly string WebListName = "list.json";
+
+        /// <summary>
+        /// 网络每页数量
+        /// </summary>
+        private readonly int WebPageSize = 30;
+
+        private readonly Regex DirReg = new Regex(@"[^/]+/$");
+
+        /// <summary>
+        /// 网络项目总数
+        /// </summary>
+        private int totalWebCount = 0;
+
+        /// <summary>
+        /// 网络总页数
+        /// </summary>
+        private int WebTotalPage
+        {
+            get
+            {
+                return (int)Math.Ceiling((float)this.totalWebCount / this.WebPageSize);
+            }
+        }
+
+        /// <summary>
+        /// 当前网络页数
+        /// </summary>
+        private int currentWebPage = 0;
+
+        /// <summary>
+        /// 网络根目录
+        /// </summary>
+        private WebArticle webRoot = null;
+
+        /// <summary>
+        /// 所有网络文章列表内容
+        /// </summary>
+        private WebArticle allWebArticle = new WebArticle();
+
+        /// <summary>
+        /// 网络文章列表搜索结果
+        /// </summary>
+        private WebArticle searchWebArticle = new WebArticle();
+
+        /// <summary>
+        /// 当前网络文章列表内容
+        /// </summary>
+        private WebArticle currentWebArticle = new WebArticle();
+
+        /// <summary>
+        /// 当前网络目录
+        /// </summary>
+        private string currentDir = "src/";
+
+        private string FullCurrentDirPath
+        {
+            get
+            {
+                return this.WebSourceRoot + this.currentDir + this.WebListName;
+            }
+        }
+
+        /// <summary>
+        /// 上级目录
+        /// </summary>
+        private string lastDir = "";
+
+        private string FullLastDirPath
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.lastDir))
+                {
+                    return "";
+                }
+                else
+                {
+                    return this.WebSourceRoot + this.lastDir + this.WebListName;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 网络搜索文本
+        /// </summary>
+        private string webSearchText = "";
+        #endregion
+
+        #region 本地文章数据
         /// <summary>
         /// 文章每页数量
         /// </summary>
@@ -57,7 +156,9 @@ namespace WindowsFormsApplication2
         /// 文章搜索文本
         /// </summary>
         private string articleSearchText = "";
+        #endregion
 
+        #region 发文配置数据
         /// <summary>
         /// 配置每页数量
         /// </summary>
@@ -93,6 +194,7 @@ namespace WindowsFormsApplication2
         /// 配置搜索文本
         /// </summary>
         private string sentSearchText = "";
+        #endregion
 
         public 新发文(Form1 frm1)
         {
@@ -143,8 +245,12 @@ namespace WindowsFormsApplication2
                     rtbClipboard.Text = err.Message + "，请自行粘贴！";
                 }
             }
+            else if (getid == 3)
+            {
+                this.ReadWebArticle();
+            }
 
-            if (getid == 4)
+            if (getid == 5)
             { // 保存的发文配置，需要锁定一些控件
                 this.cbxTickOut.Enabled = false;
                 this.cbx乱序全段不重复.Enabled = false;
@@ -528,7 +634,7 @@ namespace WindowsFormsApplication2
         }
         #endregion
 
-        #region 自定义文章
+        #region 本地文章
         private void listViewFile_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             ListViewHitTestInfo info = listViewFile.HitTest(e.X, e.Y); ;
@@ -617,7 +723,7 @@ namespace WindowsFormsApplication2
         }
 
         /// <summary>
-        /// 自定义文章读取方法
+        /// 本地文章读取方法
         /// </summary>
         /// <param name="path"></param>
         private void ReadAll(string path)
@@ -731,7 +837,7 @@ namespace WindowsFormsApplication2
         #region 文章标题处理
         private void tbxTitle_TextChanged(object sender, EventArgs e)
         {
-            lblTitle.Text = (sender as TextBox).Text;
+            lblTitle.Text = (sender as TextBox).Text.Trim();
             if (lblTitle.Text.Length == 0)
             {
                 lblTitle.Text = "来自剪贴板";
@@ -740,10 +846,10 @@ namespace WindowsFormsApplication2
 
         private void FileTitleTextBox_TextChanged(object sender, EventArgs e)
         {
-            lblTitle.Text = (sender as TextBox).Text;
+            lblTitle.Text = (sender as TextBox).Text.Trim();
             if (lblTitle.Text.Length == 0)
             {
-                lblTitle.Text = "自定义文章";
+                lblTitle.Text = "本地文章";
             }
         }
 
@@ -919,6 +1025,399 @@ namespace WindowsFormsApplication2
             this.Close();
         }
 
+        #region 网络文章
+        /// <summary>
+        /// 网络文章的读取方法
+        /// </summary>
+        private void ReadWebArticle()
+        {
+            if (webRoot == null)
+            {
+                this.CleanListView();
+                this.panel4.Refresh();
+                this.currentDir = "src/";
+                this.lastDir = "";
+                listViewWebArticle.Columns[0].Text = this.currentDir;
+                this.BeginInvoke(new MethodInvoker(() =>
+                {
+                    YTWebRequest ytReq = new YTWebRequest(FullCurrentDirPath);
+                    string strJson = ytReq.Request();
+                    if (!string.IsNullOrEmpty(strJson))
+                    {
+                        webRoot = JsonConvert.DeserializeObject<WebArticle>(strJson);
+                        this.allWebArticle = webRoot;
+                        this.totalWebCount = allWebArticle.dir.Count + allWebArticle.txt.Count;
+                        this.WebCountLabel.Text = this.totalWebCount.ToString();
+                        if (this.totalWebCount > 0)
+                        {
+                            this.currentWebPage = 1;
+                        }
+                        else
+                        {
+                            this.currentWebPage = 0;
+                        }
+                        ShowWebListView();
+                    }
+                    else
+                    {
+                        this.ErrorListView();
+                    }
+                }));
+            }
+        }
+
+        private void ReadWebDir(string dirPath)
+        {
+            this.BeginInvoke(new MethodInvoker(() => {
+                YTWebRequest ytReq = new YTWebRequest(dirPath);
+                string strJson = ytReq.Request();
+                if (!string.IsNullOrEmpty(strJson))
+                {
+                    // 清除搜索文本
+                    this.webSearchText = "";
+                    this.WebSearchTextBox.Text = "";
+
+                    this.allWebArticle = JsonConvert.DeserializeObject<WebArticle>(strJson);
+                    this.totalWebCount = allWebArticle.dir.Count + allWebArticle.txt.Count;
+                    this.WebCountLabel.Text = this.totalWebCount.ToString();
+                    if (this.totalWebCount > 0)
+                    {
+                        this.currentWebPage = 1;
+                    }
+                    else
+                    {
+                        this.currentWebPage = 0;
+                    }
+                    ShowWebListView();
+                }
+                else
+                {
+                    this.ErrorListView();
+                }
+            }));
+        }
+
+        private void CleanListView(bool isRefresh = false)
+        {
+            this.listViewWebArticle.Items.Clear();
+            this.listViewWebArticle.Items.Add(new ListViewItem(new String[] {"正在从网络中加载...", "", "", ""}));
+            if (isRefresh)
+            {
+                this.listViewWebArticle.Refresh();
+            }
+        }
+
+        private void ErrorListView()
+        {
+            this.listViewWebArticle.Items.Clear();
+            this.listViewWebArticle.Items.Add(new ListViewItem(new String[] { "网络出错！", "", "", "错误" }));
+        }
+
+        private void ShowWebListView(int selected = -1)
+        {
+            this.listViewWebArticle.Items.Clear();
+            this.WebPageLabel.Text = this.currentWebPage.ToString();
+            if (this.currentWebPage > 0)
+            {
+                if (string.IsNullOrEmpty(this.webSearchText))
+                {
+                    this.currentWebArticle = GetWebArticle(this.allWebArticle, this.currentWebPage - 1);
+                }
+                else
+                {
+                    this.currentWebArticle = GetWebArticle(this.searchWebArticle, this.currentWebPage - 1);
+                }
+
+                foreach (string dirRow in this.currentWebArticle.dir)
+                {
+                    listViewWebArticle.Items.Add(new ListViewItem(new string[] { dirRow, "", "", "目录" }));
+                }
+                foreach (TxtFile fileRow in this.currentWebArticle.txt)
+                {
+                    listViewWebArticle.Items.Add(new ListViewItem(new string[] { fileRow.name, fileRow.count.ToString() + "字", fileRow.size, "文本" }));
+                }
+
+                if (selected > -1 && selected < listViewWebArticle.Items.Count)
+                {
+                    try
+                    {
+                        this.listViewWebArticle.TopItem = this.listViewWebArticle.Items[selected];
+                        this.listViewWebArticle.Items[selected].Selected = true;
+                    }
+                    catch { }
+                    
+                }
+            }
+        }
+
+        private void listViewWebArticle_ItemActivate(object sender, EventArgs e)
+        {
+            if (this.listViewWebArticle.SelectedItems.Count > 0)
+            {
+                string type = this.listViewWebArticle.SelectedItems[0].SubItems[3].Text;
+                if (!string.IsNullOrEmpty(type))
+                {
+                    string name = this.listViewWebArticle.SelectedItems[0].SubItems[0].Text;
+                    if (type == "目录")
+                    {
+                        this.lastDir = this.currentDir;
+                        this.currentDir += name + "/";
+                        listViewWebArticle.Columns[0].Text = this.currentDir;
+                        this.CleanListView(true);
+                        ReadWebDir(FullCurrentDirPath);
+                    }
+                    else if (type == "文本")
+                    {
+                        string textFilename = this.WebSourceRoot + this.currentDir + name;
+                        this.WebFileTitleTextBox.Text = name.Replace(".txt", "");
+                        this.rtbShowText.Text = "正在努力加载文章当中...";
+                        this.rtbShowText.Refresh();
+                        this.BeginInvoke(new MethodInvoker(() =>
+                        {
+                            YTWebRequest ytReq = new YTWebRequest(textFilename);
+                            string content = ytReq.Request();
+
+                            if (!string.IsNullOrEmpty(content))
+                            {
+                                GetText = content;
+                                ComText();
+                            }
+                            else
+                            {
+                                this.rtbShowText.Text = "警告：没有获取到文章内容！";
+                            }
+                        }));
+                    }
+                    else if (type == "错误")
+                    {
+                        //! 这里执行刷新操作
+                        this.CleanListView(true);
+                        ReadWebDir(FullCurrentDirPath);
+                    }
+                }
+            }
+        }
+
+        private WebArticle GetWebArticle(WebArticle all, int start)
+        {
+            WebArticle wa = new WebArticle();
+            int startIndex = start * WebPageSize;
+            int endIndex = (start + 1) * WebPageSize;
+            int dirUsed = 0;
+            for (int i = startIndex; i < endIndex && i < this.totalWebCount; i++)
+            {
+                int dirCount = all.dir.Count;
+                if (i < dirCount)
+                {
+                    wa.dir.Add(all.dir[i]);
+                    dirUsed++;
+                }
+                else
+                {
+                    int index = i - dirUsed;
+                    wa.txt.Add(all.txt[index]);
+                }
+            }
+
+            return wa;
+        }
+
+        private void WebArticleFirstButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentWebPage > 1)
+            {
+                this.currentWebPage = 1;
+                this.ShowWebListView();
+            }
+        }
+
+        private void WebArticlePreButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentWebPage > 1)
+            {
+                this.currentWebPage--;
+                this.ShowWebListView();
+            }
+        }
+
+        private void WebArticleNextButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentWebPage < this.WebTotalPage)
+            {
+                this.currentWebPage++;
+                this.ShowWebListView();
+            }
+        }
+
+        private void WebArticleLastButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentWebPage < this.WebTotalPage)
+            {
+                this.currentWebPage = this.WebTotalPage;
+                this.ShowWebListView();
+            }
+        }
+
+        private void WebArticleBackButton_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(FullLastDirPath))
+            {
+                string rPath = FullLastDirPath;
+
+                //! 调整路径
+                this.currentDir = this.lastDir;
+                this.lastDir = DirReg.Replace(this.lastDir, "");
+                listViewWebArticle.Columns[0].Text = this.currentDir;
+                this.CleanListView(true);
+
+                ReadWebDir(rPath);
+            }
+        }
+
+        private void WebArticleRootButton_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(this.lastDir))
+            { // 当前不是根目录时
+                this.CleanListView(true);
+                this.lastDir = "";
+                this.currentDir = "src/";
+                listViewWebArticle.Columns[0].Text = this.currentDir;
+
+                ReadWebDir(FullCurrentDirPath);
+            }
+        }
+
+        private void WebFileTitleTextBox_TextChanged(object sender, EventArgs e)
+        {
+            lblTitle.Text = (sender as TextBox).Text.Trim();
+            if (lblTitle.Text.Length == 0)
+            {
+                lblTitle.Text = "网络文章";
+            }
+        }
+
+        private WebArticle GetSearchWebArticle()
+        {
+            WebArticle wa = new WebArticle();
+            if (!string.IsNullOrEmpty(this.webSearchText))
+            {
+                for (int i = 0; i < this.allWebArticle.dir.Count; i++)
+                {
+                    if (this.allWebArticle.dir[i].Contains(this.webSearchText))
+                    {
+                        wa.dir.Add(this.allWebArticle.dir[i]);
+                    }
+                }
+
+                for (int j = 0; j < this.allWebArticle.txt.Count; j++)
+                {
+                    if (this.allWebArticle.txt[j].name.Contains(this.webSearchText))
+                    {
+                        wa.txt.Add(this.allWebArticle.txt[j]);
+                    }
+                }
+            }
+            return wa;
+        }
+
+        private void WebSearchButton_Click(object sender, EventArgs e)
+        {
+            this.webSearchText = this.WebSearchTextBox.Text.Trim();
+            if (!string.IsNullOrEmpty(this.webSearchText))
+            {
+                this.searchWebArticle = GetSearchWebArticle();
+
+                this.totalWebCount = searchWebArticle.dir.Count + searchWebArticle.txt.Count;
+            }
+            else
+            {
+                this.webSearchText = "";
+                this.WebSearchTextBox.Text = "";
+
+                this.totalWebCount = allWebArticle.dir.Count + allWebArticle.txt.Count;
+            }
+
+            this.WebCountLabel.Text = this.totalWebCount.ToString();
+            if (this.totalWebCount > 0)
+            {
+                this.currentWebPage = 1;
+            }
+            else
+            {
+                this.currentWebPage = 0;
+            }
+            ShowWebListView();
+        }
+
+        private void WebSearchTextBox_Click(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.WebSearchButton.PerformClick();
+            }
+        }
+
+        private void WebRandomButton_Click(object sender, EventArgs e)
+        {
+            Random rd = new Random();
+            int maxValue = this.allWebArticle.dir.Count + this.allWebArticle.txt.Count;
+            int index = rd.Next(maxValue);
+
+            // 清除搜索文本
+            this.webSearchText = "";
+            this.WebSearchTextBox.Text = "";
+
+            if (index < this.allWebArticle.dir.Count)
+            { // 目录
+                string dirName = this.allWebArticle.dir[index];
+                this.lastDir = this.currentDir;
+                this.currentDir += dirName + "/";
+                listViewWebArticle.Columns[0].Text = this.currentDir;
+                this.CleanListView(true);
+                ReadWebDir(FullCurrentDirPath);
+            }
+            else
+            { // 文本
+                this.currentWebPage = index / WebPageSize + 1;
+                this.ShowWebListView(index % WebPageSize);
+                this.listViewWebArticle.Refresh();
+
+                string name = this.allWebArticle.txt[index - this.allWebArticle.dir.Count].name;
+                string textFilename = this.WebSourceRoot + this.currentDir + name;
+                this.WebFileTitleTextBox.Text = name.Replace(".txt", "");
+                this.rtbShowText.Text = "正在努力加载文章当中...";
+                this.rtbShowText.Refresh();
+                this.BeginInvoke(new MethodInvoker(() =>
+                {
+                    YTWebRequest ytReq = new YTWebRequest(textFilename);
+                    string content = ytReq.Request();
+
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        GetText = content;
+                        ComText();
+                    }
+                    else
+                    {
+                        this.rtbShowText.Text = "警告：没有获取到文章内容！";
+                    }
+                }));
+            }
+        }
+
+        private void WebPageLabel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.listViewWebArticle.Items.Count > 0)
+                {
+                    this.listViewWebArticle.TopItem = this.listViewWebArticle.Items[0];
+                }
+            }
+            catch { }
+        }
+        #endregion
+
         #region 保存的文章
         /// <summary>
         /// 保存的文章读取方法
@@ -938,14 +1437,12 @@ namespace WindowsFormsApplication2
             if (this.totalArticleCount > 0)
             {
                 this.currentArticlePage = 1;
-                ShowSaveArticle();
             }
             else
             {
                 this.currentArticlePage = 0;
-                this.ArticlePageLabel.Text = this.currentArticlePage.ToString();
-                listViewArticle.Items.Clear();
             }
+            ShowSaveArticle();
         }
 
         private void ShowSaveArticle()
@@ -1060,8 +1557,16 @@ namespace WindowsFormsApplication2
 
         private void ArticleSearchButton_Click(object sender, EventArgs e)
         {
-            this.articleSearchText = this.ArticleSearchTextBox.Text;
+            this.articleSearchText = this.ArticleSearchTextBox.Text.Trim();
             this.ReadSavedArticle();
+        }
+
+        private void ArticleSearchTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.ArticleSearchButton.PerformClick();
+            }
         }
 
         private void ArticleDeleteItemButton_Click(object sender, EventArgs e)
@@ -1143,14 +1648,12 @@ namespace WindowsFormsApplication2
             if (this.totalSentCount > 0)
             {
                 this.currentSentPage = 1;
-                ShowSaveSent();
             }
             else
             {
                 this.currentSentPage = 0;
-                this.SentPageLabel.Text = this.currentSentPage.ToString();
-                listViewSent.Items.Clear();
             }
+            ShowSaveSent();
         }
 
         private void ShowSaveSent()
@@ -1375,8 +1878,16 @@ namespace WindowsFormsApplication2
 
         private void SentSearchButton_Click(object sender, EventArgs e)
         {
-            this.sentSearchText = this.SentSearchTextBox.Text;
+            this.sentSearchText = this.SentSearchTextBox.Text.Trim();
             this.ReadSavedSent();
+        }
+
+        private void SentSearchTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.SentSearchButton.PerformClick();
+            }
         }
 
         private void SentDeleteButton_Click(object sender, EventArgs e)
@@ -1485,6 +1996,19 @@ namespace WindowsFormsApplication2
                 }
             }
         }
+
+        private void WebContentEditButton_Click(object sender, EventArgs e)
+        {
+            if (GetText != "")
+            {
+                ContentEditor cEditor = new ContentEditor(GetText);
+                if (cEditor.ShowDialog() == DialogResult.OK)
+                {
+                    GetText = cEditor.OutValue;
+                    ComText();
+                }
+            }
+        }
         #endregion
 
         #region 开始发文
@@ -1572,9 +2096,9 @@ namespace WindowsFormsApplication2
                 }
                 NewSendText.AutoNo = (NewSendText.AutoNoValue)AutoNoComboBox.SelectedIndex;
 
-                NewSendText.文章来源 = tabControl1.SelectedIndex;
+                NewSendText.ArticleSource = (NewSendText.ArticleSourceValue)tabControl1.SelectedIndex;
                 // 勾选"保存文章"
-                if ((NewSendText.文章来源 == 1 && this.FileSaveCheckBox.Checked) || (NewSendText.文章来源 == 2 && this.ClipboardSaveCheckBox.Checked))
+                if ((NewSendText.ArticleSource == NewSendText.ArticleSourceValue.Local && this.FileSaveCheckBox.Checked) || (NewSendText.ArticleSource == NewSendText.ArticleSourceValue.Clipboard && this.ClipboardSaveCheckBox.Checked) || (NewSendText.ArticleSource == NewSendText.ArticleSourceValue.Web && this.WebSaveCheckBox.Checked))
                 {
                     Glob.ArticleHistory.InsertArticle(sourceText, Validation.GetMd5Hash(sourceText), NewSendText.标题, DateTime.Now.ToString("s"));
                 }
@@ -1592,7 +2116,7 @@ namespace WindowsFormsApplication2
             }
             else
             {
-                NewSendText.文章来源 = tabControl1.SelectedIndex;
+                NewSendText.ArticleSource = (NewSendText.ArticleSourceValue)tabControl1.SelectedIndex;
                 NewSendText.发文状态 = true;
                 frm.SetMatch(false);
                 frm.SendNextFun();

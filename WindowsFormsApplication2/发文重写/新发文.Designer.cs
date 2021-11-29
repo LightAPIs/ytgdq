@@ -53,6 +53,30 @@
             this.tbxTitle = new System.Windows.Forms.TextBox();
             this.btnReGet = new System.Windows.Forms.Button();
             this.rtbClipboard = new System.Windows.Forms.RichTextBox();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.WebArticleRootButton = new System.Windows.Forms.Button();
+            this.WebArticleBackButton = new System.Windows.Forms.Button();
+            this.WebSaveCheckBox = new System.Windows.Forms.CheckBox();
+            this.WebRandomButton = new System.Windows.Forms.Button();
+            this.WebFileTitleTextBox = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.WebArticleLastButton = new System.Windows.Forms.Button();
+            this.WebArticleHomeButton = new System.Windows.Forms.Button();
+            this.WebSearchButton = new System.Windows.Forms.Button();
+            this.WebPageLabel = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.WebSearchTextBox = new System.Windows.Forms.TextBox();
+            this.WebContentEditButton = new System.Windows.Forms.Button();
+            this.WebArticleNextButton = new System.Windows.Forms.Button();
+            this.listViewWebArticle = new System.Windows.Forms.ListView();
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.WebArticlePreButton = new System.Windows.Forms.Button();
+            this.WebCountLabel = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.ArticleEditTitleButton = new System.Windows.Forms.Button();
@@ -144,6 +168,8 @@
             this.tabPage2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage9.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabPage8.SuspendLayout();
@@ -166,6 +192,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage9);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -237,7 +264,7 @@
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Size = new System.Drawing.Size(520, 165);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "自定义文章";
+            this.tabPage2.Text = "本地文章";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // panel1
@@ -316,7 +343,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(98, 23);
             this.button1.TabIndex = 3;
-            this.button1.Text = "返回根目录";
+            this.button1.Text = "返回程序目录";
             this.toolTip1.SetToolTip(this.button1, "返回跟打器的根目录");
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -491,6 +518,319 @@
             this.rtbClipboard.Text = "";
             this.rtbClipboard.TextChanged += new System.EventHandler(this.rtbClipboard_TextChanged);
             // 
+            // tabPage9
+            // 
+            this.tabPage9.Controls.Add(this.panel4);
+            this.tabPage9.Location = new System.Drawing.Point(4, 25);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Size = new System.Drawing.Size(520, 165);
+            this.tabPage9.TabIndex = 5;
+            this.tabPage9.Text = "网络文章";
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.WebArticleRootButton);
+            this.panel4.Controls.Add(this.WebArticleBackButton);
+            this.panel4.Controls.Add(this.WebSaveCheckBox);
+            this.panel4.Controls.Add(this.WebRandomButton);
+            this.panel4.Controls.Add(this.WebFileTitleTextBox);
+            this.panel4.Controls.Add(this.label23);
+            this.panel4.Controls.Add(this.WebArticleLastButton);
+            this.panel4.Controls.Add(this.WebArticleHomeButton);
+            this.panel4.Controls.Add(this.WebSearchButton);
+            this.panel4.Controls.Add(this.WebPageLabel);
+            this.panel4.Controls.Add(this.label20);
+            this.panel4.Controls.Add(this.WebSearchTextBox);
+            this.panel4.Controls.Add(this.WebContentEditButton);
+            this.panel4.Controls.Add(this.WebArticleNextButton);
+            this.panel4.Controls.Add(this.listViewWebArticle);
+            this.panel4.Controls.Add(this.WebArticlePreButton);
+            this.panel4.Controls.Add(this.WebCountLabel);
+            this.panel4.Controls.Add(this.label22);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(520, 165);
+            this.panel4.TabIndex = 3;
+            // 
+            // WebArticleRootButton
+            // 
+            this.WebArticleRootButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WebArticleRootButton.Font = new System.Drawing.Font("宋体", 9F);
+            this.WebArticleRootButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.WebArticleRootButton.Location = new System.Drawing.Point(376, 0);
+            this.WebArticleRootButton.Margin = new System.Windows.Forms.Padding(0);
+            this.WebArticleRootButton.Name = "WebArticleRootButton";
+            this.WebArticleRootButton.Size = new System.Drawing.Size(59, 23);
+            this.WebArticleRootButton.TabIndex = 20;
+            this.WebArticleRootButton.Text = "根目录";
+            this.toolTip1.SetToolTip(this.WebArticleRootButton, "直接返回至根目录");
+            this.WebArticleRootButton.UseVisualStyleBackColor = true;
+            this.WebArticleRootButton.Click += new System.EventHandler(this.WebArticleRootButton_Click);
+            // 
+            // WebArticleBackButton
+            // 
+            this.WebArticleBackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WebArticleBackButton.Font = new System.Drawing.Font("宋体", 9F);
+            this.WebArticleBackButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.WebArticleBackButton.Location = new System.Drawing.Point(336, 0);
+            this.WebArticleBackButton.Margin = new System.Windows.Forms.Padding(0);
+            this.WebArticleBackButton.Name = "WebArticleBackButton";
+            this.WebArticleBackButton.Size = new System.Drawing.Size(40, 23);
+            this.WebArticleBackButton.TabIndex = 19;
+            this.WebArticleBackButton.Text = "返回";
+            this.toolTip1.SetToolTip(this.WebArticleBackButton, "返回至上一级目录");
+            this.WebArticleBackButton.UseVisualStyleBackColor = true;
+            this.WebArticleBackButton.Click += new System.EventHandler(this.WebArticleBackButton_Click);
+            // 
+            // WebSaveCheckBox
+            // 
+            this.WebSaveCheckBox.AutoSize = true;
+            this.WebSaveCheckBox.Location = new System.Drawing.Point(438, 144);
+            this.WebSaveCheckBox.Name = "WebSaveCheckBox";
+            this.WebSaveCheckBox.Size = new System.Drawing.Size(72, 16);
+            this.WebSaveCheckBox.TabIndex = 18;
+            this.WebSaveCheckBox.Text = "保存文章";
+            this.WebSaveCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // WebRandomButton
+            // 
+            this.WebRandomButton.BackColor = System.Drawing.Color.DarkGray;
+            this.WebRandomButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WebRandomButton.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.WebRandomButton.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.WebRandomButton.Location = new System.Drawing.Point(438, 116);
+            this.WebRandomButton.Name = "WebRandomButton";
+            this.WebRandomButton.Size = new System.Drawing.Size(75, 23);
+            this.WebRandomButton.TabIndex = 17;
+            this.WebRandomButton.Text = "随机加载";
+            this.toolTip1.SetToolTip(this.WebRandomButton, "随机加载一篇文章或一个目录");
+            this.WebRandomButton.UseVisualStyleBackColor = false;
+            this.WebRandomButton.Click += new System.EventHandler(this.WebRandomButton_Click);
+            // 
+            // WebFileTitleTextBox
+            // 
+            this.WebFileTitleTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.WebFileTitleTextBox.Location = new System.Drawing.Point(438, 24);
+            this.WebFileTitleTextBox.MaxLength = 20;
+            this.WebFileTitleTextBox.Name = "WebFileTitleTextBox";
+            this.WebFileTitleTextBox.Size = new System.Drawing.Size(75, 21);
+            this.WebFileTitleTextBox.TabIndex = 16;
+            this.WebFileTitleTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.WebFileTitleTextBox, "输入文章标题");
+            this.WebFileTitleTextBox.TextChanged += new System.EventHandler(this.WebFileTitleTextBox_TextChanged);
+            // 
+            // label23
+            // 
+            this.label23.BackColor = System.Drawing.Color.DarkGray;
+            this.label23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label23.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label23.ForeColor = System.Drawing.Color.Linen;
+            this.label23.Location = new System.Drawing.Point(438, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(75, 23);
+            this.label23.TabIndex = 15;
+            this.label23.Text = "文章标题";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // WebArticleLastButton
+            // 
+            this.WebArticleLastButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WebArticleLastButton.Font = new System.Drawing.Font("宋体", 9F);
+            this.WebArticleLastButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.WebArticleLastButton.Location = new System.Drawing.Point(315, 0);
+            this.WebArticleLastButton.Margin = new System.Windows.Forms.Padding(0);
+            this.WebArticleLastButton.Name = "WebArticleLastButton";
+            this.WebArticleLastButton.Size = new System.Drawing.Size(21, 23);
+            this.WebArticleLastButton.TabIndex = 14;
+            this.WebArticleLastButton.Text = "末";
+            this.toolTip1.SetToolTip(this.WebArticleLastButton, "最后一页");
+            this.WebArticleLastButton.UseVisualStyleBackColor = true;
+            this.WebArticleLastButton.Click += new System.EventHandler(this.WebArticleLastButton_Click);
+            // 
+            // WebArticleHomeButton
+            // 
+            this.WebArticleHomeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WebArticleHomeButton.Font = new System.Drawing.Font("宋体", 9F);
+            this.WebArticleHomeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.WebArticleHomeButton.Location = new System.Drawing.Point(214, 0);
+            this.WebArticleHomeButton.Margin = new System.Windows.Forms.Padding(0);
+            this.WebArticleHomeButton.Name = "WebArticleHomeButton";
+            this.WebArticleHomeButton.Size = new System.Drawing.Size(21, 23);
+            this.WebArticleHomeButton.TabIndex = 13;
+            this.WebArticleHomeButton.Text = "首";
+            this.toolTip1.SetToolTip(this.WebArticleHomeButton, "第一页");
+            this.WebArticleHomeButton.UseVisualStyleBackColor = true;
+            this.WebArticleHomeButton.Click += new System.EventHandler(this.WebArticleFirstButton_Click);
+            // 
+            // WebSearchButton
+            // 
+            this.WebSearchButton.BackColor = System.Drawing.Color.DarkGray;
+            this.WebSearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WebSearchButton.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.WebSearchButton.ForeColor = System.Drawing.Color.Purple;
+            this.WebSearchButton.Location = new System.Drawing.Point(438, 92);
+            this.WebSearchButton.Name = "WebSearchButton";
+            this.WebSearchButton.Size = new System.Drawing.Size(75, 23);
+            this.WebSearchButton.TabIndex = 12;
+            this.WebSearchButton.Text = "搜索标题";
+            this.toolTip1.SetToolTip(this.WebSearchButton, "点击在当前目录中搜索标题");
+            this.WebSearchButton.UseVisualStyleBackColor = false;
+            this.WebSearchButton.Click += new System.EventHandler(this.WebSearchButton_Click);
+            // 
+            // WebPageLabel
+            // 
+            this.WebPageLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.WebPageLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WebPageLabel.Location = new System.Drawing.Point(163, 0);
+            this.WebPageLabel.Name = "WebPageLabel";
+            this.WebPageLabel.Size = new System.Drawing.Size(51, 23);
+            this.WebPageLabel.TabIndex = 11;
+            this.WebPageLabel.Text = "0";
+            this.WebPageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.WebPageLabel, "点击我将自动跳转到第一个项目处");
+            this.WebPageLabel.Click += new System.EventHandler(this.WebPageLabel_Click);
+            // 
+            // label20
+            // 
+            this.label20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label20.Location = new System.Drawing.Point(119, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(44, 23);
+            this.label20.TabIndex = 10;
+            this.label20.Text = "页数：";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // WebSearchTextBox
+            // 
+            this.WebSearchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.WebSearchTextBox.Location = new System.Drawing.Point(438, 70);
+            this.WebSearchTextBox.MaxLength = 20;
+            this.WebSearchTextBox.Name = "WebSearchTextBox";
+            this.WebSearchTextBox.Size = new System.Drawing.Size(75, 21);
+            this.WebSearchTextBox.TabIndex = 6;
+            this.WebSearchTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.WebSearchTextBox, "输入要搜索的标题");
+            this.WebSearchTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.WebSearchTextBox_Click);
+            // 
+            // WebContentEditButton
+            // 
+            this.WebContentEditButton.BackColor = System.Drawing.Color.DarkGray;
+            this.WebContentEditButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WebContentEditButton.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.WebContentEditButton.ForeColor = System.Drawing.Color.Teal;
+            this.WebContentEditButton.Location = new System.Drawing.Point(438, 46);
+            this.WebContentEditButton.Name = "WebContentEditButton";
+            this.WebContentEditButton.Size = new System.Drawing.Size(75, 23);
+            this.WebContentEditButton.TabIndex = 4;
+            this.WebContentEditButton.Text = "编辑内容";
+            this.toolTip1.SetToolTip(this.WebContentEditButton, "编辑发文的内容");
+            this.WebContentEditButton.UseVisualStyleBackColor = false;
+            this.WebContentEditButton.Click += new System.EventHandler(this.WebContentEditButton_Click);
+            // 
+            // WebArticleNextButton
+            // 
+            this.WebArticleNextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WebArticleNextButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.WebArticleNextButton.Location = new System.Drawing.Point(275, 0);
+            this.WebArticleNextButton.Margin = new System.Windows.Forms.Padding(0);
+            this.WebArticleNextButton.Name = "WebArticleNextButton";
+            this.WebArticleNextButton.Size = new System.Drawing.Size(40, 23);
+            this.WebArticleNextButton.TabIndex = 3;
+            this.WebArticleNextButton.Text = "下页";
+            this.toolTip1.SetToolTip(this.WebArticleNextButton, "下一页");
+            this.WebArticleNextButton.UseVisualStyleBackColor = true;
+            this.WebArticleNextButton.Click += new System.EventHandler(this.WebArticleNextButton_Click);
+            // 
+            // listViewWebArticle
+            // 
+            this.listViewWebArticle.AutoArrange = false;
+            this.listViewWebArticle.BackColor = System.Drawing.Color.White;
+            this.listViewWebArticle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listViewWebArticle.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader10,
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader13});
+            this.listViewWebArticle.ForeColor = System.Drawing.Color.Black;
+            this.listViewWebArticle.FullRowSelect = true;
+            this.listViewWebArticle.GridLines = true;
+            this.listViewWebArticle.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listViewWebArticle.HideSelection = false;
+            this.listViewWebArticle.Location = new System.Drawing.Point(0, 23);
+            this.listViewWebArticle.Margin = new System.Windows.Forms.Padding(0);
+            this.listViewWebArticle.MultiSelect = false;
+            this.listViewWebArticle.Name = "listViewWebArticle";
+            this.listViewWebArticle.Size = new System.Drawing.Size(435, 138);
+            this.listViewWebArticle.TabIndex = 0;
+            this.toolTip1.SetToolTip(this.listViewWebArticle, "双击项目以加载内容");
+            this.listViewWebArticle.UseCompatibleStateImageBehavior = false;
+            this.listViewWebArticle.View = System.Windows.Forms.View.Details;
+            this.listViewWebArticle.ItemActivate += new System.EventHandler(this.listViewWebArticle_ItemActivate);
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "src/";
+            this.columnHeader10.Width = 210;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "字数";
+            this.columnHeader11.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader11.Width = 75;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "大小";
+            this.columnHeader12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader12.Width = 75;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "类别";
+            this.columnHeader13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader13.Width = 50;
+            // 
+            // WebArticlePreButton
+            // 
+            this.WebArticlePreButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WebArticlePreButton.Font = new System.Drawing.Font("宋体", 9F);
+            this.WebArticlePreButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.WebArticlePreButton.Location = new System.Drawing.Point(235, 0);
+            this.WebArticlePreButton.Margin = new System.Windows.Forms.Padding(0);
+            this.WebArticlePreButton.Name = "WebArticlePreButton";
+            this.WebArticlePreButton.Size = new System.Drawing.Size(40, 23);
+            this.WebArticlePreButton.TabIndex = 2;
+            this.WebArticlePreButton.Text = "上页";
+            this.toolTip1.SetToolTip(this.WebArticlePreButton, "上一页");
+            this.WebArticlePreButton.UseVisualStyleBackColor = true;
+            this.WebArticlePreButton.Click += new System.EventHandler(this.WebArticlePreButton_Click);
+            // 
+            // WebCountLabel
+            // 
+            this.WebCountLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.WebCountLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WebCountLabel.Location = new System.Drawing.Point(68, 0);
+            this.WebCountLabel.Name = "WebCountLabel";
+            this.WebCountLabel.Size = new System.Drawing.Size(51, 23);
+            this.WebCountLabel.TabIndex = 1;
+            this.WebCountLabel.Text = "0";
+            this.WebCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label22
+            // 
+            this.label22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label22.Location = new System.Drawing.Point(0, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(68, 23);
+            this.label22.TabIndex = 0;
+            this.label22.Text = "项目数量：";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // tabPage4
             // 
             this.tabPage4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -649,6 +989,7 @@
             this.ArticleSearchTextBox.TabIndex = 6;
             this.ArticleSearchTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.toolTip1.SetToolTip(this.ArticleSearchTextBox, "输入要搜索的标题");
+            this.ArticleSearchTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ArticleSearchTextBox_KeyPress);
             // 
             // ArticleEditContentButton
             // 
@@ -660,7 +1001,7 @@
             this.ArticleEditContentButton.Name = "ArticleEditContentButton";
             this.ArticleEditContentButton.Size = new System.Drawing.Size(75, 23);
             this.ArticleEditContentButton.TabIndex = 4;
-            this.ArticleEditContentButton.Text = "编辑内容";
+            this.ArticleEditContentButton.Text = "编辑文章";
             this.toolTip1.SetToolTip(this.ArticleEditContentButton, "编辑文章的内容");
             this.ArticleEditContentButton.UseVisualStyleBackColor = false;
             this.ArticleEditContentButton.Click += new System.EventHandler(this.ArticleEditContentButton_Click);
@@ -918,6 +1259,7 @@
             this.SentSearchTextBox.TabIndex = 6;
             this.SentSearchTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.toolTip1.SetToolTip(this.SentSearchTextBox, "输入要搜索的标题");
+            this.SentSearchTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SentSearchTextBox_KeyPress);
             // 
             // SentNextButton
             // 
@@ -1695,6 +2037,9 @@
             this.panel1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.tabPage9.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -1830,5 +2175,29 @@
         private System.Windows.Forms.ComboBox AutoNoComboBox;
         private System.Windows.Forms.RichTextBox rtbShowText;
         private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.TabPage tabPage9;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button WebArticleLastButton;
+        private System.Windows.Forms.Button WebArticleHomeButton;
+        private System.Windows.Forms.Button WebSearchButton;
+        private System.Windows.Forms.Label WebPageLabel;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox WebSearchTextBox;
+        private System.Windows.Forms.Button WebContentEditButton;
+        private System.Windows.Forms.Button WebArticleNextButton;
+        private System.Windows.Forms.ListView listViewWebArticle;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.Button WebArticlePreButton;
+        private System.Windows.Forms.Label WebCountLabel;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.CheckBox WebSaveCheckBox;
+        private System.Windows.Forms.Button WebRandomButton;
+        private System.Windows.Forms.TextBox WebFileTitleTextBox;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Button WebArticleRootButton;
+        private System.Windows.Forms.Button WebArticleBackButton;
     }
 }

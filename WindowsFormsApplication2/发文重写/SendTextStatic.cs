@@ -91,14 +91,22 @@ namespace WindowsFormsApplication2
 
         private string 文章来源 {
             get {
-                int i = NewSendText.文章来源;
-                switch (i) {
-                    case 0: return "内置文章";
-                    case 1: return "自定义文章";
-                    case 2: return "来自剪贴板";
-                    case 3: return "保存的文章";
-                    case 4: return "保存的发文配置";
-                    default: return "未知来源";
+                switch (NewSendText.ArticleSource)
+                {
+                    case NewSendText.ArticleSourceValue.Internal:
+                        return "内置文章";
+                    case NewSendText.ArticleSourceValue.Local:
+                        return "本地文章";
+                    case NewSendText.ArticleSourceValue.Clipboard:
+                        return "来自剪贴板";
+                    case NewSendText.ArticleSourceValue.Web:
+                        return "网络文章";
+                    case NewSendText.ArticleSourceValue.Stored:
+                        return "保存的文章";
+                    case NewSendText.ArticleSourceValue.Sent:
+                        return "保存的发文";
+                    default:
+                        return "未知来源";
                 }
             }
         }

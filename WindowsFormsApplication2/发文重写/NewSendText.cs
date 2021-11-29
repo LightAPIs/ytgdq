@@ -31,9 +31,9 @@ namespace WindowsFormsApplication2
         public static int 周期计数 = 0;
 
         /// <summary>
-        /// 0 内置文章 1自定义文章 2剪贴板 3保存的文章 4保存的配置
+        /// 文章来源
         /// </summary>
-        public static int 文章来源;
+        public static ArticleSourceValue ArticleSource;
         public static int 已发字数 = 0;
         public static bool 是否自动 = false;
 
@@ -100,6 +100,16 @@ namespace WindowsFormsApplication2
             None = 0,
             Retype = 1,
             Disorder = 2
+        }
+
+        public enum ArticleSourceValue
+        {
+            Internal = 0,
+            Local = 1,
+            Clipboard = 2,
+            Web = 3,
+            Stored = 4,
+            Sent = 5
         }
     }
 }

@@ -302,6 +302,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.newButton1 = new WindowsFormsApplication2.NewButton();
             this.newButton2 = new WindowsFormsApplication2.NewButton();
+            this.SymbolInputCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFalse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRight)).BeginInit();
@@ -1764,6 +1765,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.DimGray;
+            this.groupBox1.Controls.Add(this.SymbolInputCheckBox);
             this.groupBox1.Controls.Add(this.AutoInputCheckBox);
             this.groupBox1.Controls.Add(this.DGCheckBox);
             this.groupBox1.Controls.Add(this.ZCheckBox);
@@ -1807,7 +1809,7 @@
             // 
             this.ZCheckBox.AutoSize = true;
             this.ZCheckBox.ForeColor = System.Drawing.Color.White;
-            this.ZCheckBox.Location = new System.Drawing.Point(11, 88);
+            this.ZCheckBox.Location = new System.Drawing.Point(11, 66);
             this.ZCheckBox.Name = "ZCheckBox";
             this.ZCheckBox.Size = new System.Drawing.Size(342, 16);
             this.ZCheckBox.TabIndex = 13;
@@ -1817,7 +1819,7 @@
             // AdvancedCheckBox
             // 
             this.AdvancedCheckBox.AutoSize = true;
-            this.AdvancedCheckBox.Location = new System.Drawing.Point(11, 110);
+            this.AdvancedCheckBox.Location = new System.Drawing.Point(11, 132);
             this.AdvancedCheckBox.Name = "AdvancedCheckBox";
             this.AdvancedCheckBox.Size = new System.Drawing.Size(204, 16);
             this.AdvancedCheckBox.TabIndex = 12;
@@ -1828,7 +1830,7 @@
             // 
             this.SymbolCheckBox.AutoSize = true;
             this.SymbolCheckBox.ForeColor = System.Drawing.Color.White;
-            this.SymbolCheckBox.Location = new System.Drawing.Point(11, 66);
+            this.SymbolCheckBox.Location = new System.Drawing.Point(11, 88);
             this.SymbolCheckBox.Name = "SymbolCheckBox";
             this.SymbolCheckBox.Size = new System.Drawing.Size(348, 16);
             this.SymbolCheckBox.TabIndex = 11;
@@ -3796,6 +3798,17 @@
             this.newButton2.默认背景色 = System.Drawing.Color.Gray;
             this.newButton2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // SymbolInputCheckBox
+            // 
+            this.SymbolInputCheckBox.AutoSize = true;
+            this.SymbolInputCheckBox.ForeColor = System.Drawing.Color.White;
+            this.SymbolInputCheckBox.Location = new System.Drawing.Point(11, 110);
+            this.SymbolInputCheckBox.Name = "SymbolInputCheckBox";
+            this.SymbolInputCheckBox.Size = new System.Drawing.Size(312, 16);
+            this.SymbolInputCheckBox.TabIndex = 16;
+            this.SymbolInputCheckBox.Text = "不将与符号一起上屏的字统计成打词(影响打词的统计)";
+            this.SymbolInputCheckBox.UseVisualStyleBackColor = true;
+            // 
             // TSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -4185,5 +4198,6 @@
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.CheckBox SymbolInputCheckBox;
     }
 }

@@ -135,6 +135,9 @@ namespace WindowsFormsApplication2
             //* 使用 ;' 选重
             this.SymbolCheckBox.Checked = Glob.UseSymbolSelect;
 
+            //* 词器不统计符号上屏
+            this.SymbolInputCheckBox.Checked = Glob.NotSymbolInput;
+
             //* 使用 Z 键复打
             this.ZCheckBox.Checked = Glob.UseZRetype;
 
@@ -407,6 +410,17 @@ namespace WindowsFormsApplication2
             {
                 Setupini.IniWriteValue("控制", "符号选重", "False");
                 Glob.UseSymbolSelect = false;
+            }
+
+            if (this.SymbolInputCheckBox.Checked)
+            {
+                Setupini.IniWriteValue("控制", "不统计符号", "True");
+                Glob.NotSymbolInput = true;
+            }
+            else
+            {
+                Setupini.IniWriteValue("控制", "不统计符号", "False");
+                Glob.NotSymbolInput = false;
             }
 
             if (this.ZCheckBox.Checked)

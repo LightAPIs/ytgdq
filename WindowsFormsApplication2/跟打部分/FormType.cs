@@ -113,6 +113,8 @@ namespace WindowsFormsApplication2
         /// </summary>
         private readonly static string ValidChars = @"abcdefghizklmnopqrstuvwxyz0123456789;',./";
 
+        private readonly static string SymbolChars = @"abcdefghizklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!！`~@#$￥%^…&*()（）-_—=+[]{}'‘’""“”\、|·;；:：,，.。<>《》?？/";
+
         public Form1()
         {
             InitializeComponent();
@@ -731,6 +733,8 @@ namespace WindowsFormsApplication2
             Glob.UseAutoInput = bool.Parse(IniRead("控制", "四码唯一", "False"));
             // 符号选重
             Glob.UseSymbolSelect = bool.Parse(IniRead("控制", "符号选重", "False"));
+            // 词组不统计符号上屏
+            Glob.NotSymbolInput = bool.Parse(IniRead("控制", "不统计符号", "False"));
             // Z 键复打
             Glob.UseZRetype = bool.Parse(IniRead("控制", "Z键复打", "False"));
 
@@ -1604,7 +1608,6 @@ namespace WindowsFormsApplication2
                         int Glast = TextLenNow;//当前字数
                         if (Istart == Glast) //当前后面没有 字符的情况。
                         {
-                            int g = 0;
                             for (int i = HisSave[0]; i < HisSave[1]; i++)
                             {
                                 if (TextType[i] == TextAlticle[i])
@@ -1628,20 +1631,62 @@ namespace WindowsFormsApplication2
                                         Glob.FWords.Add(i);
                                     }
                                     Glob.Type_Map_Color = Color.OrangeRed;
-                                    g++;
 
                                 }
                             }
 
                             if (iP >= 2)
-                            {
-                                //MessageBox.Show(g.ToString());
-                                if (iP == 2)
+                            {//* 打词记录
+                                string nowinput = richTextBox1.Text.Substring(HisSave[0], iP);
+
+                                if (Glob.NotSymbolInput)
+                                { //* 不统计符号上屏的字
+                                    if (!string.IsNullOrEmpty(Glob.UsedTableIndex))
+                                    { // 存在默认码表时
+                                        if (Glob.AllWordDic.ContainsKey(nowinput))
+                                        {
+                                            Glob.aTypeWords++;
+                                            Glob.aTypeWordsCount += iP;
+                                        }
+                                        else
+                                        {
+                                            if (iP > 2)
+                                            {
+                                                for (int c = iP - 1; c > 1; c--)
+                                                {
+                                                    string cInput = richTextBox1.Text.Substring(HisSave[0], c);
+                                                    if (Glob.AllWordDic.ContainsKey(cInput))
+                                                    {
+                                                        Glob.aTypeWords++;
+                                                        Glob.aTypeWordsCount += c;
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else
+                                    { // 不在在默认码表时
+                                        for (int m = iP - 1; m > 0; m--)
+                                        {
+                                            if (!SymbolChars.Contains(nowinput[m]))
+                                            {
+                                                Glob.aTypeWords++;
+                                                Glob.aTypeWordsCount += m + 1;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                                else
                                 {
-                                    string nowinput = richTextBox1.Text.Substring(HisSave[0], iP);
-                                    if (nowinput == "……" || nowinput == "——")
-                                    { // 排除符号
-                                        g++;
+                                    if (iP == 2)
+                                    {
+                                        if (nowinput != "……" && nowinput != "——")
+                                        { // 排除 2 位字宽的符号
+                                            Glob.aTypeWords++;
+                                            Glob.aTypeWordsCount += iP;
+                                        }
                                     }
                                     else
                                     {
@@ -1649,12 +1694,7 @@ namespace WindowsFormsApplication2
                                         Glob.aTypeWordsCount += iP;
                                     }
                                 }
-                                else
-                                {
-                                    Glob.aTypeWords++;
-                                    Glob.aTypeWordsCount += iP;
-                                }
-                            } //打词记录
+                            }
                         }
                         else
                         { //插入输入的情况

@@ -48,6 +48,10 @@ namespace WindowsFormsApplication2
         /// </summary>
         public static bool UseSymbolSelect = false;
         /// <summary>
+        /// 词组不统计符号上屏
+        /// </summary>
+        public static bool NotSymbolInput = false;
+        /// <summary>
         /// 使用 Z 键复打
         /// </summary>
         public static bool UseZRetype = false;

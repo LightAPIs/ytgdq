@@ -391,8 +391,7 @@ namespace WindowsFormsApplication2
         public static bool Type_Map_Level = true;//优先级
 
         /// <summary>
-        /// 打开标记
-        /// - 这是一个记录，真正使用的是 this.tsb标注.Checked
+        /// 启用标记功能
         /// </summary>
         public static bool IsPointIt = false;
 

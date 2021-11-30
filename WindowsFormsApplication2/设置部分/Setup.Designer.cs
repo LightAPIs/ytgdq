@@ -65,6 +65,12 @@
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
+            this.button18 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.pictureBoxFalse = new System.Windows.Forms.PictureBox();
@@ -79,6 +85,18 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -282,24 +300,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
-            this.label50 = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.label51 = new System.Windows.Forms.Label();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.button19 = new System.Windows.Forms.Button();
             this.newButton1 = new WindowsFormsApplication2.NewButton();
             this.newButton2 = new WindowsFormsApplication2.NewButton();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
@@ -308,6 +308,12 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -350,12 +356,6 @@
             this.panel35.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxPreText
@@ -840,6 +840,90 @@
             this.button13.UseVisualStyleBackColor = false;
             this.button13.Click += new System.EventHandler(this.BaseResetButton_Click);
             // 
+            // button14
+            // 
+            this.button14.BackColor = System.Drawing.Color.OliveDrab;
+            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button14.Location = new System.Drawing.Point(321, 239);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(51, 23);
+            this.button14.TabIndex = 44;
+            this.button14.Tag = "9";
+            this.button14.Text = "重置";
+            this.toolTip1.SetToolTip(this.button14, "恢复成跟打器预设");
+            this.button14.UseVisualStyleBackColor = false;
+            this.button14.Click += new System.EventHandler(this.BaseResetButton_Click);
+            // 
+            // button15
+            // 
+            this.button15.BackColor = System.Drawing.Color.OliveDrab;
+            this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button15.Location = new System.Drawing.Point(321, 265);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(51, 23);
+            this.button15.TabIndex = 45;
+            this.button15.Tag = "10";
+            this.button15.Text = "重置";
+            this.toolTip1.SetToolTip(this.button15, "恢复成跟打器预设");
+            this.button15.UseVisualStyleBackColor = false;
+            this.button15.Click += new System.EventHandler(this.BaseResetButton_Click);
+            // 
+            // button16
+            // 
+            this.button16.BackColor = System.Drawing.Color.OliveDrab;
+            this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button16.Location = new System.Drawing.Point(321, 291);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(51, 23);
+            this.button16.TabIndex = 46;
+            this.button16.Tag = "11";
+            this.button16.Text = "重置";
+            this.toolTip1.SetToolTip(this.button16, "恢复成跟打器预设");
+            this.button16.UseVisualStyleBackColor = false;
+            this.button16.Click += new System.EventHandler(this.BaseResetButton_Click);
+            // 
+            // button17
+            // 
+            this.button17.BackColor = System.Drawing.Color.OliveDrab;
+            this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button17.Location = new System.Drawing.Point(321, 317);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(51, 23);
+            this.button17.TabIndex = 47;
+            this.button17.Tag = "12";
+            this.button17.Text = "重置";
+            this.toolTip1.SetToolTip(this.button17, "恢复成跟打器预设");
+            this.button17.UseVisualStyleBackColor = false;
+            this.button17.Click += new System.EventHandler(this.BaseResetButton_Click);
+            // 
+            // button18
+            // 
+            this.button18.BackColor = System.Drawing.Color.OliveDrab;
+            this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button18.Location = new System.Drawing.Point(321, 343);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(51, 23);
+            this.button18.TabIndex = 48;
+            this.button18.Tag = "13";
+            this.button18.Text = "重置";
+            this.toolTip1.SetToolTip(this.button18, "恢复成跟打器预设");
+            this.button18.UseVisualStyleBackColor = false;
+            this.button18.Click += new System.EventHandler(this.BaseResetButton_Click);
+            // 
+            // button19
+            // 
+            this.button19.BackColor = System.Drawing.Color.OliveDrab;
+            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button19.Location = new System.Drawing.Point(321, 369);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(51, 23);
+            this.button19.TabIndex = 51;
+            this.button19.Tag = "14";
+            this.button19.Text = "重置";
+            this.toolTip1.SetToolTip(this.button19, "恢复成跟打器预设");
+            this.button19.UseVisualStyleBackColor = false;
+            this.button19.Click += new System.EventHandler(this.BaseResetButton_Click);
+            // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.DimGray;
@@ -1025,6 +1109,138 @@
             this.panel1.Size = new System.Drawing.Size(375, 396);
             this.panel1.TabIndex = 14;
             // 
+            // pictureBox9
+            // 
+            this.pictureBox9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox9.Location = new System.Drawing.Point(158, 369);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(157, 23);
+            this.pictureBox9.TabIndex = 50;
+            this.pictureBox9.TabStop = false;
+            this.pictureBox9.Click += new System.EventHandler(this.pictureBox9_Click);
+            // 
+            // label51
+            // 
+            this.label51.BackColor = System.Drawing.Color.DimGray;
+            this.label51.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label51.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label51.Location = new System.Drawing.Point(6, 369);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(146, 23);
+            this.label51.TabIndex = 49;
+            this.label51.Text = "测速点标记颜色";
+            this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox8.Location = new System.Drawing.Point(158, 343);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(157, 23);
+            this.pictureBox8.TabIndex = 43;
+            this.pictureBox8.TabStop = false;
+            this.pictureBox8.Click += new System.EventHandler(this.pictureBox8_Click);
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox7.Location = new System.Drawing.Point(158, 317);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(157, 23);
+            this.pictureBox7.TabIndex = 42;
+            this.pictureBox7.TabStop = false;
+            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox6.Location = new System.Drawing.Point(158, 291);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(157, 23);
+            this.pictureBox6.TabIndex = 41;
+            this.pictureBox6.TabStop = false;
+            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox5.Location = new System.Drawing.Point(158, 265);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(157, 23);
+            this.pictureBox5.TabIndex = 40;
+            this.pictureBox5.TabStop = false;
+            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox4.Location = new System.Drawing.Point(158, 239);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(157, 23);
+            this.pictureBox4.TabIndex = 39;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            // 
+            // label50
+            // 
+            this.label50.BackColor = System.Drawing.Color.DimGray;
+            this.label50.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label50.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label50.Location = new System.Drawing.Point(6, 343);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(146, 23);
+            this.label50.TabIndex = 38;
+            this.label50.Text = "下划线标记 3 重以上颜色";
+            this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label49
+            // 
+            this.label49.BackColor = System.Drawing.Color.DimGray;
+            this.label49.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label49.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label49.Location = new System.Drawing.Point(6, 317);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(146, 23);
+            this.label49.TabIndex = 37;
+            this.label49.Text = "下划线标记 2 重颜色";
+            this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label48
+            // 
+            this.label48.BackColor = System.Drawing.Color.DimGray;
+            this.label48.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label48.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label48.Location = new System.Drawing.Point(6, 291);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(146, 23);
+            this.label48.TabIndex = 36;
+            this.label48.Text = "下划线标记 1 重颜色";
+            this.label48.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label47
+            // 
+            this.label47.BackColor = System.Drawing.Color.DimGray;
+            this.label47.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label47.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label47.Location = new System.Drawing.Point(6, 265);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(146, 23);
+            this.label47.TabIndex = 35;
+            this.label47.Text = "下划线标记 0 重颜色";
+            this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label46
+            // 
+            this.label46.BackColor = System.Drawing.Color.DimGray;
+            this.label46.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label46.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label46.Location = new System.Drawing.Point(6, 239);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(146, 23);
+            this.label46.TabIndex = 34;
+            this.label46.Text = "跟打结束用时最多标记色";
+            this.label46.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // pictureBox3
             // 
             this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -1088,7 +1304,7 @@
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(146, 23);
             this.label19.TabIndex = 19;
-            this.label19.Text = "跟打结束后回改标记颜色";
+            this.label19.Text = "跟打结束回改标记颜色";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
@@ -3550,222 +3766,6 @@
             this.label10.TabIndex = 14;
             this.label10.Text = "雨天跟打器设置";
             // 
-            // label46
-            // 
-            this.label46.BackColor = System.Drawing.Color.DimGray;
-            this.label46.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label46.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label46.Location = new System.Drawing.Point(6, 239);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(146, 23);
-            this.label46.TabIndex = 34;
-            this.label46.Text = "跟打结束后用时最多标记";
-            this.label46.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label47
-            // 
-            this.label47.BackColor = System.Drawing.Color.DimGray;
-            this.label47.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label47.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label47.Location = new System.Drawing.Point(6, 265);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(146, 23);
-            this.label47.TabIndex = 35;
-            this.label47.Text = "词组标记 0 重颜色";
-            this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label48
-            // 
-            this.label48.BackColor = System.Drawing.Color.DimGray;
-            this.label48.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label48.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label48.Location = new System.Drawing.Point(6, 291);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(146, 23);
-            this.label48.TabIndex = 36;
-            this.label48.Text = "词组标记 1 重颜色";
-            this.label48.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label49
-            // 
-            this.label49.BackColor = System.Drawing.Color.DimGray;
-            this.label49.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label49.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label49.Location = new System.Drawing.Point(6, 317);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(146, 23);
-            this.label49.TabIndex = 37;
-            this.label49.Text = "词组标记 2 重颜色";
-            this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label50
-            // 
-            this.label50.BackColor = System.Drawing.Color.DimGray;
-            this.label50.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label50.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label50.Location = new System.Drawing.Point(6, 343);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(146, 23);
-            this.label50.TabIndex = 38;
-            this.label50.Text = "词组标记 3 重及以上颜色";
-            this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox4.Location = new System.Drawing.Point(158, 239);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(157, 23);
-            this.pictureBox4.TabIndex = 39;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox5.Location = new System.Drawing.Point(158, 265);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(157, 23);
-            this.pictureBox5.TabIndex = 40;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox6.Location = new System.Drawing.Point(158, 291);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(157, 23);
-            this.pictureBox6.TabIndex = 41;
-            this.pictureBox6.TabStop = false;
-            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox7.Location = new System.Drawing.Point(158, 317);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(157, 23);
-            this.pictureBox7.TabIndex = 42;
-            this.pictureBox7.TabStop = false;
-            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox8.Location = new System.Drawing.Point(158, 343);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(157, 23);
-            this.pictureBox8.TabIndex = 43;
-            this.pictureBox8.TabStop = false;
-            this.pictureBox8.Click += new System.EventHandler(this.pictureBox8_Click);
-            // 
-            // button14
-            // 
-            this.button14.BackColor = System.Drawing.Color.OliveDrab;
-            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button14.Location = new System.Drawing.Point(321, 239);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(51, 23);
-            this.button14.TabIndex = 44;
-            this.button14.Tag = "9";
-            this.button14.Text = "重置";
-            this.toolTip1.SetToolTip(this.button14, "恢复成跟打器预设");
-            this.button14.UseVisualStyleBackColor = false;
-            this.button14.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // button15
-            // 
-            this.button15.BackColor = System.Drawing.Color.OliveDrab;
-            this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button15.Location = new System.Drawing.Point(321, 265);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(51, 23);
-            this.button15.TabIndex = 45;
-            this.button15.Tag = "10";
-            this.button15.Text = "重置";
-            this.toolTip1.SetToolTip(this.button15, "恢复成跟打器预设");
-            this.button15.UseVisualStyleBackColor = false;
-            this.button15.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // button16
-            // 
-            this.button16.BackColor = System.Drawing.Color.OliveDrab;
-            this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button16.Location = new System.Drawing.Point(321, 291);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(51, 23);
-            this.button16.TabIndex = 46;
-            this.button16.Tag = "11";
-            this.button16.Text = "重置";
-            this.toolTip1.SetToolTip(this.button16, "恢复成跟打器预设");
-            this.button16.UseVisualStyleBackColor = false;
-            this.button16.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // button17
-            // 
-            this.button17.BackColor = System.Drawing.Color.OliveDrab;
-            this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button17.Location = new System.Drawing.Point(321, 317);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(51, 23);
-            this.button17.TabIndex = 47;
-            this.button17.Tag = "12";
-            this.button17.Text = "重置";
-            this.toolTip1.SetToolTip(this.button17, "恢复成跟打器预设");
-            this.button17.UseVisualStyleBackColor = false;
-            this.button17.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // button18
-            // 
-            this.button18.BackColor = System.Drawing.Color.OliveDrab;
-            this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button18.Location = new System.Drawing.Point(321, 343);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(51, 23);
-            this.button18.TabIndex = 48;
-            this.button18.Tag = "13";
-            this.button18.Text = "重置";
-            this.toolTip1.SetToolTip(this.button18, "恢复成跟打器预设");
-            this.button18.UseVisualStyleBackColor = false;
-            this.button18.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // label51
-            // 
-            this.label51.BackColor = System.Drawing.Color.DimGray;
-            this.label51.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label51.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label51.Location = new System.Drawing.Point(6, 369);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(146, 23);
-            this.label51.TabIndex = 49;
-            this.label51.Text = "测速点标记颜色";
-            this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox9.Location = new System.Drawing.Point(158, 369);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(157, 23);
-            this.pictureBox9.TabIndex = 50;
-            this.pictureBox9.TabStop = false;
-            this.pictureBox9.Click += new System.EventHandler(this.pictureBox9_Click);
-            // 
-            // button19
-            // 
-            this.button19.BackColor = System.Drawing.Color.OliveDrab;
-            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button19.Location = new System.Drawing.Point(321, 369);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(51, 23);
-            this.button19.TabIndex = 51;
-            this.button19.Tag = "14";
-            this.button19.Text = "重置";
-            this.toolTip1.SetToolTip(this.button19, "恢复成跟打器预设");
-            this.button19.UseVisualStyleBackColor = false;
-            this.button19.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
             // newButton1
             // 
             this.newButton1.BackColor = System.Drawing.Color.Gray;
@@ -3825,6 +3825,12 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -3900,12 +3906,6 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel12.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

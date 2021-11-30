@@ -31,7 +31,8 @@ namespace WindowsFormsApplication2
         {
             Start = 0,
             Middle = 1,
-            End = 2
+            End = 2,
+            Single = 3
         }
 
         public RichEditBoxLineRender()
@@ -78,12 +79,16 @@ namespace WindowsFormsApplication2
             foreach (var bm in bmAlls)
             {
                 if (bm.查询的字.Length > 1)
-                {
+                { //* 标记词组
                     AddLineForOneWord(index, index + bm.查询的字.Length - 1, GetColor(bm.重数));
                     index += bm.查询的字.Length;
                 }
                 else
                 {
+                    if (bm.重数 > 0)
+                    { //* 标记单字中的重码
+                        AddLineForOneChar(index, LineMode.Single, GetColor(bm.重数));
+                    }
                     index++;
                 }
 
@@ -168,6 +173,10 @@ namespace WindowsFormsApplication2
                         break;
                     case LineMode.End:
                         width -= space;
+                        break;
+                    case LineMode.Single:
+                        left += space;
+                        width -= 2 * space;
                         break;
                 }
 

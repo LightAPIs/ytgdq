@@ -741,17 +741,7 @@ namespace WindowsFormsApplication2
             this.CheckWordToolButton.Checked = Glob.是否智能测词;
             // 标记功能
             Glob.IsPointIt = bool.Parse(IniRead("程序控制", "标记", "False"));
-
-            if (Glob.是否智能测词)
-            {
-                this.tsb标注.Enabled = true;
-                this.tsb标注.Checked = Glob.IsPointIt;
-            }
-            else
-            {
-                this.tsb标注.Enabled = false;
-                this.tsb标注.Checked = false;
-            }
+            this.tsb标注.Checked = Glob.IsPointIt;
 
             // 图片发送
             Glob.PicName = IniRead("发送", "昵称", "");
@@ -780,7 +770,7 @@ namespace WindowsFormsApplication2
         {
             Glob.oneH = (int)this.richTextBox1.Font.GetHeight() + 4;
 
-            if (this.tsb标注.Checked)
+            if (Glob.IsPointIt)
             {
                 this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor);
             }
@@ -1438,7 +1428,7 @@ namespace WindowsFormsApplication2
                 {
                     g.Clear(Theme.ThemeColorBG);
                 }
-                if (this.tsb标注.Checked)
+                if (Glob.IsPointIt)
                 {
                     this.richTextBox1.SetCurIndex(0);
                 }
@@ -1768,7 +1758,7 @@ namespace WindowsFormsApplication2
                     Type_Map(Glob.Type_Map_Color, 跟打地图步进, 1);
                     //更新错字
                     this.labelBM.Text = Glob.FWords.Count.ToString();
-                    if (this.tsb标注.Checked)
+                    if (Glob.IsPointIt)
                     {
                         this.richTextBox1.SetCurIndex(TextLenNow);
                     }
@@ -4000,7 +3990,7 @@ namespace WindowsFormsApplication2
                 return;
             }
 
-            if (this.tsb标注.Checked)
+            if (Glob.IsPointIt)
             {
                 this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor); //* 绘制标注线条
             }
@@ -4349,8 +4339,6 @@ namespace WindowsFormsApplication2
                 Glob.是否智能测词 = false;
                 this.CheckWordToolButton.Checked = false;
                 ini.IniWriteValue("程序控制", "智能测词", "False");
-                this.tsb标注.Checked = false; // 关闭智能测词时，标注功能也将关闭
-                this.tsb标注.Enabled = false;
                 开始测词委托 = null;
                 this.richTextBox1.ClearLines();
             }
@@ -4359,8 +4347,6 @@ namespace WindowsFormsApplication2
                 Glob.是否智能测词 = true;
                 this.CheckWordToolButton.Checked = true;
                 ini.IniWriteValue("程序控制", "智能测词", "True");
-                this.tsb标注.Enabled = true;
-                this.tsb标注.Checked = Glob.IsPointIt; // 开启智能测词时，读取原先记录的标注功能状态
                 开始测词委托 = null;
             }
         }
@@ -5612,22 +5598,22 @@ namespace WindowsFormsApplication2
             _Ini ini = new _Ini("config.ini");
             if (Glob.IsPointIt)
             {
-                this.tsb标注.Checked = false;
                 Glob.IsPointIt = false;
+                this.tsb标注.Checked = false;
                 ini.IniWriteValue("程序控制", "标记", "False");
                 this.richTextBox1.ClearLines();
             }
             else
             {
-                this.tsb标注.Checked = true;
                 Glob.IsPointIt = true;
+                this.tsb标注.Checked = true;
                 ini.IniWriteValue("程序控制", "标记", "True");
             }
         }
 
         private void richTextBox1_VScroll(object sender, EventArgs e)
         {
-            if (this.tsb标注.Checked)
+            if (Glob.IsPointIt)
             {
                 this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor);
             }
@@ -5635,7 +5621,7 @@ namespace WindowsFormsApplication2
 
         private void richTextBox1_HScroll(object sender, EventArgs e)
         {
-            if (this.tsb标注.Checked)
+            if (Glob.IsPointIt)
             {
                 this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor);
             }
@@ -5643,7 +5629,7 @@ namespace WindowsFormsApplication2
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            if (this.tsb标注.Checked)
+            if (Glob.IsPointIt)
             {
                 this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor);
             }

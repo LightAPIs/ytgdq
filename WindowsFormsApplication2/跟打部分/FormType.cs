@@ -1104,8 +1104,8 @@ namespace WindowsFormsApplication2
                     if (NewSendText.标记 < TextLen)
                     {  //标记必须小于长度
                         int now = NewSendText.标记 + NewSendText.字数;
-                        if (now < TextLen)
-                        {
+                        if (now < TextLen && ((double)(TextLen - now) / NewSendText.字数) > 0.1)
+                        { // 当前小于总字数，且距末尾的距离大于发文字数的 10%
                             int textlength = NewSendText.字数;
                             if (IsCN.IsMatch(NewSendText.文章全文.Substring(now - 1, 1))) //? 当前的最后一个字是汉字或数字
                             { //* 寻找潜在的符号

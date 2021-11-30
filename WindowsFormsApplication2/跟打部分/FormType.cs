@@ -31,6 +31,7 @@ namespace WindowsFormsApplication2
     {
         public int[] HisSave = new int[2]; //得到每次输入的字符数量
         public int[] HisLine = new int[2]; //调整滚动条
+
         /// <summary>
         /// 当前已输入的字数
         /// </summary>
@@ -40,16 +41,38 @@ namespace WindowsFormsApplication2
         /// - 大于 0 时表示处于跟打中
         /// </summary>
         public int sw = 0;
-        public DateTime sTime, eTime, startTime;
+
+        /// <summary>
+        /// 开始跟打时间
+        /// </summary>
+        private DateTime startTime;
+        /// <summary>
+        /// 暂停结束后开始时间
+        /// - 初始时与开始跟打时间一致
+        /// - 若出现暂停，重新跟打后时间调整为重新启动时间
+        /// </summary>
+        private DateTime sTime;
+
         public double ts;
         private Series SeriesSpeed = new Series("速度");
         public ChartArea ChartArea1 = new ChartArea();
         public Title title1 = new Title();
+        
         /// <summary>
         /// 键盘钩子
         /// </summary>
         private KeyBordHook KH = new KeyBordHook();
-        public TimeSpan TimeStopAll = new TimeSpan();//暂停时间的累加
+
+        /// <summary>
+        /// 跟打时间的累计值
+        /// </summary>
+        private TimeSpan allUsedTime = new TimeSpan();
+        /// <summary>
+        /// 过往跟打时间的累加值
+        /// - 用于处理跟打暂停的情况
+        /// - 如果没有过暂停，那这个时间为空
+        /// </summary>
+        private TimeSpan recordUsedTime = new TimeSpan();
 
         private SendTextStatic 发文状态窗口;
 
@@ -1381,7 +1404,8 @@ namespace WindowsFormsApplication2
                 Glob.MinSplite = 500;
                 Glob.TextMc = 0;
                 Glob.TextMcc = 0;
-                TimeStopAll = new TimeSpan();
+                allUsedTime = new TimeSpan();
+                recordUsedTime = new TimeSpan();
                 Glob.PauseTimes = 0;
                 Glob.Use分析 = false;
                 Glob.Type_Map_C = 200;
@@ -1526,8 +1550,8 @@ namespace WindowsFormsApplication2
                     sw++;
                     if (Sw == 1)
                     {
-                        sTime = DateTime.Now;
-                        startTime = sTime;
+                        startTime = DateTime.Now; // 开始跟打时间
+                        sTime = startTime;
                         //! 由于可能会出现 timer1_Tick() 还未触发的情况，导致 Glob.typeUseTime 中的值还保留为上一段结束的值，
                         //! 从而造成跟打报告中第 2 项数据记录录异常的问题
                         Glob.TypeUseTime = 0;
@@ -1827,9 +1851,7 @@ namespace WindowsFormsApplication2
                             break;
                         }
                     }
-                    eTime = DateTime.Now;
-                    //MessageBox.Show("TextLenNow:" + TextLenNow + "\n TextLen:" + TextLen + "\n LastInput:" + Glob.LastInput);
-                    //timer1.Enabled = false;
+
                     if (Glob.LastInput == 1)
                     {
                         Glob.LastInput = 0;
@@ -1839,7 +1861,7 @@ namespace WindowsFormsApplication2
                     timer2.Enabled = false;
                     timer3.Enabled = false; //图表
                     timer5.Stop(); //长时间不跟打自动重打
-                    //MessageBox.Show("精确计时：" + " " + "\n标识计时：" + (eTime - sTime).TotalSeconds);
+                    
                     this.lblAutoReType.Text = "0";
                     //已跟打赋值
                     Glob.HaveTypeCount++;//已跟打段数
@@ -2838,6 +2860,12 @@ namespace WindowsFormsApplication2
             }
         }
 
+        /// <summary>
+        /// 停止时间计时
+        /// - 超过设定的停止时间时自动重打
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer5_Tick(object sender, EventArgs e)
         {
             if (sw > 1)
@@ -2850,7 +2878,7 @@ namespace WindowsFormsApplication2
                     F3();
 
                     this.lblAutoReType.Text = "0";
-                    MessageBox.Show("长时间未跟打，已自动重打！\n可在《设置》-《发送与控制》 - 《停止时间》处调整。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("长时间未跟打，已自动重打！\n可在\"设置\"→\"程序控制\"→\"离开时间\"处调整。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -2965,9 +2993,8 @@ namespace WindowsFormsApplication2
             }
 
             if (isPause)
-            {
-                //暂停关闭了
-                sTime = DateTime.Now;
+            { // 结束暂停，重新启动跟打
+                sTime = DateTime.Now; //* 记录重启时间
                 timer1.Start();
                 timer2.Start();
                 timer3.Start();
@@ -3456,8 +3483,11 @@ namespace WindowsFormsApplication2
 
 
         #region 暂停处理
-        private TimeSpan TimeStopA_ = new TimeSpan();
+        /// <summary>
+        /// 是否暂停
+        /// </summary>
         private bool isPause = false;
+
         private void 暂停ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!PauseType())
@@ -3466,21 +3496,37 @@ namespace WindowsFormsApplication2
             }
         }
 
+        /// <summary>
+        /// 暂停处理方法
+        /// </summary>
+        /// <returns></returns>
         public bool PauseType()
         {
             if (!isPause && sw > 0 && this.richTextBox1.Text.Length != this.textBoxEx1.Text.Length)
             {
                 try
                 {
-                    timer1.Stop();//计时
-                    timer2.Stop();//限时速度显示
-                    timer3.Stop();//即时图表
-                    timer5.Stop();//重打时间计时
-                    TimeStopAll += TimeStopA_;
+                    timer1.Stop(); // 跟打计时停止
+                    timer2.Stop(); // 实时速度等显示
+                    timer3.Stop(); // 跟打曲线统计
+                    timer5.Stop(); // 离开时间计时
                     isPause = true;
-                    this.labelSpeeding.Text = (this.textBoxEx1.Text.Length * 60 / Glob.TypeUseTime).ToString("0.00");
-                    //labelTimeFlys.ForeColor = Color.IndianRed;
-                    timerLblTime.Start();
+                    //? 由于暂停结束后重新启动跟打时，sTime 会被重新设定，
+                    //? 则 timer 计时器的下一个触发点到达后,所记录的时间间隔会缺失掉上一个触发点到暂停点的时间间隔，需要自行手动弥补
+                    TimeSpan span = DateTime.Now - sTime;
+                    allUsedTime = span + recordUsedTime;
+                    recordUsedTime = allUsedTime; //* 记录，因为重启跟打后 sTime 重新设定
+
+                    // 显示跟打暂停的即时时间
+                    DateTime showTime = new DateTime(allUsedTime.Ticks);
+                    labelTimeFlys.Text = showTime.ToString("mm:ss.ff"); // 时间显示区显示时间
+                    Glob.TypeUseTime = allUsedTime.TotalSeconds; //计算总秒数 小数点后两位
+
+                    if (Glob.ShowRealTimeData)
+                    {
+                        this.labelSpeeding.Text = (this.textBoxEx1.Text.Length * 60 / Glob.TypeUseTime).ToString("0.00");
+                    }                    
+                    timerLblTime.Start(); // 暂停时跟打用时闪烁
                     this.Text += " [已暂停]";
                     Glob.PauseTimes++;
                     return true;
@@ -3501,6 +3547,7 @@ namespace WindowsFormsApplication2
             PauseType();
         }
 
+        #region 暂停时跟打用时闪烁
         private bool LblTimeFlash = true;
         private void timerLblTime_Tick(object sender, EventArgs e)
         {
@@ -3516,6 +3563,9 @@ namespace WindowsFormsApplication2
             }
         }
 
+        /// <summary>
+        /// 暂停结束处理
+        /// </summary>
         private void EndPause()
         {
             timerLblTime.Stop();
@@ -3524,23 +3574,34 @@ namespace WindowsFormsApplication2
             isPause = false;
             this.Text = Glob.Form;
         }
+        #endregion
+
         private void labelTimeFlys_Click(object sender, EventArgs e)
-        {
+        { // 点击时间显示区暂停
             PauseType();
         }
         #endregion
 
-
-        private void timer1_Tick(object sender, EventArgs e) //时间计时
+        /// <summary>
+        /// 跟打时间计时
+        /// - 100 ms
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timer1_Tick(object sender, EventArgs e)
         {
             TimeSpan span = DateTime.Now - sTime;
-            TimeStopA_ = span;
-            span += TimeStopAll;
-            DateTime n = new DateTime(span.Ticks);
-            labelTimeFlys.Text = n.ToString("mm:ss.ff"); //显示时间
-            Glob.TypeUseTime = span.TotalSeconds; //计算总秒数 小数点后两位
+            allUsedTime = span + recordUsedTime;
+            DateTime showTime = new DateTime(allUsedTime.Ticks);
+            labelTimeFlys.Text = showTime.ToString("mm:ss.ff"); // 时间显示区显示时间
+            Glob.TypeUseTime = allUsedTime.TotalSeconds; //计算总秒数 小数点后两位
         }
 
+        /// <summary>
+        /// 实时数据计算
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer2_Tick(object sender, EventArgs e)
         {
             int inputL = textBoxEx1.TextLength;
@@ -3686,6 +3747,11 @@ namespace WindowsFormsApplication2
         #endregion
 
         #region 即时图表 1000ms
+        /// <summary>
+        /// 统计跟打曲线数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer3_Tick(object sender, EventArgs e)
         {
             if (this.textBoxEx1.TextLength > Glob.TextJc)

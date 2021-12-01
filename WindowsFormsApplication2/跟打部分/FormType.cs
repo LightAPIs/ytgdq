@@ -57,7 +57,7 @@ namespace WindowsFormsApplication2
         private Series SeriesSpeed = new Series("速度");
         public ChartArea ChartArea1 = new ChartArea();
         public Title title1 = new Title();
-        
+
         /// <summary>
         /// 键盘钩子
         /// </summary>
@@ -621,7 +621,7 @@ namespace WindowsFormsApplication2
             jjPerCheck(0);
             this.dataGridView2.Rows[0].Cells[16].Value = "12+";
             this.dataGridView2.Rows[0].Cells[16].Style.BackColor = Color.FromArgb(219, 219, 219);
-            
+
             //* 载入颜色设置
             Glob.R1Back = Color.FromArgb(int.Parse(IniRead("外观", "对照区颜色", "-722948"))); // #F4F7FC
             richTextBox1.BackColor = Glob.R1Back;
@@ -1043,7 +1043,7 @@ namespace WindowsFormsApplication2
                         else
                         { //* 乱序无限
                             numlist = GetRandomUnrepeatArray(0, TextLen - 1, NewSendText.字数);
-                            
+
                             foreach (int item in numlist)
                             {
                                 TextAll += NewSendText.发文全文[item];
@@ -1107,42 +1107,33 @@ namespace WindowsFormsApplication2
                         if (now < TextLen && ((double)(TextLen - now) / NewSendText.字数) > 0.1)
                         { // 当前小于总字数，且距末尾的距离大于发文字数的 10%
                             int textlength = NewSendText.字数;
-                            if (IsCN.IsMatch(NewSendText.文章全文.Substring(now - 1, 1))) //? 当前的最后一个字是汉字或数字
+                            int findIndex = now - 1;
+                            bool isLastFind = false;
+                            bool isCurFind = false;
+                            for (; findIndex < now + 50 && findIndex < TextLen; findIndex++)
                             { //* 寻找潜在的符号
-                                for (int i = now; i < now + 50; i++)
+                                string nowIt = NewSendText.文章全文.Substring(findIndex, 1);
+                                isCurFind = !IsCN.IsMatch(nowIt);
+
+                                if (isCurFind)
                                 {
-                                    string nowIt = NewSendText.文章全文.Substring(i, 1);
-                                    if (!IsCN.IsMatch(nowIt))
-                                    {  //如果找到
-                                        try
-                                        {
-                                            if (nowIt == "“" || nowIt == "‘")
-                                            { //? 不包括开引号
-                                                i--;
-                                            }
-                                            else if (NewSendText.文章全文.Substring(i + 1, 1) == "”" || NewSendText.文章全文.Substring(i + 1, 1) == "’")
-                                            { //? 取闭引号
-                                                i++;
-                                            }
-                                            else if (nowIt == "”" && (NewSendText.文章全文.Substring(i + 1, 1) == "。" || NewSendText.文章全文.Substring(i + 1, 1) == ","))
-                                            {
-                                                i++;
-                                            }
-                                            else if (nowIt == "—" && NewSendText.文章全文.Substring(i + 1, 1) == "—")
-                                            {
-                                                i++;
-                                            }
-                                            else if (nowIt == "…" && NewSendText.文章全文.Substring(i + 1, 1) == "…")
-                                            {
-                                                i++;
-                                            }
-                                        }
-                                        catch { }
-                                        textlength = i - NewSendText.标记 + 1;
+                                    if (nowIt == "“" || nowIt == "‘")
+                                    { //? 不包括开引号
+                                        textlength = findIndex - NewSendText.标记;
+                                        break;
+                                    }
+                                    isLastFind = true;
+                                }
+                                else
+                                { //? 一并处理连续符号
+                                    if (isLastFind)
+                                    {
+                                        textlength = findIndex - NewSendText.标记;
                                         break;
                                     }
                                 }
                             }
+
                             TextAll = NewSendText.文章全文.Substring(NewSendText.标记, textlength);
                             NewSendText.标记 += textlength;
                         }
@@ -1861,7 +1852,7 @@ namespace WindowsFormsApplication2
                     timer2.Enabled = false;
                     timer3.Enabled = false; //图表
                     timer5.Stop(); //长时间不跟打自动重打
-                    
+
                     this.lblAutoReType.Text = "0";
                     //已跟打赋值
                     Glob.HaveTypeCount++;//已跟打段数
@@ -3525,7 +3516,7 @@ namespace WindowsFormsApplication2
                     if (Glob.ShowRealTimeData)
                     {
                         this.labelSpeeding.Text = (this.textBoxEx1.Text.Length * 60 / Glob.TypeUseTime).ToString("0.00");
-                    }                    
+                    }
                     timerLblTime.Start(); // 暂停时跟打用时闪烁
                     this.Text += " [已暂停]";
                     Glob.PauseTimes++;

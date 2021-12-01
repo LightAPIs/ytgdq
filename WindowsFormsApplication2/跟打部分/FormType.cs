@@ -473,10 +473,18 @@ namespace WindowsFormsApplication2
                     }
                 }
                 else
-                { //自定义
+                { // 自定义图片背景
                     try
                     {
-                        this.BackgroundImage = Image.FromFile(BGround);
+                        string picPath = Path.Combine(FormTheme.ThemeFolderName, BGround);
+                        if (System.IO.File.Exists(picPath))
+                        {
+                            this.BackgroundImage = Image.FromFile(picPath);
+                        }
+                        else
+                        {
+                            this.BackgroundImage = null;
+                        }
                     }
                     catch
                     {

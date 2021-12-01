@@ -7,12 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace WindowsFormsApplication2
 {
     public partial class FormTheme : Form
     {
         private readonly Form1 frm;
+        /// <summary>
+        /// 主题资源目录名称
+        /// </summary>
+        public static string ThemeFolderName = Path.Combine(Application.StartupPath, "Theme");
+
         public FormTheme(Form1 frm1)
         {
             frm = frm1;
@@ -139,7 +145,7 @@ namespace WindowsFormsApplication2
         {
             ColorDialog cd = new ColorDialog();
             cd.Color = Theme.ThemeBG;
-            if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (cd.ShowDialog() == DialogResult.OK)
             {
                 this.lblPicShow.BackColor = cd.Color;
                 ReView();
@@ -158,10 +164,32 @@ namespace WindowsFormsApplication2
                 Filter = "图片|*.jpg;*.jpeg;*.bmp;*.png;*.gif",
                 FileName = Application.StartupPath
             };
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                this.lblBGPath.Text = openFileDialog1.FileName;
-                ReView();
+                string sourceFileName = openFileDialog1.FileName;
+                if (!string.IsNullOrEmpty(sourceFileName))
+                {
+                    if (!Directory.Exists(ThemeFolderName))
+                    {
+                        Directory.CreateDirectory(ThemeFolderName);
+                    }
+
+                    string filename = Path.GetFileName(sourceFileName);
+                    string notExtFilename = Path.GetFileNameWithoutExtension(sourceFileName);
+                    string extName = Path.GetExtension(sourceFileName); //? 文件后缀是带 "." 的
+                    string themeFilename = Path.Combine(ThemeFolderName, filename);
+                    int fileIndex = 0;
+
+                    while (File.Exists(themeFilename))
+                    {
+                        fileIndex++;
+                        themeFilename = Path.Combine(ThemeFolderName, string.Format("{0}_{1}{2}", notExtFilename, fileIndex.ToString(), extName));
+                    }
+                    File.Copy(sourceFileName, themeFilename);
+
+                    this.lblBGPath.Text = Path.GetFileName(themeFilename);
+                    ReView();
+                }
             }
         }
 
@@ -174,7 +202,7 @@ namespace WindowsFormsApplication2
         {
             ColorDialog cd = new ColorDialog();
             cd.Color = Theme.ThemeColorBG;
-            if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (cd.ShowDialog() == DialogResult.OK)
             {
                 this.lblThemeBGShow.BackColor = cd.Color;
                 ReView();
@@ -190,7 +218,7 @@ namespace WindowsFormsApplication2
         {
             ColorDialog cd = new ColorDialog();
             cd.Color = Theme.ThemeColorFC;
-            if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (cd.ShowDialog() == DialogResult.OK)
             {
                 this.lblThemeFCShow.BackColor = cd.Color;
                 ReView();
@@ -229,7 +257,7 @@ namespace WindowsFormsApplication2
             string path;
             if (Theme.IsBackBmp)
             {
-                path = Theme.ThemeBackBmp;
+                path = Path.Combine(FormTheme.ThemeFolderName, Theme.ThemeBackBmp);
                 if (path != "程序默认" && !System.IO.File.Exists(path))
                 {
                     path = "程序默认";
@@ -251,7 +279,7 @@ namespace WindowsFormsApplication2
             string path;
             if (this.SwitchB1.Checked)
             {
-                path = this.lblBGPath.Text;
+                path = Path.Combine(FormTheme.ThemeFolderName, this.lblBGPath.Text);
                 if (path != "程序默认" && !System.IO.File.Exists(path))
                 {
                     path = "程序默认";

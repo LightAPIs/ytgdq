@@ -23,6 +23,7 @@ using WindowsFormsApplication2.Storage;
 using WindowsFormsApplication2.History;
 using WindowsFormsApplication2.KeyAnalysis;
 using WindowsFormsApplication2.CodeTable;
+using WindowsFormsApplication2.Difficulty;
 using Newtonsoft.Json;
 
 namespace WindowsFormsApplication2
@@ -130,6 +131,11 @@ namespace WindowsFormsApplication2
                 "0xffe5", '$'
             }
         };
+
+        /// <summary>
+        /// 难度计算字典
+        /// </summary>
+        private readonly DifficultyDict diffDict = new DifficultyDict();
 
         /// <summary>
         /// 编码中的有效字符
@@ -520,6 +526,7 @@ namespace WindowsFormsApplication2
             this.lblDuan.BackColor = BG;
             this.lblTitle.BackColor = BG;
             this.lblCount.BackColor = BG;
+            this.DifficultyLabel.BackColor = BG;
             this.lblSpeedText.BackColor = BG;
             this.lblJJText.BackColor = BG;
             this.lblMCText.BackColor = BG;
@@ -531,6 +538,7 @@ namespace WindowsFormsApplication2
             this.lblDuan.ForeColor = FC;
             this.lblTitle.ForeColor = FC;
             this.lblCount.ForeColor = FC;
+            this.DifficultyLabel.ForeColor = FC;
             this.lblSpeedText.ForeColor = FC;
             this.lblJJText.ForeColor = FC;
             this.lblMCText.ForeColor = FC;
@@ -566,7 +574,7 @@ namespace WindowsFormsApplication2
         public void LoadSetup()
         {
             //创建表头
-            this.dataGridView1.Rows.Add("序", "时间", "段号", "速度", "击键", "码长", "理论", "回改", "退格", "回车", "选重", "错字", "回改率", "键准", "效率", "键数", "字数", "打词", "打词率", "用时", "标题");
+            this.dataGridView1.Rows.Add("序", "时间", "段号", "速度", "击键", "码长", "理论", "难度", "回改", "退格", "回车", "选重", "错字", "回改率", "键准", "效率", "键数", "字数", "打词", "打词率", "用时", "标题");
             this.dataGridView1.Rows[0].Frozen = true;
             this.dataGridView1.Rows[0].DefaultCellStyle.Font = new Font("微软雅黑", 11f);
             this.dataGridView1.Rows[0].DefaultCellStyle.BackColor = Theme.ThemeColorBG;
@@ -2162,7 +2170,7 @@ namespace WindowsFormsApplication2
                             if (speed_Plus > 0) dataGridView1.Rows[RowCount].Cells[3].Style.ForeColor = Color.FromArgb(253, 108, 108);
                             if (jj_Plus > 0) dataGridView1.Rows[RowCount].Cells[4].Style.ForeColor = Color.FromArgb(255, 129, 233);
                             if (mc_Plus < 0) dataGridView1.Rows[RowCount].Cells[5].Style.ForeColor = Color.FromArgb(124, 222, 255);
-                            for (int i = 0; i < 21; i++)
+                            for (int i = 0; i < 22; i++)
                             {
                                 if (i != 3 && i != 4 && i != 5)
                                 {
@@ -2178,7 +2186,7 @@ namespace WindowsFormsApplication2
                             typeCountStr = Glob.HaveTypeCount_.ToString();
                         }
                         //* 成绩栏添加新数据行
-                        dataGridView1.Rows.Add(typeCountStr, Glob.TextTime.ToString("G"), Glob.CurSegmentNum.ToString(), Spsend, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserDcl, UserTime, this.lblTitle.Text);
+                        dataGridView1.Rows.Add(typeCountStr, Glob.TextTime.ToString("G"), Glob.CurSegmentNum.ToString(), Spsend, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.Difficulty.ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserDcl, UserTime, this.lblTitle.Text);
                         //* 绑定右键菜单
                         dataGridView1.Rows[dataGridView1.RowCount - 1].ContextMenuStrip = this.ScoreContextMenuStrip;
                         Glob.TextPreCout = this.lblMatchCount.Text; // 记录本文段校验码
@@ -2189,7 +2197,7 @@ namespace WindowsFormsApplication2
                         CellHighlight.Speed(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[3], speed2);
                         CellHighlight.Keystroke(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[4], jj);
                         CellHighlight.CodeLen(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5], mc);
-                        CellHighlight.Error(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[11], Glob.TextCz);
+                        CellHighlight.Error(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[12], Glob.TextCz);
                         #endregion
                         double jjPer_ = Glob.Per_Jj / Glob.HaveTypeCount;
                         Glob.Total_Type += Glob.TextLen;
@@ -2200,7 +2208,7 @@ namespace WindowsFormsApplication2
                             dis = dt.ToString("HH:mm:ss");
                         }
                         // 成绩栏总计行
-                        dataGridView1.Rows.Add("", dis, Glob.HaveTypeCount + "#", (Glob.Per_Speed / Glob.HaveTypeCount).ToString("0.00"), jjPer_.ToString("0.00"), (Glob.Per_Mc / Glob.HaveTypeCount).ToString("0.00"), "", "", "", "", "", "", "", "", "", "", (Glob.Total_Type / Glob.HaveTypeCount).ToString("0.00"), "", "", (touse / Glob.HaveTypeCount).ToString("0.00"), "");
+                        dataGridView1.Rows.Add("", dis, Glob.HaveTypeCount + "#", (Glob.Per_Speed / Glob.HaveTypeCount).ToString("0.00"), jjPer_.ToString("0.00"), (Glob.Per_Mc / Glob.HaveTypeCount).ToString("0.00"), "", "", "", "", "", "", "", "", "", "", "", (Glob.Total_Type / Glob.HaveTypeCount).ToString("0.00"), "", "", (touse / Glob.HaveTypeCount).ToString("0.00"), "");
                         dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
                         dataGridView1.ClearSelection();
                         DataGridViewRow dgr = dataGridView1.Rows[dataGridView1.RowCount - 1];
@@ -2227,7 +2235,7 @@ namespace WindowsFormsApplication2
                         //* 保存文段
                         long databaseSegmentId = Glob.ScoreHistory.InsertSegment(Glob.TypeText, this.lblMatchCount.Text);
                         //* 保存成绩
-                        Glob.ScoreHistory.InsertScore(Glob.TextTime.ToString("s"), Glob.CurSegmentNum, Spsend, jj, mc, Glob.词库理论码长, Glob.TextHg, Math.Abs(Glob.TextBg - Glob.TextHg), Glob.回车, Glob.选重, Glob.TextCz, Glob.TextHg_, UserJz, Glob.效率, Glob.TextJs, TextLen, Glob.aTypeWords, Glob.TextDc_, UserTime, databaseSegmentId, this.lblTitle.Text, Glob.Instration);
+                        Glob.ScoreHistory.InsertScore(Glob.TextTime.ToString("s"), Glob.CurSegmentNum, Spsend, jj, mc, Glob.词库理论码长, Glob.TextHg, Math.Abs(Glob.TextBg - Glob.TextHg), Glob.回车, Glob.选重, Glob.TextCz, Glob.TextHg_, UserJz, Glob.效率, Glob.TextJs, TextLen, Glob.aTypeWords, Glob.TextDc_, UserTime, databaseSegmentId, this.lblTitle.Text, Glob.Instration, Glob.Difficulty);
                         if (!Glob.DisableSaveAdvanced)
                         { // 保存高阶统计数据
                             string curveData = string.Join("|", Glob.ChartSpeedArr);
@@ -2267,6 +2275,7 @@ namespace WindowsFormsApplication2
                         scoreRow["segment_id"] = databaseSegmentId;
                         scoreRow["article_title"] = this.lblTitle.Text;
                         scoreRow["version"] = Glob.Instration;
+                        scoreRow["difficulty"] = Glob.Difficulty;
                         this.currentScoreData.AddScoreRow(scoreRow);
                         #endregion
 
@@ -3403,8 +3412,62 @@ namespace WindowsFormsApplication2
             var tl = richTextBox1.TextLength;
             Glob.TextLen = tl;
             Glob.TypeText = richTextBox1.Text; // 存储跟打文字
+
+            //* 计算难度
+            Glob.Difficulty = 0;
+            double accumulator = 0;
+            int count = 0;
+            for (int i = 0; i < Glob.TypeText.Length; i++)
+            {
+                string nowIt = Glob.TypeText[i].ToString();
+                if (diffDict.Ranks.ContainsKey(nowIt))
+                {
+                    accumulator += diffDict.Ranks[nowIt];
+                    count++;
+                }
+                else
+                {
+                    if (!SymbolChars.Contains(nowIt))
+                    { //* 不统计标点符号
+                        accumulator += 9;
+                        count++;
+                    }
+                }
+            }
+            Glob.Difficulty = count > 0 ? accumulator / count : 0;
+            string diffText = "";
+            if (Glob.Difficulty == 0)
+            {
+                diffText = "无";
+            }
+            else if (Glob.Difficulty <= 2)
+            {
+                diffText = "简单";
+            }
+            else if (Glob.Difficulty <= 3)
+            {
+                diffText = "一般";
+            }
+            else if (Glob.Difficulty <= 4)
+            {
+                diffText = "困难";
+            }
+            else if (Glob.Difficulty <= 5)
+            {
+                diffText = "超难";
+            }
+            else if (Glob.Difficulty <= 7)
+            {
+                diffText = "极难";
+            }
+            else
+            {
+                diffText = "地狱";
+            }
+
             textBoxEx1.MaxLength = tl;
             lblCount.Text = tl.ToString() + "字";
+            DifficultyLabel.Text = diffText + "(" + Glob.Difficulty.ToString("0.00") + ")";
             lblMatchCount.Text = Validation.Validat(Validation.Validat(richTextBox1.Text));
 
             //? 为了能处理中途更换或停用码表等特殊情况，在手动按下重打时也会重新计算
@@ -3930,7 +3993,7 @@ namespace WindowsFormsApplication2
                 sb.Append("#平均 共" + (table_c - 2) + "段 速度" + this.dataGridView1.Rows[table_c - 1].Cells[3].Value);
                 sb.Append(" 击键" + this.dataGridView1.Rows[table_c - 1].Cells[4].Value);
                 sb.Append(" 码长" + this.dataGridView1.Rows[table_c - 1].Cells[5].Value);
-                sb.AppendLine(" 均时" + this.dataGridView1.Rows[table_c - 1].Cells[19].Value + "秒");
+                sb.AppendLine(" 均时" + this.dataGridView1.Rows[table_c - 1].Cells[20].Value + "秒");
                 sb.Append(" 今日已跟打" + Glob.todayTyping + "字 总跟打" + Glob.TextLenAll + "字 " + Glob.Form + "(" + Glob.Instration + ")");
                 if (MessageBox.Show(sb + "\n\n是否复制内容？", "当前平均成绩", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {

@@ -77,6 +77,16 @@
     <EmbeddedResource Include="Resources\TXT\岳阳楼记.txt" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\DIC\0.txt" />
+    <EmbeddedResource Include="Resources\DIC\1.txt" />
+    <EmbeddedResource Include="Resources\DIC\2.txt" />
+    <EmbeddedResource Include="Resources\DIC\3.txt" />
+    <EmbeddedResource Include="Resources\DIC\4.txt" />
+    <EmbeddedResource Include="Resources\DIC\5.txt" />
+    <EmbeddedResource Include="Resources\DIC\6.txt" />
+    <EmbeddedResource Include="Resources\DIC\7.txt" />
+    <EmbeddedResource Include="Resources\DIC\8.txt" />
+    <EmbeddedResource Include="Resources\DIC\9.txt" />
     <Content Include="Resources\QQ\Button\down.png" />
     <Content Include="Resources\QQ\Button\focus.png" />
     <Content Include="Resources\QQ\Button\gray.png" />

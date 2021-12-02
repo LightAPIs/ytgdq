@@ -403,6 +403,11 @@ namespace WindowsFormsApplication2
         public static bool Use分析 = false;
 
         /// <summary>
+        /// 文段难度
+        /// </summary>
+        public static double Difficulty = 0;
+
+        /// <summary>
         /// 测速点控制
         /// 注：存的是 index
         /// </summary>

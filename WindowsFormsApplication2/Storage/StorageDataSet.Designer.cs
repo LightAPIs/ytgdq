@@ -625,6 +625,8 @@ namespace WindowsFormsApplication2.Storage {
             
             private global::System.Data.DataColumn columnversion;
             
+            private global::System.Data.DataColumn columndifficulty;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ScoreDataTable() {
@@ -836,6 +838,14 @@ namespace WindowsFormsApplication2.Storage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn difficultyColumn {
+                get {
+                    return this.columndifficulty;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -893,7 +903,8 @@ namespace WindowsFormsApplication2.Storage {
                         string cost_time, 
                         long segment_id, 
                         string article_title, 
-                        string version) {
+                        string version, 
+                        double difficulty) {
                 ScoreRow rowScoreRow = ((ScoreRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         score_time,
@@ -917,7 +928,8 @@ namespace WindowsFormsApplication2.Storage {
                         cost_time,
                         segment_id,
                         article_title,
-                        version};
+                        version,
+                        difficulty};
                 rowScoreRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowScoreRow);
                 return rowScoreRow;
@@ -969,6 +981,7 @@ namespace WindowsFormsApplication2.Storage {
                 this.columnsegment_id = base.Columns["segment_id"];
                 this.columnarticle_title = base.Columns["article_title"];
                 this.columnversion = base.Columns["version"];
+                this.columndifficulty = base.Columns["difficulty"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1018,10 +1031,13 @@ namespace WindowsFormsApplication2.Storage {
                 base.Columns.Add(this.columnarticle_title);
                 this.columnversion = new global::System.Data.DataColumn("version", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnversion);
+                this.columndifficulty = new global::System.Data.DataColumn("difficulty", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndifficulty);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("ScoreKey", new global::System.Data.DataColumn[] {
                                 this.columnscore_time}, true));
                 this.columnscore_time.AllowDBNull = false;
                 this.columnscore_time.Unique = true;
+                this.columndifficulty.DefaultValue = ((double)(0D));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4312,6 +4328,22 @@ namespace WindowsFormsApplication2.Storage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public double difficulty {
+                get {
+                    try {
+                        return ((double)(this[this.tableScore.difficultyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Score”中列“difficulty”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableScore.difficultyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool Issegment_numNull() {
                 return this.IsNull(this.tableScore.segment_numColumn);
             }
@@ -4560,6 +4592,18 @@ namespace WindowsFormsApplication2.Storage {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetversionNull() {
                 this[this.tableScore.versionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsdifficultyNull() {
+                return this.IsNull(this.tableScore.difficultyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetdifficultyNull() {
+                this[this.tableScore.difficultyColumn] = global::System.Convert.DBNull;
             }
         }
         

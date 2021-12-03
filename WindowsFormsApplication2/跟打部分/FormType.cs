@@ -135,7 +135,7 @@ namespace WindowsFormsApplication2
         /// <summary>
         /// 难度计算字典
         /// </summary>
-        private readonly DifficultyDict diffDict = new DifficultyDict();
+        public readonly DifficultyDict DiffDict = new DifficultyDict();
 
         /// <summary>
         /// 编码中的有效字符
@@ -3414,60 +3414,11 @@ namespace WindowsFormsApplication2
             Glob.TypeText = richTextBox1.Text; // 存储跟打文字
 
             //* 计算难度
-            Glob.Difficulty = 0;
-            double accumulator = 0;
-            int count = 0;
-            for (int i = 0; i < Glob.TypeText.Length; i++)
-            {
-                string nowIt = Glob.TypeText[i].ToString();
-                if (diffDict.Ranks.ContainsKey(nowIt))
-                {
-                    accumulator += diffDict.Ranks[nowIt];
-                    count++;
-                }
-                else
-                {
-                    if (!SymbolChars.Contains(nowIt))
-                    { //* 不统计标点符号
-                        accumulator += 9;
-                        count++;
-                    }
-                }
-            }
-            Glob.Difficulty = count > 0 ? accumulator / count : 0;
-            string diffText = "";
-            if (Glob.Difficulty == 0)
-            {
-                diffText = "无";
-            }
-            else if (Glob.Difficulty <= 2)
-            {
-                diffText = "简单";
-            }
-            else if (Glob.Difficulty <= 3)
-            {
-                diffText = "一般";
-            }
-            else if (Glob.Difficulty <= 4)
-            {
-                diffText = "困难";
-            }
-            else if (Glob.Difficulty <= 5)
-            {
-                diffText = "超难";
-            }
-            else if (Glob.Difficulty <= 7)
-            {
-                diffText = "极难";
-            }
-            else
-            {
-                diffText = "地狱";
-            }
+            Glob.Difficulty = DiffDict.Calc(Glob.TypeText);
 
             textBoxEx1.MaxLength = tl;
             lblCount.Text = tl.ToString() + "字";
-            DifficultyLabel.Text = diffText + "(" + Glob.Difficulty.ToString("0.00") + ")";
+            DifficultyLabel.Text = DiffDict.DiffText(Glob.Difficulty);
             lblMatchCount.Text = Validation.Validat(Validation.Validat(richTextBox1.Text));
 
             //? 为了能处理中途更换或停用码表等特殊情况，在手动按下重打时也会重新计算

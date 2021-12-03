@@ -8,7 +8,10 @@ namespace WindowsFormsApplication2.Difficulty
 {
     public class DifficultyDict
     {
-        public Dictionary<string, double> Ranks = new Dictionary<string, double>();
+        private Dictionary<string, double> ranks = new Dictionary<string, double>();
+
+        private readonly string symbloChars = @"abcdefghizklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!！`~@#$￥%^…&*()（）-_—=+[]{}'‘’""“”\、|·;；:：,，.。<>《》?？/";
+
         public DifficultyDict()
         {
             for (int i = 0; i < 10; i++)
@@ -50,9 +53,79 @@ namespace WindowsFormsApplication2.Difficulty
                             ra = 7;
                             break;
                     }
-                    this.Ranks.Add(dicStr[j].ToString(), ra);
+                    this.ranks.Add(dicStr[j].ToString(), ra);
                 }
             }
+        }
+
+        /// <summary>
+        /// 难度计算器
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public double Calc(string text)
+        {
+            double accumulator = 0;
+            int count = 0;
+            for (int i = 0; i < text.Length; i++)
+            {
+                string nowIt = text[i].ToString();
+                if (!string.IsNullOrWhiteSpace(nowIt))
+                {
+                    if (this.ranks.ContainsKey(nowIt))
+                    {
+                        accumulator += this.ranks[nowIt];
+                        count++;
+                    }
+                    else if (!symbloChars.Contains(nowIt))
+                    { //* 不统计标点符号
+                        accumulator += 9;
+                        count++;
+                    }
+                }
+            }
+
+            return count > 0 ? accumulator / count : 0;
+        }
+
+        /// <summary>
+        /// 难度等级标识
+        /// </summary>
+        /// <param name="diff"></param>
+        /// <returns></returns>
+        public string DiffText(double diff)
+        {
+            string diffText = "";
+            if (diff == 0)
+            {
+                diffText = "无";
+            }
+            else if (diff <= 2)
+            {
+                diffText = "简单";
+            }
+            else if (diff <= 3)
+            {
+                diffText = "一般";
+            }
+            else if (diff <= 4)
+            {
+                diffText = "困难";
+            }
+            else if (diff <= 5)
+            {
+                diffText = "超难";
+            }
+            else if (diff <= 7)
+            {
+                diffText = "极难";
+            }
+            else
+            {
+                diffText = "地狱";
+            }
+
+            return diffText + "(" + diff.ToString("0.00") + ")";
         }
     }
 }

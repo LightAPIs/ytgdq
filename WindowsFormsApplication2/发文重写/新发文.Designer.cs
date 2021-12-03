@@ -163,6 +163,7 @@
             this.cbxSplit = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.DiffcultyLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -1506,6 +1507,7 @@
             this.tableLayoutPanel2.Controls.Add(this.AutoOperatorComboBox, 1, 8);
             this.tableLayoutPanel2.Controls.Add(this.AutoNumberTextBox, 2, 8);
             this.tableLayoutPanel2.Controls.Add(this.AutoNoComboBox, 2, 9);
+            this.tableLayoutPanel2.Controls.Add(this.DiffcultyLabel, 2, 3);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 15);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 11;
@@ -1618,12 +1620,11 @@
             // tbxSendStart
             // 
             this.tbxSendStart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tableLayoutPanel2.SetColumnSpan(this.tbxSendStart, 2);
             this.tbxSendStart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbxSendStart.Location = new System.Drawing.Point(100, 78);
             this.tbxSendStart.MaxLength = 9999999;
             this.tbxSendStart.Name = "tbxSendStart";
-            this.tbxSendStart.Size = new System.Drawing.Size(190, 21);
+            this.tbxSendStart.Size = new System.Drawing.Size(92, 21);
             this.tbxSendStart.TabIndex = 9;
             this.tbxSendStart.Text = "0";
             this.tbxSendStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -2018,6 +2019,22 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "词组分隔符：";
             // 
+            // DiffcultyLabel
+            // 
+            this.DiffcultyLabel.BackColor = System.Drawing.Color.Gainsboro;
+            this.DiffcultyLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DiffcultyLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DiffcultyLabel.Font = new System.Drawing.Font("宋体", 9F);
+            this.DiffcultyLabel.ForeColor = System.Drawing.Color.Gray;
+            this.DiffcultyLabel.Location = new System.Drawing.Point(198, 79);
+            this.DiffcultyLabel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 1);
+            this.DiffcultyLabel.Name = "DiffcultyLabel";
+            this.DiffcultyLabel.Size = new System.Drawing.Size(92, 20);
+            this.DiffcultyLabel.TabIndex = 25;
+            this.DiffcultyLabel.Text = "难度";
+            this.DiffcultyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.DiffcultyLabel, "当前所选文章难度");
+            // 
             // 新发文
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2203,5 +2220,6 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Button WebArticleRootButton;
         private System.Windows.Forms.Button WebArticleBackButton;
+        private System.Windows.Forms.Label DiffcultyLabel;
     }
 }

@@ -338,6 +338,10 @@ namespace WindowsFormsApplication2
                 { // 确认文章类型
                     IsWords(tickText);
                 }
+
+                double diff = frm.DiffDict.Calc(tickText);
+                this.DiffcultyLabel.Text = frm.DiffDict.DiffText(diff);
+
                 this.label2.Text = "总字数";
                 this.label4.Text = "字数";
                 lblTextCount.Text = tickText.Length.ToString();
@@ -449,7 +453,7 @@ namespace WindowsFormsApplication2
         {
             int nowIndex = (sender as TabControl).SelectedIndex;
             if (nowIndex == 2 && this.lblStyle.Text != "词组")
-            {
+            { //* 切换到词组
                 this.cbxSplit.SelectedIndex = -1;
                 this.label2.Text = "总词数";
                 this.label4.Text = "词数";
@@ -466,6 +470,8 @@ namespace WindowsFormsApplication2
                         {
                             this.rtbShowText.Text = GetText + "[已完]";
                         }
+
+                        //* 难度文本不用处理，因为本质上难度不会变化
                     }
                     ShowFlowText("请选择词组分隔符来检索词组内容");
                 }
@@ -512,6 +518,7 @@ namespace WindowsFormsApplication2
                 lblTitle.ResetText();
                 rtbInfo.ResetText();
                 rtbShowText.ResetText();
+                DiffcultyLabel.Text = "难度";
                 tbxSendStart.Text = "0";
                 GetText = "";
                 NewSendText.SentId = -1;
@@ -895,14 +902,18 @@ namespace WindowsFormsApplication2
                         {
                             tickText = TickBlock(GetText, "");
                         }
-                        rtbShowText.Text = tickText.Substring(c, cou) + "\r\n[...当前设置文段预览(非实际)]";
+                        string showText = tickText.Substring(c, cou);
+                        rtbShowText.Text = showText + "\r\n[...当前设置文段预览(非实际)]";
                         rtbShowText.ForeColor = Color.Black;
+                        double diff = frm.DiffDict.Calc(showText);
+                        DiffcultyLabel.Text = frm.DiffDict.DiffText(diff);
                         btnGoSend.Enabled = true;
                     }
                     catch
                     {
                         rtbShowText.Text = "标记起始点设置错误，因为设置数值超出总字数，请重设！";
                         rtbShowText.ForeColor = Color.IndianRed;
+                        DiffcultyLabel.Text = "难度";
                         btnGoSend.Enabled = false;
                     }
                 }
@@ -959,14 +970,18 @@ namespace WindowsFormsApplication2
                                 {
                                     tickText = TickBlock(GetText, "");
                                 }
-                                rtbShowText.Text = tickText.Substring(c, cou) + "\r\n[...当前设置文段预览(非实际)]";
+                                string showText = tickText.Substring(c, cou);
+                                rtbShowText.Text = showText + "\r\n[...当前设置文段预览(非实际)]";
                                 rtbShowText.ForeColor = Color.Black;
+                                double diff = frm.DiffDict.Calc(showText);
+                                DiffcultyLabel.Text = frm.DiffDict.DiffText(diff);
                                 btnGoSend.Enabled = true;
                             }
                             catch
                             {
                                 rtbShowText.Text = "在当前标起始点下，字数设置超出限制！";
                                 rtbShowText.ForeColor = Color.IndianRed;
+                                DiffcultyLabel.Text = "难度";
                                 btnGoSend.Enabled = false;
                             }
                         }
@@ -974,6 +989,7 @@ namespace WindowsFormsApplication2
                         {
                             rtbShowText.Text = "发送字数设置错误！";
                             rtbShowText.ForeColor = Color.IndianRed;
+                            DiffcultyLabel.Text = "难度";
                             btnGoSend.Enabled = false;
                         }
                     }
@@ -981,6 +997,7 @@ namespace WindowsFormsApplication2
                     {
                         rtbShowText.Text = "发送字数设置错误！";
                         rtbShowText.ForeColor = Color.IndianRed;
+                        DiffcultyLabel.Text = "难度";
                         btnGoSend.Enabled = false;
                     }
                 }
@@ -1185,6 +1202,7 @@ namespace WindowsFormsApplication2
                             else
                             {
                                 this.rtbShowText.Text = "警告：没有获取到文章内容！";
+                                this.DiffcultyLabel.Text = "难度";
                             }
                         }));
                     }
@@ -1400,6 +1418,7 @@ namespace WindowsFormsApplication2
                     else
                     {
                         this.rtbShowText.Text = "警告：没有获取到文章内容！";
+                        this.DiffcultyLabel.Text = "难度";
                     }
                 }));
             }
@@ -1734,6 +1753,9 @@ namespace WindowsFormsApplication2
                         rtbShowText.Text = GetText + "[已完]";
                     }
 
+                    double diff = frm.DiffDict.Calc(GetText);
+                    this.DiffcultyLabel.Text = frm.DiffDict.DiffText(diff);
+
                     NewSendText.发文全文 = sd["full_text"].ToString();
                     NewSendText.标题 = this.listViewSent.SelectedItems[0].SubItems[1].Text.Trim();
                     lblTitle.Text = NewSendText.标题;
@@ -2025,6 +2047,7 @@ namespace WindowsFormsApplication2
                 if (GetText.Length == 0)
                 {
                     rtbShowText.Text = "未获取到文章！";
+                    DiffcultyLabel.Text = "难度";
                     MessageBox.Show("未获取到文章！");
                     return;
                 }
@@ -2032,6 +2055,7 @@ namespace WindowsFormsApplication2
                 if (theTitle.Length == 0)
                 {
                     rtbShowText.Text = "标题为空！";
+                    DiffcultyLabel.Text = "难度";
                     MessageBox.Show("标题为空！");
                     return;
                 }
@@ -2049,6 +2073,7 @@ namespace WindowsFormsApplication2
                     if (NewSendText.词组.Length <= 1)
                     {
                         rtbShowText.Text = "未获取到词组！";
+                        DiffcultyLabel.Text = "难度";
                         MessageBox.Show("未获取到词组！");
                         return;
                     }

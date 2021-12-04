@@ -649,18 +649,21 @@ namespace WindowsFormsApplication2
             ListViewHitTestInfo info = listViewFile.HitTest(e.X, e.Y); ;
             if (info.Item != null)
             {
-                string Hearder = listViewFile.Columns[0].Text;
-                if (info.Item.Text == "..")
+                string hearder = listViewFile.Columns[0].Text;
+                string nextName = info.Item.Text;
+
+                if (nextName == "..")
                 { // 返回上一层
                     string path = "";
                     try
                     {
-                        if (Hearder.Length != 3 || !Hearder.Contains(@":\"))
+                        if (hearder.Length > 3 && hearder != "我的电脑")
                         {
-                            path = Directory.GetParent(Hearder).FullName;//上一级目录
+                            path = Directory.GetParent(hearder).FullName; //上一级目录
                         }
                     }
                     catch { }
+
                     if (path.Length != 0)
                     {
                         ReadAll(path);
@@ -677,24 +680,8 @@ namespace WindowsFormsApplication2
                 }
                 else
                 {
-                    if (Directory.Exists(info.Item.Text))
-                    { // 当前工作存在该目录
-                        ReadAll(info.Item.Text);
-                    }
-                    else
-                    { // 不存在目录
-                        string dir;
-                        if (Hearder[Hearder.Length - 1] == '\\')
-                        {
-                            dir = Hearder + info.Item.Text;
-                        }
-                        else
-                        {
-                            dir = Hearder + "\\" + info.Item.Text;
-                        }
-                        if (dir.Length != 0)
-                            ReadAll(dir); // 读取内容
-                    }
+                    string path = Path.Combine(hearder, nextName);
+                    ReadAll(path);
                 }
             }
         }
@@ -707,14 +694,17 @@ namespace WindowsFormsApplication2
 
         private void btnUP_Click(object sender, EventArgs e)
         {
-            string Hearder = listViewFile.Columns[0].Text;
+            string hearder = listViewFile.Columns[0].Text;
             string path = "";
             try
             {
-                if (Hearder.Length != 3)
-                    path = Directory.GetParent(Hearder).FullName;//上一级目录
+                if (hearder.Length > 3 && hearder != "我的电脑")
+                { // 上一级目录
+                    path = Directory.GetParent(hearder).FullName;
+                }
             }
             catch { }
+
             if (path.Length != 0)
             {
                 ReadAll(path);
@@ -738,7 +728,7 @@ namespace WindowsFormsApplication2
         private void ReadAll(string path)
         {
             if (Directory.Exists(path))
-            {
+            { //* 存在目录
                 try
                 {
                     string[] dirs = Directory.GetDirectories(path);

@@ -385,6 +385,27 @@ namespace WindowsFormsApplication2
         /// 总跟打段数
         /// </summary>
         public static int jjAllC = 0;
+
+        /// <summary>
+        /// 速度评级
+        /// </summary>
+        public static double SpeedGrade = 0;
+        /// <summary>
+        /// 速度评级统计段数
+        /// </summary>
+        public static int SpeedGradeCount = 0;
+        /// <summary>
+        /// 速度评级统计总数
+        /// </summary>
+        public static double SpeedGradeValue = 0;
+        /// <summary>
+        /// 速度评级统计总速度
+        /// </summary>
+        public static double SpeedGradeSpeed = 0;
+        /// <summary>
+        /// 速度评级统计总难度
+        /// </summary>
+        public static double SpeedGradeDiff = 0;
         
         //跟打地图
         public static Graphics Type_Map;

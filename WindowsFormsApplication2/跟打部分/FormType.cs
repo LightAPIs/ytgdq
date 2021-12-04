@@ -24,6 +24,7 @@ using WindowsFormsApplication2.History;
 using WindowsFormsApplication2.KeyAnalysis;
 using WindowsFormsApplication2.CodeTable;
 using WindowsFormsApplication2.Difficulty;
+using WindowsFormsApplication2.SpeedGrade;
 using Newtonsoft.Json;
 
 namespace WindowsFormsApplication2
@@ -788,6 +789,13 @@ namespace WindowsFormsApplication2
 
             // 图片发送
             Glob.PicName = IniRead("发送", "昵称", "");
+
+            // 速度评级部分
+            Glob.SpeedGradeCount = int.Parse(IniRead("评级", "段数", "0"));
+            Glob.SpeedGradeValue = double.Parse(IniRead("评级", "总数", "0"));
+            Glob.SpeedGradeSpeed = double.Parse(IniRead("评级", "速度", "0"));
+            Glob.SpeedGradeDiff = double.Parse(IniRead("评级", "难度", "0"));
+            Glob.SpeedGrade = double.Parse(IniRead("评级", "结果", "0"));
 
             this.比赛时自动打开寻找测速点ToolStripMenuItem.Checked = bool.Parse(IniRead("程序控制", "自动打开寻找", "False"));
             LblHaveTypingChange();
@@ -1874,6 +1882,7 @@ namespace WindowsFormsApplication2
                     Glob.HaveTypeCount++;//已跟打段数
 
                     #region 跟打结束
+
                     Glob.jjAllC++;//跟打总段数
                     LblHaveTypingChange();
 
@@ -1928,8 +1937,30 @@ namespace WindowsFormsApplication2
                     {
                         Spsend = speed.ToString("0.00");
                     }
-                    Cz = " 错字" + Glob.TextCz.ToString();
-                    //末尾描述
+                    Cz = " 错字" + Glob.TextCz.ToString(); // 末尾描述
+
+                    //* 速度评级
+                    Glob.SpeedGradeCount++;
+                    Glob.SpeedGradeSpeed += speed2;
+                    Glob.SpeedGradeDiff += Glob.Difficulty;
+                    Glob.SpeedGradeValue += speed2 * Glob.Difficulty;
+                    if (Glob.SpeedGradeCount > 100)
+                    {
+                        double nowAvg = Glob.SpeedGradeValue / Glob.SpeedGradeCount;
+                        if (nowAvg > Glob.SpeedGrade)
+                        {
+                            Glob.SpeedGrade += Glob.Difficulty;
+                        }
+                        else if (nowAvg < Glob.SpeedGrade)
+                        {
+                            Glob.SpeedGrade -= 1 / Glob.Difficulty;
+                        }
+                    }
+                    else
+                    {
+                        Glob.SpeedGrade = Glob.SpeedGradeValue / Glob.SpeedGradeCount;
+                    }
+
                     //? 跟打用时小于 1s 以及错字超过 10% 时不处理
                     if (Glob.TypeUseTime >= 1 && Glob.TextCz <= (int)TextLen / 10)
                     {
@@ -3684,7 +3715,7 @@ namespace WindowsFormsApplication2
                     iniSetup.IniWriteValue("拖动条", "高2", p31H.ToString());
                 }
             }
-            //iniSetup.IniWriteValue("发送", "起始", zdSendText.tSendTimes.ToString());
+
             iniSetup.IniWriteValue("记录", "总字数", Glob.TextLenAll.ToString());
             iniSetup.IniWriteValue("记录", "总回改", Glob.TextHgAll.ToString());
             iniSetup.IniWriteValue("记录", "总按键", string.Join("|", Glob.HistoryKeysTotal));
@@ -3696,6 +3727,12 @@ namespace WindowsFormsApplication2
                 iniSetup.IniWriteValue("记录", i.ToString(), Glob.jjPer[i].ToString());
             }
             iniSetup.IniWriteValue("记录", "总数", Glob.jjAllC.ToString());
+
+            iniSetup.IniWriteValue("评级", "段数", Glob.SpeedGradeCount.ToString());
+            iniSetup.IniWriteValue("评级", "总数", Glob.SpeedGradeValue.ToString());
+            iniSetup.IniWriteValue("评级", "速度", Glob.SpeedGradeSpeed.ToString());
+            iniSetup.IniWriteValue("评级", "难度", Glob.SpeedGradeDiff.ToString());
+            iniSetup.IniWriteValue("评级", "结果", Glob.SpeedGrade.ToString());
 
             // 关闭数据库
             Glob.ScoreHistory.CloseDatabase();
@@ -3932,24 +3969,6 @@ namespace WindowsFormsApplication2
             if (Glob.theLastGoal.Length != 0)
             {
                 ClipboardHandler.SetTextToClipboard(Glob.theLastGoal + " *");
-            }
-        }
-
-        private void 平均成绩ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            int table_c = this.dataGridView1.RowCount;
-            StringBuilder sb = new StringBuilder();
-            if (table_c > 2)
-            {
-                sb.Append("#平均 共" + (table_c - 2) + "段 速度" + this.dataGridView1.Rows[table_c - 1].Cells[3].Value);
-                sb.Append(" 击键" + this.dataGridView1.Rows[table_c - 1].Cells[4].Value);
-                sb.Append(" 码长" + this.dataGridView1.Rows[table_c - 1].Cells[5].Value);
-                sb.AppendLine(" 均时" + this.dataGridView1.Rows[table_c - 1].Cells[20].Value + "秒");
-                sb.Append(" 今日已跟打" + Glob.todayTyping + "字 总跟打" + Glob.TextLenAll + "字 " + Glob.Form + "(" + Glob.Instration + ")");
-                if (MessageBox.Show(sb + "\n\n是否复制内容？", "当前平均成绩", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    ClipboardHandler.SetTextToClipboard(sb.ToString());
-                }
             }
         }
 
@@ -5977,6 +5996,14 @@ namespace WindowsFormsApplication2
         {
             WindowsFormsApplication2.跟打报告.TypeAnalysis tya = new 跟打报告.TypeAnalysis(Glob.TextTime.ToString("G"), Glob.TypeReport, Glob.TypeText, Glob.TextSpeed.ToString("0.00"), Glob.TextHg, Glob.Instration);
             tya.Show();
+        }
+        #endregion
+
+        #region 速度评级
+        private void SpeedGradeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SpeedGradeBox sgb = new SpeedGradeBox();
+            sgb.ShowDialog();
         }
         #endregion
     }

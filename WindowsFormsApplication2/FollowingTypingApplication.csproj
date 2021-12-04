@@ -158,6 +158,12 @@
     <Compile Include="SpeedCheckPoint.Designer.cs">
       <DependentUpon>SpeedCheckPoint.cs</DependentUpon>
     </Compile>
+    <Compile Include="SpeedGrade\SpeedGradeBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpeedGrade\SpeedGradeBox.Designer.cs">
+      <DependentUpon>SpeedGradeBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Storage\Database.cs" />
     <Compile Include="Storage\StorageData.cs" />
     <Compile Include="Storage\StorageDataSet.cs">
@@ -289,6 +295,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SpeedCheckPoint.resx">
       <DependentUpon>SpeedCheckPoint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpeedGrade\SpeedGradeBox.resx">
+      <DependentUpon>SpeedGradeBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="发文重写\ContentEditor.resx">
       <DependentUpon>ContentEditor.cs</DependentUpon>

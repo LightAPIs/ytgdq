@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace WindowsFormsApplication2.发文重写
 {
@@ -62,13 +63,7 @@ namespace WindowsFormsApplication2.发文重写
         /// <returns></returns>
         private string TickBlock(string text, string target)
         {
-            string s = text;
-            s = s.Replace(" ", target);
-            s = s.Replace("　", target);
-            s = s.Replace("\r\n", target);
-            s = s.Replace("\r", target);
-            s = s.Replace("\n", target);
-            return s;
+            return Regex.Replace(text, @"[\s\u3000]", target);
         }
     }
 }

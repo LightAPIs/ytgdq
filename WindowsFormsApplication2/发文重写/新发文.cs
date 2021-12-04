@@ -692,6 +692,16 @@ namespace WindowsFormsApplication2
             this.listViewFile.Focus();
         }
 
+        private void PcButton_Click(object sender, EventArgs e)
+        {
+            HeaderFresh("我的电脑");
+            DriveInfo[] Drives = DriveInfo.GetDrives();
+            foreach (DriveInfo Dirs in Drives)
+            {
+                listViewFile.Items.Add(new ListViewItem(new string[] { Dirs.Name, "磁盘" }));
+            }
+        }
+
         private void btnUP_Click(object sender, EventArgs e)
         {
             string hearder = listViewFile.Columns[0].Text;

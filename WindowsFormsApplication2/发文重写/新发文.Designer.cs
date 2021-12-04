@@ -35,6 +35,8 @@
             this.lbxTextList = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.EncodedComboBox = new System.Windows.Forms.ComboBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.FileSaveCheckBox = new System.Windows.Forms.CheckBox();
             this.FileTitleTextBox = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -164,8 +166,7 @@
             this.cbxSplit = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.label18 = new System.Windows.Forms.Label();
-            this.EncodedComboBox = new System.Windows.Forms.ComboBox();
+            this.PcButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -272,6 +273,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.PcButton);
             this.panel1.Controls.Add(this.EncodedComboBox);
             this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.FileSaveCheckBox);
@@ -288,6 +290,35 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(516, 161);
             this.panel1.TabIndex = 1;
+            // 
+            // EncodedComboBox
+            // 
+            this.EncodedComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.EncodedComboBox.FormattingEnabled = true;
+            this.EncodedComboBox.Items.AddRange(new object[] {
+            "Default",
+            "UTF-8",
+            "Big5",
+            "UTF-16BE",
+            "UTF-16LE"});
+            this.EncodedComboBox.Location = new System.Drawing.Point(438, 105);
+            this.EncodedComboBox.Name = "EncodedComboBox";
+            this.EncodedComboBox.Size = new System.Drawing.Size(75, 20);
+            this.EncodedComboBox.TabIndex = 11;
+            this.EncodedComboBox.SelectedIndexChanged += new System.EventHandler(this.EncodedComboBox_SelectedIndexChanged);
+            // 
+            // label18
+            // 
+            this.label18.BackColor = System.Drawing.Color.DarkGray;
+            this.label18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label18.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label18.ForeColor = System.Drawing.Color.Moccasin;
+            this.label18.Location = new System.Drawing.Point(438, 79);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(75, 23);
+            this.label18.TabIndex = 10;
+            this.label18.Text = "文件编码";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FileSaveCheckBox
             // 
@@ -2039,34 +2070,19 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "词组分隔符：";
             // 
-            // label18
+            // PcButton
             // 
-            this.label18.BackColor = System.Drawing.Color.DarkGray;
-            this.label18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label18.Cursor = System.Windows.Forms.Cursors.Default;
-            this.label18.ForeColor = System.Drawing.Color.Moccasin;
-            this.label18.Location = new System.Drawing.Point(438, 79);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(75, 23);
-            this.label18.TabIndex = 10;
-            this.label18.Text = "文件编码";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // EncodedComboBox
-            // 
-            this.EncodedComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.EncodedComboBox.FormattingEnabled = true;
-            this.EncodedComboBox.Items.AddRange(new object[] {
-            "Default",
-            "UTF-8",
-            "Big5",
-            "UTF-16BE",
-            "UTF-16LE"});
-            this.EncodedComboBox.Location = new System.Drawing.Point(438, 105);
-            this.EncodedComboBox.Name = "EncodedComboBox";
-            this.EncodedComboBox.Size = new System.Drawing.Size(75, 20);
-            this.EncodedComboBox.TabIndex = 11;
-            this.EncodedComboBox.SelectedIndexChanged += new System.EventHandler(this.EncodedComboBox_SelectedIndexChanged);
+            this.PcButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PcButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.PcButton.Image = global::WindowsFormsApplication2.Properties.Resources.pc;
+            this.PcButton.Location = new System.Drawing.Point(226, 0);
+            this.PcButton.Margin = new System.Windows.Forms.Padding(0);
+            this.PcButton.Name = "PcButton";
+            this.PcButton.Size = new System.Drawing.Size(37, 23);
+            this.PcButton.TabIndex = 12;
+            this.toolTip1.SetToolTip(this.PcButton, "打开我的电脑");
+            this.PcButton.UseVisualStyleBackColor = true;
+            this.PcButton.Click += new System.EventHandler(this.PcButton_Click);
             // 
             // 新发文
             // 
@@ -2256,5 +2272,6 @@
         private System.Windows.Forms.Label DiffcultyLabel;
         private System.Windows.Forms.ComboBox EncodedComboBox;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button PcButton;
     }
 }

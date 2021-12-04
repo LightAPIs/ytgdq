@@ -418,6 +418,7 @@
     <None Include="Resources\root.png" />
     <None Include="Resources\first.png" />
     <None Include="Resources\last.png" />
+    <None Include="Resources\pc.png" />
     <Content Include="SQLite.Interop.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

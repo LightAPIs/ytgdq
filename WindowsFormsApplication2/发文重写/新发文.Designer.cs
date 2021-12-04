@@ -149,6 +149,7 @@
             this.AutoOperatorComboBox = new System.Windows.Forms.ComboBox();
             this.AutoNumberTextBox = new System.Windows.Forms.TextBox();
             this.AutoNoComboBox = new System.Windows.Forms.ComboBox();
+            this.DiffcultyLabel = new System.Windows.Forms.Label();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.rbninOrder = new System.Windows.Forms.RadioButton();
@@ -163,7 +164,8 @@
             this.cbxSplit = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.DiffcultyLabel = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.EncodedComboBox = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -270,6 +272,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.EncodedComboBox);
+            this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.FileSaveCheckBox);
             this.panel1.Controls.Add(this.FileTitleTextBox);
             this.panel1.Controls.Add(this.label12);
@@ -1868,6 +1872,22 @@
             this.AutoNoComboBox.Size = new System.Drawing.Size(92, 20);
             this.AutoNoComboBox.TabIndex = 24;
             // 
+            // DiffcultyLabel
+            // 
+            this.DiffcultyLabel.BackColor = System.Drawing.Color.Gainsboro;
+            this.DiffcultyLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DiffcultyLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DiffcultyLabel.Font = new System.Drawing.Font("宋体", 9F);
+            this.DiffcultyLabel.ForeColor = System.Drawing.Color.Gray;
+            this.DiffcultyLabel.Location = new System.Drawing.Point(198, 79);
+            this.DiffcultyLabel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 1);
+            this.DiffcultyLabel.Name = "DiffcultyLabel";
+            this.DiffcultyLabel.Size = new System.Drawing.Size(92, 20);
+            this.DiffcultyLabel.TabIndex = 25;
+            this.DiffcultyLabel.Text = "难度";
+            this.DiffcultyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.DiffcultyLabel, "当前所选文章难度");
+            // 
             // tabControl2
             // 
             this.tabControl2.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
@@ -2019,21 +2039,34 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "词组分隔符：";
             // 
-            // DiffcultyLabel
+            // label18
             // 
-            this.DiffcultyLabel.BackColor = System.Drawing.Color.Gainsboro;
-            this.DiffcultyLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DiffcultyLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DiffcultyLabel.Font = new System.Drawing.Font("宋体", 9F);
-            this.DiffcultyLabel.ForeColor = System.Drawing.Color.Gray;
-            this.DiffcultyLabel.Location = new System.Drawing.Point(198, 79);
-            this.DiffcultyLabel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 1);
-            this.DiffcultyLabel.Name = "DiffcultyLabel";
-            this.DiffcultyLabel.Size = new System.Drawing.Size(92, 20);
-            this.DiffcultyLabel.TabIndex = 25;
-            this.DiffcultyLabel.Text = "难度";
-            this.DiffcultyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.DiffcultyLabel, "当前所选文章难度");
+            this.label18.BackColor = System.Drawing.Color.DarkGray;
+            this.label18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label18.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label18.ForeColor = System.Drawing.Color.Moccasin;
+            this.label18.Location = new System.Drawing.Point(438, 79);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(75, 23);
+            this.label18.TabIndex = 10;
+            this.label18.Text = "文件编码";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // EncodedComboBox
+            // 
+            this.EncodedComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.EncodedComboBox.FormattingEnabled = true;
+            this.EncodedComboBox.Items.AddRange(new object[] {
+            "Default",
+            "UTF-8",
+            "Big5",
+            "UTF-16BE",
+            "UTF-16LE"});
+            this.EncodedComboBox.Location = new System.Drawing.Point(438, 105);
+            this.EncodedComboBox.Name = "EncodedComboBox";
+            this.EncodedComboBox.Size = new System.Drawing.Size(75, 20);
+            this.EncodedComboBox.TabIndex = 11;
+            this.EncodedComboBox.SelectedIndexChanged += new System.EventHandler(this.EncodedComboBox_SelectedIndexChanged);
             // 
             // 新发文
             // 
@@ -2221,5 +2254,7 @@
         private System.Windows.Forms.Button WebArticleRootButton;
         private System.Windows.Forms.Button WebArticleBackButton;
         private System.Windows.Forms.Label DiffcultyLabel;
+        private System.Windows.Forms.ComboBox EncodedComboBox;
+        private System.Windows.Forms.Label label18;
     }
 }

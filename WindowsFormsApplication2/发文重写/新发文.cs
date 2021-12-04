@@ -220,6 +220,8 @@ namespace WindowsFormsApplication2
 
             _Ini t2 = new _Ini("config.ini");
             this.cbxTickOut.Checked = bool.Parse(t2.IniReadValue("发文面板配置", "自动剔除空格", "True"));
+            this.EncodedComboBox.SelectedIndex = int.Parse(t2.IniReadValue("发文面板配置", "文件编码", "0"));
+
             if (!File.Exists(Application.StartupPath + "\\TyDll.dll"))
             {
                 this.lbxTextList.Items.Clear();
@@ -767,7 +769,28 @@ namespace WindowsFormsApplication2
             { // 获取到文章
                 if (File.Exists(path))
                 {
-                    StreamReader fm = new StreamReader(path, System.Text.Encoding.Default);
+                    Encoding encoding = Encoding.Default;
+                    switch (this.EncodedComboBox.SelectedIndex)
+                    {
+                        case 1:
+                            encoding = Encoding.UTF8;
+                            break;
+                        case 2:
+                            encoding = Encoding.GetEncoding("big5");
+                            break;
+                        case 3:
+                            encoding = Encoding.BigEndianUnicode;
+                            break;
+                        case 4:
+                            encoding = Encoding.Unicode;
+                            break;
+                        case 0:
+                        default:
+                            encoding = Encoding.Default;
+                            break;
+                    }
+
+                    StreamReader fm = new StreamReader(path, encoding);
                     GetText = fm.ReadToEnd();
                     fm.Close();
                     FileTitleTextBox.Text = Path.GetFileNameWithoutExtension(path);
@@ -2151,5 +2174,12 @@ namespace WindowsFormsApplication2
             this.Close();
         }
         #endregion
+
+        private void EncodedComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _Ini t2 = new _Ini("config.ini");
+            int temp = (sender as ComboBox).SelectedIndex;
+            t2.IniWriteValue("发文面板配置", "文件编码", temp.ToString());
+        }
     }
 }

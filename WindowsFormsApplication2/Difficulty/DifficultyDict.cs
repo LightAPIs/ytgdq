@@ -23,34 +23,34 @@ namespace WindowsFormsApplication2.Difficulty
                     switch (i)
                     {
                         case 0:
-                            ra = 1;
-                            break;
-                        case 1:
                             ra = 1.25;
                             break;
-                        case 2:
+                        case 1:
                             ra = 1.5;
                             break;
-                        case 3:
+                        case 2:
                             ra = 1.75;
                             break;
-                        case 4:
+                        case 3:
                             ra = 2;
                             break;
-                        case 5:
+                        case 4:
                             ra = 2.5;
                             break;
-                        case 6:
+                        case 5:
                             ra = 3;
                             break;
-                        case 7:
+                        case 6:
                             ra = 4;
                             break;
-                        case 8:
+                        case 7:
                             ra = 5;
                             break;
-                        case 9:
+                        case 8:
                             ra = 7;
+                            break;
+                        case 9:
+                            ra = 9;
                             break;
                     }
                     this.ranks.Add(dicStr[j].ToString(), ra);
@@ -65,27 +65,35 @@ namespace WindowsFormsApplication2.Difficulty
         /// <returns></returns>
         public double Calc(string text)
         {
-            double accumulator = 0;
-            int count = 0;
-            for (int i = 0; i < text.Length; i++)
+            if (text.Length > 0)
             {
-                string nowIt = text[i].ToString();
-                if (!string.IsNullOrWhiteSpace(nowIt))
+                double accumulator = 0;
+                for (int i = 0; i < text.Length; i++)
                 {
-                    if (this.ranks.ContainsKey(nowIt))
+                    string nowIt = text[i].ToString();
+
+                    if (string.IsNullOrWhiteSpace(nowIt))
+                    { //* 空白字符
+                        accumulator += 1;
+                    }
+                    else if (this.ranks.ContainsKey(nowIt))
                     {
                         accumulator += this.ranks[nowIt];
-                        count++;
                     }
-                    else if (!symbloChars.Contains(nowIt))
-                    { //* 不统计标点符号
-                        accumulator += 9;
-                        count++;
+                    else if (symbloChars.Contains(nowIt))
+                    { //* 统计标点符号
+                        accumulator += 1;
+
+                    }
+                    else
+                    {
+                        accumulator += 12;
                     }
                 }
-            }
 
-            return count > 0 ? accumulator / count : 0;
+                return accumulator / text.Length;
+            }
+            return 0;
         }
 
         /// <summary>
@@ -100,23 +108,31 @@ namespace WindowsFormsApplication2.Difficulty
             {
                 diffText = "无";
             }
-            else if (diff <= 2)
+            else if (diff <= 1.5)
             {
-                diffText = "简单";
+                diffText = "轻松";
             }
-            else if (diff <= 3)
+            else if (diff <= 1.88)
+            {
+                diffText = "容易";
+            }
+            else if (diff <= 2.25)
             {
                 diffText = "一般";
             }
-            else if (diff <= 4)
+            else if (diff <= 2.8)
+            {
+                diffText = "稍难";
+            }
+            else if (diff <= 3.5)
             {
                 diffText = "困难";
             }
-            else if (diff <= 5)
+            else if (diff <= 4.2)
             {
                 diffText = "超难";
             }
-            else if (diff <= 7)
+            else if (diff <= 5.4)
             {
                 diffText = "极难";
             }

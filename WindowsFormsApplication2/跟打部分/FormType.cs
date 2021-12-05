@@ -792,7 +792,6 @@ namespace WindowsFormsApplication2
 
             // 速度评级部分
             Glob.SpeedGradeCount = int.Parse(IniRead("评级", "段数", "0"));
-            Glob.SpeedGradeValue = double.Parse(IniRead("评级", "总数", "0"));
             Glob.SpeedGradeSpeed = double.Parse(IniRead("评级", "速度", "0"));
             Glob.SpeedGradeDiff = double.Parse(IniRead("评级", "难度", "0"));
             Glob.SpeedGrade = double.Parse(IniRead("评级", "结果", "0"));
@@ -1940,25 +1939,26 @@ namespace WindowsFormsApplication2
                     Cz = " 错字" + Glob.TextCz.ToString(); // 末尾描述
 
                     //* 速度评级
-                    Glob.SpeedGradeCount++;
+                    double nowValue = speed2 * Glob.Difficulty;
                     Glob.SpeedGradeSpeed += speed2;
                     Glob.SpeedGradeDiff += Glob.Difficulty;
-                    Glob.SpeedGradeValue += speed2 * Glob.Difficulty;
+                    
                     if (Glob.SpeedGradeCount > 100)
                     {
-                        double nowAvg = Glob.SpeedGradeValue / Glob.SpeedGradeCount;
-                        if (nowAvg > Glob.SpeedGrade)
+                        if (nowValue > Glob.SpeedGrade)
                         {
                             Glob.SpeedGrade += Glob.Difficulty;
                         }
-                        else if (nowAvg < Glob.SpeedGrade)
+                        else if (nowValue < Glob.SpeedGrade)
                         {
                             Glob.SpeedGrade -= 1 / Glob.Difficulty;
                         }
                     }
                     else
                     {
-                        Glob.SpeedGrade = Glob.SpeedGradeValue / Glob.SpeedGradeCount;
+                        double gradeValue = Glob.SpeedGrade * Glob.SpeedGradeCount + nowValue;
+                        Glob.SpeedGradeCount++;
+                        Glob.SpeedGrade = gradeValue / Glob.SpeedGradeCount;
                     }
 
                     //? 跟打用时小于 1s 以及错字超过 10% 时不处理
@@ -3729,7 +3729,6 @@ namespace WindowsFormsApplication2
             iniSetup.IniWriteValue("记录", "总数", Glob.jjAllC.ToString());
 
             iniSetup.IniWriteValue("评级", "段数", Glob.SpeedGradeCount.ToString());
-            iniSetup.IniWriteValue("评级", "总数", Glob.SpeedGradeValue.ToString());
             iniSetup.IniWriteValue("评级", "速度", Glob.SpeedGradeSpeed.ToString());
             iniSetup.IniWriteValue("评级", "难度", Glob.SpeedGradeDiff.ToString());
             iniSetup.IniWriteValue("评级", "结果", Glob.SpeedGrade.ToString());

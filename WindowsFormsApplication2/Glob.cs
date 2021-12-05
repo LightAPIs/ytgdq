@@ -395,10 +395,6 @@ namespace WindowsFormsApplication2
         /// </summary>
         public static int SpeedGradeCount = 0;
         /// <summary>
-        /// 速度评级统计总数
-        /// </summary>
-        public static double SpeedGradeValue = 0;
-        /// <summary>
         /// 速度评级统计总速度
         /// </summary>
         public static double SpeedGradeSpeed = 0;

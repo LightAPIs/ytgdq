@@ -1953,6 +1953,7 @@ namespace WindowsFormsApplication2
                         {
                             Glob.SpeedGrade -= 1 / Glob.Difficulty;
                         }
+                        Glob.SpeedGradeCount++;
                     }
                     else
                     {

@@ -627,16 +627,19 @@ namespace WindowsFormsApplication2
         {
             try
             {
-                int textcount = int.Parse(this.tbxSendCount.Text);
-                int nowtime = (int)this.nudSendTimer.Value;
-                double speed;
-                if (nowtime > 0)
+                if (this.tbxSendCount.Text.Length > 0)
                 {
-                    speed = (double)textcount * 60 / nowtime;
-                    if (speed <= 400)
-                        this.lblspeed.Text = speed.ToString("0");
-                    else
-                        this.lblspeed.Text = "起飞";
+                    int textcount = int.Parse(this.tbxSendCount.Text);
+                    int nowtime = (int)this.nudSendTimer.Value;
+                    double speed;
+                    if (nowtime > 0)
+                    {
+                        speed = (double)textcount * 60 / nowtime;
+                        if (speed <= 400)
+                            this.lblspeed.Text = speed.ToString("0");
+                        else
+                            this.lblspeed.Text = "起飞";
+                    }
                 }
             }
             catch { this.lblspeed.Text = "0"; }
@@ -908,10 +911,11 @@ namespace WindowsFormsApplication2
             if (GetText.Length != 0)
             {
                 string temp = (sender as TextBox).Text;
-                if (temp.Length != 0)
+                string tbxStr = tbxSendCount.Text;
+                if (temp.Length > 0 && tbxStr.Length > 0)
                 {
                     int c = int.Parse(temp);
-                    int cou = int.Parse(tbxSendCount.Text);
+                    int cou = int.Parse(tbxStr);
                     try
                     {
                         string tickText = GetText;
@@ -2104,6 +2108,7 @@ namespace WindowsFormsApplication2
 
                 NewSendText.是否乱序 = rbnOutOrder.Checked;
                 NewSendText.乱序全段不重复 = this.cbx乱序全段不重复.Checked;
+
                 try
                 {
                     NewSendText.字数 = int.Parse(tbxSendCount.Text);
@@ -2112,6 +2117,7 @@ namespace WindowsFormsApplication2
                     Glob.CurSegmentNum = startSegmentNum - 1; // SendAOnce() 里会先自加一次，所以需要提前减一
                 }
                 catch { MessageBox.Show("请检查字数、标记或者起始段号是否设置错误？"); return; }
+
                 NewSendText.是否周期 = checkBox1.Checked;
                 NewSendText.周期 = (int)nudSendTimer.Value;
 

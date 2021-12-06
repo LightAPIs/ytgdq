@@ -734,11 +734,11 @@
             // 
             this.WebPageLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.WebPageLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.WebPageLabel.Location = new System.Drawing.Point(163, 0);
+            this.WebPageLabel.Location = new System.Drawing.Point(139, 0);
             this.WebPageLabel.Name = "WebPageLabel";
-            this.WebPageLabel.Size = new System.Drawing.Size(51, 23);
+            this.WebPageLabel.Size = new System.Drawing.Size(75, 23);
             this.WebPageLabel.TabIndex = 11;
-            this.WebPageLabel.Text = "0";
+            this.WebPageLabel.Text = "0/0";
             this.WebPageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.WebPageLabel, "点击我将自动跳转到第一个项目处");
             this.WebPageLabel.Click += new System.EventHandler(this.WebPageLabel_Click);
@@ -747,7 +747,7 @@
             // 
             this.label20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label20.Location = new System.Drawing.Point(119, 0);
+            this.label20.Location = new System.Drawing.Point(95, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(44, 23);
             this.label20.TabIndex = 10;
@@ -863,7 +863,7 @@
             // 
             this.WebCountLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.WebCountLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.WebCountLabel.Location = new System.Drawing.Point(68, 0);
+            this.WebCountLabel.Location = new System.Drawing.Point(44, 0);
             this.WebCountLabel.Name = "WebCountLabel";
             this.WebCountLabel.Size = new System.Drawing.Size(51, 23);
             this.WebCountLabel.TabIndex = 1;
@@ -876,9 +876,9 @@
             this.label22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label22.Location = new System.Drawing.Point(0, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(68, 23);
+            this.label22.Size = new System.Drawing.Size(44, 23);
             this.label22.TabIndex = 0;
-            this.label22.Text = "项目数量：";
+            this.label22.Text = "数量：";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabPage4
@@ -1009,11 +1009,11 @@
             // 
             this.ArticlePageLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ArticlePageLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ArticlePageLabel.Location = new System.Drawing.Point(163, 0);
+            this.ArticlePageLabel.Location = new System.Drawing.Point(139, 0);
             this.ArticlePageLabel.Name = "ArticlePageLabel";
-            this.ArticlePageLabel.Size = new System.Drawing.Size(51, 23);
+            this.ArticlePageLabel.Size = new System.Drawing.Size(75, 23);
             this.ArticlePageLabel.TabIndex = 11;
-            this.ArticlePageLabel.Text = "0";
+            this.ArticlePageLabel.Text = "0/0";
             this.ArticlePageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.ArticlePageLabel, "点击我将自动跳转到第一个文章处");
             this.ArticlePageLabel.Click += new System.EventHandler(this.ArticlePageLabel_Click);
@@ -1022,7 +1022,7 @@
             // 
             this.label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label16.Location = new System.Drawing.Point(119, 0);
+            this.label16.Location = new System.Drawing.Point(95, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(44, 23);
             this.label16.TabIndex = 10;
@@ -1136,7 +1136,7 @@
             // 
             this.ArticleCountLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ArticleCountLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ArticleCountLabel.Location = new System.Drawing.Point(68, 0);
+            this.ArticleCountLabel.Location = new System.Drawing.Point(44, 0);
             this.ArticleCountLabel.Name = "ArticleCountLabel";
             this.ArticleCountLabel.Size = new System.Drawing.Size(51, 23);
             this.ArticleCountLabel.TabIndex = 1;
@@ -1149,9 +1149,9 @@
             this.label15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label15.Location = new System.Drawing.Point(0, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(68, 23);
+            this.label15.Size = new System.Drawing.Size(44, 23);
             this.label15.TabIndex = 0;
-            this.label15.Text = "文章数量：";
+            this.label15.Text = "数量：";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabPage8
@@ -1281,11 +1281,11 @@
             // 
             this.SentPageLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SentPageLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SentPageLabel.Location = new System.Drawing.Point(163, 0);
+            this.SentPageLabel.Location = new System.Drawing.Point(139, 0);
             this.SentPageLabel.Name = "SentPageLabel";
-            this.SentPageLabel.Size = new System.Drawing.Size(51, 23);
+            this.SentPageLabel.Size = new System.Drawing.Size(75, 23);
             this.SentPageLabel.TabIndex = 11;
-            this.SentPageLabel.Text = "0";
+            this.SentPageLabel.Text = "0/0";
             this.SentPageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.SentPageLabel, "点击我将自动跳转到第一个配置处");
             this.SentPageLabel.Click += new System.EventHandler(this.SentPageLabel_Click);
@@ -1294,7 +1294,7 @@
             // 
             this.label17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label17.Location = new System.Drawing.Point(119, 0);
+            this.label17.Location = new System.Drawing.Point(95, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(44, 23);
             this.label17.TabIndex = 10;
@@ -1387,7 +1387,7 @@
             // 
             this.SentCountLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SentCountLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SentCountLabel.Location = new System.Drawing.Point(68, 0);
+            this.SentCountLabel.Location = new System.Drawing.Point(44, 0);
             this.SentCountLabel.Name = "SentCountLabel";
             this.SentCountLabel.Size = new System.Drawing.Size(51, 23);
             this.SentCountLabel.TabIndex = 1;
@@ -1400,9 +1400,9 @@
             this.label19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label19.Location = new System.Drawing.Point(0, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(68, 23);
+            this.label19.Size = new System.Drawing.Size(44, 23);
             this.label19.TabIndex = 0;
-            this.label19.Text = "配置数量：";
+            this.label19.Text = "数量：";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cbx乱序全段不重复

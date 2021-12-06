@@ -1108,7 +1108,7 @@ namespace WindowsFormsApplication2
         private void ShowWebListView(int selected = -1)
         {
             this.listViewWebArticle.Items.Clear();
-            this.WebPageLabel.Text = this.currentWebPage.ToString();
+            this.WebPageLabel.Text = this.currentWebPage.ToString() + "/" + WebTotalPage.ToString();
             if (this.currentWebPage > 0)
             {
                 if (string.IsNullOrEmpty(this.webSearchText))
@@ -1442,7 +1442,7 @@ namespace WindowsFormsApplication2
         private void ShowSaveArticle()
         {
             listViewArticle.Items.Clear();
-            this.ArticlePageLabel.Text = this.currentArticlePage.ToString();
+            this.ArticlePageLabel.Text = this.currentArticlePage.ToString() + "/" + ArticleTotalPage.ToString();
             if (currentArticlePage > 0)
             {
                 if (string.IsNullOrEmpty(this.articleSearchText))
@@ -1653,7 +1653,7 @@ namespace WindowsFormsApplication2
         private void ShowSaveSent()
         {
             listViewSent.Items.Clear();
-            this.SentPageLabel.Text = this.currentSentPage.ToString();
+            this.SentPageLabel.Text = this.currentSentPage.ToString() + "/" + SentTotalPage.ToString();
             if (currentSentPage > 0)
             {
                 if (string.IsNullOrEmpty(this.sentSearchText))

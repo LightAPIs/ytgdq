@@ -1065,7 +1065,8 @@ namespace WindowsFormsApplication2
                         }
                         else
                         { //* 乱序无限
-                            numlist = GetRandomUnrepeatArray(0, TextLen - 1, NewSendText.字数);
+                            int sendNum = NewSendText.字数 > TextLen ? TextLen : NewSendText.字数;
+                            numlist = GetRandomUnrepeatArray(0, TextLen - 1, sendNum);
 
                             foreach (int item in numlist)
                             {
@@ -1106,8 +1107,9 @@ namespace WindowsFormsApplication2
                 }
                 else if (NewSendText.类型 == "词组")
                 {
+                    int sendNum = NewSendText.字数 > NewSendText.词组.Length ? NewSendText.词组.Length : NewSendText.字数;
                     Random ro = new Random((int)DateTime.Now.Ticks);
-                    for (int i = 0; i < NewSendText.字数; i++)
+                    for (int i = 0; i < sendNum; i++)
                     {
                         TextAll += NewSendText.词组[ro.Next(0, NewSendText.词组.Length - 1)] + NewSendText.词组发送分隔符;
                     }

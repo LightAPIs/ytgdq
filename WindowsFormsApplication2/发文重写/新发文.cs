@@ -459,10 +459,12 @@ namespace WindowsFormsApplication2
                 this.cbxSplit.SelectedIndex = -1;
                 this.label2.Text = "总词数";
                 this.label4.Text = "词数";
+                this.tbxSendStart.Text = "0";
+
                 if (NewSendText.SentId < 0)
                 {
                     //* 恢复显示原文，因为词组是不受自动移除空格换行影响的
-                    if (GetText.Length != 0)
+                    if (GetText.Length > 0)
                     {
                         if (GetText.Length > 300)
                         {
@@ -472,9 +474,12 @@ namespace WindowsFormsApplication2
                         {
                             this.rtbShowText.Text = GetText + "[已完]";
                         }
-
-                        //* 难度文本不用处理，因为本质上难度不会变化
+                        rtbShowText.ForeColor = Color.Black;
+                        double diff = frm.DiffDict.Calc(GetText);
+                        DiffcultyLabel.Text = frm.DiffDict.DiffText(diff);
+                        btnGoSend.Enabled = true;
                     }
+
                     ShowFlowText("请选择词组分隔符来检索词组内容");
                 }
             }
@@ -631,10 +636,9 @@ namespace WindowsFormsApplication2
                 {
                     int textcount = int.Parse(this.tbxSendCount.Text);
                     int nowtime = (int)this.nudSendTimer.Value;
-                    double speed;
                     if (nowtime > 0)
                     {
-                        speed = (double)textcount * 60 / nowtime;
+                        double speed = (double)textcount * 60 / nowtime;
                         if (speed <= 400)
                             this.lblspeed.Text = speed.ToString("0");
                         else
@@ -905,32 +909,46 @@ namespace WindowsFormsApplication2
         }
         #endregion
 
-        #region 标记处理
-        private void tbxSendStart_TextChanged(object sender, EventArgs e)
+        #region 字数标记处理
+
+        /// <summary>
+        /// 字数或标记等变动处理
+        /// </summary>
+        private void textChangeHandler()
         {
-            if (GetText.Length != 0)
+            string tickText = GetText;
+            if (this.cbxTickOut.Checked && this.tabControl2.SelectedIndex != 2)
             {
-                string temp = (sender as TextBox).Text;
-                string tbxStr = tbxSendCount.Text;
-                if (temp.Length > 0 && tbxStr.Length > 0)
+                tickText = TickBlock(GetText, "");
+            }
+
+            string lenText = lblTextCount.Text;
+            string startText = tbxSendStart.Text;
+            string countText = tbxSendCount.Text;
+
+            if (lenText.Length > 0)
+            {
+                int len = int.Parse(lenText);
+                if (startText.Length > 0 && countText.Length > 0)
                 {
-                    int c = int.Parse(temp);
-                    int cou = int.Parse(tbxStr);
-                    try
+                    int start = int.Parse(startText);
+                    if (start < len)
                     {
-                        string tickText = GetText;
-                        if (this.cbxTickOut.Checked && this.tabControl2.SelectedIndex != 2)
+                        if (tickText.Length > 300)
                         {
-                            tickText = TickBlock(GetText, "");
+                            rtbShowText.Text = tickText.Substring(0, 300) + "[......未完]";
                         }
-                        string showText = tickText.Substring(c, cou);
-                        rtbShowText.Text = showText + "\r\n[...当前设置文段预览(非实际)]";
+                        else
+                        {
+                            rtbShowText.Text = tickText + "[已完]";
+                        }
+
                         rtbShowText.ForeColor = Color.Black;
-                        double diff = frm.DiffDict.Calc(showText);
+                        double diff = frm.DiffDict.Calc(tickText);
                         DiffcultyLabel.Text = frm.DiffDict.DiffText(diff);
                         btnGoSend.Enabled = true;
                     }
-                    catch
+                    else
                     {
                         rtbShowText.Text = "标记起始点设置错误，因为设置数值超出总字数，请重设！";
                         rtbShowText.ForeColor = Color.IndianRed;
@@ -941,88 +959,24 @@ namespace WindowsFormsApplication2
             }
         }
 
+        private void tbxSendStart_TextChanged(object sender, EventArgs e)
+        {
+            textChangeHandler();
+        }
+
         private void tbxSendCount_TextChanged(object sender, EventArgs e)
         {
-            Confrim();
-            if (this.checkBox1.Checked) speedfill();
+            textChangeHandler();
+
+            if (this.checkBox1.Checked) 
+            {
+                speedfill();
+            }
         }
 
         private void lblTextCount_TextChanged(object sender, EventArgs e)
         {
-            string te = this.tbxSendCount.Text;
-            if (te.Length != 0)
-            {
-                int cou = int.Parse(te);
-                if (cou > 0 && tbxSendStart.Text != "")
-                {
-                    int c = int.Parse(tbxSendStart.Text);
-                    if (c + cou > GetText.Length)
-                    {
-                        rtbShowText.Text = "发送字数设置错误！";
-                        rtbShowText.ForeColor = Color.IndianRed;
-                        btnGoSend.Enabled = false;
-                    }
-                    else
-                    {
-                        rtbShowText.ForeColor = Color.Black;
-                        btnGoSend.Enabled = true;
-                    }
-                }
-            }
-        }
-
-        private void Confrim()
-        {
-            if (GetText.Length != 0)
-            {
-                string te = this.tbxSendCount.Text;
-                if (te.Length != 0)
-                {
-                    int cou = int.Parse(te);
-                    if (cou > 0 && tbxSendStart.Text != "")
-                    {
-                        int c = int.Parse(tbxSendStart.Text);
-                        if (c + cou <= GetText.Length)
-                        {
-                            try
-                            {
-                                string tickText = GetText;
-                                if (this.cbxTickOut.Checked && this.tabControl2.SelectedIndex != 2)
-                                {
-                                    tickText = TickBlock(GetText, "");
-                                }
-                                string showText = tickText.Substring(c, cou);
-                                rtbShowText.Text = showText + "\r\n[...当前设置文段预览(非实际)]";
-                                rtbShowText.ForeColor = Color.Black;
-                                double diff = frm.DiffDict.Calc(showText);
-                                DiffcultyLabel.Text = frm.DiffDict.DiffText(diff);
-                                btnGoSend.Enabled = true;
-                            }
-                            catch
-                            {
-                                rtbShowText.Text = "在当前标起始点下，字数设置超出限制！";
-                                rtbShowText.ForeColor = Color.IndianRed;
-                                DiffcultyLabel.Text = "难度";
-                                btnGoSend.Enabled = false;
-                            }
-                        }
-                        else
-                        {
-                            rtbShowText.Text = "发送字数设置错误！";
-                            rtbShowText.ForeColor = Color.IndianRed;
-                            DiffcultyLabel.Text = "难度";
-                            btnGoSend.Enabled = false;
-                        }
-                    }
-                    else
-                    {
-                        rtbShowText.Text = "发送字数设置错误！";
-                        rtbShowText.ForeColor = Color.IndianRed;
-                        DiffcultyLabel.Text = "难度";
-                        btnGoSend.Enabled = false;
-                    }
-                }
-            }
+            textChangeHandler();
         }
 
         private void tbxSendStart_KeyPress(object sender, KeyPressEventArgs e)

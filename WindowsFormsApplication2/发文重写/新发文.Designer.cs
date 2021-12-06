@@ -35,6 +35,7 @@
             this.lbxTextList = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.PcButton = new System.Windows.Forms.Button();
             this.EncodedComboBox = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.FileSaveCheckBox = new System.Windows.Forms.CheckBox();
@@ -166,7 +167,6 @@
             this.cbxSplit = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.PcButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -290,6 +290,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(516, 161);
             this.panel1.TabIndex = 1;
+            // 
+            // PcButton
+            // 
+            this.PcButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PcButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.PcButton.Image = global::WindowsFormsApplication2.Properties.Resources.pc;
+            this.PcButton.Location = new System.Drawing.Point(226, 0);
+            this.PcButton.Margin = new System.Windows.Forms.Padding(0);
+            this.PcButton.Name = "PcButton";
+            this.PcButton.Size = new System.Drawing.Size(37, 23);
+            this.PcButton.TabIndex = 12;
+            this.toolTip1.SetToolTip(this.PcButton, "打开我的电脑");
+            this.PcButton.UseVisualStyleBackColor = true;
+            this.PcButton.Click += new System.EventHandler(this.PcButton_Click);
             // 
             // EncodedComboBox
             // 
@@ -2069,20 +2083,6 @@
             this.label9.Size = new System.Drawing.Size(77, 12);
             this.label9.TabIndex = 0;
             this.label9.Text = "词组分隔符：";
-            // 
-            // PcButton
-            // 
-            this.PcButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PcButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.PcButton.Image = global::WindowsFormsApplication2.Properties.Resources.pc;
-            this.PcButton.Location = new System.Drawing.Point(226, 0);
-            this.PcButton.Margin = new System.Windows.Forms.Padding(0);
-            this.PcButton.Name = "PcButton";
-            this.PcButton.Size = new System.Drawing.Size(37, 23);
-            this.PcButton.TabIndex = 12;
-            this.toolTip1.SetToolTip(this.PcButton, "打开我的电脑");
-            this.PcButton.UseVisualStyleBackColor = true;
-            this.PcButton.Click += new System.EventHandler(this.PcButton_Click);
             // 
             // 新发文
             // 

@@ -1113,7 +1113,7 @@ namespace WindowsFormsApplication2
                     }
 
                     if (NewSendText.词组发送分隔符.Length > 0)
-                    {
+                    { // 移除最末尾的一个分隔符
                         TextAll = TextAll.Remove(TextAll.Length - NewSendText.词组发送分隔符.Length,
                                       NewSendText.词组发送分隔符.Length);
                     }

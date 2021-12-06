@@ -2226,7 +2226,7 @@ namespace WindowsFormsApplication2
                         this.dataGridView1.Rows[this.dataGridView1.Rows.Count - 1].DefaultCellStyle.BackColor = Color.FromArgb(61, 61, 61);
                         #region 单元格高亮
                         // 使用会惩罚错字的速度进行判定
-                        CellHighlight.Speed(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[3], speed2);
+                        CellHighlight.Speed(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[3], speed2, Glob.Difficulty);
                         CellHighlight.Keystroke(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[4], jj);
                         CellHighlight.CodeLen(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5], mc);
                         CellHighlight.Error(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[12], Glob.TextCz);

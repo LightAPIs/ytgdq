@@ -14,30 +14,59 @@ namespace WindowsFormsApplication2
     {
         /// <summary>
         /// 速度高亮
+        /// - 需要依据难度
         /// </summary>
         /// <param name="cell"></param>
         /// <param name="sp"></param>
-        public static void Speed(DataGridViewCell cell, double sp)
+        /// <param name="diff"></param>
+        public static void Speed(DataGridViewCell cell, double sp, double diff)
         {
-            if (sp >= 360.00)
+            if (diff > 0)
             {
-                cell.Style.ForeColor = Color.FromArgb(255, 112, 67);
+                double val = sp * diff;
+                if (val >= 720.00)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(255, 112, 67);
+                }
+                else if (val >= 600.00)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(255, 167, 38);
+                }
+                else if (val >= 480.00)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(255, 68, 38);
+                }
+                else if (val >= 360.00)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(255, 175, 228);
+                }
+                else if (val >= 240.00)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(72, 178, 51);
+                }
             }
-            else if (sp >= 300.00)
+            else
             {
-                cell.Style.ForeColor = Color.FromArgb(255, 167, 38);
-            }
-            else if (sp >= 240.00)
-            {
-                cell.Style.ForeColor = Color.FromArgb(255, 68, 38);
-            }
-            else if (sp >= 180.00)
-            {
-                cell.Style.ForeColor = Color.FromArgb(255, 175, 228);
-            }
-            else if (sp >= 120.00)
-            {
-                cell.Style.ForeColor = Color.FromArgb(72, 178, 51);
+                if (sp >= 360.00)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(255, 112, 67);
+                }
+                else if (sp >= 300.00)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(255, 167, 38);
+                }
+                else if (sp >= 240.00)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(255, 68, 38);
+                }
+                else if (sp >= 180.00)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(255, 175, 228);
+                }
+                else if (sp >= 120.00)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(72, 178, 51);
+                }
             }
         }
 

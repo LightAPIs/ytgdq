@@ -155,6 +155,7 @@ namespace WindowsFormsApplication2.CodeTable
                 Glob.WordLenType = new int[10];
 
                 Glob.CodeHistory.UpdateCodeTableIndex(Glob.WordMaxLen, "0|0|0|0|0|0|0|0|0|0", -1, "");
+                Glob.UsedTableIndex = "";
                 this.UsedIdLabel.Text = "无";
             }
         }

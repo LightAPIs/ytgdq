@@ -43,6 +43,7 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.CycleCheckBox = new System.Windows.Forms.CheckBox();
             this.AutoNumberButton = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.lblNowTime = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
@@ -75,7 +76,6 @@
             this.AutoNumberTextBox = new System.Windows.Forms.TextBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.gbstatic = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label15 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -257,6 +257,20 @@
             this.toolTip1.SetToolTip(this.AutoNumberButton, "修改自动条件的数值");
             this.AutoNumberButton.UseVisualStyleBackColor = true;
             this.AutoNumberButton.Click += new System.EventHandler(this.AutoNumberButton_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBox1.Location = new System.Drawing.Point(82, 326);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(69, 16);
+            this.checkBox1.TabIndex = 31;
+            this.checkBox1.Text = "自动发文";
+            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.checkBox1, "自动发下一段，可选设定条件");
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // lblNowTime
             // 
@@ -645,7 +659,8 @@
             "回改率",
             "打词",
             "打词率",
-            "效率"});
+            "效率",
+            "评级"});
             this.comboBox1.Location = new System.Drawing.Point(2, 2);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 1, 0);
             this.comboBox1.Name = "comboBox1";
@@ -711,7 +726,7 @@
             this.comboBox3.Items.AddRange(new object[] {
             "无操作",
             "重打",
-            "乱序重打"});
+            "乱序"});
             this.comboBox3.Location = new System.Drawing.Point(66, 2);
             this.comboBox3.Margin = new System.Windows.Forms.Padding(2, 2, 1, 0);
             this.comboBox3.Name = "comboBox3";
@@ -728,20 +743,6 @@
             this.gbstatic.TabIndex = 0;
             this.gbstatic.TabStop = false;
             this.gbstatic.Text = "当前发文";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBox1.Location = new System.Drawing.Point(82, 326);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(69, 16);
-            this.checkBox1.TabIndex = 31;
-            this.checkBox1.Text = "自动发文";
-            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.checkBox1, "自动发下一段，可选设定条件");
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // label15
             // 

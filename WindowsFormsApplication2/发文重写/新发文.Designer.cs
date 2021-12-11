@@ -1867,7 +1867,8 @@
             "回改率",
             "打词",
             "打词率",
-            "效率"});
+            "效率",
+            "速度评级"});
             this.AutoKeyComboBox.Location = new System.Drawing.Point(3, 203);
             this.AutoKeyComboBox.Name = "AutoKeyComboBox";
             this.AutoKeyComboBox.Size = new System.Drawing.Size(91, 20);

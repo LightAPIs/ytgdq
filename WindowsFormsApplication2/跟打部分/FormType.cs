@@ -2353,6 +2353,9 @@ namespace WindowsFormsApplication2
                                         case NewSendText.AutoKeyValue.Effciency:
                                             isNext = CompareAutoCondition(Glob.效率, NewSendText.AutoNumber);
                                             break;
+                                        case NewSendText.AutoKeyValue.Grade:
+                                            isNext = CompareAutoCondition(speed2 * Glob.Difficulty, NewSendText.AutoNumber);
+                                            break;
                                         default:
                                             isNext = false;
                                             break;

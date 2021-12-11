@@ -80,7 +80,8 @@ namespace WindowsFormsApplication2
             BackRate = 6,
             TypeWords = 7,
             WordsRate = 8,
-            Effciency = 9
+            Effciency = 9,
+            Grade = 10
         }
         /// <summary>
         /// 条件关系运算符 Enum

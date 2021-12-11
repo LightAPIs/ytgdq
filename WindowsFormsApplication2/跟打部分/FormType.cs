@@ -978,7 +978,6 @@ namespace WindowsFormsApplication2
             Glob.CurSegmentNum++;
             this.lblDuan.Text = "第" + Glob.CurSegmentNum.ToString() + "段";
             GetInfo(); // 获取信息
-            Glob.reTypeCount = 0; // 重打次数归零
             NewSendText.已发段数++;
         }
 
@@ -1003,7 +1002,6 @@ namespace WindowsFormsApplication2
             }
             this.lblDuan.Text = "第" + Glob.CurSegmentNum.ToString() + "段";
             GetInfo(); // 获取信息
-            Glob.reTypeCount = 0; // 重打次数归零
             NewSendText.已发段数--;
         }
 
@@ -1399,7 +1397,7 @@ namespace WindowsFormsApplication2
                 Glob.TextJj = 0; //击键
                 Glob.TextHg = 0; //回改
                 Glob.LastInput = 0; //最后输入 
-                //Glob.HaveTypeCount = 0;//已跟打字数 用于编码提示部分
+
                 Sw = 0; //控制
                 sw = 0;
                 Glob.aTypeWords = 0;//打词
@@ -1944,7 +1942,7 @@ namespace WindowsFormsApplication2
                     double nowValue = speed2 * Glob.Difficulty;
                     Glob.SpeedGradeSpeed += speed2;
                     Glob.SpeedGradeDiff += Glob.Difficulty;
-                    
+
                     if (Glob.SpeedGradeCount > 100)
                     {
                         if (nowValue > Glob.SpeedGrade)
@@ -1967,92 +1965,127 @@ namespace WindowsFormsApplication2
                     //? 跟打用时小于 1s 以及错字超过 10% 时不处理
                     if (Glob.TypeUseTime >= 1 && Glob.TextCz <= (int)TextLen / 10)
                     {
-                        //段号
-                        string duanhao = "第" + Glob.CurSegmentNum.ToString() + "段";
-                        if (!Glob.isMatch && duanhao == "段号")
-                        {
-                            duanhao = "自测";
-
-                        }
-
-                        //个签
-                        string inistra = "";
-                        if (Glob.InstraPre_ != "0")
-                        {
-                            inistra = " 个签:" + Glob.InstraPre;
-                        }
-                        //输入法签名
-                        string inistraSrf = "";
-                        if (Glob.InstraSrf_ != "0")
-                        {
-                            inistraSrf = " 输入法:" + Glob.InstraSrf;
-                        }
-                        //打词
-                        string atypewords;
-                        atypewords = " 打词" + Glob.aTypeWords;
-                        //Glob.TextTypeWs = 0;//初始化打词总计
-                        //重打
-                        string reTypeing;
-                        int typecount = Glob.reTypeCount + 1;
-                        if (Glob.reTypeCount > 1)
-                        {
-                            reTypeing = " 重打" + typecount;
-                        }
-                        else
-                        {
-                            reTypeing = "";
-                        }
-                        // 回改率
                         // Glob.TextHg_ = (double)Glob.TextHgAll * 100 / Glob.TextLenAll;   // 这计算的是总回改率
+                        // 回改率
                         Glob.TextHg_ = Math.Round((double)Glob.TextHg * 100 / (Glob.TextLen + Glob.TextHg), 2);
                         // 打词率
                         Glob.TextDc_ = Math.Round((double)Glob.aTypeWordsCount * 100 / (Glob.TextLen + Glob.TextHg), 2);
-                        //停留
-                        //MessageBox.Show(stayHighTime[0,0].ToString());
-
-                        string stay = "";
-                        try
-                        {
-                            const string bd =
-                                @"，。“”！（）()~·#￥%&*_[]{}‘’/\<>,.《》？：；、—…1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRSTUVWXYZ";
-                            var findall = Glob.TypeReport.OrderByDescending(o => o.TotalTime);
-                            foreach (
-                                var typeDate in
-                                    from typeDate in findall
-                                    let s = TextAlticle[typeDate.Start + typeDate.Length - 1]
-                                    where !bd.Contains(s)
-                                    select typeDate)
-                            {
-                                stay = string.Format(" 停留[{0}]{1}",
-                                                     TextAlticle.Substring(typeDate.Start, typeDate.Length),
-                                                     typeDate.TotalTime.ToString("0.00") + "s");
-                                richTextBox1.SelectionStart = typeDate.Start;
-                                richTextBox1.SelectionLength = typeDate.Length;
-                                richTextBox1.SelectionBackColor = Glob.TimeLongColor;
-                                break;
-                            }
-                        }
-                        catch
-                        {
-                            stay = "";
-                        }
-                        //跟打效率
-                        string awordper;
+                        // 跟打效率
                         Glob.效率 = TextLen * 100 / sw;
-                        if (sw != 0)
-                        {
-                            awordper = " 效率" + Glob.效率 + "%";
-                        }
-                        else
-                        {
-                            awordper = "";
-                        }
-                        this.lbl地图长度.Text = Glob.效率 + "%";
+                        this.lbl地图长度.Text = Glob.效率 + "%"; // 显示跟打效率
+
                         //回改用时
                         Glob.hgAllUse = Glob.TypeReport.Where(o => o.Length < 0).Sum(o => o.TotalTime);
                         sw = 0;
+
                         //键准
                         this.lbl键准.Text = (UserJz == 0) ? "-" : UserJz + "%";
+
+                        picBar_Draw(0.0, Glob.TextLen + ",100%");
+                        labelSpeeding.Text = speed.ToString("0.00");
+                        labelJjing.Text = jj.ToString("0.00");
+                        labelmcing.Text = mc.ToString("0.00");
+
+                        //平均数据
+                        //this.SeriesSpeed.Points.AddXY(Glob.typeUseTime,speed2);
+                        Glob.Per_Speed += speed2; // 用的惩罚错字后的速度
+                        Glob.Per_Jj += jj;
+                        Glob.Per_Mc += mc;
+
+                        double touse = Glob.TotalUse;
+                        if (dataGridView1.RowCount > 1)
+                        {
+                            dataGridView1.Rows.RemoveAt(dataGridView1.RowCount - 1);
+                        }
+                        Glob.TextTime = DateTime.Now;
+                        //显示打完信息
+                        //ShowFlowText("第" + Glob.Pre_Cout + "段" + " 速度" + Glob.TextSpeed + " 击键" + Glob.Textjj + " 码长" + Glob.Textmc + " 用时" + new DateTime().AddSeconds(Glob.typeUseTime).ToString("mm.ss.ff"));
+                        string typeCountStr = "";
+                        if (Glob.TextPreCout == this.lblMatchCount.Text)
+                        { // 重打判断，为重打
+                            Glob.reTypeCount++;
+                            toolStripStatusLabelStatus.Text = Glob.reTypeCount.ToString();
+                            toolStripStatusLabelStatus.ForeColor = Color.DarkGreen;
+
+                            int RowCount = this.dataGridView1.Rows.Count - 1;
+                            string[] oldSpeed = this.dataGridView1.Rows[RowCount].Cells[3].Value.ToString().Split('/');
+                            double speed_Plus = speed2 - double.Parse(oldSpeed[0]);
+                            double jj_Plus = Glob.Textjj - double.Parse(this.dataGridView1.Rows[RowCount].Cells[4].Value.ToString());
+                            double mc_Plus = Glob.Textmc - double.Parse(this.dataGridView1.Rows[RowCount].Cells[5].Value.ToString());
+                            dataGridView1.Rows.Add("", "", "",
+                                //速度
+                                (speed_Plus > 0 ? "+" : "") + speed_Plus.ToString("0.00"),
+                                //击键
+                                (jj_Plus > 0 ? "+" : "") + jj_Plus.ToString("0.00"),
+                                //码长
+                                (mc_Plus > 0 ? "+" : "") + mc_Plus.ToString("0.00")
+                                );
+                            RowCount++;
+                            dataGridView1.Rows[RowCount].Height = 10;
+                            dataGridView1.Rows[RowCount].DefaultCellStyle.Font = new Font("Arial", 6.8f);
+                            dataGridView1.Rows[RowCount].DefaultCellStyle.ForeColor = Color.LightGray;
+                            //各个项目样式 
+                            if (speed_Plus > 0) dataGridView1.Rows[RowCount].Cells[3].Style.ForeColor = Color.FromArgb(253, 108, 108);
+                            if (jj_Plus > 0) dataGridView1.Rows[RowCount].Cells[4].Style.ForeColor = Color.FromArgb(255, 129, 233);
+                            if (mc_Plus < 0) dataGridView1.Rows[RowCount].Cells[5].Style.ForeColor = Color.FromArgb(124, 222, 255);
+                            for (int i = 0; i < 23; i++)
+                            {
+                                if (i != 3 && i != 4 && i != 5)
+                                {
+                                    this.dataGridView1.Rows[RowCount].Cells[i].Style.BackColor = Color.FromArgb(61, 61, 61);
+                                }
+                            }
+                            typeCountStr = "";
+                        }
+                        else
+                        { // 此次和上次文章验证不相同，为新打
+                            Glob.reTypeCount = 0;
+                            toolStripStatusLabelStatus.Text = "-";
+                            toolStripStatusLabelStatus.ForeColor = Color.Black;
+
+                            Glob.HaveTypeCount_++; //实际跟打段数加一
+                            typeCountStr = Glob.HaveTypeCount_.ToString();
+                        }
+                        //* 成绩栏添加新数据行
+                        dataGridView1.Rows.Add(typeCountStr, Glob.TextTime.ToString("G"), Glob.CurSegmentNum.ToString(), Spsend, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.Difficulty.ToString("0.00"), (Glob.Difficulty * speed2).ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserDcl, UserTime, this.lblTitle.Text);
+                        //* 绑定右键菜单
+                        dataGridView1.Rows[dataGridView1.RowCount - 1].ContextMenuStrip = this.ScoreContextMenuStrip;
+                        Glob.TextPreCout = this.lblMatchCount.Text; // 记录本文段校验码
+                        //成绩信息底色黑
+                        this.dataGridView1.Rows[this.dataGridView1.Rows.Count - 1].DefaultCellStyle.BackColor = Color.FromArgb(61, 61, 61);
+                        #region 单元格高亮
+                        // 使用会惩罚错字的速度进行判定
+                        CellHighlight.Speed(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[3], speed2, Glob.Difficulty);
+                        CellHighlight.Keystroke(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[4], jj);
+                        CellHighlight.CodeLen(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5], mc);
+                        CellHighlight.Error(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[13], Glob.TextCz);
+                        #endregion
+                        double jjPer_ = Glob.Per_Jj / Glob.HaveTypeCount;
+                        Glob.Total_Type += Glob.TextLen;
+                        string dis = "00:00:00";
+                        if (Glob.HaveTypeCount >= 1)
+                        {
+                            DateTime dt = new DateTime().AddSeconds(touse);
+                            dis = dt.ToString("HH:mm:ss");
+                        }
+                        // 成绩栏总计行
+                        dataGridView1.Rows.Add("", dis, Glob.HaveTypeCount + "#", (Glob.Per_Speed / Glob.HaveTypeCount).ToString("0.00"), jjPer_.ToString("0.00"), (Glob.Per_Mc / Glob.HaveTypeCount).ToString("0.00"), "", "", "", "", "", "", "", "", "", "", "", "", (Glob.Total_Type / Glob.HaveTypeCount).ToString("0.00"), "", "", (touse / Glob.HaveTypeCount).ToString("0.00"), "");
+                        dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
+                        dataGridView1.ClearSelection();
+                        DataGridViewRow dgr = dataGridView1.Rows[dataGridView1.RowCount - 1];
+                        //dgr.DefaultCellStyle.BackColor = Theme.ThemeColorBG;
+                        dgr.DefaultCellStyle.ForeColor = Theme.ThemeColorFC;
+                        jjPerCheck((int)jj);//击键占率
+                        Show_Hg_Place();//显示回改地点
+                        Glob.Use分析 = true;//F3时 分析不可用 只有在跟打结束后分析才可用
+                        
+                        try
+                        {
+                            KH.Stop();
+                        }
+                        catch { }
+
+                        #region 成绩结果生成
                         //顺序及发送
                         string sortsend = "", qidayu = "";
                         string TotalSend = "";
@@ -2080,8 +2113,83 @@ namespace WindowsFormsApplication2
                             qidayu = " 起打于" + startTime.ToLongTimeString();
                         }
 
-                        if (sortsend.Length != 0) //用 顺序是否为空为控制 流程
-                        {
+                        if (sortsend.Length != 0)
+                        { // 若顺序不为空时
+                            //段号
+                            string duanhao = "第" + Glob.CurSegmentNum.ToString() + "段";
+                            if (!Glob.isMatch && duanhao == "段号")
+                            {
+                                duanhao = "自测";
+
+                            }
+
+                            //个签
+                            string inistra = "";
+                            if (Glob.InstraPre_ != "0")
+                            {
+                                inistra = " 个签:" + Glob.InstraPre;
+                            }
+
+                            //输入法签名
+                            string inistraSrf = "";
+                            if (Glob.InstraSrf_ != "0")
+                            {
+                                inistraSrf = " 输入法:" + Glob.InstraSrf;
+                            }
+
+                            //打词
+                            string atypewords = " 打词" + Glob.aTypeWords;
+
+                            //重打
+                            string reTypeing;
+                            if (Glob.reTypeCount > 0)
+                            {
+                                reTypeing = " 重打" + Glob.reTypeCount.ToString();
+                            }
+                            else
+                            {
+                                reTypeing = "";
+                            }
+
+                            //停留
+                            string stay = "";
+                            try
+                            {
+                                const string bd =
+                                    @"，。“”！（）()~·#￥%&*_[]{}‘’/\<>,.《》？：；、—…1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRSTUVWXYZ";
+                                var findall = Glob.TypeReport.OrderByDescending(o => o.TotalTime);
+                                foreach (
+                                    var typeDate in
+                                        from typeDate in findall
+                                        let s = TextAlticle[typeDate.Start + typeDate.Length - 1]
+                                        where !bd.Contains(s)
+                                        select typeDate)
+                                {
+                                    stay = string.Format(" 停留[{0}]{1}",
+                                                         TextAlticle.Substring(typeDate.Start, typeDate.Length),
+                                                         typeDate.TotalTime.ToString("0.00") + "s");
+                                    richTextBox1.SelectionStart = typeDate.Start;
+                                    richTextBox1.SelectionLength = typeDate.Length;
+                                    richTextBox1.SelectionBackColor = Glob.TimeLongColor;
+                                    break;
+                                }
+                            }
+                            catch
+                            {
+                                stay = "";
+                            }
+
+                            //跟打效率
+                            string awordper;
+                            if (sw != 0)
+                            {
+                                awordper = " 效率" + Glob.效率 + "%";
+                            }
+                            else
+                            {
+                                awordper = "";
+                            }
+
                             char[] TSend = sortsend.ToArray();
                             TotalSend = duanhao;
                             for (int i = 0; i < TSend.Length; i++)
@@ -2160,102 +2268,8 @@ namespace WindowsFormsApplication2
                             TotalSend += inistra + 暂停 + 版本;
                             Glob.theLastGoal = TotalSend;
                         }
-                        picBar_Draw(0.0, Glob.TextLen + ",100%");
-                        labelSpeeding.Text = speed.ToString("0.00");
-                        labelJjing.Text = jj.ToString("0.00");
-                        labelmcing.Text = mc.ToString("0.00");
-
-                        //平均数据
-                        //this.SeriesSpeed.Points.AddXY(Glob.typeUseTime,speed2);
-                        Glob.Per_Speed += speed2; // 用的惩罚错字后的速度
-                        Glob.Per_Jj += jj;
-                        Glob.Per_Mc += mc;
-
-                        double touse = Glob.TotalUse;
-                        if (dataGridView1.RowCount > 1)
-                        {
-                            dataGridView1.Rows.RemoveAt(dataGridView1.RowCount - 1);
-                        }
-                        Glob.TextTime = DateTime.Now;
-                        //显示打完信息
-                        //ShowFlowText("第" + Glob.Pre_Cout + "段" + " 速度" + Glob.TextSpeed + " 击键" + Glob.Textjj + " 码长" + Glob.Textmc + " 用时" + new DateTime().AddSeconds(Glob.typeUseTime).ToString("mm.ss.ff"));
-                        string typeCountStr = "";
-                        if (Glob.TextPreCout == this.lblMatchCount.Text)
-                        {
-                            Glob.ReTypePD = true;//重打判断 为重打
-                            int RowCount = this.dataGridView1.Rows.Count - 1;
-                            string[] oldSpeed = this.dataGridView1.Rows[RowCount].Cells[3].Value.ToString().Split('/');
-                            double speed_Plus = speed2 - double.Parse(oldSpeed[0]);
-                            double jj_Plus = Glob.Textjj - double.Parse(this.dataGridView1.Rows[RowCount].Cells[4].Value.ToString());
-                            double mc_Plus = Glob.Textmc - double.Parse(this.dataGridView1.Rows[RowCount].Cells[5].Value.ToString());
-                            dataGridView1.Rows.Add("", "", "",
-                                //速度
-                                (speed_Plus > 0 ? "+" : "") + speed_Plus.ToString("0.00"),
-                                //击键
-                                (jj_Plus > 0 ? "+" : "") + jj_Plus.ToString("0.00"),
-                                //码长
-                                (mc_Plus > 0 ? "+" : "") + mc_Plus.ToString("0.00")
-                                );
-                            RowCount++;
-                            dataGridView1.Rows[RowCount].Height = 10;
-                            dataGridView1.Rows[RowCount].DefaultCellStyle.Font = new Font("Arial", 6.8f);
-                            dataGridView1.Rows[RowCount].DefaultCellStyle.ForeColor = Color.LightGray;
-                            //各个项目样式 
-                            if (speed_Plus > 0) dataGridView1.Rows[RowCount].Cells[3].Style.ForeColor = Color.FromArgb(253, 108, 108);
-                            if (jj_Plus > 0) dataGridView1.Rows[RowCount].Cells[4].Style.ForeColor = Color.FromArgb(255, 129, 233);
-                            if (mc_Plus < 0) dataGridView1.Rows[RowCount].Cells[5].Style.ForeColor = Color.FromArgb(124, 222, 255);
-                            for (int i = 0; i < 23; i++)
-                            {
-                                if (i != 3 && i != 4 && i != 5)
-                                {
-                                    this.dataGridView1.Rows[RowCount].Cells[i].Style.BackColor = Color.FromArgb(61, 61, 61);
-                                }
-                            }
-                            typeCountStr = "";
-                        }
-                        else
-                        { //如果此次和上次 文章验证 不相同
-                            Glob.ReTypePD = false;//重打判断 为新打
-                            Glob.HaveTypeCount_++; //实际跟打段数加一
-                            typeCountStr = Glob.HaveTypeCount_.ToString();
-                        }
-                        //* 成绩栏添加新数据行
-                        dataGridView1.Rows.Add(typeCountStr, Glob.TextTime.ToString("G"), Glob.CurSegmentNum.ToString(), Spsend, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.Difficulty.ToString("0.00"), (Glob.Difficulty * speed2).ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserDcl, UserTime, this.lblTitle.Text);
-                        //* 绑定右键菜单
-                        dataGridView1.Rows[dataGridView1.RowCount - 1].ContextMenuStrip = this.ScoreContextMenuStrip;
-                        Glob.TextPreCout = this.lblMatchCount.Text; // 记录本文段校验码
-                        //成绩信息底色黑
-                        this.dataGridView1.Rows[this.dataGridView1.Rows.Count - 1].DefaultCellStyle.BackColor = Color.FromArgb(61, 61, 61);
-                        #region 单元格高亮
-                        // 使用会惩罚错字的速度进行判定
-                        CellHighlight.Speed(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[3], speed2, Glob.Difficulty);
-                        CellHighlight.Keystroke(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[4], jj);
-                        CellHighlight.CodeLen(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5], mc);
-                        CellHighlight.Error(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[13], Glob.TextCz);
                         #endregion
-                        double jjPer_ = Glob.Per_Jj / Glob.HaveTypeCount;
-                        Glob.Total_Type += Glob.TextLen;
-                        string dis = "00:00:00";
-                        if (Glob.HaveTypeCount >= 1)
-                        {
-                            DateTime dt = new DateTime().AddSeconds(touse);
-                            dis = dt.ToString("HH:mm:ss");
-                        }
-                        // 成绩栏总计行
-                        dataGridView1.Rows.Add("", dis, Glob.HaveTypeCount + "#", (Glob.Per_Speed / Glob.HaveTypeCount).ToString("0.00"), jjPer_.ToString("0.00"), (Glob.Per_Mc / Glob.HaveTypeCount).ToString("0.00"), "", "", "", "", "", "", "", "", "", "", "", "", (Glob.Total_Type / Glob.HaveTypeCount).ToString("0.00"), "", "", (touse / Glob.HaveTypeCount).ToString("0.00"), "");
-                        dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
-                        dataGridView1.ClearSelection();
-                        DataGridViewRow dgr = dataGridView1.Rows[dataGridView1.RowCount - 1];
-                        //dgr.DefaultCellStyle.BackColor = Theme.ThemeColorBG;
-                        dgr.DefaultCellStyle.ForeColor = Theme.ThemeColorFC;
-                        jjPerCheck((int)jj);//击键占率
-                        Show_Hg_Place();//显示回改地点
-                        Glob.Use分析 = true;//F3时 分析不可用 只有在跟打结束后分析才可用
-                        try
-                        {
-                            KH.Stop();
-                        }
-                        catch { }
+
                         #region 自动将统计结果复制到剪贴板
                         if (Glob.AutoCopy)
                         {
@@ -3161,20 +3175,17 @@ namespace WindowsFormsApplication2
             Glob.getDuan = regexAll.Match(text_);
             if (Glob.getDuan.Length == 0) //为空
             {
-                toolStripStatusLabelStatus.Text = "No";
-                toolTip1.SetToolTip(toolStripStatusLabelStatus, "没有找到文段");
                 ShowFlowText("未找到文段");
-                toolStripStatusLabelStatus.ForeColor = Color.IndianRed;
                 return;
             }
-            string getDuanAll = Glob.getDuan.ToString();
+
             if (Glob.IsZdyPre)
             {
                 Glob.regexCout = new Regex(@"(?<=" + preduan.Substring(0, 1) + @")\d+(?=" + preduan.Substring(4, 1) + ")", RegexOptions.RightToLeft);
             }
             else
                 Glob.regexCout = new Regex(@"(?<=第)\d+(?=段)", RegexOptions.RightToLeft);
-            LoadText(pretext, preduan, Glob.regexCout, getDuanAll);
+            LoadText(pretext, preduan, Glob.regexCout, Glob.getDuan.ToString());
         }
 
         /// <summary>
@@ -3204,12 +3215,7 @@ namespace WindowsFormsApplication2
                 if (ExgetText != PerText) //获取新文段
                 {
                     richTextBox1.Text = ExgetText.ToString(); //填入文章
-                    Glob.LoadCount++; //载入次数已载
-                    toolStripStatusLabelStatus.Text = Glob.LoadCount.ToString();
-                    toolStripStatusLabelStatus.ForeColor = Color.FromArgb(63, 63, 63);
-                    toolTip1.SetToolTip(toolStripStatusLabelStatus, "已载第" + Glob.LoadCount + "段");
 
-                    Glob.reTypeCount = 0; //重打
                     this.textBoxEx1.TextChanged -= new System.EventHandler(textBoxEx1_TextChanged);
                     textBoxEx1.Clear();
                     this.textBoxEx1.TextChanged += new System.EventHandler(textBoxEx1_TextChanged); //重新绑定
@@ -3259,28 +3265,18 @@ namespace WindowsFormsApplication2
                 {
                     if (textBoxEx1.Text != "")
                     {
-                        toolStripStatusLabelStatus.Text = "NA";
-                        toolTip1.SetToolTip(toolStripStatusLabelStatus, "未找到新文段");
                         ShowFlowText("未找到新文段");
-                        toolStripStatusLabelStatus.ForeColor = Color.PaleVioletRed;
                     }
                 }
             }
             else
             {
-                toolStripStatusLabelStatus.Text = "No";
-                toolTip1.SetToolTip(toolStripStatusLabelStatus, "没有找到文段");
                 ShowFlowText("未找到文段");
-                toolStripStatusLabelStatus.ForeColor = Color.Red;
-
             }
             GetInfo(); //获取文字信息
             richTextBox1.ForeColor = Color.Black;
-            //Glob.Text = null;
             Clipboard.Clear(); // 清空剪贴板
             this.Activate();
-            //SwitchToThisWindow(FindWindow(null, Glob.Form), true);
-            //BlockMark();//空格标记
         }
 
         /// <summary>
@@ -3304,7 +3300,6 @@ namespace WindowsFormsApplication2
                 this.lblDuan.Text = "第" + Glob.CurSegmentNum.ToString() + "段";
                 this.lblTitle.Text = title;
                 Initialize(1);
-                Glob.reTypeCount = 0; //重打
                 this.textBoxEx1.TextChanged -= new System.EventHandler(textBoxEx1_TextChanged);
                 this.textBoxEx1.Clear();
                 this.textBoxEx1.TextChanged += new System.EventHandler(textBoxEx1_TextChanged); //重新绑定
@@ -3362,15 +3357,6 @@ namespace WindowsFormsApplication2
             this.textBoxEx1.TextChanged -= new System.EventHandler(textBoxEx1_TextChanged);
             textBoxEx1.Clear();
             this.textBoxEx1.TextChanged += new System.EventHandler(textBoxEx1_TextChanged);
-            if (Sw != 0)
-            {
-                int typecount;
-                Glob.reTypeCount++;
-                typecount = Glob.reTypeCount + 1;
-                toolStripStatusLabelStatus.Text = typecount.ToString();
-                toolStripStatusLabelStatus.ForeColor = Color.DarkGreen;
-                toolTip1.SetToolTip(toolStripStatusLabelStatus, "重打" + typecount + "次");
-            }
 
             timer1.Enabled = false;
             timer3.Enabled = false;
@@ -3384,8 +3370,7 @@ namespace WindowsFormsApplication2
             timer5.Stop();
             Glob.nowStart = DateTime.Now;
             this.lblAutoReType.Text = "0";
-            //设置输入状态
-            //SetIMM(1026, 0);
+
             if (Glob.SpeedPointCount > 0)
             {
                 for (int i = 0; i < Glob.SpeedPointCount; i++)
@@ -5706,13 +5691,9 @@ namespace WindowsFormsApplication2
             Glob.getDuan = regexAll.Match(Glob.Text);
             if (Glob.getDuan.Length == 0) //为空
             {
-                toolStripStatusLabelStatus.Text = "No";
-                toolTip1.SetToolTip(toolStripStatusLabelStatus, "没有找到文段");
-                toolStripStatusLabelStatus.ForeColor = Color.IndianRed;
-                //this.toolStripComboBoxDuan.Items.Clear();
                 return;
             }
-            string getDuanAll = Glob.getDuan.ToString();
+
             if (Glob.IsZdyPre)
             {
                 Glob.regexCout = new Regex(@"(?<=" + Glob.PreDuan.Replace("xx", @")" + sender.ToString() + "(?=") + ")", RegexOptions.RightToLeft);
@@ -5721,7 +5702,7 @@ namespace WindowsFormsApplication2
             {
                 Glob.regexCout = new Regex(@"(?<=第)" + sender.ToString() + "(?=段)", RegexOptions.RightToLeft);
             }
-            LoadText(pretext, preduan, Glob.regexCout, getDuanAll);
+            LoadText(pretext, preduan, Glob.regexCout, Glob.getDuan.ToString());
         }
         #endregion
 

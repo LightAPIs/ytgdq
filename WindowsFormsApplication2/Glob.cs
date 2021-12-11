@@ -79,7 +79,6 @@ namespace WindowsFormsApplication2
         /// 用于判定是否为重打
         /// </summary>
         public static string TextPreCout = "";
-        public static bool ReTypePD = false;//重打判断
         public static int TextLen; //总字数
         /// <summary>
         /// 需要减去的数量
@@ -113,8 +112,11 @@ namespace WindowsFormsApplication2
         public static bool 文段类型 = true;
         public static int 撤销 = 0;
         public static int 撤销用量 = 0;
-        
-        //检查过程是否一直持续
+
+        /// <summary>
+        /// 发呆起始时间
+        /// - 用于检查跟打是否一直在持续
+        /// </summary>
         public static DateTime nowStart;
         /// <summary>
         /// 载文的段数
@@ -224,7 +226,6 @@ namespace WindowsFormsApplication2
         public static double TextHg_ = 0;//回改率
         public static double TextDc_ = 0; // 打词率
 
-        public static int LoadCount = 0;//载入次数 暂时是用来确定是否开启输入法
         /// <summary>
         /// 跟打用时
         /// </summary>

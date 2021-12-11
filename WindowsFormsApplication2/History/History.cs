@@ -6,10 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 using WindowsFormsApplication2.Storage;
-using WindowsFormsApplication2.KeyAnalysis;
-using Newtonsoft.Json;
 
 namespace WindowsFormsApplication2.History
 {
@@ -287,7 +284,8 @@ namespace WindowsFormsApplication2.History
                 if (sd != null)
                 {
                     long segmentId = (long)sd["segment_id"];
-                    this.PreviewGroupBox.Text = "文段预览 (ID=" + segmentId.ToString() + ")"; 
+                    double diff = (double)sd["difficulty"];
+                    this.PreviewGroupBox.Text = "文段预览 <" + frm.DiffDict.DiffText(diff) + "> [ID=" + segmentId.ToString() + "]"; 
                     this.PreviewRichTextBox.Text = Glob.ScoreHistory.GetContentFromSegmentId(segmentId);
                 }
             }

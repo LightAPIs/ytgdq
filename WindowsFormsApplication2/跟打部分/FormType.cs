@@ -153,8 +153,8 @@ namespace WindowsFormsApplication2
 
             spX = int.TryParse(IniRead("窗口位置", "横", "200"), out spX) ? spX < 0 ? 200 : spX : 200;
             spY = int.TryParse(IniRead("窗口位置", "纵", "200"), out spY) ? spY < 0 ? 200 : spY : 200;
-            spW = int.TryParse(IniRead("窗口位置", "宽", "1080"), out spW) ? spW < 200 ? 520 : spW : 520;
-            spH = int.TryParse(IniRead("窗口位置", "高", "450"), out spH) ? spH < 50 ? 450 : spH : 450;
+            spW = int.TryParse(IniRead("窗口位置", "宽", "1280"), out spW) ? spW < 200 ? 520 : spW : 520;
+            spH = int.TryParse(IniRead("窗口位置", "高", "480"), out spH) ? spH < 50 ? 480 : spH : 480;
             Point pos = new Point(spX, spY);
             this.Location = pos;
             this.Size = new Size(spW, spH);
@@ -575,7 +575,7 @@ namespace WindowsFormsApplication2
         public void LoadSetup()
         {
             //创建表头
-            this.dataGridView1.Rows.Add("序", "时间", "段号", "速度", "击键", "码长", "理论", "难度", "回改", "退格", "回车", "选重", "错字", "回改率", "键准", "效率", "键数", "字数", "打词", "打词率", "用时", "标题");
+            this.dataGridView1.Rows.Add("序", "时间", "段号", "速度", "击键", "码长", "理论", "难度", "评级", "回改", "退格", "回车", "选重", "错字", "回改率", "键准", "效率", "键数", "字数", "打词", "打词率", "用时", "标题");
             this.dataGridView1.Rows[0].Frozen = true;
             this.dataGridView1.Rows[0].DefaultCellStyle.Font = new Font("微软雅黑", 11f);
             this.dataGridView1.Rows[0].DefaultCellStyle.BackColor = Theme.ThemeColorBG;
@@ -2204,7 +2204,7 @@ namespace WindowsFormsApplication2
                             if (speed_Plus > 0) dataGridView1.Rows[RowCount].Cells[3].Style.ForeColor = Color.FromArgb(253, 108, 108);
                             if (jj_Plus > 0) dataGridView1.Rows[RowCount].Cells[4].Style.ForeColor = Color.FromArgb(255, 129, 233);
                             if (mc_Plus < 0) dataGridView1.Rows[RowCount].Cells[5].Style.ForeColor = Color.FromArgb(124, 222, 255);
-                            for (int i = 0; i < 22; i++)
+                            for (int i = 0; i < 23; i++)
                             {
                                 if (i != 3 && i != 4 && i != 5)
                                 {
@@ -2220,7 +2220,7 @@ namespace WindowsFormsApplication2
                             typeCountStr = Glob.HaveTypeCount_.ToString();
                         }
                         //* 成绩栏添加新数据行
-                        dataGridView1.Rows.Add(typeCountStr, Glob.TextTime.ToString("G"), Glob.CurSegmentNum.ToString(), Spsend, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.Difficulty.ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserDcl, UserTime, this.lblTitle.Text);
+                        dataGridView1.Rows.Add(typeCountStr, Glob.TextTime.ToString("G"), Glob.CurSegmentNum.ToString(), Spsend, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.Difficulty.ToString("0.00"), (Glob.Difficulty * speed2).ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserDcl, UserTime, this.lblTitle.Text);
                         //* 绑定右键菜单
                         dataGridView1.Rows[dataGridView1.RowCount - 1].ContextMenuStrip = this.ScoreContextMenuStrip;
                         Glob.TextPreCout = this.lblMatchCount.Text; // 记录本文段校验码
@@ -2231,7 +2231,7 @@ namespace WindowsFormsApplication2
                         CellHighlight.Speed(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[3], speed2, Glob.Difficulty);
                         CellHighlight.Keystroke(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[4], jj);
                         CellHighlight.CodeLen(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5], mc);
-                        CellHighlight.Error(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[12], Glob.TextCz);
+                        CellHighlight.Error(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[13], Glob.TextCz);
                         #endregion
                         double jjPer_ = Glob.Per_Jj / Glob.HaveTypeCount;
                         Glob.Total_Type += Glob.TextLen;
@@ -2242,7 +2242,7 @@ namespace WindowsFormsApplication2
                             dis = dt.ToString("HH:mm:ss");
                         }
                         // 成绩栏总计行
-                        dataGridView1.Rows.Add("", dis, Glob.HaveTypeCount + "#", (Glob.Per_Speed / Glob.HaveTypeCount).ToString("0.00"), jjPer_.ToString("0.00"), (Glob.Per_Mc / Glob.HaveTypeCount).ToString("0.00"), "", "", "", "", "", "", "", "", "", "", "", (Glob.Total_Type / Glob.HaveTypeCount).ToString("0.00"), "", "", (touse / Glob.HaveTypeCount).ToString("0.00"), "");
+                        dataGridView1.Rows.Add("", dis, Glob.HaveTypeCount + "#", (Glob.Per_Speed / Glob.HaveTypeCount).ToString("0.00"), jjPer_.ToString("0.00"), (Glob.Per_Mc / Glob.HaveTypeCount).ToString("0.00"), "", "", "", "", "", "", "", "", "", "", "", "", (Glob.Total_Type / Glob.HaveTypeCount).ToString("0.00"), "", "", (touse / Glob.HaveTypeCount).ToString("0.00"), "");
                         dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
                         dataGridView1.ClearSelection();
                         DataGridViewRow dgr = dataGridView1.Rows[dataGridView1.RowCount - 1];
@@ -3746,18 +3746,6 @@ namespace WindowsFormsApplication2
             Glob.CodeHistory.CloseDatabase();
         }
 
-        #endregion
-
-        #region 跟打历史
-        private void CellContentClick(object sender, DataGridViewCellEventArgs e)//表格按钮点击
-        {
-            // if (e.RowIndex >= 0) {
-            //   DataGridViewColumn column = dataGridView1.Columns[e.RowIndex];
-            // if (column is DataGridViewButtonColumn) {
-            //    MessageBox.Show(column.DataPropertyName);
-            //}
-            // }
-        }
         #endregion
 
         #region 历史
@@ -5426,8 +5414,11 @@ namespace WindowsFormsApplication2
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             int getW = this.dataGridView1.Columns.GetColumnsWidth(DataGridViewElementStates.None) + 8;
-            if (getW < 1080) getW = 1080;
-            this.Size = new Size(getW, 450);
+            if (getW < 1280)
+            {
+                getW = 1280;
+            }
+            this.Size = new Size(getW, 480);
 
             this.splitContainer1.Panel2Collapsed = false;
             this.splitContainer1.SplitterDistance = 142;

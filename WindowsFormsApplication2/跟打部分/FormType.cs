@@ -32,7 +32,10 @@ namespace WindowsFormsApplication2
 {
     public partial class Form1 : NewForm
     {
-        public int[] HisSave = new int[2]; //得到每次输入的字符数量
+        /// <summary>
+        /// 每次输入的字符数量
+        /// </summary>
+        public int[] HisSave = new int[2];
         public int[] HisLine = new int[2]; //调整滚动条
 
         /// <summary>
@@ -1539,7 +1542,7 @@ namespace WindowsFormsApplication2
                     int getExend = richTextBox1.GetLineFromCharIndex(TextLen - 1);//获取最后一行的行号 也就是 总行号
                     HisLine[1] = getstart;
                     if (HisLine[1] != HisLine[0])
-                    {
+                    { //* 对滚动条的控制
                         this.richTextBox2.BeginInvoke(new MethodInvoker(delegate
                         {
                             int sizeH = richTextBox1.ClientSize.Height; //一屏高度
@@ -1566,12 +1569,12 @@ namespace WindowsFormsApplication2
                             }
                         }));
                         HisLine[0] = HisLine[1];
-                    } //此上是对滚动条的控制
+                    }
 
-                    Sw += 1; //每打一个字就加1
+                    Sw += 1; // 每打一个字词就加 1
                     sw++;
                     if (Sw == 1)
-                    {
+                    { // 进入到 TextCahnged 事件后 Sw 至少是 1
                         startTime = DateTime.Now; // 开始跟打时间
                         sTime = startTime;
                         //! 由于可能会出现 timer1_Tick() 还未触发的情况，导致 Glob.typeUseTime 中的值还保留为上一段结束的值，
@@ -1596,8 +1599,7 @@ namespace WindowsFormsApplication2
                         }
                         HisSave[1] = TextLenNow;
                         Glob.TextJc = TextLenNow;
-                        Glob.TextJs = 0;//键数重新置空
-                        // MessageBox.Show(Glob.TextJc.ToString());
+                        Glob.TextJs = 0; // 键数重新置空
                         跟打地图步进 = 0;
                         //跟打报告
                         Glob.TypeReport.Add(new TypeDate { Index = Sw, Start = 0, End = TextLenNow, Length = HisSave[1] - HisSave[0], NowTime = 0, TotalTime = 0, Tick = 0, TotalTick = 0 });
@@ -1622,8 +1624,6 @@ namespace WindowsFormsApplication2
                         }
                         if (HisSave[1] > HisSave[0]) //非回改的情况下
                         {
-                            //Thread stay = new Thread(getStay);
-                            //stay.Start((object)last);
                             int iPP = HisSave[1] - HisSave[0]; //长度
                             Glob.撤销用量 = iPP;
                             try
@@ -1637,11 +1637,7 @@ namespace WindowsFormsApplication2
                             }
                             catch { }
                         }
-                        //MessageBox.Show(stayTimeUse.ToString());
                     }
-                    int least = TextLen - TextLenNow;
-                    //labelleastwords.Text = least + "/" + (least * 100/TextLen) + "%";//剩余字数
-
 
                     int iP = HisSave[1] - HisSave[0];
                     if (iP > 0) //非退格情况往前打字
@@ -1649,7 +1645,6 @@ namespace WindowsFormsApplication2
                         Glob.TextMc = 0;//完美计数
                         上次输入标记 = iP;
                         //Glob.TextCz = 0;//每次都归零
-                        //MessageBox.Show(iP.ToString());
                         int Istart = textBoxEx1.SelectionStart; //在非回改情况下获取当前光标所在位置
                         int Glast = TextLenNow;//当前字数
                         if (Istart == Glast) //当前后面没有 字符的情况。
@@ -1973,6 +1968,7 @@ namespace WindowsFormsApplication2
                     //? 跟打用时小于 1s 以及错字超过 10% 时不处理
                     if (Glob.TypeUseTime >= 1 && Glob.TextCz <= (int)TextLen / 10)
                     {
+                        //? 回改率和打词率的分母不需要减去起始字数量，因为这些数据和时间没有联系，起始的字数同样被统计进来
                         // Glob.TextHg_ = (double)Glob.TextHgAll * 100 / Glob.TextLenAll;   // 这计算的是总回改率
                         // 回改率
                         Glob.TextHg_ = Math.Round((double)Glob.TextHg * 100 / (Glob.TextLen + Glob.TextHg), 2);

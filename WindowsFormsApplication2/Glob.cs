@@ -82,11 +82,18 @@ namespace WindowsFormsApplication2
         public static int TextLen; //总字数
         /// <summary>
         /// 需要减去的数量
+        /// - 即跟打起始第一组字词没有统计时间，所以需要减去
         /// </summary>
         public static int TextJc = 0;
-        public static int TextCz = 0; //错字
+        /// <summary>
+        /// 错字
+        /// </summary>
+        public static int TextCz = 0;
         public static int TextiCz = 0; //正字计数（用来获取错字数量）
-        public static int TextJs = 0; //键数
+        /// <summary>
+        /// 键数
+        /// </summary>
+        public static int TextJs = 0;
 
         public static int TextMc = 0;  //码长完美计数
         public static int TextMcc = 0; //完美计数总量

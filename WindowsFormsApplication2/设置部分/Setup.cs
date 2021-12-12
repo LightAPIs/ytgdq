@@ -360,7 +360,7 @@ namespace WindowsFormsApplication2
             //停止时间
             Setupini.IniWriteValue("控制", "停止", this.trackBar2.Value.ToString());
             Glob.StopUseTime = this.trackBar2.Value;
-            frm.toolTip1.SetToolTip(frm.lblAutoReType, "跟打停止时间，大于" + this.trackBar2.Value + "分钟时自动停止跟打");
+            frm.toolTip1.SetToolTip(frm.lblAutoReType, "跟打发呆时间，超过" + this.trackBar2.Value + "分钟时自动重打");
 
             //极简模式
             Setupini.IniWriteValue("发送", "极简状态", this.SimpleCheckBox.Checked.ToString());

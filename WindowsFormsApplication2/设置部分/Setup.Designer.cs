@@ -139,6 +139,7 @@
             this.labelTF = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.SymbolInputCheckBox = new System.Windows.Forms.CheckBox();
             this.AutoInputCheckBox = new System.Windows.Forms.CheckBox();
             this.DGCheckBox = new System.Windows.Forms.CheckBox();
             this.ZCheckBox = new System.Windows.Forms.CheckBox();
@@ -302,7 +303,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.newButton1 = new WindowsFormsApplication2.NewButton();
             this.newButton2 = new WindowsFormsApplication2.NewButton();
-            this.SymbolInputCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFalse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRight)).BeginInit();
@@ -1783,6 +1783,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "程序控制";
             // 
+            // SymbolInputCheckBox
+            // 
+            this.SymbolInputCheckBox.AutoSize = true;
+            this.SymbolInputCheckBox.ForeColor = System.Drawing.Color.White;
+            this.SymbolInputCheckBox.Location = new System.Drawing.Point(11, 110);
+            this.SymbolInputCheckBox.Name = "SymbolInputCheckBox";
+            this.SymbolInputCheckBox.Size = new System.Drawing.Size(312, 16);
+            this.SymbolInputCheckBox.TabIndex = 16;
+            this.SymbolInputCheckBox.Text = "不将与符号一起上屏的字统计成打词(影响打词的统计)";
+            this.SymbolInputCheckBox.UseVisualStyleBackColor = true;
+            // 
             // AutoInputCheckBox
             // 
             this.AutoInputCheckBox.AutoSize = true;
@@ -1853,7 +1864,7 @@
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(161, 12);
             this.label16.TabIndex = 6;
-            this.label16.Text = "离开时间(超时则停止跟打)：";
+            this.label16.Text = "发呆时间(超时则自动重打)：";
             // 
             // tabPage4
             // 
@@ -3797,17 +3808,6 @@
             this.newButton2.进入背景色 = System.Drawing.Color.Red;
             this.newButton2.默认背景色 = System.Drawing.Color.Gray;
             this.newButton2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // SymbolInputCheckBox
-            // 
-            this.SymbolInputCheckBox.AutoSize = true;
-            this.SymbolInputCheckBox.ForeColor = System.Drawing.Color.White;
-            this.SymbolInputCheckBox.Location = new System.Drawing.Point(11, 110);
-            this.SymbolInputCheckBox.Name = "SymbolInputCheckBox";
-            this.SymbolInputCheckBox.Size = new System.Drawing.Size(312, 16);
-            this.SymbolInputCheckBox.TabIndex = 16;
-            this.SymbolInputCheckBox.Text = "不将与符号一起上屏的字统计成打词(影响打词的统计)";
-            this.SymbolInputCheckBox.UseVisualStyleBackColor = true;
             // 
             // TSetup
             // 

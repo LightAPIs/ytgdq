@@ -372,7 +372,7 @@ namespace WindowsFormsApplication2
         /// </summary>
         public static bool isShowSpline = false;
         /// <summary>
-        /// 停止用时
+        /// 发呆用时
         /// </summary>
         public static int StopUseTime = 1;
         /// <summary>

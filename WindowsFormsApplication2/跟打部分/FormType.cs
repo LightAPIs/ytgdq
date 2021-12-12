@@ -756,7 +756,7 @@ namespace WindowsFormsApplication2
                 stopTime = 1;
             }
             Glob.StopUseTime = stopTime;
-            this.toolTip1.SetToolTip(this.lblAutoReType, "跟打停止时间，大于" + Glob.StopUseTime + "分钟时自动停止跟打");
+            this.toolTip1.SetToolTip(this.lblAutoReType, "跟打发呆时间，超过" + Glob.StopUseTime + "分钟时自动重打");
             //极简设置
             Glob.SimpleMoudle = bool.Parse(IniRead("发送", "极简状态", "False"));
             Glob.SimpleSplite = IniRead("发送", "分隔符", "|");
@@ -2929,7 +2929,7 @@ namespace WindowsFormsApplication2
         /// <param name="e"></param>
         private void timer5_Tick(object sender, EventArgs e)
         {
-            if (sw > 1)
+            if (sw > 0)
             {
                 TimeSpan span = DateTime.Now - Glob.nowStart;
                 int now = (int)span.TotalSeconds;
@@ -2942,14 +2942,6 @@ namespace WindowsFormsApplication2
                     MessageBox.Show("长时间未跟打，已自动重打！\n可在\"设置\"→\"程序控制\"→\"离开时间\"处调整。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-        }
-
-        private void lblAutoReType_TextChanged(object sender, EventArgs e)
-        {
-            int get = int.Parse(lblAutoReType.Text);
-            if (get <= Glob.StopUseTime * 18) { lblAutoReType.ForeColor = Color.Black; }
-            else if (get > Glob.StopUseTime * 18 && get <= Glob.StopUseTime * 36) { lblAutoReType.ForeColor = Color.DarkGreen; }
-            else { lblAutoReType.ForeColor = Color.IndianRed; }
         }
 
         public string 字数格式化(int 字数)
@@ -2982,15 +2974,6 @@ namespace WindowsFormsApplication2
                 Clipboard.SetImage(pgc.GetPic(this.lblTitle.Text, Glob.TextTime.ToString("G"), UserTime, UserJz, Glob.效率, Glob.TextLen, Glob.TextHg, Glob.TextCz, Glob.TextJs, Math.Abs(Glob.TextBg - Glob.TextHg), Glob.选重, Glob.CurSegmentNum.ToString(), Glob.TextSpeed, Glob.Textjj, Glob.Textmc, Glob.Instration));
                 pgc.Dispose();
             }
-        }
-
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if (keyData == Keys.Alt)
-            {
-                return true;
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void textBoxEx1_KeyDown(object sender, KeyEventArgs e)
@@ -3351,9 +3334,6 @@ namespace WindowsFormsApplication2
             }
         }
 
-        [DllImport("user32.dll", EntryPoint = "GetForegroundWindow")]
-        public static extern IntPtr GetForegroundWindow();
-
         public void F3()
         {
             this.textBoxEx1.TextChanged -= new System.EventHandler(textBoxEx1_TextChanged);
@@ -3396,31 +3376,6 @@ namespace WindowsFormsApplication2
 
         [DllImport("User32")]
         public extern static void SetCursorPos(int x, int y);
-
-        enum MouseEventFlag : uint
-        {
-            Move = 0x0001,
-            LeftDown = 0x0002,
-            LeftUp = 0x0004,
-            RightDown = 0x0008,
-            RightUp = 0x0010,
-            MiddleDown = 0x0020,
-            MiddleUp = 0x0040,
-            XDown = 0x0080,
-            XUp = 0x0100,
-            Wheel = 0x0800,
-            VirtualDesk = 0x4000,
-            Absolute = 0x8000
-        }
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct RECT
-        {
-            public int Left; //最左坐标
-            public int Top; //最上坐标
-            public int Right; //最右坐标
-            public int Bottom; //最下坐标
-        }
 
         /// <summary>
         /// 获取信息
@@ -3497,27 +3452,6 @@ namespace WindowsFormsApplication2
         #endregion
 
         #region 跟打过程中的控制
-
-        /// <summary>
-        /// 延时函数
-        /// </summary>
-        /// <param name="delayTime">毫秒</param>
-        /// <returns></returns>
-        public static bool Delay(int delayTime)
-        {
-            DateTime now = DateTime.Now;
-            int s;
-            do
-            {
-                TimeSpan spand = DateTime.Now - now;
-                s = (int)spand.TotalMilliseconds;
-                //Application.DoEvents();
-            }
-            while (s < delayTime);
-            return true;
-
-        }
-
 
         #region 暂停处理
         /// <summary>
@@ -3750,7 +3684,7 @@ namespace WindowsFormsApplication2
             string tmp;
             if (rel > 0)
             {
-                iCnt = 0; iPos = 0;
+                iPos = 0;
                 for (iCnt = 0; iCnt < rel; iCnt++)
                 {
                     if (buffer[iCnt] == 0x00)
@@ -5459,11 +5393,6 @@ namespace WindowsFormsApplication2
         {
             e.CellStyle.SelectionForeColor = e.CellStyle.ForeColor; //选中的时候，单元格颜色不变
             e.CellStyle.SelectionBackColor = e.CellStyle.BackColor;
-        }
-
-        private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
-        {
-
         }
         #endregion
 

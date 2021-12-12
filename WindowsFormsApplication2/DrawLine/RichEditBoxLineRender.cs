@@ -61,6 +61,7 @@ namespace WindowsFormsApplication2
 
         /// <summary>
         /// 绘制标注线条
+        /// - 即使已在外围加入防抖，在发文内容较长而存在滚动条时 Render 会被触发两次，不过测试效率不受影响
         /// </summary>
         /// <param name="bmAlls"></param>
         /// <param name="_rightColor"></param>
@@ -76,22 +77,42 @@ namespace WindowsFormsApplication2
             this.ClearLines();
 
             int index = 0;
+            bool state = true;
+            int curLineIndex = GetFirstCharIndexOfCurrentLine();
             foreach (var bm in bmAlls)
             {
                 if (bm.查询的字.Length > 1)
                 { //* 标记词组
-                    AddLineForOneWord(index, index + bm.查询的字.Length - 1, GetColor(bm.重数));
-                    index += bm.查询的字.Length;
+                    if (index + bm.查询的字.Length <= curLineIndex)
+                    {
+                        index += bm.查询的字.Length;
+                    }
+                    else
+                    {
+                        state = AddLineForOneWord(index, index + bm.查询的字.Length - 1, GetColor(bm.重数));
+                        index += bm.查询的字.Length;
+                    }
                 }
                 else
                 {
-                    if (bm.重数 > 0)
-                    { //* 标记单字中的重码
-                        AddLineForOneChar(index, LineMode.Single, GetColor(bm.重数));
+                    if (index + 1 <= curLineIndex)
+                    {
+                        index++;
                     }
-                    index++;
+                    else
+                    {
+                        if (bm.重数 > 0)
+                        { //* 标记单字中的重码
+                            state = AddLineForOneChar(index, LineMode.Single, GetColor(bm.重数));
+                        }
+                        index++;
+                    }
                 }
 
+                if (!state)
+                {
+                    break;
+                }
                 if (index >= Glob.TypeText.Length)
                 {
                     break;
@@ -137,8 +158,9 @@ namespace WindowsFormsApplication2
         /// <param name="startIndex"></param>
         /// <param name="endIndex"></param>
         /// <param name="color"></param>
-        private void AddLineForOneWord(int startIndex, int endIndex, Color color)
+        private bool AddLineForOneWord(int startIndex, int endIndex, Color color)
         {
+            bool state = true;
             if (endIndex > startIndex)
             {
                 AddLineForOneChar(startIndex, LineMode.Start, color);
@@ -146,18 +168,19 @@ namespace WindowsFormsApplication2
                 {
                     AddLineForOneChar(i, LineMode.Middle, color);
                 }
-                AddLineForOneChar(endIndex, LineMode.End, color);
+                state = AddLineForOneChar(endIndex, LineMode.End, color);
             }
+            return state;
         }
 
-        private void AddLineForOneChar(int index, LineMode mode, Color color)
+        private bool AddLineForOneChar(int index, LineMode mode, Color color)
         {
             try 
             {
                 Point pt = this.GetPositionFromCharIndex(index); // 当前字的位置
                 if (pt.X < 0 || pt.Y < 0 || (pt.Y + charSize.Height) > this.Height)
                 {
-                    return;
+                    return false;
                 }
 
                 int left = pt.X;
@@ -189,8 +212,13 @@ namespace WindowsFormsApplication2
                     Width = width
                 };
                 this.lineInfos.Add(line);
+
+                return true;
             }
-            catch { }
+            catch
+            {
+                return false;
+            }
         }
 
         private void ShowLines()

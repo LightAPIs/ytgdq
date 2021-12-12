@@ -25,6 +25,7 @@ using WindowsFormsApplication2.KeyAnalysis;
 using WindowsFormsApplication2.CodeTable;
 using WindowsFormsApplication2.Difficulty;
 using WindowsFormsApplication2.SpeedGrade;
+using WindowsFormsApplication2.DelayAction;
 using Newtonsoft.Json;
 
 namespace WindowsFormsApplication2
@@ -92,6 +93,8 @@ namespace WindowsFormsApplication2
         /// 智能测词任务
         /// </summary>
         private Task checkWordTask;
+
+        private DelayActionModel delayActionModel = new DelayActionModel();
 
         /// <summary>
         /// 判断是否为汉字或数字
@@ -822,7 +825,10 @@ namespace WindowsFormsApplication2
 
             if (Glob.IsPointIt)
             {
-                this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor);
+                delayActionModel.Debounce(100, this, new Action(() =>
+                {
+                    this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor);
+                }));
             }
         }
 
@@ -1133,9 +1139,11 @@ namespace WindowsFormsApplication2
                             int findIndex = now - 1;
                             bool isLastFind = false;
                             bool isCurFind = false;
+                            char[] textChars = NewSendText.文章全文.ToCharArray();
+
                             for (; findIndex < now + 50 && findIndex < TextLen; findIndex++)
                             { //* 寻找潜在的符号
-                                string nowIt = NewSendText.文章全文.Substring(findIndex, 1);
+                                string nowIt = textChars[findIndex].ToString();
                                 isCurFind = !IsCN.IsMatch(nowIt);
 
                                 if (isCurFind)
@@ -1508,7 +1516,7 @@ namespace WindowsFormsApplication2
         private void richTextBox2_TextChanged(object sender, EventArgs e)
         {
             int TextLen = Glob.TextLen;
-            if (TextLen > 1) //第一个字不算。如果文章超过2个字符才启用
+            if (TextLen > 1) // 文段长度超过 2 个字符才统计
             {
                 Application.DoEvents();
 
@@ -3237,7 +3245,7 @@ namespace WindowsFormsApplication2
                     //richTextBox2.MaxLength = richTextBox1.TextLength; //设置最大输入字符数量
 
                     if (Glob.SpeedControl > 0)
-                    {   //* 找到新文段时间关闭测速
+                    {   //* 找到新文段时关闭测速
                         Glob.SpeedPoint_ = new int[10];//测速点控制
                         Glob.SpeedTime = new double[10];//测速点时间控制
                         Glob.SpeedJs = new int[10];//键数
@@ -4012,14 +4020,6 @@ namespace WindowsFormsApplication2
             int textLen = _text.Length;
             DateTime startTime = DateTime.Now;
 
-            Invoke(new MethodInvoker(() =>
-            {
-                picDoing.BackColor = richTextBox1.BackColor;
-                toolTip1.SetToolTip(picDoing, "正在智能测词中...");
-                picDoing.Location = new Point(Width - picDoing.Width - 22, splitContainer1.Location.Y + splitContainer1.SplitterDistance - picDoing.Height);
-                picDoing.Visible = true;
-            }));
-
             for (int i = 0; i < textLen; i++)
             {
                 string startStr = _text[i].ToString();
@@ -4099,7 +4099,6 @@ namespace WindowsFormsApplication2
                 this.UIThread(() =>
                 {
                     ShowFlowText("没有查询到任何编码！");
-                    picDoing.Visible = false;
                     this.richTextBox1.ClearLines();
                 });
                 Glob.IsChecking = false;
@@ -4108,7 +4107,10 @@ namespace WindowsFormsApplication2
 
             if (Glob.IsPointIt)
             {
-                this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor); //* 绘制标注线条
+                delayActionModel.Debounce(100, this, new Action(() =>
+                {
+                    this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor); //* 绘制标注线条
+                }));
             }
 
             BeginInvoke(new MethodInvoker(() =>
@@ -4127,7 +4129,6 @@ namespace WindowsFormsApplication2
 
                 ShowFlowText(string.Format("第{0}段，计算码长为：{1}，用时：{2}秒", Glob.CurSegmentNum.ToString(), Glob.词库理论码长.ToString("0.00"), (DateTime.Now - startTime).TotalSeconds.ToString("0.000")));
 
-                picDoing.Visible = false;
                 mS1.Invalidate();
                 Glob.IsChecking = false;
             }));
@@ -4155,14 +4156,6 @@ namespace WindowsFormsApplication2
 
             int textLen = _text.Length;
             DateTime startTime = DateTime.Now;
-
-            Invoke(new MethodInvoker(() =>
-            {
-                picDoing.BackColor = richTextBox1.BackColor;
-                toolTip1.SetToolTip(picDoing, "正在计算理论码长...");
-                picDoing.Location = new Point(Width - picDoing.Width - 22, splitContainer1.Location.Y + splitContainer1.SplitterDistance - picDoing.Height);
-                picDoing.Visible = true;
-            }));
 
             for (int i = 0; i < textLen; i++)
             {
@@ -4208,11 +4201,18 @@ namespace WindowsFormsApplication2
                 this.UIThread(() =>
                 {
                     ShowFlowText("没有查询到任何编码！");
-                    picDoing.Visible = false;
                     this.richTextBox1.ClearLines();
                 });
                 Glob.IsChecking = false;
                 return;
+            }
+
+            if (Glob.IsPointIt)
+            {
+                delayActionModel.Debounce(100, this, new Action(() =>
+                {
+                    this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor); //* 绘制标注线条
+                }));
             }
 
             BeginInvoke(new MethodInvoker(() =>
@@ -4231,7 +4231,6 @@ namespace WindowsFormsApplication2
 
                 ShowFlowText(string.Format("第{0}段，计算码长为：{1}，用时：{2}秒", Glob.CurSegmentNum.ToString(), Glob.词库理论码长.ToString("0.00"), (DateTime.Now - startTime).TotalSeconds.ToString("0.000")));
 
-                picDoing.Visible = false;
                 mS1.Invalidate();
                 Glob.IsChecking = false;
             }));
@@ -5046,17 +5045,22 @@ namespace WindowsFormsApplication2
         /// <param name="e"></param>
         private void DisorderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            F3();
-            int textlen = richTextBox1.TextLength;
-            string Text1 = "";
-            if (textlen > 9)
+            string sourceText = richTextBox1.Text;
+            int textLen = sourceText.Length;
+            if (textLen > 9)
             {
-                int[] numlist = GetRandomUnrepeatArray(0, textlen - 1, textlen);
+                this.CleanSpeedPoints(); // 清理测速点信息
+                int[] numlist = GetRandomUnrepeatArray(0, textLen - 1, textLen);
+                char[] textChars = sourceText.ToCharArray();
+                StringBuilder sb = new StringBuilder();
+
                 foreach (int item in numlist)
                 {
-                    Text1 += richTextBox1.Text.Substring(item, 1);
+                    sb.Append(textChars[item]);
                 }
-                richTextBox1.Text = Text1;
+                richTextBox1.Text = sb.ToString();
+
+                F3();
                 GetInfo();
             }
             else
@@ -5730,7 +5734,10 @@ namespace WindowsFormsApplication2
         {
             if (Glob.IsPointIt)
             {
-                this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor);
+                delayActionModel.Debounce(100, this, new Action(() =>
+                {
+                    this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor);
+                }));
             }
         }
 
@@ -5738,7 +5745,10 @@ namespace WindowsFormsApplication2
         {
             if (Glob.IsPointIt)
             {
-                this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor);
+                delayActionModel.Debounce(100, this, new Action(() =>
+                {
+                    this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor);
+                }));
             }
         }
 
@@ -5746,7 +5756,10 @@ namespace WindowsFormsApplication2
         {
             if (Glob.IsPointIt)
             {
-                this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor);
+                delayActionModel.Debounce(100, this, new Action(() =>
+                {
+                    this.richTextBox1.Render(Glob.BmAlls, Glob.RightBGColor);
+                }));
             }
         }
         #endregion

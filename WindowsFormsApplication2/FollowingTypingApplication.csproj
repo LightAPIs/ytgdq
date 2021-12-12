@@ -110,6 +110,7 @@
       <DependentUpon>CodeTableBox.cs</DependentUpon>
     </Compile>
     <Compile Include="ControlExtensions.cs" />
+    <Compile Include="DelayAction\DelayActionModel.cs" />
     <Compile Include="Difficulty\DifficultyDict.cs" />
     <Compile Include="DrawLine\LineInfo.cs" />
     <Compile Include="DrawLine\RichEditBoxLineRender.cs">

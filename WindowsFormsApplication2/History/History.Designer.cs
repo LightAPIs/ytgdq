@@ -83,29 +83,6 @@
             this.ResultLabel = new System.Windows.Forms.Label();
             this.SpeedChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.HistoryContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ItemToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.CopyScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CopyPicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CopyTitleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CopyContentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.SpeedAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.TypeAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.KeyAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CalcKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.SearchTitleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SearchSegmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.RetypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.DeleteGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DeleteItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DeleteSegmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DeletePageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.序 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.时间 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.段号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -129,6 +106,29 @@
             this.打词率 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.用时 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.标题 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HistoryContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ItemToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.CopyScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CopyPicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CopyTitleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CopyContentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.SpeedAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TypeAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.KeyAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CalcKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.SearchTitleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SearchSegmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.RetypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.DeleteGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteSegmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeletePageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.MonthCalendarContextMenuStrip.SuspendLayout();
             this.PreviewGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -533,182 +533,6 @@
             this.dataGridView1.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.History_CellMoseDown);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.HistorySelectionChanged);
             // 
-            // HistoryContextMenuStrip
-            // 
-            this.HistoryContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ItemToolStripTextBox,
-            this.toolStripSeparator4,
-            this.CopyScoreToolStripMenuItem,
-            this.CopyPicToolStripMenuItem,
-            this.CopyTitleToolStripMenuItem,
-            this.CopyContentToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.SpeedAnToolStripMenuItem,
-            this.TypeAnToolStripMenuItem,
-            this.KeyAnToolStripMenuItem,
-            this.CalcKeysToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.SearchTitleToolStripMenuItem,
-            this.SearchSegmentToolStripMenuItem,
-            this.toolStripSeparator3,
-            this.RetypeToolStripMenuItem,
-            this.toolStripSeparator5,
-            this.DeleteGroupToolStripMenuItem});
-            this.HistoryContextMenuStrip.Name = "HistoryContextMenuStrip";
-            this.HistoryContextMenuStrip.Size = new System.Drawing.Size(181, 314);
-            // 
-            // ItemToolStripTextBox
-            // 
-            this.ItemToolStripTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.ItemToolStripTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ItemToolStripTextBox.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ItemToolStripTextBox.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.ItemToolStripTextBox.Margin = new System.Windows.Forms.Padding(0);
-            this.ItemToolStripTextBox.Name = "ItemToolStripTextBox";
-            this.ItemToolStripTextBox.Size = new System.Drawing.Size(120, 16);
-            this.ItemToolStripTextBox.Text = "2021-11-11 11:11:11";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
-            // 
-            // CopyScoreToolStripMenuItem
-            // 
-            this.CopyScoreToolStripMenuItem.Name = "CopyScoreToolStripMenuItem";
-            this.CopyScoreToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.CopyScoreToolStripMenuItem.Text = "复制成绩";
-            this.CopyScoreToolStripMenuItem.Click += new System.EventHandler(this.CopyScoreToolStripMenuItem_Click);
-            // 
-            // CopyPicToolStripMenuItem
-            // 
-            this.CopyPicToolStripMenuItem.Name = "CopyPicToolStripMenuItem";
-            this.CopyPicToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.CopyPicToolStripMenuItem.Text = "复制图片成绩";
-            this.CopyPicToolStripMenuItem.Click += new System.EventHandler(this.CopyPicToolStripMenuItem_Click);
-            // 
-            // CopyTitleToolStripMenuItem
-            // 
-            this.CopyTitleToolStripMenuItem.Name = "CopyTitleToolStripMenuItem";
-            this.CopyTitleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.CopyTitleToolStripMenuItem.Text = "复制标题";
-            this.CopyTitleToolStripMenuItem.Click += new System.EventHandler(this.CopyTitleToolStripMenuItem_Click);
-            // 
-            // CopyContentToolStripMenuItem
-            // 
-            this.CopyContentToolStripMenuItem.Name = "CopyContentToolStripMenuItem";
-            this.CopyContentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.CopyContentToolStripMenuItem.Text = "复制文段内容";
-            this.CopyContentToolStripMenuItem.Click += new System.EventHandler(this.CopyContentToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // SpeedAnToolStripMenuItem
-            // 
-            this.SpeedAnToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
-            this.SpeedAnToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.SpeedAnToolStripMenuItem.Name = "SpeedAnToolStripMenuItem";
-            this.SpeedAnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.SpeedAnToolStripMenuItem.Text = "速度分析...";
-            this.SpeedAnToolStripMenuItem.Click += new System.EventHandler(this.SpeedAnToolStripMenuItem_Click);
-            // 
-            // TypeAnToolStripMenuItem
-            // 
-            this.TypeAnToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.TypeAnToolStripMenuItem.Name = "TypeAnToolStripMenuItem";
-            this.TypeAnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.TypeAnToolStripMenuItem.Text = "跟打报告...";
-            this.TypeAnToolStripMenuItem.Click += new System.EventHandler(this.TypeAnToolStripMenuItem_Click);
-            // 
-            // KeyAnToolStripMenuItem
-            // 
-            this.KeyAnToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.KeyAnToolStripMenuItem.Name = "KeyAnToolStripMenuItem";
-            this.KeyAnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.KeyAnToolStripMenuItem.Text = "按键统计...";
-            this.KeyAnToolStripMenuItem.Click += new System.EventHandler(this.KeyAnToolStripMenuItem_Click);
-            // 
-            // CalcKeysToolStripMenuItem
-            // 
-            this.CalcKeysToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.CalcKeysToolStripMenuItem.Name = "CalcKeysToolStripMenuItem";
-            this.CalcKeysToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.CalcKeysToolStripMenuItem.Text = "理论按键统计...";
-            this.CalcKeysToolStripMenuItem.Click += new System.EventHandler(this.CalcKeysToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
-            // 
-            // SearchTitleToolStripMenuItem
-            // 
-            this.SearchTitleToolStripMenuItem.Name = "SearchTitleToolStripMenuItem";
-            this.SearchTitleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.SearchTitleToolStripMenuItem.Text = "搜索标题";
-            this.SearchTitleToolStripMenuItem.Click += new System.EventHandler(this.SearchTitleToolStripMenuItem_Click);
-            // 
-            // SearchSegmentToolStripMenuItem
-            // 
-            this.SearchSegmentToolStripMenuItem.Name = "SearchSegmentToolStripMenuItem";
-            this.SearchSegmentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.SearchSegmentToolStripMenuItem.Text = "搜索文段";
-            this.SearchSegmentToolStripMenuItem.Click += new System.EventHandler(this.SearchSegmentToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
-            // 
-            // RetypeToolStripMenuItem
-            // 
-            this.RetypeToolStripMenuItem.Name = "RetypeToolStripMenuItem";
-            this.RetypeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.RetypeToolStripMenuItem.Text = "重打文段";
-            this.RetypeToolStripMenuItem.Click += new System.EventHandler(this.RetypeToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
-            // 
-            // DeleteGroupToolStripMenuItem
-            // 
-            this.DeleteGroupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.DeleteItemToolStripMenuItem,
-            this.DeleteSegmentToolStripMenuItem,
-            this.DeletePageToolStripMenuItem});
-            this.DeleteGroupToolStripMenuItem.Name = "DeleteGroupToolStripMenuItem";
-            this.DeleteGroupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.DeleteGroupToolStripMenuItem.Text = "删除记录";
-            // 
-            // DeleteItemToolStripMenuItem
-            // 
-            this.DeleteItemToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
-            this.DeleteItemToolStripMenuItem.Name = "DeleteItemToolStripMenuItem";
-            this.DeleteItemToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.DeleteItemToolStripMenuItem.Text = "删除此行记录";
-            this.DeleteItemToolStripMenuItem.Click += new System.EventHandler(this.DeleteItemToolStripMenuItem_Click);
-            // 
-            // DeleteSegmentToolStripMenuItem
-            // 
-            this.DeleteSegmentToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
-            this.DeleteSegmentToolStripMenuItem.Name = "DeleteSegmentToolStripMenuItem";
-            this.DeleteSegmentToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.DeleteSegmentToolStripMenuItem.Text = "删除此文段记录";
-            this.DeleteSegmentToolStripMenuItem.Click += new System.EventHandler(this.DeleteSegmentToolStripMenuItem_Click);
-            // 
-            // DeletePageToolStripMenuItem
-            // 
-            this.DeletePageToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
-            this.DeletePageToolStripMenuItem.Name = "DeletePageToolStripMenuItem";
-            this.DeletePageToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.DeletePageToolStripMenuItem.Text = "删除此页记录";
-            this.DeletePageToolStripMenuItem.Click += new System.EventHandler(this.DeletePageToolStripMenuItem_Click);
-            // 
             // 序
             // 
             this.序.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -1029,6 +853,183 @@
             this.标题.ReadOnly = true;
             this.标题.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.标题.Width = 43;
+            // 
+            // HistoryContextMenuStrip
+            // 
+            this.HistoryContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ItemToolStripTextBox,
+            this.toolStripSeparator4,
+            this.CopyScoreToolStripMenuItem,
+            this.CopyPicToolStripMenuItem,
+            this.CopyTitleToolStripMenuItem,
+            this.CopyContentToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.SpeedAnToolStripMenuItem,
+            this.TypeAnToolStripMenuItem,
+            this.KeyAnToolStripMenuItem,
+            this.CalcKeysToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.SearchTitleToolStripMenuItem,
+            this.SearchSegmentToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.RetypeToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.DeleteGroupToolStripMenuItem});
+            this.HistoryContextMenuStrip.Name = "HistoryContextMenuStrip";
+            this.HistoryContextMenuStrip.Size = new System.Drawing.Size(181, 336);
+            // 
+            // ItemToolStripTextBox
+            // 
+            this.ItemToolStripTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.ItemToolStripTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ItemToolStripTextBox.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ItemToolStripTextBox.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.ItemToolStripTextBox.Margin = new System.Windows.Forms.Padding(0);
+            this.ItemToolStripTextBox.Name = "ItemToolStripTextBox";
+            this.ItemToolStripTextBox.ReadOnly = true;
+            this.ItemToolStripTextBox.Size = new System.Drawing.Size(120, 16);
+            this.ItemToolStripTextBox.Text = "2021-11-11 11:11:11";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            // 
+            // CopyScoreToolStripMenuItem
+            // 
+            this.CopyScoreToolStripMenuItem.Name = "CopyScoreToolStripMenuItem";
+            this.CopyScoreToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.CopyScoreToolStripMenuItem.Text = "复制成绩";
+            this.CopyScoreToolStripMenuItem.Click += new System.EventHandler(this.CopyScoreToolStripMenuItem_Click);
+            // 
+            // CopyPicToolStripMenuItem
+            // 
+            this.CopyPicToolStripMenuItem.Name = "CopyPicToolStripMenuItem";
+            this.CopyPicToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.CopyPicToolStripMenuItem.Text = "复制图片成绩";
+            this.CopyPicToolStripMenuItem.Click += new System.EventHandler(this.CopyPicToolStripMenuItem_Click);
+            // 
+            // CopyTitleToolStripMenuItem
+            // 
+            this.CopyTitleToolStripMenuItem.Name = "CopyTitleToolStripMenuItem";
+            this.CopyTitleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.CopyTitleToolStripMenuItem.Text = "复制标题";
+            this.CopyTitleToolStripMenuItem.Click += new System.EventHandler(this.CopyTitleToolStripMenuItem_Click);
+            // 
+            // CopyContentToolStripMenuItem
+            // 
+            this.CopyContentToolStripMenuItem.Name = "CopyContentToolStripMenuItem";
+            this.CopyContentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.CopyContentToolStripMenuItem.Text = "复制文段内容";
+            this.CopyContentToolStripMenuItem.Click += new System.EventHandler(this.CopyContentToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // SpeedAnToolStripMenuItem
+            // 
+            this.SpeedAnToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
+            this.SpeedAnToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.SpeedAnToolStripMenuItem.Name = "SpeedAnToolStripMenuItem";
+            this.SpeedAnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SpeedAnToolStripMenuItem.Text = "速度分析...";
+            this.SpeedAnToolStripMenuItem.Click += new System.EventHandler(this.SpeedAnToolStripMenuItem_Click);
+            // 
+            // TypeAnToolStripMenuItem
+            // 
+            this.TypeAnToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.TypeAnToolStripMenuItem.Name = "TypeAnToolStripMenuItem";
+            this.TypeAnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.TypeAnToolStripMenuItem.Text = "跟打报告...";
+            this.TypeAnToolStripMenuItem.Click += new System.EventHandler(this.TypeAnToolStripMenuItem_Click);
+            // 
+            // KeyAnToolStripMenuItem
+            // 
+            this.KeyAnToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.KeyAnToolStripMenuItem.Name = "KeyAnToolStripMenuItem";
+            this.KeyAnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.KeyAnToolStripMenuItem.Text = "按键统计...";
+            this.KeyAnToolStripMenuItem.Click += new System.EventHandler(this.KeyAnToolStripMenuItem_Click);
+            // 
+            // CalcKeysToolStripMenuItem
+            // 
+            this.CalcKeysToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.CalcKeysToolStripMenuItem.Name = "CalcKeysToolStripMenuItem";
+            this.CalcKeysToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.CalcKeysToolStripMenuItem.Text = "理论按键统计...";
+            this.CalcKeysToolStripMenuItem.Click += new System.EventHandler(this.CalcKeysToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // SearchTitleToolStripMenuItem
+            // 
+            this.SearchTitleToolStripMenuItem.Name = "SearchTitleToolStripMenuItem";
+            this.SearchTitleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SearchTitleToolStripMenuItem.Text = "搜索标题";
+            this.SearchTitleToolStripMenuItem.Click += new System.EventHandler(this.SearchTitleToolStripMenuItem_Click);
+            // 
+            // SearchSegmentToolStripMenuItem
+            // 
+            this.SearchSegmentToolStripMenuItem.Name = "SearchSegmentToolStripMenuItem";
+            this.SearchSegmentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SearchSegmentToolStripMenuItem.Text = "搜索文段";
+            this.SearchSegmentToolStripMenuItem.Click += new System.EventHandler(this.SearchSegmentToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            // 
+            // RetypeToolStripMenuItem
+            // 
+            this.RetypeToolStripMenuItem.Name = "RetypeToolStripMenuItem";
+            this.RetypeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.RetypeToolStripMenuItem.Text = "重打文段";
+            this.RetypeToolStripMenuItem.Click += new System.EventHandler(this.RetypeToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+            // 
+            // DeleteGroupToolStripMenuItem
+            // 
+            this.DeleteGroupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DeleteItemToolStripMenuItem,
+            this.DeleteSegmentToolStripMenuItem,
+            this.DeletePageToolStripMenuItem});
+            this.DeleteGroupToolStripMenuItem.Name = "DeleteGroupToolStripMenuItem";
+            this.DeleteGroupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DeleteGroupToolStripMenuItem.Text = "删除记录";
+            // 
+            // DeleteItemToolStripMenuItem
+            // 
+            this.DeleteItemToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
+            this.DeleteItemToolStripMenuItem.Name = "DeleteItemToolStripMenuItem";
+            this.DeleteItemToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.DeleteItemToolStripMenuItem.Text = "删除此行记录";
+            this.DeleteItemToolStripMenuItem.Click += new System.EventHandler(this.DeleteItemToolStripMenuItem_Click);
+            // 
+            // DeleteSegmentToolStripMenuItem
+            // 
+            this.DeleteSegmentToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
+            this.DeleteSegmentToolStripMenuItem.Name = "DeleteSegmentToolStripMenuItem";
+            this.DeleteSegmentToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.DeleteSegmentToolStripMenuItem.Text = "删除此文段记录";
+            this.DeleteSegmentToolStripMenuItem.Click += new System.EventHandler(this.DeleteSegmentToolStripMenuItem_Click);
+            // 
+            // DeletePageToolStripMenuItem
+            // 
+            this.DeletePageToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
+            this.DeletePageToolStripMenuItem.Name = "DeletePageToolStripMenuItem";
+            this.DeletePageToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.DeletePageToolStripMenuItem.Text = "删除此页记录";
+            this.DeletePageToolStripMenuItem.Click += new System.EventHandler(this.DeletePageToolStripMenuItem_Click);
             // 
             // History
             // 

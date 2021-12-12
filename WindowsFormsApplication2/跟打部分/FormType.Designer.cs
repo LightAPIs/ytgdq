@@ -1030,7 +1030,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox1.Size = new System.Drawing.Size(688, 114);
+            this.richTextBox1.Size = new System.Drawing.Size(688, 115);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.TabStop = false;
             this.richTextBox1.Text = "当你还在被世间诸多繁杂所束缚，心神不宁，不妨静下心来坐在电脑前跟打上一段文章。";
@@ -1104,7 +1104,7 @@
             this.textBoxEx1.Name = "textBoxEx1";
             this.textBoxEx1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxEx1.ShortcutsEnabled = false;
-            this.textBoxEx1.Size = new System.Drawing.Size(688, 74);
+            this.textBoxEx1.Size = new System.Drawing.Size(688, 73);
             this.textBoxEx1.TabIndex = 0;
             this.toolTip1.SetToolTip(this.textBoxEx1, "跟打区");
             this.textBoxEx1.TextChanged += new System.EventHandler(this.textBoxEx1_TextChanged);
@@ -1511,7 +1511,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel2MinSize = 50;
             this.splitContainer1.Size = new System.Drawing.Size(688, 282);
-            this.splitContainer1.SplitterDistance = 114;
+            this.splitContainer1.SplitterDistance = 115;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 3;
             this.splitContainer1.TabStop = false;
@@ -1533,7 +1533,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer2.Panel2MinSize = 0;
-            this.splitContainer2.Size = new System.Drawing.Size(688, 165);
+            this.splitContainer2.Size = new System.Drawing.Size(688, 164);
             this.splitContainer2.SplitterIncrement = 2;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 5;
@@ -1556,8 +1556,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer3.Size = new System.Drawing.Size(688, 165);
-            this.splitContainer3.SplitterDistance = 106;
+            this.splitContainer3.Size = new System.Drawing.Size(688, 164);
+            this.splitContainer3.SplitterDistance = 105;
             this.splitContainer3.TabIndex = 0;
             this.splitContainer3.TabStop = false;
             // 
@@ -2402,7 +2402,7 @@
             this.toolStripSeparator16,
             this.GridRetypeToolStripMenuItem});
             this.ScoreContextMenuStrip.Name = "contextMenuStrip1";
-            this.ScoreContextMenuStrip.Size = new System.Drawing.Size(181, 236);
+            this.ScoreContextMenuStrip.Size = new System.Drawing.Size(181, 258);
             // 
             // ItemToolStripTextBox
             // 
@@ -2411,6 +2411,7 @@
             this.ItemToolStripTextBox.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.ItemToolStripTextBox.Margin = new System.Windows.Forms.Padding(0);
             this.ItemToolStripTextBox.Name = "ItemToolStripTextBox";
+            this.ItemToolStripTextBox.ReadOnly = true;
             this.ItemToolStripTextBox.Size = new System.Drawing.Size(120, 16);
             this.ItemToolStripTextBox.Text = "2021-11-11 11:11:11";
             // 

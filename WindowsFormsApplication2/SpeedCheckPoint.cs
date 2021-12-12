@@ -43,7 +43,7 @@ namespace WindowsFormsApplication2
                 for (int i = 0; i < Glob.SpeedPointCount + 1; i++) {
                     if (i == 0)
                     {
-                        int zis = Glob.SpeedPoint_[0] + 1 - Glob.TextJc;
+                        int zis = Glob.SpeedPoint_[0] + 1 - Glob.StartTextLen;
                         GetSpeed = (zis * 60 / ((Glob.SpeedTime[0] <= 0) ? 1 : Glob.SpeedTime[0]));
 
                         this.dgvAllData.Rows.Add(i + 1,

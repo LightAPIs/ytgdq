@@ -1402,7 +1402,7 @@ namespace WindowsFormsApplication2
         {
             if (Contr == 1)
             { //数值初始化
-                Glob.TextJc = 0;
+                Glob.StartTextLen = 0;
                 Glob.TextCz = 0; //错字
                 Glob.TextJs = 0; //键数
                 Glob.TextJj = 0; //击键
@@ -1598,11 +1598,11 @@ namespace WindowsFormsApplication2
                             RecTextTypeCount(richTextBox2.TextLength);
                         }
                         HisSave[1] = TextLenNow;
-                        Glob.TextJc = TextLenNow;
-                        Glob.TextJs = 0; // 键数重新置空
+                        Glob.StartTextLen = TextLenNow;
+                        Glob.StartKeyLen = Glob.TextJs; // 不置空 Glob.TextJs，而是记录，用于后续计算击键等减去
                         跟打地图步进 = 0;
                         //跟打报告
-                        Glob.TypeReport.Add(new TypeDate { Index = Sw, Start = 0, End = TextLenNow, Length = HisSave[1] - HisSave[0], NowTime = 0, TotalTime = 0, Tick = 0, TotalTick = 0 });
+                        Glob.TypeReport.Add(new TypeDate { Index = Sw, Start = 0, End = TextLenNow, Length = HisSave[1] - HisSave[0], NowTime = 0, TotalTime = 0, Tick = Glob.StartKeyLen, TotalTick = Glob.StartKeyLen });
                     }
                     else
                     {
@@ -1893,9 +1893,9 @@ namespace WindowsFormsApplication2
                     Sw = 0; //初始化
                     Glob.TotalUse += Glob.TypeUseTime;
                     //处理数据
-                    double speed = Math.Round((double)((TextLen - Glob.TextJc) * 60) / ts, 2); // 不处理错字
-                    double mc = Math.Round((double)Glob.TextJs / (TextLen - Glob.TextJc), 2);
-                    double jj = Math.Round((double)Glob.TextJs / ts, 2);
+                    double speed = Math.Round((TextLen - Glob.StartTextLen) * 60 / ts, 2); // 不处理错字
+                    double mc = Math.Round((double)Glob.TextJs / TextLen, 2);
+                    double jj = Math.Round((Glob.TextJs - Glob.StartKeyLen) / ts, 2);
                     //以下三列数据为测速准备
                     Glob.TextSpeed = speed;
                     Glob.Textjj = jj;
@@ -1926,9 +1926,8 @@ namespace WindowsFormsApplication2
                     }
                     //MessageBox.Show(RightAndFault);
                     string Cz, Spsend; //错字和速度的输出
-                    //string instration = Glob.Instration;//Glob.Instration = " ＠添1A"; ;
                     string FalutIns = "";//错情
-                    double speed2 = Math.Round((double)((TextLen - Glob.TextJc - Glob.TextCz * 5) * 60) / ts, 2); // 惩罚错字后的真实速度，错一罚五
+                    double speed2 = Math.Round((double)((TextLen - Glob.StartTextLen - Glob.TextCz * 5) * 60) / ts, 2); // 惩罚错字后的真实速度，错一罚五
                     if (Glob.TextCz != 0)
                     {
                         if (speed2 < 0) { speed2 = 0.00; }
@@ -2550,34 +2549,34 @@ namespace WindowsFormsApplication2
             if (Glob.HaveTypeCount <= 0) return speedAnGet;
             double plus = 0;
             //回改影响速度值
-            double jj_1 = (double)Glob.TextJs / Glob.TypeUseTime;
-            double mc_1 = (double)Glob.TextJs / (Glob.TextLen - Glob.TextJc);
-            double speed_1 = (double)(Glob.TextLen - Glob.TextJc) * 60 / (Glob.TypeUseTime - Glob.hgAllUse);
-            double speed_ = (double)(Glob.TextLen - Glob.TextJc) * 60 / Glob.TypeUseTime;
+            double jj_1 = (Glob.TextJs - Glob.StartKeyLen) / Glob.TypeUseTime;
+            double mc_1 = (double)(Glob.TextJs - Glob.StartKeyLen) / (Glob.TextLen - Glob.StartTextLen);
+            double speed_1 = (double)(Glob.TextLen - Glob.StartTextLen) * 60 / (Glob.TypeUseTime - Glob.hgAllUse);
+            double speed_ = (double)(Glob.TextLen - Glob.StartTextLen) * 60 / Glob.TypeUseTime;
             double Hg_speed = speed_1 - speed_;
             //退格影响速度值
-            double mc_2 = (double)(Glob.TextJs - Math.Abs(Glob.TextBg - Glob.TextHg)) / (Glob.TextLen - Glob.TextJc);
+            double mc_2 = (double)(Glob.TextJs - Glob.StartKeyLen - Math.Abs(Glob.TextBg - Glob.TextHg)) / (Glob.TextLen - Glob.StartTextLen);
             double speed_3 = jj_1 * 60 / mc_2;
             double Bg_speed = speed_3 - speed_;
             //回车影响速度值
-            double mc_3 = (double)(Glob.TextJs - Glob.回车) / (Glob.TextLen - Glob.TextJc);
+            double mc_3 = (double)(Glob.TextJs - Glob.StartKeyLen - Glob.回车) / (Glob.TextLen - Glob.StartTextLen);
             double speed_4 = jj_1 * 60 / mc_3;
             double En_speed = speed_4 - speed_;
             //停留影响速度值
-            double 平均停留 = (double)Glob.TypeUseTime / (Glob.TextLen - Glob.TextJc);
+            double 平均停留 = (double)Glob.TypeUseTime / (Glob.TextLen - Glob.StartTextLen);
             double 停留 = Glob.TypeReport.Where(o => o.Length > 0).Max(o => o.TotalTime) - 平均停留;
             if (停留 >= Glob.TypeUseTime)
             {
                 停留 = 0;
             }
-            double speed_5 = (double)(Glob.TextLen - Glob.TextJc) * 60 / (Glob.TypeUseTime - 停留);
+            double speed_5 = (double)(Glob.TextLen - Glob.StartTextLen) * 60 / (Glob.TypeUseTime - 停留);
             double St_speed = Math.Abs(speed_5 - speed_);
             //错字影响速度值
-            double speed_6 = (double)(Glob.TextLen - Glob.TextJc - Glob.TextCz * 5) * 60 / Glob.TypeUseTime;
+            double speed_6 = (double)(Glob.TextLen - Glob.StartTextLen - Glob.TextCz * 5) * 60 / Glob.TypeUseTime;
             double Cz_speed = speed_ - speed_6;
             //键准理论值
-            int Low = Glob.TextJs - Math.Abs((Glob.TextBg - Glob.TextHg)) * 2 - Glob.TextMcc;
-            double Jz_mc = (double)Low / (Glob.TextLen - Glob.TextJc);
+            int Low = Glob.TextJs - Glob.StartKeyLen - Math.Abs((Glob.TextBg - Glob.TextHg)) * 2 - Glob.TextMcc;
+            double Jz_mc = (double)Low / (Glob.TextLen - Glob.StartTextLen);
             double Jz_speed = jj_1 * 60 / Jz_mc;
             if (Glob.PauseTimes > 0)
                 plus = Hg_speed + Bg_speed + En_speed + Cz_speed;//有暂停时间，不显示停留
@@ -2813,7 +2812,6 @@ namespace WindowsFormsApplication2
                 int Low = Glob.TextJs - Math.Abs(Glob.TextBg - Glob.TextHg) * 2 - Glob.TextMcc;
                 if (Low <= 0 || Glob.TextJs <= 0) return 0;
                 double 键准度 = (double)Low * 100 / Glob.TextJs;
-                //MessageBox.Show(Low + "\n" + Glob.TextJs + "\n" + 键准度 );
                 if (键准度 > 0.00 && 键准度 <= 100)
                     return Math.Round(键准度, 2);
                 else
@@ -3644,14 +3642,14 @@ namespace WindowsFormsApplication2
         private void timer2_Tick(object sender, EventArgs e)
         {
             int inputL = textBoxEx1.TextLength;
-            if (inputL > Glob.TextJc)
+            if (inputL > Glob.StartTextLen)
             {
-                int len = richTextBox2.TextLength - Glob.TextJc;
+                int len = richTextBox2.TextLength - Glob.StartTextLen;
                 double speed2 = (double)len * 60 / Glob.TypeUseTime;
                 if (speed2 > 999) { speed2 = 999; }
                 Glob.chartSpeedTo = speed2;
-                double mc = (double)Glob.TextJs / (inputL - Glob.TextJc);
-                double jj = (double)Glob.TextJs / Glob.TypeUseTime;
+                double mc = (double)Glob.TextJs / (inputL);
+                double jj = (Glob.TextJs - Glob.StartKeyLen) / Glob.TypeUseTime;
 
                 if (Glob.ShowRealTimeData)
                 {
@@ -3786,7 +3784,7 @@ namespace WindowsFormsApplication2
         /// <param name="e"></param>
         private void timer3_Tick(object sender, EventArgs e)
         {
-            if (this.textBoxEx1.TextLength > Glob.TextJc)
+            if (this.textBoxEx1.TextLength > Glob.StartTextLen)
             {
                 try
                 {

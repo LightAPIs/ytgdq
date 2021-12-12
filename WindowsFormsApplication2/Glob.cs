@@ -81,10 +81,15 @@ namespace WindowsFormsApplication2
         public static string TextPreCout = "";
         public static int TextLen; //总字数
         /// <summary>
-        /// 需要减去的数量
-        /// - 即跟打起始第一组字词没有统计时间，所以需要减去
+        /// 需要减去的起始字数
+        /// - 即跟打起始第一组字词没有统计时间，所以在计算速度等成绩时需要减去
         /// </summary>
-        public static int TextJc = 0;
+        public static int StartTextLen = 0;
+        /// <summary>
+        /// 需要减去的起始键数
+        /// - 即跟打起始第一组字词没有统计时间，在计算击键等成绩时需要减去
+        /// </summary>
+        public static int StartKeyLen = 0;
         /// <summary>
         /// 错字
         /// </summary>
@@ -95,8 +100,14 @@ namespace WindowsFormsApplication2
         /// </summary>
         public static int TextJs = 0;
 
-        public static int TextMc = 0;  //码长完美计数
-        public static int TextMcc = 0; //完美计数总量
+        /// <summary>
+        /// 码长完美计数
+        /// </summary>
+        public static int TextMc = 0;
+        /// <summary>
+        /// 完美计数总量
+        /// </summary>
+        public static int TextMcc = 0;
 
         public static int TextJj = 0; //击键
         public static ArrayList TextHgPlace = new ArrayList(); //显示回改地点

@@ -218,7 +218,7 @@ namespace WindowsFormsApplication2
             ReadSavedArticle();
             ReadSavedSent();
 
-            _Ini t2 = new _Ini("config.ini");
+            Ini t2 = new Ini("config.ini");
             this.cbxTickOut.Checked = bool.Parse(t2.IniReadValue("发文面板配置", "自动剔除空格", "True"));
             this.EncodedComboBox.SelectedIndex = int.Parse(t2.IniReadValue("发文面板配置", "文件编码", "0"));
 
@@ -1956,7 +1956,7 @@ namespace WindowsFormsApplication2
             }
 
             bool temp = (sender as CheckBox).Checked;
-            _Ini t2 = new _Ini("config.ini");
+            Ini t2 = new Ini("config.ini");
             if (temp)
             {
                 t2.IniWriteValue("发文面板配置", "自动剔除空格", "True");
@@ -2131,7 +2131,7 @@ namespace WindowsFormsApplication2
 
         private void EncodedComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _Ini t2 = new _Ini("config.ini");
+            Ini t2 = new Ini("config.ini");
             int temp = (sender as ComboBox).SelectedIndex;
             t2.IniWriteValue("发文面板配置", "文件编码", temp.ToString());
         }

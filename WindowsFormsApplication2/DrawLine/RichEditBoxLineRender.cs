@@ -132,13 +132,13 @@ namespace WindowsFormsApplication2
             switch (n)
             {
                 case 0:
-                    return Glob.Words0Color;
+                    return Theme.Words0Color;
                 case 1:
-                    return Glob.Words1Color;
+                    return Theme.Words1Color;
                 case 2:
-                    return Glob.Words2Color;
+                    return Theme.Words2Color;
                 default:
-                    return Glob.Words3Color;
+                    return Theme.Words3Color;
             }
         }
 

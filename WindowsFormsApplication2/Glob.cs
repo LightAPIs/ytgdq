@@ -145,75 +145,10 @@ namespace WindowsFormsApplication2
         /// </summary>
         public static Regex regexCout;
 
-        /// <summary>
-        /// 对照区正确字的背景色
-        /// </summary>
-        public static Color RightBGColor;
-        /// <summary>
-        /// 对照区错误字的背景色
-        /// </summary>
-        public static Color FalseBGColor;
-
-        /// <summary>
-        /// 对照区背景色
-        /// </summary>
-        public static Color R1Back;
-
-        /// <summary>
-        /// 跟打区背景色
-        /// </summary>
-        public static Color R2Back;
-
-        /// <summary>
-        /// 对照区文字颜色
-        /// </summary>
-        public static Color R1Color;
-
-        /// <summary>
-        /// 跟打区文字颜色
-        /// </summary>
-        public static Color R2Color;
-
-        /// <summary>
-        /// 跟打结束后回改标记颜色
-        /// </summary>
-        public static Color BackChangeColor;
-
-        /// <summary>
-        /// 跟打结束后用时最多的标记背景色
-        /// </summary>
-        public static Color TimeLongColor;
-
-        /// <summary>
-        /// 词组标记 0 重颜色
-        /// </summary>
-        public static Color Words0Color;
-
-        /// <summary>
-        /// 词组标记 1 重颜色
-        /// </summary>
-        public static Color Words1Color;
-
-        /// <summary>
-        /// 词组标记 2 重颜色
-        /// </summary>
-        public static Color Words2Color;
-
-        /// <summary>
-        /// 词组标记 3 重颜色
-        /// </summary>
-        public static Color Words3Color;
-
-        /// <summary>
-        /// 测速点标记颜色
-        /// </summary>
-        public static Color TestMarkColor;
-
         //峰值
         public static double MaxSpeed = 0;
         public static double MaxJj = 0;
         public static double MaxMc = 10; //码长
-
 
         public static int TextHg = 0; //回改
 
@@ -281,15 +216,6 @@ namespace WindowsFormsApplication2
         /// 打词的字数量
         /// </summary>
         public static int aTypeWordsCount = 0;
-
-        /// <summary>
-        /// 对照区字体及大小
-        /// </summary>
-        public static Font Font_1;
-        /// <summary>
-        /// 跟打区字体及大小
-        /// </summary>
-        public static Font Font_2;
 
         public static bool binput = true;
         /// <summary>

@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.textBoxPreText = new System.Windows.Forms.TextBox();
             this.textBoxDuan = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
@@ -56,56 +54,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tbxName = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.pictureBoxFalse = new System.Windows.Forms.PictureBox();
-            this.pictureBoxRight = new System.Windows.Forms.PictureBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.buttoncolor2 = new System.Windows.Forms.Button();
-            this.buttoncolor1 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.label51 = new System.Windows.Forms.Label();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.label50 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label45 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
@@ -304,20 +253,7 @@
             this.newButton1 = new WindowsFormsApplication2.NewButton();
             this.newButton2 = new WindowsFormsApplication2.NewButton();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFalse)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRight)).BeginInit();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -367,7 +303,6 @@
             this.textBoxPreText.Size = new System.Drawing.Size(127, 21);
             this.textBoxPreText.TabIndex = 1;
             this.textBoxPreText.Text = "-----";
-            this.toolTip1.SetToolTip(this.textBoxPreText, "文段的前导字符。例如：\"-----\"\r\n禁止的字符：\'(\',\')\',\'*\'等\r\n可以是中文前导，限制字符10字");
             // 
             // textBoxDuan
             // 
@@ -377,7 +312,6 @@
             this.textBoxDuan.Size = new System.Drawing.Size(127, 21);
             this.textBoxDuan.TabIndex = 3;
             this.textBoxDuan.Text = "第xx段";
-            this.toolTip1.SetToolTip(this.textBoxDuan, "文段的标号，例如：\"第xx段\" \"第xx期\" \"第xx次\" \r\n填写的时候，请用 xx 代替 段号");
             // 
             // button5
             // 
@@ -390,7 +324,6 @@
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 6;
             this.button5.Text = "默认";
-            this.toolTip1.SetToolTip(this.button5, "默认前导 \"-----第xx段\"");
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -402,7 +335,6 @@
             this.checkBox19.Size = new System.Drawing.Size(108, 16);
             this.checkBox19.TabIndex = 5;
             this.checkBox19.Text = "启用自定义载入";
-            this.toolTip1.SetToolTip(this.checkBox19, "选择则启用自定义。反之则采用默认设置。");
             this.checkBox19.UseVisualStyleBackColor = true;
             this.checkBox19.CheckedChanged += new System.EventHandler(this.checkBox19_CheckedChanged);
             // 
@@ -413,7 +345,6 @@
             this.richTextBox2.Size = new System.Drawing.Size(376, 66);
             this.richTextBox2.TabIndex = 2;
             this.richTextBox2.Text = "";
-            this.toolTip1.SetToolTip(this.richTextBox2, "填入成绩，不需要复制昵称。必须含有校验码");
             this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
             // 
             // label14
@@ -424,7 +355,6 @@
             this.label14.Size = new System.Drawing.Size(23, 12);
             this.label14.TabIndex = 5;
             this.label14.Text = "999";
-            this.toolTip1.SetToolTip(this.label14, "第999段为比赛文段");
             // 
             // button7
             // 
@@ -437,7 +367,6 @@
             this.button7.Size = new System.Drawing.Size(71, 22);
             this.button7.TabIndex = 6;
             this.button7.Text = "粘贴";
-            this.toolTip1.SetToolTip(this.button7, "必须含有 5位校验 码才能检测。");
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -449,7 +378,6 @@
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(104, 18);
             this.trackBar2.TabIndex = 7;
-            this.toolTip1.SetToolTip(this.trackBar2, "正在跟打过程中，如果停止跟打，则开始计时。超时则自动重打。单位：分钟");
             this.trackBar2.Value = 1;
             this.trackBar2.Scroll += new System.EventHandler(this.trackBar2_Scroll);
             // 
@@ -464,7 +392,6 @@
             this.checkBoxSpeed.Size = new System.Drawing.Size(66, 16);
             this.checkBoxSpeed.TabIndex = 1;
             this.checkBoxSpeed.Text = "速度[A]";
-            this.toolTip1.SetToolTip(this.checkBoxSpeed, "速度是什么，就不用说了");
             this.checkBoxSpeed.UseVisualStyleBackColor = true;
             this.checkBoxSpeed.CheckedChanged += new System.EventHandler(this.checkBoxSpeed_CheckedChanged);
             // 
@@ -479,7 +406,6 @@
             this.checkBox4.Size = new System.Drawing.Size(66, 16);
             this.checkBox4.TabIndex = 2;
             this.checkBox4.Text = "击键[B]";
-            this.toolTip1.SetToolTip(this.checkBox4, "每秒按键数量");
             this.checkBox4.UseVisualStyleBackColor = true;
             this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
@@ -494,7 +420,6 @@
             this.checkBox5.Size = new System.Drawing.Size(66, 16);
             this.checkBox5.TabIndex = 3;
             this.checkBox5.Text = "码长[C]";
-            this.toolTip1.SetToolTip(this.checkBox5, "每字按键数量");
             this.checkBox5.UseVisualStyleBackColor = true;
             this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
             // 
@@ -509,7 +434,6 @@
             this.checkBox6.Size = new System.Drawing.Size(66, 16);
             this.checkBox6.TabIndex = 4;
             this.checkBox6.Text = "回改[D]";
-            this.toolTip1.SetToolTip(this.checkBox6, "回改数量(回改用时) 连续回改/连续回改长度");
             this.checkBox6.UseVisualStyleBackColor = true;
             this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
             // 
@@ -524,7 +448,6 @@
             this.checkBox7.Size = new System.Drawing.Size(66, 16);
             this.checkBox7.TabIndex = 2;
             this.checkBox7.Text = "错字[E]";
-            this.toolTip1.SetToolTip(this.checkBox7, "错字不需要说了");
             this.checkBox7.UseVisualStyleBackColor = true;
             this.checkBox7.CheckedChanged += new System.EventHandler(this.checkBox7_CheckedChanged);
             // 
@@ -539,7 +462,6 @@
             this.checkBox8.Size = new System.Drawing.Size(66, 16);
             this.checkBox8.TabIndex = 5;
             this.checkBox8.Text = "错情[F]";
-            this.toolTip1.SetToolTip(this.checkBox8, "错误的情况");
             this.checkBox8.UseVisualStyleBackColor = true;
             this.checkBox8.CheckedChanged += new System.EventHandler(this.checkBox8_CheckedChanged);
             // 
@@ -554,7 +476,6 @@
             this.checkBox20.Size = new System.Drawing.Size(66, 16);
             this.checkBox20.TabIndex = 18;
             this.checkBox20.Text = "撤销[Q]";
-            this.toolTip1.SetToolTip(this.checkBox20, "按Ctrl + Z的次数");
             this.checkBox20.UseVisualStyleBackColor = true;
             this.checkBox20.CheckedChanged += new System.EventHandler(this.checkBox20_CheckedChanged);
             // 
@@ -569,7 +490,6 @@
             this.checkBox24.Size = new System.Drawing.Size(66, 16);
             this.checkBox24.TabIndex = 20;
             this.checkBox24.Text = "键法[R]";
-            this.toolTip1.SetToolTip(this.checkBox24, "左手右手使用量");
             this.checkBox24.UseVisualStyleBackColor = true;
             this.checkBox24.CheckedChanged += new System.EventHandler(this.checkBox24_CheckedChanged);
             // 
@@ -584,7 +504,6 @@
             this.checkBox26.Size = new System.Drawing.Size(66, 16);
             this.checkBox26.TabIndex = 22;
             this.checkBox26.Text = "回车[T]";
-            this.toolTip1.SetToolTip(this.checkBox26, "回车使用量");
             this.checkBox26.UseVisualStyleBackColor = true;
             this.checkBox26.CheckedChanged += new System.EventHandler(this.checkBox26_CheckedChanged);
             // 
@@ -599,7 +518,6 @@
             this.checkBox25.Size = new System.Drawing.Size(66, 16);
             this.checkBox25.TabIndex = 21;
             this.checkBox25.Text = "退格[S]";
-            this.toolTip1.SetToolTip(this.checkBox25, "非回改的退格数量");
             this.checkBox25.UseVisualStyleBackColor = true;
             this.checkBox25.CheckedChanged += new System.EventHandler(this.checkBox25_CheckedChanged);
             // 
@@ -614,7 +532,6 @@
             this.checkBox27.Size = new System.Drawing.Size(66, 16);
             this.checkBox27.TabIndex = 23;
             this.checkBox27.Text = "选重[U]";
-            this.toolTip1.SetToolTip(this.checkBox27, "使用分号及引号选重计数");
             this.checkBox27.UseVisualStyleBackColor = true;
             this.checkBox27.CheckedChanged += new System.EventHandler(this.checkBox27_CheckedChanged);
             // 
@@ -629,7 +546,6 @@
             this.checkBox29.Size = new System.Drawing.Size(66, 16);
             this.checkBox29.TabIndex = 24;
             this.checkBox29.Text = "键准[V]";
-            this.toolTip1.SetToolTip(this.checkBox29, "按键准确度(此数值乘以码长为理论码长)");
             this.checkBox29.UseVisualStyleBackColor = true;
             this.checkBox29.CheckedChanged += new System.EventHandler(this.checkBox29_CheckedChanged);
             // 
@@ -644,7 +560,6 @@
             this.checkBox31.Size = new System.Drawing.Size(66, 16);
             this.checkBox31.TabIndex = 25;
             this.checkBox31.Text = "词率[W]";
-            this.toolTip1.SetToolTip(this.checkBox31, "打词率");
             this.checkBox31.UseVisualStyleBackColor = true;
             this.checkBox31.CheckedChanged += new System.EventHandler(this.checkBox31_CheckedChanged);
             // 
@@ -657,7 +572,6 @@
             this.SimpleCheckBox.Size = new System.Drawing.Size(48, 16);
             this.SimpleCheckBox.TabIndex = 2;
             this.SimpleCheckBox.Text = "极简";
-            this.toolTip1.SetToolTip(this.SimpleCheckBox, "成绩格式：6|123.01|6.00|2.93|34568|sxx\r\n说明部分：选中此项后，发送格式是固定的");
             this.SimpleCheckBox.UseVisualStyleBackColor = true;
             // 
             // SimpleTextBox
@@ -671,7 +585,6 @@
             this.SimpleTextBox.TabIndex = 1;
             this.SimpleTextBox.Text = "|";
             this.SimpleTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.SimpleTextBox, "极简字符增加三位。默认取消空格显示。");
             this.SimpleTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             // 
             // textBox3
@@ -687,7 +600,6 @@
             this.textBox3.Size = new System.Drawing.Size(282, 23);
             this.textBox3.TabIndex = 12;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.textBox3, "输入顺序码，可以小写。");
             this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3Press);
             // 
             // textBox1
@@ -701,7 +613,6 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(214, 22);
             this.textBox1.TabIndex = 1;
-            this.toolTip1.SetToolTip(this.textBox1, "个性签名输入");
             // 
             // tbxName
             // 
@@ -713,332 +624,11 @@
             this.tbxName.Name = "tbxName";
             this.tbxName.Size = new System.Drawing.Size(214, 22);
             this.tbxName.TabIndex = 3;
-            this.toolTip1.SetToolTip(this.tbxName, "用于图片成绩的昵称");
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.OliveDrab;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(321, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(51, 23);
-            this.button1.TabIndex = 25;
-            this.button1.Tag = "0";
-            this.button1.Text = "重置";
-            this.toolTip1.SetToolTip(this.button1, "恢复成跟打器预设");
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.OliveDrab;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(321, 31);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(51, 23);
-            this.button2.TabIndex = 26;
-            this.button2.Tag = "1";
-            this.button2.Text = "重置";
-            this.toolTip1.SetToolTip(this.button2, "恢复成跟打器预设");
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.Color.OliveDrab;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Location = new System.Drawing.Point(321, 57);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(51, 23);
-            this.button6.TabIndex = 27;
-            this.button6.Tag = "2";
-            this.button6.Text = "重置";
-            this.toolTip1.SetToolTip(this.button6, "恢复成跟打器预设");
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.Color.OliveDrab;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Location = new System.Drawing.Point(321, 83);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(51, 23);
-            this.button8.TabIndex = 28;
-            this.button8.Tag = "3";
-            this.button8.Text = "重置";
-            this.toolTip1.SetToolTip(this.button8, "恢复成跟打器预设");
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // button9
-            // 
-            this.button9.BackColor = System.Drawing.Color.OliveDrab;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Location = new System.Drawing.Point(321, 109);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(51, 23);
-            this.button9.TabIndex = 29;
-            this.button9.Tag = "4";
-            this.button9.Text = "重置";
-            this.toolTip1.SetToolTip(this.button9, "恢复成跟打器预设");
-            this.button9.UseVisualStyleBackColor = false;
-            this.button9.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // button10
-            // 
-            this.button10.BackColor = System.Drawing.Color.OliveDrab;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Location = new System.Drawing.Point(321, 135);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(51, 23);
-            this.button10.TabIndex = 30;
-            this.button10.Tag = "5";
-            this.button10.Text = "重置";
-            this.toolTip1.SetToolTip(this.button10, "恢复成跟打器预设");
-            this.button10.UseVisualStyleBackColor = false;
-            this.button10.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // button11
-            // 
-            this.button11.BackColor = System.Drawing.Color.OliveDrab;
-            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Location = new System.Drawing.Point(321, 161);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(51, 23);
-            this.button11.TabIndex = 31;
-            this.button11.Tag = "6";
-            this.button11.Text = "重置";
-            this.toolTip1.SetToolTip(this.button11, "恢复成跟打器预设");
-            this.button11.UseVisualStyleBackColor = false;
-            this.button11.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // button12
-            // 
-            this.button12.BackColor = System.Drawing.Color.OliveDrab;
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Location = new System.Drawing.Point(321, 187);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(51, 23);
-            this.button12.TabIndex = 32;
-            this.button12.Tag = "7";
-            this.button12.Text = "重置";
-            this.toolTip1.SetToolTip(this.button12, "恢复成跟打器预设");
-            this.button12.UseVisualStyleBackColor = false;
-            this.button12.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // button13
-            // 
-            this.button13.BackColor = System.Drawing.Color.OliveDrab;
-            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button13.Location = new System.Drawing.Point(321, 213);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(51, 23);
-            this.button13.TabIndex = 33;
-            this.button13.Tag = "8";
-            this.button13.Text = "重置";
-            this.toolTip1.SetToolTip(this.button13, "恢复成跟打器预设");
-            this.button13.UseVisualStyleBackColor = false;
-            this.button13.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // button14
-            // 
-            this.button14.BackColor = System.Drawing.Color.OliveDrab;
-            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button14.Location = new System.Drawing.Point(321, 239);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(51, 23);
-            this.button14.TabIndex = 44;
-            this.button14.Tag = "9";
-            this.button14.Text = "重置";
-            this.toolTip1.SetToolTip(this.button14, "恢复成跟打器预设");
-            this.button14.UseVisualStyleBackColor = false;
-            this.button14.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // button15
-            // 
-            this.button15.BackColor = System.Drawing.Color.OliveDrab;
-            this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button15.Location = new System.Drawing.Point(321, 265);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(51, 23);
-            this.button15.TabIndex = 45;
-            this.button15.Tag = "10";
-            this.button15.Text = "重置";
-            this.toolTip1.SetToolTip(this.button15, "恢复成跟打器预设");
-            this.button15.UseVisualStyleBackColor = false;
-            this.button15.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // button16
-            // 
-            this.button16.BackColor = System.Drawing.Color.OliveDrab;
-            this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button16.Location = new System.Drawing.Point(321, 291);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(51, 23);
-            this.button16.TabIndex = 46;
-            this.button16.Tag = "11";
-            this.button16.Text = "重置";
-            this.toolTip1.SetToolTip(this.button16, "恢复成跟打器预设");
-            this.button16.UseVisualStyleBackColor = false;
-            this.button16.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // button17
-            // 
-            this.button17.BackColor = System.Drawing.Color.OliveDrab;
-            this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button17.Location = new System.Drawing.Point(321, 317);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(51, 23);
-            this.button17.TabIndex = 47;
-            this.button17.Tag = "12";
-            this.button17.Text = "重置";
-            this.toolTip1.SetToolTip(this.button17, "恢复成跟打器预设");
-            this.button17.UseVisualStyleBackColor = false;
-            this.button17.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // button18
-            // 
-            this.button18.BackColor = System.Drawing.Color.OliveDrab;
-            this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button18.Location = new System.Drawing.Point(321, 343);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(51, 23);
-            this.button18.TabIndex = 48;
-            this.button18.Tag = "13";
-            this.button18.Text = "重置";
-            this.toolTip1.SetToolTip(this.button18, "恢复成跟打器预设");
-            this.button18.UseVisualStyleBackColor = false;
-            this.button18.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // button19
-            // 
-            this.button19.BackColor = System.Drawing.Color.OliveDrab;
-            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button19.Location = new System.Drawing.Point(321, 369);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(51, 23);
-            this.button19.TabIndex = 51;
-            this.button19.Tag = "14";
-            this.button19.Text = "重置";
-            this.toolTip1.SetToolTip(this.button19, "恢复成跟打器预设");
-            this.button19.UseVisualStyleBackColor = false;
-            this.button19.Click += new System.EventHandler(this.BaseResetButton_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.DimGray;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.SystemColors.Control;
-            this.button3.Location = new System.Drawing.Point(158, 57);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(157, 23);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.DimGray;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ForeColor = System.Drawing.SystemColors.Control;
-            this.button4.Location = new System.Drawing.Point(158, 135);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(157, 23);
-            this.button4.TabIndex = 11;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // pictureBoxFalse
-            // 
-            this.pictureBoxFalse.BackColor = System.Drawing.Color.Red;
-            this.pictureBoxFalse.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBoxFalse.Location = new System.Drawing.Point(158, 187);
-            this.pictureBoxFalse.Name = "pictureBoxFalse";
-            this.pictureBoxFalse.Size = new System.Drawing.Size(157, 23);
-            this.pictureBoxFalse.TabIndex = 13;
-            this.pictureBoxFalse.TabStop = false;
-            this.pictureBoxFalse.Click += new System.EventHandler(this.pictureBoxFalse_Click);
-            // 
-            // pictureBoxRight
-            // 
-            this.pictureBoxRight.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBoxRight.Location = new System.Drawing.Point(158, 161);
-            this.pictureBoxRight.Name = "pictureBoxRight";
-            this.pictureBoxRight.Size = new System.Drawing.Size(157, 23);
-            this.pictureBoxRight.TabIndex = 12;
-            this.pictureBoxRight.TabStop = false;
-            this.pictureBoxRight.Click += new System.EventHandler(this.pictureBoxRight_Click);
-            // 
-            // label7
-            // 
-            this.label7.BackColor = System.Drawing.Color.DimGray;
-            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label7.Location = new System.Drawing.Point(6, 187);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(146, 23);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "对照区错误字背景色";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label5
-            // 
-            this.label5.BackColor = System.Drawing.Color.DimGray;
-            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label5.Location = new System.Drawing.Point(6, 83);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(146, 23);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "跟打区默认背景色";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // buttoncolor2
-            // 
-            this.buttoncolor2.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.buttoncolor2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttoncolor2.ForeColor = System.Drawing.Color.Maroon;
-            this.buttoncolor2.Location = new System.Drawing.Point(158, 83);
-            this.buttoncolor2.Name = "buttoncolor2";
-            this.buttoncolor2.Size = new System.Drawing.Size(157, 23);
-            this.buttoncolor2.TabIndex = 3;
-            this.buttoncolor2.Text = "底色";
-            this.buttoncolor2.UseVisualStyleBackColor = false;
-            this.buttoncolor2.Click += new System.EventHandler(this.buttoncolor2_Click);
-            // 
-            // buttoncolor1
-            // 
-            this.buttoncolor1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.buttoncolor1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttoncolor1.ForeColor = System.Drawing.Color.Maroon;
-            this.buttoncolor1.Location = new System.Drawing.Point(158, 5);
-            this.buttoncolor1.Name = "buttoncolor1";
-            this.buttoncolor1.Size = new System.Drawing.Size(157, 23);
-            this.buttoncolor1.TabIndex = 1;
-            this.buttoncolor1.Text = "底色";
-            this.buttoncolor1.UseVisualStyleBackColor = false;
-            this.buttoncolor1.Click += new System.EventHandler(this.buttoncolor1_Click);
-            // 
-            // label4
-            // 
-            this.label4.BackColor = System.Drawing.Color.DimGray;
-            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label4.Location = new System.Drawing.Point(6, 5);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(146, 23);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "对照区默认背景色";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -1046,303 +636,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(397, 431);
             this.tabControl1.TabIndex = 11;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tabPage1.Controls.Add(this.panel1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(389, 405);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "基础设置";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.button19);
-            this.panel1.Controls.Add(this.pictureBox9);
-            this.panel1.Controls.Add(this.label51);
-            this.panel1.Controls.Add(this.button18);
-            this.panel1.Controls.Add(this.button17);
-            this.panel1.Controls.Add(this.button16);
-            this.panel1.Controls.Add(this.button15);
-            this.panel1.Controls.Add(this.button14);
-            this.panel1.Controls.Add(this.pictureBox8);
-            this.panel1.Controls.Add(this.pictureBox7);
-            this.panel1.Controls.Add(this.pictureBox6);
-            this.panel1.Controls.Add(this.pictureBox5);
-            this.panel1.Controls.Add(this.pictureBox4);
-            this.panel1.Controls.Add(this.label50);
-            this.panel1.Controls.Add(this.label49);
-            this.panel1.Controls.Add(this.label48);
-            this.panel1.Controls.Add(this.label47);
-            this.panel1.Controls.Add(this.label46);
-            this.panel1.Controls.Add(this.button13);
-            this.panel1.Controls.Add(this.button12);
-            this.panel1.Controls.Add(this.button11);
-            this.panel1.Controls.Add(this.button10);
-            this.panel1.Controls.Add(this.button9);
-            this.panel1.Controls.Add(this.button8);
-            this.panel1.Controls.Add(this.button6);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.pictureBox3);
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.label45);
-            this.panel1.Controls.Add(this.label44);
-            this.panel1.Controls.Add(this.label19);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.pictureBoxFalse);
-            this.panel1.Controls.Add(this.buttoncolor2);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.pictureBoxRight);
-            this.panel1.Controls.Add(this.buttoncolor1);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Location = new System.Drawing.Point(6, 6);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(375, 396);
-            this.panel1.TabIndex = 14;
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox9.Location = new System.Drawing.Point(158, 369);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(157, 23);
-            this.pictureBox9.TabIndex = 50;
-            this.pictureBox9.TabStop = false;
-            this.pictureBox9.Click += new System.EventHandler(this.pictureBox9_Click);
-            // 
-            // label51
-            // 
-            this.label51.BackColor = System.Drawing.Color.DimGray;
-            this.label51.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label51.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label51.Location = new System.Drawing.Point(6, 369);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(146, 23);
-            this.label51.TabIndex = 49;
-            this.label51.Text = "测速点标记颜色";
-            this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox8.Location = new System.Drawing.Point(158, 343);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(157, 23);
-            this.pictureBox8.TabIndex = 43;
-            this.pictureBox8.TabStop = false;
-            this.pictureBox8.Click += new System.EventHandler(this.pictureBox8_Click);
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox7.Location = new System.Drawing.Point(158, 317);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(157, 23);
-            this.pictureBox7.TabIndex = 42;
-            this.pictureBox7.TabStop = false;
-            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox6.Location = new System.Drawing.Point(158, 291);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(157, 23);
-            this.pictureBox6.TabIndex = 41;
-            this.pictureBox6.TabStop = false;
-            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox5.Location = new System.Drawing.Point(158, 265);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(157, 23);
-            this.pictureBox5.TabIndex = 40;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox4.Location = new System.Drawing.Point(158, 239);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(157, 23);
-            this.pictureBox4.TabIndex = 39;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
-            // 
-            // label50
-            // 
-            this.label50.BackColor = System.Drawing.Color.DimGray;
-            this.label50.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label50.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label50.Location = new System.Drawing.Point(6, 343);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(146, 23);
-            this.label50.TabIndex = 38;
-            this.label50.Text = "下划线标记 3 重以上颜色";
-            this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label49
-            // 
-            this.label49.BackColor = System.Drawing.Color.DimGray;
-            this.label49.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label49.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label49.Location = new System.Drawing.Point(6, 317);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(146, 23);
-            this.label49.TabIndex = 37;
-            this.label49.Text = "下划线标记 2 重颜色";
-            this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label48
-            // 
-            this.label48.BackColor = System.Drawing.Color.DimGray;
-            this.label48.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label48.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label48.Location = new System.Drawing.Point(6, 291);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(146, 23);
-            this.label48.TabIndex = 36;
-            this.label48.Text = "下划线标记 1 重颜色";
-            this.label48.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label47
-            // 
-            this.label47.BackColor = System.Drawing.Color.DimGray;
-            this.label47.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label47.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label47.Location = new System.Drawing.Point(6, 265);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(146, 23);
-            this.label47.TabIndex = 35;
-            this.label47.Text = "下划线标记 0 重颜色";
-            this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label46
-            // 
-            this.label46.BackColor = System.Drawing.Color.DimGray;
-            this.label46.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label46.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label46.Location = new System.Drawing.Point(6, 239);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(146, 23);
-            this.label46.TabIndex = 34;
-            this.label46.Text = "跟打结束用时最多标记色";
-            this.label46.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox3.Location = new System.Drawing.Point(158, 213);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(157, 23);
-            this.pictureBox3.TabIndex = 24;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox2.Location = new System.Drawing.Point(158, 109);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(157, 23);
-            this.pictureBox2.TabIndex = 23;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.Location = new System.Drawing.Point(158, 31);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(157, 23);
-            this.pictureBox1.TabIndex = 22;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // label45
-            // 
-            this.label45.BackColor = System.Drawing.Color.DimGray;
-            this.label45.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label45.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label45.Location = new System.Drawing.Point(6, 109);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(146, 23);
-            this.label45.TabIndex = 21;
-            this.label45.Text = "跟打区默认字体颜色";
-            this.label45.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label44
-            // 
-            this.label44.BackColor = System.Drawing.Color.DimGray;
-            this.label44.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label44.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label44.Location = new System.Drawing.Point(6, 31);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(146, 23);
-            this.label44.TabIndex = 20;
-            this.label44.Text = "对照区默认字体颜色";
-            this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label19
-            // 
-            this.label19.BackColor = System.Drawing.Color.DimGray;
-            this.label19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label19.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label19.Location = new System.Drawing.Point(6, 213);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(146, 23);
-            this.label19.TabIndex = 19;
-            this.label19.Text = "跟打结束回改标记颜色";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.Color.DimGray;
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Location = new System.Drawing.Point(6, 135);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(146, 23);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "跟打区字体";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.DimGray;
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(6, 161);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(146, 23);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "对照区正确字背景色";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.DimGray;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(6, 57);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(146, 23);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "对照区字体";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabPage2
             // 
@@ -3833,20 +3126,7 @@
             this.Load += new System.EventHandler(this.Setup_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TSetup_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFalse)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRight)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
@@ -3925,18 +3205,8 @@
         }
 
         #endregion
-        private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button buttoncolor2;
-        private System.Windows.Forms.Button buttoncolor1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.FontDialog fontDialog1;
-        private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -3953,9 +3223,6 @@
         private System.Windows.Forms.Label labelTF;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.PictureBox pictureBoxFalse;
-        private System.Windows.Forms.PictureBox pictureBoxRight;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TrackBar trackBar2;
         private System.Windows.Forms.Label label16;
@@ -4112,10 +3379,6 @@
         private System.Windows.Forms.TextBox HotKeyTextBox23;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.CheckBox AdvancedCheckBox;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox textBox3;
@@ -4165,39 +3428,6 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox tbxName;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.PictureBox pictureBox8;
-        private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.Label label51;
-        private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.CheckBox SymbolInputCheckBox;
     }
 }

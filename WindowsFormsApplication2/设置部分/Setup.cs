@@ -14,7 +14,6 @@ namespace WindowsFormsApplication2
     public partial class TSetup : Form
     {
         private readonly Form1 frm;
-        private Font fo1, fo2;
 
         /// <summary>
         /// 快捷键输入框
@@ -80,35 +79,6 @@ namespace WindowsFormsApplication2
 
             // 排序顺序初始化
             SortSend();
-
-            // 载入字体
-            fo1 = Glob.Font_1;
-            fo2 = Glob.Font_2;
-            this.button3.Text = fo1.FontFamily.GetName(0) + " - " + fo1.Size;
-            this.button4.Text = fo2.FontFamily.GetName(0) + " - " + fo2.Size;
-            this.toolTip1.SetToolTip(this.button3, this.button3.Text);
-            this.toolTip1.SetToolTip(this.button4, this.button4.Text);
-
-            // 各个外观配置初始化
-            this.buttoncolor1.BackColor = Glob.R1Back; //对照区底色
-            this.buttoncolor1.ForeColor = Glob.R1Color;
-            this.pictureBox1.BackColor = Glob.R1Color;
-            this.buttoncolor2.BackColor = Glob.R2Back; //跟打区底色
-            this.buttoncolor2.ForeColor = Glob.R2Color;
-            this.pictureBox2.BackColor = Glob.R2Color;
-
-            this.pictureBoxRight.BackColor = Glob.RightBGColor;
-            this.pictureBoxFalse.BackColor = Glob.FalseBGColor;
-
-            this.pictureBox3.BackColor = Glob.BackChangeColor;
-            this.pictureBox4.BackColor = Glob.TimeLongColor;
-
-            this.pictureBox5.BackColor = Glob.Words0Color;
-            this.pictureBox6.BackColor = Glob.Words1Color;
-            this.pictureBox7.BackColor = Glob.Words2Color;
-            this.pictureBox8.BackColor = Glob.Words3Color;
-
-            this.pictureBox9.BackColor = Glob.TestMarkColor;
 
             // 载文初始化
             this.checkBox19.Checked = Glob.IsZdyPre;
@@ -208,12 +178,6 @@ namespace WindowsFormsApplication2
             }
         }
 
-        public string IniRead(string section, string key, string def)
-        { //ini的快捷读取
-            _Ini sing = new _Ini("config.ini");
-            return sing.IniReadValue(section, key, def);
-        }
-
         /// <summary>
         /// 确认按钮点击事件
         /// </summary>
@@ -221,14 +185,7 @@ namespace WindowsFormsApplication2
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
-            _Ini Setupini = new _Ini("config.ini");
-
-            if (!File.Exists("config.ini"))
-            {
-                MessageBox.Show("文件丢失！");
-                return;
-                
-            }
+            Ini Setupini = new Ini("config.ini");
 
             if (!SaveSort())
             {
@@ -312,50 +269,6 @@ namespace WindowsFormsApplication2
             //图片成绩发送昵称
             Setupini.IniWriteValue("发送", "昵称", this.tbxName.Text);
             Glob.PicName = this.tbxName.Text;
-
-            //颜色设置
-            Setupini.IniWriteValue("外观", "对照区颜色", buttoncolor1.BackColor.ToArgb().ToString());
-            Glob.R1Back = buttoncolor1.BackColor;
-            frm.richTextBox1.BackColor = Glob.R1Back;
-            Setupini.IniWriteValue("外观", "跟打区颜色", buttoncolor2.BackColor.ToArgb().ToString());
-            Glob.R2Back = buttoncolor2.BackColor;
-            frm.textBoxEx1.BackColor = Glob.R2Back;
-            Setupini.IniWriteValue("外观", "对照区文字色", this.pictureBox1.BackColor.ToArgb().ToString());
-            Glob.R1Color = this.pictureBox1.BackColor;
-            frm.richTextBox1.ForeColor = Glob.R1Color;
-            Setupini.IniWriteValue("外观", "跟打区文字色", this.pictureBox2.BackColor.ToArgb().ToString());
-            Glob.R2Color = this.pictureBox2.BackColor;
-            frm.textBoxEx1.ForeColor = Glob.R2Color;
-
-            Setupini.IniWriteValue("外观", "打对颜色", this.pictureBoxRight.BackColor.ToArgb().ToString());
-            Glob.RightBGColor = this.pictureBoxRight.BackColor;
-            Setupini.IniWriteValue("外观", "打错颜色", this.pictureBoxFalse.BackColor.ToArgb().ToString());
-            Glob.FalseBGColor = this.pictureBoxFalse.BackColor;
-
-            Setupini.IniWriteValue("外观", "回改颜色", this.pictureBox3.BackColor.ToArgb().ToString());
-            Glob.BackChangeColor = this.pictureBox3.BackColor;
-            Setupini.IniWriteValue("外观", "用时背景色", this.pictureBox4.BackColor.ToArgb().ToString());
-            Glob.TimeLongColor = this.pictureBox4.BackColor;
-
-            Setupini.IniWriteValue("外观", "词组0重色", this.pictureBox5.BackColor.ToArgb().ToString());
-            Glob.Words0Color = this.pictureBox5.BackColor;
-            Setupini.IniWriteValue("外观", "词组1重色", this.pictureBox6.BackColor.ToArgb().ToString());
-            Glob.Words1Color = this.pictureBox6.BackColor;
-            Setupini.IniWriteValue("外观", "词组2重色", this.pictureBox7.BackColor.ToArgb().ToString());
-            Glob.Words2Color = this.pictureBox7.BackColor;
-            Setupini.IniWriteValue("外观", "词组3重色", this.pictureBox8.BackColor.ToArgb().ToString());
-            Glob.Words3Color = this.pictureBox8.BackColor;
-            Setupini.IniWriteValue("外观", "测速点颜色", this.pictureBox9.BackColor.ToArgb().ToString());
-            Glob.TestMarkColor = this.pictureBox9.BackColor;
-
-            //字体设置
-            FontConverter fc = new FontConverter();
-            Setupini.IniWriteValue("外观", "对照区字体", fc.ConvertToInvariantString(fo1));
-            Setupini.IniWriteValue("外观", "跟打区字体", fc.ConvertToInvariantString(fo2));
-            frm.richTextBox1.Font = fo1;
-            frm.textBoxEx1.Font = fo2;
-            Glob.Font_1 = fo1;
-            Glob.Font_2 = fo2;
 
             //停止时间
             Setupini.IniWriteValue("控制", "停止", this.trackBar2.Value.ToString());
@@ -666,33 +579,6 @@ namespace WindowsFormsApplication2
         }
         #endregion
 
-        #region 字体
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.fontDialog1.ShowEffects = false;
-            this.fontDialog1.Font = fo1;
-            if (this.fontDialog1.ShowDialog(this) == DialogResult.OK)
-            {
-
-                this.button3.Text = fontDialog1.Font.FontFamily.GetName(0) + " - " + fontDialog1.Font.Size;
-                this.toolTip1.SetToolTip(this.button3, this.button3.Text);
-                fo1 = fontDialog1.Font;
-            }
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            this.fontDialog1.ShowEffects = false;
-            this.fontDialog1.Font = fo2;
-            if (this.fontDialog1.ShowDialog(this) == DialogResult.OK)
-            {
-                this.button4.Text = fontDialog1.Font.FontFamily.GetName(0) + " - " + fontDialog1.Font.Size;
-                this.toolTip1.SetToolTip(this.button4, this.button4.Text);
-                fo2 = fontDialog1.Font;
-            }
-        }
-        #endregion
-
         #region 载入
         private void checkBox19_CheckedChanged(object sender, EventArgs e)
         {
@@ -724,126 +610,6 @@ namespace WindowsFormsApplication2
         private void richTextBox2_TextChanged(object sender, EventArgs e)
         {
             this.labelTF.Text = frm.CheckTF(richTextBox2.Text);
-        }
-        #endregion
-
-        #region 颜色设置
-        private void buttoncolor1_Click(object sender, EventArgs e)
-        {
-            this.colorDialog1.Color = Glob.R1Back;
-            if (this.colorDialog1.ShowDialog(this) == DialogResult.OK)
-            {
-                this.buttoncolor1.BackColor = colorDialog1.Color;
-            }
-        }
-
-        private void buttoncolor2_Click(object sender, EventArgs e)
-        {
-            this.colorDialog1.Color = Glob.R2Back;
-            if (this.colorDialog1.ShowDialog(this) == DialogResult.OK)
-            {
-                this.buttoncolor2.BackColor = colorDialog1.Color;
-            }
-        }
-
-        private void pictureBoxRight_Click(object sender, EventArgs e)
-        {
-            this.colorDialog1.Color = Glob.RightBGColor;
-            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
-            {
-                this.pictureBoxRight.BackColor = colorDialog1.Color;
-            }
-        }
-
-        private void pictureBoxFalse_Click(object sender, EventArgs e)
-        {
-            this.colorDialog1.Color = Glob.FalseBGColor;
-            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
-            {
-                this.pictureBoxFalse.BackColor = colorDialog1.Color;
-            }
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            this.colorDialog1.Color = Glob.R1Color;
-            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
-            {
-                this.pictureBox1.BackColor = colorDialog1.Color;
-                this.buttoncolor1.ForeColor = colorDialog1.Color;
-            }
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            this.colorDialog1.Color = Glob.R2Color;
-            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
-            {
-                this.pictureBox2.BackColor = colorDialog1.Color;
-                this.buttoncolor2.ForeColor = colorDialog1.Color;
-            }
-        }
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-            this.colorDialog1.Color = Glob.BackChangeColor;
-            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
-            {
-                this.pictureBox3.BackColor = colorDialog1.Color;
-            }
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-            this.colorDialog1.Color = Glob.TimeLongColor;
-            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
-            {
-                this.pictureBox4.BackColor = colorDialog1.Color;
-            }
-        }
-
-        private void pictureBox5_Click(object sender, EventArgs e)
-        {
-            this.colorDialog1.Color = Glob.Words0Color;
-            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
-            {
-                this.pictureBox4.BackColor = colorDialog1.Color;
-            }
-        }
-
-        private void pictureBox6_Click(object sender, EventArgs e)
-        {
-            this.colorDialog1.Color = Glob.Words1Color;
-            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
-            {
-                this.pictureBox5.BackColor = colorDialog1.Color;
-            }
-        }
-
-        private void pictureBox7_Click(object sender, EventArgs e)
-        {
-            this.colorDialog1.Color = Glob.Words2Color;
-            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
-            {
-                this.pictureBox6.BackColor = colorDialog1.Color;
-            }
-        }
-
-        private void pictureBox8_Click(object sender, EventArgs e)
-        {
-            this.colorDialog1.Color = Glob.Words3Color;
-            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
-            {
-                this.pictureBox7.BackColor = colorDialog1.Color;
-            }
-        }
-
-        private void pictureBox9_Click(object sender, EventArgs e)
-        {
-            this.colorDialog1.Color = Glob.TestMarkColor;
-            if (colorDialog1.ShowDialog(this) == DialogResult.OK)
-            {
-                this.pictureBox8.BackColor = colorDialog1.Color;
-            }
         }
         #endregion
 
@@ -1123,68 +889,6 @@ namespace WindowsFormsApplication2
 
                 e.Handled = true;
                 e.SuppressKeyPress = true;
-            }
-        }
-        #endregion
-
-        #region 重置基本设置
-        private void BaseResetButton_Click(object sender, EventArgs e)
-        {
-            int index = int.Parse((sender as Button).Tag.ToString());
-            FontConverter fc = new FontConverter();
-            switch (index)
-            {
-                case 0:
-                    this.buttoncolor1.BackColor = Color.FromArgb(244, 247, 252);
-                    break;
-                case 1:
-                    this.pictureBox1.BackColor = Color.FromArgb(0, 0, 0);
-                    this.buttoncolor1.ForeColor = Color.FromArgb(0, 0, 0);
-                    break;
-                case 2:
-                    this.button3.Text = "宋体 - 21.75";
-                    this.toolTip1.SetToolTip(this.button3, this.button3.Text);
-                    fo1 = (Font)fc.ConvertFromString("宋体, 21.75pt");
-                    break;
-                case 3:
-                    this.buttoncolor2.BackColor = Color.FromArgb(244, 247, 252);
-                    break;
-                case 4:
-                    this.pictureBox2.BackColor = Color.FromArgb(0, 0, 0);
-                    this.buttoncolor2.ForeColor = Color.FromArgb(0, 0, 0);
-                    break;
-                case 5:
-                    this.button4.Text = "宋体 - 12";
-                    this.toolTip1.SetToolTip(this.button4 , this.button4.Text);
-                    fo2 = (Font)fc.ConvertFromString("宋体, 12pt");
-                    break;
-                case 6:
-                    this.pictureBoxRight.BackColor = Color.FromArgb(128, 128, 128);
-                    break;
-                case 7:
-                    this.pictureBoxFalse.BackColor = Color.FromArgb(255, 106, 106);
-                    break;
-                case 8:
-                    this.pictureBox3.BackColor = Color.FromArgb(173, 255, 47);
-                    break;
-                case 9:
-                    this.pictureBox4.BackColor = Color.FromArgb(154, 205, 50);
-                    break;
-                case 10:
-                    this.pictureBox5.BackColor = Color.FromArgb(0, 0, 255);
-                    break;
-                case 11:
-                    this.pictureBox6.BackColor = Color.FromArgb(255, 0, 0);
-                    break;
-                case 12:
-                    this.pictureBox7.BackColor = Color.FromArgb(128, 0, 128);
-                    break;
-                case 13:
-                    this.pictureBox8.BackColor = Color.FromArgb(255, 20, 147);
-                    break;
-                case 14:
-                    this.pictureBox9.BackColor = Color.FromArgb(211, 211, 211);
-                    break;
             }
         }
         #endregion

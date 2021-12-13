@@ -4,16 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.IO;
 
 namespace WindowsFormsApplication2
 {
-    public class _Ini
+    public class Ini
     {
-        public string path;　　 //INI文件名
-        public _Ini(string inipath)
+        /// <summary>
+        /// INI 文件路径
+        /// </summary>
+        private readonly string path;
+        public Ini(string inipath, bool isAbsolute = false)
         {
-            this.path = Application.StartupPath + "\\" + inipath;
-            //this.path = inipath;
+            if (isAbsolute)
+            {
+                this.path = inipath;
+            }
+            else
+            {
+                this.path = Path.Combine(Application.StartupPath, inipath);
+            }
         }
         //声明读写INI文件的API函数    
         [DllImport("kernel32")]

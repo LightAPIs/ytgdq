@@ -61,16 +61,9 @@ namespace WindowsFormsApplication2
         protected override void OnPaint(PaintEventArgs pevent)
         {
             //pevent.Graphics.FillRectangle(new SolidBrush(Parent.BackColor), pevent.ClipRectangle);
-            if (mouseHover) DrawMouseHoverButton(pevent.Graphics);
             if (checkedChange) DrawCheckedButton(pevent.Graphics);
             else DrawCheckedButton_(pevent.Graphics);
             WriteText(pevent.Graphics);
-        }
-
-        //移动覆盖时的样式
-        private void DrawMouseHoverButton(Graphics g)
-        {
-            //PaintBack(g, Color.FromArgb(32,32,32));
         }
 
         /// <summary>
@@ -104,7 +97,7 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void PaintBack(Graphics g, Color c)
+        private void PaintBack(Graphics g)
         {
             Color C = Color.Black;
             if (Checked) C = Color.AliceBlue;
@@ -118,10 +111,9 @@ namespace WindowsFormsApplication2
 
         private void WriteText(Graphics g)
         {
-            int x = 0, y = 0;
             Size s = g.MeasureString(Text, Font).ToSize();
-            x = (Width - s.Width) / 2;
-            y = (Height - s.Height) / 2;
+            int x = (Width - s.Width) / 2;
+            int y = (Height - s.Height) / 2;
             Font BFont = new Font(Font,FontStyle.Bold);
             Brush BColor = new SolidBrush(BorderColor);
             if (Enabled)
@@ -129,21 +121,38 @@ namespace WindowsFormsApplication2
                 if (Checked)
                 {
                     if (mouseHover)
+                    {
                         g.DrawString(Text, BFont, BColor, x, y);
+                    }
                     else
-                        g.DrawString(Text, Font, Brushes.White, x, y);
+                    {
+                        Brush _b = new SolidBrush(Theme.tempToolButtonFc);
+                        g.DrawString(Text, Font, _b, x, y);
+                    }
                 }
                 else
                 {
-                    //g.DrawString(Text, Font, Brushes.Black, x - 1, y);
                     if (mouseHover)
+                    {
                         g.DrawString(Text, BFont, BColor, x, y);
+                    }
                     else
-                        g.DrawString(Text, Font, Brushes.LightGray, x, y);
+                    {
+                        Color _c = Color.FromArgb(ColorLow(Theme.tempToolButtonFc.R), ColorLow(Theme.tempToolButtonFc.G), ColorLow(Theme.tempToolButtonFc.B));
+                        Brush _b = new SolidBrush(_c);
+                        g.DrawString(Text, Font, _b, x, y);
+                    }
                 }
             }
             else
+            {
                 g.DrawString(Text, Font, Brushes.DimGray, x, y);
+            }
+        }
+
+        private int ColorLow(int c)
+        {
+            return c - 50 < 0 ? 0 : c - 50;
         }
     }
 }

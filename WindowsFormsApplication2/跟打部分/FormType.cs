@@ -199,11 +199,11 @@ namespace WindowsFormsApplication2
 
             if (Theme.IsBackBmp)
             { //* 启用主题背景图
-                LoadTheme(Theme.ThemeBackBmp, Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.ThemeBG);
+                LoadTheme(Theme.ThemeBackBmp, Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.SecondBG, Theme.SecondFC, Theme.ThemeBG);
             }
             else
             { //* 纯色
-                LoadTheme("纯色", Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.ThemeBG);
+                LoadTheme("纯色", Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.SecondBG, Theme.SecondFC, Theme.ThemeBG);
             }
 
             // 注册表格操作器
@@ -426,7 +426,7 @@ namespace WindowsFormsApplication2
                     Glob.回车++;
                     //触发回车时 计算
                     跟打地图步进++;
-                    Type_Map(Color.HotPink, 跟打地图步进, 1);
+                    Type_Map(GetReverseColor(GetTranColor(Theme.SecondBG, 40)), 跟打地图步进, 1);
                     Glob.TextMcc += Glob.TextMc;
                     Glob.TextMc = 0;
 
@@ -457,6 +457,8 @@ namespace WindowsFormsApplication2
             Theme.ThemeBG = Color.FromArgb(int.Parse(themeConf.IniReadValue("主题", "纯色", "-13089719"))); // #384449
             Theme.ThemeColorBG = Color.FromArgb(int.Parse(themeConf.IniReadValue("主题", "主题颜色", "-13089719"))); // #384449
             Theme.ThemeColorFC = Color.FromArgb(int.Parse(themeConf.IniReadValue("主题", "字体颜色", "-1"))); // #FFFFFF
+            Theme.SecondBG = Color.FromArgb(int.Parse(themeConf.IniReadValue("主题", "次要背景", "-6908266"))); // #969696
+            Theme.SecondFC = Color.FromArgb(int.Parse(themeConf.IniReadValue("主题", "次要前景", "-16777216"))); // #000000
 
             //* 颜色设置
             Theme.R1Back = Color.FromArgb(int.Parse(themeConf.IniReadValue("外观", "对照区颜色", "-722948"))); // #F4F7FC
@@ -492,16 +494,21 @@ namespace WindowsFormsApplication2
             richTextBox1.FontChanged += new EventHandler(richTextBox1_FontChanged);
             richTextBox1.Font = Theme.Font_1;
             textBoxEx1.Font = Theme.Font_2;
+
+            // 跟打地图
+            picMap.BackColor = Theme.R1Back;
         }
 
         /// <summary>
         /// 设置主题
         /// </summary>
         /// <param name="BGround">背景设置的路径</param>
-        /// <param name="BG">背景色</param>
-        /// <param name="FC">前景色</param>
+        /// <param name="BG">主要背景色</param>
+        /// <param name="FC">主要前景色</param>
+        /// <param name="SBG">次要背景色</param>
+        /// <param name="SFC">次要前景色</param>
         /// <param name="BGr">纯色</param>
-        public void LoadTheme(string BGround, Color BG, Color FC, Color BGr)
+        public void LoadTheme(string BGround, Color BG, Color FC, Color SBG, Color SFC, Color BGr)
         {
             //载入图标或者颜色
             if (BGround != "")
@@ -595,16 +602,120 @@ namespace WindowsFormsApplication2
             this.TSMI4.ForeColor = FC;
             this.TSMI5.ForeColor = FC;
 
-            //击键评定
+            // 击键评定
+            Color cell1 = GetTranColor(SBG, 10);
+            for (int i = 0; i <= 14; i += 2)
+            {
+                this.dataGridView2.Rows[0].Cells[i].Style.BackColor = cell1;
+                this.dataGridView2.Rows[0].Cells[i].Style.ForeColor = SFC;
+            }
+            this.dataGridView2.Rows[0].Cells[16].Style.BackColor = GetTranColor(SBG, 15);
+            this.dataGridView2.Rows[0].Cells[16].Style.ForeColor = SFC;
+            Color cell2 = GetTranColor(SBG, -10);
+            for (int i = 1; i <= 17; i += 2)
+            {
+                this.dataGridView2.Rows[0].Cells[i].Style.BackColor = cell2;
+                this.dataGridView2.Rows[0].Cells[i].Style.ForeColor = SFC;
+            }
+
+            // 实时数据区
+            this.labelSpeeding.ForeColor = FC;
+            this.labelJjing.ForeColor = FC;
             this.labelJiCheck.ForeColor = FC;
             this.labelCheckUD.ForeColor = FC;
             this.labelmcing.ForeColor = FC;
+
+            // 状态区
+            Color state = GetTranColor(SBG, 40);
+            this.labelJsing.BackColor = state;
+            this.labelJsing.ForeColor = SFC;
+            this.lbl键准.BackColor = state;
+            this.lbl键准.ForeColor = SFC;
+            this.labelTimeFlys.BackColor = state;
+            this.labelTimeFlys.ForeColor = SFC;
+            this.lblspeedcheck.BackColor = state;
+            this.lblspeedcheck.ForeColor = SFC;
+            this.lblBmTips.BackColor = state;
+            this.picBar.BackColor = state;
+            this.labelhgstatus.BackColor = state;
+            try
+            {
+                int hgStatus = int.Parse(this.labelhgstatus.Text);
+                if (hgStatus > 0)
+                {
+                    this.labelhgstatus.ForeColor = GetTranColor(SFC, 75);
+                }
+                else
+                {
+                    this.labelhgstatus.ForeColor = SFC;
+                }
+            }
+            catch
+            {
+                this.labelhgstatus.ForeColor = SFC;
+            }
+            this.lbl回改显示.BackColor = state;
+            this.lbl回改显示.ForeColor = SFC;
+            this.labelBM.BackColor = state;
+            try
+            {
+                int bmStatus = int.Parse(this.labelBM.Text);
+                if (bmStatus > 0)
+                {
+                    this.labelBM.ForeColor = GetTranColor(SFC, 75);
+                }
+                else
+                {
+                    this.labelBM.ForeColor = SFC;
+                }
+            }
+            catch
+            {
+                this.labelBM.ForeColor = SFC;
+            }
+            this.lbl错字显示.BackColor = state;
+            this.lbl错字显示.ForeColor = SFC;
+            this.toolStripStatusLabelStatus.BackColor = state;
+            if (Glob.reTypeCount > 0)
+            {
+                this.toolStripStatusLabelStatus.ForeColor = GetTranColor(SFC, 75);
+            }
+            else
+            {
+                this.toolStripStatusLabelStatus.ForeColor = SFC;
+            }
+            this.lblAutoReType.BackColor = state;
+            this.lblAutoReType.ForeColor = SFC;
+            this.lblNowTime_.BackColor = state;
+            this.lblNowTime_.ForeColor = SFC;
+            this.lbl地图长度.BackColor = state;
+            this.lbl地图长度.ForeColor = SFC;
+            this.labelHaveTyping.BackColor = state;
+            this.labelHaveTyping.ForeColor = SFC;
 
             // 底部工具栏
             Theme.tempToolButtonFc = FC;
             this.toolStrip1.Invalidate();
 
-            Color C = Color.FromArgb(ColorTran(BG.R), ColorTran(BG.G), ColorTran(BG.B));
+            // 成绩栏背景
+            this.dataGridView1.BackgroundColor = SBG;
+
+            // 曲线
+            this.chartSpeed.BackColor = SBG;
+            this.ChartArea1.BackColor = SBG;
+            this.ChartArea1.AxisX.LineColor = FC;
+            this.ChartArea1.AxisX.MajorGrid.LineColor = GetTranColor(SBG, -20);
+            this.ChartArea1.AxisX.MajorTickMark.LineColor = SFC;
+            this.ChartArea1.AxisX.LabelStyle.ForeColor = SFC;
+            this.ChartArea1.AxisY.LineColor = FC;
+            this.ChartArea1.AxisY.MajorGrid.LineColor = GetTranColor(SBG, -20);
+            this.ChartArea1.AxisY.MajorTickMark.LineColor = SFC;
+            this.ChartArea1.AxisY.LabelStyle.ForeColor = SFC;
+            this.title1.ForeColor = SFC;
+            this.SeriesSpeed.Color = FC;
+            this.SeriesSpeed.BackSecondaryColor = SFC;
+
+            Color C = GetTranColor(BG, 20);
             this.labelSpeeding.BackColor = C;
             this.labelJjing.BackColor = C;
             this.labelJiCheck.BackColor = C;
@@ -615,9 +726,27 @@ namespace WindowsFormsApplication2
             this.Invalidate(rect, true);
         }
 
-        private int ColorTran(int c)
+        private int ColorTran(int c, int val)
         {
-            return c + 20 > 255 ? 255 : c + 20;
+            if (c + val > 255)
+            {
+                return 255;
+            }
+            else if (c + val < 0)
+            {
+                return 0;
+            }
+            return c + val;
+        }
+
+        private Color GetTranColor(Color c, int val)
+        {
+            return Color.FromArgb(ColorTran(c.R, val), ColorTran(c.G, val), ColorTran(c.B, val));
+        }
+
+        private Color GetReverseColor(Color c)
+        {
+            return Color.FromArgb(255 - c.R, 255 - c.G, 255 - c.B);
         }
 
         public void LoadSetup()
@@ -634,17 +763,7 @@ namespace WindowsFormsApplication2
             this.picMap.Image = bmp_;
             //tableLayoutPanel1.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(tableLayoutPanel1, true, null);
             this.chartSpeed.ChartAreas.Add(ChartArea1);
-            this.ChartArea1.BackColor = Color.FromArgb(150, 150, 150);
-            this.ChartArea1.AxisX.LineColor = Color.White;
-            this.ChartArea1.AxisX.MajorGrid.LineColor = Color.FromArgb(127, 127, 127);
-            this.ChartArea1.AxisX.MajorTickMark.LineColor = Color.FromArgb(10, 10, 35);
-            this.ChartArea1.AxisX.LabelStyle.ForeColor = Color.Black;
             this.ChartArea1.AxisX2.LineDashStyle = ChartDashStyle.Dash;
-
-            this.ChartArea1.AxisY.MajorGrid.LineColor = Color.FromArgb(127, 127, 127);
-            this.ChartArea1.AxisY.MajorTickMark.LineColor = Color.Black;
-            this.ChartArea1.AxisY.LabelStyle.ForeColor = Color.Black;
-            this.ChartArea1.AxisY.LineColor = Color.White;
 
             Type type = dataGridView1.GetType();
             PropertyInfo pi = type.GetProperty("DoubleBuffered",
@@ -660,23 +779,17 @@ namespace WindowsFormsApplication2
             this.ChartArea1.AxisX.Minimum = 1.00D;
 
             this.chartSpeed.Titles.Add(title1);
-            this.title1.ForeColor = Color.Black;
             this.title1.Font = new Font("Verdana", 8.25f);
 
             this.chartSpeed.Series.Add(SeriesSpeed); //增加图表
             this.SeriesSpeed.ChartType = SeriesChartType.SplineArea;
             this.SeriesSpeed.BorderWidth = 2;
-            this.SeriesSpeed.Color = Color.White;
-            this.SeriesSpeed.BackSecondaryColor = Color.Black;
-
-            this.richTextBox1.ForeColor = Color.Black;
 
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;//列标题居中显示
             this.dataGridView1.ForeColor = Color.DarkSlateGray;
             for (int i = 0; i <= 14; i += 2)
             {
                 this.dataGridView2.Rows[0].Cells[i].Value = 4 + i / 2;
-                this.dataGridView2.Rows[0].Cells[i].Style.BackColor = Color.FromArgb(217, 217, 217);
             }
             for (int i = 0; i < 9; i++)
             {
@@ -685,7 +798,6 @@ namespace WindowsFormsApplication2
             Glob.jjAllC = int.TryParse(IniRead("记录", "总数", "0"), out Glob.jjAllC) ? Glob.jjAllC : 0;
             jjPerCheck(0);
             this.dataGridView2.Rows[0].Cells[16].Value = "12+";
-            this.dataGridView2.Rows[0].Cells[16].Style.BackColor = Color.FromArgb(219, 219, 219);
 
             //载入个签
             Glob.InstraPre = IniRead("个签", "签名", "");
@@ -711,7 +823,7 @@ namespace WindowsFormsApplication2
             }
 
             Glob.TextHgAll = int.Parse(IniRead("记录", "总回改", "0"));
-            
+
             // 记录天数
             Glob.TextRecDays = int.Parse(IniRead("记录", "记录天数", "1"));
 
@@ -1444,7 +1556,8 @@ namespace WindowsFormsApplication2
                 Glob.TextBg = 0;//退格
                 Glob.回车 = 0;
                 Glob.选重 = 0;
-                Glob.FWordsSkip = 0;
+                Glob.TextHgPlace_Skip = -1;
+                Glob.FWordsSkip = -1;
                 Glob.撤销 = 0;
                 Glob.撤销用量 = 0;
                 Glob.MinSplite = 500;
@@ -1454,10 +1567,8 @@ namespace WindowsFormsApplication2
                 recordUsedTime = new TimeSpan();
                 Glob.PauseTimes = 0;
                 Glob.Use分析 = false;
-                Glob.Type_Map_C = 200;
                 跟打地图步进 = 0;
                 Glob.地图长度 = 0;
-                Glob.Type_map_C_1 = Color.FromArgb(220, 220, 220);
                 Glob.TextHgPlace.Clear();
                 Glob.TypeReport.Clear();
                 this.SeriesSpeed.Points.Clear();
@@ -1481,7 +1592,7 @@ namespace WindowsFormsApplication2
                 labelhgstatus.Text = "0";
                 HisSave[0] = HisSave[1] = 0;
                 HisLine[0] = HisLine[1] = 0;
-                this.labelBM.Text = "-";
+                this.labelBM.Text = "0";
                 if (isPause)
                 {
                     EndPause();
@@ -1637,10 +1748,6 @@ namespace WindowsFormsApplication2
                         this.lbl地图长度.Text = (TextLen * 100 / sw).ToString("0") + "%";
                         if (跟打地图步进 > this.picMap.Width)
                         {
-                            Glob.Type_Map_C -= 40;
-                            if (Glob.Type_Map_C < 40)
-                                Glob.Type_Map_C = 200;
-                            Glob.Type_map_C_1 = Color.FromArgb(Glob.Type_Map_C, Glob.Type_Map_C, Glob.Type_Map_C);
                             跟打地图步进 = 0;
                         }
                         if (HisSave[1] > HisSave[0]) //非回改的情况下
@@ -1681,7 +1788,7 @@ namespace WindowsFormsApplication2
                                     {
                                         Glob.FWords.Remove(i);
                                     }
-                                    Glob.Type_Map_Color = Glob.Type_map_C_1;
+                                    Glob.Type_Map_Color = Theme.RightBGColor;
                                 }
                                 else
                                 {
@@ -1692,7 +1799,7 @@ namespace WindowsFormsApplication2
                                     {
                                         Glob.FWords.Add(i);
                                     }
-                                    Glob.Type_Map_Color = Color.OrangeRed;
+                                    Glob.Type_Map_Color = Theme.FalseBGColor;
 
                                 }
                             }
@@ -1810,10 +1917,9 @@ namespace WindowsFormsApplication2
                     {
                         // 这是一种回改的情况
                         //Glob.TextCz = 0;//每次都归零
-                        Glob.Type_Map_Color = Color.DeepSkyBlue;//回改橙色
+                        Glob.Type_Map_Color = Theme.BackChangeColor; // 回改颜色
                         int istart = textBoxEx1.SelectionStart; //获取当前光标所在的编号
                         int istep = Math.Abs(iP);//获取一次退格的 量
-                        //MessageBox.Show(HisSave[1] + "\n" + HisSave[0]);
                         Glob.TextHgAll++; //? 和 Glob.TextHg 的计算方式结果基本是等效的
                         if (istep > 0)
                         {
@@ -1828,9 +1934,7 @@ namespace WindowsFormsApplication2
                                 }
                             }
                         }
-                        //else
-                        //{
-                        //MessageBox.Show(istart + "\n" + HisSave[1]);
+
                         for (int i = istart; i < HisSave[1]; i++) //从当前光标处再继续往后比较正错
                         {
                             if (TextType[i] == TextAlticle[i])
@@ -2029,7 +2133,7 @@ namespace WindowsFormsApplication2
                         { // 重打判断，为重打
                             Glob.reTypeCount++;
                             toolStripStatusLabelStatus.Text = Glob.reTypeCount.ToString();
-                            toolStripStatusLabelStatus.ForeColor = Color.DarkGreen;
+                            toolStripStatusLabelStatus.ForeColor = GetTranColor(Theme.SecondFC, 75);
 
                             int RowCount = this.dataGridView1.Rows.Count - 1;
                             string[] oldSpeed = this.dataGridView1.Rows[RowCount].Cells[3].Value.ToString().Split('/');
@@ -2065,7 +2169,7 @@ namespace WindowsFormsApplication2
                         { // 此次和上次文章验证不相同，为新打
                             Glob.reTypeCount = 0;
                             toolStripStatusLabelStatus.Text = "-";
-                            toolStripStatusLabelStatus.ForeColor = Color.Black;
+                            toolStripStatusLabelStatus.ForeColor = Theme.SecondFC;
 
                             Glob.HaveTypeCount_++; //实际跟打段数加一
                             typeCountStr = Glob.HaveTypeCount_.ToString();
@@ -2097,12 +2201,13 @@ namespace WindowsFormsApplication2
                         dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
                         dataGridView1.ClearSelection();
                         DataGridViewRow dgr = dataGridView1.Rows[dataGridView1.RowCount - 1];
-                        //dgr.DefaultCellStyle.BackColor = Theme.ThemeColorBG;
+                        dgr.DefaultCellStyle.BackColor = Theme.ThemeColorBG;
                         dgr.DefaultCellStyle.ForeColor = Theme.ThemeColorFC;
+
                         jjPerCheck((int)jj);//击键占率
                         Show_Hg_Place();//显示回改地点
                         Glob.Use分析 = true;//F3时 分析不可用 只有在跟打结束后分析才可用
-                        
+
                         try
                         {
                             KH.Stop();
@@ -2470,6 +2575,7 @@ namespace WindowsFormsApplication2
         {
             if (Glob.TextHgPlace.Count > 0)
             {
+                Glob.TextHgPlace.Sort(); //! 排序
                 foreach (int i in Glob.TextHgPlace)
                 {
                     if (i < Glob.TextLen)
@@ -2512,25 +2618,19 @@ namespace WindowsFormsApplication2
             Bitmap bmp = new Bitmap(this.picBar.Width, this.picBar.Height);
             Graphics g = Graphics.FromImage(bmp);
             double width = this.picBar.Width * pro;
-            //MessageBox.Show("宽度：" + this.picBar.Width + "\n计算：" + width + "\n比例：" + pro);
-            Color C;//进度线条
             float f = 1f;//进度宽度
-            C = Theme.ThemeColorBG;
+            Color C = Theme.ThemeColorBG; //进度线条
 
             //画进度
             Rectangle rect = new Rectangle(0, 0, (int)width, this.picBar.Height);
-            g.FillRectangle(Brushes.GhostWhite, rect);
+
+            g.FillRectangle(new SolidBrush(Theme.SecondFC), rect);
             g.DrawLine(new Pen(C, f), rect.Width - f + 1, 0, rect.Width - f + 1, (float)rect.Height);
             //画字
             Font F = new Font("宋体", 9f);
             SizeF s = g.MeasureString(text, F);
             int fontWidth = (int)Math.Ceiling(s.Width);
-            //if (width >= fontWidth)
-            //{
-            //    g.DrawString(text, F, Brushes.Black, (float)(width - fontWidth + 2), 1.0f);
-            //}
-            //else
-            g.DrawString(text, F, Brushes.Brown, (float)(this.picBar.Width / 2 - fontWidth / 2), this.picBar.Height / 2 - s.Height / 2);
+            g.DrawString(text, F, new SolidBrush(GetTranColor(Theme.SecondFC, 120)), this.picBar.Width / 2 - fontWidth / 2, this.picBar.Height / 2 - s.Height / 2 + 1);
 
             this.picBar.Image = bmp;
             SplitterBar(pro);
@@ -2540,7 +2640,7 @@ namespace WindowsFormsApplication2
         {
             //测试 拆分条 的 绘图
             Graphics g_ = this.splitContainer1.CreateGraphics();
-            Color Show = Color.DeepSkyBlue;//Color.FromArgb(255 - Theme.ThemeColorBG.R, 255 - Theme.ThemeColorBG.G, 255 - Theme.ThemeColorBG.B);
+            Color Show = GetReverseColor(Theme.ThemeColorBG);
             g_.Clear(Theme.ThemeColorBG);
             using (SolidBrush sb = new SolidBrush(Show))
             {
@@ -2615,118 +2715,32 @@ namespace WindowsFormsApplication2
             return speedAnGet;
         }
         //击键占比
-        private int GetMaxAndIndex(int[] pa)
-        {
-            int index = -1;//定义变量存最大值的索引
-            int c = pa.Length;
-            if (c != 0)
-            {
-                int Max = pa[0];
-                for (int i = 0; i < c; i++)
-                {
-                    int nowP = pa[i];
-                    if (Max < nowP)
-                    {
-                        index = i;
-                        Max = nowP;
-                    }
-                }
-            }
-            return index;
-        } //得到数组最大值索引
-
-        private int thepre = -1;
-        private Color theForeColor;
         private void jjPerCheck(int jP)
         {
             if (Glob.jjAllC <= 0) return;
-            for (int i = 0; i <= 17; i += 2)
-            {
-                this.dataGridView2.Rows[0].Cells[i].Style.ForeColor = Color.FromArgb(127, 127, 127);
-            }
-            double 评定击键 = 0, 评定计数 = 0;
+
             for (int i = 0, j = 1; i < 9; i++, j += 2)
             {
                 double jjP = Glob.jjPer[i] * 100.0 / Glob.jjAllC;
                 string jj;
                 if (jjP != 0)
                 {
-                    if (jjP >= 10) { 评定击键 += i + jjP / 100.0; 评定计数++; }
-                    //this.dataGridView2.Rows[0].Cells[j].ToolTipText = Glob.jjPer[i] + "/" + Glob.jjAllC;
-                    if (j >= 13) this.dataGridView2.Rows[0].Cells[j].Style.ForeColor = Color.Black;
                     if (jjP > 0 && jjP < 1)
+                    {
                         jj = Math.Round(jjP, 1).ToString();
+                    }
                     else
+                    {
                         jj = ((int)jjP).ToString();
+                    }
 
-                    this.dataGridView2.Rows[0].Cells[j].Value = jj;//Math.Round(jjP, 2);
-                    if (jjP >= 20 && jjP < 30)
-                    {
-                        this.dataGridView2.Rows[0].Cells[j - 1].Style.ForeColor = Color.FromArgb(63, 63, 63);
-                        this.dataGridView2.Rows[0].Cells[j].Style.ForeColor = Color.FromArgb(223, 77, 85);
-                    }
-                    else if (jjP >= 30 && jjP < 50)
-                    {
-                        this.dataGridView2.Rows[0].Cells[j - 1].Style.ForeColor = Color.FromArgb(63, 63, 63);
-                        this.dataGridView2.Rows[0].Cells[j].Style.ForeColor = Color.FromArgb(82, 0, 208);
-                    }
-                    else if (jjP >= 50 && jjP < 60)
-                    {
-                        this.dataGridView2.Rows[0].Cells[j - 1].Style.ForeColor = Color.FromArgb(63, 63, 63);
-                        this.dataGridView2.Rows[0].Cells[j].Style.ForeColor = Color.FromArgb(255, 64, 0);
-                    }
-                    else if (jjP >= 60)
-                    {
-                        this.dataGridView2.Rows[0].Cells[j - 1].Style.ForeColor = Color.FromArgb(44, 44, 44);
-                        this.dataGridView2.Rows[0].Cells[j].Style.ForeColor = Color.FromArgb(0, 150, 75);
-                    }
-                    else
-                    {
-                        if (j < 13)
-                            this.dataGridView2.Rows[0].Cells[j].Style.ForeColor = Color.FromArgb(35, 35, 35); //普通击键颜色
-                        this.dataGridView2.Rows[0].Cells[j - 1].Style.ForeColor = Color.FromArgb(127, 127, 127);
-                    }
-                    if (jP >= 4)
-                    {
-                        if (jP > 12) jP = 12;
-                        if (thepre == -1)
-                        {
-                            thepre = 2 * jP - 8;
-                            theForeColor = this.dataGridView2.Rows[0].Cells[thepre].Style.ForeColor;
-
-                            this.dataGridView2.Rows[0].Cells[thepre].Style.BackColor = Color.Black;
-                            this.dataGridView2.Rows[0].Cells[thepre].Style.ForeColor = Color.White;
-                        }
-                        else
-                        {
-                            this.dataGridView2.Rows[0].Cells[thepre].Style.BackColor = Color.FromArgb(217, 217, 217);
-                            this.dataGridView2.Rows[0].Cells[thepre].Style.ForeColor = theForeColor;
-
-                            thepre = 2 * jP - 8;
-                            theForeColor = this.dataGridView2.Rows[0].Cells[thepre].Style.ForeColor;
-
-                            this.dataGridView2.Rows[0].Cells[thepre].Style.BackColor = Color.Black;
-                            this.dataGridView2.Rows[0].Cells[thepre].Style.ForeColor = Color.White;
-                        }
-                    }
+                    this.dataGridView2.Rows[0].Cells[j].Value = jj;
                 }
             }
             JjCheck(jP); //显示击键
-            //this.dataGridView2.Rows[0].Cells[(jP - 4) * 2 + 1].Selected = true;
         }
-        //表格模式判断八位是否
-        private string check10(string sou)
-        {
-            if (sou.Length < 10)
-            {
-                for (int i = sou.Length; i <= 10; i++)
-                {
-                    sou += " ";
-                }
-            }
-            return sou;
-        }
-        //各项属性(待建)
+
+        //各项属性
         private string 回改量
         {
             get
@@ -2898,26 +2912,20 @@ namespace WindowsFormsApplication2
         {
             try
             {
-                int g = 0;
-                string lbm = this.labelBM.Text;
-                if (!string.IsNullOrEmpty(lbm) && lbm != "-")
-                {
-                    g = int.Parse(lbm);
-                }
-
+                int g = int.Parse((sender as Label).Text);
                 if (g > 0)
                 {
-                    this.labelBM.ForeColor = Color.IndianRed;
+                    this.labelBM.ForeColor = GetTranColor(Theme.SecondFC, 75);
                 }
                 else
                 {
-                    this.labelBM.ForeColor = Color.FromArgb(63, 63, 63);
+                    this.labelBM.ForeColor = Theme.SecondFC;
                 }
             }
             catch
             {
                 this.labelBM.Text = "0";
-                this.labelBM.ForeColor = Color.FromArgb(63, 63, 63);
+                this.labelBM.ForeColor = Theme.SecondFC;
             }
         }
 
@@ -2928,17 +2936,17 @@ namespace WindowsFormsApplication2
                 int g = int.Parse((sender as Label).Text);
                 if (g > 0)
                 {
-                    (sender as Label).ForeColor = Color.DarkRed;
+                    (sender as Label).ForeColor = GetTranColor(Theme.SecondFC, 75);
                 }
                 else
                 {
-                    (sender as Label).ForeColor = Color.FromArgb(191, 191, 191);
+                    (sender as Label).ForeColor = Theme.SecondFC;
                 }
             }
             catch
             {
                 (sender as Label).Text = "0";
-                (sender as Label).ForeColor = Color.FromArgb(191, 191, 191);
+                (sender as Label).ForeColor = Theme.SecondFC;
             }
         }
 
@@ -3046,7 +3054,9 @@ namespace WindowsFormsApplication2
                 Glob.TextHg++;
                 //回改地点
                 if (!Glob.TextHgPlace.Contains(this.textBoxEx1.TextLength))
+                {
                     Glob.TextHgPlace.Add(this.textBoxEx1.TextLength);
+                }
 
                 Glob.TextMcc += Glob.TextMc; //在此回退的情况 键准处理
                 labelhgstatus.Text = Glob.TextHg.ToString();//回改
@@ -3545,12 +3555,12 @@ namespace WindowsFormsApplication2
         {
             if (LblTimeFlash)
             {
-                labelTimeFlys.ForeColor = Color.IndianRed;
+                labelTimeFlys.ForeColor = GetReverseColor(Theme.SecondBG);
                 LblTimeFlash = false;
             }
             else
             {
-                labelTimeFlys.ForeColor = Color.FromArgb(244, 244, 244);
+                labelTimeFlys.ForeColor = GetTranColor(Theme.SecondFC, 50);
                 LblTimeFlash = true;
             }
         }
@@ -3562,7 +3572,7 @@ namespace WindowsFormsApplication2
         {
             timerLblTime.Stop();
             LblTimeFlash = false;
-            labelTimeFlys.ForeColor = Color.Black;
+            labelTimeFlys.ForeColor = Theme.SecondFC;
             isPause = false;
             this.Text = Glob.Form;
         }
@@ -4488,15 +4498,16 @@ namespace WindowsFormsApplication2
                     {
                         int splitLineWidth = (bmp.Width - bmp.Height) * 2 / 5; //字起点
                         int splitLineWidth2 = (bmp.Width - splitLineWidth - bmp.Height) * 3 / 5;
-                        var solidBrush = new SolidBrush(Color.FromArgb(99, 91, 91));
+                        var solidBrush = new SolidBrush(Theme.SecondFC);
                         var ziFont = new Font("宋体", 9f);
                         var BasePen = new Pen(Theme.ThemeBG);
                         g.DrawLine(BasePen, bmp.Height + 3, 0, bmp.Height + 3, bmp.Height);
                         g.DrawLine(BasePen, splitLineWidth + bmp.Height, 0, splitLineWidth + bmp.Height, bmp.Height);
                         //画重
                         int radius = bmp.Height - 2;
-                        g.FillPie(new SolidBrush(this.richTextBox1.GetColor(flag)), 2, 1, radius, radius, -360, 360);
-                        g.FillRectangle(new SolidBrush(this.richTextBox1.GetColor(flag)), 1, 1, bmp.Height + 1, bmp.Height - 2);
+                        var fillBrush = new SolidBrush(this.richTextBox1.GetColor(flag));
+                        g.FillPie(fillBrush, 2, 1, radius, radius, -360, 360);
+                        g.FillRectangle(fillBrush, 1, 1, bmp.Height + 1, bmp.Height - 2);
                         //画字
                         SizeF ziSizeF = g.MeasureString(zi, ziFont);
                         g.DrawString(zi, ziFont, solidBrush, splitLineWidth / 2 - ziSizeF.Width / 2 + bmp.Height + 2,
@@ -4504,10 +4515,6 @@ namespace WindowsFormsApplication2
                         //画编码
                         var bmFont = new Font("宋体", 9f);
                         SizeF bmSizeF = g.MeasureString(bm, bmFont);
-                        if (flag != 0)
-                        {
-                            solidBrush = new SolidBrush(Color.DarkBlue);
-                        }
                         g.DrawString(bm, bmFont, solidBrush,
                                      splitLineWidth2 / 2 - bmSizeF.Width / 2 + bmp.Height + splitLineWidth + 3,
                                      bmp.Height / 2 - bmSizeF.Height / 2 + 1);
@@ -5300,20 +5307,27 @@ namespace WindowsFormsApplication2
         {
             if (Glob.FWords.Count != 0)
             {
+                if (e.Button == MouseButtons.Left)
+                { // 左键向下
+                    Glob.FWordsSkip++;
+                    if (Glob.FWordsSkip >= Glob.FWords.Count)
+                    {
+                        Glob.FWordsSkip = 0;
+                    }
+                }
+                else if (e.Button == MouseButtons.Right)
+                { // 右键向上
+                    Glob.FWordsSkip--;
+                    if (Glob.FWordsSkip < 0)
+                    {
+                        Glob.FWordsSkip = Glob.FWords.Count - 1;
+                    }
+                }
+
                 this.richTextBox1.SelectionStart = (int)Glob.FWords[Glob.FWordsSkip];
                 this.richTextBox1.SelectionLength = 1;
                 this.richTextBox1.ScrollToCaret();
                 this.lbl错字显示.Text = this.richTextBox1.SelectedText;
-                if (e.Button == System.Windows.Forms.MouseButtons.Left) //左键向下
-                {
-                    Glob.FWordsSkip++;
-                    if (Glob.FWordsSkip >= Glob.FWords.Count) Glob.FWordsSkip = 0;
-                } //右键向上
-                else
-                {
-                    Glob.FWordsSkip--;
-                    if (Glob.FWordsSkip < 0) Glob.FWordsSkip = (int)Glob.FWords.Count - 1;
-                }
             }
         }
 
@@ -5322,21 +5336,28 @@ namespace WindowsFormsApplication2
         {
             if (Glob.TextHgPlace.Count > 0)
             {
+                if (e.Button == MouseButtons.Left)
+                {
+                    Glob.TextHgPlace_Skip++;
+                    if (Glob.TextHgPlace_Skip >= Glob.TextHgPlace.Count)
+                    {
+                        Glob.TextHgPlace_Skip = 0;
+                    }
+                }
+                else if (e.Button == MouseButtons.Right)
+                {
+                    Glob.TextHgPlace_Skip--;
+                    if (Glob.TextHgPlace_Skip < 0)
+                    {
+                        Glob.TextHgPlace_Skip = Glob.TextHgPlace.Count - 1;
+                    }
+                }
+
                 int now = (int)Glob.TextHgPlace[Glob.TextHgPlace_Skip];
-                this.richTextBox1.SelectionStart = now;
+                this.richTextBox1.SelectionStart = now - 1;
                 this.richTextBox1.SelectionLength = 1;
                 this.richTextBox1.ScrollToCaret();
                 this.lbl回改显示.Text = this.richTextBox1.SelectedText;
-                if (e.Button == System.Windows.Forms.MouseButtons.Left)
-                {
-                    Glob.TextHgPlace_Skip++;
-                    if (Glob.TextHgPlace_Skip >= Glob.TextHgPlace.Count) Glob.TextHgPlace_Skip = 0;
-                }
-                else
-                {
-                    Glob.TextHgPlace_Skip--;
-                    if (Glob.TextHgPlace_Skip < 0) Glob.TextHgPlace_Skip = (int)Glob.TextHgPlace.Count - 1;
-                }
             }
         }
         #endregion

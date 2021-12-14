@@ -53,8 +53,10 @@ namespace WindowsFormsApplication2
             this.newButton3.Enabled = !Theme.IsBackBmp;
             this.lblPicShow.BackColor = Theme.ThemeBG; // 纯色背景
 
-            this.lblThemeBGShow.BackColor = Theme.ThemeColorBG; // 背景色
-            this.lblThemeFCShow.BackColor = Theme.ThemeColorFC; // 前景色
+            this.lblThemeBGShow.BackColor = Theme.ThemeColorBG; // 主要背景色
+            this.lblThemeFCShow.BackColor = Theme.ThemeColorFC; // 主要前景色
+            this.SecondBGLabel.BackColor = Theme.SecondBG; // 次要背景色
+            this.SecondFCLabel.BackColor = Theme.SecondFC; // 次要前景色
 
             // 载入字体
             fo1 = Theme.Font_1;
@@ -257,7 +259,7 @@ namespace WindowsFormsApplication2
         }
 
         /// <summary>
-        /// 主题背景色
+        /// 主要背景色
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -273,7 +275,7 @@ namespace WindowsFormsApplication2
         }
 
         /// <summary>
-        /// 主题前景色
+        /// 主要前景色
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -285,6 +287,26 @@ namespace WindowsFormsApplication2
                 this.lblThemeFCShow.BackColor = this.colorDialog1.Color;
                 ReView();
             }
+        }
+
+        private void newButton37_Click(object sender, EventArgs e)
+        {
+            this.colorDialog1.Color = Theme.SecondBG;
+            if (this.colorDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                this.SecondBGLabel.BackColor = this.colorDialog1.Color;
+                ReView();
+            }
+        }
+
+        private void newButton38_Click(object sender, EventArgs e)
+        {
+            this.colorDialog1.Color = Theme.SecondFC;
+            if (this.colorDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                this.SecondFCLabel.BackColor = this.colorDialog1.Color;
+            }
+            ReView();
         }
 
         private void newButton5_Click(object sender, EventArgs e)
@@ -441,16 +463,21 @@ namespace WindowsFormsApplication2
             ini.IniWriteValue("主题", "纯色", this.lblPicShow.BackColor.ToArgb().ToString());
             ini.IniWriteValue("主题", "主题颜色", this.lblThemeBGShow.BackColor.ToArgb().ToString());
             ini.IniWriteValue("主题", "字体颜色", this.lblThemeFCShow.BackColor.ToArgb().ToString());
+            ini.IniWriteValue("主题", "次要背景", this.SecondBGLabel.BackColor.ToArgb().ToString());
+            ini.IniWriteValue("主题", "次要前景", this.SecondFCLabel.BackColor.ToArgb().ToString());
             Theme.IsBackBmp = this.SwitchB1.Checked;
             Theme.ThemeBackBmp = this.lblBGPath.Text;
             Theme.ThemeBG = this.lblPicShow.BackColor;
             Theme.ThemeColorBG = this.lblThemeBGShow.BackColor;
             Theme.ThemeColorFC = this.lblThemeFCShow.BackColor;
+            Theme.SecondBG = this.SecondBGLabel.BackColor;
+            Theme.SecondFC = this.SecondFCLabel.BackColor;
 
             //* 颜色设置
             ini.IniWriteValue("外观", "对照区颜色", this.R1BackLabel.BackColor.ToArgb().ToString());
             Theme.R1Back = this.R1BackLabel.BackColor;
             frm.richTextBox1.BackColor = Theme.R1Back;
+            frm.picMap.BackColor = Theme.R1Back;
             ini.IniWriteValue("外观", "跟打区颜色", this.R2BackLabel.BackColor.ToArgb().ToString());
             Theme.R2Back = this.R2BackLabel.BackColor;
             frm.textBoxEx1.BackColor = Theme.R2Back;
@@ -520,6 +547,8 @@ namespace WindowsFormsApplication2
                 ini.IniWriteValue("主题", "纯色", this.lblPicShow.BackColor.ToArgb().ToString());
                 ini.IniWriteValue("主题", "主题颜色", this.lblThemeBGShow.BackColor.ToArgb().ToString());
                 ini.IniWriteValue("主题", "字体颜色", this.lblThemeFCShow.BackColor.ToArgb().ToString());
+                ini.IniWriteValue("主题", "次要背景", this.SecondBGLabel.BackColor.ToArgb().ToString());
+                ini.IniWriteValue("主题", "次要前景", this.SecondFCLabel.BackColor.ToArgb().ToString());
                 //* 颜色设置
                 ini.IniWriteValue("外观", "对照区颜色", this.R1BackLabel.BackColor.ToArgb().ToString());
                 ini.IniWriteValue("外观", "跟打区颜色", this.R2BackLabel.BackColor.ToArgb().ToString());
@@ -593,6 +622,8 @@ namespace WindowsFormsApplication2
 
                 this.lblThemeBGShow.BackColor = Color.FromArgb(int.Parse(themeConf.IniReadValue("主题", "主题颜色", "-13089719"))); // #384449
                 this.lblThemeFCShow.BackColor = Color.FromArgb(int.Parse(themeConf.IniReadValue("主题", "字体颜色", "-1"))); // #FFFFFF
+                this.SecondBGLabel.BackColor = Color.FromArgb(int.Parse(themeConf.IniReadValue("主题", "次要背景", "-6908266"))); // #969696
+                this.SecondFCLabel.BackColor = Color.FromArgb(int.Parse(themeConf.IniReadValue("主题", "次要前景", "-16777216"))); // #000000
 
                 // 载入字体
                 FontConverter fc = new FontConverter();
@@ -646,7 +677,7 @@ namespace WindowsFormsApplication2
                 path = "纯色";
             }
 
-            frm.LoadTheme(path, Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.ThemeBG);
+            frm.LoadTheme(path, Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.SecondBG, Theme.SecondFC, Theme.ThemeBG);
         }
 
         /// <summary>
@@ -668,7 +699,7 @@ namespace WindowsFormsApplication2
                 path = "纯色";
             }
 
-            frm.LoadTheme(path, this.lblThemeBGShow.BackColor, this.lblThemeFCShow.BackColor, this.lblPicShow.BackColor);
+            frm.LoadTheme(path, this.lblThemeBGShow.BackColor, this.lblThemeFCShow.BackColor, this.SecondBGLabel.BackColor, this.SecondFCLabel.BackColor, this.lblPicShow.BackColor);
         }
         #endregion
 
@@ -694,17 +725,29 @@ namespace WindowsFormsApplication2
             }
         }
 
-        // 默认背景色
+        // 默认主要背景色
         private void newButton2_Click(object sender, EventArgs e)
         {
             this.lblThemeBGShow.BackColor = Color.FromArgb(56, 68, 73);
             ReView();
         }
 
-        // 默认前景色
+        // 默认主要前景色
         private void newButton1_Click(object sender, EventArgs e)
         {
             this.lblThemeFCShow.BackColor = Color.White;
+            ReView();
+        }
+
+        private void newButton39_Click(object sender, EventArgs e)
+        {
+            this.SecondBGLabel.BackColor = Color.FromArgb(150, 150, 150);
+            ReView();
+        }
+
+        private void newButton40_Click(object sender, EventArgs e)
+        {
+            this.SecondFCLabel.BackColor = Color.Black;
             ReView();
         }
 

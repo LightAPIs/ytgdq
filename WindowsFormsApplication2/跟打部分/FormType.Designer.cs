@@ -569,7 +569,7 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -1030,7 +1030,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox1.Size = new System.Drawing.Size(688, 116);
+            this.richTextBox1.Size = new System.Drawing.Size(688, 119);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.TabStop = false;
             this.richTextBox1.Text = "当你还在被世间诸多繁杂所束缚，心神不宁，不妨静下心来坐在电脑前跟打上一段文章。";
@@ -1104,7 +1104,7 @@
             this.textBoxEx1.Name = "textBoxEx1";
             this.textBoxEx1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxEx1.ShortcutsEnabled = false;
-            this.textBoxEx1.Size = new System.Drawing.Size(688, 72);
+            this.textBoxEx1.Size = new System.Drawing.Size(688, 69);
             this.textBoxEx1.TabIndex = 0;
             this.toolTip1.SetToolTip(this.textBoxEx1, "跟打区");
             this.textBoxEx1.TextChanged += new System.EventHandler(this.textBoxEx1_TextChanged);
@@ -1177,7 +1177,7 @@
             this.labelhgstatus.TabIndex = 9;
             this.labelhgstatus.Text = "0";
             this.labelhgstatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.labelhgstatus, "回改显示(绿字加下划线)\r\n左键点击：向下寻找回改字位置\r\n右键点击：向上寻找回改字位置");
+            this.toolTip1.SetToolTip(this.labelhgstatus, "回改字数显示\r\n左键点击：向下寻找回改字位置\r\n右键点击：向上寻找回改字位置");
             this.labelhgstatus.TextChanged += new System.EventHandler(this.labelhgstatus_TextChanged);
             this.labelhgstatus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.labelhgstatus_MouseClick);
             // 
@@ -1231,7 +1231,7 @@
             this.labelBM.TabIndex = 12;
             this.labelBM.Text = "0";
             this.labelBM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.labelBM, "错误字数显示(红底字)\r\n左键点击：向下寻找错误字位置\r\n右键点击：向上寻找错误字位置");
+            this.toolTip1.SetToolTip(this.labelBM, "错误字数显示\r\n左键点击：向下寻找错误字位置\r\n右键点击：向上寻找错误字位置");
             this.labelBM.TextChanged += new System.EventHandler(this.labelBM_TextChanged);
             this.labelBM.MouseClick += new System.Windows.Forms.MouseEventHandler(this.labelBM_MouseClick);
             // 
@@ -1511,7 +1511,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel2MinSize = 50;
             this.splitContainer1.Size = new System.Drawing.Size(688, 282);
-            this.splitContainer1.SplitterDistance = 116;
+            this.splitContainer1.SplitterDistance = 119;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 3;
             this.splitContainer1.TabStop = false;
@@ -1533,7 +1533,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer2.Panel2MinSize = 0;
-            this.splitContainer2.Size = new System.Drawing.Size(688, 163);
+            this.splitContainer2.Size = new System.Drawing.Size(688, 160);
             this.splitContainer2.SplitterIncrement = 2;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 5;
@@ -1556,8 +1556,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer3.Size = new System.Drawing.Size(688, 163);
-            this.splitContainer3.SplitterDistance = 104;
+            this.splitContainer3.Size = new System.Drawing.Size(688, 160);
+            this.splitContainer3.SplitterDistance = 101;
             this.splitContainer3.TabIndex = 0;
             this.splitContainer3.TabStop = false;
             // 
@@ -2747,7 +2747,6 @@
         private System.Windows.Forms.Label labelTimeFlys;
         private System.Windows.Forms.Label labelhgstatus;
         private System.Windows.Forms.Label toolStripStatusLabelStatus;
-        private System.Windows.Forms.PictureBox picMap;
         private System.Windows.Forms.Label labelHaveTyping;
         private System.Windows.Forms.Label lblNowTime_;
         private System.Windows.Forms.PictureBox picBar;
@@ -2822,6 +2821,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 打词率;
         private System.Windows.Forms.DataGridViewTextBoxColumn 用时;
         private System.Windows.Forms.DataGridViewTextBoxColumn 标题;
+        public System.Windows.Forms.PictureBox picMap;
     }
 }
 

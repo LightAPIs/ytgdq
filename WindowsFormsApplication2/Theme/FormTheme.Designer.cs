@@ -74,6 +74,14 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.SecondBGLabel = new System.Windows.Forms.Label();
+            this.SecondFCLabel = new System.Windows.Forms.Label();
+            this.newButton40 = new WindowsFormsApplication2.NewButton();
+            this.newButton39 = new WindowsFormsApplication2.NewButton();
+            this.newButton38 = new WindowsFormsApplication2.NewButton();
+            this.newButton37 = new WindowsFormsApplication2.NewButton();
             this.newButton36 = new WindowsFormsApplication2.NewButton();
             this.newButton35 = new WindowsFormsApplication2.NewButton();
             this.newButton34 = new WindowsFormsApplication2.NewButton();
@@ -141,6 +149,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.newButton40);
+            this.panel1.Controls.Add(this.newButton39);
+            this.panel1.Controls.Add(this.newButton38);
+            this.panel1.Controls.Add(this.newButton37);
+            this.panel1.Controls.Add(this.SecondFCLabel);
+            this.panel1.Controls.Add(this.SecondBGLabel);
+            this.panel1.Controls.Add(this.label23);
+            this.panel1.Controls.Add(this.label22);
             this.panel1.Controls.Add(this.newButton36);
             this.panel1.Controls.Add(this.newButton35);
             this.panel1.Controls.Add(this.TestMarkColorLabel);
@@ -223,7 +239,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(11, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(487, 382);
+            this.panel1.Size = new System.Drawing.Size(487, 420);
             this.panel1.TabIndex = 1;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
@@ -233,7 +249,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TestMarkColorLabel.BackColor = System.Drawing.Color.LightGray;
             this.TestMarkColorLabel.ForeColor = System.Drawing.Color.Black;
-            this.TestMarkColorLabel.Location = new System.Drawing.Point(200, 361);
+            this.TestMarkColorLabel.Location = new System.Drawing.Point(200, 399);
             this.TestMarkColorLabel.Name = "TestMarkColorLabel";
             this.TestMarkColorLabel.Size = new System.Drawing.Size(188, 16);
             this.TestMarkColorLabel.TabIndex = 80;
@@ -246,7 +262,7 @@
             this.Words3ColorLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Words3ColorLabel.BackColor = System.Drawing.Color.DeepPink;
-            this.Words3ColorLabel.Location = new System.Drawing.Point(200, 342);
+            this.Words3ColorLabel.Location = new System.Drawing.Point(200, 380);
             this.Words3ColorLabel.Name = "Words3ColorLabel";
             this.Words3ColorLabel.Size = new System.Drawing.Size(188, 16);
             this.Words3ColorLabel.TabIndex = 79;
@@ -257,7 +273,7 @@
             this.Words2ColorLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Words2ColorLabel.BackColor = System.Drawing.Color.Purple;
-            this.Words2ColorLabel.Location = new System.Drawing.Point(200, 323);
+            this.Words2ColorLabel.Location = new System.Drawing.Point(200, 361);
             this.Words2ColorLabel.Name = "Words2ColorLabel";
             this.Words2ColorLabel.Size = new System.Drawing.Size(188, 16);
             this.Words2ColorLabel.TabIndex = 78;
@@ -268,7 +284,7 @@
             this.Words1ColorLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Words1ColorLabel.BackColor = System.Drawing.Color.Red;
-            this.Words1ColorLabel.Location = new System.Drawing.Point(200, 304);
+            this.Words1ColorLabel.Location = new System.Drawing.Point(200, 342);
             this.Words1ColorLabel.Name = "Words1ColorLabel";
             this.Words1ColorLabel.Size = new System.Drawing.Size(188, 16);
             this.Words1ColorLabel.TabIndex = 77;
@@ -279,7 +295,7 @@
             this.Words0ColorLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Words0ColorLabel.BackColor = System.Drawing.Color.Blue;
-            this.Words0ColorLabel.Location = new System.Drawing.Point(200, 285);
+            this.Words0ColorLabel.Location = new System.Drawing.Point(200, 323);
             this.Words0ColorLabel.Name = "Words0ColorLabel";
             this.Words0ColorLabel.Size = new System.Drawing.Size(188, 16);
             this.Words0ColorLabel.TabIndex = 76;
@@ -290,7 +306,7 @@
             this.BackChangeColorLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.BackChangeColorLabel.BackColor = System.Drawing.Color.GreenYellow;
-            this.BackChangeColorLabel.Location = new System.Drawing.Point(200, 247);
+            this.BackChangeColorLabel.Location = new System.Drawing.Point(200, 285);
             this.BackChangeColorLabel.Name = "BackChangeColorLabel";
             this.BackChangeColorLabel.Size = new System.Drawing.Size(188, 16);
             this.BackChangeColorLabel.TabIndex = 75;
@@ -302,7 +318,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FalseBGColorLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(106)))), ((int)(((byte)(106)))));
             this.FalseBGColorLabel.ForeColor = System.Drawing.Color.Black;
-            this.FalseBGColorLabel.Location = new System.Drawing.Point(200, 228);
+            this.FalseBGColorLabel.Location = new System.Drawing.Point(200, 266);
             this.FalseBGColorLabel.Name = "FalseBGColorLabel";
             this.FalseBGColorLabel.Size = new System.Drawing.Size(188, 16);
             this.FalseBGColorLabel.TabIndex = 74;
@@ -316,7 +332,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RightBGColorLabel.BackColor = System.Drawing.Color.Gray;
             this.RightBGColorLabel.ForeColor = System.Drawing.Color.Black;
-            this.RightBGColorLabel.Location = new System.Drawing.Point(200, 209);
+            this.RightBGColorLabel.Location = new System.Drawing.Point(200, 247);
             this.RightBGColorLabel.Name = "RightBGColorLabel";
             this.RightBGColorLabel.Size = new System.Drawing.Size(188, 16);
             this.RightBGColorLabel.TabIndex = 73;
@@ -330,7 +346,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Font2Label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Font2Label.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Font2Label.Location = new System.Drawing.Point(200, 190);
+            this.Font2Label.Location = new System.Drawing.Point(200, 228);
             this.Font2Label.Name = "Font2Label";
             this.Font2Label.Size = new System.Drawing.Size(188, 16);
             this.Font2Label.TabIndex = 72;
@@ -343,7 +359,7 @@
             this.R2ColorLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.R2ColorLabel.BackColor = System.Drawing.Color.Black;
-            this.R2ColorLabel.Location = new System.Drawing.Point(200, 171);
+            this.R2ColorLabel.Location = new System.Drawing.Point(200, 209);
             this.R2ColorLabel.Name = "R2ColorLabel";
             this.R2ColorLabel.Size = new System.Drawing.Size(188, 16);
             this.R2ColorLabel.TabIndex = 71;
@@ -355,7 +371,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.R2BackLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(247)))), ((int)(((byte)(252)))));
             this.R2BackLabel.ForeColor = System.Drawing.Color.Black;
-            this.R2BackLabel.Location = new System.Drawing.Point(200, 152);
+            this.R2BackLabel.Location = new System.Drawing.Point(200, 190);
             this.R2BackLabel.Name = "R2BackLabel";
             this.R2BackLabel.Size = new System.Drawing.Size(188, 16);
             this.R2BackLabel.TabIndex = 70;
@@ -369,7 +385,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Font1Label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Font1Label.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Font1Label.Location = new System.Drawing.Point(200, 133);
+            this.Font1Label.Location = new System.Drawing.Point(200, 171);
             this.Font1Label.Name = "Font1Label";
             this.Font1Label.Size = new System.Drawing.Size(188, 16);
             this.Font1Label.TabIndex = 69;
@@ -382,7 +398,7 @@
             this.R1ColorLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.R1ColorLabel.BackColor = System.Drawing.Color.Black;
-            this.R1ColorLabel.Location = new System.Drawing.Point(200, 114);
+            this.R1ColorLabel.Location = new System.Drawing.Point(200, 152);
             this.R1ColorLabel.Name = "R1ColorLabel";
             this.R1ColorLabel.Size = new System.Drawing.Size(188, 16);
             this.R1ColorLabel.TabIndex = 68;
@@ -394,7 +410,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.R1BackLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(247)))), ((int)(((byte)(252)))));
             this.R1BackLabel.ForeColor = System.Drawing.Color.Black;
-            this.R1BackLabel.Location = new System.Drawing.Point(200, 95);
+            this.R1BackLabel.Location = new System.Drawing.Point(200, 133);
             this.R1BackLabel.Name = "R1BackLabel";
             this.R1BackLabel.Size = new System.Drawing.Size(188, 16);
             this.R1BackLabel.TabIndex = 67;
@@ -408,7 +424,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TimeLongColorLabel.BackColor = System.Drawing.Color.YellowGreen;
             this.TimeLongColorLabel.ForeColor = System.Drawing.Color.Black;
-            this.TimeLongColorLabel.Location = new System.Drawing.Point(200, 266);
+            this.TimeLongColorLabel.Location = new System.Drawing.Point(200, 304);
             this.TimeLongColorLabel.Name = "TimeLongColorLabel";
             this.TimeLongColorLabel.Size = new System.Drawing.Size(188, 16);
             this.TimeLongColorLabel.TabIndex = 36;
@@ -419,7 +435,7 @@
             // label21
             // 
             this.label21.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label21.Location = new System.Drawing.Point(6, 361);
+            this.label21.Location = new System.Drawing.Point(6, 399);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(188, 17);
             this.label21.TabIndex = 35;
@@ -429,7 +445,7 @@
             // label20
             // 
             this.label20.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label20.Location = new System.Drawing.Point(6, 342);
+            this.label20.Location = new System.Drawing.Point(6, 380);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(188, 17);
             this.label20.TabIndex = 34;
@@ -439,7 +455,7 @@
             // label19
             // 
             this.label19.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label19.Location = new System.Drawing.Point(6, 323);
+            this.label19.Location = new System.Drawing.Point(6, 361);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(188, 17);
             this.label19.TabIndex = 33;
@@ -449,7 +465,7 @@
             // label18
             // 
             this.label18.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label18.Location = new System.Drawing.Point(6, 304);
+            this.label18.Location = new System.Drawing.Point(6, 342);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(188, 17);
             this.label18.TabIndex = 32;
@@ -459,7 +475,7 @@
             // label17
             // 
             this.label17.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label17.Location = new System.Drawing.Point(6, 285);
+            this.label17.Location = new System.Drawing.Point(6, 323);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(188, 17);
             this.label17.TabIndex = 31;
@@ -469,7 +485,7 @@
             // label16
             // 
             this.label16.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label16.Location = new System.Drawing.Point(6, 266);
+            this.label16.Location = new System.Drawing.Point(6, 304);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(188, 17);
             this.label16.TabIndex = 30;
@@ -479,7 +495,7 @@
             // label15
             // 
             this.label15.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label15.Location = new System.Drawing.Point(6, 247);
+            this.label15.Location = new System.Drawing.Point(6, 285);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(188, 17);
             this.label15.TabIndex = 29;
@@ -489,7 +505,7 @@
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label14.Location = new System.Drawing.Point(6, 228);
+            this.label14.Location = new System.Drawing.Point(6, 266);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(188, 17);
             this.label14.TabIndex = 28;
@@ -499,7 +515,7 @@
             // label13
             // 
             this.label13.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label13.Location = new System.Drawing.Point(6, 209);
+            this.label13.Location = new System.Drawing.Point(6, 247);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(188, 17);
             this.label13.TabIndex = 27;
@@ -509,7 +525,7 @@
             // label12
             // 
             this.label12.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label12.Location = new System.Drawing.Point(6, 190);
+            this.label12.Location = new System.Drawing.Point(6, 228);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(188, 17);
             this.label12.TabIndex = 26;
@@ -519,7 +535,7 @@
             // label11
             // 
             this.label11.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label11.Location = new System.Drawing.Point(6, 171);
+            this.label11.Location = new System.Drawing.Point(6, 209);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(188, 17);
             this.label11.TabIndex = 25;
@@ -529,7 +545,7 @@
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.Location = new System.Drawing.Point(6, 152);
+            this.label10.Location = new System.Drawing.Point(6, 190);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(188, 17);
             this.label10.TabIndex = 24;
@@ -539,7 +555,7 @@
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label9.Location = new System.Drawing.Point(6, 133);
+            this.label9.Location = new System.Drawing.Point(6, 171);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(188, 17);
             this.label9.TabIndex = 23;
@@ -549,7 +565,7 @@
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.Location = new System.Drawing.Point(6, 114);
+            this.label8.Location = new System.Drawing.Point(6, 152);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(188, 17);
             this.label8.TabIndex = 22;
@@ -559,7 +575,7 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(6, 95);
+            this.label7.Location = new System.Drawing.Point(6, 133);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(188, 17);
             this.label7.TabIndex = 21;
@@ -573,7 +589,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(188, 17);
             this.label6.TabIndex = 19;
-            this.label6.Text = "主界面前景色：";
+            this.label6.Text = "主要前景色：";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
@@ -583,7 +599,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(188, 17);
             this.label5.TabIndex = 18;
-            this.label5.Text = "主界面背景色：";
+            this.label5.Text = "主要背景色：";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
@@ -593,7 +609,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(188, 17);
             this.label4.TabIndex = 17;
-            this.label4.Text = "主题模式：";
+            this.label4.Text = "主题背景模式：";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblThemeFCShow
@@ -616,7 +632,7 @@
             this.lblThemeBGShow.Name = "lblThemeBGShow";
             this.lblThemeBGShow.Size = new System.Drawing.Size(188, 16);
             this.lblThemeBGShow.TabIndex = 7;
-            this.toolTip1.SetToolTip(this.lblThemeBGShow, "主界面的背景颜色");
+            this.toolTip1.SetToolTip(this.lblThemeBGShow, "界面的主要背景颜色");
             // 
             // label3
             // 
@@ -673,6 +689,114 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "主题设置";
             // 
+            // label22
+            // 
+            this.label22.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label22.Location = new System.Drawing.Point(6, 95);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(188, 17);
+            this.label22.TabIndex = 83;
+            this.label22.Text = "次要背景色：";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label23
+            // 
+            this.label23.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label23.Location = new System.Drawing.Point(6, 114);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(188, 17);
+            this.label23.TabIndex = 84;
+            this.label23.Text = "次要前景色：";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // SecondBGLabel
+            // 
+            this.SecondBGLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SecondBGLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.SecondBGLabel.Location = new System.Drawing.Point(200, 95);
+            this.SecondBGLabel.Name = "SecondBGLabel";
+            this.SecondBGLabel.Size = new System.Drawing.Size(188, 16);
+            this.SecondBGLabel.TabIndex = 85;
+            this.toolTip1.SetToolTip(this.SecondBGLabel, "界面的次要背景颜色");
+            // 
+            // SecondFCLabel
+            // 
+            this.SecondFCLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SecondFCLabel.BackColor = System.Drawing.Color.Black;
+            this.SecondFCLabel.Location = new System.Drawing.Point(200, 114);
+            this.SecondFCLabel.Name = "SecondFCLabel";
+            this.SecondFCLabel.Size = new System.Drawing.Size(188, 16);
+            this.SecondFCLabel.TabIndex = 86;
+            this.toolTip1.SetToolTip(this.SecondFCLabel, "影响包含状态栏文字等程序字体的颜色");
+            // 
+            // newButton40
+            // 
+            this.newButton40.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.newButton40.BackColor = System.Drawing.Color.DimGray;
+            this.newButton40.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.newButton40.Location = new System.Drawing.Point(442, 114);
+            this.newButton40.Name = "newButton40";
+            this.newButton40.Size = new System.Drawing.Size(40, 16);
+            this.newButton40.SS = System.Drawing.ContentAlignment.MiddleRight;
+            this.newButton40.TabIndex = 90;
+            this.newButton40.Text = "默认";
+            this.newButton40.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.newButton40.进入背景色 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.newButton40.默认背景色 = System.Drawing.Color.DimGray;
+            this.newButton40.Click += new System.EventHandler(this.newButton40_Click);
+            // 
+            // newButton39
+            // 
+            this.newButton39.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.newButton39.BackColor = System.Drawing.Color.DimGray;
+            this.newButton39.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.newButton39.Location = new System.Drawing.Point(442, 95);
+            this.newButton39.Name = "newButton39";
+            this.newButton39.Size = new System.Drawing.Size(40, 16);
+            this.newButton39.SS = System.Drawing.ContentAlignment.MiddleRight;
+            this.newButton39.TabIndex = 89;
+            this.newButton39.Text = "默认";
+            this.newButton39.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.newButton39.进入背景色 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.newButton39.默认背景色 = System.Drawing.Color.DimGray;
+            this.newButton39.Click += new System.EventHandler(this.newButton39_Click);
+            // 
+            // newButton38
+            // 
+            this.newButton38.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.newButton38.BackColor = System.Drawing.Color.DimGray;
+            this.newButton38.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.newButton38.Location = new System.Drawing.Point(396, 114);
+            this.newButton38.Name = "newButton38";
+            this.newButton38.Size = new System.Drawing.Size(40, 16);
+            this.newButton38.SS = System.Drawing.ContentAlignment.MiddleRight;
+            this.newButton38.TabIndex = 88;
+            this.newButton38.Text = "选择";
+            this.newButton38.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.newButton38, "选择次要前景色\r\n支持预览");
+            this.newButton38.进入背景色 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(199)))), ((int)(((byte)(192)))));
+            this.newButton38.默认背景色 = System.Drawing.Color.Gray;
+            this.newButton38.Click += new System.EventHandler(this.newButton38_Click);
+            // 
+            // newButton37
+            // 
+            this.newButton37.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.newButton37.BackColor = System.Drawing.Color.DimGray;
+            this.newButton37.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.newButton37.Location = new System.Drawing.Point(396, 95);
+            this.newButton37.Name = "newButton37";
+            this.newButton37.Size = new System.Drawing.Size(40, 16);
+            this.newButton37.SS = System.Drawing.ContentAlignment.MiddleRight;
+            this.newButton37.TabIndex = 87;
+            this.newButton37.Text = "选择";
+            this.newButton37.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.newButton37, "选择次要背景色\r\n支持预览");
+            this.newButton37.进入背景色 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(199)))), ((int)(((byte)(192)))));
+            this.newButton37.默认背景色 = System.Drawing.Color.Gray;
+            this.newButton37.Click += new System.EventHandler(this.newButton37_Click);
+            // 
             // newButton36
             // 
             this.newButton36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -712,7 +836,7 @@
             this.newButton34.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton34.BackColor = System.Drawing.Color.DimGray;
             this.newButton34.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton34.Location = new System.Drawing.Point(442, 361);
+            this.newButton34.Location = new System.Drawing.Point(442, 399);
             this.newButton34.Name = "newButton34";
             this.newButton34.Size = new System.Drawing.Size(40, 16);
             this.newButton34.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -728,7 +852,7 @@
             this.newButton33.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton33.BackColor = System.Drawing.Color.DimGray;
             this.newButton33.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton33.Location = new System.Drawing.Point(442, 342);
+            this.newButton33.Location = new System.Drawing.Point(442, 380);
             this.newButton33.Name = "newButton33";
             this.newButton33.Size = new System.Drawing.Size(40, 16);
             this.newButton33.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -744,7 +868,7 @@
             this.newButton32.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton32.BackColor = System.Drawing.Color.DimGray;
             this.newButton32.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton32.Location = new System.Drawing.Point(442, 323);
+            this.newButton32.Location = new System.Drawing.Point(442, 361);
             this.newButton32.Name = "newButton32";
             this.newButton32.Size = new System.Drawing.Size(40, 16);
             this.newButton32.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -760,7 +884,7 @@
             this.newButton31.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton31.BackColor = System.Drawing.Color.DimGray;
             this.newButton31.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton31.Location = new System.Drawing.Point(442, 304);
+            this.newButton31.Location = new System.Drawing.Point(442, 342);
             this.newButton31.Name = "newButton31";
             this.newButton31.Size = new System.Drawing.Size(40, 16);
             this.newButton31.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -776,7 +900,7 @@
             this.newButton30.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton30.BackColor = System.Drawing.Color.DimGray;
             this.newButton30.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton30.Location = new System.Drawing.Point(442, 285);
+            this.newButton30.Location = new System.Drawing.Point(442, 323);
             this.newButton30.Name = "newButton30";
             this.newButton30.Size = new System.Drawing.Size(40, 16);
             this.newButton30.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -792,7 +916,7 @@
             this.newButton29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton29.BackColor = System.Drawing.Color.DimGray;
             this.newButton29.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton29.Location = new System.Drawing.Point(442, 266);
+            this.newButton29.Location = new System.Drawing.Point(442, 304);
             this.newButton29.Name = "newButton29";
             this.newButton29.Size = new System.Drawing.Size(40, 16);
             this.newButton29.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -808,7 +932,7 @@
             this.newButton28.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton28.BackColor = System.Drawing.Color.DimGray;
             this.newButton28.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton28.Location = new System.Drawing.Point(442, 247);
+            this.newButton28.Location = new System.Drawing.Point(442, 285);
             this.newButton28.Name = "newButton28";
             this.newButton28.Size = new System.Drawing.Size(40, 16);
             this.newButton28.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -824,7 +948,7 @@
             this.newButton27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton27.BackColor = System.Drawing.Color.DimGray;
             this.newButton27.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton27.Location = new System.Drawing.Point(442, 228);
+            this.newButton27.Location = new System.Drawing.Point(442, 266);
             this.newButton27.Name = "newButton27";
             this.newButton27.Size = new System.Drawing.Size(40, 16);
             this.newButton27.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -840,7 +964,7 @@
             this.newButton26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton26.BackColor = System.Drawing.Color.DimGray;
             this.newButton26.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton26.Location = new System.Drawing.Point(442, 209);
+            this.newButton26.Location = new System.Drawing.Point(442, 247);
             this.newButton26.Name = "newButton26";
             this.newButton26.Size = new System.Drawing.Size(40, 16);
             this.newButton26.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -856,7 +980,7 @@
             this.newButton25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton25.BackColor = System.Drawing.Color.DimGray;
             this.newButton25.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton25.Location = new System.Drawing.Point(442, 190);
+            this.newButton25.Location = new System.Drawing.Point(442, 228);
             this.newButton25.Name = "newButton25";
             this.newButton25.Size = new System.Drawing.Size(40, 16);
             this.newButton25.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -872,7 +996,7 @@
             this.newButton24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton24.BackColor = System.Drawing.Color.DimGray;
             this.newButton24.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton24.Location = new System.Drawing.Point(442, 171);
+            this.newButton24.Location = new System.Drawing.Point(442, 209);
             this.newButton24.Name = "newButton24";
             this.newButton24.Size = new System.Drawing.Size(40, 16);
             this.newButton24.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -888,7 +1012,7 @@
             this.newButton23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton23.BackColor = System.Drawing.Color.DimGray;
             this.newButton23.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton23.Location = new System.Drawing.Point(442, 152);
+            this.newButton23.Location = new System.Drawing.Point(442, 190);
             this.newButton23.Name = "newButton23";
             this.newButton23.Size = new System.Drawing.Size(40, 16);
             this.newButton23.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -904,7 +1028,7 @@
             this.newButton22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton22.BackColor = System.Drawing.Color.DimGray;
             this.newButton22.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton22.Location = new System.Drawing.Point(442, 133);
+            this.newButton22.Location = new System.Drawing.Point(442, 171);
             this.newButton22.Name = "newButton22";
             this.newButton22.Size = new System.Drawing.Size(40, 16);
             this.newButton22.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -920,7 +1044,7 @@
             this.newButton21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton21.BackColor = System.Drawing.Color.DimGray;
             this.newButton21.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton21.Location = new System.Drawing.Point(442, 114);
+            this.newButton21.Location = new System.Drawing.Point(442, 152);
             this.newButton21.Name = "newButton21";
             this.newButton21.Size = new System.Drawing.Size(40, 16);
             this.newButton21.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -936,7 +1060,7 @@
             this.newButton20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton20.BackColor = System.Drawing.Color.DimGray;
             this.newButton20.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton20.Location = new System.Drawing.Point(442, 95);
+            this.newButton20.Location = new System.Drawing.Point(442, 133);
             this.newButton20.Name = "newButton20";
             this.newButton20.Size = new System.Drawing.Size(40, 16);
             this.newButton20.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -952,7 +1076,7 @@
             this.newButton19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton19.BackColor = System.Drawing.Color.DimGray;
             this.newButton19.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton19.Location = new System.Drawing.Point(396, 361);
+            this.newButton19.Location = new System.Drawing.Point(396, 399);
             this.newButton19.Name = "newButton19";
             this.newButton19.Size = new System.Drawing.Size(40, 16);
             this.newButton19.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -968,7 +1092,7 @@
             this.newButton18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton18.BackColor = System.Drawing.Color.DimGray;
             this.newButton18.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton18.Location = new System.Drawing.Point(396, 342);
+            this.newButton18.Location = new System.Drawing.Point(396, 380);
             this.newButton18.Name = "newButton18";
             this.newButton18.Size = new System.Drawing.Size(40, 16);
             this.newButton18.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -984,7 +1108,7 @@
             this.newButton17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton17.BackColor = System.Drawing.Color.DimGray;
             this.newButton17.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton17.Location = new System.Drawing.Point(396, 323);
+            this.newButton17.Location = new System.Drawing.Point(396, 361);
             this.newButton17.Name = "newButton17";
             this.newButton17.Size = new System.Drawing.Size(40, 16);
             this.newButton17.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -1000,7 +1124,7 @@
             this.newButton16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton16.BackColor = System.Drawing.Color.DimGray;
             this.newButton16.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton16.Location = new System.Drawing.Point(396, 304);
+            this.newButton16.Location = new System.Drawing.Point(396, 342);
             this.newButton16.Name = "newButton16";
             this.newButton16.Size = new System.Drawing.Size(40, 16);
             this.newButton16.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -1016,7 +1140,7 @@
             this.newButton15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton15.BackColor = System.Drawing.Color.DimGray;
             this.newButton15.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton15.Location = new System.Drawing.Point(396, 285);
+            this.newButton15.Location = new System.Drawing.Point(396, 323);
             this.newButton15.Name = "newButton15";
             this.newButton15.Size = new System.Drawing.Size(40, 16);
             this.newButton15.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -1032,7 +1156,7 @@
             this.newButton14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton14.BackColor = System.Drawing.Color.DimGray;
             this.newButton14.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton14.Location = new System.Drawing.Point(396, 266);
+            this.newButton14.Location = new System.Drawing.Point(396, 304);
             this.newButton14.Name = "newButton14";
             this.newButton14.Size = new System.Drawing.Size(40, 16);
             this.newButton14.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -1048,7 +1172,7 @@
             this.newButton13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton13.BackColor = System.Drawing.Color.DimGray;
             this.newButton13.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton13.Location = new System.Drawing.Point(396, 247);
+            this.newButton13.Location = new System.Drawing.Point(396, 285);
             this.newButton13.Name = "newButton13";
             this.newButton13.Size = new System.Drawing.Size(40, 16);
             this.newButton13.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -1064,7 +1188,7 @@
             this.newButton12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton12.BackColor = System.Drawing.Color.DimGray;
             this.newButton12.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton12.Location = new System.Drawing.Point(396, 228);
+            this.newButton12.Location = new System.Drawing.Point(396, 266);
             this.newButton12.Name = "newButton12";
             this.newButton12.Size = new System.Drawing.Size(40, 16);
             this.newButton12.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -1080,7 +1204,7 @@
             this.newButton11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton11.BackColor = System.Drawing.Color.DimGray;
             this.newButton11.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton11.Location = new System.Drawing.Point(396, 209);
+            this.newButton11.Location = new System.Drawing.Point(396, 247);
             this.newButton11.Name = "newButton11";
             this.newButton11.Size = new System.Drawing.Size(40, 16);
             this.newButton11.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -1096,7 +1220,7 @@
             this.newButton10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton10.BackColor = System.Drawing.Color.DimGray;
             this.newButton10.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton10.Location = new System.Drawing.Point(396, 190);
+            this.newButton10.Location = new System.Drawing.Point(396, 228);
             this.newButton10.Name = "newButton10";
             this.newButton10.Size = new System.Drawing.Size(40, 16);
             this.newButton10.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -1112,7 +1236,7 @@
             this.newButton9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton9.BackColor = System.Drawing.Color.DimGray;
             this.newButton9.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton9.Location = new System.Drawing.Point(396, 171);
+            this.newButton9.Location = new System.Drawing.Point(396, 209);
             this.newButton9.Name = "newButton9";
             this.newButton9.Size = new System.Drawing.Size(40, 16);
             this.newButton9.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -1128,7 +1252,7 @@
             this.newButton8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton8.BackColor = System.Drawing.Color.DimGray;
             this.newButton8.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton8.Location = new System.Drawing.Point(396, 152);
+            this.newButton8.Location = new System.Drawing.Point(396, 190);
             this.newButton8.Name = "newButton8";
             this.newButton8.Size = new System.Drawing.Size(40, 16);
             this.newButton8.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -1144,7 +1268,7 @@
             this.newButton7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton7.BackColor = System.Drawing.Color.DimGray;
             this.newButton7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton7.Location = new System.Drawing.Point(396, 133);
+            this.newButton7.Location = new System.Drawing.Point(396, 171);
             this.newButton7.Name = "newButton7";
             this.newButton7.Size = new System.Drawing.Size(40, 16);
             this.newButton7.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -1160,7 +1284,7 @@
             this.newButton6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton6.BackColor = System.Drawing.Color.DimGray;
             this.newButton6.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton6.Location = new System.Drawing.Point(396, 114);
+            this.newButton6.Location = new System.Drawing.Point(396, 152);
             this.newButton6.Name = "newButton6";
             this.newButton6.Size = new System.Drawing.Size(40, 16);
             this.newButton6.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -1176,7 +1300,7 @@
             this.newButton5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton5.BackColor = System.Drawing.Color.DimGray;
             this.newButton5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton5.Location = new System.Drawing.Point(396, 95);
+            this.newButton5.Location = new System.Drawing.Point(396, 133);
             this.newButton5.Name = "newButton5";
             this.newButton5.Size = new System.Drawing.Size(40, 16);
             this.newButton5.SS = System.Drawing.ContentAlignment.MiddleRight;
@@ -1263,7 +1387,7 @@
             this.lblSelectFCColor.TabIndex = 12;
             this.lblSelectFCColor.Text = "选择";
             this.lblSelectFCColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.lblSelectFCColor, "选择前景色\r\n支持预览");
+            this.toolTip1.SetToolTip(this.lblSelectFCColor, "选择主要前景色\r\n支持预览");
             this.lblSelectFCColor.进入背景色 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(199)))), ((int)(((byte)(192)))));
             this.lblSelectFCColor.默认背景色 = System.Drawing.Color.Gray;
             this.lblSelectFCColor.Click += new System.EventHandler(this.lblSelectFCColor_Click);
@@ -1280,7 +1404,7 @@
             this.lblSelectBGColor.TabIndex = 8;
             this.lblSelectBGColor.Text = "选择";
             this.lblSelectBGColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.lblSelectBGColor, "选择背景色\r\n支持预览");
+            this.toolTip1.SetToolTip(this.lblSelectBGColor, "选择主要背景色\r\n支持预览");
             this.lblSelectBGColor.进入背景色 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(199)))), ((int)(((byte)(192)))));
             this.lblSelectBGColor.默认背景色 = System.Drawing.Color.Gray;
             this.lblSelectBGColor.Click += new System.EventHandler(this.lblSelectColor_Click);
@@ -1339,7 +1463,7 @@
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOk.BackColor = System.Drawing.Color.DimGray;
             this.btnOk.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnOk.Location = new System.Drawing.Point(440, 409);
+            this.btnOk.Location = new System.Drawing.Point(440, 447);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(58, 20);
             this.btnOk.SS = System.Drawing.ContentAlignment.BottomCenter;
@@ -1355,7 +1479,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(510, 434);
+            this.ClientSize = new System.Drawing.Size(510, 472);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblcls);
             this.Controls.Add(this.label2);
@@ -1466,5 +1590,13 @@
         private NewButton newButton5;
         private NewButton newButton36;
         private NewButton newButton35;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label SecondBGLabel;
+        private System.Windows.Forms.Label SecondFCLabel;
+        private NewButton newButton40;
+        private NewButton newButton39;
+        private NewButton newButton38;
+        private NewButton newButton37;
     }
 }

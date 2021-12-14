@@ -111,7 +111,10 @@ namespace WindowsFormsApplication2
 
         public static int TextJj = 0; //击键
         public static ArrayList TextHgPlace = new ArrayList(); //显示回改地点
-        public static int TextHgPlace_Skip = 0; //点击跳转的标记
+        /// <summary>
+        /// 回改点击查找跳转标记
+        /// </summary>
+        public static int TextHgPlace_Skip = -1;
         public static int TextBg = 0;//退格 + 回改量
         public static int 回车 = 0;
         public static int 选重 = 0;
@@ -286,7 +289,10 @@ namespace WindowsFormsApplication2
         //错次
         public static int FalseCount = 0;
         public static ArrayList FWords = new ArrayList();
-        public static int FWordsSkip = 0;//错字跳转标记
+        /// <summary>
+        /// 错字跳转标记
+        /// </summary>
+        public static int FWordsSkip = -1;
 
         //拖动条
         public static int p1;
@@ -350,9 +356,7 @@ namespace WindowsFormsApplication2
         
         //跟打地图
         public static Graphics Type_Map;
-        public static Color Type_Map_Color = Color.Green;
-        public static Color Type_map_C_1 = Color.FromArgb(220,220,220);
-        public static int Type_Map_C = 200;
+        public static Color Type_Map_Color = Color.Gray;
         public static int 地图长度 = 0;
         public static bool Type_Map_Level = true;//优先级
 

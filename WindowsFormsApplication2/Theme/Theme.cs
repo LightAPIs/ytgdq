@@ -22,14 +22,24 @@ namespace WindowsFormsApplication2
         public static Color ThemeBG = Color.FromArgb(56, 68, 73);
 
         /// <summary>
-        /// 主题背景色
+        /// 主要背景色
         /// </summary>
         public static Color ThemeColorBG = Color.FromArgb(56, 68, 73);
         /// <summary>
-        /// 主题前景色
+        /// 主要前景色
         /// - 字体颜色
         /// </summary>
         public static Color ThemeColorFC = Color.White;
+
+        /// <summary>
+        /// 次要背景色
+        /// </summary>
+        public static Color SecondBG = Color.FromArgb(150, 150, 150);
+
+        /// <summary>
+        /// 次要前景色
+        /// </summary>
+        public static Color SecondFC = Color.Black;
 
         /// <summary>
         /// 对照区正确字的背景色

@@ -26,6 +26,7 @@ using WindowsFormsApplication2.CodeTable;
 using WindowsFormsApplication2.Difficulty;
 using WindowsFormsApplication2.SpeedGrade;
 using WindowsFormsApplication2.DelayAction;
+using WindowsFormsApplication2.TVScrollBar;
 using Newtonsoft.Json;
 
 namespace WindowsFormsApplication2
@@ -625,6 +626,11 @@ namespace WindowsFormsApplication2
             this.labelCheckUD.ForeColor = FC;
             this.labelmcing.ForeColor = FC;
 
+            // 对照区滚动条
+            this.textBoxVScrollBar1.ChannelColor = BG;
+            this.textBoxVScrollBar1.ArrowBackColor = GetTranColor(BG, -10);
+            this.textBoxVScrollBar1.ThumbColor = FC;
+
             // 状态区
             Color state = GetTranColor(SBG, 40);
             this.labelJsing.BackColor = state;
@@ -751,6 +757,12 @@ namespace WindowsFormsApplication2
 
         public void LoadSetup()
         {
+            //* 自定义滚动条
+            this.textBoxVScrollBar1.Minimum = 0;
+            this.textBoxVScrollBar1.Maximum = 0;
+            this.textBoxVScrollBar1.LargeChange = (int)(this.richTextBox1.DisplayRectangle.Height * 0.08);
+            this.textBoxVScrollBar1.SmallChange = (int)(this.richTextBox1.DisplayRectangle.Height * 0.04);
+
             //创建表头
             this.dataGridView1.Rows.Add("序", "时间", "段号", "速度", "击键", "码长", "理论", "难度", "评级", "回改", "退格", "回车", "选重", "错字", "回改率", "键准", "效率", "键数", "字数", "打词", "打词率", "用时", "标题");
             this.dataGridView1.Rows[0].Frozen = true;
@@ -1682,7 +1694,6 @@ namespace WindowsFormsApplication2
                             int sizeH_ = onePHan * Glob.oneH;
                             int nowHan = richTextBox1.GetPositionFromCharIndex(TextLenNow).Y; //当前
                             int allH = richTextBox1.GetPositionFromCharIndex(TextLen).Y + Glob.oneH; //末行像素
-                            //MessageBox.Show("末行高度：" + allH.ToString() + "\n一屏高度：" + sizeH.ToString() + "\n一行高度：" + Glob.oneH + "\n当前高度：" + nowHan + "\n可见总数：" + onePHan + "\n第一像素：" + richTextBox1.GetPositionFromCharIndex(0).Y);
                             if (nowHan > 0)
                             {
                                 if (allH > sizeH) //末行高度超出 一屏高度时才启用滚屏
@@ -3158,7 +3169,6 @@ namespace WindowsFormsApplication2
             {
                 Glob.撤销++;
                 this.textBoxEx1.Undo();
-                //MessageBox.Show(this.textBox1.CanUndo.ToString());
             }
         }
 
@@ -3422,6 +3432,12 @@ namespace WindowsFormsApplication2
             var tl = richTextBox1.TextLength;
             Glob.TextLen = tl;
             Glob.TypeText = richTextBox1.Text; // 存储跟打文字
+
+            // 处理自定义滚动条高度
+            Glob.oneH = (int)this.richTextBox1.Font.GetHeight() + 4;
+            int allH = this.richTextBox1.GetPositionFromCharIndex(Glob.TextLen).Y + Glob.oneH;
+            this.textBoxVScrollBar1.Maximum = allH - this.richTextBox1.DisplayRectangle.Height;
+            this.textBoxVScrollBar1.Value = 0;
 
             //* 计算难度
             Glob.Difficulty = DiffDict.Calc(Glob.TypeText);
@@ -5686,8 +5702,22 @@ namespace WindowsFormsApplication2
             }
         }
 
+        [DllImport("user32.dll", EntryPoint = "GetScrollPos")]
+        public static extern int GetScrollPos(int hwnd, int nBar);
+        //[DllImport("user32.dll", EntryPoint = "SetScrollPos")]
+        //public static extern int SetScrollPos(int hwnd, int nBar, int nPos, bool bRedraw);
+        //? SetScrollPos 能处理原生滚动条的显示，但是无法更新文本框中的内容
+        [DllImport("user32.dll", EntryPoint = "SendMessage")]
+        public static extern int RtfScroll(int hwnd, int msg, int wParam, ref Point lParam);
+        private const int WM_USER = 0x400;
+        private const int EM_SETSCROLLPOS = WM_USER + 222;
+
         private void richTextBox1_VScroll(object sender, EventArgs e)
         {
+            // 处理自定义滚动条位置
+            this.textBoxVScrollBar1.Value = GetScrollPos((int)this.richTextBox1.Handle, 1);
+            Application.DoEvents();
+
             if (Glob.IsPointIt)
             {
                 delayActionModel.Debounce(100, this, new Action(() =>
@@ -5695,6 +5725,13 @@ namespace WindowsFormsApplication2
                     this.richTextBox1.Render(Glob.BmAlls, Theme.RightBGColor);
                 }));
             }
+        }
+
+        private void textBoxVscrollBar1_VScroll(object sender, EventArgs e)
+        {
+            int val = (sender as TextBoxVScrollBar).Value;
+            Point pt = new Point(0, val);
+            RtfScroll((int)this.richTextBox1.Handle, EM_SETSCROLLPOS, 0, ref pt);
         }
 
         private void richTextBox1_HScroll(object sender, EventArgs e)

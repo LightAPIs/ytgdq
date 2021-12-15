@@ -185,6 +185,12 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="TVScrollBar\TextBoxVScrollBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TVScrollBar\TextBoxVScrollBar.Designer.cs">
+      <DependentUpon>TextBoxVScrollBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Validation.cs" />
     <Compile Include="YTWebRequest.cs" />
     <Compile Include="发文重写\ContentEditor.cs">
@@ -278,6 +284,9 @@
     <Compile Include="PicGoal_Class.cs" />
     <EmbeddedResource Include="CodeTable\CodeTableBox.resx">
       <DependentUpon>CodeTableBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawLine\RichEditBoxLineRender.resx">
+      <DependentUpon>RichEditBoxLineRender.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Theme\FormTheme.resx">
       <DependentUpon>FormTheme.cs</DependentUpon>
@@ -420,10 +429,11 @@
     <None Include="Resources\first.png" />
     <None Include="Resources\last.png" />
     <None Include="Resources\pc.png" />
+    <None Include="Resources\up.png" />
+    <None Include="Resources\down.png" />
     <Content Include="SQLite.Interop.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\doing.gif" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

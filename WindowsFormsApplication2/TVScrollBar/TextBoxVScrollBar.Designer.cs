@@ -1,6 +1,6 @@
-﻿namespace WindowsFormsApplication2
+﻿namespace WindowsFormsApplication2.TVScrollBar
 {
-    partial class RichEditBoxLineRender
+    partial class TextBoxVScrollBar
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -28,9 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             this.SuspendLayout();
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CustomMouseDown);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CustomMouseUp);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CustomMouseMove);
+            this.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.CustomMouseWhell);
+            this.MouseLeave += new System.EventHandler(this.CustomMouseLeave);
             this.ResumeLayout(false);
-
         }
 
         #endregion

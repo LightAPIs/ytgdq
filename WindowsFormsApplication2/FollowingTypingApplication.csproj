@@ -353,6 +353,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="跟打部分\TextBoxEx.resx">
       <DependentUpon>TextBoxEx.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">

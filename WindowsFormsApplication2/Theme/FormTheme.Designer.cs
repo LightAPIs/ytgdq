@@ -29,8 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.lblcls = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.SecondFCLabel = new System.Windows.Forms.Label();
+            this.SecondBGLabel = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.TestMarkColorLabel = new System.Windows.Forms.Label();
             this.Words3ColorLabel = new System.Windows.Forms.Label();
             this.Words2ColorLabel = new System.Windows.Forms.Label();
@@ -74,16 +77,11 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.SecondBGLabel = new System.Windows.Forms.Label();
-            this.SecondFCLabel = new System.Windows.Forms.Label();
+            this.lblcls = new WindowsFormsApplication2.NewButton();
             this.newButton40 = new WindowsFormsApplication2.NewButton();
             this.newButton39 = new WindowsFormsApplication2.NewButton();
             this.newButton38 = new WindowsFormsApplication2.NewButton();
             this.newButton37 = new WindowsFormsApplication2.NewButton();
-            this.newButton36 = new WindowsFormsApplication2.NewButton();
-            this.newButton35 = new WindowsFormsApplication2.NewButton();
             this.newButton34 = new WindowsFormsApplication2.NewButton();
             this.newButton33 = new WindowsFormsApplication2.NewButton();
             this.newButton32 = new WindowsFormsApplication2.NewButton();
@@ -124,24 +122,10 @@
             this.SwitchB1 = new WindowsFormsApplication2.SwitchButton();
             this.lblSelectPIC = new WindowsFormsApplication2.NewButton();
             this.btnOk = new WindowsFormsApplication2.NewButton();
+            this.newButton35 = new WindowsFormsApplication2.NewButton();
+            this.newButton36 = new WindowsFormsApplication2.NewButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lblcls
-            // 
-            this.lblcls.BackColor = System.Drawing.Color.Gray;
-            this.lblcls.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblcls.Location = new System.Drawing.Point(458, 2);
-            this.lblcls.Name = "lblcls";
-            this.lblcls.Size = new System.Drawing.Size(40, 20);
-            this.lblcls.TabIndex = 0;
-            this.lblcls.Text = "关闭";
-            this.lblcls.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblcls.Click += new System.EventHandler(this.lblcls_Click);
-            this.lblcls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblcls_MouseDown);
-            this.lblcls.MouseEnter += new System.EventHandler(this.lblcls_MouseEnter);
-            this.lblcls.MouseLeave += new System.EventHandler(this.lblcls_MouseLeave);
-            this.lblcls.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lblcls_MouseUp);
             // 
             // panel1
             // 
@@ -157,8 +141,6 @@
             this.panel1.Controls.Add(this.SecondBGLabel);
             this.panel1.Controls.Add(this.label23);
             this.panel1.Controls.Add(this.label22);
-            this.panel1.Controls.Add(this.newButton36);
-            this.panel1.Controls.Add(this.newButton35);
             this.panel1.Controls.Add(this.TestMarkColorLabel);
             this.panel1.Controls.Add(this.Words3ColorLabel);
             this.panel1.Controls.Add(this.Words2ColorLabel);
@@ -242,6 +224,48 @@
             this.panel1.Size = new System.Drawing.Size(487, 420);
             this.panel1.TabIndex = 1;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            // 
+            // SecondFCLabel
+            // 
+            this.SecondFCLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SecondFCLabel.BackColor = System.Drawing.Color.Black;
+            this.SecondFCLabel.Location = new System.Drawing.Point(200, 114);
+            this.SecondFCLabel.Name = "SecondFCLabel";
+            this.SecondFCLabel.Size = new System.Drawing.Size(188, 16);
+            this.SecondFCLabel.TabIndex = 86;
+            this.toolTip1.SetToolTip(this.SecondFCLabel, "影响包含状态栏文字等程序字体的颜色");
+            // 
+            // SecondBGLabel
+            // 
+            this.SecondBGLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SecondBGLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.SecondBGLabel.Location = new System.Drawing.Point(200, 95);
+            this.SecondBGLabel.Name = "SecondBGLabel";
+            this.SecondBGLabel.Size = new System.Drawing.Size(188, 16);
+            this.SecondBGLabel.TabIndex = 85;
+            this.toolTip1.SetToolTip(this.SecondBGLabel, "界面的次要背景颜色");
+            // 
+            // label23
+            // 
+            this.label23.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label23.Location = new System.Drawing.Point(6, 114);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(188, 17);
+            this.label23.TabIndex = 84;
+            this.label23.Text = "次要前景色：";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label22
+            // 
+            this.label22.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label22.Location = new System.Drawing.Point(6, 95);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(188, 17);
+            this.label22.TabIndex = 83;
+            this.label22.Text = "次要背景色：";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TestMarkColorLabel
             // 
@@ -689,47 +713,21 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "主题设置";
             // 
-            // label22
+            // lblcls
             // 
-            this.label22.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label22.Location = new System.Drawing.Point(6, 95);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(188, 17);
-            this.label22.TabIndex = 83;
-            this.label22.Text = "次要背景色：";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label23
-            // 
-            this.label23.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label23.Location = new System.Drawing.Point(6, 114);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(188, 17);
-            this.label23.TabIndex = 84;
-            this.label23.Text = "次要前景色：";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // SecondBGLabel
-            // 
-            this.SecondBGLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SecondBGLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.SecondBGLabel.Location = new System.Drawing.Point(200, 95);
-            this.SecondBGLabel.Name = "SecondBGLabel";
-            this.SecondBGLabel.Size = new System.Drawing.Size(188, 16);
-            this.SecondBGLabel.TabIndex = 85;
-            this.toolTip1.SetToolTip(this.SecondBGLabel, "界面的次要背景颜色");
-            // 
-            // SecondFCLabel
-            // 
-            this.SecondFCLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SecondFCLabel.BackColor = System.Drawing.Color.Black;
-            this.SecondFCLabel.Location = new System.Drawing.Point(200, 114);
-            this.SecondFCLabel.Name = "SecondFCLabel";
-            this.SecondFCLabel.Size = new System.Drawing.Size(188, 16);
-            this.SecondFCLabel.TabIndex = 86;
-            this.toolTip1.SetToolTip(this.SecondFCLabel, "影响包含状态栏文字等程序字体的颜色");
+            this.lblcls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblcls.BackColor = System.Drawing.Color.DimGray;
+            this.lblcls.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblcls.Location = new System.Drawing.Point(457, 2);
+            this.lblcls.Name = "lblcls";
+            this.lblcls.Size = new System.Drawing.Size(41, 19);
+            this.lblcls.SS = System.Drawing.ContentAlignment.BottomCenter;
+            this.lblcls.TabIndex = 83;
+            this.lblcls.Text = "关闭";
+            this.lblcls.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblcls.进入背景色 = System.Drawing.Color.DarkMagenta;
+            this.lblcls.默认背景色 = System.Drawing.Color.DarkGray;
+            this.lblcls.Click += new System.EventHandler(this.lblcls_Click);
             // 
             // newButton40
             // 
@@ -796,40 +794,6 @@
             this.newButton37.进入背景色 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(199)))), ((int)(((byte)(192)))));
             this.newButton37.默认背景色 = System.Drawing.Color.Gray;
             this.newButton37.Click += new System.EventHandler(this.newButton37_Click);
-            // 
-            // newButton36
-            // 
-            this.newButton36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.newButton36.BackColor = System.Drawing.Color.DimGray;
-            this.newButton36.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton36.Location = new System.Drawing.Point(335, 1);
-            this.newButton36.Name = "newButton36";
-            this.newButton36.Size = new System.Drawing.Size(53, 16);
-            this.newButton36.SS = System.Drawing.ContentAlignment.MiddleRight;
-            this.newButton36.TabIndex = 82;
-            this.newButton36.Text = "载入...";
-            this.newButton36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.newButton36, "从主题文件中载入主题设置");
-            this.newButton36.进入背景色 = System.Drawing.Color.CornflowerBlue;
-            this.newButton36.默认背景色 = System.Drawing.Color.Gray;
-            this.newButton36.Click += new System.EventHandler(this.newButton36_Click);
-            // 
-            // newButton35
-            // 
-            this.newButton35.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.newButton35.BackColor = System.Drawing.Color.DimGray;
-            this.newButton35.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.newButton35.Location = new System.Drawing.Point(266, 1);
-            this.newButton35.Name = "newButton35";
-            this.newButton35.Size = new System.Drawing.Size(63, 16);
-            this.newButton35.SS = System.Drawing.ContentAlignment.MiddleRight;
-            this.newButton35.TabIndex = 81;
-            this.newButton35.Text = "另存为...";
-            this.newButton35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.newButton35, "将当前主题设置另存为主题文件");
-            this.newButton35.进入背景色 = System.Drawing.Color.CornflowerBlue;
-            this.newButton35.默认背景色 = System.Drawing.Color.Gray;
-            this.newButton35.Click += new System.EventHandler(this.newButton35_Click);
             // 
             // newButton34
             // 
@@ -1474,16 +1438,52 @@
             this.btnOk.默认背景色 = System.Drawing.Color.DarkGray;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
+            // newButton35
+            // 
+            this.newButton35.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.newButton35.BackColor = System.Drawing.Color.DimGray;
+            this.newButton35.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.newButton35.Location = new System.Drawing.Point(12, 449);
+            this.newButton35.Name = "newButton35";
+            this.newButton35.Size = new System.Drawing.Size(63, 16);
+            this.newButton35.SS = System.Drawing.ContentAlignment.MiddleRight;
+            this.newButton35.TabIndex = 81;
+            this.newButton35.Text = "另存为...";
+            this.newButton35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.newButton35, "将当前主题设置另存为主题文件");
+            this.newButton35.进入背景色 = System.Drawing.Color.CornflowerBlue;
+            this.newButton35.默认背景色 = System.Drawing.Color.Gray;
+            this.newButton35.Click += new System.EventHandler(this.newButton35_Click);
+            // 
+            // newButton36
+            // 
+            this.newButton36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.newButton36.BackColor = System.Drawing.Color.DimGray;
+            this.newButton36.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.newButton36.Location = new System.Drawing.Point(81, 449);
+            this.newButton36.Name = "newButton36";
+            this.newButton36.Size = new System.Drawing.Size(53, 16);
+            this.newButton36.SS = System.Drawing.ContentAlignment.MiddleRight;
+            this.newButton36.TabIndex = 82;
+            this.newButton36.Text = "载入...";
+            this.newButton36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.newButton36, "从主题文件中载入主题设置");
+            this.newButton36.进入背景色 = System.Drawing.Color.CornflowerBlue;
+            this.newButton36.默认背景色 = System.Drawing.Color.Gray;
+            this.newButton36.Click += new System.EventHandler(this.newButton36_Click);
+            // 
             // FormTheme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(510, 472);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblcls);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnOk);
+            this.Controls.Add(this.newButton35);
+            this.Controls.Add(this.newButton36);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormTheme";
@@ -1502,8 +1502,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblcls;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblBGPath;
         private System.Windows.Forms.Label label1;
@@ -1598,5 +1596,6 @@
         private NewButton newButton39;
         private NewButton newButton38;
         private NewButton newButton37;
+        private NewButton lblcls;
     }
 }

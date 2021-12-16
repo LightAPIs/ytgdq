@@ -29,6 +29,8 @@ namespace WindowsFormsApplication2
         private void FormTheme_Load(object sender, EventArgs e)
         {
             //初始化
+            LoadTheme(Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.SecondBG, Theme.SecondFC);
+
             this.SwitchB1.Checked = Theme.IsBackBmp;
             this.SwitchB1.Invalidate();
             this.lblSelectPIC.Enabled = Theme.IsBackBmp;
@@ -124,27 +126,77 @@ namespace WindowsFormsApplication2
             this.R2BackLabel.Font = exFo2;
         }
 
+        private void LoadTheme(Color BG, Color FC, Color SBG, Color SFC)
+        {
+            Color lightBG = Theme.GetTranColor(BG, 50);
+            this.BackColor = lightBG;
+            this.ForeColor = FC;
+            this.Font1Label.BackColor = lightBG;
+            this.Font2Label.BackColor = lightBG;
+            this.SwitchB1.BackColor = lightBG;
+            this.SwitchB1.ForeColor = SFC;
+            this.SwitchB1.BG = lightBG;
+            this.SwitchB1.FC = SBG;
+            this.lblcls.BackColor = SBG;
+            this.lblcls.ForeColor = SFC;
+            this.lblcls.默认背景色 = SBG;
+            this.lblcls.进入背景色 = Theme.GetReverseColor(SBG);
+            SetButtonColor(this.lblSelectPIC, SBG, SFC);
+            SetButtonColor(this.lblSelectBG, SBG, SFC);
+            SetButtonColor(this.lblSelectBGColor, SBG, SFC);
+            SetButtonColor(this.lblSelectFCColor, SBG, SFC);
+            SetButtonColor(this.newButton37, SBG, SFC);
+            SetButtonColor(this.newButton38, SBG, SFC);
+            SetButtonColor(this.newButton5, SBG, SFC);
+            SetButtonColor(this.newButton6, SBG, SFC);
+            SetButtonColor(this.newButton7, SBG, SFC);
+            SetButtonColor(this.newButton8, SBG, SFC);
+            SetButtonColor(this.newButton9, SBG, SFC);
+            SetButtonColor(this.newButton10, SBG, SFC);
+            SetButtonColor(this.newButton11, SBG, SFC);
+            SetButtonColor(this.newButton12, SBG, SFC);
+            SetButtonColor(this.newButton13, SBG, SFC);
+            SetButtonColor(this.newButton14, SBG, SFC);
+            SetButtonColor(this.newButton15, SBG, SFC);
+            SetButtonColor(this.newButton16, SBG, SFC);
+            SetButtonColor(this.newButton17, SBG, SFC);
+            SetButtonColor(this.newButton18, SBG, SFC);
+            SetButtonColor(this.newButton19, SBG, SFC);
+            SetButtonColor(this.newButton4, SBG, SFC);
+            SetButtonColor(this.newButton3, SBG, SFC);
+            SetButtonColor(this.newButton2, SBG, SFC);
+            SetButtonColor(this.newButton1, SBG, SFC);
+            SetButtonColor(this.newButton39, SBG, SFC);
+            SetButtonColor(this.newButton40, SBG, SFC);
+            SetButtonColor(this.newButton20, SBG, SFC);
+            SetButtonColor(this.newButton21, SBG, SFC);
+            SetButtonColor(this.newButton22, SBG, SFC);
+            SetButtonColor(this.newButton23, SBG, SFC);
+            SetButtonColor(this.newButton24, SBG, SFC);
+            SetButtonColor(this.newButton25, SBG, SFC);
+            SetButtonColor(this.newButton26, SBG, SFC);
+            SetButtonColor(this.newButton27, SBG, SFC);
+            SetButtonColor(this.newButton28, SBG, SFC);
+            SetButtonColor(this.newButton29, SBG, SFC);
+            SetButtonColor(this.newButton30, SBG, SFC);
+            SetButtonColor(this.newButton31, SBG, SFC);
+            SetButtonColor(this.newButton32, SBG, SFC);
+            SetButtonColor(this.newButton33, SBG, SFC);
+            SetButtonColor(this.newButton34, SBG, SFC);
+            SetButtonColor(this.newButton35, SBG, SFC, 50);
+            SetButtonColor(this.newButton36, SBG, SFC, 50);
+            SetButtonColor(this.btnOk, SBG, SFC, 50);
+        }
+
+        private void SetButtonColor(NewButton btn, Color SBG, Color SFC, int val = 30)
+        {
+            btn.BackColor = SBG;
+            btn.ForeColor = SFC;
+            btn.默认背景色 = SBG;
+            btn.进入背景色 = Theme.GetTranColor(SBG, val);
+        }
+
         #region 关闭按钮
-        private void lblcls_MouseEnter(object sender, EventArgs e)
-        {
-            this.lblcls.BackColor = Color.FromArgb(199, 12, 52);
-        }
-
-        private void lblcls_MouseLeave(object sender, EventArgs e)
-        {
-            this.lblcls.BackColor = Color.Gray;
-        }
-
-        private void lblcls_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.lblcls.TextAlign = ContentAlignment.BottomCenter;
-        }
-
-        private void lblcls_MouseUp(object sender, MouseEventArgs e)
-        {
-            this.lblcls.TextAlign = ContentAlignment.MiddleCenter;
-        }
-
         private void lblcls_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -708,6 +760,7 @@ namespace WindowsFormsApplication2
                 path = "纯色";
             }
 
+            this.LoadTheme(this.lblThemeBGShow.BackColor, this.lblThemeFCShow.BackColor, this.SecondBGLabel.BackColor, this.SecondFCLabel.BackColor);
             frm.LoadTheme(path, this.lblThemeBGShow.BackColor, this.lblThemeFCShow.BackColor, this.SecondBGLabel.BackColor, this.SecondFCLabel.BackColor, this.lblPicShow.BackColor);
         }
         #endregion

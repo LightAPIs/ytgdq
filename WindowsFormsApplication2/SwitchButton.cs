@@ -63,23 +63,24 @@ namespace WindowsFormsApplication2
         private void SwitchButton_Paint(object sender, PaintEventArgs e)
         {
             Font F = new Font("微软雅黑",9);
-            SizeF A = e.Graphics.MeasureString(ValueA,F);
+            Brush W = new SolidBrush(ForeColor);
+            SizeF A = e.Graphics.MeasureString(ValueA, F);
             SizeF B = e.Graphics.MeasureString(ValueB, F);
             //由属性控制重绘
             if (_checked) //为真时
             {
                 e.Graphics.FillRectangle(new SolidBrush(_FC),0,0,this.Width /2,this.Height);
                 //左值
-                e.Graphics.DrawString(ValueA, F, Brushes.White, 0, this.Height/2 - A.Height/2);
+                e.Graphics.DrawString(ValueA, F, W, 0, this.Height/2 - A.Height/2);
                 //右值
-                e.Graphics.DrawString(ValueB, F, Brushes.White, this.Width - e.Graphics.MeasureString(ValueB,F).Width, this.Height/2 - B.Height/2);
+                e.Graphics.DrawString(ValueB, F, W, this.Width - e.Graphics.MeasureString(ValueB,F).Width, this.Height/2 - B.Height/2);
             }
             else { //为假时
                 e.Graphics.FillRectangle(new SolidBrush(_FC), this.Width / 2, 0, this.Width, this.Height);
                 //左值
-                e.Graphics.DrawString(ValueA, F, Brushes.White, 0, this.Height / 2 - A.Height / 2);
+                e.Graphics.DrawString(ValueA, F, W, 0, this.Height / 2 - A.Height / 2);
                 //右值
-                e.Graphics.DrawString(ValueB, F, Brushes.White, this.Width - e.Graphics.MeasureString(ValueB, F).Width, this.Height/2 - B.Height/2);
+                e.Graphics.DrawString(ValueB, F, W, this.Width - e.Graphics.MeasureString(ValueB, F).Width, this.Height/2 - B.Height/2);
             }
         }
 

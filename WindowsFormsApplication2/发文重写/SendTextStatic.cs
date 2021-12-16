@@ -382,6 +382,13 @@ namespace WindowsFormsApplication2
                 if (!NewSendText.是否自动)
                 {
                     NewSendText.是否自动 = true;
+                    this.CycleCheckBox.Enabled = false;
+                    this.btnSendTime.Enabled = false;
+                    this.btnSendTime.Text = "修";
+                    this.tbxSendTime.Text = "-";
+                    this.tbxSendTime.ReadOnly = true;
+                    this.tbxSendTime.BackColor = Color.DarkGray;
+                    this.lblNowTime.Text = "无";
                     this.checkBox2.Enabled = true;
                     if (this.checkBox2.Checked)
                     {

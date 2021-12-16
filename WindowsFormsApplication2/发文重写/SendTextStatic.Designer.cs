@@ -673,12 +673,13 @@
             this.comboBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.Enabled = false;
+            this.comboBox2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
-            "大于",
-            "大于等于",
-            "小于",
-            "不于等于"});
+            ">",
+            ">=",
+            "<",
+            "<="});
             this.comboBox2.Location = new System.Drawing.Point(66, 2);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(2, 2, 1, 0);
             this.comboBox2.Name = "comboBox2";

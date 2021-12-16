@@ -239,18 +239,27 @@ namespace WindowsFormsApplication2
                         Directory.CreateDirectory(ThemeFolderName);
                     }
 
-                    string filename = Path.GetFileName(sourceFileName);
-                    string notExtFilename = Path.GetFileNameWithoutExtension(sourceFileName);
-                    string extName = Path.GetExtension(sourceFileName); //? 文件后缀是带 "." 的
-                    string themeFilename = Path.Combine(ThemeFolderName, filename);
-                    int fileIndex = 0;
-
-                    while (File.Exists(themeFilename))
+                    string themeFilename;
+                    string dirname = Path.GetDirectoryName(sourceFileName);
+                    if (dirname == ThemeFolderName)
                     {
-                        fileIndex++;
-                        themeFilename = Path.Combine(ThemeFolderName, string.Format("{0}_{1}{2}", notExtFilename, fileIndex.ToString(), extName));
+                        themeFilename = sourceFileName;
                     }
-                    File.Copy(sourceFileName, themeFilename);
+                    else
+                    {
+                        string filename = Path.GetFileName(sourceFileName);
+                        string notExtFilename = Path.GetFileNameWithoutExtension(sourceFileName);
+                        string extName = Path.GetExtension(sourceFileName); //? 文件后缀是带 "." 的
+                        themeFilename = Path.Combine(ThemeFolderName, filename);
+                        int fileIndex = 0;
+
+                        while (File.Exists(themeFilename))
+                        {
+                            fileIndex++;
+                            themeFilename = Path.Combine(ThemeFolderName, string.Format("{0}_{1}{2}", notExtFilename, fileIndex.ToString(), extName));
+                        }
+                        File.Copy(sourceFileName, themeFilename);
+                    }
 
                     this.lblBGPath.Text = Path.GetFileName(themeFilename);
                     ReView();

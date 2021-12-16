@@ -427,7 +427,7 @@ namespace WindowsFormsApplication2
                     Glob.回车++;
                     //触发回车时 计算
                     跟打地图步进++;
-                    Type_Map(GetReverseColor(GetTranColor(Theme.SecondBG, 40)), 跟打地图步进, 1);
+                    Type_Map(Theme.GetReverseColor(Theme.GetTranColor(Theme.SecondBG, 40)), 跟打地图步进, 1);
                     Glob.TextMcc += Glob.TextMc;
                     Glob.TextMc = 0;
 
@@ -604,15 +604,15 @@ namespace WindowsFormsApplication2
             this.TSMI5.ForeColor = FC;
 
             // 击键评定
-            Color cell1 = GetTranColor(SBG, 10);
+            Color cell1 = Theme.GetTranColor(SBG, 10);
             for (int i = 0; i <= 14; i += 2)
             {
                 this.dataGridView2.Rows[0].Cells[i].Style.BackColor = cell1;
                 this.dataGridView2.Rows[0].Cells[i].Style.ForeColor = SFC;
             }
-            this.dataGridView2.Rows[0].Cells[16].Style.BackColor = GetTranColor(SBG, 15);
+            this.dataGridView2.Rows[0].Cells[16].Style.BackColor = Theme.GetTranColor(SBG, 15);
             this.dataGridView2.Rows[0].Cells[16].Style.ForeColor = SFC;
-            Color cell2 = GetTranColor(SBG, -10);
+            Color cell2 = Theme.GetTranColor(SBG, -10);
             for (int i = 1; i <= 17; i += 2)
             {
                 this.dataGridView2.Rows[0].Cells[i].Style.BackColor = cell2;
@@ -628,11 +628,11 @@ namespace WindowsFormsApplication2
 
             // 对照区滚动条
             this.textBoxVScrollBar1.ChannelColor = BG;
-            this.textBoxVScrollBar1.ArrowBackColor = GetTranColor(BG, -10);
+            this.textBoxVScrollBar1.ArrowBackColor = Theme.GetTranColor(BG, -10);
             this.textBoxVScrollBar1.ThumbColor = FC;
 
             // 状态区
-            Color state = GetTranColor(SBG, 40);
+            Color state = Theme.GetTranColor(SBG, 40);
             this.labelJsing.BackColor = state;
             this.labelJsing.ForeColor = SFC;
             this.lbl键准.BackColor = state;
@@ -649,7 +649,7 @@ namespace WindowsFormsApplication2
                 int hgStatus = int.Parse(this.labelhgstatus.Text);
                 if (hgStatus > 0)
                 {
-                    this.labelhgstatus.ForeColor = GetTranColor(SFC, 75);
+                    this.labelhgstatus.ForeColor = Theme.GetTranColor(SFC, 75);
                 }
                 else
                 {
@@ -668,7 +668,7 @@ namespace WindowsFormsApplication2
                 int bmStatus = int.Parse(this.labelBM.Text);
                 if (bmStatus > 0)
                 {
-                    this.labelBM.ForeColor = GetTranColor(SFC, 75);
+                    this.labelBM.ForeColor = Theme.GetTranColor(SFC, 75);
                 }
                 else
                 {
@@ -684,7 +684,7 @@ namespace WindowsFormsApplication2
             this.toolStripStatusLabelStatus.BackColor = state;
             if (Glob.reTypeCount > 0)
             {
-                this.toolStripStatusLabelStatus.ForeColor = GetTranColor(SFC, 75);
+                this.toolStripStatusLabelStatus.ForeColor = Theme.GetTranColor(SFC, 75);
             }
             else
             {
@@ -710,18 +710,18 @@ namespace WindowsFormsApplication2
             this.chartSpeed.BackColor = SBG;
             this.ChartArea1.BackColor = SBG;
             this.ChartArea1.AxisX.LineColor = FC;
-            this.ChartArea1.AxisX.MajorGrid.LineColor = GetTranColor(SBG, -20);
+            this.ChartArea1.AxisX.MajorGrid.LineColor = Theme.GetTranColor(SBG, -20);
             this.ChartArea1.AxisX.MajorTickMark.LineColor = SFC;
             this.ChartArea1.AxisX.LabelStyle.ForeColor = SFC;
             this.ChartArea1.AxisY.LineColor = FC;
-            this.ChartArea1.AxisY.MajorGrid.LineColor = GetTranColor(SBG, -20);
+            this.ChartArea1.AxisY.MajorGrid.LineColor = Theme.GetTranColor(SBG, -20);
             this.ChartArea1.AxisY.MajorTickMark.LineColor = SFC;
             this.ChartArea1.AxisY.LabelStyle.ForeColor = SFC;
             this.title1.ForeColor = SFC;
             this.SeriesSpeed.Color = FC;
             this.SeriesSpeed.BackSecondaryColor = SFC;
 
-            Color C = GetTranColor(BG, 20);
+            Color C = Theme.GetTranColor(BG, 20);
             this.labelSpeeding.BackColor = C;
             this.labelJjing.BackColor = C;
             this.labelJiCheck.BackColor = C;
@@ -730,29 +730,12 @@ namespace WindowsFormsApplication2
             this.ForeColor = FC;
             Rectangle rect = new Rectangle(0, 0, 220, 24);
             this.Invalidate(rect, true);
-        }
 
-        private int ColorTran(int c, int val)
-        {
-            if (c + val > 255)
+            // 发文状态窗口
+            if (this.发文状态窗口 != null && !this.发文状态窗口.IsDisposed && this.发文状态窗口.Visible)
             {
-                return 255;
+                this.发文状态窗口.LoadTheme(BG, FC, SBG, SFC);
             }
-            else if (c + val < 0)
-            {
-                return 0;
-            }
-            return c + val;
-        }
-
-        private Color GetTranColor(Color c, int val)
-        {
-            return Color.FromArgb(ColorTran(c.R, val), ColorTran(c.G, val), ColorTran(c.B, val));
-        }
-
-        private Color GetReverseColor(Color c)
-        {
-            return Color.FromArgb(255 - c.R, 255 - c.G, 255 - c.B);
         }
 
         public void LoadSetup()
@@ -2144,7 +2127,7 @@ namespace WindowsFormsApplication2
                         { // 重打判断，为重打
                             Glob.reTypeCount++;
                             toolStripStatusLabelStatus.Text = Glob.reTypeCount.ToString();
-                            toolStripStatusLabelStatus.ForeColor = GetTranColor(Theme.SecondFC, 75);
+                            toolStripStatusLabelStatus.ForeColor = Theme.GetTranColor(Theme.SecondFC, 75);
 
                             int RowCount = this.dataGridView1.Rows.Count - 1;
                             string[] oldSpeed = this.dataGridView1.Rows[RowCount].Cells[3].Value.ToString().Split('/');
@@ -2641,7 +2624,7 @@ namespace WindowsFormsApplication2
             Font F = new Font("宋体", 9f);
             SizeF s = g.MeasureString(text, F);
             int fontWidth = (int)Math.Ceiling(s.Width);
-            g.DrawString(text, F, new SolidBrush(GetTranColor(Theme.SecondFC, 120)), this.picBar.Width / 2 - fontWidth / 2, this.picBar.Height / 2 - s.Height / 2 + 1);
+            g.DrawString(text, F, new SolidBrush(Theme.GetTranColor(Theme.SecondFC, 120)), this.picBar.Width / 2 - fontWidth / 2, this.picBar.Height / 2 - s.Height / 2 + 1);
 
             this.picBar.Image = bmp;
             SplitterBar(pro);
@@ -2651,7 +2634,7 @@ namespace WindowsFormsApplication2
         {
             //测试 拆分条 的 绘图
             Graphics g_ = this.splitContainer1.CreateGraphics();
-            Color Show = GetReverseColor(Theme.ThemeColorBG);
+            Color Show = Theme.GetReverseColor(Theme.ThemeColorBG);
             g_.Clear(Theme.ThemeColorBG);
             using (SolidBrush sb = new SolidBrush(Show))
             {
@@ -2926,7 +2909,7 @@ namespace WindowsFormsApplication2
                 int g = int.Parse((sender as Label).Text);
                 if (g > 0)
                 {
-                    this.labelBM.ForeColor = GetTranColor(Theme.SecondFC, 75);
+                    this.labelBM.ForeColor = Theme.GetTranColor(Theme.SecondFC, 75);
                 }
                 else
                 {
@@ -2947,7 +2930,7 @@ namespace WindowsFormsApplication2
                 int g = int.Parse((sender as Label).Text);
                 if (g > 0)
                 {
-                    (sender as Label).ForeColor = GetTranColor(Theme.SecondFC, 75);
+                    (sender as Label).ForeColor = Theme.GetTranColor(Theme.SecondFC, 75);
                 }
                 else
                 {
@@ -3571,12 +3554,12 @@ namespace WindowsFormsApplication2
         {
             if (LblTimeFlash)
             {
-                labelTimeFlys.ForeColor = GetReverseColor(Theme.SecondBG);
+                labelTimeFlys.ForeColor = Theme.GetReverseColor(Theme.SecondBG);
                 LblTimeFlash = false;
             }
             else
             {
-                labelTimeFlys.ForeColor = GetTranColor(Theme.SecondFC, 50);
+                labelTimeFlys.ForeColor = Theme.GetTranColor(Theme.SecondFC, 50);
                 LblTimeFlash = true;
             }
         }

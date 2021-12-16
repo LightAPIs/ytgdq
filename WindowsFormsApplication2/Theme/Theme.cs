@@ -7,6 +7,7 @@ namespace WindowsFormsApplication2
 {
     public class Theme
     {
+        #region 主题属性
         /// <summary>
         /// 是否应用背景图片
         /// </summary>
@@ -113,6 +114,32 @@ namespace WindowsFormsApplication2
         /// - 用于实现主题预览功能
         /// </summary>
         public static Color tempToolButtonFc = Color.White;
+        #endregion
+
+        #region 公用方法
+        public static int ColorTran(int c, int val)
+        {
+            if (c + val > 255)
+            {
+                return 255;
+            }
+            else if (c + val < 0)
+            {
+                return 0;
+            }
+            return c + val;
+        }
+
+        public static Color GetTranColor(Color c, int val)
+        {
+            return Color.FromArgb(ColorTran(c.R, val), ColorTran(c.G, val), ColorTran(c.B, val));
+        }
+
+        public static Color GetReverseColor(Color c)
+        {
+            return Color.FromArgb(255 - c.R, 255 - c.G, 255 - c.B);
+        }
+        #endregion
     }
 
 }

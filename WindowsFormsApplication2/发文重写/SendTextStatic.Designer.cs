@@ -77,6 +77,8 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.gbstatic = new System.Windows.Forms.GroupBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.newButton1 = new WindowsFormsApplication2.NewButton();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -88,9 +90,9 @@
             // 
             // btnStop
             // 
+            this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStop.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnStop.ForeColor = System.Drawing.Color.DarkRed;
-            this.btnStop.Location = new System.Drawing.Point(153, 350);
+            this.btnStop.Location = new System.Drawing.Point(153, 375);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(80, 23);
             this.btnStop.TabIndex = 2;
@@ -100,7 +102,8 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(3, 350);
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Location = new System.Drawing.Point(3, 375);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(83, 23);
             this.btnSave.TabIndex = 1;
@@ -117,7 +120,7 @@
             // 
             this.lblNowIni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblNowIni.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblNowIni.Location = new System.Drawing.Point(153, 1);
+            this.lblNowIni.Location = new System.Drawing.Point(154, 1);
             this.lblNowIni.Name = "lblNowIni";
             this.lblNowIni.Size = new System.Drawing.Size(80, 19);
             this.lblNowIni.TabIndex = 1;
@@ -128,6 +131,7 @@
             // btnChangePreCout
             // 
             this.btnChangePreCout.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnChangePreCout.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnChangePreCout.Location = new System.Drawing.Point(202, 255);
             this.btnChangePreCout.Margin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.btnChangePreCout.Name = "btnChangePreCout";
@@ -142,6 +146,7 @@
             // 
             this.btnSendTime.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnSendTime.Enabled = false;
+            this.btnSendTime.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSendTime.Location = new System.Drawing.Point(202, 186);
             this.btnSendTime.Margin = new System.Windows.Forms.Padding(2, 2, 0, 0);
             this.btnSendTime.Name = "btnSendTime";
@@ -156,7 +161,6 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.ForeColor = System.Drawing.Color.Green;
             this.label8.Location = new System.Drawing.Point(3, 164);
             this.label8.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.label8.Name = "label8";
@@ -168,7 +172,9 @@
             // 
             // btnFixNowTitle
             // 
+            this.btnFixNowTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnFixNowTitle.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnFixNowTitle.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnFixNowTitle.Location = new System.Drawing.Point(202, 2);
             this.btnFixNowTitle.Margin = new System.Windows.Forms.Padding(2, 2, 0, 0);
             this.btnFixNowTitle.Name = "btnFixNowTitle";
@@ -221,11 +227,12 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(157, 326);
+            this.checkBox2.Location = new System.Drawing.Point(157, 351);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(72, 16);
             this.checkBox2.TabIndex = 33;
             this.checkBox2.Text = "设定条件";
+            this.checkBox2.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.toolTip1.SetToolTip(this.checkBox2, "设定自动下一段条件");
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
@@ -234,7 +241,7 @@
             // 
             this.CycleCheckBox.AutoSize = true;
             this.CycleCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CycleCheckBox.Location = new System.Drawing.Point(7, 326);
+            this.CycleCheckBox.Location = new System.Drawing.Point(7, 350);
             this.CycleCheckBox.Name = "CycleCheckBox";
             this.CycleCheckBox.Size = new System.Drawing.Size(69, 16);
             this.CycleCheckBox.TabIndex = 34;
@@ -248,6 +255,7 @@
             // 
             this.AutoNumberButton.Dock = System.Windows.Forms.DockStyle.Left;
             this.AutoNumberButton.Enabled = false;
+            this.AutoNumberButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.AutoNumberButton.Location = new System.Drawing.Point(202, 232);
             this.AutoNumberButton.Margin = new System.Windows.Forms.Padding(2, 2, 0, 0);
             this.AutoNumberButton.Name = "AutoNumberButton";
@@ -262,7 +270,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBox1.Location = new System.Drawing.Point(82, 326);
+            this.checkBox1.Location = new System.Drawing.Point(82, 350);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(69, 16);
             this.checkBox1.TabIndex = 31;
@@ -289,16 +297,15 @@
             this.panel1.BackColor = System.Drawing.Color.Silver;
             this.panel1.Controls.Add(this.lblNowIni);
             this.panel1.Controls.Add(this.label13);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(0, 25);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(234, 21);
+            this.panel1.Size = new System.Drawing.Size(235, 21);
             this.panel1.TabIndex = 1;
             // 
             // label13
             // 
             this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label13.Location = new System.Drawing.Point(0, 1);
+            this.label13.Location = new System.Drawing.Point(1, 1);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(153, 19);
             this.label13.TabIndex = 0;
@@ -363,7 +370,6 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label12.Location = new System.Drawing.Point(3, 256);
             this.label12.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.label12.Name = "label12";
@@ -738,7 +744,7 @@
             // gbstatic
             // 
             this.gbstatic.Controls.Add(this.tableLayoutPanel2);
-            this.gbstatic.Location = new System.Drawing.Point(0, 24);
+            this.gbstatic.Location = new System.Drawing.Point(0, 50);
             this.gbstatic.Name = "gbstatic";
             this.gbstatic.Size = new System.Drawing.Size(235, 299);
             this.gbstatic.TabIndex = 0;
@@ -748,16 +754,43 @@
             // label15
             // 
             this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label15.Location = new System.Drawing.Point(6, 345);
+            this.label15.Location = new System.Drawing.Point(7, 370);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(220, 1);
+            this.label15.Size = new System.Drawing.Size(221, 1);
             this.label15.TabIndex = 32;
+            // 
+            // label14
+            // 
+            this.label14.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label14.Location = new System.Drawing.Point(1, 1);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(152, 21);
+            this.label14.TabIndex = 35;
+            this.label14.Text = "雨天跟打器发文状态";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // newButton1
+            // 
+            this.newButton1.AutoSize = true;
+            this.newButton1.BackColor = System.Drawing.Color.Gray;
+            this.newButton1.Location = new System.Drawing.Point(198, 4);
+            this.newButton1.Name = "newButton1";
+            this.newButton1.Padding = new System.Windows.Forms.Padding(2);
+            this.newButton1.Size = new System.Drawing.Size(33, 16);
+            this.newButton1.SS = System.Drawing.ContentAlignment.MiddleRight;
+            this.newButton1.TabIndex = 37;
+            this.newButton1.Text = "关闭";
+            this.newButton1.进入背景色 = System.Drawing.Color.Red;
+            this.newButton1.默认背景色 = System.Drawing.Color.Gray;
+            this.newButton1.Click += new System.EventHandler(this.newButton1_Click);
             // 
             // SendTextStatic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(234, 373);
+            this.ClientSize = new System.Drawing.Size(235, 401);
+            this.Controls.Add(this.newButton1);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.CycleCheckBox);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.label15);
@@ -766,14 +799,14 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.gbstatic);
             this.Controls.Add(this.checkBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SendTextStatic";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "雨天跟打器发文状态";
+            this.Text = "SendTextSTatic";
             this.Load += new System.EventHandler(this.SendTextStatic_Load);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -840,5 +873,7 @@
         private System.Windows.Forms.TextBox AutoNumberTextBox;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Button AutoNumberButton;
+        private System.Windows.Forms.Label label14;
+        private NewButton newButton1;
     }
 }

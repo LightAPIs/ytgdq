@@ -138,7 +138,7 @@ namespace WindowsFormsApplication2
                     }
                     else
                     {
-                        Color _c = Color.FromArgb(ColorLow(Theme.tempToolButtonFc.R), ColorLow(Theme.tempToolButtonFc.G), ColorLow(Theme.tempToolButtonFc.B));
+                        Color _c = Theme.GetTranColor(Theme.tempToolButtonFc, -50);
                         Brush _b = new SolidBrush(_c);
                         g.DrawString(Text, Font, _b, x, y);
                     }
@@ -148,11 +148,6 @@ namespace WindowsFormsApplication2
             {
                 g.DrawString(Text, Font, Brushes.DimGray, x, y);
             }
-        }
-
-        private int ColorLow(int c)
-        {
-            return c - 50 < 0 ? 0 : c - 50;
         }
     }
 }

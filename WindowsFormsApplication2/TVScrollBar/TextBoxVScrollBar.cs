@@ -213,18 +213,13 @@ namespace WindowsFormsApplication2.TVScrollBar
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
         }
 
-        private Color GetReverseColor(Color c)
-        {
-            return Color.FromArgb(255 - c.R, 255 - c.G, 255 - c.B);
-        }
-
         protected override void OnPaint(PaintEventArgs e)
         {
             Graphics g = e.Graphics;
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
 
-            Brush upArrowBackBrush = new SolidBrush(this.hover == hoverRect.Up ? GetReverseColor(this.tArrowBackColor) : this.tArrowBackColor);
-            Brush downArrowBackBrush = new SolidBrush(this.hover == hoverRect.Down ? GetReverseColor(this.tArrowBackColor) : this.tArrowBackColor);
+            Brush upArrowBackBrush = new SolidBrush(this.hover == hoverRect.Up ? Theme.GetReverseColor(this.tArrowBackColor) : this.tArrowBackColor);
+            Brush downArrowBackBrush = new SolidBrush(this.hover == hoverRect.Down ? Theme.GetReverseColor(this.tArrowBackColor) : this.tArrowBackColor);
             g.FillRectangle(upArrowBackBrush, new Rectangle(new Point(0, 0), new Size(this.Width, this.Width)));
             g.FillRectangle(downArrowBackBrush, new Rectangle(new Point(0, this.Height - this.Width), new Size(this.Width, this.Width)));
 
@@ -277,7 +272,7 @@ namespace WindowsFormsApplication2.TVScrollBar
 
                 if (this.thumbVisible)
                 { // 滑块可见时
-                    Brush thumbBrush = new SolidBrush(this.hover == hoverRect.Thumb ? GetReverseColor(this.tThumbColor) : this.tThumbColor);
+                    Brush thumbBrush = new SolidBrush(this.hover == hoverRect.Thumb ? Theme.GetReverseColor(this.tThumbColor) : this.tThumbColor);
                     g.FillRectangle(thumbBrush, new Rectangle(new Point(1, this.Width + this.thumbTop), new Size(this.Width - 2, this.thumbHeight)));
                 }
             }

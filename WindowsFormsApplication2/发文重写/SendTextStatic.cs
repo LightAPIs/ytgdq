@@ -24,8 +24,39 @@ namespace WindowsFormsApplication2
         private void SendTextStatic_Load(object sender, EventArgs e)
         {
             this.Location = new Point(MainPos.X - this.Width, MainPos.Y);
+
+            //* 主题颜色
+            LoadTheme(Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.SecondBG, Theme.SecondFC);
+
             FillData();
             frm.ShowFlowText("发文已开启...");
+        }
+
+        /// <summary>
+        /// 载入主题颜色
+        /// </summary>
+        public void LoadTheme(Color BG, Color FC, Color SBG, Color SFC)
+        {
+            this.BackColor = Theme.GetTranColor(BG, 50);
+            this.ForeColor = FC;
+            this.gbstatic.ForeColor = FC;
+            this.newButton1.BackColor = SBG;
+            this.newButton1.ForeColor = SFC;
+            this.newButton1.默认背景色 = SBG;
+            this.newButton1.进入背景色 = Theme.GetReverseColor(SBG);
+            this.panel1.BackColor = Theme.GetTranColor(BG, -50);
+            this.btnFixNowTitle.BackColor = SBG;
+            this.btnFixNowTitle.ForeColor = SFC;
+            this.btnSendTime.BackColor = SBG;
+            this.btnSendTime.ForeColor = SFC;
+            this.AutoNumberButton.BackColor = SBG;
+            this.AutoNumberButton.ForeColor = SFC;
+            this.btnChangePreCout.BackColor = SBG;
+            this.btnChangePreCout.ForeColor = SFC;
+            this.btnSave.BackColor = SBG;
+            this.btnSave.ForeColor = SFC;
+            this.btnStop.BackColor = SBG;
+            this.btnStop.ForeColor = Theme.GetTranColor(SFC, 50);
         }
 
         //填充数据
@@ -450,5 +481,10 @@ namespace WindowsFormsApplication2
             NewSendText.AutoNo = (NewSendText.AutoNoValue)(sender as ComboBox).SelectedIndex;
         }
         #endregion
+
+        private void newButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

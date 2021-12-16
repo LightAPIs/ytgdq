@@ -568,7 +568,7 @@ namespace WindowsFormsApplication2
                 ini.IniWriteValue("外观", "对照区字体", fc.ConvertToInvariantString(fo1));
                 ini.IniWriteValue("外观", "跟打区字体", fc.ConvertToInvariantString(fo2));
 
-                MessageBox.Show(this, "主题文件保存成功！", "保存提示");
+                MessageBox.Show(this, "主题文件另存为成功！", "保存提示");
             }
         }
 

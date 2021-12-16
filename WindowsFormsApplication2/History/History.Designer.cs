@@ -876,7 +876,7 @@
             this.toolStripSeparator5,
             this.DeleteGroupToolStripMenuItem});
             this.HistoryContextMenuStrip.Name = "HistoryContextMenuStrip";
-            this.HistoryContextMenuStrip.Size = new System.Drawing.Size(181, 336);
+            this.HistoryContextMenuStrip.Size = new System.Drawing.Size(181, 314);
             // 
             // ItemToolStripTextBox
             // 
@@ -1039,6 +1039,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "History";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "跟打历史记录";
             this.Load += new System.EventHandler(this.History_Load);
             this.MonthCalendarContextMenuStrip.ResumeLayout(false);

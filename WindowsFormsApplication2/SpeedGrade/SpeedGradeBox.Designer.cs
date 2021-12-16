@@ -37,8 +37,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.SegCountLabel = new System.Windows.Forms.Label();
-            this.QuitButton = new System.Windows.Forms.Button();
             this.GradeTextLabel = new System.Windows.Forms.Label();
+            this.QuitButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -186,18 +186,6 @@
             this.SegCountLabel.Text = "0";
             this.SegCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // QuitButton
-            // 
-            this.QuitButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.QuitButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.QuitButton.Location = new System.Drawing.Point(334, 1);
-            this.QuitButton.Name = "QuitButton";
-            this.QuitButton.Size = new System.Drawing.Size(75, 23);
-            this.QuitButton.TabIndex = 0;
-            this.QuitButton.Text = "关闭";
-            this.QuitButton.UseVisualStyleBackColor = false;
-            this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
-            // 
             // GradeTextLabel
             // 
             this.GradeTextLabel.AutoSize = true;
@@ -209,6 +197,18 @@
             this.GradeTextLabel.Size = new System.Drawing.Size(33, 16);
             this.GradeTextLabel.TabIndex = 1;
             this.GradeTextLabel.Text = "评级";
+            // 
+            // QuitButton
+            // 
+            this.QuitButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.QuitButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.QuitButton.Location = new System.Drawing.Point(334, 1);
+            this.QuitButton.Name = "QuitButton";
+            this.QuitButton.Size = new System.Drawing.Size(75, 23);
+            this.QuitButton.TabIndex = 0;
+            this.QuitButton.Text = "关闭";
+            this.QuitButton.UseVisualStyleBackColor = false;
+            this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
             // 
             // SpeedGradeBox
             // 
@@ -223,6 +223,7 @@
             this.MinimizeBox = false;
             this.Name = "SpeedGradeBox";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "速度评级";
             this.Load += new System.EventHandler(this.SpeedGradeBox_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);

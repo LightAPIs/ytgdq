@@ -118,6 +118,7 @@
             this.MinimizeBox = false;
             this.Name = "ContentEditor";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "内容编辑器";
             this.Load += new System.EventHandler(this.ContentEditor_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);

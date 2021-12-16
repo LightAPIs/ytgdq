@@ -246,6 +246,7 @@
             this.MinimizeBox = false;
             this.Name = "CodeTableBox";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "码表管理";
             this.Load += new System.EventHandler(this.CodeTableBox_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);

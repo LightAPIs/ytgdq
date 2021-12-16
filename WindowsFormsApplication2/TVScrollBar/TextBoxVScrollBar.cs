@@ -255,19 +255,11 @@ namespace WindowsFormsApplication2.TVScrollBar
 
             if (Maximum > 0 )
             {
-                this.thumbHeight = this.Height * this.Height / Maximum;
-                if (this.thumbHeight >= this.trackHeight)
-                {
-                    this.thumbHeight = this.trackHeight;
-                    this.thumbVisible = false;
-                }
-                else
-                {
-                    this.thumbVisible = true;
-                    if (this.thumbHeight < SmallChange)
-                    { //? 设定一个滑块的最小高度
-                        this.thumbHeight = SmallChange;
-                    }
+                this.thumbHeight = this.Height * this.trackHeight / (Maximum + this.Height); // 当 Maxinum > 0 以后，thumbHeight 恒小于 trackHeight
+                this.thumbVisible = true;
+                if (this.thumbHeight < SmallChange)
+                { //? 设定一个滑块的最小高度
+                    this.thumbHeight = SmallChange;
                 }
 
                 if (this.thumbVisible)

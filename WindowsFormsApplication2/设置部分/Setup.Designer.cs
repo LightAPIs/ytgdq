@@ -55,6 +55,24 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tbxName = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.panelTextIn = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.labelTF = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.SymbolInputCheckBox = new System.Windows.Forms.CheckBox();
+            this.AutoInputCheckBox = new System.Windows.Forms.CheckBox();
+            this.DGCheckBox = new System.Windows.Forms.CheckBox();
+            this.ZCheckBox = new System.Windows.Forms.CheckBox();
+            this.AdvancedCheckBox = new System.Windows.Forms.CheckBox();
+            this.SymbolCheckBox = new System.Windows.Forms.CheckBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
@@ -78,24 +96,6 @@
             this.checkBox17 = new System.Windows.Forms.CheckBox();
             this.checkBox14 = new System.Windows.Forms.CheckBox();
             this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.panelTextIn = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.labelTF = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.SymbolInputCheckBox = new System.Windows.Forms.CheckBox();
-            this.AutoInputCheckBox = new System.Windows.Forms.CheckBox();
-            this.DGCheckBox = new System.Windows.Forms.CheckBox();
-            this.ZCheckBox = new System.Windows.Forms.CheckBox();
-            this.AdvancedCheckBox = new System.Windows.Forms.CheckBox();
-            this.SymbolCheckBox = new System.Windows.Forms.CheckBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -254,17 +254,17 @@
             this.newButton2 = new WindowsFormsApplication2.NewButton();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             this.tabControl1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.panelTextIn.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel7.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.panelTextIn.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -637,6 +637,214 @@
             this.tabControl1.Size = new System.Drawing.Size(397, 431);
             this.tabControl1.TabIndex = 11;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.tabPage3.Controls.Add(this.groupBox3);
+            this.tabPage3.Controls.Add(this.groupBox2);
+            this.tabPage3.Controls.Add(this.groupBox1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(389, 405);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "控制、载入及验证";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.Color.DimGray;
+            this.groupBox3.Controls.Add(this.button5);
+            this.groupBox3.Controls.Add(this.checkBox19);
+            this.groupBox3.Controls.Add(this.panelTextIn);
+            this.groupBox3.ForeColor = System.Drawing.Color.White;
+            this.groupBox3.Location = new System.Drawing.Point(0, 191);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(389, 79);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "文段载入";
+            // 
+            // panelTextIn
+            // 
+            this.panelTextIn.Controls.Add(this.label11);
+            this.panelTextIn.Controls.Add(this.textBoxDuan);
+            this.panelTextIn.Controls.Add(this.textBoxPreText);
+            this.panelTextIn.Controls.Add(this.label12);
+            this.panelTextIn.Enabled = false;
+            this.panelTextIn.Location = new System.Drawing.Point(3, 17);
+            this.panelTextIn.Name = "panelTextIn";
+            this.panelTextIn.Size = new System.Drawing.Size(211, 59);
+            this.panelTextIn.TabIndex = 4;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(5, 7);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(53, 12);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "前导符：";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(5, 36);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(53, 12);
+            this.label12.TabIndex = 2;
+            this.label12.Text = "段　标：";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.Color.DimGray;
+            this.groupBox2.Controls.Add(this.label15);
+            this.groupBox2.Controls.Add(this.button7);
+            this.groupBox2.Controls.Add(this.label14);
+            this.groupBox2.Controls.Add(this.labelTF);
+            this.groupBox2.Controls.Add(this.richTextBox2);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.groupBox2.Location = new System.Drawing.Point(0, 276);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(389, 129);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "验证";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(9, 112);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(227, 12);
+            this.label15.TabIndex = 7;
+            this.label15.Text = "必须含有5位“校验”号，才可以检验真伪";
+            // 
+            // labelTF
+            // 
+            this.labelTF.BackColor = System.Drawing.Color.AliceBlue;
+            this.labelTF.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelTF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelTF.ForeColor = System.Drawing.Color.Black;
+            this.labelTF.Location = new System.Drawing.Point(124, 14);
+            this.labelTF.Name = "labelTF";
+            this.labelTF.Size = new System.Drawing.Size(126, 22);
+            this.labelTF.TabIndex = 4;
+            this.labelTF.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(4, 20);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(89, 12);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "比赛认证段号：";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.DimGray;
+            this.groupBox1.Controls.Add(this.SymbolInputCheckBox);
+            this.groupBox1.Controls.Add(this.AutoInputCheckBox);
+            this.groupBox1.Controls.Add(this.DGCheckBox);
+            this.groupBox1.Controls.Add(this.ZCheckBox);
+            this.groupBox1.Controls.Add(this.AdvancedCheckBox);
+            this.groupBox1.Controls.Add(this.SymbolCheckBox);
+            this.groupBox1.Controls.Add(this.label17);
+            this.groupBox1.Controls.Add(this.trackBar2);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(389, 185);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "程序控制";
+            // 
+            // SymbolInputCheckBox
+            // 
+            this.SymbolInputCheckBox.AutoSize = true;
+            this.SymbolInputCheckBox.ForeColor = System.Drawing.Color.White;
+            this.SymbolInputCheckBox.Location = new System.Drawing.Point(11, 110);
+            this.SymbolInputCheckBox.Name = "SymbolInputCheckBox";
+            this.SymbolInputCheckBox.Size = new System.Drawing.Size(312, 16);
+            this.SymbolInputCheckBox.TabIndex = 16;
+            this.SymbolInputCheckBox.Text = "不将与符号一起上屏的字统计成打词(影响打词的统计)";
+            this.SymbolInputCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // AutoInputCheckBox
+            // 
+            this.AutoInputCheckBox.AutoSize = true;
+            this.AutoInputCheckBox.ForeColor = System.Drawing.Color.White;
+            this.AutoInputCheckBox.Location = new System.Drawing.Point(11, 44);
+            this.AutoInputCheckBox.Name = "AutoInputCheckBox";
+            this.AutoInputCheckBox.Size = new System.Drawing.Size(324, 16);
+            this.AutoInputCheckBox.TabIndex = 15;
+            this.AutoInputCheckBox.Text = "输入方案支持四码唯一时自动上屏(影响理论码长的计算)";
+            this.AutoInputCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // DGCheckBox
+            // 
+            this.DGCheckBox.AutoSize = true;
+            this.DGCheckBox.ForeColor = System.Drawing.Color.White;
+            this.DGCheckBox.Location = new System.Drawing.Point(11, 22);
+            this.DGCheckBox.Name = "DGCheckBox";
+            this.DGCheckBox.Size = new System.Drawing.Size(276, 16);
+            this.DGCheckBox.TabIndex = 14;
+            this.DGCheckBox.Text = "输入方案为顶功类输入法(影响理论码长的计算)";
+            this.DGCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // ZCheckBox
+            // 
+            this.ZCheckBox.AutoSize = true;
+            this.ZCheckBox.ForeColor = System.Drawing.Color.White;
+            this.ZCheckBox.Location = new System.Drawing.Point(11, 66);
+            this.ZCheckBox.Name = "ZCheckBox";
+            this.ZCheckBox.Size = new System.Drawing.Size(342, 16);
+            this.ZCheckBox.TabIndex = 13;
+            this.ZCheckBox.Text = "输入方案使用 Z 键重复上一次输出（影响理论码长的计算）";
+            this.ZCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // AdvancedCheckBox
+            // 
+            this.AdvancedCheckBox.AutoSize = true;
+            this.AdvancedCheckBox.Location = new System.Drawing.Point(11, 132);
+            this.AdvancedCheckBox.Name = "AdvancedCheckBox";
+            this.AdvancedCheckBox.Size = new System.Drawing.Size(204, 16);
+            this.AdvancedCheckBox.TabIndex = 12;
+            this.AdvancedCheckBox.Text = "禁止将高阶统计保存到历史记录中";
+            this.AdvancedCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // SymbolCheckBox
+            // 
+            this.SymbolCheckBox.AutoSize = true;
+            this.SymbolCheckBox.ForeColor = System.Drawing.Color.White;
+            this.SymbolCheckBox.Location = new System.Drawing.Point(11, 88);
+            this.SymbolCheckBox.Name = "SymbolCheckBox";
+            this.SymbolCheckBox.Size = new System.Drawing.Size(348, 16);
+            this.SymbolCheckBox.TabIndex = 11;
+            this.SymbolCheckBox.Text = "输入方案使用 ;\' 符号选重（影响选重统计和理论码长计算）";
+            this.SymbolCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(286, 156);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(23, 12);
+            this.label17.TabIndex = 8;
+            this.label17.Text = "1分";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(9, 156);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(161, 12);
+            this.label16.TabIndex = 6;
+            this.label16.Text = "发呆时间(超时则自动重打)：";
+            // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Gray;
@@ -951,214 +1159,6 @@
             this.checkBox10.UseVisualStyleBackColor = true;
             this.checkBox10.CheckedChanged += new System.EventHandler(this.checkBox10_CheckedChanged);
             // 
-            // tabPage3
-            // 
-            this.tabPage3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.tabPage3.Controls.Add(this.groupBox3);
-            this.tabPage3.Controls.Add(this.groupBox2);
-            this.tabPage3.Controls.Add(this.groupBox1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(389, 405);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "控制、载入及验证";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.BackColor = System.Drawing.Color.DimGray;
-            this.groupBox3.Controls.Add(this.button5);
-            this.groupBox3.Controls.Add(this.checkBox19);
-            this.groupBox3.Controls.Add(this.panelTextIn);
-            this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(0, 191);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(389, 79);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "文段载入";
-            // 
-            // panelTextIn
-            // 
-            this.panelTextIn.Controls.Add(this.label11);
-            this.panelTextIn.Controls.Add(this.textBoxDuan);
-            this.panelTextIn.Controls.Add(this.textBoxPreText);
-            this.panelTextIn.Controls.Add(this.label12);
-            this.panelTextIn.Enabled = false;
-            this.panelTextIn.Location = new System.Drawing.Point(3, 17);
-            this.panelTextIn.Name = "panelTextIn";
-            this.panelTextIn.Size = new System.Drawing.Size(211, 59);
-            this.panelTextIn.TabIndex = 4;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(5, 7);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(53, 12);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "前导符：";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(5, 36);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(53, 12);
-            this.label12.TabIndex = 2;
-            this.label12.Text = "段　标：";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.BackColor = System.Drawing.Color.DimGray;
-            this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.button7);
-            this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.labelTF);
-            this.groupBox2.Controls.Add(this.richTextBox2);
-            this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox2.Location = new System.Drawing.Point(0, 276);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(389, 129);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "验证";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(9, 112);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(227, 12);
-            this.label15.TabIndex = 7;
-            this.label15.Text = "必须含有5位“校验”号，才可以检验真伪";
-            // 
-            // labelTF
-            // 
-            this.labelTF.BackColor = System.Drawing.Color.AliceBlue;
-            this.labelTF.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelTF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelTF.ForeColor = System.Drawing.Color.Black;
-            this.labelTF.Location = new System.Drawing.Point(124, 14);
-            this.labelTF.Name = "labelTF";
-            this.labelTF.Size = new System.Drawing.Size(126, 22);
-            this.labelTF.TabIndex = 4;
-            this.labelTF.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(4, 20);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(89, 12);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "比赛认证段号：";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.Color.DimGray;
-            this.groupBox1.Controls.Add(this.SymbolInputCheckBox);
-            this.groupBox1.Controls.Add(this.AutoInputCheckBox);
-            this.groupBox1.Controls.Add(this.DGCheckBox);
-            this.groupBox1.Controls.Add(this.ZCheckBox);
-            this.groupBox1.Controls.Add(this.AdvancedCheckBox);
-            this.groupBox1.Controls.Add(this.SymbolCheckBox);
-            this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Controls.Add(this.trackBar2);
-            this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(389, 185);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "程序控制";
-            // 
-            // SymbolInputCheckBox
-            // 
-            this.SymbolInputCheckBox.AutoSize = true;
-            this.SymbolInputCheckBox.ForeColor = System.Drawing.Color.White;
-            this.SymbolInputCheckBox.Location = new System.Drawing.Point(11, 110);
-            this.SymbolInputCheckBox.Name = "SymbolInputCheckBox";
-            this.SymbolInputCheckBox.Size = new System.Drawing.Size(312, 16);
-            this.SymbolInputCheckBox.TabIndex = 16;
-            this.SymbolInputCheckBox.Text = "不将与符号一起上屏的字统计成打词(影响打词的统计)";
-            this.SymbolInputCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // AutoInputCheckBox
-            // 
-            this.AutoInputCheckBox.AutoSize = true;
-            this.AutoInputCheckBox.ForeColor = System.Drawing.Color.White;
-            this.AutoInputCheckBox.Location = new System.Drawing.Point(11, 44);
-            this.AutoInputCheckBox.Name = "AutoInputCheckBox";
-            this.AutoInputCheckBox.Size = new System.Drawing.Size(324, 16);
-            this.AutoInputCheckBox.TabIndex = 15;
-            this.AutoInputCheckBox.Text = "输入方案支持四码唯一时自动上屏(影响理论码长的计算)";
-            this.AutoInputCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // DGCheckBox
-            // 
-            this.DGCheckBox.AutoSize = true;
-            this.DGCheckBox.ForeColor = System.Drawing.Color.White;
-            this.DGCheckBox.Location = new System.Drawing.Point(11, 22);
-            this.DGCheckBox.Name = "DGCheckBox";
-            this.DGCheckBox.Size = new System.Drawing.Size(276, 16);
-            this.DGCheckBox.TabIndex = 14;
-            this.DGCheckBox.Text = "输入方案为顶功类输入法(影响理论码长的计算)";
-            this.DGCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // ZCheckBox
-            // 
-            this.ZCheckBox.AutoSize = true;
-            this.ZCheckBox.ForeColor = System.Drawing.Color.White;
-            this.ZCheckBox.Location = new System.Drawing.Point(11, 66);
-            this.ZCheckBox.Name = "ZCheckBox";
-            this.ZCheckBox.Size = new System.Drawing.Size(342, 16);
-            this.ZCheckBox.TabIndex = 13;
-            this.ZCheckBox.Text = "输入方案使用 Z 键重复上一次输出（影响理论码长的计算）";
-            this.ZCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // AdvancedCheckBox
-            // 
-            this.AdvancedCheckBox.AutoSize = true;
-            this.AdvancedCheckBox.Location = new System.Drawing.Point(11, 132);
-            this.AdvancedCheckBox.Name = "AdvancedCheckBox";
-            this.AdvancedCheckBox.Size = new System.Drawing.Size(204, 16);
-            this.AdvancedCheckBox.TabIndex = 12;
-            this.AdvancedCheckBox.Text = "禁止将高阶统计保存到历史记录中";
-            this.AdvancedCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // SymbolCheckBox
-            // 
-            this.SymbolCheckBox.AutoSize = true;
-            this.SymbolCheckBox.ForeColor = System.Drawing.Color.White;
-            this.SymbolCheckBox.Location = new System.Drawing.Point(11, 88);
-            this.SymbolCheckBox.Name = "SymbolCheckBox";
-            this.SymbolCheckBox.Size = new System.Drawing.Size(348, 16);
-            this.SymbolCheckBox.TabIndex = 11;
-            this.SymbolCheckBox.Text = "输入方案使用 ;\' 符号选重（影响选重统计和理论码长计算）";
-            this.SymbolCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(286, 156);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(23, 12);
-            this.label17.TabIndex = 8;
-            this.label17.Text = "1分";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(9, 156);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(161, 12);
-            this.label16.TabIndex = 6;
-            this.label16.Text = "发呆时间(超时则自动重打)：";
-            // 
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.DimGray;
@@ -1219,6 +1219,7 @@
             // 
             this.HotKeyDisButton0.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton0.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton0.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton0.Name = "HotKeyDisButton0";
             this.HotKeyDisButton0.Size = new System.Drawing.Size(51, 23);
@@ -1232,7 +1233,7 @@
             // 
             this.HotKeyModButton0.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton0.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton0.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton0.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton0.Name = "HotKeyModButton0";
             this.HotKeyModButton0.Size = new System.Drawing.Size(51, 23);
@@ -1246,6 +1247,7 @@
             // 
             this.HotKeyResetButton0.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton0.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton0.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton0.Name = "HotKeyResetButton0";
             this.HotKeyResetButton0.Size = new System.Drawing.Size(51, 23);
@@ -1293,6 +1295,7 @@
             // 
             this.HotKeyDisButton1.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton1.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton1.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton1.Name = "HotKeyDisButton1";
             this.HotKeyDisButton1.Size = new System.Drawing.Size(51, 23);
@@ -1306,7 +1309,7 @@
             // 
             this.HotKeyModButton1.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton1.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton1.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton1.Name = "HotKeyModButton1";
             this.HotKeyModButton1.Size = new System.Drawing.Size(51, 23);
@@ -1320,6 +1323,7 @@
             // 
             this.HotKeyResetButton1.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton1.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton1.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton1.Name = "HotKeyResetButton1";
             this.HotKeyResetButton1.Size = new System.Drawing.Size(51, 23);
@@ -1367,6 +1371,7 @@
             // 
             this.HotKeyDisButton2.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton2.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton2.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton2.Name = "HotKeyDisButton2";
             this.HotKeyDisButton2.Size = new System.Drawing.Size(51, 23);
@@ -1380,7 +1385,7 @@
             // 
             this.HotKeyModButton2.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton2.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton2.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton2.Name = "HotKeyModButton2";
             this.HotKeyModButton2.Size = new System.Drawing.Size(51, 23);
@@ -1394,6 +1399,7 @@
             // 
             this.HotKeyResetButton2.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton2.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton2.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton2.Name = "HotKeyResetButton2";
             this.HotKeyResetButton2.Size = new System.Drawing.Size(51, 23);
@@ -1441,6 +1447,7 @@
             // 
             this.HotKeyDisButton3.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton3.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton3.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton3.Name = "HotKeyDisButton3";
             this.HotKeyDisButton3.Size = new System.Drawing.Size(51, 23);
@@ -1454,7 +1461,7 @@
             // 
             this.HotKeyModButton3.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton3.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton3.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton3.Name = "HotKeyModButton3";
             this.HotKeyModButton3.Size = new System.Drawing.Size(51, 23);
@@ -1468,6 +1475,7 @@
             // 
             this.HotKeyResetButton3.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton3.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton3.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton3.Name = "HotKeyResetButton3";
             this.HotKeyResetButton3.Size = new System.Drawing.Size(51, 23);
@@ -1515,6 +1523,7 @@
             // 
             this.HotKeyDisButton4.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton4.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton4.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton4.Name = "HotKeyDisButton4";
             this.HotKeyDisButton4.Size = new System.Drawing.Size(51, 23);
@@ -1528,7 +1537,7 @@
             // 
             this.HotKeyModButton4.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton4.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton4.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton4.Name = "HotKeyModButton4";
             this.HotKeyModButton4.Size = new System.Drawing.Size(51, 23);
@@ -1542,6 +1551,7 @@
             // 
             this.HotKeyResetButton4.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton4.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton4.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton4.Name = "HotKeyResetButton4";
             this.HotKeyResetButton4.Size = new System.Drawing.Size(51, 23);
@@ -1589,6 +1599,7 @@
             // 
             this.HotKeyDisButton5.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton5.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton5.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton5.Name = "HotKeyDisButton5";
             this.HotKeyDisButton5.Size = new System.Drawing.Size(51, 23);
@@ -1602,7 +1613,7 @@
             // 
             this.HotKeyModButton5.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton5.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton5.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton5.Name = "HotKeyModButton5";
             this.HotKeyModButton5.Size = new System.Drawing.Size(51, 23);
@@ -1616,6 +1627,7 @@
             // 
             this.HotKeyResetButton5.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton5.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton5.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton5.Name = "HotKeyResetButton5";
             this.HotKeyResetButton5.Size = new System.Drawing.Size(51, 23);
@@ -1663,6 +1675,7 @@
             // 
             this.HotKeyDisButton6.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton6.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton6.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton6.Name = "HotKeyDisButton6";
             this.HotKeyDisButton6.Size = new System.Drawing.Size(51, 23);
@@ -1676,7 +1689,7 @@
             // 
             this.HotKeyModButton6.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton6.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton6.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton6.Name = "HotKeyModButton6";
             this.HotKeyModButton6.Size = new System.Drawing.Size(51, 23);
@@ -1690,6 +1703,7 @@
             // 
             this.HotKeyResetButton6.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton6.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton6.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton6.Name = "HotKeyResetButton6";
             this.HotKeyResetButton6.Size = new System.Drawing.Size(51, 23);
@@ -1737,6 +1751,7 @@
             // 
             this.HotKeyDisButton7.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton7.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton7.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton7.Name = "HotKeyDisButton7";
             this.HotKeyDisButton7.Size = new System.Drawing.Size(51, 23);
@@ -1750,7 +1765,7 @@
             // 
             this.HotKeyModButton7.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton7.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton7.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton7.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton7.Name = "HotKeyModButton7";
             this.HotKeyModButton7.Size = new System.Drawing.Size(51, 23);
@@ -1764,6 +1779,7 @@
             // 
             this.HotKeyResetButton7.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton7.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton7.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton7.Name = "HotKeyResetButton7";
             this.HotKeyResetButton7.Size = new System.Drawing.Size(51, 23);
@@ -1811,6 +1827,7 @@
             // 
             this.HotKeyDisButton8.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton8.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton8.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton8.Name = "HotKeyDisButton8";
             this.HotKeyDisButton8.Size = new System.Drawing.Size(51, 23);
@@ -1824,7 +1841,7 @@
             // 
             this.HotKeyModButton8.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton8.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton8.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton8.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton8.Name = "HotKeyModButton8";
             this.HotKeyModButton8.Size = new System.Drawing.Size(51, 23);
@@ -1838,6 +1855,7 @@
             // 
             this.HotKeyResetButton8.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton8.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton8.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton8.Name = "HotKeyResetButton8";
             this.HotKeyResetButton8.Size = new System.Drawing.Size(51, 23);
@@ -1885,6 +1903,7 @@
             // 
             this.HotKeyDisButton9.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton9.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton9.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton9.Name = "HotKeyDisButton9";
             this.HotKeyDisButton9.Size = new System.Drawing.Size(51, 23);
@@ -1898,7 +1917,7 @@
             // 
             this.HotKeyModButton9.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton9.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton9.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton9.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton9.Name = "HotKeyModButton9";
             this.HotKeyModButton9.Size = new System.Drawing.Size(51, 23);
@@ -1912,6 +1931,7 @@
             // 
             this.HotKeyResetButton9.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton9.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton9.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton9.Name = "HotKeyResetButton9";
             this.HotKeyResetButton9.Size = new System.Drawing.Size(51, 23);
@@ -1959,6 +1979,7 @@
             // 
             this.HotKeyDisButton10.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton10.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton10.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton10.Name = "HotKeyDisButton10";
             this.HotKeyDisButton10.Size = new System.Drawing.Size(51, 23);
@@ -1972,7 +1993,7 @@
             // 
             this.HotKeyModButton10.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton10.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton10.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton10.Name = "HotKeyModButton10";
             this.HotKeyModButton10.Size = new System.Drawing.Size(51, 23);
@@ -1986,6 +2007,7 @@
             // 
             this.HotKeyResetButton10.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton10.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton10.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton10.Name = "HotKeyResetButton10";
             this.HotKeyResetButton10.Size = new System.Drawing.Size(51, 23);
@@ -2033,6 +2055,7 @@
             // 
             this.HotKeyDisButton11.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton11.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton11.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton11.Name = "HotKeyDisButton11";
             this.HotKeyDisButton11.Size = new System.Drawing.Size(51, 23);
@@ -2046,7 +2069,7 @@
             // 
             this.HotKeyModButton11.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton11.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton11.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton11.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton11.Name = "HotKeyModButton11";
             this.HotKeyModButton11.Size = new System.Drawing.Size(51, 23);
@@ -2060,6 +2083,7 @@
             // 
             this.HotKeyResetButton11.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton11.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton11.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton11.Name = "HotKeyResetButton11";
             this.HotKeyResetButton11.Size = new System.Drawing.Size(51, 23);
@@ -2107,6 +2131,7 @@
             // 
             this.HotKeyDisButton12.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton12.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton12.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton12.Name = "HotKeyDisButton12";
             this.HotKeyDisButton12.Size = new System.Drawing.Size(51, 23);
@@ -2120,7 +2145,7 @@
             // 
             this.HotKeyModButton12.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton12.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton12.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton12.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton12.Name = "HotKeyModButton12";
             this.HotKeyModButton12.Size = new System.Drawing.Size(51, 23);
@@ -2134,6 +2159,7 @@
             // 
             this.HotKeyResetButton12.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton12.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton12.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton12.Name = "HotKeyResetButton12";
             this.HotKeyResetButton12.Size = new System.Drawing.Size(51, 23);
@@ -2181,6 +2207,7 @@
             // 
             this.HotKeyDisButton13.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton13.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton13.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton13.Name = "HotKeyDisButton13";
             this.HotKeyDisButton13.Size = new System.Drawing.Size(51, 23);
@@ -2194,7 +2221,7 @@
             // 
             this.HotKeyModButton13.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton13.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton13.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton13.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton13.Name = "HotKeyModButton13";
             this.HotKeyModButton13.Size = new System.Drawing.Size(51, 23);
@@ -2208,6 +2235,7 @@
             // 
             this.HotKeyResetButton13.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton13.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton13.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton13.Name = "HotKeyResetButton13";
             this.HotKeyResetButton13.Size = new System.Drawing.Size(51, 23);
@@ -2255,6 +2283,7 @@
             // 
             this.HotKeyDisButton14.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton14.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton14.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton14.Name = "HotKeyDisButton14";
             this.HotKeyDisButton14.Size = new System.Drawing.Size(51, 23);
@@ -2268,7 +2297,7 @@
             // 
             this.HotKeyModButton14.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton14.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton14.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton14.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton14.Name = "HotKeyModButton14";
             this.HotKeyModButton14.Size = new System.Drawing.Size(51, 23);
@@ -2282,6 +2311,7 @@
             // 
             this.HotKeyResetButton14.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton14.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton14.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton14.Name = "HotKeyResetButton14";
             this.HotKeyResetButton14.Size = new System.Drawing.Size(51, 23);
@@ -2329,6 +2359,7 @@
             // 
             this.HotKeyDisButton15.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton15.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton15.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton15.Name = "HotKeyDisButton15";
             this.HotKeyDisButton15.Size = new System.Drawing.Size(51, 23);
@@ -2342,7 +2373,7 @@
             // 
             this.HotKeyModButton15.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton15.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton15.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton15.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton15.Name = "HotKeyModButton15";
             this.HotKeyModButton15.Size = new System.Drawing.Size(51, 23);
@@ -2356,6 +2387,7 @@
             // 
             this.HotKeyResetButton15.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton15.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton15.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton15.Name = "HotKeyResetButton15";
             this.HotKeyResetButton15.Size = new System.Drawing.Size(51, 23);
@@ -2403,6 +2435,7 @@
             // 
             this.HotKeyDisButton16.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton16.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton16.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton16.Name = "HotKeyDisButton16";
             this.HotKeyDisButton16.Size = new System.Drawing.Size(51, 23);
@@ -2416,7 +2449,7 @@
             // 
             this.HotKeyModButton16.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton16.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton16.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton16.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton16.Name = "HotKeyModButton16";
             this.HotKeyModButton16.Size = new System.Drawing.Size(51, 23);
@@ -2430,6 +2463,7 @@
             // 
             this.HotKeyResetButton16.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton16.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton16.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton16.Name = "HotKeyResetButton16";
             this.HotKeyResetButton16.Size = new System.Drawing.Size(51, 23);
@@ -2477,6 +2511,7 @@
             // 
             this.HotKeyDisButton17.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton17.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton17.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton17.Name = "HotKeyDisButton17";
             this.HotKeyDisButton17.Size = new System.Drawing.Size(51, 23);
@@ -2490,7 +2525,7 @@
             // 
             this.HotKeyModButton17.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton17.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton17.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton17.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton17.Name = "HotKeyModButton17";
             this.HotKeyModButton17.Size = new System.Drawing.Size(51, 23);
@@ -2504,6 +2539,7 @@
             // 
             this.HotKeyResetButton17.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton17.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton17.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton17.Name = "HotKeyResetButton17";
             this.HotKeyResetButton17.Size = new System.Drawing.Size(51, 23);
@@ -2551,6 +2587,7 @@
             // 
             this.HotKeyDisButton18.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton18.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton18.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton18.Name = "HotKeyDisButton18";
             this.HotKeyDisButton18.Size = new System.Drawing.Size(51, 23);
@@ -2564,7 +2601,7 @@
             // 
             this.HotKeyModButton18.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton18.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton18.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton18.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton18.Name = "HotKeyModButton18";
             this.HotKeyModButton18.Size = new System.Drawing.Size(51, 23);
@@ -2578,6 +2615,7 @@
             // 
             this.HotKeyResetButton18.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton18.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton18.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton18.Name = "HotKeyResetButton18";
             this.HotKeyResetButton18.Size = new System.Drawing.Size(51, 23);
@@ -2625,6 +2663,7 @@
             // 
             this.HotKeyDisButton19.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton19.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton19.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton19.Name = "HotKeyDisButton19";
             this.HotKeyDisButton19.Size = new System.Drawing.Size(51, 23);
@@ -2638,7 +2677,7 @@
             // 
             this.HotKeyModButton19.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton19.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton19.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton19.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton19.Name = "HotKeyModButton19";
             this.HotKeyModButton19.Size = new System.Drawing.Size(51, 23);
@@ -2652,6 +2691,7 @@
             // 
             this.HotKeyResetButton19.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton19.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton19.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton19.Name = "HotKeyResetButton19";
             this.HotKeyResetButton19.Size = new System.Drawing.Size(51, 23);
@@ -2699,6 +2739,7 @@
             // 
             this.HotKeyDisButton20.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton20.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton20.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton20.Name = "HotKeyDisButton20";
             this.HotKeyDisButton20.Size = new System.Drawing.Size(51, 23);
@@ -2712,7 +2753,7 @@
             // 
             this.HotKeyModButton20.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton20.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton20.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton20.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton20.Name = "HotKeyModButton20";
             this.HotKeyModButton20.Size = new System.Drawing.Size(51, 23);
@@ -2726,6 +2767,7 @@
             // 
             this.HotKeyResetButton20.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton20.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton20.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton20.Name = "HotKeyResetButton20";
             this.HotKeyResetButton20.Size = new System.Drawing.Size(51, 23);
@@ -2773,6 +2815,7 @@
             // 
             this.HotKeyDisButton21.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton21.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton21.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton21.Name = "HotKeyDisButton21";
             this.HotKeyDisButton21.Size = new System.Drawing.Size(51, 23);
@@ -2786,7 +2829,7 @@
             // 
             this.HotKeyModButton21.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton21.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton21.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton21.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton21.Name = "HotKeyModButton21";
             this.HotKeyModButton21.Size = new System.Drawing.Size(51, 23);
@@ -2800,6 +2843,7 @@
             // 
             this.HotKeyResetButton21.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton21.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton21.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton21.Name = "HotKeyResetButton21";
             this.HotKeyResetButton21.Size = new System.Drawing.Size(51, 23);
@@ -2847,6 +2891,7 @@
             // 
             this.HotKeyDisButton22.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton22.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton22.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton22.Name = "HotKeyDisButton22";
             this.HotKeyDisButton22.Size = new System.Drawing.Size(51, 23);
@@ -2860,7 +2905,7 @@
             // 
             this.HotKeyModButton22.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton22.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton22.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton22.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton22.Name = "HotKeyModButton22";
             this.HotKeyModButton22.Size = new System.Drawing.Size(51, 23);
@@ -2874,6 +2919,7 @@
             // 
             this.HotKeyResetButton22.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton22.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton22.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton22.Name = "HotKeyResetButton22";
             this.HotKeyResetButton22.Size = new System.Drawing.Size(51, 23);
@@ -2921,6 +2967,7 @@
             // 
             this.HotKeyDisButton23.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton23.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton23.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton23.Name = "HotKeyDisButton23";
             this.HotKeyDisButton23.Size = new System.Drawing.Size(51, 23);
@@ -2934,7 +2981,7 @@
             // 
             this.HotKeyModButton23.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton23.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton23.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton23.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton23.Name = "HotKeyModButton23";
             this.HotKeyModButton23.Size = new System.Drawing.Size(51, 23);
@@ -2948,6 +2995,7 @@
             // 
             this.HotKeyResetButton23.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton23.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton23.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton23.Name = "HotKeyResetButton23";
             this.HotKeyResetButton23.Size = new System.Drawing.Size(51, 23);
@@ -2995,6 +3043,7 @@
             // 
             this.HotKeyDisButton24.BackColor = System.Drawing.Color.Tan;
             this.HotKeyDisButton24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyDisButton24.ForeColor = System.Drawing.Color.Black;
             this.HotKeyDisButton24.Location = new System.Drawing.Point(293, 4);
             this.HotKeyDisButton24.Name = "HotKeyDisButton24";
             this.HotKeyDisButton24.Size = new System.Drawing.Size(51, 23);
@@ -3008,7 +3057,7 @@
             // 
             this.HotKeyModButton24.BackColor = System.Drawing.Color.LightGreen;
             this.HotKeyModButton24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HotKeyModButton24.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotKeyModButton24.ForeColor = System.Drawing.Color.Black;
             this.HotKeyModButton24.Location = new System.Drawing.Point(179, 4);
             this.HotKeyModButton24.Name = "HotKeyModButton24";
             this.HotKeyModButton24.Size = new System.Drawing.Size(51, 23);
@@ -3022,6 +3071,7 @@
             // 
             this.HotKeyResetButton24.BackColor = System.Drawing.Color.OrangeRed;
             this.HotKeyResetButton24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HotKeyResetButton24.ForeColor = System.Drawing.Color.Black;
             this.HotKeyResetButton24.Location = new System.Drawing.Point(236, 4);
             this.HotKeyResetButton24.Name = "HotKeyResetButton24";
             this.HotKeyResetButton24.Size = new System.Drawing.Size(51, 23);
@@ -3065,7 +3115,6 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.ForeColor = System.Drawing.Color.White;
             this.label10.Location = new System.Drawing.Point(3, -1);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(122, 21);
@@ -3127,6 +3176,15 @@
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TSetup_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.panelTextIn.ResumeLayout(false);
+            this.panelTextIn.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
@@ -3137,15 +3195,6 @@
             this.panel7.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.panelTextIn.ResumeLayout(false);
-            this.panelTextIn.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel10.ResumeLayout(false);

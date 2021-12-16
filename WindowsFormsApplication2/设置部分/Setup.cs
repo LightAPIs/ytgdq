@@ -43,6 +43,18 @@ namespace WindowsFormsApplication2
         /// <param name="e"></param>
         private void Setup_Load(object sender, EventArgs e)
         {
+            //* 主题配色
+            this.BackColor = Theme.GetTranColor(Theme.ThemeColorBG, 50);
+            this.ForeColor = Theme.ThemeColorFC;
+            this.newButton2.BackColor = Theme.SecondBG;
+            this.newButton2.ForeColor = Theme.SecondFC;
+            this.newButton2.默认背景色 = Theme.SecondBG;
+            this.newButton2.进入背景色 = Theme.GetReverseColor(Theme.SecondBG);
+            this.newButton1.BackColor = Theme.SecondBG;
+            this.newButton1.ForeColor = Theme.SecondFC;
+            this.newButton1.默认背景色 = Theme.SecondBG;
+            this.newButton1.进入背景色 = Theme.GetTranColor(Theme.SecondBG, 50);
+
             // 个签初始化
             this.checkBox1.Checked = Glob.InstraPre_ != "0";
             this.textBox1.Text = Glob.InstraPre;

@@ -166,7 +166,7 @@ namespace WindowsFormsApplication2
         /// </summary>
         public static int TextHgAll = 0;
         /// <summary>
-        /// 总计跟打数
+        /// 总计跟打字数
         /// 不包括回改
         /// </summary>
         public static int TextLenAll;

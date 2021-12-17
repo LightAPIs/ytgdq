@@ -2066,13 +2066,24 @@ namespace WindowsFormsApplication2
 
                     if (Glob.SpeedGradeCount > 100)
                     {
+                        double ratio = TextLen / ((double)Glob.TextLenAll / Glob.jjAllC);
                         if (nowValue > Glob.SpeedGrade)
                         {
-                            Glob.SpeedGrade += Glob.Difficulty;
+                            double val1 = Glob.Difficulty * ratio;
+                            if (val1 > Glob.SpeedGrade * 0.5)
+                            { // 限定最大增幅不超过 50%
+                                val1 = Glob.SpeedGrade * 0.5;
+                            }
+                            Glob.SpeedGrade += val1;
                         }
                         else if (nowValue < Glob.SpeedGrade)
                         {
-                            Glob.SpeedGrade -= 1 / Glob.Difficulty;
+                            double val2 = 1 / (Glob.Difficulty * ratio);
+                            if (val2 > Glob.SpeedGrade * 0.1)
+                            { // 限定最大减幅不超过 10%
+                                val2 = Glob.SpeedGrade * 0.1;
+                            }
+                            Glob.SpeedGrade -= val2;
                         }
                         Glob.SpeedGradeCount++;
                     }

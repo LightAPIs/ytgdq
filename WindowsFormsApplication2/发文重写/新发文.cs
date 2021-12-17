@@ -1196,18 +1196,16 @@ namespace WindowsFormsApplication2
             WebArticle wa = new WebArticle();
             int startIndex = start * WebPageSize;
             int endIndex = (start + 1) * WebPageSize;
-            int dirUsed = 0;
+            int dirCount = all.dir.Count;
             for (int i = startIndex; i < endIndex && i < this.totalWebCount; i++)
             {
-                int dirCount = all.dir.Count;
                 if (i < dirCount)
                 {
                     wa.dir.Add(all.dir[i]);
-                    dirUsed++;
                 }
                 else
                 {
-                    int index = i - dirUsed;
+                    int index = i - dirCount;
                     wa.txt.Add(all.txt[index]);
                 }
             }

@@ -103,12 +103,13 @@ namespace WindowsFormsApplication2.Difficulty
         /// <returns></returns>
         public string DiffText(double diff)
         {
+            diff = Math.Round(diff, 2);
             string diffText = "";
             if (diff == 0)
             {
                 diffText = "无";
             }
-            else if (diff <= 1.5)
+            else if (diff <= 1.50)
             {
                 diffText = "轻松";
             }
@@ -120,19 +121,19 @@ namespace WindowsFormsApplication2.Difficulty
             {
                 diffText = "一般";
             }
-            else if (diff <= 2.8)
+            else if (diff <= 2.80)
             {
                 diffText = "稍难";
             }
-            else if (diff <= 3.5)
+            else if (diff <= 3.50)
             {
                 diffText = "困难";
             }
-            else if (diff <= 4.2)
+            else if (diff <= 4.20)
             {
                 diffText = "超难";
             }
-            else if (diff <= 5.4)
+            else if (diff <= 5.40)
             {
                 diffText = "极难";
             }

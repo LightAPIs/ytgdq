@@ -19,7 +19,7 @@ namespace WindowsFormsApplication2
     /// </summary>
     public class Glob
     {
-        public static string Ver = "1.7.0";
+        public static string Ver = "1.8.0";
 
         public static string Form = "雨天跟打器" + Bit + " v" + Ver + Project;
 
@@ -50,7 +50,7 @@ namespace WindowsFormsApplication2
         /// <summary>
         /// 成绩版本
         /// </summary>
-        public static string Instration = "s09";
+        public static string Instration = "s10";
 
         /// <summary>
         /// 显示实时数据

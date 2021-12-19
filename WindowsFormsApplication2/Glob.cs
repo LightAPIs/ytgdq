@@ -21,7 +21,32 @@ namespace WindowsFormsApplication2
     {
         public static string Ver = "1.7.0";
 
-        public static string Form = "雨天跟打器v" + Ver;
+        public static string Form = "雨天跟打器" + Bit + " v" + Ver + Project;
+
+        public static string Project
+        {
+            get
+            {
+                #if DEBUG
+                    return "(Debug)";
+                #else
+                    return "";
+                #endif
+            }
+        }
+
+        public static string Bit
+        {
+            get
+            {
+                #if x64
+                    return "x64";
+                #else
+                    return "";
+                #endif
+            }
+        }
+
         /// <summary>
         /// 成绩版本
         /// </summary>
@@ -60,7 +85,7 @@ namespace WindowsFormsApplication2
         /// 当前段号
         /// </summary>
         public static int CurSegmentNum = 1225;
-        
+
         public static int Time = 0;
         public static string Text;//跟打文字*****
         /// <summary>
@@ -170,7 +195,7 @@ namespace WindowsFormsApplication2
         /// 不包括回改
         /// </summary>
         public static int TextLenAll;
-        
+
         /// <summary>
         /// 记录天数
         /// </summary>
@@ -283,7 +308,7 @@ namespace WindowsFormsApplication2
         /// 上一次跟打成绩
         /// </summary>
         public static string theLastGoal = "";
-        
+
         //随机段数
         public static int AZpre = 88;
         //错次
@@ -353,7 +378,7 @@ namespace WindowsFormsApplication2
         /// 速度评级统计总难度
         /// </summary>
         public static double SpeedGradeDiff = 0;
-        
+
         //跟打地图
         public static Graphics Type_Map;
         public static Color Type_Map_Color = Color.Gray;
@@ -418,7 +443,7 @@ namespace WindowsFormsApplication2
         public static List<BmAll> BmAlls = new List<BmAll>();
         public static double 词库理论码长 = 0;
         public static string 词组编码 = "";
-        
+
 
         /// <summary>
         /// 是否正在测词中
@@ -464,7 +489,7 @@ namespace WindowsFormsApplication2
         /// <summary>
         /// 保存曲线各点速度值
         /// </summary>
-        public static List<double> ChartSpeedArr = new List<double> ();
+        public static List<double> ChartSpeedArr = new List<double>();
 
         /// <summary>
         /// 按键统计
@@ -485,7 +510,7 @@ namespace WindowsFormsApplication2
         /// 临时文段保存器
         /// 主要用于实现"发上一段"的功能
         /// </summary>
-        public static List<string> TempSegmentRecord = new List<string> ();
+        public static List<string> TempSegmentRecord = new List<string>();
 
         /// <summary>
         /// 发文游标
@@ -554,7 +579,8 @@ namespace WindowsFormsApplication2
     /// <summary>
     /// 跟打报告
     /// </summary>
-    public class TypeDate {
+    public class TypeDate
+    {
         /// <summary>
         /// 序
         /// </summary>

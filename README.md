@@ -1,4 +1,4 @@
-#  <img src="assets/rain.ico" width="45" aligh="left"> 雨天跟打器
+#  <img src="Image/rain.ico" width="45" aligh="left"> 雨天跟打器
 
 <p align="center">
   <a href="https://github.com/LightAPIs/ytgdq/releases/latest">

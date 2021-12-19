@@ -17,7 +17,16 @@ namespace WindowsFormsApplication2
         {
             InitializeComponent();
             this.Text = string.Format("关于 {0}", AssemblyTitle);
-            this.labelVersion.Text = "v" + Glob.Ver;
+            string bitVal;
+            if (Glob.Bit.Length > 0)
+            {
+                bitVal = " (64-bit)";
+            }
+            else
+            {
+                bitVal = " (32-bit)";
+            }
+            this.labelVersion.Text = "v" + Glob.Ver + bitVal;
         }
 
         private void Jump(string str)

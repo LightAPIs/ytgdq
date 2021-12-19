@@ -844,6 +844,7 @@ namespace WindowsFormsApplication2
         {
             FontConverter fc = new FontConverter();
             fo2 = (Font)fc.ConvertFromString("宋体, 12pt");
+            SetFont2();
         }
 
         private void newButton26_Click(object sender, EventArgs e)

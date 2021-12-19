@@ -1,4 +1,6 @@
-﻿namespace WindowsFormsApplication2.Storage
+﻿using System;
+
+namespace WindowsFormsApplication2.Storage
 {
     public partial class StorageDataSet
     {
@@ -12,7 +14,7 @@
         {
             for (int i = 0; i < scoreData.Count; i++)
             {
-                if (scoreData[i]["score_time"].ToString().Equals(time))
+                if (Convert.ToDateTime(scoreData[i]["score_time"]).ToString("yyyy-MM-dd HH:mm:ss").Equals(time))
                 {
                     return scoreData[i];
                 }

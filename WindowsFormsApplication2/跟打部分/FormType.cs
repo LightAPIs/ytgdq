@@ -2180,7 +2180,7 @@ namespace WindowsFormsApplication2
                             typeCountStr = Glob.HaveTypeCount_.ToString();
                         }
                         //* 成绩栏添加新数据行
-                        dataGridView1.Rows.Add(typeCountStr, Glob.TextTime.ToString("G"), Glob.CurSegmentNum.ToString(), Spsend, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.Difficulty.ToString("0.00"), (Glob.Difficulty * speed2).ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserDcl, UserTime, this.lblTitle.Text);
+                        dataGridView1.Rows.Add(typeCountStr, Glob.TextTime.ToString("yyyy-MM-dd HH:mm:ss"), Glob.CurSegmentNum.ToString(), Spsend, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.Difficulty.ToString("0.00"), (Glob.Difficulty * speed2).ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserDcl, UserTime, this.lblTitle.Text);
                         //* 绑定右键菜单
                         dataGridView1.Rows[dataGridView1.RowCount - 1].ContextMenuStrip = this.ScoreContextMenuStrip;
                         Glob.TextPreCout = this.lblMatchCount.Text; // 记录本文段校验码

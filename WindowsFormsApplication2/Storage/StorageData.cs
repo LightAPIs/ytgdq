@@ -135,7 +135,7 @@ namespace WindowsFormsApplication2.Storage
         /// <returns></returns>
         public StorageDataSet.ScoreDataTable GetScoreFromDate(DateTime date, int start, int limit)
         {
-            this.cmd.CommandText = $"SELECT * FROM score WHERE score_time LIKE '{date:d}%' LIMIT {limit} OFFSET {start}";
+            this.cmd.CommandText = $"SELECT * FROM score WHERE score_time LIKE '{date:yyyy-MM-dd}%' LIMIT {limit} OFFSET {start}";
             SQLiteDataAdapter adapter = new SQLiteDataAdapter(this.cmd);
             StorageDataSet.ScoreDataTable myScore = new StorageDataSet.ScoreDataTable();
             adapter.Fill(myScore);
@@ -149,7 +149,7 @@ namespace WindowsFormsApplication2.Storage
         /// <returns></returns>
         public int GetScoreCountFromDate(DateTime date)
         {
-            this.cmd.CommandText = $"SELECT COUNT(1) FROM score WHERE score_time LIKE '{date:d}%'";
+            this.cmd.CommandText = $"SELECT COUNT(1) FROM score WHERE score_time LIKE '{date:yyyy-MM-dd}%'";
             object readNum = this.cmd.ExecuteScalar();
 
             if (readNum == null)

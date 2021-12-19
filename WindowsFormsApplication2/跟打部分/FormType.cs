@@ -150,9 +150,9 @@ namespace WindowsFormsApplication2
         /// <summary>
         /// 编码中的有效字符
         /// </summary>
-        private readonly static string ValidChars = @"abcdefghizklmnopqrstuvwxyz0123456789;',./";
+        private readonly static string ValidChars = @"abcdefghijklmnopqrstuvwxyz0123456789;',./";
 
-        private readonly static string SymbolChars = @"abcdefghizklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!！`~@#$￥%^…&*()（）-_—=+[]{}'‘’""“”\、|·;；:：,，.。<>《》?？/";
+        private readonly static string SymbolChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!！`~@#$￥%^…&*()（）-_—=+[]{}'‘’""“”\、|·;；:：,，.。<>《》?？/";
 
         public Form1()
         {

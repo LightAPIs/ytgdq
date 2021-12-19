@@ -10,7 +10,7 @@ namespace WindowsFormsApplication2.Difficulty
     {
         private Dictionary<string, double> ranks = new Dictionary<string, double>();
 
-        private readonly string symbloChars = @"abcdefghizklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!！`~@#$￥%^…&*()（）-_—=+[]{}'‘’""“”\、|·;；:：,，.。<>《》?？/";
+        private readonly string symbloChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!！`~@#$￥%^…&*()（）-_—=+[]{}'‘’""“”\、|·;；:：,，.。<>《》?？/";
 
         public DifficultyDict()
         {
@@ -83,7 +83,6 @@ namespace WindowsFormsApplication2.Difficulty
                     else if (symbloChars.Contains(nowIt))
                     { //* 统计标点符号
                         accumulator += 1;
-
                     }
                     else
                     {

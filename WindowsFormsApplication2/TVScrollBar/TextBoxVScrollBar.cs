@@ -42,13 +42,21 @@ namespace WindowsFormsApplication2.TVScrollBar
 
         protected int tLargeChange = 10;
         protected int tSmallChange = 1;
-        protected int tMinimum = 0;
-        protected int tMaximum = 0;
         protected int tValue = 0;
+        /// <summary>
+        /// 内容高度
+        /// - 用于内容变动时重新计算
+        /// </summary>
+        protected int tContentHeight = 0;
+        /// <summary>
+        /// 控件高度
+        /// - 用于调整控件大小时重新计算
+        /// </summary>
+        protected int tControlHeight = 0;
         #endregion
 
         #region 内部变量
-        private enum hoverRect
+        private enum HoverRect
         {
             None = 0,
             Up = 1,
@@ -68,13 +76,13 @@ namespace WindowsFormsApplication2.TVScrollBar
         private int thumbHeight = 0;
         private bool thumbMouseDown = false;
         private bool thumbDragging = false;
-        private hoverRect hover = hoverRect.None;
+        private HoverRect hover = HoverRect.None;
 
         /// <summary>
         /// 轨道高度
         /// - 不包括上下箭头
         /// </summary>
-        private int trackHeight
+        private int TrackHeight
         {
             get
             {
@@ -85,11 +93,12 @@ namespace WindowsFormsApplication2.TVScrollBar
         /// <summary>
         /// 操作区域的真实高度范围
         /// </summary>
-        private int realRange
+        private int RealRange
         {
             get
             {
-                return this.tMaximum - this.tMinimum;
+                int val = this.tContentHeight - tControlHeight;
+                return val > 0 ? val : 0;
             }
         }
 
@@ -97,11 +106,11 @@ namespace WindowsFormsApplication2.TVScrollBar
         /// 拇指滑块可移动范围
         /// - 即减去箭头高度和滑块高度
         /// </summary>
-        private int pixelRange
+        private int PixelRange
         {
             get
             {
-                return this.trackHeight - this.thumbHeight;
+                return this.TrackHeight - this.thumbHeight;
             }
         }
         #endregion
@@ -132,24 +141,6 @@ namespace WindowsFormsApplication2.TVScrollBar
             set { tSmallChange = value; Invalidate(); }
         }
 
-        [EditorBrowsable(EditorBrowsableState.Always), Browsable(true), DefaultValue(0), Category("行为"), Description("获取或设置控制区最小值")]
-        public int Minimum
-        {
-            get { return tMinimum; }
-            set { tMinimum = value; Invalidate(); }
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Always), Browsable(true), DefaultValue(0), Category("行为"), Description("获取或设置控制区最大值")]
-        public int Maximum
-        {
-            get { return tMaximum; }
-            set
-            {
-                tMaximum = value > 0 ? value : 0;
-                Invalidate();
-            }
-        }
-
         [EditorBrowsable(EditorBrowsableState.Always), Browsable(true), DefaultValue(0), Category("行为"), Description("获取或设置滚动条的值")]
         public int Value
         {
@@ -157,7 +148,32 @@ namespace WindowsFormsApplication2.TVScrollBar
             set
             {
                 tValue = value;
-                this.thumbTop = (int)Math.Ceiling((double)tValue / tMaximum * this.pixelRange);
+                if (RealRange > 0)
+                {
+                    this.thumbTop = (int)Math.Ceiling((double)tValue / this.RealRange * this.PixelRange);
+                }
+                Invalidate();
+            }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Always), Browsable(true), DefaultValue(0), Category("行为"), Description("获取或设置内容的高度")]
+        public int ContentHeight
+        {
+            get { return tContentHeight; }
+            set
+            {
+                this.tContentHeight = value;
+                Invalidate();
+            }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Always), Browsable(true), DefaultValue(0), Category("行为"), Description("获取或设置控件的高度")]
+        public int ControlHeight
+        {
+            get { return tControlHeight; }
+            set
+            {
+                this.tControlHeight = value;
                 Invalidate();
             }
         }
@@ -218,8 +234,8 @@ namespace WindowsFormsApplication2.TVScrollBar
             Graphics g = e.Graphics;
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
 
-            Brush upArrowBackBrush = new SolidBrush(this.hover == hoverRect.Up ? Theme.GetReverseColor(this.tArrowBackColor) : this.tArrowBackColor);
-            Brush downArrowBackBrush = new SolidBrush(this.hover == hoverRect.Down ? Theme.GetReverseColor(this.tArrowBackColor) : this.tArrowBackColor);
+            Brush upArrowBackBrush = new SolidBrush(this.hover == HoverRect.Up ? Theme.GetReverseColor(this.tArrowBackColor) : this.tArrowBackColor);
+            Brush downArrowBackBrush = new SolidBrush(this.hover == HoverRect.Down ? Theme.GetReverseColor(this.tArrowBackColor) : this.tArrowBackColor);
             g.FillRectangle(upArrowBackBrush, new Rectangle(new Point(0, 0), new Size(this.Width, this.Width)));
             g.FillRectangle(downArrowBackBrush, new Rectangle(new Point(0, this.Height - this.Width), new Size(this.Width, this.Width)));
 
@@ -229,11 +245,11 @@ namespace WindowsFormsApplication2.TVScrollBar
             }
             else
             {
-                Brush upArrowBrush = new SolidBrush(this.hover == hoverRect.Up ? this.tArrowBackColor : this.tThumbColor);
+                Brush upArrowBrush = new SolidBrush(this.hover == HoverRect.Up ? this.tArrowBackColor : this.tThumbColor);
                 Point upt1 = new Point(9, 5);
                 Point upt2 = new Point(3, 11);
                 Point upt3 = new Point(15, 11);
-                Point[] uptArr = { upt1 , upt2 , upt3 };
+                Point[] uptArr = { upt1, upt2, upt3 };
                 g.FillPolygon(upArrowBrush, uptArr);
             }
             if (DownArrowImage != null)
@@ -242,7 +258,7 @@ namespace WindowsFormsApplication2.TVScrollBar
             }
             else
             {
-                Brush downArrowBrush = new SolidBrush(this.hover == hoverRect.Down ? this.tArrowBackColor : this.tThumbColor);
+                Brush downArrowBrush = new SolidBrush(this.hover == HoverRect.Down ? this.tArrowBackColor : this.tThumbColor);
                 Point dpt1 = new Point(9, this.Height - this.Width + 12);
                 Point dpt2 = new Point(4, this.Height - this.Width + 7);
                 Point dpt3 = new Point(14, this.Height - this.Width + 7);
@@ -251,11 +267,11 @@ namespace WindowsFormsApplication2.TVScrollBar
             }
 
             Brush channelBrush = new SolidBrush(tChannelColor);
-            g.FillRectangle(channelBrush, new Rectangle(new Point(0, this.Width), new Size(this.Width, this.trackHeight)));
+            g.FillRectangle(channelBrush, new Rectangle(new Point(0, this.Width), new Size(this.Width, this.TrackHeight)));
 
-            if (Maximum > 0 )
+            if (this.RealRange > 0)
             {
-                this.thumbHeight = this.Height * this.trackHeight / (Maximum + this.Height); // 当 Maxinum > 0 以后，thumbHeight 恒小于 trackHeight
+                this.thumbHeight = this.Height * this.TrackHeight / (this.RealRange + this.Height); // 当 RealRange > 0 以后，thumbHeight 恒小于 trackHeight
                 this.thumbVisible = true;
                 if (this.thumbHeight < SmallChange)
                 { //? 设定一个滑块的最小高度
@@ -264,7 +280,7 @@ namespace WindowsFormsApplication2.TVScrollBar
 
                 if (this.thumbVisible)
                 { // 滑块可见时
-                    Brush thumbBrush = new SolidBrush(this.hover == hoverRect.Thumb ? Theme.GetReverseColor(this.tThumbColor) : this.tThumbColor);
+                    Brush thumbBrush = new SolidBrush(this.hover == HoverRect.Thumb ? Theme.GetReverseColor(this.tThumbColor) : this.tThumbColor);
                     g.FillRectangle(thumbBrush, new Rectangle(new Point(1, this.Width + this.thumbTop), new Size(this.Width - 2, this.thumbHeight)));
                 }
             }
@@ -282,7 +298,7 @@ namespace WindowsFormsApplication2.TVScrollBar
                     this.clickPoint = pt.Y - this.thumbTop;
                     this.thumbMouseDown = true;
                 }
-                else if (this.realRange > 0 && this.pixelRange > 0)
+                else if (this.RealRange > 0 && this.PixelRange > 0)
                 {
                     Rectangle upArrowRect = new Rectangle(new Point(0, 0), new Size(this.Width, this.Width));
                     if (upArrowRect.Contains(pt))
@@ -290,8 +306,8 @@ namespace WindowsFormsApplication2.TVScrollBar
                         if (this.thumbTop > 0)
                         {
                             this.thumbTop = this.thumbTop - SmallChange < 0 ? 0 : this.thumbTop - SmallChange;
-                            float uPrec = (float)this.thumbTop / this.pixelRange;
-                            this.tValue = (int)(uPrec * this.realRange);
+                            float uPrec = (float)this.thumbTop / this.PixelRange;
+                            this.tValue = (int)(uPrec * this.RealRange);
                             ValueChanged?.Invoke(this, new EventArgs());
                             VScroll?.Invoke(this, new EventArgs());
                             Invalidate();
@@ -302,11 +318,11 @@ namespace WindowsFormsApplication2.TVScrollBar
                         Rectangle downArrowRect = new Rectangle(new Point(0, this.Height - this.Width), new Size(this.Width, this.Width));
                         if (downArrowRect.Contains(pt))
                         { //* 点击了向下箭头
-                            if (this.thumbTop < this.pixelRange)
+                            if (this.thumbTop < this.PixelRange)
                             {
-                                this.thumbTop = this.thumbTop + SmallChange > this.pixelRange ? this.pixelRange : this.thumbTop + SmallChange;
-                                float dPrec = (float)this.thumbTop / this.pixelRange;
-                                this.tValue = (int)(dPrec * this.realRange);
+                                this.thumbTop = this.thumbTop + SmallChange > this.PixelRange ? this.PixelRange : this.thumbTop + SmallChange;
+                                float dPrec = (float)this.thumbTop / this.PixelRange;
+                                this.tValue = (int)(dPrec * this.RealRange);
                                 ValueChanged?.Invoke(this, new EventArgs());
                                 VScroll?.Invoke(this, new EventArgs());
                                 Invalidate();
@@ -320,10 +336,10 @@ namespace WindowsFormsApplication2.TVScrollBar
                             }
                             else
                             {
-                                this.thumbTop = this.thumbTop + LargeChange > this.pixelRange ? this.pixelRange : this.thumbTop + LargeChange;
+                                this.thumbTop = this.thumbTop + LargeChange > this.PixelRange ? this.PixelRange : this.thumbTop + LargeChange;
                             }
-                            float tPrec = (float)this.thumbTop / this.pixelRange;
-                            this.tValue = (int)(tPrec * this.realRange);
+                            float tPrec = (float)this.thumbTop / this.PixelRange;
+                            this.tValue = (int)(tPrec * this.RealRange);
                             ValueChanged?.Invoke(this, new EventArgs());
                             VScroll?.Invoke(this, new EventArgs());
                             Invalidate();
@@ -344,7 +360,7 @@ namespace WindowsFormsApplication2.TVScrollBar
 
         private void MoveThumb(int y)
         {
-            if (this.thumbMouseDown && this.thumbDragging && this.realRange > 0 && this.pixelRange > 0)
+            if (this.thumbMouseDown && this.thumbDragging && this.RealRange > 0 && this.PixelRange > 0)
             {
                 int span = y - (this.thumbTop + this.clickPoint);
                 if (span < 0)
@@ -353,10 +369,10 @@ namespace WindowsFormsApplication2.TVScrollBar
                 }
                 else
                 {
-                    this.thumbTop = this.thumbTop + span > this.pixelRange ? this.pixelRange : this.thumbTop + span;
+                    this.thumbTop = this.thumbTop + span > this.PixelRange ? this.PixelRange : this.thumbTop + span;
                 }
-                float tPrec = (float)this.thumbTop / this.pixelRange;
-                this.tValue = (int)(tPrec * this.realRange);
+                float tPrec = (float)this.thumbTop / this.PixelRange;
+                this.tValue = (int)(tPrec * this.RealRange);
                 Application.DoEvents();
                 Invalidate();
             }
@@ -372,9 +388,9 @@ namespace WindowsFormsApplication2.TVScrollBar
                 Rectangle thumbRect = new Rectangle(new Point(1, this.Width + this.thumbTop), new Size(this.Width - 2, this.thumbHeight));
                 if (thumbRect.Contains(pt))
                 { //* 滑块的上方
-                    if (this.hover != hoverRect.Thumb)
+                    if (this.hover != HoverRect.Thumb)
                     {
-                        this.hover = hoverRect.Thumb;
+                        this.hover = HoverRect.Thumb;
                         Invalidate();
                     }
                 }
@@ -383,9 +399,9 @@ namespace WindowsFormsApplication2.TVScrollBar
                     Rectangle upArrowRect = new Rectangle(new Point(0, 0), new Size(this.Width, this.Width));
                     if (upArrowRect.Contains(pt))
                     { //* 向上箭头的上方
-                        if (this.hover != hoverRect.Up)
+                        if (this.hover != HoverRect.Up)
                         {
-                            this.hover = hoverRect.Up;
+                            this.hover = HoverRect.Up;
                             Invalidate();
                         }
                     }
@@ -394,17 +410,17 @@ namespace WindowsFormsApplication2.TVScrollBar
                         Rectangle downArrowRect = new Rectangle(new Point(0, this.Height - this.Width), new Size(this.Width, this.Width));
                         if (downArrowRect.Contains(pt))
                         { //* 向下箭头的上方
-                            if (this.hover != hoverRect.Down)
+                            if (this.hover != HoverRect.Down)
                             {
-                                this.hover = hoverRect.Down;
+                                this.hover = HoverRect.Down;
                                 Invalidate();
                             }
                         }
                         else
                         {
-                            if (this.hover != hoverRect.None)
+                            if (this.hover != HoverRect.None)
                             {
-                                this.hover = hoverRect.None;
+                                this.hover = HoverRect.None;
                                 Invalidate();
                             }
                         }
@@ -437,8 +453,8 @@ namespace WindowsFormsApplication2.TVScrollBar
                     if (this.thumbTop > 0)
                     {
                         this.thumbTop = this.thumbTop - SmallChange < 0 ? 0 : this.thumbTop - SmallChange;
-                        float uPrec = (float)this.thumbTop / this.pixelRange;
-                        this.tValue = (int)(uPrec * this.realRange);
+                        float uPrec = (float)this.thumbTop / this.PixelRange;
+                        this.tValue = (int)(uPrec * this.RealRange);
                         ValueChanged?.Invoke(this, new EventArgs());
                         VScroll?.Invoke(this, new EventArgs());
                         Invalidate();
@@ -446,11 +462,11 @@ namespace WindowsFormsApplication2.TVScrollBar
                 }
                 else if (e.Delta < 0)
                 { // 向下
-                    if (this.thumbTop < this.pixelRange)
+                    if (this.thumbTop < this.PixelRange)
                     {
-                        this.thumbTop = this.thumbTop + SmallChange > this.pixelRange ? this.pixelRange : this.thumbTop + SmallChange;
-                        float dPrec = (float)this.thumbTop / this.pixelRange;
-                        this.tValue = (int)(dPrec * this.realRange);
+                        this.thumbTop = this.thumbTop + SmallChange > this.PixelRange ? this.PixelRange : this.thumbTop + SmallChange;
+                        float dPrec = (float)this.thumbTop / this.PixelRange;
+                        this.tValue = (int)(dPrec * this.RealRange);
                         ValueChanged?.Invoke(this, new EventArgs());
                         VScroll?.Invoke(this, new EventArgs());
                         Invalidate();
@@ -461,9 +477,9 @@ namespace WindowsFormsApplication2.TVScrollBar
 
         private void CustomMouseLeave(object sender, EventArgs e)
         {
-            if (this.thumbVisible && this.hover != hoverRect.None)
+            if (this.thumbVisible && this.hover != HoverRect.None)
             {
-                this.hover = hoverRect.None;
+                this.hover = HoverRect.None;
                 Invalidate();
             }
         }

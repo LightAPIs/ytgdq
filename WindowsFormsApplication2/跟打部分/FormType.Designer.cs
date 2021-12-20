@@ -1031,7 +1031,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox1.Size = new System.Drawing.Size(688, 138);
+            this.richTextBox1.Size = new System.Drawing.Size(688, 139);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.TabStop = false;
             this.richTextBox1.Text = "当你还在被世间诸多繁杂所束缚，心神不宁，不妨静下心来坐在电脑前跟打上一段文章。";
@@ -1040,6 +1040,7 @@
             this.richTextBox1.HScroll += new System.EventHandler(this.richTextBox1_HScroll);
             this.richTextBox1.VScroll += new System.EventHandler(this.richTextBox1_VScroll);
             this.richTextBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SkipToType);
+            this.richTextBox1.Resize += new System.EventHandler(this.richTextBox1_Resize);
             // 
             // contextMenuStripMain
             // 
@@ -1106,7 +1107,7 @@
             this.textBoxEx1.Multiline = true;
             this.textBoxEx1.Name = "textBoxEx1";
             this.textBoxEx1.ShortcutsEnabled = false;
-            this.textBoxEx1.Size = new System.Drawing.Size(687, 50);
+            this.textBoxEx1.Size = new System.Drawing.Size(687, 49);
             this.textBoxEx1.TabIndex = 0;
             this.toolTip1.SetToolTip(this.textBoxEx1, "跟打区");
             this.textBoxEx1.TextChanged += new System.EventHandler(this.textBoxEx1_TextChanged);
@@ -1514,7 +1515,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel2MinSize = 50;
             this.splitContainer1.Size = new System.Drawing.Size(688, 282);
-            this.splitContainer1.SplitterDistance = 138;
+            this.splitContainer1.SplitterDistance = 139;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 3;
             this.splitContainer1.TabStop = false;
@@ -1529,9 +1530,8 @@
             this.textBoxVScrollBar1.DownArrowImage = null;
             this.textBoxVScrollBar1.LargeChange = 10;
             this.textBoxVScrollBar1.Location = new System.Drawing.Point(670, 0);
-            this.textBoxVScrollBar1.Maximum = 100;
             this.textBoxVScrollBar1.Name = "textBoxVScrollBar1";
-            this.textBoxVScrollBar1.Size = new System.Drawing.Size(18, 138);
+            this.textBoxVScrollBar1.Size = new System.Drawing.Size(18, 139);
             this.textBoxVScrollBar1.SmallChange = 1;
             this.textBoxVScrollBar1.TabIndex = 2;
             this.textBoxVScrollBar1.ThumbColor = System.Drawing.Color.Silver;
@@ -1554,7 +1554,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer2.Panel2MinSize = 0;
-            this.splitContainer2.Size = new System.Drawing.Size(688, 141);
+            this.splitContainer2.Size = new System.Drawing.Size(688, 140);
             this.splitContainer2.SplitterIncrement = 2;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 5;
@@ -1577,8 +1577,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer3.Size = new System.Drawing.Size(688, 141);
-            this.splitContainer3.SplitterDistance = 82;
+            this.splitContainer3.Size = new System.Drawing.Size(688, 140);
+            this.splitContainer3.SplitterDistance = 81;
             this.splitContainer3.TabIndex = 0;
             this.splitContainer3.TabStop = false;
             // 

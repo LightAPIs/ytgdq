@@ -741,8 +741,8 @@ namespace WindowsFormsApplication2
         public void LoadSetup()
         {
             //* 自定义滚动条
-            this.textBoxVScrollBar1.Minimum = 0;
-            this.textBoxVScrollBar1.Maximum = 0;
+            this.textBoxVScrollBar1.ContentHeight = 0;
+            this.textBoxVScrollBar1.ControlHeight = this.richTextBox1.DisplayRectangle.Height;
             this.textBoxVScrollBar1.LargeChange = (int)(this.richTextBox1.DisplayRectangle.Height * 0.08);
             this.textBoxVScrollBar1.SmallChange = (int)(this.richTextBox1.DisplayRectangle.Height * 0.04);
 
@@ -5707,7 +5707,14 @@ namespace WindowsFormsApplication2
 
         private void richTextBox1_ContentsResized(object sender, ContentsResizedEventArgs e)
         {
-            this.textBoxVScrollBar1.Maximum = e.NewRectangle.Height - this.richTextBox1.DisplayRectangle.Height;
+            this.textBoxVScrollBar1.ContentHeight = e.NewRectangle.Height;
+            this.textBoxVScrollBar1.Value = GetScrollPos((int)this.richTextBox1.Handle, 1);
+        }
+
+        private void richTextBox1_Resize(object sender, EventArgs e)
+        {
+            this.textBoxVScrollBar1.ControlHeight = (sender as RichTextBox).DisplayRectangle.Height;
+            this.textBoxVScrollBar1.Value = GetScrollPos((int)this.richTextBox1.Handle, 1);
         }
 
         private void richTextBox1_VScroll(object sender, EventArgs e)

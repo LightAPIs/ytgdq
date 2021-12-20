@@ -1573,7 +1573,9 @@ namespace WindowsFormsApplication2
             else if (Contr == 2)
             {  //显示初始化
                 richTextBox1.SelectionStart = 0;
-                richTextBox1.ScrollToCaret();
+                //richTextBox1.ScrollToCaret(); // 这个方法会调用两次 VScroll 事件，由最底部滚动至最顶部，这样会导致自定义滚动条在重打时会显示一个滚动
+                Point pt = new Point(0, 0);
+                RtfScroll((int)this.richTextBox1.Handle, EM_SETSCROLLPOS, 0, ref pt);
                 richTextBox1.SelectionLength = richTextBox1.TextLength;
                 richTextBox1.SelectionBackColor = Theme.R1Back;
                 richTextBox1.SelectionColor = Theme.R1Color;
@@ -3428,9 +3430,6 @@ namespace WindowsFormsApplication2
             Glob.TypeText = richTextBox1.Text; // 存储跟打文字
 
             // 处理自定义滚动条高度
-            Glob.oneH = (int)this.richTextBox1.Font.GetHeight() + 4;
-            int allH = this.richTextBox1.GetPositionFromCharIndex(Glob.TextLen).Y + Glob.oneH;
-            this.textBoxVScrollBar1.Maximum = allH - this.richTextBox1.DisplayRectangle.Height;
             this.textBoxVScrollBar1.Value = 0;
 
             //* 计算难度
@@ -5705,6 +5704,11 @@ namespace WindowsFormsApplication2
         public static extern int RtfScroll(int hwnd, int msg, int wParam, ref Point lParam);
         private const int WM_USER = 0x400;
         private const int EM_SETSCROLLPOS = WM_USER + 222;
+
+        private void richTextBox1_ContentsResized(object sender, ContentsResizedEventArgs e)
+        {
+            this.textBoxVScrollBar1.Maximum = e.NewRectangle.Height - this.richTextBox1.DisplayRectangle.Height;
+        }
 
         private void richTextBox1_VScroll(object sender, EventArgs e)
         {

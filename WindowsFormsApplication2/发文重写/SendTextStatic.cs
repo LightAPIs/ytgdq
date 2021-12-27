@@ -65,6 +65,10 @@ namespace WindowsFormsApplication2
             tbxTitle.Text = NewSendText.标题;
             lblTextSources.Text = 文章来源;
             lblTextStyle.Text = 文章类型;
+            if (文章类型 == "词组")
+            {
+                this.label8.Text = "词数|标记";
+            }
             lblSendCounted.Text = NewSendText.已发字数.ToString();//已发字数
             lblSendPCounted.Text = NewSendText.已发段数.ToString();
             tbxSendC.Text = NewSendText.字数.ToString();

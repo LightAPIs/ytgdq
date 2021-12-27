@@ -817,8 +817,6 @@ namespace WindowsFormsApplication2
                 Glob.PreDuan = "第xx段";
             }
 
-            Glob.TextHgAll = int.Parse(IniRead("记录", "总回改", "0"));
-
             // 记录天数
             Glob.TextRecDays = int.Parse(IniRead("记录", "记录天数", "1"));
 
@@ -861,7 +859,7 @@ namespace WindowsFormsApplication2
             }
 
             lblMatchCount.Text = Validation.Validat(Validation.Validat(richTextBox1.Text));
-            labelHaveTyping.Text = Glob.todayTyping + "/" + 字数格式化(Glob.TextLenAll) + "/" + Glob.TextRecDays + "天/" + 字数格式化(Glob.TextLenAll + Glob.TextHgAll);
+            labelHaveTyping.Text = Glob.todayTyping + "/" + 字数格式化(Glob.TextLenAll) + "/" + Glob.TextRecDays + "天";
 
             //曲线
             Glob.isShowSpline = bool.Parse(IniRead("拖动条", "曲线", "False"));
@@ -935,8 +933,7 @@ namespace WindowsFormsApplication2
                                                                      "总计跟打：" + Glob.TextLenAll + "字\n" +
                                                                      "跟打段数：" + Glob.jjAllC + "段\n" +
                                                                      "记录天数：" + Glob.TextRecDays + "天\n" +
-                                                                     "记录字数：" + (Glob.TextLenAll + Glob.TextHgAll).ToString() + "字\n" +
-                                                                     "平均每天：" + ((Glob.TextLenAll + Glob.TextHgAll) / Glob.TextRecDays).ToString("0.00") + "字"));
+                                                                     "平均每天：" + ((double)Glob.TextLenAll / Glob.TextRecDays).ToString("0.00") + "字"));
         }
 
 
@@ -1639,7 +1636,7 @@ namespace WindowsFormsApplication2
             }
             Glob.todayTyping += count; //今日跟打
             Glob.TextLenAll += count;//总字数
-            labelHaveTyping.Text = Glob.todayTyping + "/" + 字数格式化(Glob.TextLenAll) + "/" + Glob.TextRecDays + "天/" + 字数格式化(Glob.TextLenAll + Glob.TextHgAll);
+            labelHaveTyping.Text = Glob.todayTyping + "/" + 字数格式化(Glob.TextLenAll) + "/" + Glob.TextRecDays + "天";
         }
 
         private int 上次输入标记 = 1;
@@ -1916,7 +1913,6 @@ namespace WindowsFormsApplication2
                         Glob.Type_Map_Color = Theme.BackChangeColor; // 回改颜色
                         int istart = textBoxEx1.SelectionStart; //获取当前光标所在的编号
                         int istep = Math.Abs(iP);//获取一次退格的 量
-                        Glob.TextHgAll++; //? 和 Glob.TextHg 的计算方式结果基本是等效的
                         if (istep > 0)
                         {
                             richTextBox1.SelectionStart = HisSave[1];
@@ -3683,7 +3679,6 @@ namespace WindowsFormsApplication2
             }
 
             IniWrite("记录", "总字数", Glob.TextLenAll.ToString());
-            IniWrite("记录", "总回改", Glob.TextHgAll.ToString());
             IniWrite("记录", "总按键", string.Join("|", Glob.HistoryKeysTotal));
             IniWrite("今日跟打", DateTime.Today.ToShortDateString(), Glob.todayTyping.ToString());
             IniWrite("记录", "记录天数", Glob.TextRecDays.ToString());

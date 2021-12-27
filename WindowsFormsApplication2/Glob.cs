@@ -186,13 +186,8 @@ namespace WindowsFormsApplication2
         public static double hgAllUse;
 
         /// <summary>
-        /// 记录总回改
-        /// 用于计算记录字数
-        /// </summary>
-        public static int TextHgAll = 0;
-        /// <summary>
         /// 总计跟打字数
-        /// 不包括回改
+        /// - 包括回改
         /// </summary>
         public static int TextLenAll;
 

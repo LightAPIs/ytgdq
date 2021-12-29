@@ -939,8 +939,6 @@ namespace WindowsFormsApplication2
 
         void richTextBox1_FontChanged(object sender, EventArgs e)
         {
-            Glob.oneH = (int)this.richTextBox1.Font.GetHeight() + 4;
-
             if (Glob.IsPointIt)
             {
                 delayActionModel.Debounce(100, this, new Action(() =>
@@ -1655,24 +1653,25 @@ namespace WindowsFormsApplication2
                 int TextLenNow = TextType.Length;
                 if (TextLenNow <= TextLen)
                 {
-                    //progressbar1.Size = new Size(TextLenNow * panel2.Size.Width / TextLen, 5);
                     int shengyu = TextLen - TextLenNow;
                     picBar_Draw((double)TextLenNow / TextLen, shengyu + "|" + shengyu * 100 / TextLen + "%");
                 }
-                //Application.DoEvents();
-                //MessageBox.Show(TextType + "\n" + Sw.ToString());
+                
                 //再比较 当时的字符数量-1 就是原数组的序列
                 if (TextLenNow >= 0 && TextLenNow <= TextLen)
                 {
                     int getstart = richTextBox1.GetLineFromCharIndex(TextLenNow);
-                    int getExend = richTextBox1.GetLineFromCharIndex(TextLen - 1);//获取最后一行的行号 也就是 总行号
                     HisLine[1] = getstart;
                     if (HisLine[1] != HisLine[0])
                     { //* 对滚动条的控制
+                        if (HisLine[1] > HisLine[0])
+                        {
+                            Glob.oneH = richTextBox1.GetPositionFromCharIndex(TextLenNow).Y - richTextBox1.GetPositionFromCharIndex(TextLenNow - 1).Y;
+                        }
                         this.richTextBox2.BeginInvoke(new MethodInvoker(delegate
                         {
                             int sizeH = richTextBox1.ClientSize.Height; //一屏高度
-                            int onePHan = (int)Math.Ceiling((double)sizeH / Glob.oneH);//一屏行数
+                            int onePHan = sizeH / Glob.oneH; // 一屏行数
                             int sizeH_ = onePHan * Glob.oneH;
                             int nowHan = richTextBox1.GetPositionFromCharIndex(TextLenNow).Y; //当前
                             int allH = richTextBox1.GetPositionFromCharIndex(TextLen).Y + Glob.oneH; //末行像素
@@ -1680,10 +1679,18 @@ namespace WindowsFormsApplication2
                             {
                                 if (allH > sizeH) //末行高度超出 一屏高度时才启用滚屏
                                 {
-                                    if (nowHan >= (sizeH_ - Glob.oneH * 2)) //走到倒数第二行时
+                                    if (nowHan >= (sizeH_ - Glob.oneH * (onePHan / 2))) // 走到中间时
                                     {
                                         this.richTextBox1.SelectionStart = TextLenNow - 上次输入标记;
-                                        this.richTextBox1.ScrollToCaret();
+                                        //this.richTextBox1.ScrollToCaret(); // 在某些情况下会出现滚动出错的问题
+                                        int nowPt = GetScrollPos((int)this.richTextBox1.Handle, 1);
+                                        int offset = Glob.oneH;
+                                        if (allH - offset < sizeH)
+                                        {
+                                            offset = allH - sizeH;
+                                        }
+                                        Point pt = new Point(0, nowPt + offset);
+                                        RtfScroll((int)this.richTextBox1.Handle, EM_SETSCROLLPOS, 0, ref pt);
                                     }
                                 }
                             }
@@ -2096,7 +2103,6 @@ namespace WindowsFormsApplication2
                     if (Glob.TypeUseTime >= 1 && Glob.TextCz <= (int)TextLen / 10)
                     {
                         //? 回改率和打词率的分母不需要减去起始字数量，因为这些数据和时间没有联系，起始的字数同样被统计进来
-                        // Glob.TextHg_ = (double)Glob.TextHgAll * 100 / Glob.TextLenAll;   // 这计算的是总回改率
                         // 回改率
                         Glob.TextHg_ = Math.Round((double)Glob.TextHg * 100 / (Glob.TextLen + Glob.TextHg), 2);
                         // 打词率
@@ -2303,6 +2309,7 @@ namespace WindowsFormsApplication2
                                     richTextBox1.SelectionStart = typeDate.Start;
                                     richTextBox1.SelectionLength = typeDate.Length;
                                     richTextBox1.SelectionBackColor = Theme.TimeLongColor;
+                                    richTextBox1.ScrollToCaret();
                                     break;
                                 }
                             }

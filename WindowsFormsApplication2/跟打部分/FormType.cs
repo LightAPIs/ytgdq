@@ -1656,7 +1656,7 @@ namespace WindowsFormsApplication2
                     int shengyu = TextLen - TextLenNow;
                     picBar_Draw((double)TextLenNow / TextLen, shengyu + "|" + shengyu * 100 / TextLen + "%");
                 }
-                
+
                 //再比较 当时的字符数量-1 就是原数组的序列
                 if (TextLenNow >= 0 && TextLenNow <= TextLen)
                 {
@@ -1666,17 +1666,33 @@ namespace WindowsFormsApplication2
                     { //* 对滚动条的控制
                         if (HisLine[1] > HisLine[0])
                         {
-                            Glob.oneH = richTextBox1.GetPositionFromCharIndex(TextLenNow).Y - richTextBox1.GetPositionFromCharIndex(TextLenNow - 1).Y;
+                            int oneY = richTextBox1.GetPositionFromCharIndex(TextLenNow).Y;
+                            int oneH = 0;
+                            for (int cursorLen = TextLenNow - 1; cursorLen >= 0 && oneH == 0; cursorLen--)
+                            {
+                                oneH = oneY - richTextBox1.GetPositionFromCharIndex(cursorLen).Y;
+                            }
+
+                            if (oneH == 0)
+                            {
+                                Glob.oneH = (int)this.richTextBox1.Font.GetHeight() + 4;
+                            }
+                            else
+                            {
+                                Glob.oneH = Math.Abs(oneH);
+                            }
                         }
+
                         this.richTextBox2.BeginInvoke(new MethodInvoker(delegate
                         {
-                            int sizeH = richTextBox1.ClientSize.Height; //一屏高度
-                            int onePHan = sizeH / Glob.oneH; // 一屏行数
-                            int sizeH_ = onePHan * Glob.oneH;
                             int nowHan = richTextBox1.GetPositionFromCharIndex(TextLenNow).Y; //当前
-                            int allH = richTextBox1.GetPositionFromCharIndex(TextLen).Y + Glob.oneH; //末行像素
                             if (nowHan > 0)
                             {
+                                int sizeH = richTextBox1.ClientSize.Height; //一屏高度
+                                int onePHan = sizeH / Glob.oneH; // 一屏行数
+                                int sizeH_ = onePHan * Glob.oneH;
+                                int allH = richTextBox1.GetPositionFromCharIndex(TextLen).Y + Glob.oneH; //末行像素
+
                                 if (allH > sizeH) //末行高度超出 一屏高度时才启用滚屏
                                 {
                                     if (nowHan >= (sizeH_ - Glob.oneH * (onePHan / 2))) // 走到中间时
@@ -1700,6 +1716,7 @@ namespace WindowsFormsApplication2
                                 this.richTextBox1.ScrollToCaret();
                             }
                         }));
+
                         HisLine[0] = HisLine[1];
                     }
 

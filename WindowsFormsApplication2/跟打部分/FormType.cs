@@ -3704,7 +3704,7 @@ namespace WindowsFormsApplication2
 
             IniWrite("记录", "总字数", Glob.TextLenAll.ToString());
             IniWrite("记录", "总按键", string.Join("|", Glob.HistoryKeysTotal));
-            IniWrite("今日跟打", DateTime.Today.ToShortDateString(), Glob.todayTyping.ToString());
+            IniWrite("今日跟打", Glob.TodayDate, Glob.todayTyping.ToString());
             IniWrite("记录", "记录天数", Glob.TextRecDays.ToString());
 
             for (int i = 0; i < 9; i++)

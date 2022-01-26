@@ -780,7 +780,6 @@ namespace WindowsFormsApplication2
             this.SeriesSpeed.ChartType = SeriesChartType.SplineArea;
             this.SeriesSpeed.BorderWidth = 2;
 
-            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;//列标题居中显示
             this.dataGridView1.ForeColor = Color.DarkSlateGray;
             for (int i = 0; i <= 14; i += 2)
             {

@@ -232,6 +232,11 @@ namespace WindowsFormsApplication2
         public static string InstraSrf_ = "";
 
         /// <summary>
+        /// 文章镜像源
+        /// </summary>
+        public static ArticleMirrorValue ArticleMirror = ArticleMirrorValue.FastlyJsdelivr;
+
+        /// <summary>
         /// 打词次数
         /// </summary>
         public static int aTypeWords = 0;
@@ -569,6 +574,19 @@ namespace WindowsFormsApplication2
         /// 码表词条各长度分布
         /// </summary>
         public static int[] WordLenType = new int[10];
+
+        /// <summary>
+        /// 文章镜像源 Enum
+        /// </summary>
+        public enum ArticleMirrorValue
+        {
+            FastlyJsdelivr = 0,
+            GcoreJsdelivr = 1,
+            TestingcfJsdelivr = 2,
+            CdnJsdelivr = 3,
+            Fastgit = 4,
+            Statically = 5,
+        }
     }
 
     /// <summary>

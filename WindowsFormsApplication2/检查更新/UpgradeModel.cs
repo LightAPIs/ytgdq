@@ -22,7 +22,7 @@ namespace WindowsFormsApplication2.检查更新
         #endregion
         #region 属性
 
-        private readonly string _url = "https://cdn.jsdelivr.net/gh/LightAPIs/ytgdq@main/updates.json";
+        private readonly string _url;
         public List<VersionObject> VersionList { get; set; }
         public List<VersionObject> NewVersionList { get; set; }
 
@@ -44,6 +44,7 @@ namespace WindowsFormsApplication2.检查更新
 
         public UpgradeModel()
         {
+            this._url = YTWebRequest.GetSourceUrl("LightAPIs", "ytgdq", "main") + "updates.json";
         }
 
         public override string ToString()

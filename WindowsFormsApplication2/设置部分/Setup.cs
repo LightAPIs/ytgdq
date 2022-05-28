@@ -63,6 +63,9 @@ namespace WindowsFormsApplication2
             this.checkBox3.Checked = Glob.InstraSrf_ != "0";
             this.textBox2.Text = Glob.InstraSrf;
 
+            // 文章镜像源
+            this.ArticleMirrorComboBox.SelectedIndex = (int)Glob.ArticleMirror;
+
             allCheckBox = new CheckBox[22]
             {
                 this.checkBoxSpeed,
@@ -281,6 +284,10 @@ namespace WindowsFormsApplication2
             //图片成绩发送昵称
             Setupini.IniWriteValue("发送", "昵称", this.tbxName.Text);
             Glob.PicName = this.tbxName.Text;
+
+            // 文章镜像源
+            Setupini.IniWriteValue("网络", "文章镜像源", this.ArticleMirrorComboBox.SelectedIndex.ToString());
+            Glob.ArticleMirror = (Glob.ArticleMirrorValue)this.ArticleMirrorComboBox.SelectedIndex;
 
             //停止时间
             Setupini.IniWriteValue("控制", "停止", this.trackBar2.Value.ToString());

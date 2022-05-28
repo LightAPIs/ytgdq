@@ -26,7 +26,7 @@ namespace WindowsFormsApplication2
         /// <summary>
         /// 网络文章主地址
         /// </summary>
-        private readonly string WebSourceRoot = "https://cdn.jsdelivr.net/gh/LightAPIs/article-storage@main/";
+        private readonly string WebSourceRoot;
 
         /// <summary>
         /// 网络文章通用列表文件名称
@@ -200,6 +200,8 @@ namespace WindowsFormsApplication2
         {
             frm = frm1;
             InitializeComponent();
+
+            this.WebSourceRoot = YTWebRequest.GetSourceUrl("LightAPIs", "article-storage", "main");
         }
 
         private void 新发文_Load(object sender, EventArgs e)

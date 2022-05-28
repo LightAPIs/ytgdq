@@ -250,6 +250,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ArticleMirrorComboBox = new System.Windows.Forms.ComboBox();
             this.newButton1 = new WindowsFormsApplication2.NewButton();
             this.newButton2 = new WindowsFormsApplication2.NewButton();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
@@ -293,6 +296,7 @@
             this.panel35.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel12.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxPreText
@@ -854,11 +858,12 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(389, 405);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "成绩格式";
+            this.tabPage2.Text = "成绩格式及网络";
             // 
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.DimGray;
+            this.panel9.Controls.Add(this.panel1);
             this.panel9.Controls.Add(this.panel8);
             this.panel9.Controls.Add(this.panel3);
             this.panel9.Controls.Add(this.panel7);
@@ -874,7 +879,7 @@
             // 
             this.panel8.Controls.Add(this.label20);
             this.panel8.Controls.Add(this.tbxName);
-            this.panel8.Location = new System.Drawing.Point(4, 338);
+            this.panel8.Location = new System.Drawing.Point(4, 308);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(375, 38);
             this.panel8.TabIndex = 29;
@@ -894,7 +899,7 @@
             this.panel3.BackColor = System.Drawing.Color.Transparent;
             this.panel3.Controls.Add(this.textBox1);
             this.panel3.Controls.Add(this.checkBox1);
-            this.panel3.Location = new System.Drawing.Point(4, 297);
+            this.panel3.Location = new System.Drawing.Point(4, 266);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(375, 35);
             this.panel3.TabIndex = 28;
@@ -918,7 +923,7 @@
             this.panel7.BackColor = System.Drawing.Color.Transparent;
             this.panel7.Controls.Add(this.checkBox3);
             this.panel7.Controls.Add(this.textBox2);
-            this.panel7.Location = new System.Drawing.Point(4, 256);
+            this.panel7.Location = new System.Drawing.Point(4, 224);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(375, 35);
             this.panel7.TabIndex = 27;
@@ -981,7 +986,7 @@
             this.groupBox4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox4.Location = new System.Drawing.Point(3, 3);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(376, 247);
+            this.groupBox4.Size = new System.Drawing.Size(376, 213);
             this.groupBox4.TabIndex = 26;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "格式控制";
@@ -1012,7 +1017,7 @@
             this.buttonCleanAll.BackColor = System.Drawing.Color.DarkOliveGreen;
             this.buttonCleanAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCleanAll.ForeColor = System.Drawing.Color.White;
-            this.buttonCleanAll.Location = new System.Drawing.Point(266, 214);
+            this.buttonCleanAll.Location = new System.Drawing.Point(266, 181);
             this.buttonCleanAll.Name = "buttonCleanAll";
             this.buttonCleanAll.Size = new System.Drawing.Size(43, 23);
             this.buttonCleanAll.TabIndex = 14;
@@ -1025,7 +1030,7 @@
             this.buttonSelectAll.BackColor = System.Drawing.Color.IndianRed;
             this.buttonSelectAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSelectAll.ForeColor = System.Drawing.Color.Transparent;
-            this.buttonSelectAll.Location = new System.Drawing.Point(326, 214);
+            this.buttonSelectAll.Location = new System.Drawing.Point(326, 181);
             this.buttonSelectAll.Name = "buttonSelectAll";
             this.buttonSelectAll.Size = new System.Drawing.Size(44, 23);
             this.buttonSelectAll.TabIndex = 13;
@@ -3121,6 +3126,41 @@
             this.label10.TabIndex = 14;
             this.label10.Text = "雨天跟打器设置";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.ArticleMirrorComboBox);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(4, 350);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(375, 38);
+            this.panel1.TabIndex = 30;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(23, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 12);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "网络文章镜像源";
+            // 
+            // ArticleMirrorComboBox
+            // 
+            this.ArticleMirrorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ArticleMirrorComboBox.FormattingEnabled = true;
+            this.ArticleMirrorComboBox.Items.AddRange(new object[] {
+            "Fastly Jsdelivr",
+            "Gcore Jsdelivr",
+            "Testingcf Jsdelivr",
+            "Cdn Jsdelivr",
+            "Fastgit",
+            "Statically"});
+            this.ArticleMirrorComboBox.Location = new System.Drawing.Point(144, 11);
+            this.ArticleMirrorComboBox.Name = "ArticleMirrorComboBox";
+            this.ArticleMirrorComboBox.Size = new System.Drawing.Size(214, 20);
+            this.ArticleMirrorComboBox.TabIndex = 13;
+            // 
             // newButton1
             // 
             this.newButton1.BackColor = System.Drawing.Color.Gray;
@@ -3248,6 +3288,8 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel12.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3478,5 +3520,8 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox tbxName;
         private System.Windows.Forms.CheckBox SymbolInputCheckBox;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox ArticleMirrorComboBox;
     }
 }

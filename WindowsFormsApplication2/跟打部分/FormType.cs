@@ -800,6 +800,9 @@ namespace WindowsFormsApplication2
             Glob.InstraSrf = IniRead("输入法", "签名", "");
             Glob.InstraSrf_ = IniRead("输入法", "标志", "0");
 
+            // 文章镜像源
+            Glob.ArticleMirror = (Glob.ArticleMirrorValue)int.Parse(IniRead("网络", "文章镜像源", "0"));
+
             //获取发送成绩的排序顺序
             Glob.sortSend = IniRead("发送", "顺序", "ABCVDTSEFULGNORQ");
 

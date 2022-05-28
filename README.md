@@ -24,7 +24,7 @@
 ## 下载地址
 
 - [Releases](https://github.com/LightAPIs/ytgdq/releases)
-- [永硕E盘](http://dogegg.ys168.com/)
+- [永硕E盘](http://dogegg.ysepan.com/)
 
 ## 相关项目
 

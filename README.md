@@ -1,6 +1,6 @@
 #  <img src="Image/rain.ico" width="45" aligh="left"> 雨天跟打器
 
-<p align="center">
+<p align="left">
   <a href="https://github.com/LightAPIs/ytgdq/releases/latest">
     <img src="https://img.shields.io/github/v/release/LightAPIs/ytgdq.svg?color=orange" alt="Release" />
   </a>

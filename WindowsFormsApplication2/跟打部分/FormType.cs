@@ -3199,6 +3199,8 @@ namespace WindowsFormsApplication2
             if (Glob.Text.Length == 0) { return; }
             //! 停止发文
             this.StopSendFun();
+            //! 清理文章类型，防止先前为词组时导致乱序功能不生效
+            NewSendText.类型 = string.Empty;
 
             string text_ = Glob.Text;
             //MessageBox.Show(text_);
@@ -3335,6 +3337,8 @@ namespace WindowsFormsApplication2
             {
                 //! 停止发文
                 this.StopSendFun();
+                //! 清理文章类型，防止先前为词组时导致乱序功能不生效
+                NewSendText.类型 = string.Empty;
 
                 //* 清理原测速点信息
                 this.CleanSpeedPoints();
@@ -5032,15 +5036,31 @@ namespace WindowsFormsApplication2
             if (textLen > 9)
             {
                 this.CleanSpeedPoints(); // 清理测速点信息
-                int[] numlist = GetRandomUnrepeatArray(0, textLen - 1, textLen);
-                char[] textChars = sourceText.ToCharArray();
-                StringBuilder sb = new StringBuilder();
 
-                foreach (int item in numlist)
-                {
-                    sb.Append(textChars[item]);
+                if (NewSendText.类型 == "词组")
+                { //! 额外处理词组的情况
+                    string newStr = "";
+                    string[] words = sourceText.Split(new string[] { NewSendText.词组发送分隔符 }, StringSplitOptions.RemoveEmptyEntries);
+                    int wordsCount = words.Length;
+                    int[] numlist = GetRandomUnrepeatArray(0, wordsCount - 1, wordsCount);
+                    for (int i = 0; i < wordsCount; i++)
+                    {
+                        newStr += words[numlist[i]] + (i < wordsCount - 1 ? NewSendText.词组发送分隔符 : "");
+                    }
+                    richTextBox1.Text = newStr;
                 }
-                richTextBox1.Text = sb.ToString();
+                else
+                {
+                    int[] numlist = GetRandomUnrepeatArray(0, textLen - 1, textLen);
+                    char[] textChars = sourceText.ToCharArray();
+                    StringBuilder sb = new StringBuilder();
+
+                    foreach (int item in numlist)
+                    {
+                        sb.Append(textChars[item]);
+                    }
+                    richTextBox1.Text = sb.ToString();
+                }
 
                 F3();
                 GetInfo();

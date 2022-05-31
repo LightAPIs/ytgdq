@@ -236,6 +236,10 @@ namespace WindowsFormsApplication2.跟打报告
             g.DrawRectangle(new Pen(Color.Green, 2), 1, 1, bmp.Width - 2, bmp.Height - 2);
             //显示出来
             this.pic_analysis.Height = bmp.Height;
+            if (bmp.Height > 470)
+            {
+                this.Width += 10;
+            }
             this.pic_analysis.Image = bmp;
         }
 

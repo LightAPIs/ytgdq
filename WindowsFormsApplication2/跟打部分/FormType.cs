@@ -3059,11 +3059,12 @@ namespace WindowsFormsApplication2
                 Glob.是否选重 = false;
             }
 
-            if (Glob.文段类型 && Glob.是否选重 && Glob.TheKeyValue != -1)
+            if (Glob.文段类型 && Glob.是否选重 && Glob.TheKeyValue != -1 && Control.ModifierKeys != Keys.Shift)
             {
                 //? 这种方法存在一定的风险，如果出现键盘钩子触发在本事件之后的情况时，会丢失统计
                 //? 但如果在键盘钩子触发中判定，由于 Glob.是否选重 的变动置后，当在跟打区中错误地按下数字等键时将无法与提取的字符匹配，会被统计成选重
                 //? 所以这种方法会更准确
+                //* 屏蔽同时按下 Shift 键的情况，防止符号顶屏时被错误统计成选重
 
                 if (Glob.TheKeyValue == 186 || Glob.TheKeyValue == 222)
                 {

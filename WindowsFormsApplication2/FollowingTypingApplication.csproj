@@ -63,7 +63,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>Release\x86\</OutputPath>
+    <OutputPath>..\Release\x86\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>none</DebugType>
@@ -84,7 +84,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>Release\x64\</OutputPath>
+    <OutputPath>..\Release\x64\</OutputPath>
     <DefineConstants>TRACE;x64</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>none</DebugType>

@@ -76,7 +76,7 @@ namespace WindowsFormsApplication2.检查更新
                         this.btnCheckUpgrade.Text = "检查更新";
                         panel1.Invalidate();
                         this.rtbInfo.Text = UpgradeModel.ToString();
-                        this.rtbInfo.AppendText("下载地址：http://dogegg.ys168.com/");
+                        this.rtbInfo.AppendText("下载地址：" + Glob.DownloadUrl);
                     }));
             }
         }

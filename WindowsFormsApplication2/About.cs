@@ -83,7 +83,7 @@ namespace WindowsFormsApplication2
 
         private void LinkLabel2Clicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Jump("https://github.com/LightAPIs/ytgdq");
+            Jump(Glob.HomeUrl);
         }
 
         private void OKClicked(object sender, EventArgs e)

@@ -3963,12 +3963,12 @@ namespace WindowsFormsApplication2
 
         private void 打开下载地址ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://dogegg.ys168.com/");
+            System.Diagnostics.Process.Start(Glob.DownloadUrl);
         }
 
         private void 访问官方网站ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/LightAPIs/ytgdq");
+            System.Diagnostics.Process.Start(Glob.HomeUrl);
         }
         #endregion
 

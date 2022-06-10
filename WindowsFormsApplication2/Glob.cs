@@ -52,6 +52,9 @@ namespace WindowsFormsApplication2
         /// </summary>
         public static string Instration = "s10";
 
+        public static string DownloadUrl = "http://dogegg.ysepan.com/";
+        public static string HomeUrl = "https://github.com/LightAPIs/ytgdq";
+
         /// <summary>
         /// 显示实时数据
         /// </summary>

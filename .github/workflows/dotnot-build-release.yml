@@ -1,0 +1,77 @@
+name: dotnot-build-release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  SLN_NAME: ytgdq.sln
+
+jobs:
+  build:
+    name: Build
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout/@v3
+      - name: Get Version
+        id: get_version
+        run: |
+          echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+          echo ::set-output name=VERSION2::${GITHUB_REF#refs/tags/v}
+        shell: bash
+      - name: Create ChangeLog Text
+        id: changelog_text
+        uses: loopwerk/tag-changelog@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config_file: .github/scripts/tag-changelog-config.js
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: ${{ steps.changelog_text.outputs.changes }}
+          draft: false
+          prerelease: false
+      - name: Setup MSBuild Path
+        uses: microsoft/setup-msbuild@v1.1
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1
+      - name: NuGet Restore
+        run: nuget restore $env:SLN_NAME
+      - name: Build Release_x86
+        run: msbuild $env:SLN_NAME -p:Configuration=Release -p:Platform=x86
+      - name: Build Release_x64
+        run: msbuild $env:SLN_NAME -p:Configuration=Release -p:Platform=x64
+      - name: Package Release_x86
+        run: "./Tools/7-Zip/7zr.exe" a -r ./Release/ytgdq_x86_${{ steps.get_version.outputs.VERSION }}.zip ./Release/x86/*
+        shell: cmd
+      - name: Package Release_x64
+        run: "./Tools/7-Zip/7zr.exe" a -r ./Release/ytgdq_x64_${{ steps.get_version.outputs.VERSION }}.zip ./Release/x64/*
+        shell: cmd
+      - name: Upload Release_x86
+        id: upload_release_x86
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Release/ytgdq_x86_${{ steps.get_version.outputs.VERSION }}.zip
+          asset_name: ytgdq_x86_${{ steps.get_version.outputs.VERSION }}.zip
+          asset_content_type: application/zip
+      - name: Upload Release_x64
+        id: upload_release_x64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Release/ytgdq_x64_${{ steps.get_version.outputs.VERSION }}.zip
+          asset_name: ytgdq_x64_${{ steps.get_version.outputs.VERSION }}.zip
+          asset_content_type: application/zip
+

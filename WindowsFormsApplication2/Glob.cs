@@ -19,7 +19,7 @@ namespace WindowsFormsApplication2
     /// </summary>
     public class Glob
     {
-        public static string Ver = "1.9.0";
+        public static string Ver = "1.9.1";
 
         public static string Form = "雨天跟打器" + Bit + " v" + Ver + Project;
 
@@ -50,7 +50,7 @@ namespace WindowsFormsApplication2
         /// <summary>
         /// 成绩版本
         /// </summary>
-        public static string Instration = "s10";
+        public static string Instration = "s11";
 
         public static string DownloadUrl = "http://dogegg.ysepan.com/";
         public static string HomeUrl = "https://github.com/LightAPIs/ytgdq";

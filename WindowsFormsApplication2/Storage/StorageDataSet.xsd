@@ -37,7 +37,8 @@
               <xs:element name="segment_id" msprop:Generator_ColumnPropNameInTable="segment_idColumn" msprop:Generator_ColumnPropNameInRow="segment_id" msprop:Generator_UserColumnName="segment_id" msprop:Generator_ColumnVarNameInTable="columnsegment_id" type="xs:long" minOccurs="0" />
               <xs:element name="article_title" msprop:Generator_ColumnPropNameInTable="article_titleColumn" msprop:Generator_ColumnPropNameInRow="article_title" msprop:Generator_UserColumnName="article_title" msprop:Generator_ColumnVarNameInTable="columnarticle_title" type="xs:string" minOccurs="0" />
               <xs:element name="version" msprop:Generator_ColumnPropNameInTable="versionColumn" msprop:Generator_ColumnPropNameInRow="version" msprop:Generator_UserColumnName="version" msprop:Generator_ColumnVarNameInTable="columnversion" type="xs:string" minOccurs="0" />
-              <xs:element name="difficulty" msprop:Generator_ColumnPropNameInRow="difficulty" msprop:Generator_ColumnPropNameInTable="difficultyColumn" msprop:Generator_ColumnVarNameInTable="columndifficulty" msprop:Generator_UserColumnName="difficulty" type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="difficulty" msprop:Generator_UserColumnName="difficulty" msprop:Generator_ColumnPropNameInTable="difficultyColumn" msprop:Generator_ColumnPropNameInRow="difficulty" msprop:Generator_ColumnVarNameInTable="columndifficulty" type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="category" msprop:Generator_ColumnPropNameInRow="category" msprop:Generator_ColumnPropNameInTable="categoryColumn" msprop:Generator_ColumnVarNameInTable="columncategory" msprop:Generator_UserColumnName="category" type="xs:int" default="-1" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -138,11 +139,11 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Calc" msprop:Generator_RowClassName="CalcRow" msprop:Generator_RowEvHandlerName="CalcRowChangeEventHandler" msprop:Generator_RowDeletedName="CalcRowDeleted" msprop:Generator_RowDeletingName="CalcRowDeleting" msprop:Generator_RowEvArgName="CalcRowChangeEvent" msprop:Generator_TablePropName="Calc" msprop:Generator_RowChangedName="CalcRowChanged" msprop:Generator_UserTableName="Calc" msprop:Generator_RowChangingName="CalcRowChanging" msprop:Generator_TableClassName="CalcDataTable" msprop:Generator_TableVarName="tableCalc">
+        <xs:element name="Calc" msprop:Generator_RowEvHandlerName="CalcRowChangeEventHandler" msprop:Generator_RowDeletedName="CalcRowDeleted" msprop:Generator_RowDeletingName="CalcRowDeleting" msprop:Generator_RowEvArgName="CalcRowChangeEvent" msprop:Generator_TablePropName="Calc" msprop:Generator_RowChangedName="CalcRowChanged" msprop:Generator_UserTableName="Calc" msprop:Generator_RowChangingName="CalcRowChanging" msprop:Generator_RowClassName="CalcRow" msprop:Generator_TableClassName="CalcDataTable" msprop:Generator_TableVarName="tableCalc">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="score_time" msprop:Generator_UserColumnName="score_time" msprop:Generator_ColumnPropNameInTable="score_timeColumn" msprop:Generator_ColumnPropNameInRow="score_time" msprop:Generator_ColumnVarNameInTable="columnscore_time" type="xs:dateTime" />
-              <xs:element name="keys" msprop:Generator_UserColumnName="keys" msprop:Generator_ColumnPropNameInTable="keysColumn" msprop:Generator_ColumnPropNameInRow="keys" msprop:Generator_ColumnVarNameInTable="columnkeys" type="xs:string" minOccurs="0" />
+              <xs:element name="score_time" msprop:Generator_ColumnPropNameInTable="score_timeColumn" msprop:Generator_ColumnPropNameInRow="score_time" msprop:Generator_UserColumnName="score_time" msprop:Generator_ColumnVarNameInTable="columnscore_time" type="xs:dateTime" />
+              <xs:element name="keys" msprop:Generator_ColumnPropNameInTable="keysColumn" msprop:Generator_ColumnPropNameInRow="keys" msprop:Generator_UserColumnName="keys" msprop:Generator_ColumnVarNameInTable="columnkeys" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

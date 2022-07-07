@@ -27,6 +27,7 @@ using WindowsFormsApplication2.Difficulty;
 using WindowsFormsApplication2.SpeedGrade;
 using WindowsFormsApplication2.DelayAction;
 using WindowsFormsApplication2.TVScrollBar;
+using WindowsFormsApplication2.Category;
 using Newtonsoft.Json;
 
 namespace WindowsFormsApplication2
@@ -585,6 +586,7 @@ namespace WindowsFormsApplication2
             this.lblJJText.BackColor = BG;
             this.lblMCText.BackColor = BG;
             this.lblMatchCount.BackColor = BG;
+            this.CategoryLabel.BackColor = BG;
 
             this.dataGridView1.Rows[0].DefaultCellStyle.BackColor = BG;
             this.dataGridView1.Rows[0].DefaultCellStyle.ForeColor = FC;
@@ -597,6 +599,7 @@ namespace WindowsFormsApplication2
             this.lblJJText.ForeColor = FC;
             this.lblMCText.ForeColor = FC;
             this.lblMatchCount.ForeColor = FC;
+            this.CategoryLabel.ForeColor = FC;
 
             this.TSMI1.ForeColor = FC;
             this.TSMI3.ForeColor = FC;
@@ -747,7 +750,7 @@ namespace WindowsFormsApplication2
             this.textBoxVScrollBar1.SmallChange = (int)(this.richTextBox1.DisplayRectangle.Height * 0.04);
 
             //创建表头
-            this.dataGridView1.Rows.Add("序", "时间", "段号", "速度", "击键", "码长", "理论", "难度", "评级", "回改", "退格", "回车", "选重", "错字", "回改率", "键准", "效率", "键数", "字数", "打词", "打词率", "用时", "标题");
+            this.dataGridView1.Rows.Add("序", "时间", "段号", "速度", "击键", "码长", "理论", "难度", "评级", "回改", "退格", "回车", "选重", "错字", "回改率", "键准", "效率", "键数", "字数", "打词", "打词率", "用时", "类别", "标题");
             this.dataGridView1.Rows[0].Frozen = true;
             this.dataGridView1.Rows[0].DefaultCellStyle.Font = new Font("微软雅黑", 11f);
             this.dataGridView1.Rows[0].DefaultCellStyle.BackColor = Theme.ThemeColorBG;
@@ -937,7 +940,6 @@ namespace WindowsFormsApplication2
                                                                      "记录天数：" + Glob.TextRecDays + "天\n" +
                                                                      "平均每天：" + ((double)Glob.TextLenAll / Glob.TextRecDays).ToString("0.00") + "字"));
         }
-
 
         void richTextBox1_FontChanged(object sender, EventArgs e)
         {
@@ -2035,12 +2037,20 @@ namespace WindowsFormsApplication2
                     ts = Glob.TypeUseTime;
                     Sw = 0; //初始化
                     Glob.TotalUse += Glob.TypeUseTime;
+                    bool isEn = CategoryHandler.IsEn(Glob.Category);
                     //处理数据
                     double speed = Math.Round((TextLen - Glob.StartTextLen) * 60 / ts, 2); // 不处理错字
                     double mc = Math.Round((double)Glob.TextJs / TextLen, 2);
                     double jj = Math.Round((Glob.TextJs - Glob.StartKeyLen) / ts, 2);
                     //以下三列数据为测速准备
-                    Glob.TextSpeed = speed;
+                    if (isEn)
+                    {
+                        Glob.TextSpeed = speed / 5;
+                    }
+                    else
+                    {
+                        Glob.TextSpeed = speed;
+                    }
                     Glob.Textjj = jj;
                     Glob.Textmc = mc;
                     //击键数据排列
@@ -2067,19 +2077,33 @@ namespace WindowsFormsApplication2
                         RightAndFault += TextAlticle.Substring(s, 1) + "√ " + fa + "×";
                         if (Glob.TextCz > 0 && i < Glob.TextCz - 1) { RightAndFault += RFSplit; }
                     }
-                    //MessageBox.Show(RightAndFault);
+
                     string Cz, Spsend; //错字和速度的输出
                     string FalutIns = "";//错情
                     double speed2 = Math.Round((double)((TextLen - Glob.StartTextLen - Glob.TextCz * 5) * 60) / ts, 2); // 惩罚错字后的真实速度，错一罚五
                     if (Glob.TextCz != 0)
                     {
                         if (speed2 < 0) { speed2 = 0.00; }
-                        Spsend = speed2.ToString("0.00") + "/" + speed.ToString("0.00");
+                        if (isEn)
+                        {
+                            Spsend = (speed2 / 5).ToString("0.00") + "/" + (speed / 5).ToString("0.00");
+                        }
+                        else
+                        {
+                            Spsend = speed2.ToString("0.00") + "/" + speed.ToString("0.00");
+                        }
                         FalutIns = " 错情：[" + RightAndFault + "]";
                     }
                     else
                     {
-                        Spsend = speed.ToString("0.00");
+                        if (isEn)
+                        {
+                            Spsend = (speed / 5).ToString("0.00");
+                        }
+                        else
+                        {
+                            Spsend = speed.ToString("0.00");
+                        }
                     }
                     Cz = " 错字" + Glob.TextCz.ToString(); // 末尾描述
 
@@ -2138,9 +2162,15 @@ namespace WindowsFormsApplication2
                         this.lbl键准.Text = (UserJz == 0) ? "-" : UserJz + "%";
 
                         picBar_Draw(0.0, Glob.TextLen + ",100%");
-                        labelSpeeding.Text = speed.ToString("0.00");
                         labelJjing.Text = jj.ToString("0.00");
                         labelmcing.Text = mc.ToString("0.00");
+                        if (isEn)
+                        {
+                            labelSpeeding.Text = (speed / 5).ToString("0.00") + "wpm";
+                        } else
+                        {
+                            labelSpeeding.Text = speed.ToString("0.00");
+                        }
 
                         //平均数据
                         //this.SeriesSpeed.Points.AddXY(Glob.typeUseTime,speed2);
@@ -2165,7 +2195,15 @@ namespace WindowsFormsApplication2
 
                             int RowCount = this.dataGridView1.Rows.Count - 1;
                             string[] oldSpeed = this.dataGridView1.Rows[RowCount].Cells[3].Value.ToString().Split('/');
-                            double speed_Plus = speed2 - double.Parse(oldSpeed[0]);
+                            double speed_Plus;
+                            if (isEn)
+                            {
+                                speed_Plus = speed2 / 5 - double.Parse(oldSpeed[0]);
+                            }
+                            else
+                            {
+                                speed_Plus = speed2 - double.Parse(oldSpeed[0]);
+                            }
                             double jj_Plus = Glob.Textjj - double.Parse(this.dataGridView1.Rows[RowCount].Cells[4].Value.ToString());
                             double mc_Plus = Glob.Textmc - double.Parse(this.dataGridView1.Rows[RowCount].Cells[5].Value.ToString());
                             dataGridView1.Rows.Add("", "", "",
@@ -2184,7 +2222,7 @@ namespace WindowsFormsApplication2
                             if (speed_Plus > 0) dataGridView1.Rows[RowCount].Cells[3].Style.ForeColor = Color.FromArgb(253, 108, 108);
                             if (jj_Plus > 0) dataGridView1.Rows[RowCount].Cells[4].Style.ForeColor = Color.FromArgb(255, 129, 233);
                             if (mc_Plus < 0) dataGridView1.Rows[RowCount].Cells[5].Style.ForeColor = Color.FromArgb(124, 222, 255);
-                            for (int i = 0; i < 23; i++)
+                            for (int i = 0; i < 24; i++)
                             {
                                 if (i != 3 && i != 4 && i != 5)
                                 {
@@ -2203,7 +2241,7 @@ namespace WindowsFormsApplication2
                             typeCountStr = Glob.HaveTypeCount_.ToString();
                         }
                         //* 成绩栏添加新数据行
-                        dataGridView1.Rows.Add(typeCountStr, Glob.TextTime.ToString("yyyy-MM-dd HH:mm:ss"), Glob.CurSegmentNum.ToString(), Spsend, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.Difficulty.ToString("0.00"), (Glob.Difficulty * speed2).ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserDcl, UserTime, this.lblTitle.Text);
+                        dataGridView1.Rows.Add(typeCountStr, Glob.TextTime.ToString("yyyy-MM-dd HH:mm:ss"), Glob.CurSegmentNum.ToString(), Spsend, jj.ToString("0.00"), mc.ToString("0.00"), Glob.词库理论码长.ToString("0.00"), Glob.Difficulty.ToString("0.00"), (Glob.Difficulty * speed2).ToString("0.00"), Glob.TextHg.ToString(), UserTg, Glob.回车.ToString(), Glob.选重.ToString(), Glob.TextCz.ToString(), UserHgl, lbl键准.Text, Glob.效率 + "%", Glob.TextJs.ToString(), TextLen.ToString(), Glob.aTypeWords, UserDcl, UserTime, this.CategoryLabel.Text, this.lblTitle.Text);
                         //* 绑定右键菜单
                         dataGridView1.Rows[dataGridView1.RowCount - 1].ContextMenuStrip = this.ScoreContextMenuStrip;
                         Glob.TextPreCout = this.lblMatchCount.Text; // 记录本文段校验码
@@ -2225,7 +2263,7 @@ namespace WindowsFormsApplication2
                             dis = dt.ToString("HH:mm:ss");
                         }
                         // 成绩栏总计行
-                        dataGridView1.Rows.Add("", dis, Glob.HaveTypeCount + "#", (Glob.Per_Speed / Glob.HaveTypeCount).ToString("0.00"), jjPer_.ToString("0.00"), (Glob.Per_Mc / Glob.HaveTypeCount).ToString("0.00"), "", "", "", "", "", "", "", "", "", "", "", "", (Glob.Total_Type / Glob.HaveTypeCount).ToString("0.00"), "", "", (touse / Glob.HaveTypeCount).ToString("0.00"), "");
+                        dataGridView1.Rows.Add("", dis, Glob.HaveTypeCount + "#", (Glob.Per_Speed / Glob.HaveTypeCount).ToString("0.00"), jjPer_.ToString("0.00"), (Glob.Per_Mc / Glob.HaveTypeCount).ToString("0.00"), "", "", "", "", "", "", "", "", "", "", "", "", (Glob.Total_Type / Glob.HaveTypeCount).ToString("0.00"), "", "", (touse / Glob.HaveTypeCount).ToString("0.00"), "", "");
                         dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
                         dataGridView1.ClearSelection();
                         DataGridViewRow dgr = dataGridView1.Rows[dataGridView1.RowCount - 1];
@@ -2441,7 +2479,7 @@ namespace WindowsFormsApplication2
                         //* 保存文段
                         long databaseSegmentId = Glob.ScoreHistory.InsertSegment(Glob.TypeText, this.lblMatchCount.Text);
                         //* 保存成绩
-                        Glob.ScoreHistory.InsertScore(Glob.TextTime.ToString("s"), Glob.CurSegmentNum, Spsend, jj, mc, Glob.词库理论码长, Glob.TextHg, Math.Abs(Glob.TextBg - Glob.TextHg), Glob.回车, Glob.选重, Glob.TextCz, Glob.TextHg_, UserJz, Glob.效率, Glob.TextJs, TextLen, Glob.aTypeWords, Glob.TextDc_, UserTime, databaseSegmentId, this.lblTitle.Text, Glob.Instration, Glob.Difficulty);
+                        Glob.ScoreHistory.InsertScore(Glob.TextTime.ToString("s"), Glob.CurSegmentNum, Spsend, jj, mc, Glob.词库理论码长, Glob.TextHg, Math.Abs(Glob.TextBg - Glob.TextHg), Glob.回车, Glob.选重, Glob.TextCz, Glob.TextHg_, UserJz, Glob.效率, Glob.TextJs, TextLen, Glob.aTypeWords, Glob.TextDc_, UserTime, databaseSegmentId, this.lblTitle.Text, Glob.Instration, Glob.Difficulty, (int)Glob.Category);
                         if (!Glob.DisableSaveAdvanced)
                         { // 保存高阶统计数据
                             string curveData = string.Join("|", Glob.ChartSpeedArr);
@@ -2482,6 +2520,7 @@ namespace WindowsFormsApplication2
                         scoreRow["article_title"] = this.lblTitle.Text;
                         scoreRow["version"] = Glob.Instration;
                         scoreRow["difficulty"] = Glob.Difficulty;
+                        scoreRow["category"] = (int)Glob.Category;
                         this.currentScoreData.AddScoreRow(scoreRow);
                         #endregion
 
@@ -2684,7 +2723,7 @@ namespace WindowsFormsApplication2
         {
             if (Glob.Use分析)
             {
-                SpeedAn sa = new SpeedAn(Glob.TextTime.ToString("G"), Glob.CurSegmentNum.ToString(), SpeedAnalysis(), Glob.Instration, this);
+                SpeedAn sa = new SpeedAn(Glob.TextTime.ToString("G"), Glob.CurSegmentNum.ToString(), SpeedAnalysis(), Glob.Category, Glob.Instration, this);
                 sa.Show();
             }
         }
@@ -2740,9 +2779,10 @@ namespace WindowsFormsApplication2
             double 完美比较 = speed_6 + plus - Jz_speed;
             string 实码比 = (实际比较 > 0 ? "+" : "") + 实际比较.ToString("0.00");
             string 完码比 = (完美比较 > 0 ? "+" : "") + 完美比较.ToString("0.00");
-            speedAnGet = $"{完美理论}|{完码比}|{码长理论}|{Glob.PauseTimes}|{跟打实际}|{实码比}|{Hg_speed:0.00}|{Glob.hgAllUse:0.00}|{Bg_speed:0.00}|{Math.Abs(Glob.TextBg - Glob.TextHg):0.00}|{St_speed:0.00}|{停留:0.00}|{Cz_speed:0.00}|{Glob.TextCz}|{En_speed:0.00}|{Glob.回车}";
+            speedAnGet = $"{完美理论}|{完码比}|{码长理论}|{Glob.PauseTimes}|{跟打实际}|{实码比}|{Hg_speed:0.00}|{Glob.hgAllUse:0.00}|{Bg_speed:0.00}|{Math.Abs(Glob.TextBg - Glob.TextHg)}|{St_speed:0.00}|{停留:0.00}|{Cz_speed:0.00}|{Glob.TextCz}|{En_speed:0.00}|{Glob.回车}";
             return speedAnGet;
         }
+
         //击键占比
         private void jjPerCheck(int jP)
         {
@@ -3029,7 +3069,7 @@ namespace WindowsFormsApplication2
         {
             using (PicGoal_Class pgc = new PicGoal_Class())
             {
-                Clipboard.SetImage(pgc.GetPic(this.lblTitle.Text, Glob.TextTime.ToString("G"), UserTime, UserJz, Glob.效率, Glob.TextLen, Glob.TextHg, Glob.TextCz, Glob.TextJs, Math.Abs(Glob.TextBg - Glob.TextHg), Glob.选重, Glob.CurSegmentNum.ToString(), Glob.TextSpeed, Glob.Textjj, Glob.Textmc, Glob.Instration));
+                Clipboard.SetImage(pgc.GetPic(this.lblTitle.Text, Glob.TextTime.ToString("G"), UserTime, UserJz, Glob.效率, Glob.TextLen, Glob.TextHg, Glob.TextCz, Glob.TextJs, Math.Abs(Glob.TextBg - Glob.TextHg), Glob.选重, Glob.CurSegmentNum.ToString(), Glob.TextSpeed, Glob.Textjj, Glob.Textmc, Glob.Category, Glob.Instration));
                 pgc.Dispose();
             }
         }
@@ -3442,8 +3482,9 @@ namespace WindowsFormsApplication2
         public extern static void SetCursorPos(int x, int y);
 
         /// <summary>
-        /// 获取信息
+        /// 获取文段信息
         /// - 自动替换英文标点在此处执行
+        /// - 文段难度和文本类别在此计算
         /// </summary>
         public void GetInfo()
         {
@@ -3462,9 +3503,13 @@ namespace WindowsFormsApplication2
             //* 计算难度
             Glob.Difficulty = DiffDict.Calc(Glob.TypeText);
 
+            //* 判定文本类别
+            Glob.Category = CategoryHandler.GetCategoryValue(Glob.TypeText);
+
             textBoxEx1.MaxLength = tl;
             lblCount.Text = tl.ToString() + "字";
             DifficultyLabel.Text = DiffDict.DiffText(Glob.Difficulty);
+            CategoryLabel.Text = CategoryHandler.GetCategoryText(Glob.Category);
             lblMatchCount.Text = Validation.Validat(Validation.Validat(richTextBox1.Text));
 
             //? 为了能处理中途更换或停用码表等特殊情况，在手动按下重打时也会重新计算
@@ -3562,7 +3607,13 @@ namespace WindowsFormsApplication2
 
                     if (Glob.ShowRealTimeData)
                     {
-                        this.labelSpeeding.Text = (this.textBoxEx1.Text.Length * 60 / Glob.TypeUseTime).ToString("0.00");
+                        if (CategoryHandler.IsEn(Glob.Category))
+                        {
+                            this.labelSpeeding.Text = (this.textBoxEx1.Text.Length * 60 / Glob.TypeUseTime / 5).ToString("0.00") + "wpm";
+                        } else
+                        {
+                            this.labelSpeeding.Text = (this.textBoxEx1.Text.Length * 60 / Glob.TypeUseTime).ToString("0.00");
+                        }
                     }
                     timerLblTime.Start(); // 暂停时跟打用时闪烁
                     this.Text += " [已暂停]";
@@ -3647,7 +3698,15 @@ namespace WindowsFormsApplication2
             {
                 int len = richTextBox2.TextLength - Glob.StartTextLen;
                 double speed2 = (double)len * 60 / Glob.TypeUseTime;
-                if (speed2 > 999) { speed2 = 999; }
+                if (CategoryHandler.IsEn(Glob.Category))
+                {
+                    speed2 /= 5;
+                }
+                if (speed2 > 999)
+                { 
+                    speed2 = 999;
+                }
+                // 速度曲线记录值
                 Glob.chartSpeedTo = speed2;
                 double mc = (double)Glob.TextJs / (inputL);
                 double jj = (Glob.TextJs - Glob.StartKeyLen) / Glob.TypeUseTime;
@@ -3655,8 +3714,14 @@ namespace WindowsFormsApplication2
                 if (Glob.ShowRealTimeData)
                 {
                     labelmcing.Text = mc.ToString("0.00");
-                    labelSpeeding.Text = speed2.ToString("0.00");
                     labelJjing.Text = jj.ToString("0.00");
+                    if (CategoryHandler.IsEn(Glob.Category))
+                    {
+                        labelSpeeding.Text = speed2.ToString("0.00") + "wpm";
+                    } else
+                    {
+                        labelSpeeding.Text = speed2.ToString("0.00");
+                    }
                 }
 
                 if (inputL > 10)
@@ -6023,7 +6088,7 @@ namespace WindowsFormsApplication2
         #region 跟打报告
         private void 跟打报告ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            WindowsFormsApplication2.跟打报告.TypeAnalysis tya = new 跟打报告.TypeAnalysis(Glob.TextTime.ToString("G"), Glob.TypeReport, Glob.TypeText, Glob.TextSpeed.ToString("0.00"), Glob.TextHg, Glob.Instration);
+            WindowsFormsApplication2.跟打报告.TypeAnalysis tya = new 跟打报告.TypeAnalysis(Glob.TextTime.ToString("G"), Glob.TypeReport, Glob.TypeText, Glob.TextSpeed.ToString("0.00"), Glob.TextHg, Glob.Category, Glob.Instration);
             tya.Show();
         }
         #endregion

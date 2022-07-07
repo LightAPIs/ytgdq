@@ -119,6 +119,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Category\CategoryHandler.cs" />
     <Compile Include="CellHighlight.cs" />
     <Compile Include="ClipboardHandler.cs" />
     <Compile Include="CodeTable\CodeTableBox.cs">

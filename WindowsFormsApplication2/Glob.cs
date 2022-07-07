@@ -402,6 +402,11 @@ namespace WindowsFormsApplication2
         public static double Difficulty = 0;
 
         /// <summary>
+        /// 文本类别
+        /// </summary>
+        public static CategoryValue Category = CategoryValue.Unknow;
+
+        /// <summary>
         /// 测速点控制
         /// 注：存的是 index
         /// </summary>
@@ -589,6 +594,16 @@ namespace WindowsFormsApplication2
             CdnJsdelivr = 3,
             Fastgit = 4,
             Statically = 5,
+        }
+
+        /// <summary>
+        /// 文本类别 Enum
+        /// </summary>
+        public enum CategoryValue
+        {
+            Unknow = -1,
+            Chinese = 0,
+            English = 1,
         }
     }
 

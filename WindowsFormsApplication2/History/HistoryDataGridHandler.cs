@@ -80,7 +80,7 @@ namespace WindowsFormsApplication2.History
                     using (PicGoal_Class pgc = new PicGoal_Class())
                     {
                         string[] speed = sd["speed"].ToString().Split('/');
-                        Clipboard.SetImage(pgc.GetPic(sd["article_title"].ToString(), scoreTime, sd["cost_time"].ToString(), (double)sd["accuracy_rate"], (int)sd["effciency"], (int)sd["count"], (int)sd["back_change"], (int)sd["error"], (int)sd["keys"], (int)sd["backspace"], (int)sd["duplicate"], sd["segment_num"].ToString(), double.Parse(speed.Last()), (double)sd["keystroke"], (double)sd["code_len"], sd["version"].ToString()));
+                        Clipboard.SetImage(pgc.GetPic(sd["article_title"].ToString(), scoreTime, sd["cost_time"].ToString(), (double)sd["accuracy_rate"], (int)sd["effciency"], (int)sd["count"], (int)sd["back_change"], (int)sd["error"], (int)sd["keys"], (int)sd["backspace"], (int)sd["duplicate"], sd["segment_num"].ToString(), double.Parse(speed.Last()), (double)sd["keystroke"], (double)sd["code_len"], (Glob.CategoryValue)sd["category"], sd["version"].ToString()));
                         pgc.Dispose();
                     }
                 }
@@ -138,9 +138,10 @@ namespace WindowsFormsApplication2.History
                 if (!string.IsNullOrEmpty(adv) && sd != null)
                 {
                     string sn = sd["segment_num"].ToString();
+                    Glob.CategoryValue ca = (Glob.CategoryValue)sd["category"];
                     string vi = sd["version"].ToString();
 
-                    SpeedAn sa = new SpeedAn(scoreTime, sn, adv, vi, frm);
+                    SpeedAn sa = new SpeedAn(scoreTime, sn, adv, ca, vi, frm);
                     sa.Show();
                 }
                 else
@@ -169,9 +170,10 @@ namespace WindowsFormsApplication2.History
                         string content = Glob.ScoreHistory.GetContentFromSegmentId((long)sd["segment_id"]);
                         string[] speed = sd["speed"].ToString().Split('/');
                         int bc = (int)sd["back_change"];
+                        Glob.CategoryValue ca = (Glob.CategoryValue)sd["category"];
                         string vi = sd["version"].ToString();
 
-                        WindowsFormsApplication2.跟打报告.TypeAnalysis tya = new 跟打报告.TypeAnalysis(scoreTime, td, content, speed.Last(), bc, vi);
+                        WindowsFormsApplication2.跟打报告.TypeAnalysis tya = new 跟打报告.TypeAnalysis(scoreTime, td, content, speed.Last(), bc, ca, vi);
                         tya.Show();
                     }
                     catch

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using System.Drawing.Text;
+using WindowsFormsApplication2.Category;
+
 namespace WindowsFormsApplication2
 {
 
@@ -29,7 +31,7 @@ namespace WindowsFormsApplication2
         }
 
         
-        public Bitmap GetPic(string title, string time, string costTime, double accuracyRate, int effciency, int count, int back_change, int error, int keys, int backspace, int duplicate, string segmentNum, double speed, double keystroke, double codeLen, string version){
+        public Bitmap GetPic(string title, string time, string costTime, double accuracyRate, int effciency, int count, int back_change, int error, int keys, int backspace, int duplicate, string segmentNum, double speed, double keystroke, double codeLen, Glob.CategoryValue cate, string version){
             //取得画布
             Graphics g = Graphics.FromImage(Pic_Bmp);
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
@@ -38,7 +40,7 @@ namespace WindowsFormsApplication2
             //填充颜色
             g.Clear(Color.FromArgb(240, 240, 240));//一种中蓝色
             //Font F = new Font("宋体",12f);
-            int StartH = 50;
+            int StartH = 20;
             //外框画笔
             Pen BorderP =new Pen(Brushes.DimGray);
             //画重打颜色 绿色为新打。红色为重打
@@ -61,10 +63,19 @@ namespace WindowsFormsApplication2
             g.DrawRectangle(BorderP,Left - 1,StartH - 1,82,22);
             g.FillRectangle(Brushes.DimGray, Left, StartH, 80, 20);//画底色
             g.DrawString("第" + segmentNum + "段",L_,Brushes.White,Left + 1,StartH + 3);
+            // 画文本类型
+            StartH += 30;
+            g.DrawRectangle(BorderP, Left - 1, StartH - 1, 82, 22);
+            g.FillRectangle(Brushes.SaddleBrown, Left, StartH, 80, 20);
+            g.DrawString("类别：" + CategoryHandler.GetCategoryText(cate), L_, Brushes.White, Left + 1, StartH + 3);
             //速度
             //以80为限
             //算出理论速度
             double theoreticalSpeed = keystroke * 60 / (keys * accuracyRate / 100 / count); // 理论速度
+            if (CategoryHandler.IsEn(cate))
+            {
+                theoreticalSpeed /= 5;
+            }
             //画出当前速度
             StartH += 30;
             int width = (int)(speed * 80 / theoreticalSpeed);

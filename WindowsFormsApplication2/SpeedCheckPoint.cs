@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using WindowsFormsApplication2.Category;
 
 namespace WindowsFormsApplication2
 {
@@ -36,6 +37,7 @@ namespace WindowsFormsApplication2
         private void SpeedCheckPoint_Load(object sender, EventArgs e)
         {
             if (Glob.SpeedPointCount > 0) {
+                bool isEn = CategoryHandler.IsEn(Glob.Category);
                 this.Text = "第" + Glob.CurSegmentNum.ToString() + "段 测速信息 共" + Glob.SpeedPointCount + "个测速点";
                 Ti.Text = "第" + Glob.CurSegmentNum.ToString() + "段 字数" + Glob.TextLen + " 测速信息";
                 double GetSpeed = 0,MinSpeed = 500,MaxSpeed = 0;
@@ -45,6 +47,10 @@ namespace WindowsFormsApplication2
                     {
                         int zis = Glob.SpeedPoint_[0] + 1 - Glob.StartTextLen;
                         GetSpeed = (zis * 60 / ((Glob.SpeedTime[0] <= 0) ? 1 : Glob.SpeedTime[0]));
+                        if (isEn)
+                        {
+                            GetSpeed /= 5;
+                        }
 
                         this.dgvAllData.Rows.Add(i + 1,
                             frm.richTextBox1.Text.Substring(0,2), 
@@ -55,10 +61,15 @@ namespace WindowsFormsApplication2
                             (Glob.SpeedJs[0]/Glob.SpeedTime[0]).ToString("0.00"),
                             ((double)Glob.SpeedJs[0]/zis).ToString("0.00"), Glob.SpeedHg[0]);
                     }
-                    else if (i < Glob.SpeedPointCount) {
+                    else if (i < Glob.SpeedPointCount) 
+                    {
                         int zis = Glob.SpeedPoint_[i] - Glob.SpeedPoint_[i - 1];
                         double shi = Glob.SpeedTime[i] - Glob.SpeedTime[i - 1];
                         GetSpeed = (zis * 60 / shi);
+                        if (isEn)
+                        {
+                            GetSpeed /= 5;
+                        }
                         this.dgvAllData.Rows.Add(i + 1,
                                                  frm.richTextBox1.Text.Substring(Glob.SpeedPoint_[i - 1] + 1,2),
                                                  Glob.SpeedPoint_[i - 1] + 2 , Glob.SpeedPoint_[i] + 1,
@@ -70,10 +81,15 @@ namespace WindowsFormsApplication2
                                                  Glob.SpeedHg[i] - Glob.SpeedHg[i - 1]);
                         
                     }
-                    else if (i == Glob.SpeedPointCount) {
+                    else if (i == Glob.SpeedPointCount)
+                    {
                         int zis  = Glob.TextLen - Glob.SpeedPoint_[i - 1] - 1;
                         double shi  = Glob.TypeUseTime - Glob.SpeedTime[i - 1];
                         GetSpeed = (zis * 60 / shi);
+                        if (isEn)
+                        {
+                            GetSpeed /= 5;
+                        }
                         int GetNow = Glob.SpeedPoint_[i - 1] + 1;
                         this.dgvAllData.Rows.Add(i + 1,
                             frm.richTextBox1.Text.Substring(GetNow, ((GetNow + 2 > Glob.TextLen) ? Glob.TextLen - GetNow : 2)),

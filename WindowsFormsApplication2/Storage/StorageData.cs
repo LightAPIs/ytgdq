@@ -19,14 +19,24 @@ namespace WindowsFormsApplication2.Storage
             this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS segment(id INTEGER PRIMARY KEY AUTOINCREMENT, content TEXT, check_code VARCHAR(5));";
             this.cmd.ExecuteNonQuery();
 
-            this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS score(score_time DATETIME PRIMARY KEY NOT NULL, segment_num INT, speed TEXT, keystroke DOUBLE, code_len DOUBLE, calc_len DOUBLE, back_change INT, backspace INT, enter INT, duplicate INT, error INT, back_rate DOUBLE, accuracy_rate DOUBLE, effciency INT, keys INT, count INT, type_words INT, words_rate DOUBLE, cost_time TEXT, segment_id INTEGER NOT NULL, article_title TEXT, version TEXT, difficulty DOUBLE DEFAULT 0, CONSTRAINT fk_segment_score FOREIGN KEY (segment_id) REFERENCES segment(id));";
+            this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS score(score_time DATETIME PRIMARY KEY NOT NULL, segment_num INT, speed TEXT, keystroke DOUBLE, code_len DOUBLE, calc_len DOUBLE, back_change INT, backspace INT, enter INT, duplicate INT, error INT, back_rate DOUBLE, accuracy_rate DOUBLE, effciency INT, keys INT, count INT, type_words INT, words_rate DOUBLE, cost_time TEXT, segment_id INTEGER NOT NULL, article_title TEXT, version TEXT, difficulty DOUBLE DEFAULT 0, category INT DEFAULT -1, CONSTRAINT fk_segment_score FOREIGN KEY (segment_id) REFERENCES segment(id));";
             this.cmd.ExecuteNonQuery();
 
+            //? add "difficulty" column to old table
             this.cmd.CommandText = "SELECT * FROM sqlite_master WHERE name='score' and sql like '%difficulty%'";
             object readState = this.cmd.ExecuteScalar();
             if (readState == null)
             {
                 this.cmd.CommandText = "ALTER TABLE score ADD COLUMN difficulty DOUBLE DEFAULT 0";
+                this.cmd.ExecuteNonQuery();
+            }
+
+            //? add "category" column to old table
+            this.cmd.CommandText = "SELECT * FROM sqlite_master WHERE name='score' and sql like '%category%'";
+            object readState2 = this.cmd.ExecuteScalar();
+            if (readState2 == null)
+            {
+                this.cmd.CommandText = "ALTER TABLE score ADD COLUMN category INT DEFAULT -1";
                 this.cmd.ExecuteNonQuery();
             }
 
@@ -75,9 +85,10 @@ namespace WindowsFormsApplication2.Storage
         /// <param name="article_title"></param>
         /// <param name="version"></param>
         /// <param name="difficulty"></param>
-        public void InsertScore(string score_time, int segment_num, string speed, double keystroke, double code_len, double calc_len, int back_change, int backspace, int enter, int duplicate, int error, double back_rate, double accuracy_rate, int effciency, int keys, int count, int type_words, double words_rate, string cost_time, long segment_id, string article_title, string version, double difficulty)
+        /// <param name="category"></param>
+        public void InsertScore(string score_time, int segment_num, string speed, double keystroke, double code_len, double calc_len, int back_change, int backspace, int enter, int duplicate, int error, double back_rate, double accuracy_rate, int effciency, int keys, int count, int type_words, double words_rate, string cost_time, long segment_id, string article_title, string version, double difficulty, int category)
         {
-            this.cmd.CommandText = $"INSERT INTO score VALUES('{score_time}',{segment_num},'{speed}',{keystroke},{code_len},{calc_len},{back_change},{backspace},{enter},{duplicate},{error},{back_rate},{accuracy_rate},{effciency},{keys},{count},{type_words},{words_rate},'{cost_time}',{segment_id},'{this.ConvertText(article_title)}','{version}',{difficulty});";
+            this.cmd.CommandText = $"INSERT INTO score VALUES('{score_time}',{segment_num},'{speed}',{keystroke},{code_len},{calc_len},{back_change},{backspace},{enter},{duplicate},{error},{back_rate},{accuracy_rate},{effciency},{keys},{count},{type_words},{words_rate},'{cost_time}',{segment_id},'{this.ConvertText(article_title)}','{version}',{difficulty},{category});";
             this.cmd.ExecuteNonQuery();
         }
 

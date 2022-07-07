@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
+using WindowsFormsApplication2.Category;
 
 namespace WindowsFormsApplication2.跟打报告
 {
@@ -17,14 +18,16 @@ namespace WindowsFormsApplication2.跟打报告
         private readonly string typeTextData;
         private readonly string textSpeedData;
         private readonly int textHgData;
+        private readonly Glob.CategoryValue textCate;
         private readonly string verInstration;
-        public TypeAnalysis(string type_time, List<TypeDate> type_report_data, string type_text_data, string text_speed_data, int text_hg_data, string ver_instration)
+        public TypeAnalysis(string type_time, List<TypeDate> type_report_data, string type_text_data, string text_speed_data, int text_hg_data, Glob.CategoryValue cate, string ver_instration)
         {
             this.typeTime = type_time;
             this.typeReportData = type_report_data;
             this.typeTextData = type_text_data;
             this.textSpeedData = text_speed_data;
             this.textHgData = text_hg_data;
+            this.textCate = cate;
             this.verInstration = ver_instration;
             InitializeComponent();
         }
@@ -74,14 +77,25 @@ namespace WindowsFormsApplication2.跟打报告
         /// 用PIC方式显示
         /// </summary>
         private void ShowToPic() {
-            Bitmap bmp = new Bitmap(this.pic_analysis.Width, 135 + this.typeTextData.Length + this.textHgData * 2);
+            int initialheight = 0;
+            bool isEn = CategoryHandler.IsEn(this.textCate);
+            if (isEn)
+            {
+                initialheight = this.typeTextData.Length / 2;
+            }
+            else
+            {
+                initialheight = this.typeTextData.Length;
+            }
+            Bitmap bmp = new Bitmap(this.pic_analysis.Width, 135 + initialheight + this.textHgData * 2);
             Graphics g = Graphics.FromImage(bmp);
             g.Clear(Color.White); //清洗画布
             
             //标题啦
             Font title_font = new Font("微软雅黑",14,FontStyle.Bold);
             g.DrawString("跟打报告",title_font,Brushes.ForestGreen,20,20);
-            g.DrawString(this.textSpeedData, title_font, Brushes.SeaGreen,bmp.Width - 20 - GetWH(g, this.textSpeedData, title_font).Width, 20);//速度
+            string showSpeed = isEn ? this.textSpeedData + "wpm" : this.textSpeedData;
+            g.DrawString(showSpeed, title_font, Brushes.SeaGreen,bmp.Width - 20 - GetWH(g, showSpeed, title_font).Width, 20);//速度
             int title_height = (int)GetWH(g,"跟",title_font).Height + 23;
             g.DrawLine(new Pen(Color.DarkSlateBlue, 3), 10, title_height, bmp.Width - 10, title_height);
             //副级标题1 全文跟打详细过程
@@ -143,7 +157,7 @@ namespace WindowsFormsApplication2.跟打报告
 
                 if (t_nowX + t_text_width > bmp.Width - info_splite)
                 {
-                    g.DrawString(speed.ToString("0.00"), t_font_hg, Brushes.DimGray, bmp.Width - info_splite, t_nowY - t_splite_info - 2);
+                    g.DrawString(ConvertSpeed(speed).ToString("0.00"), t_font_hg, Brushes.DimGray, bmp.Width - info_splite, t_nowY - t_splite_info - 2);
                     g.DrawString(jj.ToString("0.00"), t_font_hg, (jj >= 8 ) ? jj_Color : Brushes.DimGray, bmp.Width - info_splite, t_nowY);
                     g.DrawString(mc.ToString("0.00"), t_font_hg, (mc <= 2.20 ) ? mc_Color : Brushes.DimGray, bmp.Width - info_splite, t_nowY + t_splite_info + 2);
                     t_nowX = t_Start_X;
@@ -153,7 +167,7 @@ namespace WindowsFormsApplication2.跟打报告
                 }
                 //最后一行
                 if (i == this.dataGridView1.Rows.Count - 2) {
-                    g.DrawString(speed.ToString("0.00"), t_font_hg, Brushes.DimGray, bmp.Width - info_splite, t_nowY - t_splite_info - 2);
+                    g.DrawString(ConvertSpeed(speed).ToString("0.00"), t_font_hg, Brushes.DimGray, bmp.Width - info_splite, t_nowY - t_splite_info - 2);
                     g.DrawString(jj.ToString("0.00"), t_font_hg, (jj >= 8) ? jj_Color : Brushes.DimGray, bmp.Width - info_splite, t_nowY);
                     g.DrawString(mc.ToString("0.00"), t_font_hg, (mc <= 2.20) ? mc_Color : Brushes.DimGray, bmp.Width - info_splite, t_nowY + t_splite_info + 2);
                 }
@@ -193,9 +207,9 @@ namespace WindowsFormsApplication2.跟打报告
                     //t_js += (int)this.dataGridView1.Rows[i].Cells["键数"].Value;
                     if (t_control) {
                         int t_splite_info_up = t_splite_info, t_splite_info_down = t_splite_info; //用时换行时的调配
-                        string t_speed = (t_zis * 60/t_time).ToString("0.00"); //回改前
+                        double t_speed = (t_zis * 60/t_time); //回改前
                         int t_hg_Y = t_nowY, t_hg_X = t_nowX;
-                        if (t_nowX + GetWH(g, t_speed, t_font_hg).Width > bmp.Width - info_splite)
+                        if (t_nowX + GetWH(g, t_speed.ToString("0.00"), t_font_hg).Width > bmp.Width - info_splite)
                         {
                             t_hg_X = t_Start_X;
                             t_hg_Y += t_distance;
@@ -203,12 +217,12 @@ namespace WindowsFormsApplication2.跟打报告
                             t_splite_info_up = 9;
                             t_splite_info_down = 15;
                         } //换行
-                        g.DrawString(t_speed,t_font_hg,Brushes.IndianRed,t_hg_X,t_hg_Y - t_splite_info_up);
-                        t_text_width = (int)GetWH(g, t_speed, t_font_hg).Width;
+                        g.DrawString(ConvertSpeed(t_speed).ToString("0.00"), t_font_hg,Brushes.IndianRed,t_hg_X,t_hg_Y - t_splite_info_up);
+                        t_text_width = (int)GetWH(g, t_speed.ToString("0.00"), t_font_hg).Width;
                         //t_last_width = t_text_width;
                         //用于计算回改后
                         t_time += t_hg_time_;
-                        g.DrawString((t_zis * 60 / t_time).ToString("0.00"), t_font_hg, Brushes.DarkBlue, t_hg_X, t_hg_Y + t_splite_info_down);
+                        g.DrawString(ConvertSpeed((t_zis * 60 / t_time)).ToString("0.00"), t_font_hg, Brushes.DarkBlue, t_hg_X, t_hg_Y + t_splite_info_down);
                     }
                     t_control = false;
                     t_hg_time += t_hg_time_;//回改时间累计
@@ -241,6 +255,15 @@ namespace WindowsFormsApplication2.跟打报告
                 this.Width += 10;
             }
             this.pic_analysis.Image = bmp;
+        }
+
+        private double ConvertSpeed(double speed)
+        {
+            if (CategoryHandler.IsEn(this.textCate))
+            {
+                return speed / 5;
+            }
+            return speed;
         }
 
         private SizeF GetWH(Graphics g,string text,Font F) {

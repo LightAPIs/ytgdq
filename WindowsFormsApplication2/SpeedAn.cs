@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WindowsFormsApplication2.Category;
 
 namespace WindowsFormsApplication2
 {
@@ -24,15 +25,20 @@ namespace WindowsFormsApplication2
         /// </summary>
         private readonly string getData;
         /// <summary>
+        /// 文本类别
+        /// </summary>
+        private readonly Glob.CategoryValue textCate;
+        /// <summary>
         /// 成绩版本
         /// </summary>
         private readonly string verInstration;
         private readonly Form1 frm;
-        public SpeedAn(string score_time, string now_cout, string get_data, string ver_instration, Form1 frm1)
+        public SpeedAn(string score_time, string now_cout, string get_data, Glob.CategoryValue cate, string ver_instration, Form1 frm1)
         {
             scoreTime = score_time;
             nowCout = now_cout;
             getData = get_data;
+            textCate = cate;
             verInstration = ver_instration;
             frm = frm1;
             InitializeComponent();
@@ -76,42 +82,47 @@ namespace WindowsFormsApplication2
                     for (int i = 0; i < data.Length; i += 2)
                     {
                         SolidBrush SB_TotalWidth;
-                        Color Colour = Color.FromArgb(10, 166, 146);
-                        string MC_ = "";
+                        Color Colour;
+                        string MC_;
                         double TotalWidth = double.TryParse(data[i], out TotalWidth) ? TotalWidth < 0 ? 0 : TotalWidth : 0;// 长度
+                        string showSpeed = TotalWidth.ToString("0.00");
+                        if (CategoryHandler.IsEn(this.textCate))
+                        {
+                            showSpeed = (TotalWidth / 5).ToString("0.00");
+                        }
                         switch (i)
                         {
                             case 0:
                                 Colour = Color.FromArgb(10, 166, 146);
-                                MC_ = "完美理论值：" + TotalWidth.ToString("0.00");
+                                MC_ = "完美理论值：" + showSpeed;
                                 break;
                             case 2:
                                 Colour = Color.FromArgb(7, 153, 7);
-                                MC_ = "码长理论值：" + TotalWidth.ToString("0.00");
+                                MC_ = "码长理论值：" + showSpeed;
                                 break;
                             case 4:
                                 Colour = Color.FromArgb(195, 31, 89);
-                                MC_ = "跟打实际值：" + TotalWidth.ToString("0.00");
+                                MC_ = "跟打实际值：" + showSpeed;
                                 break;
                             case 6:
                                 Colour = Color.FromArgb(150, 27, 181);
-                                MC_ = "回改影响值：-" + TotalWidth.ToString("0.00");
+                                MC_ = "回改影响值：-" + showSpeed;
                                 break;
                             case 8:
                                 Colour = Color.FromArgb(202, 122, 36);
-                                MC_ = "退格影响值：-" + TotalWidth.ToString("0.00");
+                                MC_ = "退格影响值：-" + showSpeed;
                                 break;
                             case 10:
                                 Colour = Color.FromArgb(222, 51, 51);
-                                MC_ = "停留影响值：-" + TotalWidth.ToString("0.00");
+                                MC_ = "停留影响值：-" + showSpeed;
                                 break;
                             case 12:
                                 Colour = Color.FromArgb(110, 88, 242);
-                                MC_ = "错字影响值：-" + TotalWidth.ToString("0.00");
+                                MC_ = "错字影响值：-" + showSpeed;
                                 break;
                             case 14:
                                 Colour = Color.FromArgb(164, 193, 65);
-                                MC_ = "回车影响值：-" + TotalWidth.ToString("0.00");
+                                MC_ = "回车影响值：-" + showSpeed;
                                 break;
                             default:
                                 Colour = Color.FromArgb(7, 153, 7);
@@ -175,6 +186,15 @@ namespace WindowsFormsApplication2
             }
         }
 
+        private string ConvertSpeed(string speedStr, bool sym = false)
+        {
+            if (CategoryHandler.IsEn(this.textCate))
+            {
+                double.TryParse(speedStr, out double speed);
+                return (sym && speed > 0 ? "+" : "") + (speed / 5).ToString("0.00");
+            }
+            return speedStr;
+        }
 
         /// <summary>
         /// 生成速度分析文本
@@ -190,18 +210,18 @@ namespace WindowsFormsApplication2
                     StringBuilder sb = new StringBuilder();
                     sb.AppendLine($"     第{nowCout}段跟打分析：");
                     sb.AppendLine("+----------------------------------+");
-                    sb.AppendLine($" 速度码长理论值：{data[2]}");
-                    sb.AppendLine($" 速度完美理论值：{data[0]}({data[1]})");
-                    sb.AppendLine($" 速度跟打实际值：{data[4]}({data[5]})");
+                    sb.AppendLine($" 速度码长理论值：{ConvertSpeed(data[2])}");
+                    sb.AppendLine($" 速度完美理论值：{ConvertSpeed(data[0])}({ConvertSpeed(data[1], true)})");
+                    sb.AppendLine($" 速度跟打实际值：{ConvertSpeed(data[4])}({ConvertSpeed(data[5], true)})");
                     sb.AppendLine("+----------------------------------+");
-                    sb.AppendLine($" 回改影响：-{data[6]} 回改：{data[7]}s");
-                    sb.AppendLine($" 退格影响：-{data[8]} 退格：{data[9]}");
+                    sb.AppendLine($" 回改影响：-{ConvertSpeed(data[6])} 回改：{data[7]}s");
+                    sb.AppendLine($" 退格影响：-{ConvertSpeed(data[8])} 退格：{data[9]}");
                     if (int.Parse(data[3]) == 0)
                     {
-                        sb.AppendLine($" 停留影响：-{data[10]} 停留：{data[11]}s");
+                        sb.AppendLine($" 停留影响：-{ConvertSpeed(data[10])} 停留：{data[11]}s");
                     }
-                    sb.AppendLine($" 错字影响：-{data[12]} 错字：{data[13]}");
-                    sb.AppendLine($" 回车影响：-{data[14]} 回车：{data[15]}");
+                    sb.AppendLine($" 错字影响：-{ConvertSpeed(data[12])} 错字：{data[13]}");
+                    sb.AppendLine($" 回车影响：-{ConvertSpeed(data[14])} 回车：{data[15]}");
                     sb.AppendLine("+----------------------------------+");
                     return sb.ToString();
                 }
@@ -232,8 +252,11 @@ namespace WindowsFormsApplication2
             this.SpeedAnGet.DrawToBitmap(bmp, rect);
             Font F = new Font("宋体", 9f);
             string s = Glob.Form + "(" + verInstration.Trim() + ")";
+            string ca = "文本类别：" + CategoryHandler.GetCategoryText(this.textCate);
             SizeF sF = g.MeasureString(s, F);
+            SizeF caF = g.MeasureString(ca, F);
             g.DrawString(s, F, Brushes.White, this.SpeedAnGet.Width - sF.Width + 2, bmp.Height - 15);
+            g.DrawString(ca, F, Brushes.White, this.SpeedAnGet.Width - caF.Width + 2, 4);
             g.DrawString(this.Text, F, Brushes.White, 3, 4);
             g.DrawString(scoreTime, F, Brushes.LightGray, 2, bmp.Height - 15);
             return bmp;

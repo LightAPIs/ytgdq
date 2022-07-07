@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using WindowsFormsApplication2.Storage;
+using WindowsFormsApplication2.Category;
 
 namespace WindowsFormsApplication2.History
 {
@@ -79,12 +80,27 @@ namespace WindowsFormsApplication2.History
                 string typeCountStr = "";
                 string[] curSpeed = dataRow["speed"].ToString().Split('/');
                 double speedVal = double.Parse(curSpeed[0]);
+                Glob.CategoryValue categoryVal = (Glob.CategoryValue)dataRow["category"];
+                bool isEn = CategoryHandler.IsEn(categoryVal);
+                if (isEn)
+                {
+                    speedVal *= 5;
+                }
+
                 if ((long)dataRow["segment_id"] == lastSegmentId)
                 {
                     //* 为重打数据
                     int rowCount = this.dataGridView1.Rows.Count - 1;
                     string[] oldSpeed = this.dataGridView1.Rows[rowCount].Cells[3].Value.ToString().Split('/');
-                    double speedPlus = speedVal - double.Parse(oldSpeed[0]);
+                    double speedPlus;
+                    if (isEn)
+                    {
+                        speedPlus = speedVal / 5 - double.Parse(oldSpeed[0]);
+                    }
+                    else
+                    {
+                        speedPlus = speedVal - double.Parse(oldSpeed[0]);
+                    }
                     double keystrokePlus = (double)dataRow["keystroke"] - double.Parse(this.dataGridView1.Rows[rowCount].Cells[4].Value.ToString());
                     double codeLenPlus = (double)dataRow["code_len"] - double.Parse(this.dataGridView1.Rows[rowCount].Cells[5].Value.ToString());
                     //! 添加对比行
@@ -106,7 +122,7 @@ namespace WindowsFormsApplication2.History
                     {
                         this.dataGridView1.Rows[rowCount].Cells[5].Style.ForeColor = Color.FromArgb(124, 222, 255);
                     }
-                    for (int i = 0; i < 23; i++)
+                    for (int i = 0; i < 24; i++)
                     {
                         if (i == 3 || i == 4 || i == 5)
                         {
@@ -121,7 +137,8 @@ namespace WindowsFormsApplication2.History
                 }
 
                 double diff = (double)dataRow["difficulty"];
-                this.dataGridView1.Rows.Add(typeCountStr, Convert.ToDateTime(dataRow["score_time"]).ToString("yyyy-MM-dd HH:mm:ss"), dataRow["segment_num"], dataRow["speed"], ((double)dataRow["keystroke"]).ToString("0.00"), ((double)dataRow["code_len"]).ToString("0.00"), ((double)dataRow["calc_len"]).ToString("0.00"), diff.ToString("0.00"), (diff * speedVal).ToString("0.00"), dataRow["back_change"], dataRow["backspace"], dataRow["enter"], dataRow["duplicate"], dataRow["error"], dataRow["back_rate"] + "%", dataRow["accuracy_rate"] + "%", dataRow["effciency"] + "%", dataRow["keys"], dataRow["count"], dataRow["type_words"], dataRow["words_rate"] + "%", dataRow["cost_time"], dataRow["article_title"]);
+                string cateText = CategoryHandler.GetCategoryText(categoryVal);
+                this.dataGridView1.Rows.Add(typeCountStr, Convert.ToDateTime(dataRow["score_time"]).ToString("yyyy-MM-dd HH:mm:ss"), dataRow["segment_num"], dataRow["speed"], ((double)dataRow["keystroke"]).ToString("0.00"), ((double)dataRow["code_len"]).ToString("0.00"), ((double)dataRow["calc_len"]).ToString("0.00"), diff.ToString("0.00"), (diff * speedVal).ToString("0.00"), dataRow["back_change"], dataRow["backspace"], dataRow["enter"], dataRow["duplicate"], dataRow["error"], dataRow["back_rate"] + "%", dataRow["accuracy_rate"] + "%", dataRow["effciency"] + "%", dataRow["keys"], dataRow["count"], dataRow["type_words"], dataRow["words_rate"] + "%", dataRow["cost_time"], cateText, dataRow["article_title"]);
                 this.dataGridView1.Rows[dataGridView1.RowCount - 1].ContextMenuStrip = this.HistoryContextMenuStrip;
                 #region 单元格高亮
                 CellHighlight.Speed(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[3], speedVal, diff);

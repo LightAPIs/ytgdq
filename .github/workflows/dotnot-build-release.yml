@@ -49,11 +49,9 @@ jobs:
       - name: Build Release_x64
         run: msbuild $env:SLN_NAME -p:Configuration=Release -p:Platform=x64
       - name: Package Release_x86
-        run: \"./Tools/7-Zip/7zr.exe\" a -r ./Release/ytgdq_x86_${{ steps.get_version.outputs.VERSION }}.zip ./Release/x86/*
-        shell: cmd
+        run: ./Tools/7-Zip/7zr.exe a -r ./Release/ytgdq_x86_${{ steps.get_version.outputs.VERSION }}.zip ./Release/x86/*
       - name: Package Release_x64
-        run: \"./Tools/7-Zip/7zr.exe\" a -r ./Release/ytgdq_x64_${{ steps.get_version.outputs.VERSION }}.zip ./Release/x64/*
-        shell: cmd
+        run: ./Tools/7-Zip/7zr.exe a -r ./Release/ytgdq_x64_${{ steps.get_version.outputs.VERSION }}.zip ./Release/x64/*
       - name: Upload Release_x86
         id: upload_release_x86
         uses: actions/upload-release-asset@v1

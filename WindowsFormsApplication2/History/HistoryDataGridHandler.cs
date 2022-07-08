@@ -100,7 +100,7 @@ namespace WindowsFormsApplication2.History
                     DataGridViewRow curRow = this.historyDataGridView.Rows[this.mouseLocation.RowIndex];
                     if (curRow != null)
                     {
-                        ClipboardHandler.SetTextToClipboard(curRow.Cells[22].Value.ToString());
+                        ClipboardHandler.SetTextToClipboard(curRow.Cells[curRow.Cells.Count - 1].Value.ToString());
                     }
                 }
             }

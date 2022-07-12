@@ -120,7 +120,6 @@
             this.SentPreButton = new System.Windows.Forms.Button();
             this.SentCountLabel = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.cbx乱序全段不重复 = new System.Windows.Forms.CheckBox();
             this.cbxTickOut = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.rtbShowText = new System.Windows.Forms.RichTextBox();
@@ -167,6 +166,7 @@
             this.cbxSplit = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.cbx乱序全段不重复 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -1405,23 +1405,11 @@
             this.label19.Text = "数量：";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // cbx乱序全段不重复
-            // 
-            this.cbx乱序全段不重复.AutoSize = true;
-            this.cbx乱序全段不重复.Checked = true;
-            this.cbx乱序全段不重复.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbx乱序全段不重复.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbx乱序全段不重复.Location = new System.Drawing.Point(23, 40);
-            this.cbx乱序全段不重复.Margin = new System.Windows.Forms.Padding(10, 0, 3, 0);
-            this.cbx乱序全段不重复.Name = "cbx乱序全段不重复";
-            this.cbx乱序全段不重复.Size = new System.Drawing.Size(129, 16);
-            this.cbx乱序全段不重复.TabIndex = 2;
-            this.cbx乱序全段不重复.Text = "乱序时全文段不重复";
-            this.cbx乱序全段不重复.UseVisualStyleBackColor = true;
-            // 
             // cbxTickOut
             // 
             this.cbxTickOut.AutoSize = true;
+            this.cbxTickOut.Checked = true;
+            this.cbxTickOut.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tableLayoutPanel2.SetColumnSpan(this.cbxTickOut, 2);
             this.cbxTickOut.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbxTickOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1429,7 +1417,7 @@
             this.cbxTickOut.Name = "cbxTickOut";
             this.cbxTickOut.Size = new System.Drawing.Size(189, 19);
             this.cbxTickOut.TabIndex = 1;
-            this.cbxTickOut.Text = "单字和文章自动剔除空格及换行";
+            this.cbxTickOut.Text = "单字/文章自动剔除空格及换行";
             this.cbxTickOut.UseVisualStyleBackColor = true;
             this.cbxTickOut.CheckedChanged += new System.EventHandler(this.cbxTickOut_CheckedChanged);
             // 
@@ -1532,6 +1520,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 97F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
+            this.tableLayoutPanel2.Controls.Add(this.cbx乱序全段不重复, 2, 10);
             this.tableLayoutPanel2.Controls.Add(this.label14, 0, 9);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.lblTitle, 1, 0);
@@ -1956,7 +1945,6 @@
             this.tabPage5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.tabPage5.Controls.Add(this.rbninOrder);
             this.tabPage5.Controls.Add(this.rbnOutOrder);
-            this.tabPage5.Controls.Add(this.cbx乱序全段不重复);
             this.tabPage5.ForeColor = System.Drawing.Color.Black;
             this.tabPage5.Location = new System.Drawing.Point(4, 24);
             this.tabPage5.Name = "tabPage5";
@@ -1968,24 +1956,25 @@
             // rbninOrder
             // 
             this.rbninOrder.AutoSize = true;
-            this.rbninOrder.Location = new System.Drawing.Point(6, 6);
+            this.rbninOrder.Location = new System.Drawing.Point(29, 23);
             this.rbninOrder.Name = "rbninOrder";
             this.rbninOrder.Size = new System.Drawing.Size(47, 16);
             this.rbninOrder.TabIndex = 1;
             this.rbninOrder.Text = "顺序";
+            this.toolTip1.SetToolTip(this.rbninOrder, "按顺序发文");
             this.rbninOrder.UseVisualStyleBackColor = true;
             // 
             // rbnOutOrder
             // 
             this.rbnOutOrder.AutoSize = true;
             this.rbnOutOrder.Checked = true;
-            this.rbnOutOrder.Location = new System.Drawing.Point(119, 6);
+            this.rbnOutOrder.Location = new System.Drawing.Point(127, 23);
             this.rbnOutOrder.Name = "rbnOutOrder";
             this.rbnOutOrder.Size = new System.Drawing.Size(47, 16);
             this.rbnOutOrder.TabIndex = 0;
             this.rbnOutOrder.TabStop = true;
             this.rbnOutOrder.Text = "乱序";
-            this.toolTip1.SetToolTip(this.rbnOutOrder, "默认乱序无限发文\r\n可勾选\"乱序时全文段不重复\"限制字数");
+            this.toolTip1.SetToolTip(this.rbnOutOrder, "默认乱序无限发文\r\n可勾选\"乱序时不重复\"限制字数");
             this.rbnOutOrder.UseVisualStyleBackColor = true;
             // 
             // tabPage6
@@ -2085,6 +2074,21 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "词组分隔符：";
             // 
+            // cbx乱序全段不重复
+            // 
+            this.cbx乱序全段不重复.AutoSize = true;
+            this.cbx乱序全段不重复.Checked = true;
+            this.cbx乱序全段不重复.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbx乱序全段不重复.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbx乱序全段不重复.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbx乱序全段不重复.Location = new System.Drawing.Point(198, 253);
+            this.cbx乱序全段不重复.Name = "cbx乱序全段不重复";
+            this.cbx乱序全段不重复.Size = new System.Drawing.Size(92, 19);
+            this.cbx乱序全段不重复.TabIndex = 26;
+            this.cbx乱序全段不重复.Text = "乱序不重复";
+            this.toolTip1.SetToolTip(this.cbx乱序全段不重复, "单字或词组以乱序发文时全文段不重复");
+            this.cbx乱序全段不重复.UseVisualStyleBackColor = true;
+            // 
             // 新发文
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2180,7 +2184,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnUP;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox cbx乱序全段不重复;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox tbxQisduan;
         private System.Windows.Forms.CheckBox cbxAuto;
@@ -2275,5 +2278,6 @@
         private System.Windows.Forms.ComboBox EncodedComboBox;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button PcButton;
+        private System.Windows.Forms.CheckBox cbx乱序全段不重复;
     }
 }

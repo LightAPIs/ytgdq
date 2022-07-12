@@ -112,5 +112,21 @@ namespace WindowsFormsApplication2
             Stored = 4,
             Sent = 5
         }
+
+        public enum ContentTypeValue
+        {
+            Single = 0,
+            Article= 1,
+            Phrase = 2
+        }
+
+        public enum PhraseSeparatorType
+        {
+            None = -1,
+            Space = 0,
+            NewLine = 1,
+            Tab = 2,
+            Other = 3
+        }
     }
 }

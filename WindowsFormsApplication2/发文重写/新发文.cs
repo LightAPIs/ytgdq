@@ -22,6 +22,8 @@ namespace WindowsFormsApplication2
     {
         private readonly Form1 frm;
 
+        private readonly Ini _t = new Ini("config.ini");
+
         #region 网络文章数据
         /// <summary>
         /// 网络文章主地址
@@ -219,10 +221,8 @@ namespace WindowsFormsApplication2
             ReadAll(Application.StartupPath);
             ReadSavedArticle();
             ReadSavedSent();
-
-            Ini t2 = new Ini("config.ini");
-            this.cbxTickOut.Checked = bool.Parse(t2.IniReadValue("发文面板配置", "自动剔除空格", "True"));
-            this.EncodedComboBox.SelectedIndex = int.Parse(t2.IniReadValue("发文面板配置", "文件编码", "0"));
+            ReadTempConfig();
+            ReadEncoded();
 
             if (!File.Exists(Application.StartupPath + "\\TyDll.dll"))
             {
@@ -303,56 +303,68 @@ namespace WindowsFormsApplication2
             }
         }
 
-        /// <summary>
-        /// 自动处理并判定文段类型
-        /// 预先判定类型，可后续手动更改；
-        /// 只区分"文章"和"单字"；
-        /// </summary>
-        /// <param name="auto">是否自动确认文章类型</param>
-        public void ComText(bool auto = true)
+        private void RtbShowTextHandler(string text)
         {
-            string tickText = GetText;
-            // 注：只是采用去除空格和换行后的文本进行判定，但并没有修改原始的获取文本
-            if (this.cbxTickOut.Checked)
+            if (text.Length > 300)
             {
-                tickText = TickBlock(GetText, "");
+                rtbShowText.Text = text.Substring(0, 300) + "[......未完]";
             }
-
-            if (tickText.Length != 0)
+            else
             {
-                if (tickText.Length > 300)
+                rtbShowText.Text = text + "[已完]";
+            }
+        }
+
+        /// <summary>
+        /// 处理选定的文本内容
+        /// </summary>
+        public void ComText()
+        {
+            
+            if (this.tabControl2.SelectedIndex == (int)NewSendText.ContentTypeValue.Phrase)
+            { //* 词组
+                int getTextLen = GetText.Length;
+                if (getTextLen > 0)
                 {
-                    rtbShowText.Text = tickText.Substring(0, 300) + "[......未完]";
+                    RtbShowTextHandler(GetText);
+                    rtbShowText.ForeColor = Color.Black;
+                    double diff = frm.DiffDict.Calc(GetText);
+                    DiffcultyLabel.Text = frm.DiffDict.DiffText(diff);
+                    btnGoSend.Enabled = true;
+                    FindWords();
                 }
-                else
+            }
+            else
+            {
+                string tickText = GetText;
+                //? 注：只是采用去除空格和换行后的文本进行判定，但并没有修改原始的获取文本
+                if (this.cbxTickOut.Checked)
                 {
-                    rtbShowText.Text = tickText + "[已完]";
+                    tickText = TickBlock(GetText, "");
                 }
 
-                if (tickText.Length > 25)
+                int tickTextLen = tickText.Length;
+                if (tickTextLen > 0)
                 {
-                    this.tbxSendCount.Text = "25";
+                    RtbShowTextHandler(tickText);
+
+                    int.TryParse(this.tbxSendCount.Text, out int sendCount);
+                    if (sendCount > tickTextLen)
+                    {
+                        // 若原先填写的字数超出则调整为发送全文
+                        this.tbxSendCount.Text = tickTextLen.ToString();
+                        this.tbxSendStart.Text = "0";
+                    }
+
+                    double diff = frm.DiffDict.Calc(tickText);
+                    this.DiffcultyLabel.Text = frm.DiffDict.DiffText(diff);
+
+                    lblTextCount.Text = tickTextLen.ToString();
+
+                    tbxSendCount.Select();
+                    tbxSendCount.MaxLength = lblTextCount.Text.Length;
+                    tbxSendStart.MaxLength = lblTextCount.Text.Length;
                 }
-                else
-                {
-                    this.tbxSendCount.Text = tickText.Length.ToString(); // 在 25 字以下时默认发送全文
-                }
-
-                if (auto)
-                { // 确认文章类型
-                    IsWords(tickText);
-                }
-
-                double diff = frm.DiffDict.Calc(tickText);
-                this.DiffcultyLabel.Text = frm.DiffDict.DiffText(diff);
-
-                this.label2.Text = "总字数";
-                this.label4.Text = "字数";
-                lblTextCount.Text = tickText.Length.ToString();
-
-                tbxSendCount.Select();
-                tbxSendCount.MaxLength = lblTextCount.Text.Length;
-                tbxSendStart.MaxLength = lblTextCount.Text.Length;
             }
         }
 
@@ -362,7 +374,7 @@ namespace WindowsFormsApplication2
         private void FindWords()
         {
             string[] getWords;
-            if (cbxSplit.SelectedIndex == 1)
+            if (cbxSplit.SelectedIndex == (int)NewSendText.PhraseSeparatorType.NewLine)
             {
                 getWords = GetText.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             }
@@ -379,7 +391,7 @@ namespace WindowsFormsApplication2
             }
             else
             {
-                ShowFlowText("未找到词组，请确定您所选择的文件");
+                ShowFlowText("未找到词组，请确定您所选择的文件或词组分隔符");
             }
 
             NewSendText.词组 = getWords;
@@ -395,25 +407,6 @@ namespace WindowsFormsApplication2
         }
 
         /// <summary>
-        /// 确定文章类型
-        /// </summary>
-        /// <param name="text"></param>
-        public void IsWords(string text)
-        {
-            Regex regexAll = new Regex(@"，|。|！|…|：|“|”|？");
-            if (regexAll.IsMatch(text))
-            {
-                tabControl2.SelectedIndex = 1;
-                this.lblStyle.Text = "文章";
-            }
-            else
-            {
-                tabControl2.SelectedIndex = 0;
-                this.lblStyle.Text = "单字";
-            }
-        }
-
-        /// <summary>
         /// 分隔的默认定义
         /// </summary>
         private char split = ' ';
@@ -425,26 +418,34 @@ namespace WindowsFormsApplication2
         private void cbxSplit_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = (sender as ComboBox).SelectedIndex;
-            if (index > -1)
+            if (index > -1 && this.tabControl2.SelectedIndex == (int)NewSendText.ContentTypeValue.Phrase)
             {
                 switch (index)
                 {
-                    case 0: split = ' '; break;
-                    case 1: split = '\n'; break;
-                    case 2: split = '\t'; break;
-                    case 3: split = (this.tbxsplit.TextLength > 0) ? this.tbxsplit.Text.ToCharArray()[0] : ' '; break;
+                    case (int)NewSendText.PhraseSeparatorType.Space:
+                        split = ' ';
+                        break;
+                    case (int)NewSendText.PhraseSeparatorType.NewLine:
+                        split = '\n';
+                        break;
+                    case (int)NewSendText.PhraseSeparatorType.Tab:
+                        split = '\t';
+                        break;
+                    case (int)NewSendText.PhraseSeparatorType.Other:
+                        split = (this.tbxsplit.TextLength > 0) ? this.tbxsplit.Text.ToCharArray()[0] : ' ';
+                        break;
                 }
-                FindWords();
+                ComText();
             }
         }
 
         private void tbxsplit_TextChanged(object sender, EventArgs e)
         {
             string text = (sender as TextBox).Text;
-            if (this.cbxSplit.SelectedIndex == 3)
+            if (this.cbxSplit.SelectedIndex == (int)NewSendText.PhraseSeparatorType.Other && this.tabControl2.SelectedIndex == (int)NewSendText.ContentTypeValue.Phrase)
             {
                 split = text.Length > 0 ? text.ToCharArray()[0] : ' ';
-                FindWords();
+                ComText();
             }
         }
 
@@ -456,40 +457,24 @@ namespace WindowsFormsApplication2
         private void tabControl2_Selecting(object sender, TabControlCancelEventArgs e)
         {
             int nowIndex = (sender as TabControl).SelectedIndex;
-            if (nowIndex == 2 && this.lblStyle.Text != "词组")
+            if (nowIndex == (int)NewSendText.ContentTypeValue.Phrase && this.lblStyle.Text != "词组")
             { //* 切换到词组
-                this.cbxSplit.SelectedIndex = -1;
                 this.label2.Text = "总词数";
                 this.label4.Text = "词数";
                 this.tbxSendStart.Text = "0";
 
                 if (NewSendText.SentId < 0)
                 {
-                    //* 恢复显示原文，因为词组是不受自动移除空格换行影响的
-                    if (GetText.Length > 0)
-                    {
-                        if (GetText.Length > 300)
-                        {
-                            this.rtbShowText.Text = GetText.Substring(0, 300) + "[......未完]";
-                        }
-                        else
-                        {
-                            this.rtbShowText.Text = GetText + "[已完]";
-                        }
-                        rtbShowText.ForeColor = Color.Black;
-                        double diff = frm.DiffDict.Calc(GetText);
-                        DiffcultyLabel.Text = frm.DiffDict.DiffText(diff);
-                        btnGoSend.Enabled = true;
-                    }
-
-                    ShowFlowText("请选择词组分隔符来检索词组内容");
+                    ComText();
                 }
             }
-            else if ((nowIndex == 0 || nowIndex == 1) && this.lblStyle.Text == "词组")
+            else if ((nowIndex == (int)NewSendText.ContentTypeValue.Single || nowIndex == (int)NewSendText.ContentTypeValue.Article) && this.lblStyle.Text == "词组")
             {
-                ComText(false);
+                this.label2.Text = "总字数";
+                this.label4.Text = "字数";
+                ComText();
             }
-            this.lblStyle.Text = (sender as TabControl).TabPages[this.tabControl2.SelectedIndex].Text;
+            this.lblStyle.Text = (sender as TabControl).TabPages[nowIndex].Text;
         }
 
         private void lblStyle_TextChanged(object sender, EventArgs e)
@@ -598,7 +583,7 @@ namespace WindowsFormsApplication2
         /// <param name="e"></param>
         private void AutoConditionCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if ((sender as CheckBox).Checked)
+            if ((sender as CheckBox).Checked && this.cbxAuto.Checked)
             {
                 this.AutoKeyComboBox.Enabled = true;
                 this.AutoOperatorComboBox.Enabled = true;
@@ -778,7 +763,7 @@ namespace WindowsFormsApplication2
             { // 获取到文章
                 if (File.Exists(path))
                 {
-                    Encoding encoding = Encoding.Default;
+                    Encoding encoding;
                     switch (this.EncodedComboBox.SelectedIndex)
                     {
                         case 1:
@@ -912,14 +897,13 @@ namespace WindowsFormsApplication2
         #endregion
 
         #region 字数标记处理
-
         /// <summary>
         /// 字数或标记等变动处理
         /// </summary>
         private void textChangeHandler()
         {
             string tickText = GetText;
-            if (this.cbxTickOut.Checked && this.tabControl2.SelectedIndex != 2)
+            if (this.cbxTickOut.Checked && this.tabControl2.SelectedIndex != (int)NewSendText.ContentTypeValue.Phrase)
             {
                 tickText = TickBlock(GetText, "");
             }
@@ -1765,7 +1749,7 @@ namespace WindowsFormsApplication2
                         case 1:
                             NewSendText.类型 = "文章";
                             lblStyle.Text = "文章";
-                            tabControl2.SelectedIndex = 1;
+                            tabControl2.SelectedIndex = (int)NewSendText.ContentTypeValue.Article;
                             lblTextCount.Text = GetText.Length.ToString();
                             this.label2.Text = "总字数";
                             this.label4.Text = "字数";
@@ -1773,7 +1757,7 @@ namespace WindowsFormsApplication2
                         case 2:
                             NewSendText.类型 = "词组";
                             lblStyle.Text = "词组";
-                            tabControl2.SelectedIndex = 2;
+                            tabControl2.SelectedIndex = (int)NewSendText.ContentTypeValue.Phrase;
                             tbxSendSplit.Text = NewSendText.词组发送分隔符;
                             lblTextCount.Text = NewSendText.词组.Length.ToString();
                             this.label2.Text = "总词数";
@@ -1783,7 +1767,7 @@ namespace WindowsFormsApplication2
                         default:
                             NewSendText.类型 = "单字";
                             lblStyle.Text = "单字";
-                            tabControl2.SelectedIndex = 0;
+                            tabControl2.SelectedIndex = (int)NewSendText.ContentTypeValue.Single;
                             lblTextCount.Text = GetText.Length.ToString();
                             this.label2.Text = "总字数";
                             this.label4.Text = "字数";
@@ -1948,22 +1932,16 @@ namespace WindowsFormsApplication2
         #endregion
 
         #region 发文整体配置
+        /// <summary>
+        /// 自动剔除空格变动事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbxTickOut_CheckedChanged(object sender, EventArgs e)
         {
             if (NewSendText.SentId < 0)
             {
-                ComText(false);
-            }
-
-            bool temp = (sender as CheckBox).Checked;
-            Ini t2 = new Ini("config.ini");
-            if (temp)
-            {
-                t2.IniWriteValue("发文面板配置", "自动剔除空格", "True");
-            }
-            else
-            {
-                t2.IniWriteValue("发文面板配置", "自动剔除空格", "False");
+                ComText();
             }
         }
         #endregion
@@ -1990,6 +1968,7 @@ namespace WindowsFormsApplication2
                 if (cEditor.ShowDialog() == DialogResult.OK)
                 {
                     this.rtbClipboard.Text = cEditor.OutValue;
+                    //? 不在这里调用 `ComText` 是因为 `rtbClipboard_TextChanged` 中会处理
                 }
             }
         }
@@ -2124,6 +2103,7 @@ namespace WindowsFormsApplication2
                 frm.SendNextFun();
             }
 
+            WriteTempConfig();
             frm.发文状态ToolStripMenuItem.PerformClick(); // 模拟点击"发文"→"发文状态"菜单项，用于显示发文状态窗口
             this.Close();
         }
@@ -2131,9 +2111,121 @@ namespace WindowsFormsApplication2
 
         private void EncodedComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Ini t2 = new Ini("config.ini");
-            int temp = (sender as ComboBox).SelectedIndex;
-            t2.IniWriteValue("发文面板配置", "文件编码", temp.ToString());
+            WriteEncoded();
         }
+
+        #region 面板中的配置
+        /// <summary>
+        /// 读取文件编码
+        /// </summary>
+        private void ReadEncoded()
+        {
+            this.EncodedComboBox.SelectedIndex = int.Parse(_t.IniReadValue("发文面板配置", "文件编码", "0"));
+        }
+
+        /// <summary>
+        /// 保存文件编码
+        /// </summary>
+        private void WriteEncoded()
+        {
+            int temp = this.EncodedComboBox.SelectedIndex;
+            _t.IniWriteValue("发文面板配置", "文件编码", temp.ToString());
+        }
+
+        /// <summary>
+        /// 读取上次发文时的配置
+        /// </summary>
+        private void ReadTempConfig()
+        {
+            // 自动剔除空格
+            this.cbxTickOut.Checked = bool.Parse(_t.IniReadValue("发文面板配置", "自动剔除空格", "True"));
+            // 乱序不重复
+            this.cbx乱序全段不重复.Checked = bool.Parse(_t.IniReadValue("发文面板配置", "乱序全段不重复", "True"));
+
+            // 起始标记
+            this.tbxSendStart.Text = _t.IniReadValue("发文面板配置", "起始标记", "0");
+            // 字数
+            this.tbxSendCount.Text = _t.IniReadValue("发文面板配置", "字数", "25");
+            // 起始段号
+            this.tbxQisduan.Text = _t.IniReadValue("发文面板配置", "起始段号", "1");
+
+            // 周期发文
+            this.checkBox1.Checked = bool.Parse(_t.IniReadValue("发文面板配置", "周期发文", "False"));
+            // 周期发文时间
+            this.nudSendTimer.Value = int.Parse(_t.IniReadValue("发文面板配置", "周期发文时间", "0"));
+
+            // 自动发文
+            this.cbxAuto.Checked = bool.Parse(_t.IniReadValue("发文面板配置", "自动发文", "False"));
+            // 自动发文条件
+            this.AutoConditionCheckBox.Checked = bool.Parse(_t.IniReadValue("发文面板配置", "自动发文条件", "False"));
+            string readCondition = _t.IniReadValue("发文面板配置", "自动发文条件值", "0,0,0");
+            string[] condition = readCondition.Split(',');
+            if (condition.Length >= 3)
+            {
+                int.TryParse(condition[0], out int keyIndex);
+                this.AutoKeyComboBox.SelectedIndex = keyIndex;
+                int.TryParse(condition[1], out int operatorIndex);
+                this.AutoOperatorComboBox.SelectedIndex = operatorIndex;
+                this.AutoNumberTextBox.Text = condition[2];
+            }
+            this.AutoNoComboBox.SelectedIndex = int.Parse(_t.IniReadValue("发文面板配置", "不满足时指令", "0"));
+
+            // 内容类型
+            this.tabControl2.SelectedIndex = int.Parse(_t.IniReadValue("发文面板配置", "内容类型", "0"));
+            bool sl = bool.Parse(_t.IniReadValue("发文面板配置", "单字乱序", "True"));
+            this.rbnOutOrder.Checked = sl;
+            this.rbninOrder.Checked = !sl;
+            this.cbxSplit.SelectedIndex = int.Parse(_t.IniReadValue("发文面板配置", "词组分隔符", "0"));
+            this.tbxsplit.Text = _t.IniReadValue("发文面板配置", "其他分隔符", "");
+            this.tbxSendSplit.Text = _t.IniReadValue("发文面板配置", "发送分隔符", "，");
+        }
+
+        /// <summary>
+        /// 发文时临时保存此次设置
+        /// </summary>
+        private void WriteTempConfig()
+        {
+            // 自动剔除空格
+            _t.IniWriteValue("发文面板配置", "自动剔除空格", this.cbxTickOut.Checked.ToString());
+            // 乱序不重复
+            _t.IniWriteValue("发文面板配置", "乱序全段不重复", this.cbx乱序全段不重复.Checked.ToString());
+
+            // 起始标记
+            _t.IniWriteValue("发文面板配置", "起始标记", this.tbxSendStart.Text);
+            // 字数
+            _t.IniWriteValue("发文面板配置", "字数", this.tbxSendCount.Text);
+            // 起始段号
+            _t.IniWriteValue("发文面板配置", "起始段号", this.tbxQisduan.Text);
+
+            // 周期发文
+            _t.IniWriteValue("发文面板配置", "周期发文", this.checkBox1.Checked.ToString());
+            if (this.checkBox1.Checked)
+            {
+                // 周期发文时间
+                _t.IniWriteValue("发文面板配置", "周期发文时间", this.nudSendTimer.Value.ToString());
+            }
+
+            // 自动发文
+            _t.IniWriteValue("发文面板配置", "自动发文", this.cbxAuto.Checked.ToString());
+            if (this.cbxAuto.Checked)
+            {
+                // 自动发文条件
+                _t.IniWriteValue("发文面板配置", "自动发文条件", this.AutoConditionCheckBox.Checked.ToString());
+                if (this.AutoConditionCheckBox.Checked)
+                {
+                    string condition = this.AutoKeyComboBox.SelectedIndex.ToString() + "," + this.AutoOperatorComboBox.SelectedIndex.ToString() + "," + this.AutoNumberTextBox.Text;
+                    _t.IniWriteValue("发文面板配置", "自动发文条件值", condition);
+                    _t.IniWriteValue("发文面板配置", "不满足时指令", this.AutoNoComboBox.SelectedIndex.ToString());
+                }
+            }
+
+            // 内容类型
+            _t.IniWriteValue("发文面板配置", "内容类型", this.tabControl2.SelectedIndex.ToString());
+            _t.IniWriteValue("发文面板配置", "单字乱序", this.rbnOutOrder.Checked.ToString());
+            _t.IniWriteValue("发文面板配置", "词组分隔符", this.cbxSplit.SelectedIndex.ToString());
+            _t.IniWriteValue("发文面板配置", "其他分隔符", this.tbxsplit.Text);
+            _t.IniWriteValue("发文面板配置", "发送分隔符", this.tbxSendSplit.Text);
+        }
+        #endregion
     }
 }

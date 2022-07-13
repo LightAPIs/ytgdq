@@ -128,6 +128,7 @@
             this.btnGoSend = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.cbx乱序全段不重复 = new System.Windows.Forms.CheckBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -166,7 +167,6 @@
             this.cbxSplit = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.cbx乱序全段不重复 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -358,10 +358,9 @@
             // 
             // label12
             // 
-            this.label12.BackColor = System.Drawing.Color.DarkGray;
-            this.label12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label12.BackColor = System.Drawing.SystemColors.Control;
             this.label12.Cursor = System.Windows.Forms.Cursors.Default;
-            this.label12.ForeColor = System.Drawing.Color.Linen;
+            this.label12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label12.Location = new System.Drawing.Point(438, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(75, 23);
@@ -674,10 +673,9 @@
             // 
             // label23
             // 
-            this.label23.BackColor = System.Drawing.Color.DarkGray;
-            this.label23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label23.BackColor = System.Drawing.SystemColors.Control;
             this.label23.Cursor = System.Windows.Forms.Cursors.Default;
-            this.label23.ForeColor = System.Drawing.Color.Linen;
+            this.label23.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label23.Location = new System.Drawing.Point(438, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(75, 23);
@@ -1563,6 +1561,21 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(293, 275);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
+            // cbx乱序全段不重复
+            // 
+            this.cbx乱序全段不重复.AutoSize = true;
+            this.cbx乱序全段不重复.Checked = true;
+            this.cbx乱序全段不重复.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbx乱序全段不重复.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbx乱序全段不重复.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbx乱序全段不重复.Location = new System.Drawing.Point(198, 253);
+            this.cbx乱序全段不重复.Name = "cbx乱序全段不重复";
+            this.cbx乱序全段不重复.Size = new System.Drawing.Size(92, 19);
+            this.cbx乱序全段不重复.TabIndex = 26;
+            this.cbx乱序全段不重复.Text = "乱序不重复";
+            this.toolTip1.SetToolTip(this.cbx乱序全段不重复, "单字或词组以乱序发文时全文段不重复");
+            this.cbx乱序全段不重复.UseVisualStyleBackColor = true;
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -2073,21 +2086,6 @@
             this.label9.Size = new System.Drawing.Size(77, 12);
             this.label9.TabIndex = 0;
             this.label9.Text = "词组分隔符：";
-            // 
-            // cbx乱序全段不重复
-            // 
-            this.cbx乱序全段不重复.AutoSize = true;
-            this.cbx乱序全段不重复.Checked = true;
-            this.cbx乱序全段不重复.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbx乱序全段不重复.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbx乱序全段不重复.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbx乱序全段不重复.Location = new System.Drawing.Point(198, 253);
-            this.cbx乱序全段不重复.Name = "cbx乱序全段不重复";
-            this.cbx乱序全段不重复.Size = new System.Drawing.Size(92, 19);
-            this.cbx乱序全段不重复.TabIndex = 26;
-            this.cbx乱序全段不重复.Text = "乱序不重复";
-            this.toolTip1.SetToolTip(this.cbx乱序全段不重复, "单字或词组以乱序发文时全文段不重复");
-            this.cbx乱序全段不重复.UseVisualStyleBackColor = true;
             // 
             // 新发文
             // 

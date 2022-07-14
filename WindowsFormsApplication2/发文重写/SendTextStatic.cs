@@ -59,20 +59,26 @@ namespace WindowsFormsApplication2
             this.btnStop.ForeColor = Theme.GetTranColor(SFC, 50);
         }
 
-        //填充数据
+        /// <summary>
+        /// 填充数据
+        /// </summary>
         private void FillData()
         {
             tbxTitle.Text = NewSendText.标题;
             lblTextSources.Text = 文章来源;
             lblTextStyle.Text = 文章类型;
-            if (文章类型 == "词组")
+            lblTotalCount.Text = NewSendText.文章全文.Length.ToString();
+            if (NewSendText.类型 == "词组")
             {
+                this.label4.Text = "已发词数";
+                this.label6.Text = "总词数";
+                this.label7.Text = "剩余词数";
                 this.label8.Text = "词数|标记";
+                lblTotalCount.Text = NewSendText.词组全文.Count.ToString();
             }
             lblSendCounted.Text = NewSendText.已发字数.ToString();//已发字数
             lblSendPCounted.Text = NewSendText.已发段数.ToString();
             tbxSendC.Text = NewSendText.字数.ToString();
-            lblTotalCount.Text = NewSendText.文章全文.Length.ToString();
             lblMarkCount.Text = NewSendText.标记.ToString();//当前标记
             tbxNowStartCount.Text = Glob.CurSegmentNum.ToString(); // 当前段号
             lblNowIni.Text = NewSendText.SentId > 0 ? NewSendText.SentId.ToString() : "无";
@@ -148,15 +154,34 @@ namespace WindowsFormsApplication2
 
         private string 文章类型 {
             get {
-                string str = "";
+                string str;
                 if (NewSendText.类型 == "单字")
                 {
-                    if (NewSendText.是否乱序) str = "单字/乱序";
-                    else str = "单字/顺序";
+                    if (NewSendText.单字乱序)
+                    {
+                        str = "单字/乱序";
+                    }
+                    else
+                    {
+                        str = "单字/顺序";
+                    }
                 }
-                else {
+                else if (NewSendText.类型 == "词组")
+                {
+                    if (NewSendText.词组乱序)
+                    {
+                        str = "词组/乱序";
+                    }
+                    else
+                    {
+                        str = "词组/顺序";
+                    }
+                }
+                else
+                {
                     str = NewSendText.类型;
                 }
+
                 return str;
             }
         }
@@ -165,14 +190,19 @@ namespace WindowsFormsApplication2
         {
             if (NewSendText.类型 == "单字")
             {
-                if (NewSendText.是否乱序)
+                if (NewSendText.单字乱序)
                 {
                     if (NewSendText.乱序全段不重复)
+                    {
                         lblLeastCount.Text = NewSendText.发文全文.Length.ToString();
+                    }
                     else
+                    {
                         lblLeastCount.Text = "乱序无限";
+                    }
                 }
-                else {
+                else
+                {
                     int total = int.Parse(lblTotalCount.Text);
                     int now = int.Parse(lblMarkCount.Text);
                     lblLeastCount.Text = (total - now).ToString();
@@ -180,7 +210,23 @@ namespace WindowsFormsApplication2
             }
             else if (NewSendText.类型 == "词组")
             {
-                lblLeastCount.Text = "乱序无限";
+                if (NewSendText.词组乱序)
+                {
+                    if (NewSendText.乱序全段不重复)
+                    {
+                        lblLeastCount.Text = NewSendText.词组.Count.ToString();
+                    }
+                    else
+                    {
+                        lblLeastCount.Text = "乱序无限";
+                    }
+                }
+                else
+                {
+                    int total = int.Parse(lblTotalCount.Text);
+                    int now = int.Parse(lblMarkCount.Text);
+                    lblLeastCount.Text = (total - now).ToString();
+                }
             }
             else
             {
@@ -417,14 +463,14 @@ namespace WindowsFormsApplication2
                 this.AutoNumberTextBox.ReadOnly = true;
                 this.AutoNumberTextBox.BackColor = Color.DarkGray;
                 this.comboBox1.Enabled = false;
-                this.comboBox1.Enabled = false;
+                this.comboBox2.Enabled = false;
                 this.comboBox3.Enabled = false;
             }
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            if ((sender as CheckBox).Checked)
+            if ((sender as CheckBox).Checked && this.checkBox1.Checked)
             {
                 NewSendText.AutoCondition = true;
                 this.AutoNumberButton.Enabled = true;

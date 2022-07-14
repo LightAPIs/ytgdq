@@ -536,13 +536,31 @@ namespace WindowsFormsApplication2.Storage
 
         public override void Init()
         {
-            this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS sent(id INTEGER PRIMARY KEY AUTOINCREMENT, create_time DATETIME NOT NULL, article TEXT NOT NULL, full_text TEXT NOT NULL, title TEXT NOT NULL, phrases TEXT, separator TEXT, type INT DEFAULT 0, disorder INT DEFAULT 0, no_repeat INT DEFAULT 0, count INT, mark INT, segment_record TEXT NOT NULL, segment_cursor INT DEFAULT 0, cur_segment_num INT, sent_num INT, sent_count INT, cycle INT DEFAULT 0, cycle_value INT, auto INT DEFAULT 0, auto_condition INT DEFAULT 0, auto_key INT, auto_operator INT, auto_number DOUBLE, auto_no INT DEFAULT 0);";
+            this.cmd.CommandText = "CREATE TABLE IF NOT EXISTS sent(id INTEGER PRIMARY KEY AUTOINCREMENT, create_time DATETIME NOT NULL, article TEXT NOT NULL, full_text TEXT NOT NULL, title TEXT NOT NULL, phrases TEXT, separator TEXT, type INT DEFAULT 0, disorder INT DEFAULT 0, no_repeat INT DEFAULT 0, count INT, mark INT, segment_record TEXT NOT NULL, segment_cursor INT DEFAULT 0, cur_segment_num INT, sent_num INT, sent_count INT, cycle INT DEFAULT 0, cycle_value INT, auto INT DEFAULT 0, auto_condition INT DEFAULT 0, auto_key INT, auto_operator INT, auto_number DOUBLE, auto_no INT DEFAULT 0, trim_val INT DEFAULT 0, ph_order INT DEFAULT 1);";
             this.cmd.ExecuteNonQuery();
+
+            //? add "trim_val" column to old table
+            this.cmd.CommandText = "SELECT * FROM sqlite_master WHERE name='sent' and sql like '%trim_val%'";
+            object readState = this.cmd.ExecuteScalar();
+            if (readState == null)
+            {
+                this.cmd.CommandText = "ALTER TABLE sent ADD COLUMN trim_val INT DEFAULT 0";
+                this.cmd.ExecuteNonQuery();
+            }
+
+            //? add "ph_order" column to old table
+            this.cmd.CommandText = "SELECT * FROM sqlite_master WHERE name='sent' and sql like '%ph_order%'";
+            object readState2 = this.cmd.ExecuteScalar();
+            if (readState2 == null)
+            {
+                this.cmd.CommandText = "ALTER TABLE sent ADD COLUMN ph_order INT DEFAULT 1";
+                this.cmd.ExecuteNonQuery();
+            }
         }
 
-        public long InsertSent(string create_time, string article, string full_text, string title, string phrases, string separator, int type, int disorder, int no_repeat, int count, int mark, string segment_record, int segment_cursor, int cur_segment_num, int sent_num, int sent_count, int cycle, int cycle_value, int auto, int auto_condition, int auto_key, int auto_operator, double auto_number, int auto_no)
+        public long InsertSent(string create_time, string article, string full_text, string title, string phrases, string separator, int type, int disorder, int no_repeat, int count, int mark, string segment_record, int segment_cursor, int cur_segment_num, int sent_num, int sent_count, int cycle, int cycle_value, int auto, int auto_condition, int auto_key, int auto_operator, double auto_number, int auto_no, int trim, int ph_order)
         {
-            this.cmd.CommandText = $"INSERT INTO sent VALUES(NULL,'{create_time}','{ConvertText(article)}','{ConvertText(full_text)}','{ConvertText(title)}','{ConvertText(phrases)}','{ConvertText(separator)}',{type},{disorder},{no_repeat},{count},{mark},'{ConvertText(segment_record)}',{segment_cursor},{cur_segment_num},{sent_num},{sent_count},{cycle},{cycle_value},{auto},{auto_condition},{auto_key},{auto_operator},{auto_number},{auto_no}); SELECT last_insert_rowid();";
+            this.cmd.CommandText = $"INSERT INTO sent VALUES(NULL,'{create_time}','{ConvertText(article)}','{ConvertText(full_text)}','{ConvertText(title)}','{ConvertText(phrases)}','{ConvertText(separator)}',{type},{disorder},{no_repeat},{count},{mark},'{ConvertText(segment_record)}',{segment_cursor},{cur_segment_num},{sent_num},{sent_count},{cycle},{cycle_value},{auto},{auto_condition},{auto_key},{auto_operator},{auto_number},{auto_no},{trim},{ph_order}); SELECT last_insert_rowid();";
             object readId = this.cmd.ExecuteScalar();
             return Convert.ToInt64(readId);
         }

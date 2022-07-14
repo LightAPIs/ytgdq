@@ -12,12 +12,12 @@ namespace WindowsFormsApplication2
         public static string 文章全文 = "";
         public static string 发文全文 = "";
         public static string 类型;
-        public static bool 是否乱序;
+        public static bool 单字乱序;
         //乱序全段不重复
         public static bool 乱序全段不重复 = false;
 
         /// <summary>
-        /// 每段发送的字数
+        /// 每段发送的字数/词数
         /// </summary>
         public static int 字数;
         /// <summary>
@@ -38,7 +38,14 @@ namespace WindowsFormsApplication2
         public static bool 是否自动 = false;
 
         public static string 词组发送分隔符 = "，"; //用于词组的发送分隔，默认的为 逗号 ，此项目暂时不保存
-        public static string[] 词组;
+        public static bool 词组乱序;
+        public static List<string> 词组 = new List<string>();
+        public static List<string> 词组全文 = new List<string>();
+
+        /// <summary>
+        /// 文章自动剔除空格
+        /// </summary>
+        public static bool trim;
 
         /// <summary>
         /// 发文配置保存 id

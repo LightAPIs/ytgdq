@@ -2166,6 +2166,10 @@ namespace WindowsFormsApplication2.Storage {
             
             private global::System.Data.DataColumn columnauto_no;
             
+            private global::System.Data.DataColumn columntrim_val;
+            
+            private global::System.Data.DataColumn columnph_order;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public SentDataTable() {
@@ -2401,6 +2405,22 @@ namespace WindowsFormsApplication2.Storage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn trim_valColumn {
+                get {
+                    return this.columntrim_val;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ph_orderColumn {
+                get {
+                    return this.columnph_order;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2461,7 +2481,9 @@ namespace WindowsFormsApplication2.Storage {
                         int auto_key, 
                         int auto_operator, 
                         double auto_number, 
-                        int auto_no) {
+                        int auto_no, 
+                        int trim_val, 
+                        int ph_order) {
                 SentRow rowSentRow = ((SentRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         id,
@@ -2488,7 +2510,9 @@ namespace WindowsFormsApplication2.Storage {
                         auto_key,
                         auto_operator,
                         auto_number,
-                        auto_no};
+                        auto_no,
+                        trim_val,
+                        ph_order};
                 rowSentRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSentRow);
                 return rowSentRow;
@@ -2543,6 +2567,8 @@ namespace WindowsFormsApplication2.Storage {
                 this.columnauto_operator = base.Columns["auto_operator"];
                 this.columnauto_number = base.Columns["auto_number"];
                 this.columnauto_no = base.Columns["auto_no"];
+                this.columntrim_val = base.Columns["trim_val"];
+                this.columnph_order = base.Columns["ph_order"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2598,6 +2624,10 @@ namespace WindowsFormsApplication2.Storage {
                 base.Columns.Add(this.columnauto_number);
                 this.columnauto_no = new global::System.Data.DataColumn("auto_no", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnauto_no);
+                this.columntrim_val = new global::System.Data.DataColumn("trim_val", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntrim_val);
+                this.columnph_order = new global::System.Data.DataColumn("ph_order", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnph_order);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("SentKey", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AllowDBNull = false;
@@ -2615,6 +2645,8 @@ namespace WindowsFormsApplication2.Storage {
                 this.columnauto.DefaultValue = ((int)(0));
                 this.columnauto_condition.DefaultValue = ((int)(0));
                 this.columnauto_no.DefaultValue = ((int)(0));
+                this.columntrim_val.DefaultValue = ((int)(0));
+                this.columnph_order.DefaultValue = ((int)(1));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5406,6 +5438,38 @@ namespace WindowsFormsApplication2.Storage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int trim_val {
+                get {
+                    try {
+                        return ((int)(this[this.tableSent.trim_valColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Sent”中列“trim_val”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSent.trim_valColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int ph_order {
+                get {
+                    try {
+                        return ((int)(this[this.tableSent.ph_orderColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Sent”中列“ph_order”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSent.ph_orderColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsphrasesNull() {
                 return this.IsNull(this.tableSent.phrasesColumn);
             }
@@ -5630,6 +5694,30 @@ namespace WindowsFormsApplication2.Storage {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void Setauto_noNull() {
                 this[this.tableSent.auto_noColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Istrim_valNull() {
+                return this.IsNull(this.tableSent.trim_valColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Settrim_valNull() {
+                this[this.tableSent.trim_valColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Isph_orderNull() {
+                return this.IsNull(this.tableSent.ph_orderColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setph_orderNull() {
+                this[this.tableSent.ph_orderColumn] = global::System.Convert.DBNull;
             }
         }
         

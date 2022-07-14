@@ -256,7 +256,6 @@ namespace WindowsFormsApplication2
 
             if (getid == 5)
             { // 保存的发文配置，需要锁定一些控件
-                this.cbxTickOut.Enabled = false;
                 this.cbx乱序全段不重复.Enabled = false;
                 this.tabControl2.Enabled = false;
                 this.groupBox1.Enabled = false;
@@ -264,7 +263,6 @@ namespace WindowsFormsApplication2
             else
             {
                 NewSendText.SentId = -1;
-                this.cbxTickOut.Enabled = true;
                 this.cbx乱序全段不重复.Enabled = true;
                 this.tabControl2.Enabled = true;
                 this.groupBox1.Enabled = true;
@@ -332,13 +330,29 @@ namespace WindowsFormsApplication2
                     DiffcultyLabel.Text = frm.DiffDict.DiffText(diff);
                     btnGoSend.Enabled = true;
                     FindWords();
+
+                    if (NewSendText.词组.Count > 1)
+                    {
+                        int phraseCount = NewSendText.词组.Count;
+                        int.TryParse(this.tbxSendCount.Text, out int sendCount);
+                        if (sendCount > phraseCount)
+                        {
+                            // 若原先填写的词数超出则调整为发送全文
+                            this.tbxSendCount.Text = phraseCount.ToString();
+                            this.tbxSendStart.Text = "0";
+                        }
+
+                        lblTextCount.Text = phraseCount.ToString();
+                        tbxSendCount.MaxLength = lblTextCount.Text.Length;
+                        tbxSendStart.MaxLength = lblTextCount.Text.Length;
+                    }
                 }
             }
             else
             {
                 string tickText = GetText;
                 //? 注：只是采用去除空格和换行后的文本进行判定，但并没有修改原始的获取文本
-                if (this.cbxTickOut.Checked)
+                if (this.tabControl2.SelectedIndex == (int)NewSendText.ContentTypeValue.Single || (this.tabControl2.SelectedIndex == (int)NewSendText.ContentTypeValue.Article && this.cbxTickOut.Checked))
                 {
                     tickText = TickBlock(GetText, "");
                 }
@@ -373,6 +387,7 @@ namespace WindowsFormsApplication2
         /// </summary>
         private void FindWords()
         {
+            NewSendText.词组.Clear();
             string[] getWords;
             if (cbxSplit.SelectedIndex == (int)NewSendText.PhraseSeparatorType.NewLine)
             {
@@ -385,7 +400,6 @@ namespace WindowsFormsApplication2
 
             if (getWords.Length > 1)
             {
-                lblTextCount.Text = getWords.Length.ToString();
                 ShowFlowText("找到" + getWords.Length + "个词组");
 
             }
@@ -394,7 +408,7 @@ namespace WindowsFormsApplication2
                 ShowFlowText("未找到词组，请确定您所选择的文件或词组分隔符");
             }
 
-            NewSendText.词组 = getWords;
+            NewSendText.词组 = getWords.ToList();
         }
         /// <summary>
         /// 显示浮动的信息
@@ -903,7 +917,7 @@ namespace WindowsFormsApplication2
         private void textChangeHandler()
         {
             string tickText = GetText;
-            if (this.cbxTickOut.Checked && this.tabControl2.SelectedIndex != (int)NewSendText.ContentTypeValue.Phrase)
+            if (this.tabControl2.SelectedIndex == (int)NewSendText.ContentTypeValue.Single || (this.tabControl2.SelectedIndex == (int)NewSendText.ContentTypeValue.Article && this.cbxTickOut.Checked))
             {
                 tickText = TickBlock(GetText, "");
             }
@@ -1719,20 +1733,22 @@ namespace WindowsFormsApplication2
                     NewSendText.标题 = this.listViewSent.SelectedItems[0].SubItems[1].Text.Trim();
                     lblTitle.Text = NewSendText.标题;
 
-                    NewSendText.词组 = JsonConvert.DeserializeObject<string[]>(sd["phrases"].ToString());
+                    NewSendText.词组全文 = JsonConvert.DeserializeObject<List<string>>(sd["phrases"].ToString());
                     NewSendText.词组发送分隔符 = sd["separator"].ToString();
+
                     if ((int)sd["disorder"] == 0)
                     {
-                        NewSendText.是否乱序 = false;
+                        NewSendText.单字乱序 = false;
                         this.rbninOrder.Checked = true;
                         this.rbnOutOrder.Checked = false;
                     }
                     else
                     {
-                        NewSendText.是否乱序 = true;
+                        NewSendText.单字乱序 = true;
                         this.rbninOrder.Checked = false;
                         this.rbnOutOrder.Checked = true;
                     }
+
                     if ((int)sd["no_repeat"] == 0)
                     {
                         NewSendText.乱序全段不重复 = false;
@@ -1742,6 +1758,30 @@ namespace WindowsFormsApplication2
                     {
                         NewSendText.乱序全段不重复 = true;
                         this.cbx乱序全段不重复.Checked = true;
+                    }
+
+                    if ((int)sd["trim_val"] == 0)
+                    {
+                        NewSendText.trim = false;
+                        this.cbxTickOut.Checked = false;
+                    }
+                    else
+                    {
+                        NewSendText.trim = true;
+                        this.cbxTickOut.Checked = true;
+                    }
+
+                    if ((int)sd["ph_order"] == 0)
+                    {
+                        NewSendText.词组乱序 = false;
+                        this.PhraseRadioButtonOrder.Checked = true;
+                        this.PhraseRadioButtonOutOrder.Checked = false;
+                    }
+                    else
+                    {
+                        NewSendText.词组乱序 = true;
+                        this.PhraseRadioButtonOrder.Checked = false;
+                        this.PhraseRadioButtonOutOrder.Checked = true;
                     }
 
                     switch ((int)sd["type"])
@@ -1759,7 +1799,7 @@ namespace WindowsFormsApplication2
                             lblStyle.Text = "词组";
                             tabControl2.SelectedIndex = (int)NewSendText.ContentTypeValue.Phrase;
                             tbxSendSplit.Text = NewSendText.词组发送分隔符;
-                            lblTextCount.Text = NewSendText.词组.Length.ToString();
+                            lblTextCount.Text = NewSendText.词组全文.Count.ToString();
                             this.label2.Text = "总词数";
                             this.label4.Text = "词数";
                             break;
@@ -1994,8 +2034,8 @@ namespace WindowsFormsApplication2
             {
                 rtbShowText.Text = "处理中...";
                 string sourceText = GetText; // 保留源文章内容
-                if (this.cbxTickOut.Checked)
-                { // 勾选"自动清除空格和换行时"
+                if (this.tabControl2.SelectedIndex == (int)NewSendText.ContentTypeValue.Single || (this.tabControl2.SelectedIndex == (int)NewSendText.ContentTypeValue.Article && this.cbxTickOut.Checked))
+                { // 自动清除空格和换行
                     GetText = TickBlock(GetText, "");
                 }
                 if (GetText.Length == 0)
@@ -2024,7 +2064,7 @@ namespace WindowsFormsApplication2
                 NewSendText.类型 = lblStyle.Text;
                 if (NewSendText.类型 == "词组")
                 {
-                    if (NewSendText.词组.Length <= 1)
+                    if (NewSendText.词组.Count <= 1)
                     {
                         rtbShowText.Text = "未获取到词组！";
                         DiffcultyLabel.Text = "难度";
@@ -2032,15 +2072,18 @@ namespace WindowsFormsApplication2
                         return;
                     }
 
+                    NewSendText.词组全文 = NewSendText.词组;
                     NewSendText.词组发送分隔符 = this.tbxSendSplit.Text;
+                    NewSendText.词组乱序 =this.PhraseRadioButtonOutOrder.Checked;
                 }
                 else
                 { //! 非词组时清空，防止保存发文配置时存储冗余信息
-                    NewSendText.词组 = new string[0];
+                    NewSendText.词组.Clear();
                 }
 
-                NewSendText.是否乱序 = rbnOutOrder.Checked;
+                NewSendText.单字乱序 = rbnOutOrder.Checked;
                 NewSendText.乱序全段不重复 = this.cbx乱序全段不重复.Checked;
+                NewSendText.trim = this.cbxTickOut.Checked;
 
                 try
                 {
@@ -2178,6 +2221,9 @@ namespace WindowsFormsApplication2
             this.cbxSplit.SelectedIndex = int.Parse(_t.IniReadValue("发文面板配置", "词组分隔符", "0"));
             this.tbxsplit.Text = _t.IniReadValue("发文面板配置", "其他分隔符", "");
             this.tbxSendSplit.Text = _t.IniReadValue("发文面板配置", "发送分隔符", "，");
+            bool psl = bool.Parse(_t.IniReadValue("发文面板配置", "词组乱序", "True"));
+            this.PhraseRadioButtonOutOrder.Checked = psl;
+            this.PhraseRadioButtonOrder.Checked = !psl;
         }
 
         /// <summary>
@@ -2225,6 +2271,7 @@ namespace WindowsFormsApplication2
             _t.IniWriteValue("发文面板配置", "词组分隔符", this.cbxSplit.SelectedIndex.ToString());
             _t.IniWriteValue("发文面板配置", "其他分隔符", this.tbxsplit.Text);
             _t.IniWriteValue("发文面板配置", "发送分隔符", this.tbxSendSplit.Text);
+            _t.IniWriteValue("发文面板配置", "词组乱序", this.PhraseRadioButtonOutOrder.Checked.ToString());
         }
         #endregion
     }

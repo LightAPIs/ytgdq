@@ -1148,12 +1148,12 @@ namespace WindowsFormsApplication2
                 this.lblTitle.Text = NewSendText.标题;
                 if (NewSendText.类型 == "单字")
                 {
-                    if (NewSendText.是否乱序)
+                    if (NewSendText.单字乱序)
                     { //* 单字乱序
-                        //? 此时 TextLen 指示剩余字数
                         int[] numlist;
                         if (NewSendText.乱序全段不重复)
                         { //* 全段不重复
+                            //? 此时 TextLen 指示剩余字数
                             if (TextLen > 0)
                             { // 剩余字数大于零时
                                 if (TextLen < NewSendText.字数)
@@ -1171,11 +1171,12 @@ namespace WindowsFormsApplication2
                                 foreach (int item in numlist)
                                 {
                                     TextAll += NewSendText.发文全文[item];
-                                    tempSb.Replace(NewSendText.发文全文[item], ' ', item, 1); // 将已发送的单个文字从全文当中剔除
+                                    tempSb.Replace(NewSendText.发文全文[item], ' ', item, 1); // 将已发送的单个文字置为空格，因为单字发文中不允许有空格
                                 }
 
                                 NewSendText.发文全文 = tempSb.ToString().Replace(" ", "");
                                 NewSendText.标记 += numlist.Length;
+
                                 CleanBeforeSending(TextAll);
                                 //* 缓存文段内容
                                 Glob.TempSegmentRecord.Add(TextAll);
@@ -1189,6 +1190,7 @@ namespace WindowsFormsApplication2
                         }
                         else
                         { //* 乱序无限
+                            //? 此时 TextLen 指示总字数
                             int sendNum = NewSendText.字数 > TextLen ? TextLen : NewSendText.字数;
                             numlist = GetRandomUnrepeatArray(0, TextLen - 1, sendNum);
 
@@ -1196,10 +1198,12 @@ namespace WindowsFormsApplication2
                             {
                                 TextAll += NewSendText.发文全文[item];
                             }
+
                             CleanBeforeSending(TextAll);
                             //* 缓存文段内容
                             Glob.TempSegmentRecord.Add(TextAll);
                         }
+
                     }
                     else
                     { //* 单字顺序
@@ -1228,25 +1232,8 @@ namespace WindowsFormsApplication2
                             NewSendText.标记 = 0;
                         }
                     }
-                }
-                else if (NewSendText.类型 == "词组")
-                {
-                    int sendNum = NewSendText.字数 > NewSendText.词组.Length ? NewSendText.词组.Length : NewSendText.字数;
-                    Random ro = new Random((int)DateTime.Now.Ticks);
-                    for (int i = 0; i < sendNum; i++)
-                    {
-                        TextAll += NewSendText.词组[ro.Next(0, NewSendText.词组.Length - 1)] + NewSendText.词组发送分隔符;
-                    }
 
-                    if (NewSendText.词组发送分隔符.Length > 0)
-                    { // 移除最末尾的一个分隔符
-                        TextAll = TextAll.Remove(TextAll.Length - NewSendText.词组发送分隔符.Length,
-                                      NewSendText.词组发送分隔符.Length);
-                    }
-
-                    CleanBeforeSending(TextAll);
-                    //* 缓存文段内容
-                    Glob.TempSegmentRecord.Add(TextAll);
+                    NewSendText.已发字数 += TextAll.Length;
                 }
                 else if (NewSendText.类型 == "文章")
                 { //? 此时 TextLen 指示总字数
@@ -1303,9 +1290,112 @@ namespace WindowsFormsApplication2
                         ShowFlowText("文章全文已发送完毕，请重新换文！");
                         NewSendText.标记 = 0;
                     }
+
+                    NewSendText.已发字数 += TextAll.Length;
                 }
+                else if (NewSendText.类型 == "词组")
+                {
+                    int PhraseLen = NewSendText.词组.Count;
+                    int addCount = 0;
+                    if (NewSendText.词组乱序)
+                    { //* 词组乱序发文
+                        int[] numlist;
+                        if (NewSendText.乱序全段不重复)
+                        { //* 全段不重复
+                            //? 此时的 PhraseLen 指示剩余词数
+                            if (PhraseLen > 0)
+                            { // 剩余词数大于零时
+                                if (PhraseLen < NewSendText.字数)
+                                { // 剩余词数小于发文词数时
+                                    numlist = GetRandomUnrepeatArray(0, PhraseLen - 1, PhraseLen);
+                                }
+                                else
+                                { // 剩余词数大于发文词数时
+                                    numlist = GetRandomUnrepeatArray(0, PhraseLen - 1, NewSendText.字数);
+                                }
+
+                                foreach (int num in numlist)
+                                {
+                                    TextAll += NewSendText.词组[num] + NewSendText.词组发送分隔符;
+                                    NewSendText.词组[num] = ""; // 将已发送的词组置空
+                                }
+
+                                if (NewSendText.词组发送分隔符.Length > 0)
+                                { // 移除最末尾的一个分隔符
+                                    TextAll = TextAll.Remove(TextAll.Length - NewSendText.词组发送分隔符.Length, NewSendText.词组发送分隔符.Length);
+                                }
+
+                                NewSendText.词组.RemoveAll(str => (str == ""));
+                                NewSendText.标记 += numlist.Length;
+                                addCount = numlist.Length;
+
+                                CleanBeforeSending(TextAll);
+                                //* 缓存文段内容
+                                Glob.TempSegmentRecord.Add(TextAll);
+                            }
+                            else
+                            { // 剩余词数为零时
+                                ShowFlowText("文章全文已发送完毕，请重新换文！");
+                                NewSendText.标记 = 0;
+                                NewSendText.词组 = NewSendText.词组全文;
+                            }
+                        }
+                        else
+                        { //* 乱序无限
+                            //? 此时的 PhraseLen 指示总词数
+                            int sendNum = NewSendText.字数 > PhraseLen ? PhraseLen : NewSendText.字数;
+                            Random ro = new Random((int)DateTime.Now.Ticks);
+                            for (int i = 0; i < sendNum; i++)
+                            {
+                                TextAll += NewSendText.词组[ro.Next(0, PhraseLen - 1)] + NewSendText.词组发送分隔符;
+                            }
+
+                            if (NewSendText.词组发送分隔符.Length > 0)
+                            { // 移除最末尾的一个分隔符
+                                TextAll = TextAll.Remove(TextAll.Length - NewSendText.词组发送分隔符.Length, NewSendText.词组发送分隔符.Length);
+                            }
+
+                            addCount = sendNum;
+
+                            CleanBeforeSending(TextAll);
+                            //* 缓存文段内容
+                            Glob.TempSegmentRecord.Add(TextAll);
+                        }
+                    }
+                    else
+                    { //* 词组顺序发文
+                        //? 此时的 PhraseLen 指示总词数
+                        if (NewSendText.标记 < PhraseLen)
+                        {
+                            int now = NewSendText.标记 + NewSendText.字数;
+                            if (now < PhraseLen)
+                            {
+                                TextAll = string.Join(NewSendText.词组发送分隔符, NewSendText.词组.Skip(NewSendText.标记).Take(NewSendText.字数).ToArray());
+                                NewSendText.标记 += NewSendText.字数;
+                                addCount = NewSendText.字数;
+                            }
+                            else
+                            {
+                                TextAll = string.Join(NewSendText.词组发送分隔符, NewSendText.词组.Skip(NewSendText.标记).ToArray());
+                                addCount = PhraseLen - NewSendText.标记;
+                                NewSendText.标记 = PhraseLen;
+                            }
+
+                            CleanBeforeSending(TextAll);
+                            //* 缓存文段内容
+                            Glob.TempSegmentRecord.Add(TextAll);
+                        }
+                        else
+                        {
+                            ShowFlowText("文章全文已发送完毕，请重新换文！");
+                            NewSendText.标记 = 0;
+                        }
+                    }
+
+                    NewSendText.已发字数 += addCount;
+                }
+
                 this.textBoxEx1.TextChanged += new System.EventHandler(textBoxEx1_TextChanged);
-                NewSendText.已发字数 += TextAll.Length;
                 发文状态后处理();
                 this.Activate();
             }
@@ -1324,12 +1414,14 @@ namespace WindowsFormsApplication2
                 this.cmsDuanList.Items.Clear();
                 //输入法状态
                 Glob.binput = true;
+                this.lblTitle.Text = NewSendText.标题;
+
+                //* 标记处理
                 int textMaxLen = NewSendText.文章全文.Length;
                 int textlength = textAll.Length;
-                this.lblTitle.Text = NewSendText.标题;
                 if (NewSendText.类型 == "单字")
                 {
-                    if (NewSendText.是否乱序)
+                    if (NewSendText.单字乱序)
                     {
                         if (NewSendText.乱序全段不重复)
                         {
@@ -1357,6 +1449,31 @@ namespace WindowsFormsApplication2
                         NewSendText.标记 -= textMaxLen;
                     }
                 }
+                else if (NewSendText.类型 == "词组")
+                {
+                    textMaxLen = NewSendText.词组全文.Count;
+                    string[] words = textAll.Split(new string[] { NewSendText.词组发送分隔符 }, StringSplitOptions.RemoveEmptyEntries);
+                    textlength = words.Length;
+                    if (NewSendText.词组乱序)
+                    {
+                        if (NewSendText.乱序全段不重复)
+                        {
+                            NewSendText.标记 += textlength;
+                            if (NewSendText.标记 > textMaxLen)
+                            {
+                                NewSendText.标记 -= textMaxLen;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        NewSendText.标记 += textlength;
+                        if (NewSendText.标记 > textMaxLen)
+                        {
+                            NewSendText.标记 -= textMaxLen;
+                        }
+                    }
+                }
 
                 CleanBeforeSending(textAll);
                 this.textBoxEx1.TextChanged += new System.EventHandler(textBoxEx1_TextChanged);
@@ -1366,7 +1483,7 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void ReverseSendAPast(string textAll, int curTextLength)
+        private void ReverseSendAPast(string textAll)
         {
             this.textBoxEx1.TextChanged -= new System.EventHandler(textBoxEx1_TextChanged);
             if (NewSendText.发文状态)
@@ -1376,10 +1493,11 @@ namespace WindowsFormsApplication2
                 //输入法状态
                 Glob.binput = true;
                 int textMaxLen = NewSendText.文章全文.Length;
+                int curTextLength = textAll.Length;
                 this.lblTitle.Text = NewSendText.标题;
                 if (NewSendText.类型 == "单字")
                 {
-                    if (NewSendText.是否乱序)
+                    if (NewSendText.单字乱序)
                     {
                         if (NewSendText.乱序全段不重复)
                         {
@@ -1405,6 +1523,31 @@ namespace WindowsFormsApplication2
                     if (NewSendText.标记 <= 0)
                     {
                         NewSendText.标记 += textMaxLen;
+                    }
+                }
+                else if (NewSendText.类型 == "词组")
+                {
+                    textMaxLen = NewSendText.词组全文.Count;
+                    string[] words = textAll.Split(new string[] { NewSendText.词组发送分隔符 }, StringSplitOptions.RemoveEmptyEntries);
+                    curTextLength = words.Length;
+                    if (NewSendText.词组乱序)
+                    {
+                        if (NewSendText.乱序全段不重复)
+                        {
+                            NewSendText.标记 -= curTextLength;
+                            if (NewSendText.标记 <= 0)
+                            {
+                                NewSendText.标记 += textMaxLen;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        NewSendText.标记 -= curTextLength;
+                        if (NewSendText.标记 <= 0)
+                        {
+                            NewSendText.标记 += textMaxLen;
+                        }
                     }
                 }
 
@@ -4821,9 +4964,8 @@ namespace WindowsFormsApplication2
                         NewSendText.周期计数 = NewSendText.周期;
                     }
 
-                    int curTextLength = Glob.TempSegmentRecord[totalCount + Glob.SendCursor - 1].Length; //* 当前文段字数
                     Glob.SendCursor--;
-                    ReverseSendAPast(Glob.TempSegmentRecord[totalCount + Glob.SendCursor - 1], curTextLength);
+                    ReverseSendAPast(Glob.TempSegmentRecord[totalCount + Glob.SendCursor - 1]);
 
                     if (NewSendText.是否周期)
                     {
@@ -4901,13 +5043,13 @@ namespace WindowsFormsApplication2
         {
             if (NewSendText.发文状态)
             {
-                if (NewSendText.标记 >= NewSendText.文章全文.Length)
+                if (NewSendText.标记 >= NewSendText.文章全文.Length || (NewSendText.类型 == "词组" && NewSendText.标记 >= NewSendText.词组全文.Count))
                 {
                     ShowFlowText("无法在当前文章的尽头保存配置哦~");
                     return;
                 }
 
-                string phrases = (NewSendText.词组 != null && NewSendText.词组.Length > 0) ? JsonConvert.SerializeObject(NewSendText.词组) : "[]";
+                string phrases = (NewSendText.词组全文 != null && NewSendText.词组全文.Count > 0) ? JsonConvert.SerializeObject(NewSendText.词组全文) : "[]";
                 int type = 0;
                 switch (NewSendText.类型)
                 {
@@ -4921,12 +5063,14 @@ namespace WindowsFormsApplication2
                         type = 2;
                         break;
                 }
-                int disorder = NewSendText.是否乱序 ? 1 : 0;
+                int disorder = NewSendText.单字乱序 ? 1 : 0;
                 int no_repeat = NewSendText.乱序全段不重复 ? 1 : 0;
                 string segmentRecord = JsonConvert.SerializeObject(Glob.TempSegmentRecord);
                 int cycle = NewSendText.是否周期 ? 1 : 0;
                 int auto = NewSendText.是否自动 ? 1 : 0;
                 int autoCondition = NewSendText.AutoCondition ? 1 : 0;
+                int trim = NewSendText.trim ? 1 : 0;
+                int phOrder = NewSendText.词组乱序 ? 1 : 0;
 
                 if (NewSendText.SentId > 0 && Glob.SentHistory.FindIdInSent(NewSendText.SentId)) // 这里需要加一个判定 id 是否存在，不存在则同样是保存新配置
                 { //* 这是之前保存过的发文配置，更新配置
@@ -4937,7 +5081,7 @@ namespace WindowsFormsApplication2
                 }
                 else
                 { //* 保存新配置
-                    NewSendText.SentId = Glob.SentHistory.InsertSent(DateTime.Now.ToString("s"), NewSendText.文章全文, NewSendText.发文全文, NewSendText.标题, phrases, NewSendText.词组发送分隔符, type, disorder, no_repeat, NewSendText.字数, NewSendText.标记, segmentRecord, Glob.SendCursor, Glob.CurSegmentNum, NewSendText.已发段数, NewSendText.已发字数, cycle, NewSendText.周期, auto, autoCondition, (int)NewSendText.AutoKey, (int)NewSendText.AutoOperator, NewSendText.AutoNumber, (int)NewSendText.AutoNo);
+                    NewSendText.SentId = Glob.SentHistory.InsertSent(DateTime.Now.ToString("s"), NewSendText.文章全文, NewSendText.发文全文, NewSendText.标题, phrases, NewSendText.词组发送分隔符, type, disorder, no_repeat, NewSendText.字数, NewSendText.标记, segmentRecord, Glob.SendCursor, Glob.CurSegmentNum, NewSendText.已发段数, NewSendText.已发字数, cycle, NewSendText.周期, auto, autoCondition, (int)NewSendText.AutoKey, (int)NewSendText.AutoOperator, NewSendText.AutoNumber, (int)NewSendText.AutoNo, trim, phOrder);
 
                     NewSendText.ArticleSource = NewSendText.ArticleSourceValue.Sent;
                     //* 提示保存

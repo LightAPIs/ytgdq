@@ -31,6 +31,14 @@
 - [taliove/tygdq](https://github.com/taliove/tygdq) ([Apache-2.0 License](https://github.com/taliove/tygdq/blob/master/LICENSE))
 - [LightAPIs/article-storage](https://github.com/LightAPIs/article-storage)
 
+## 支持本项目
+
+如果你喜欢本项目，可以通过以下方式请我喝杯咖啡哦：
+
+| 支付宝 | 微信 |
+| -- | -- |
+| ![支付宝](https://gcore.jsdelivr.net/gh/LightAPIs/PicGoImg@master/img/202207162253141.png) | ![微信](https://gcore.jsdelivr.net/gh/LightAPIs/PicGoImg@master/img/202207162253010.png) |
+
 ## 许可证
 
 [MIT](/LICENSE) License

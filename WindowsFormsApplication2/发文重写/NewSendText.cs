@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WindowsFormsApplication2.Condition;
 
 namespace WindowsFormsApplication2
 {
@@ -57,17 +58,9 @@ namespace WindowsFormsApplication2
         /// </summary>
         public static bool AutoCondition = false;
         /// <summary>
-        /// 条件基准
+        /// 条件值
         /// </summary>
-        public static AutoKeyValue AutoKey = AutoKeyValue.Speed;
-        /// <summary>
-        /// 条件关系运算符
-        /// </summary>
-        public static AutoOperatorValue AutoOperator = AutoOperatorValue.DY;
-        /// <summary>
-        /// 条件数值
-        /// </summary>
-        public static double AutoNumber = 0;
+        public static ConditionItems ConditionValue = new ConditionItems();
         /// <summary>
         /// 条件否操作
         /// </summary>

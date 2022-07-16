@@ -128,6 +128,14 @@
     <Compile Include="CodeTable\CodeTableBox.Designer.cs">
       <DependentUpon>CodeTableBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Condition\ConditionBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Condition\ConditionBox.Designer.cs">
+      <DependentUpon>ConditionBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Condition\ConditionItem.cs" />
+    <Compile Include="Condition\ConditionItems.cs" />
     <Compile Include="ControlExtensions.cs" />
     <Compile Include="DelayAction\DelayActionModel.cs" />
     <Compile Include="Difficulty\DifficultyDict.cs" />
@@ -303,6 +311,9 @@
     <Compile Include="PicGoal_Class.cs" />
     <EmbeddedResource Include="CodeTable\CodeTableBox.resx">
       <DependentUpon>CodeTableBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Condition\ConditionBox.resx">
+      <DependentUpon>ConditionBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DrawLine\RichEditBoxLineRender.resx">
       <DependentUpon>RichEditBoxLineRender.cs</DependentUpon>

@@ -8,12 +8,14 @@ using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Collections;
+using WindowsFormsApplication2.Condition;
+
 namespace WindowsFormsApplication2
 {
     public partial class SendTextStatic : Form
     {
         private Point MainPos;
-        private Form1 frm;
+        private readonly Form1 frm;
         public SendTextStatic(Point pos, Form1 frm1)
         {
             MainPos = pos;
@@ -49,8 +51,8 @@ namespace WindowsFormsApplication2
             this.btnFixNowTitle.ForeColor = SFC;
             this.btnSendTime.BackColor = SBG;
             this.btnSendTime.ForeColor = SFC;
-            this.AutoNumberButton.BackColor = SBG;
-            this.AutoNumberButton.ForeColor = SFC;
+            this.AutoConditionButton.BackColor = SBG;
+            this.AutoConditionButton.ForeColor = SFC;
             this.btnChangePreCout.BackColor = SBG;
             this.btnChangePreCout.ForeColor = SFC;
             this.btnSave.BackColor = SBG;
@@ -118,10 +120,8 @@ namespace WindowsFormsApplication2
                 this.checkBox2.Checked = true;
                 if (NewSendText.是否自动)
                 {
-                    this.comboBox1.Enabled = true;
-                    this.comboBox2.Enabled = true;
                     this.comboBox3.Enabled = true;
-                    this.AutoNumberButton.Enabled = true;
+                    this.AutoConditionButton.Enabled = true;
                 }
             }
             else
@@ -310,34 +310,6 @@ namespace WindowsFormsApplication2
         }
 
         /// <summary>
-        /// 修改自动条件值
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AutoNumberButton_Click(object sender, EventArgs e)
-        {
-            if ((sender as Button).Text == "修")
-            {
-                this.AutoNumberTextBox.ReadOnly = false;
-                this.AutoNumberTextBox.BackColor = Color.White;
-                this.AutoNumberTextBox.Focus();
-                (sender as Button).Text = "定";
-            }
-            else
-            {
-                try
-                {
-                    double.TryParse(this.AutoNumberTextBox.Text, out double value);
-                    this.AutoNumberTextBox.ReadOnly = true;
-                    this.AutoNumberTextBox.BackColor = Color.DarkGray;
-                    (sender as Button).Text = "修";
-                    NewSendText.AutoNumber = value;
-                }
-                catch { }
-            }
-        }
-
-        /// <summary>
         /// 修改当前段号
         /// </summary>
         /// <param name="sender"></param>
@@ -402,12 +374,7 @@ namespace WindowsFormsApplication2
                     NewSendText.是否自动 = false;
                     this.checkBox1.Enabled = false;
                     this.checkBox2.Enabled = false;
-                    this.AutoNumberButton.Enabled = false;
-                    this.AutoNumberButton.Text = "修";
-                    this.AutoNumberTextBox.ReadOnly = true;
-                    this.AutoNumberTextBox.BackColor = Color.DarkGray;
-                    this.comboBox1.Enabled = false;
-                    this.comboBox2.Enabled = false;
+                    this.AutoConditionButton.Enabled = false;
                     this.comboBox3.Enabled = false;
                     frm.SendNextFun();
                 }
@@ -442,13 +409,8 @@ namespace WindowsFormsApplication2
                     this.checkBox2.Enabled = true;
                     if (this.checkBox2.Checked)
                     {
-                        this.AutoNumberButton.Enabled = true;
-                        this.comboBox1.Enabled = true;
-                        this.comboBox2.Enabled = true;
+                        this.AutoConditionButton.Enabled = true;
                         this.comboBox3.Enabled = true;
-                        this.AutoNumberTextBox.Text = NewSendText.AutoNumber.ToString();
-                        this.comboBox1.SelectedIndex = (int)NewSendText.AutoKey;
-                        this.comboBox2.SelectedIndex = (int)NewSendText.AutoOperator;
                         this.comboBox3.SelectedIndex = (int)NewSendText.AutoNo;
                     }
                 }
@@ -458,12 +420,7 @@ namespace WindowsFormsApplication2
                 NewSendText.是否自动 = false;
                 this.CycleCheckBox.Enabled = true;
                 this.checkBox2.Enabled = false;
-                this.AutoNumberButton.Enabled = false;
-                this.AutoNumberButton.Text = "修";
-                this.AutoNumberTextBox.ReadOnly = true;
-                this.AutoNumberTextBox.BackColor = Color.DarkGray;
-                this.comboBox1.Enabled = false;
-                this.comboBox2.Enabled = false;
+                this.AutoConditionButton.Enabled = false;
                 this.comboBox3.Enabled = false;
             }
         }
@@ -473,24 +430,14 @@ namespace WindowsFormsApplication2
             if ((sender as CheckBox).Checked && this.checkBox1.Checked)
             {
                 NewSendText.AutoCondition = true;
-                this.AutoNumberButton.Enabled = true;
-                this.comboBox1.Enabled = true;
-                this.comboBox2.Enabled = true;
+                this.AutoConditionButton.Enabled = true;
                 this.comboBox3.Enabled = true;
-                this.AutoNumberTextBox.Text = NewSendText.AutoNumber.ToString();
-                this.comboBox1.SelectedIndex = (int)NewSendText.AutoKey;
-                this.comboBox2.SelectedIndex = (int)NewSendText.AutoOperator;
                 this.comboBox3.SelectedIndex = (int)NewSendText.AutoNo;
             }
             else
             {
                 NewSendText.AutoCondition = false;
-                this.AutoNumberButton.Enabled = false;
-                this.AutoNumberButton.Text = "修";
-                this.AutoNumberTextBox.ReadOnly = true;
-                this.AutoNumberTextBox.BackColor = Color.DarkGray;
-                this.comboBox1.Enabled = false;
-                this.comboBox2.Enabled = false;
+                this.AutoConditionButton.Enabled = false;
                 this.comboBox3.Enabled = false;
             }
         }
@@ -522,17 +469,7 @@ namespace WindowsFormsApplication2
         }
         #endregion
 
-        #region 选择功能
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            NewSendText.AutoKey = (NewSendText.AutoKeyValue)(sender as ComboBox).SelectedIndex;
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            NewSendText.AutoOperator = (NewSendText.AutoOperatorValue)(sender as ComboBox).SelectedIndex;
-        }
-
+        #region 选择指令
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
             NewSendText.AutoNo = (NewSendText.AutoNoValue)(sender as ComboBox).SelectedIndex;
@@ -542,6 +479,17 @@ namespace WindowsFormsApplication2
         private void newButton1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        /// <summary>
+        /// 设置自动条件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AutoConditionButton_Click(object sender, EventArgs e)
+        {
+            ConditionBox cb = new ConditionBox();
+            cb.ShowDialog(frm);
         }
     }
 }

@@ -122,14 +122,11 @@
             this.label19 = new System.Windows.Forms.Label();
             this.cbxTickOut = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.rtbShowText = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnGoSend = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.cbx乱序全段不重复 = new System.Windows.Forms.CheckBox();
-            this.label14 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -148,28 +145,29 @@
             this.tbxQisduan = new System.Windows.Forms.TextBox();
             this.cbxAuto = new System.Windows.Forms.CheckBox();
             this.AutoConditionCheckBox = new System.Windows.Forms.CheckBox();
-            this.AutoKeyComboBox = new System.Windows.Forms.ComboBox();
-            this.AutoOperatorComboBox = new System.Windows.Forms.ComboBox();
-            this.AutoNumberTextBox = new System.Windows.Forms.TextBox();
-            this.AutoNoComboBox = new System.Windows.Forms.ComboBox();
             this.DiffcultyLabel = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.AutoNoComboBox = new System.Windows.Forms.ComboBox();
+            this.cbx乱序全段不重复 = new System.Windows.Forms.CheckBox();
+            this.ConditionSettingsButton = new System.Windows.Forms.Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label21 = new System.Windows.Forms.Label();
             this.rbninOrder = new System.Windows.Forms.RadioButton();
             this.rbnOutOrder = new System.Windows.Forms.RadioButton();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.label13 = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.PhraseRadioButtonOutOrder = new System.Windows.Forms.RadioButton();
+            this.PhraseRadioButtonOrder = new System.Windows.Forms.RadioButton();
             this.tbxSendSplit = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.tbxsplit = new System.Windows.Forms.TextBox();
             this.cbxSplit = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.rtbShowText = new System.Windows.Forms.RichTextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.PhraseRadioButtonOrder = new System.Windows.Forms.RadioButton();
-            this.PhraseRadioButtonOutOrder = new System.Windows.Forms.RadioButton();
-            this.label21 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -1437,21 +1435,8 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(534, 540);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(534, 510);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // rtbShowText
-            // 
-            this.rtbShowText.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.rtbShowText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtbShowText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbShowText.Location = new System.Drawing.Point(3, 324);
-            this.rtbShowText.Name = "rtbShowText";
-            this.tableLayoutPanel1.SetRowSpan(this.rtbShowText, 2);
-            this.rtbShowText.Size = new System.Drawing.Size(217, 213);
-            this.rtbShowText.TabIndex = 1;
-            this.rtbShowText.Text = "";
-            this.toolTip1.SetToolTip(this.rtbShowText, "显示文段摘要预览(非实际)");
             // 
             // tableLayoutPanel3
             // 
@@ -1462,7 +1447,7 @@
             this.tableLayoutPanel3.Controls.Add(this.btnExit, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnGoSend, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(226, 506);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(226, 477);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -1508,7 +1493,7 @@
             this.groupBox1.Location = new System.Drawing.Point(226, 203);
             this.groupBox1.Name = "groupBox1";
             this.tableLayoutPanel1.SetRowSpan(this.groupBox1, 2);
-            this.groupBox1.Size = new System.Drawing.Size(305, 297);
+            this.groupBox1.Size = new System.Drawing.Size(305, 268);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "文章信息";
@@ -1519,8 +1504,6 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 97F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
-            this.tableLayoutPanel2.Controls.Add(this.cbx乱序全段不重复, 0, 10);
-            this.tableLayoutPanel2.Controls.Add(this.label14, 0, 9);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.lblTitle, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.label2, 0, 2);
@@ -1539,14 +1522,14 @@
             this.tableLayoutPanel2.Controls.Add(this.tbxQisduan, 1, 5);
             this.tableLayoutPanel2.Controls.Add(this.cbxAuto, 0, 7);
             this.tableLayoutPanel2.Controls.Add(this.AutoConditionCheckBox, 1, 7);
-            this.tableLayoutPanel2.Controls.Add(this.AutoKeyComboBox, 0, 8);
-            this.tableLayoutPanel2.Controls.Add(this.AutoOperatorComboBox, 1, 8);
-            this.tableLayoutPanel2.Controls.Add(this.AutoNumberTextBox, 2, 8);
-            this.tableLayoutPanel2.Controls.Add(this.AutoNoComboBox, 2, 9);
             this.tableLayoutPanel2.Controls.Add(this.DiffcultyLabel, 2, 3);
+            this.tableLayoutPanel2.Controls.Add(this.label14, 0, 8);
+            this.tableLayoutPanel2.Controls.Add(this.AutoNoComboBox, 2, 8);
+            this.tableLayoutPanel2.Controls.Add(this.cbx乱序全段不重复, 0, 9);
+            this.tableLayoutPanel2.Controls.Add(this.ConditionSettingsButton, 2, 7);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 15);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 11;
+            this.tableLayoutPanel2.RowCount = 10;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -1557,38 +1540,8 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(293, 275);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(293, 249);
             this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // cbx乱序全段不重复
-            // 
-            this.cbx乱序全段不重复.AutoSize = true;
-            this.cbx乱序全段不重复.Checked = true;
-            this.cbx乱序全段不重复.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.tableLayoutPanel2.SetColumnSpan(this.cbx乱序全段不重复, 2);
-            this.cbx乱序全段不重复.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbx乱序全段不重复.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbx乱序全段不重复.Location = new System.Drawing.Point(3, 253);
-            this.cbx乱序全段不重复.Name = "cbx乱序全段不重复";
-            this.cbx乱序全段不重复.Size = new System.Drawing.Size(189, 19);
-            this.cbx乱序全段不重复.TabIndex = 26;
-            this.cbx乱序全段不重复.Text = "乱序全文段不重复";
-            this.toolTip1.SetToolTip(this.cbx乱序全段不重复, "单字或词组以乱序发文时全文段不重复");
-            this.cbx乱序全段不重复.UseVisualStyleBackColor = true;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.tableLayoutPanel2.SetColumnSpan(this.label14, 2);
-            this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label14.Location = new System.Drawing.Point(3, 227);
-            this.label14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(189, 23);
-            this.label14.TabIndex = 23;
-            this.label14.Text = "不满足自动条件时执行的指令：";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
@@ -1682,7 +1635,7 @@
             this.tbxSendStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.toolTip1.SetToolTip(this.tbxSendStart, "发文起点");
             this.tbxSendStart.TextChanged += new System.EventHandler(this.tbxSendStart_TextChanged);
-            this.tbxSendStart.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxSendStart_KeyPress);
+            this.tbxSendStart.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DigitTextBox_KeyPress);
             // 
             // tbxSendCount
             // 
@@ -1697,7 +1650,7 @@
             this.tbxSendCount.Text = "25";
             this.tbxSendCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbxSendCount.TextChanged += new System.EventHandler(this.tbxSendCount_TextChanged);
-            this.tbxSendCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxSendCount_KeyPress);
+            this.tbxSendCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DigitTextBox_KeyPress);
             // 
             // label5
             // 
@@ -1822,7 +1775,7 @@
             this.tbxQisduan.Text = "1";
             this.tbxQisduan.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.toolTip1.SetToolTip(this.tbxQisduan, "起始段号");
-            this.tbxQisduan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxQisduan_KeyPress);
+            this.tbxQisduan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DigitTextBox_KeyPress);
             // 
             // cbxAuto
             // 
@@ -1842,84 +1795,16 @@
             // AutoConditionCheckBox
             // 
             this.AutoConditionCheckBox.AutoSize = true;
-            this.tableLayoutPanel2.SetColumnSpan(this.AutoConditionCheckBox, 2);
             this.AutoConditionCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AutoConditionCheckBox.Enabled = false;
             this.AutoConditionCheckBox.Location = new System.Drawing.Point(100, 178);
             this.AutoConditionCheckBox.Name = "AutoConditionCheckBox";
-            this.AutoConditionCheckBox.Size = new System.Drawing.Size(190, 19);
+            this.AutoConditionCheckBox.Size = new System.Drawing.Size(92, 19);
             this.AutoConditionCheckBox.TabIndex = 19;
-            this.AutoConditionCheckBox.Text = "设定自动发文的条件";
+            this.AutoConditionCheckBox.Text = "设定条件";
             this.toolTip1.SetToolTip(this.AutoConditionCheckBox, "为\"自动发文\"设定一种条件\r\n满足条件则自动发下一段\r\n不满足条件时执行指定命令");
             this.AutoConditionCheckBox.UseVisualStyleBackColor = true;
             this.AutoConditionCheckBox.CheckedChanged += new System.EventHandler(this.AutoConditionCheckBox_CheckedChanged);
-            // 
-            // AutoKeyComboBox
-            // 
-            this.AutoKeyComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AutoKeyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.AutoKeyComboBox.Enabled = false;
-            this.AutoKeyComboBox.FormattingEnabled = true;
-            this.AutoKeyComboBox.Items.AddRange(new object[] {
-            "速度",
-            "击键",
-            "码长",
-            "键准",
-            "回改",
-            "错字",
-            "回改率",
-            "打词",
-            "打词率",
-            "效率",
-            "速度评级"});
-            this.AutoKeyComboBox.Location = new System.Drawing.Point(3, 203);
-            this.AutoKeyComboBox.Name = "AutoKeyComboBox";
-            this.AutoKeyComboBox.Size = new System.Drawing.Size(91, 20);
-            this.AutoKeyComboBox.TabIndex = 20;
-            // 
-            // AutoOperatorComboBox
-            // 
-            this.AutoOperatorComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AutoOperatorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.AutoOperatorComboBox.Enabled = false;
-            this.AutoOperatorComboBox.FormattingEnabled = true;
-            this.AutoOperatorComboBox.Items.AddRange(new object[] {
-            "大于",
-            "大于等于",
-            "小于",
-            "小于等于"});
-            this.AutoOperatorComboBox.Location = new System.Drawing.Point(100, 203);
-            this.AutoOperatorComboBox.Name = "AutoOperatorComboBox";
-            this.AutoOperatorComboBox.Size = new System.Drawing.Size(92, 20);
-            this.AutoOperatorComboBox.TabIndex = 21;
-            // 
-            // AutoNumberTextBox
-            // 
-            this.AutoNumberTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AutoNumberTextBox.Enabled = false;
-            this.AutoNumberTextBox.Location = new System.Drawing.Point(198, 203);
-            this.AutoNumberTextBox.Name = "AutoNumberTextBox";
-            this.AutoNumberTextBox.Size = new System.Drawing.Size(92, 21);
-            this.AutoNumberTextBox.TabIndex = 22;
-            this.AutoNumberTextBox.Text = "0";
-            this.AutoNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.AutoNumberTextBox, "数值或百分比");
-            this.AutoNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AutoNumberTextBox_KeyPress);
-            // 
-            // AutoNoComboBox
-            // 
-            this.AutoNoComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AutoNoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.AutoNoComboBox.Enabled = false;
-            this.AutoNoComboBox.FormattingEnabled = true;
-            this.AutoNoComboBox.Items.AddRange(new object[] {
-            "什么都不做",
-            "重打",
-            "乱序重打"});
-            this.AutoNoComboBox.Location = new System.Drawing.Point(198, 228);
-            this.AutoNoComboBox.Name = "AutoNoComboBox";
-            this.AutoNoComboBox.Size = new System.Drawing.Size(92, 20);
-            this.AutoNoComboBox.TabIndex = 24;
             // 
             // DiffcultyLabel
             // 
@@ -1936,6 +1821,63 @@
             this.DiffcultyLabel.Text = "难度";
             this.DiffcultyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.DiffcultyLabel, "当前所选文章难度");
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.tableLayoutPanel2.SetColumnSpan(this.label14, 2);
+            this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label14.Location = new System.Drawing.Point(3, 202);
+            this.label14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(189, 23);
+            this.label14.TabIndex = 23;
+            this.label14.Text = "不满足自动条件时执行的指令：";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // AutoNoComboBox
+            // 
+            this.AutoNoComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AutoNoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.AutoNoComboBox.Enabled = false;
+            this.AutoNoComboBox.FormattingEnabled = true;
+            this.AutoNoComboBox.Items.AddRange(new object[] {
+            "什么都不做",
+            "重打",
+            "乱序重打"});
+            this.AutoNoComboBox.Location = new System.Drawing.Point(198, 203);
+            this.AutoNoComboBox.Name = "AutoNoComboBox";
+            this.AutoNoComboBox.Size = new System.Drawing.Size(92, 20);
+            this.AutoNoComboBox.TabIndex = 24;
+            // 
+            // cbx乱序全段不重复
+            // 
+            this.cbx乱序全段不重复.AutoSize = true;
+            this.cbx乱序全段不重复.Checked = true;
+            this.cbx乱序全段不重复.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tableLayoutPanel2.SetColumnSpan(this.cbx乱序全段不重复, 2);
+            this.cbx乱序全段不重复.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbx乱序全段不重复.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbx乱序全段不重复.Location = new System.Drawing.Point(3, 228);
+            this.cbx乱序全段不重复.Name = "cbx乱序全段不重复";
+            this.cbx乱序全段不重复.Size = new System.Drawing.Size(189, 19);
+            this.cbx乱序全段不重复.TabIndex = 26;
+            this.cbx乱序全段不重复.Text = "乱序全文段不重复";
+            this.toolTip1.SetToolTip(this.cbx乱序全段不重复, "单字或词组以乱序发文时全文段不重复");
+            this.cbx乱序全段不重复.UseVisualStyleBackColor = true;
+            // 
+            // ConditionSettingsButton
+            // 
+            this.ConditionSettingsButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ConditionSettingsButton.Enabled = false;
+            this.ConditionSettingsButton.Location = new System.Drawing.Point(195, 176);
+            this.ConditionSettingsButton.Margin = new System.Windows.Forms.Padding(0, 1, 0, 0);
+            this.ConditionSettingsButton.Name = "ConditionSettingsButton";
+            this.ConditionSettingsButton.Size = new System.Drawing.Size(98, 24);
+            this.ConditionSettingsButton.TabIndex = 27;
+            this.ConditionSettingsButton.Text = "条件设置";
+            this.ConditionSettingsButton.UseVisualStyleBackColor = true;
+            this.ConditionSettingsButton.Click += new System.EventHandler(this.ConditionSettingsButton_Click);
             // 
             // tabControl2
             // 
@@ -1967,6 +1909,16 @@
             this.tabPage5.Size = new System.Drawing.Size(209, 87);
             this.tabPage5.TabIndex = 0;
             this.tabPage5.Text = "单字";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label21.Location = new System.Drawing.Point(14, 16);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(185, 12);
+            this.label21.TabIndex = 2;
+            this.label21.Text = "单字发文始终自动剔除空格及换行";
             // 
             // rbninOrder
             // 
@@ -2033,6 +1985,31 @@
             this.tabPage7.Text = "词组";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
+            // PhraseRadioButtonOutOrder
+            // 
+            this.PhraseRadioButtonOutOrder.AutoSize = true;
+            this.PhraseRadioButtonOutOrder.Checked = true;
+            this.PhraseRadioButtonOutOrder.Location = new System.Drawing.Point(127, 69);
+            this.PhraseRadioButtonOutOrder.Name = "PhraseRadioButtonOutOrder";
+            this.PhraseRadioButtonOutOrder.Size = new System.Drawing.Size(47, 16);
+            this.PhraseRadioButtonOutOrder.TabIndex = 7;
+            this.PhraseRadioButtonOutOrder.TabStop = true;
+            this.PhraseRadioButtonOutOrder.Text = "乱序";
+            this.toolTip1.SetToolTip(this.PhraseRadioButtonOutOrder, "默认乱序无限发文\r\n可勾选\"乱序时不重复\"限制字数");
+            this.PhraseRadioButtonOutOrder.UseVisualStyleBackColor = true;
+            // 
+            // PhraseRadioButtonOrder
+            // 
+            this.PhraseRadioButtonOrder.AutoSize = true;
+            this.PhraseRadioButtonOrder.Location = new System.Drawing.Point(16, 69);
+            this.PhraseRadioButtonOrder.Name = "PhraseRadioButtonOrder";
+            this.PhraseRadioButtonOrder.Size = new System.Drawing.Size(47, 16);
+            this.PhraseRadioButtonOrder.TabIndex = 6;
+            this.PhraseRadioButtonOrder.TabStop = true;
+            this.PhraseRadioButtonOrder.Text = "顺序";
+            this.toolTip1.SetToolTip(this.PhraseRadioButtonOrder, "按顺序发文");
+            this.PhraseRadioButtonOrder.UseVisualStyleBackColor = true;
+            // 
             // tbxSendSplit
             // 
             this.tbxSendSplit.Location = new System.Drawing.Point(80, 45);
@@ -2092,40 +2069,18 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "词组分隔符：";
             // 
-            // PhraseRadioButtonOrder
+            // rtbShowText
             // 
-            this.PhraseRadioButtonOrder.AutoSize = true;
-            this.PhraseRadioButtonOrder.Location = new System.Drawing.Point(16, 69);
-            this.PhraseRadioButtonOrder.Name = "PhraseRadioButtonOrder";
-            this.PhraseRadioButtonOrder.Size = new System.Drawing.Size(47, 16);
-            this.PhraseRadioButtonOrder.TabIndex = 6;
-            this.PhraseRadioButtonOrder.TabStop = true;
-            this.PhraseRadioButtonOrder.Text = "顺序";
-            this.toolTip1.SetToolTip(this.PhraseRadioButtonOrder, "按顺序发文");
-            this.PhraseRadioButtonOrder.UseVisualStyleBackColor = true;
-            // 
-            // PhraseRadioButtonOutOrder
-            // 
-            this.PhraseRadioButtonOutOrder.AutoSize = true;
-            this.PhraseRadioButtonOutOrder.Checked = true;
-            this.PhraseRadioButtonOutOrder.Location = new System.Drawing.Point(127, 69);
-            this.PhraseRadioButtonOutOrder.Name = "PhraseRadioButtonOutOrder";
-            this.PhraseRadioButtonOutOrder.Size = new System.Drawing.Size(47, 16);
-            this.PhraseRadioButtonOutOrder.TabIndex = 7;
-            this.PhraseRadioButtonOutOrder.TabStop = true;
-            this.PhraseRadioButtonOutOrder.Text = "乱序";
-            this.toolTip1.SetToolTip(this.PhraseRadioButtonOutOrder, "默认乱序无限发文\r\n可勾选\"乱序时不重复\"限制字数");
-            this.PhraseRadioButtonOutOrder.UseVisualStyleBackColor = true;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label21.Location = new System.Drawing.Point(14, 16);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(185, 12);
-            this.label21.TabIndex = 2;
-            this.label21.Text = "单字发文始终自动剔除空格及换行";
+            this.rtbShowText.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.rtbShowText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.rtbShowText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbShowText.Location = new System.Drawing.Point(3, 324);
+            this.rtbShowText.Name = "rtbShowText";
+            this.tableLayoutPanel1.SetRowSpan(this.rtbShowText, 2);
+            this.rtbShowText.Size = new System.Drawing.Size(217, 184);
+            this.rtbShowText.TabIndex = 1;
+            this.rtbShowText.Text = "";
+            this.toolTip1.SetToolTip(this.rtbShowText, "显示文段摘要预览(非实际)");
             // 
             // 新发文
             // 
@@ -2133,7 +2088,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(535, 540);
+            this.ClientSize = new System.Drawing.Size(535, 511);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -2282,9 +2237,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.CheckBox AutoConditionCheckBox;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ComboBox AutoKeyComboBox;
-        private System.Windows.Forms.ComboBox AutoOperatorComboBox;
-        private System.Windows.Forms.TextBox AutoNumberTextBox;
         private System.Windows.Forms.ComboBox AutoNoComboBox;
         private System.Windows.Forms.RichTextBox rtbShowText;
         private System.Windows.Forms.ColumnHeader columnHeader9;
@@ -2320,5 +2272,6 @@
         private System.Windows.Forms.RadioButton PhraseRadioButtonOutOrder;
         private System.Windows.Forms.RadioButton PhraseRadioButtonOrder;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Button ConditionSettingsButton;
     }
 }

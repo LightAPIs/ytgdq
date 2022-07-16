@@ -38,7 +38,7 @@
               <xs:element name="article_title" msprop:Generator_ColumnPropNameInTable="article_titleColumn" msprop:Generator_ColumnPropNameInRow="article_title" msprop:Generator_UserColumnName="article_title" msprop:Generator_ColumnVarNameInTable="columnarticle_title" type="xs:string" minOccurs="0" />
               <xs:element name="version" msprop:Generator_ColumnPropNameInTable="versionColumn" msprop:Generator_ColumnPropNameInRow="version" msprop:Generator_UserColumnName="version" msprop:Generator_ColumnVarNameInTable="columnversion" type="xs:string" minOccurs="0" />
               <xs:element name="difficulty" msprop:Generator_ColumnPropNameInTable="difficultyColumn" msprop:Generator_ColumnPropNameInRow="difficulty" msprop:Generator_UserColumnName="difficulty" msprop:Generator_ColumnVarNameInTable="columndifficulty" type="xs:double" default="0" minOccurs="0" />
-              <xs:element name="category" msprop:Generator_UserColumnName="category" msprop:Generator_ColumnPropNameInTable="categoryColumn" msprop:Generator_ColumnPropNameInRow="category" msprop:Generator_ColumnVarNameInTable="columncategory" type="xs:int" default="-1" minOccurs="0" />
+              <xs:element name="category" msprop:Generator_ColumnPropNameInTable="categoryColumn" msprop:Generator_ColumnPropNameInRow="category" msprop:Generator_UserColumnName="category" msprop:Generator_ColumnVarNameInTable="columncategory" type="xs:int" default="-1" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -102,8 +102,10 @@
               <xs:element name="auto_operator" msprop:Generator_ColumnPropNameInTable="auto_operatorColumn" msprop:Generator_ColumnPropNameInRow="auto_operator" msprop:Generator_UserColumnName="auto_operator" msprop:Generator_ColumnVarNameInTable="columnauto_operator" type="xs:int" minOccurs="0" />
               <xs:element name="auto_number" msprop:Generator_ColumnPropNameInTable="auto_numberColumn" msprop:Generator_ColumnPropNameInRow="auto_number" msprop:Generator_UserColumnName="auto_number" msprop:Generator_ColumnVarNameInTable="columnauto_number" type="xs:double" minOccurs="0" />
               <xs:element name="auto_no" msprop:Generator_ColumnPropNameInTable="auto_noColumn" msprop:Generator_ColumnPropNameInRow="auto_no" msprop:Generator_UserColumnName="auto_no" msprop:Generator_ColumnVarNameInTable="columnauto_no" type="xs:int" default="0" minOccurs="0" />
-              <xs:element name="trim_val" msprop:Generator_ColumnPropNameInRow="trim_val" msprop:Generator_ColumnPropNameInTable="trim_valColumn" msprop:Generator_ColumnVarNameInTable="columntrim_val" msprop:Generator_UserColumnName="trim_val" type="xs:int" default="0" minOccurs="0" />
-              <xs:element name="ph_order" msprop:Generator_ColumnPropNameInRow="ph_order" msprop:Generator_ColumnPropNameInTable="ph_orderColumn" msprop:Generator_ColumnVarNameInTable="columnph_order" msprop:Generator_UserColumnName="ph_order" type="xs:int" default="1" minOccurs="0" />
+              <xs:element name="trim_val" msprop:Generator_ColumnPropNameInTable="trim_valColumn" msprop:Generator_ColumnPropNameInRow="trim_val" msprop:Generator_UserColumnName="trim_val" msprop:Generator_ColumnVarNameInTable="columntrim_val" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="ph_order" msprop:Generator_ColumnPropNameInTable="ph_orderColumn" msprop:Generator_ColumnPropNameInRow="ph_order" msprop:Generator_UserColumnName="ph_order" msprop:Generator_ColumnVarNameInTable="columnph_order" type="xs:int" default="1" minOccurs="0" />
+              <xs:element name="condition_val" msprop:Generator_UserColumnName="condition_val" msprop:Generator_ColumnPropNameInTable="condition_valColumn" msprop:Generator_ColumnPropNameInRow="condition_val" msprop:Generator_ColumnVarNameInTable="columncondition_val" type="xs:string" default="&quot;0,0,0&quot;" minOccurs="0" />
+              <xs:element name="phrases_now" msprop:Generator_ColumnPropNameInRow="phrases_now" msprop:Generator_ColumnPropNameInTable="phrases_nowColumn" msprop:Generator_ColumnVarNameInTable="columnphrases_now" msprop:Generator_UserColumnName="phrases_now" type="xs:string" default="&quot;[]&quot;" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

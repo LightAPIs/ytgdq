@@ -28,6 +28,7 @@ using WindowsFormsApplication2.SpeedGrade;
 using WindowsFormsApplication2.DelayAction;
 using WindowsFormsApplication2.TVScrollBar;
 using WindowsFormsApplication2.Category;
+using WindowsFormsApplication2.Condition;
 using Newtonsoft.Json;
 
 namespace WindowsFormsApplication2
@@ -2674,45 +2675,53 @@ namespace WindowsFormsApplication2
                             { // 自动模式
                                 if (NewSendText.AutoCondition)
                                 {
-                                    bool isNext = false;
-                                    switch (NewSendText.AutoKey)
+                                    bool isNext = true;
+                                    foreach (ConditionItem condItem in NewSendText.ConditionValue.Items)
                                     {
-                                        case NewSendText.AutoKeyValue.Speed:
-                                            isNext = CompareAutoCondition(speed2, NewSendText.AutoNumber);
+                                        switch (condItem.Key)
+                                        {
+                                            case NewSendText.AutoKeyValue.Speed:
+                                                isNext = CompareAutoCondition(isEn ? speed2 / 5 : speed2, condItem);
+                                                break;
+                                            case NewSendText.AutoKeyValue.Keystroke:
+                                                isNext = CompareAutoCondition(jj, condItem);
+                                                break;
+                                            case NewSendText.AutoKeyValue.CodeLen:
+                                                isNext = CompareAutoCondition(mc, condItem);
+                                                break;
+                                            case NewSendText.AutoKeyValue.AccuracyRate:
+                                                isNext = CompareAutoCondition(UserJz, condItem);
+                                                break;
+                                            case NewSendText.AutoKeyValue.BackChange:
+                                                isNext = CompareAutoCondition(Glob.TextHg, condItem);
+                                                break;
+                                            case NewSendText.AutoKeyValue.Error:
+                                                isNext = CompareAutoCondition(Glob.TextCz, condItem);
+                                                break;
+                                            case NewSendText.AutoKeyValue.BackRate:
+                                                isNext = CompareAutoCondition(Glob.TextHg_, condItem);
+                                                break;
+                                            case NewSendText.AutoKeyValue.TypeWords:
+                                                isNext = CompareAutoCondition(Glob.aTypeWords, condItem);
+                                                break;
+                                            case NewSendText.AutoKeyValue.WordsRate:
+                                                isNext = CompareAutoCondition(Glob.TextDc_, condItem);
+                                                break;
+                                            case NewSendText.AutoKeyValue.Effciency:
+                                                isNext = CompareAutoCondition(Glob.效率, condItem);
+                                                break;
+                                            case NewSendText.AutoKeyValue.Grade:
+                                                isNext = CompareAutoCondition(speed2 * Glob.Difficulty, condItem);
+                                                break;
+                                            default:
+                                                isNext = false;
+                                                break;
+                                        }
+
+                                        if (!isNext)
+                                        {
                                             break;
-                                        case NewSendText.AutoKeyValue.Keystroke:
-                                            isNext = CompareAutoCondition(jj, NewSendText.AutoNumber);
-                                            break;
-                                        case NewSendText.AutoKeyValue.CodeLen:
-                                            isNext = CompareAutoCondition(mc, NewSendText.AutoNumber);
-                                            break;
-                                        case NewSendText.AutoKeyValue.AccuracyRate:
-                                            isNext = CompareAutoCondition(UserJz, NewSendText.AutoNumber);
-                                            break;
-                                        case NewSendText.AutoKeyValue.BackChange:
-                                            isNext = CompareAutoCondition(Glob.TextHg, NewSendText.AutoNumber);
-                                            break;
-                                        case NewSendText.AutoKeyValue.Error:
-                                            isNext = CompareAutoCondition(Glob.TextCz, NewSendText.AutoNumber);
-                                            break;
-                                        case NewSendText.AutoKeyValue.BackRate:
-                                            isNext = CompareAutoCondition(Glob.TextHg_, NewSendText.AutoNumber);
-                                            break;
-                                        case NewSendText.AutoKeyValue.TypeWords:
-                                            isNext = CompareAutoCondition(Glob.aTypeWords, NewSendText.AutoNumber);
-                                            break;
-                                        case NewSendText.AutoKeyValue.WordsRate:
-                                            isNext = CompareAutoCondition(Glob.TextDc_, NewSendText.AutoNumber);
-                                            break;
-                                        case NewSendText.AutoKeyValue.Effciency:
-                                            isNext = CompareAutoCondition(Glob.效率, NewSendText.AutoNumber);
-                                            break;
-                                        case NewSendText.AutoKeyValue.Grade:
-                                            isNext = CompareAutoCondition(speed2 * Glob.Difficulty, NewSendText.AutoNumber);
-                                            break;
-                                        default:
-                                            isNext = false;
-                                            break;
+                                        }
                                     }
 
                                     if (isNext)
@@ -2762,20 +2771,20 @@ namespace WindowsFormsApplication2
         /// <summary>
         /// 比较自动的条件
         /// </summary>
-        /// <param name="cur"></param>
-        /// <param name="setting"></param>
-        private bool CompareAutoCondition(double cur, double setting)
+        /// <param name="cur">当前值</param>
+        /// <param name="condItem">条件对象实例</param>
+        private bool CompareAutoCondition(double cur, ConditionItem condItem)
         {
-            switch (NewSendText.AutoOperator)
+            switch (condItem.Operator)
             {
                 case NewSendText.AutoOperatorValue.DY:
-                    return cur > setting;
+                    return cur > condItem.Value;
                 case NewSendText.AutoOperatorValue.DYDY:
-                    return cur >= setting;
+                    return cur >= condItem.Value;
                 case NewSendText.AutoOperatorValue.XY:
-                    return cur < setting;
+                    return cur < condItem.Value;
                 case NewSendText.AutoOperatorValue.XYDY:
-                    return cur <= setting;
+                    return cur <= condItem.Value;
                 default:
                     return false;
             }
@@ -5050,6 +5059,7 @@ namespace WindowsFormsApplication2
                 }
 
                 string phrases = (NewSendText.词组全文 != null && NewSendText.词组全文.Count > 0) ? JsonConvert.SerializeObject(NewSendText.词组全文) : "[]";
+                string phrasesNow = (NewSendText.词组 != null && NewSendText.词组.Count > 0) ? JsonConvert.SerializeObject(NewSendText.词组) : "[]";
                 int type = 0;
                 switch (NewSendText.类型)
                 {
@@ -5074,14 +5084,14 @@ namespace WindowsFormsApplication2
 
                 if (NewSendText.SentId > 0 && Glob.SentHistory.FindIdInSent(NewSendText.SentId)) // 这里需要加一个判定 id 是否存在，不存在则同样是保存新配置
                 { //* 这是之前保存过的发文配置，更新配置
-                    Glob.SentHistory.UpdateSent(NewSendText.SentId, NewSendText.发文全文, NewSendText.标题, NewSendText.标记, segmentRecord, Glob.SendCursor, Glob.CurSegmentNum, NewSendText.已发段数, NewSendText.已发字数, cycle, NewSendText.周期, auto, autoCondition, (int)NewSendText.AutoKey, (int)NewSendText.AutoOperator, NewSendText.AutoNumber, (int)NewSendText.AutoNo);
+                    Glob.SentHistory.UpdateSent(NewSendText.SentId, NewSendText.发文全文, NewSendText.标题, NewSendText.标记, segmentRecord, Glob.SendCursor, Glob.CurSegmentNum, NewSendText.已发段数, NewSendText.已发字数, cycle, NewSendText.周期, auto, autoCondition, (int)NewSendText.AutoNo, NewSendText.ConditionValue.ToString(), phrasesNow);
 
                     //* 提示更新
                     ShowFlowText("已更新配置" + NewSendText.SentId.ToString());
                 }
                 else
                 { //* 保存新配置
-                    NewSendText.SentId = Glob.SentHistory.InsertSent(DateTime.Now.ToString("s"), NewSendText.文章全文, NewSendText.发文全文, NewSendText.标题, phrases, NewSendText.词组发送分隔符, type, disorder, no_repeat, NewSendText.字数, NewSendText.标记, segmentRecord, Glob.SendCursor, Glob.CurSegmentNum, NewSendText.已发段数, NewSendText.已发字数, cycle, NewSendText.周期, auto, autoCondition, (int)NewSendText.AutoKey, (int)NewSendText.AutoOperator, NewSendText.AutoNumber, (int)NewSendText.AutoNo, trim, phOrder);
+                    NewSendText.SentId = Glob.SentHistory.InsertSent(DateTime.Now.ToString("s"), NewSendText.文章全文, NewSendText.发文全文, NewSendText.标题, phrases, NewSendText.词组发送分隔符, type, disorder, no_repeat, NewSendText.字数, NewSendText.标记, segmentRecord, Glob.SendCursor, Glob.CurSegmentNum, NewSendText.已发段数, NewSendText.已发字数, cycle, NewSendText.周期, auto, autoCondition, (int)NewSendText.AutoNo, trim, phOrder, NewSendText.ConditionValue.ToString(), phrasesNow);
 
                     NewSendText.ArticleSource = NewSendText.ArticleSourceValue.Sent;
                     //* 提示保存

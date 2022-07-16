@@ -13,8 +13,8 @@ using System.Text.RegularExpressions; //正则
 using System.Collections;
 using WindowsFormsApplication2.发文重写;
 using WindowsFormsApplication2.Storage;
+using WindowsFormsApplication2.Condition;
 using Newtonsoft.Json;
-using TyDll;
 
 namespace WindowsFormsApplication2
 {
@@ -215,8 +215,7 @@ namespace WindowsFormsApplication2
             //}
 
             NewSendText.SentId = -1;
-            AutoKeyComboBox.SelectedIndex = 0;
-            AutoOperatorComboBox.SelectedIndex = 0;
+            ConditionSettingsButton.Enabled = false;
             AutoNoComboBox.SelectedIndex = 0;
             ReadAll(Application.StartupPath);
             ReadSavedArticle();
@@ -318,6 +317,21 @@ namespace WindowsFormsApplication2
         /// </summary>
         public void ComText()
         {
+            switch (this.tabControl2.SelectedIndex)
+            {
+                case 0:
+                    this.lblStyle.Text = "单字";
+                    break;
+                case 1:
+                    this.lblStyle.Text = "文章";
+                    break;
+                case 2:
+                    this.lblStyle.Text = "词组";
+                    break;
+                default:
+                    this.lblStyle.Text = "";
+                    break;
+            }
             
             if (this.tabControl2.SelectedIndex == (int)NewSendText.ContentTypeValue.Phrase)
             { //* 词组
@@ -570,9 +584,7 @@ namespace WindowsFormsApplication2
                 this.AutoConditionCheckBox.Enabled = true;
                 if (AutoConditionCheckBox.Checked)
                 {
-                    this.AutoKeyComboBox.Enabled = true;
-                    this.AutoOperatorComboBox.Enabled = true;
-                    this.AutoNumberTextBox.Enabled = true;
+                    this.ConditionSettingsButton.Enabled = true;
                     this.AutoNoComboBox.Enabled = true;
                 }
             }
@@ -582,9 +594,7 @@ namespace WindowsFormsApplication2
                 this.AutoConditionCheckBox.Enabled = false;
                 if (AutoConditionCheckBox.Checked)
                 {
-                    this.AutoKeyComboBox.Enabled = false;
-                    this.AutoOperatorComboBox.Enabled = false;
-                    this.AutoNumberTextBox.Enabled = false;
+                    this.ConditionSettingsButton.Enabled = false;
                     this.AutoNoComboBox.Enabled = false;
                 }
             }
@@ -599,16 +609,12 @@ namespace WindowsFormsApplication2
         {
             if ((sender as CheckBox).Checked && this.cbxAuto.Checked)
             {
-                this.AutoKeyComboBox.Enabled = true;
-                this.AutoOperatorComboBox.Enabled = true;
-                this.AutoNumberTextBox.Enabled = true;
+                this.ConditionSettingsButton.Enabled = true;
                 this.AutoNoComboBox.Enabled = true;
             }
             else
             {
-                this.AutoKeyComboBox.Enabled = false;
-                this.AutoOperatorComboBox.Enabled = false;
-                this.AutoNumberTextBox.Enabled = false;
+                this.ConditionSettingsButton.Enabled = false;
                 this.AutoNoComboBox.Enabled = false;
             }
         }
@@ -979,33 +985,9 @@ namespace WindowsFormsApplication2
             textChangeHandler();
         }
 
-        private void tbxSendStart_KeyPress(object sender, KeyPressEventArgs e)
+        private void DigitTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar != '\b' && !Char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void tbxSendCount_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar != '\b' && !Char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void tbxQisduan_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar != '\b' && !Char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void AutoNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar != '\b' && e.KeyChar != '.' && !Char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -1734,6 +1716,7 @@ namespace WindowsFormsApplication2
                     lblTitle.Text = NewSendText.标题;
 
                     NewSendText.词组全文 = JsonConvert.DeserializeObject<List<string>>(sd["phrases"].ToString());
+                    NewSendText.词组 = JsonConvert.DeserializeObject<List<string>>(sd["phrases_now"].ToString());
                     NewSendText.词组发送分隔符 = sd["separator"].ToString();
 
                     if ((int)sd["disorder"] == 0)
@@ -1866,14 +1849,7 @@ namespace WindowsFormsApplication2
                         AutoConditionCheckBox.Checked = false;
                     }
 
-                    NewSendText.AutoKey = (NewSendText.AutoKeyValue)int.Parse(sd["auto_key"].ToString());
-                    AutoKeyComboBox.SelectedIndex = (int)NewSendText.AutoKey;
-
-                    NewSendText.AutoOperator = (NewSendText.AutoOperatorValue)int.Parse(sd["auto_operator"].ToString());
-                    AutoOperatorComboBox.SelectedIndex = (int)NewSendText.AutoOperator;
-
-                    NewSendText.AutoNumber = (double)sd["auto_number"];
-                    AutoNumberTextBox.Text = NewSendText.AutoNumber.ToString();
+                    NewSendText.ConditionValue.Parse(sd["condition_val"].ToString());
 
                     NewSendText.AutoNo = (NewSendText.AutoNoValue)int.Parse(sd["auto_no"].ToString());
                     AutoNoComboBox.SelectedIndex = (int)NewSendText.AutoNo;
@@ -2099,25 +2075,6 @@ namespace WindowsFormsApplication2
 
                 NewSendText.是否自动 = cbxAuto.Checked;
                 NewSendText.AutoCondition = AutoConditionCheckBox.Checked;
-                NewSendText.AutoKey = (NewSendText.AutoKeyValue)AutoKeyComboBox.SelectedIndex;
-                NewSendText.AutoOperator = (NewSendText.AutoOperatorValue)AutoOperatorComboBox.SelectedIndex;
-                if (NewSendText.是否自动 && NewSendText.AutoCondition)
-                {
-                    string autoNumberText = AutoNumberTextBox.Text;
-                    if (autoNumberText.Length == 0)
-                    {
-                        NewSendText.AutoNumber = 0;
-                    }
-                    else
-                    {
-                        double.TryParse(autoNumberText, out double aNum);
-                        NewSendText.AutoNumber = aNum;
-                    }
-                }
-                else
-                {
-                    NewSendText.AutoNumber = 0;
-                }
                 NewSendText.AutoNo = (NewSendText.AutoNoValue)AutoNoComboBox.SelectedIndex;
 
                 NewSendText.ArticleSource = (NewSendText.ArticleSourceValue)tabControl1.SelectedIndex;
@@ -2202,15 +2159,7 @@ namespace WindowsFormsApplication2
             // 自动发文条件
             this.AutoConditionCheckBox.Checked = bool.Parse(_t.IniReadValue("发文面板配置", "自动发文条件", "False"));
             string readCondition = _t.IniReadValue("发文面板配置", "自动发文条件值", "0,0,0");
-            string[] condition = readCondition.Split(',');
-            if (condition.Length >= 3)
-            {
-                int.TryParse(condition[0], out int keyIndex);
-                this.AutoKeyComboBox.SelectedIndex = keyIndex;
-                int.TryParse(condition[1], out int operatorIndex);
-                this.AutoOperatorComboBox.SelectedIndex = operatorIndex;
-                this.AutoNumberTextBox.Text = condition[2];
-            }
+            NewSendText.ConditionValue.Parse(readCondition);
             this.AutoNoComboBox.SelectedIndex = int.Parse(_t.IniReadValue("发文面板配置", "不满足时指令", "0"));
 
             // 内容类型
@@ -2259,8 +2208,7 @@ namespace WindowsFormsApplication2
                 _t.IniWriteValue("发文面板配置", "自动发文条件", this.AutoConditionCheckBox.Checked.ToString());
                 if (this.AutoConditionCheckBox.Checked)
                 {
-                    string condition = this.AutoKeyComboBox.SelectedIndex.ToString() + "," + this.AutoOperatorComboBox.SelectedIndex.ToString() + "," + this.AutoNumberTextBox.Text;
-                    _t.IniWriteValue("发文面板配置", "自动发文条件值", condition);
+                    _t.IniWriteValue("发文面板配置", "自动发文条件值", NewSendText.ConditionValue.ToString());
                     _t.IniWriteValue("发文面板配置", "不满足时指令", this.AutoNoComboBox.SelectedIndex.ToString());
                 }
             }
@@ -2274,5 +2222,11 @@ namespace WindowsFormsApplication2
             _t.IniWriteValue("发文面板配置", "词组乱序", this.PhraseRadioButtonOutOrder.Checked.ToString());
         }
         #endregion
+
+        private void ConditionSettingsButton_Click(object sender, EventArgs e)
+        {
+            ConditionBox cb = new ConditionBox();
+            cb.ShowDialog(this);
+        }
     }
 }

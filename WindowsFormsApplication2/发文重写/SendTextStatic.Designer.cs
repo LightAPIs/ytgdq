@@ -42,13 +42,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.CycleCheckBox = new System.Windows.Forms.CheckBox();
-            this.AutoNumberButton = new System.Windows.Forms.Button();
+            this.AutoConditionButton = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.lblNowTime = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label12 = new System.Windows.Forms.Label();
             this.tbxTitle = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -70,10 +69,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tbxSendTime = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.AutoNumberTextBox = new System.Windows.Forms.TextBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.gbstatic = new System.Windows.Forms.GroupBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -92,7 +88,7 @@
             // 
             this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStop.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnStop.Location = new System.Drawing.Point(153, 375);
+            this.btnStop.Location = new System.Drawing.Point(153, 351);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(80, 23);
             this.btnStop.TabIndex = 2;
@@ -103,7 +99,7 @@
             // btnSave
             // 
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(3, 375);
+            this.btnSave.Location = new System.Drawing.Point(3, 351);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(83, 23);
             this.btnSave.TabIndex = 1;
@@ -132,10 +128,10 @@
             // 
             this.btnChangePreCout.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnChangePreCout.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnChangePreCout.Location = new System.Drawing.Point(202, 255);
+            this.btnChangePreCout.Location = new System.Drawing.Point(202, 232);
             this.btnChangePreCout.Margin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.btnChangePreCout.Name = "btnChangePreCout";
-            this.btnChangePreCout.Size = new System.Drawing.Size(24, 22);
+            this.btnChangePreCout.Size = new System.Drawing.Size(24, 21);
             this.btnChangePreCout.TabIndex = 30;
             this.btnChangePreCout.Text = "修";
             this.toolTip1.SetToolTip(this.btnChangePreCout, "修改当前的段号");
@@ -192,11 +188,10 @@
             this.label11.Location = new System.Drawing.Point(3, 233);
             this.label11.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(66, 20);
+            this.label11.Size = new System.Drawing.Size(66, 22);
             this.label11.TabIndex = 25;
-            this.label11.Text = "数值|指令";
+            this.label11.Text = "当前段号";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.label11, "下一段条件的数值|不满足条件的指令");
             // 
             // label10
             // 
@@ -207,9 +202,9 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(66, 20);
             this.label10.TabIndex = 22;
-            this.label10.Text = "条件|关系";
+            this.label10.Text = "自动|指令";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.label10, "自动下一段的条件|关系运算符");
+            this.toolTip1.SetToolTip(this.label10, "自动下一段的条件|不满足条件的指令");
             // 
             // label9
             // 
@@ -227,7 +222,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(157, 351);
+            this.checkBox2.Location = new System.Drawing.Point(157, 327);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(72, 16);
             this.checkBox2.TabIndex = 33;
@@ -241,7 +236,7 @@
             // 
             this.CycleCheckBox.AutoSize = true;
             this.CycleCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CycleCheckBox.Location = new System.Drawing.Point(7, 350);
+            this.CycleCheckBox.Location = new System.Drawing.Point(7, 327);
             this.CycleCheckBox.Name = "CycleCheckBox";
             this.CycleCheckBox.Size = new System.Drawing.Size(69, 16);
             this.CycleCheckBox.TabIndex = 34;
@@ -251,26 +246,26 @@
             this.CycleCheckBox.UseVisualStyleBackColor = true;
             this.CycleCheckBox.CheckedChanged += new System.EventHandler(this.CycleCheckBox_CheckedChanged);
             // 
-            // AutoNumberButton
+            // AutoConditionButton
             // 
-            this.AutoNumberButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this.AutoNumberButton.Enabled = false;
-            this.AutoNumberButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.AutoNumberButton.Location = new System.Drawing.Point(202, 232);
-            this.AutoNumberButton.Margin = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.AutoNumberButton.Name = "AutoNumberButton";
-            this.AutoNumberButton.Size = new System.Drawing.Size(24, 21);
-            this.AutoNumberButton.TabIndex = 37;
-            this.AutoNumberButton.Text = "修";
-            this.toolTip1.SetToolTip(this.AutoNumberButton, "修改自动条件的数值");
-            this.AutoNumberButton.UseVisualStyleBackColor = true;
-            this.AutoNumberButton.Click += new System.EventHandler(this.AutoNumberButton_Click);
+            this.AutoConditionButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AutoConditionButton.Enabled = false;
+            this.AutoConditionButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.AutoConditionButton.Location = new System.Drawing.Point(2, 2);
+            this.AutoConditionButton.Margin = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.AutoConditionButton.Name = "AutoConditionButton";
+            this.AutoConditionButton.Size = new System.Drawing.Size(62, 21);
+            this.AutoConditionButton.TabIndex = 37;
+            this.AutoConditionButton.Text = "条件设置";
+            this.toolTip1.SetToolTip(this.AutoConditionButton, "设置自动发文的条件");
+            this.AutoConditionButton.UseVisualStyleBackColor = true;
+            this.AutoConditionButton.Click += new System.EventHandler(this.AutoConditionButton_Click);
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBox1.Location = new System.Drawing.Point(82, 350);
+            this.checkBox1.Location = new System.Drawing.Point(82, 327);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(69, 16);
             this.checkBox1.TabIndex = 31;
@@ -318,7 +313,6 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
-            this.tableLayoutPanel2.Controls.Add(this.label12, 0, 11);
             this.tableLayoutPanel2.Controls.Add(this.label11, 0, 10);
             this.tableLayoutPanel2.Controls.Add(this.label10, 0, 9);
             this.tableLayoutPanel2.Controls.Add(this.btnFixNowTitle, 2, 0);
@@ -338,19 +332,16 @@
             this.tableLayoutPanel2.Controls.Add(this.lblTotalCount, 1, 5);
             this.tableLayoutPanel2.Controls.Add(this.lblLeastCount, 1, 6);
             this.tableLayoutPanel2.Controls.Add(this.label9, 0, 8);
-            this.tableLayoutPanel2.Controls.Add(this.tbxNowStartCount, 1, 11);
-            this.tableLayoutPanel2.Controls.Add(this.btnChangePreCout, 2, 11);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 1, 7);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel1, 1, 8);
             this.tableLayoutPanel2.Controls.Add(this.btnSendTime, 2, 8);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 1, 9);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 1, 10);
-            this.tableLayoutPanel2.Controls.Add(this.AutoNumberButton, 2, 10);
+            this.tableLayoutPanel2.Controls.Add(this.btnChangePreCout, 2, 10);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 12;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel2.RowCount = 11;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
@@ -363,20 +354,8 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(229, 279);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(229, 255);
             this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(3, 256);
-            this.label12.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(66, 23);
-            this.label12.TabIndex = 28;
-            this.label12.Text = "当前段号";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tbxTitle
             // 
@@ -554,8 +533,10 @@
             // 
             this.tbxNowStartCount.BackColor = System.Drawing.Color.DarkGray;
             this.tbxNowStartCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tableLayoutPanel5.SetColumnSpan(this.tbxNowStartCount, 2);
+            this.tbxNowStartCount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbxNowStartCount.Font = new System.Drawing.Font("宋体", 9F);
-            this.tbxNowStartCount.Location = new System.Drawing.Point(75, 256);
+            this.tbxNowStartCount.Location = new System.Drawing.Point(3, 3);
             this.tbxNowStartCount.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.tbxNowStartCount.Name = "tbxNowStartCount";
             this.tbxNowStartCount.ReadOnly = true;
@@ -638,8 +619,8 @@
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.comboBox1, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.comboBox2, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.comboBox3, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.AutoConditionButton, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(72, 207);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
@@ -649,80 +630,20 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(128, 23);
             this.tableLayoutPanel4.TabIndex = 35;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Enabled = false;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "速度",
-            "击键",
-            "码长",
-            "键准",
-            "回改",
-            "错字",
-            "回改率",
-            "打词",
-            "打词率",
-            "效率",
-            "评级"});
-            this.comboBox1.Location = new System.Drawing.Point(2, 2);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 1, 0);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(61, 20);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.Enabled = false;
-            this.comboBox2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            ">",
-            ">=",
-            "<",
-            "<="});
-            this.comboBox2.Location = new System.Drawing.Point(66, 2);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(2, 2, 1, 0);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(61, 20);
-            this.comboBox2.TabIndex = 1;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
-            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 2;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Controls.Add(this.AutoNumberTextBox, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.comboBox3, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.tbxNowStartCount, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(72, 230);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(128, 23);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(128, 25);
             this.tableLayoutPanel5.TabIndex = 36;
-            // 
-            // AutoNumberTextBox
-            // 
-            this.AutoNumberTextBox.BackColor = System.Drawing.Color.DarkGray;
-            this.AutoNumberTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.AutoNumberTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AutoNumberTextBox.Location = new System.Drawing.Point(2, 1);
-            this.AutoNumberTextBox.Margin = new System.Windows.Forms.Padding(2, 1, 1, 0);
-            this.AutoNumberTextBox.Name = "AutoNumberTextBox";
-            this.AutoNumberTextBox.ReadOnly = true;
-            this.AutoNumberTextBox.Size = new System.Drawing.Size(61, 21);
-            this.AutoNumberTextBox.TabIndex = 0;
-            this.AutoNumberTextBox.Text = "0";
-            this.AutoNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.AutoNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AutoNumberTextBox_KeyPress);
             // 
             // comboBox3
             // 
@@ -746,7 +667,7 @@
             this.gbstatic.Controls.Add(this.tableLayoutPanel2);
             this.gbstatic.Location = new System.Drawing.Point(0, 50);
             this.gbstatic.Name = "gbstatic";
-            this.gbstatic.Size = new System.Drawing.Size(235, 299);
+            this.gbstatic.Size = new System.Drawing.Size(235, 275);
             this.gbstatic.TabIndex = 0;
             this.gbstatic.TabStop = false;
             this.gbstatic.Text = "当前发文";
@@ -754,7 +675,7 @@
             // label15
             // 
             this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label15.Location = new System.Drawing.Point(7, 370);
+            this.label15.Location = new System.Drawing.Point(7, 346);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(221, 1);
             this.label15.TabIndex = 32;
@@ -788,7 +709,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(235, 401);
+            this.ClientSize = new System.Drawing.Size(235, 378);
             this.Controls.Add(this.newButton1);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.CycleCheckBox);
@@ -831,7 +752,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnFixNowTitle;
@@ -868,11 +788,8 @@
         private System.Windows.Forms.CheckBox CycleCheckBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.TextBox AutoNumberTextBox;
         private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.Button AutoNumberButton;
+        private System.Windows.Forms.Button AutoConditionButton;
         private System.Windows.Forms.Label label14;
         private NewButton newButton1;
     }

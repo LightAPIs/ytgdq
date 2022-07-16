@@ -2170,6 +2170,10 @@ namespace WindowsFormsApplication2.Storage {
             
             private global::System.Data.DataColumn columnph_order;
             
+            private global::System.Data.DataColumn columncondition_val;
+            
+            private global::System.Data.DataColumn columnphrases_now;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public SentDataTable() {
@@ -2421,6 +2425,22 @@ namespace WindowsFormsApplication2.Storage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn condition_valColumn {
+                get {
+                    return this.columncondition_val;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn phrases_nowColumn {
+                get {
+                    return this.columnphrases_now;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2483,7 +2503,9 @@ namespace WindowsFormsApplication2.Storage {
                         double auto_number, 
                         int auto_no, 
                         int trim_val, 
-                        int ph_order) {
+                        int ph_order, 
+                        string condition_val, 
+                        string phrases_now) {
                 SentRow rowSentRow = ((SentRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         id,
@@ -2512,7 +2534,9 @@ namespace WindowsFormsApplication2.Storage {
                         auto_number,
                         auto_no,
                         trim_val,
-                        ph_order};
+                        ph_order,
+                        condition_val,
+                        phrases_now};
                 rowSentRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSentRow);
                 return rowSentRow;
@@ -2569,6 +2593,8 @@ namespace WindowsFormsApplication2.Storage {
                 this.columnauto_no = base.Columns["auto_no"];
                 this.columntrim_val = base.Columns["trim_val"];
                 this.columnph_order = base.Columns["ph_order"];
+                this.columncondition_val = base.Columns["condition_val"];
+                this.columnphrases_now = base.Columns["phrases_now"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2628,6 +2654,10 @@ namespace WindowsFormsApplication2.Storage {
                 base.Columns.Add(this.columntrim_val);
                 this.columnph_order = new global::System.Data.DataColumn("ph_order", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnph_order);
+                this.columncondition_val = new global::System.Data.DataColumn("condition_val", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncondition_val);
+                this.columnphrases_now = new global::System.Data.DataColumn("phrases_now", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnphrases_now);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("SentKey", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AllowDBNull = false;
@@ -2647,6 +2677,8 @@ namespace WindowsFormsApplication2.Storage {
                 this.columnauto_no.DefaultValue = ((int)(0));
                 this.columntrim_val.DefaultValue = ((int)(0));
                 this.columnph_order.DefaultValue = ((int)(1));
+                this.columncondition_val.DefaultValue = ((string)("\"0,0,0\""));
+                this.columnphrases_now.DefaultValue = ((string)("\"[]\""));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5470,6 +5502,38 @@ namespace WindowsFormsApplication2.Storage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string condition_val {
+                get {
+                    try {
+                        return ((string)(this[this.tableSent.condition_valColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Sent”中列“condition_val”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSent.condition_valColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string phrases_now {
+                get {
+                    try {
+                        return ((string)(this[this.tableSent.phrases_nowColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Sent”中列“phrases_now”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSent.phrases_nowColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsphrasesNull() {
                 return this.IsNull(this.tableSent.phrasesColumn);
             }
@@ -5718,6 +5782,30 @@ namespace WindowsFormsApplication2.Storage {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void Setph_orderNull() {
                 this[this.tableSent.ph_orderColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Iscondition_valNull() {
+                return this.IsNull(this.tableSent.condition_valColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setcondition_valNull() {
+                this[this.tableSent.condition_valColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Isphrases_nowNull() {
+                return this.IsNull(this.tableSent.phrases_nowColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setphrases_nowNull() {
+                this[this.tableSent.phrases_nowColumn] = global::System.Convert.DBNull;
             }
         }
         

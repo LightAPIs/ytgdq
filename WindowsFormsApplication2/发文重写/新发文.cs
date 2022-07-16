@@ -2152,7 +2152,7 @@ namespace WindowsFormsApplication2
             // 周期发文
             this.checkBox1.Checked = bool.Parse(_t.IniReadValue("发文面板配置", "周期发文", "False"));
             // 周期发文时间
-            this.nudSendTimer.Value = int.Parse(_t.IniReadValue("发文面板配置", "周期发文时间", "0"));
+            this.nudSendTimer.Value = int.Parse(_t.IniReadValue("发文面板配置", "周期发文时间", "10"));
 
             // 自动发文
             this.cbxAuto.Checked = bool.Parse(_t.IniReadValue("发文面板配置", "自动发文", "False"));

@@ -54,6 +54,7 @@ namespace WindowsFormsApplication2
 
         public static string DownloadUrl = "http://dogegg.ysepan.com/";
         public static string HomeUrl = "https://github.com/LightAPIs/ytgdq";
+        public static string UsageUrl = "https://github.com/LightAPIs/ytgdq/wiki";
 
         /// <summary>
         /// 显示实时数据

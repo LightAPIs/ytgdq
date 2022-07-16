@@ -19,7 +19,7 @@
 
 ## 使用说明
 
-[wiki](https://github.com/LightAPIs/ytgdq/wiki)
+[Wiki](https://github.com/LightAPIs/ytgdq/wiki)
 
 ## 下载地址
 

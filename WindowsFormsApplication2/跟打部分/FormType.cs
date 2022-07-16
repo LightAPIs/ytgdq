@@ -6254,5 +6254,10 @@ namespace WindowsFormsApplication2
             sgb.ShowDialog();
         }
         #endregion
+
+        private void UsageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Glob.UsageUrl);
+        }
     }
 }

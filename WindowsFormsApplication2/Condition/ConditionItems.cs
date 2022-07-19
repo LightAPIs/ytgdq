@@ -41,6 +41,7 @@ namespace WindowsFormsApplication2.Condition
         #region 公有方法
         public void Parse(string str)
         {
+            Items.Clear();
             string[] strArr = str.Split('|');
             foreach (string strItem in strArr)
             {

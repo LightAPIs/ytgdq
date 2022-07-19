@@ -61,7 +61,12 @@ namespace WindowsFormsApplication2.Condition
 
         public override string ToString()
         {
-            return base.ToString();
+            string res = "";
+            foreach (ConditionItem item in Items)
+            {
+                res += res.Length > 0 ? '|' + item.ToString() : item.ToString();
+            }
+            return res;
         }
 
         public void AddItem(ConditionItem item)

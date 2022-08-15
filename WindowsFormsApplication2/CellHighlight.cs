@@ -100,31 +100,62 @@ namespace WindowsFormsApplication2
         /// </summary>
         /// <param name="cell"></param>
         /// <param name="cl"></param>
-        public static void CodeLen(DataGridViewCell cell, double cl)
+        /// <param name="tl"></param>
+        public static void CodeLen(DataGridViewCell cell, double cl, double tl = 0)
         {
-            if (cl <= 1.80)
+            if (tl > 0)
             {
-                cell.Style.ForeColor = Color.FromArgb(194, 255, 121);
+                if (cl <= tl + 0.1)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(194, 255, 121);
+                }
+                else if (cl <= tl + 0.2)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(58, 232, 113);
+                }
+                else if (cl <= tl + 0.3)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(133, 174, 187);
+                }
+                else if (cl <= tl + 0.4)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(121, 134, 203);
+                }
+                else if (cl <= tl + 0.5)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(149, 117, 205);
+                }
+                else if (cl > tl + 1)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(238, 6, 238);
+                }
             }
-            else if (cl <= 2.00)
+            else
             {
-                cell.Style.ForeColor = Color.FromArgb(58, 232, 113);
-            }
-            else if (cl <= 2.20)
-            {
-                cell.Style.ForeColor = Color.FromArgb(133, 174, 187);
-            }
-            else if (cl <= 2.40)
-            {
-                cell.Style.ForeColor = Color.FromArgb(121, 134, 203);
-            }
-            else if (cl <= 2.60)
-            {
-                cell.Style.ForeColor = Color.FromArgb(149, 117, 205);
-            }
-            else if (cl > 5.00)
-            {
-                cell.Style.ForeColor = Color.FromArgb(238, 6, 238);
+                if (cl <= 1.80)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(194, 255, 121);
+                }
+                else if (cl <= 2.00)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(58, 232, 113);
+                }
+                else if (cl <= 2.20)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(133, 174, 187);
+                }
+                else if (cl <= 2.40)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(121, 134, 203);
+                }
+                else if (cl <= 2.60)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(149, 117, 205);
+                }
+                else if (cl > 4.00)
+                {
+                    cell.Style.ForeColor = Color.FromArgb(238, 6, 238);
+                }
             }
         }
 

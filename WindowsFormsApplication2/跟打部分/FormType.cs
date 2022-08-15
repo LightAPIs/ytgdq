@@ -2395,7 +2395,7 @@ namespace WindowsFormsApplication2
                         // 使用会惩罚错字的速度进行判定
                         CellHighlight.Speed(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[3], speed2, Glob.Difficulty);
                         CellHighlight.Keystroke(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[4], jj);
-                        CellHighlight.CodeLen(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5], mc);
+                        CellHighlight.CodeLen(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5], mc, Glob.词库理论码长);
                         CellHighlight.Error(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[13], Glob.TextCz);
                         #endregion
                         double jjPer_ = Glob.Per_Jj / Glob.HaveTypeCount;

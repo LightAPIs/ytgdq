@@ -1012,63 +1012,23 @@ namespace WindowsFormsApplication2
                 this.currentDir = "src/";
                 this.lastDir = "";
                 listViewWebArticle.Columns[0].Text = this.currentDir;
-                this.BeginInvoke(new MethodInvoker(() =>
+                using (BackgroundWorker bw = new BackgroundWorker())
                 {
-                    YTWebRequest ytReq = new YTWebRequest(FullCurrentDirPath);
-                    string strJson = ytReq.Request();
-                    if (!string.IsNullOrEmpty(strJson))
-                    {
-                        webRoot = JsonConvert.DeserializeObject<WebArticle>(strJson);
-                        this.allWebArticle = webRoot;
-                        this.totalWebCount = allWebArticle.dir.Count + allWebArticle.txt.Count;
-                        this.WebCountLabel.Text = this.totalWebCount.ToString();
-                        if (this.totalWebCount > 0)
-                        {
-                            this.currentWebPage = 1;
-                        }
-                        else
-                        {
-                            this.currentWebPage = 0;
-                        }
-                        ShowWebListView();
-                    }
-                    else
-                    {
-                        this.ErrorListView();
-                    }
-                }));
+                    bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(ReadWebArticle_RunWorkerCompleted);
+                    bw.DoWork += new DoWorkEventHandler(ReadWebArticle_DoWork);
+                    bw.RunWorkerAsync();
+                }
             }
         }
 
         private void ReadWebDir(string dirPath)
         {
-            this.BeginInvoke(new MethodInvoker(() => {
-                YTWebRequest ytReq = new YTWebRequest(dirPath);
-                string strJson = ytReq.Request();
-                if (!string.IsNullOrEmpty(strJson))
-                {
-                    // 清除搜索文本
-                    this.webSearchText = "";
-                    this.WebSearchTextBox.Text = "";
-
-                    this.allWebArticle = JsonConvert.DeserializeObject<WebArticle>(strJson);
-                    this.totalWebCount = allWebArticle.dir.Count + allWebArticle.txt.Count;
-                    this.WebCountLabel.Text = this.totalWebCount.ToString();
-                    if (this.totalWebCount > 0)
-                    {
-                        this.currentWebPage = 1;
-                    }
-                    else
-                    {
-                        this.currentWebPage = 0;
-                    }
-                    ShowWebListView();
-                }
-                else
-                {
-                    this.ErrorListView();
-                }
-            }));
+            using (BackgroundWorker bw = new BackgroundWorker())
+            {
+                bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(ReadWebDir_RunWorkerCompleted);
+                bw.DoWork += new DoWorkEventHandler(ReadWebDir_DoWork);
+                bw.RunWorkerAsync(dirPath);
+            }
         }
 
         private void CleanListView(bool isRefresh = false)
@@ -1146,22 +1106,13 @@ namespace WindowsFormsApplication2
                         this.WebFileTitleTextBox.Text = name.Replace(".txt", "");
                         this.rtbShowText.Text = "正在努力加载文章当中...";
                         this.rtbShowText.Refresh();
-                        this.BeginInvoke(new MethodInvoker(() =>
+                        this.listViewWebArticle.Enabled = false;
+                        using (BackgroundWorker bw = new BackgroundWorker())
                         {
-                            YTWebRequest ytReq = new YTWebRequest(textFilename);
-                            string content = ytReq.Request();
-
-                            if (!string.IsNullOrEmpty(content))
-                            {
-                                GetText = content;
-                                ComText();
-                            }
-                            else
-                            {
-                                this.rtbShowText.Text = "警告：没有获取到文章内容！";
-                                this.DiffcultyLabel.Text = "难度";
-                            }
-                        }));
+                            bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(ReadWebText_RunWorkerCompleted);
+                            bw.DoWork += new DoWorkEventHandler(ReadWebText_DoWork);
+                            bw.RunWorkerAsync(textFilename);
+                        }
                     }
                     else if (type == "错误")
                     {
@@ -1360,22 +1311,13 @@ namespace WindowsFormsApplication2
                 this.WebFileTitleTextBox.Text = name.Replace(".txt", "");
                 this.rtbShowText.Text = "正在努力加载文章当中...";
                 this.rtbShowText.Refresh();
-                this.BeginInvoke(new MethodInvoker(() =>
+                this.listViewWebArticle.Enabled = false;
+                using (BackgroundWorker bw = new BackgroundWorker())
                 {
-                    YTWebRequest ytReq = new YTWebRequest(textFilename);
-                    string content = ytReq.Request();
-
-                    if (!string.IsNullOrEmpty(content))
-                    {
-                        GetText = content;
-                        ComText();
-                    }
-                    else
-                    {
-                        this.rtbShowText.Text = "警告：没有获取到文章内容！";
-                        this.DiffcultyLabel.Text = "难度";
-                    }
-                }));
+                    bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(ReadWebText_RunWorkerCompleted);
+                    bw.DoWork += new DoWorkEventHandler(ReadWebText_DoWork);
+                    bw.RunWorkerAsync(textFilename);
+                }
             }
         }
 
@@ -2221,6 +2163,120 @@ namespace WindowsFormsApplication2
             _t.IniWriteValue("发文面板配置", "发送分隔符", this.tbxSendSplit.Text);
             _t.IniWriteValue("发文面板配置", "词组乱序", this.PhraseRadioButtonOutOrder.Checked.ToString());
         }
+        #endregion
+
+        #region 后台读取网络内容操作
+        private void ReadWebArticle_DoWork(object sender, DoWorkEventArgs e)
+        {
+            YTWebRequest ytReq = new YTWebRequest(FullCurrentDirPath);
+            string strJson = ytReq.Request();
+            if (!string.IsNullOrEmpty(strJson))
+            {
+                webRoot = JsonConvert.DeserializeObject<WebArticle>(strJson);
+                this.allWebArticle = webRoot;
+                this.totalWebCount = allWebArticle.dir.Count + allWebArticle.txt.Count;
+                e.Result = true;
+            }
+            else
+            {
+                e.Result = false;
+            }
+        }
+
+        private void ReadWebArticle_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if ((bool)e.Result)
+            {
+                this.WebCountLabel.Text = this.totalWebCount.ToString();
+                if (this.totalWebCount > 0)
+                {
+                    this.currentWebPage = 1;
+                }
+                else
+                {
+                    this.currentWebPage = 0;
+                }
+                ShowWebListView();
+            }
+            else
+            {
+                this.ErrorListView();
+            }
+        }
+
+        private void ReadWebDir_DoWork(object sender, DoWorkEventArgs e)
+        {
+            string dirPath = (string)e.Argument;
+            YTWebRequest ytReq = new YTWebRequest(dirPath);
+            string strJson = ytReq.Request();
+            if (!string.IsNullOrEmpty(strJson))
+            {
+                this.allWebArticle = JsonConvert.DeserializeObject<WebArticle>(strJson);
+                this.totalWebCount = allWebArticle.dir.Count + allWebArticle.txt.Count;
+                e.Result = true;
+            }
+            else
+            {
+                e.Result = false;
+            }
+        }
+
+        private void ReadWebDir_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if ((bool)e.Result)
+            {
+                // 清除搜索文本
+                this.webSearchText = "";
+                this.WebSearchTextBox.Text = "";
+
+                this.WebCountLabel.Text = this.totalWebCount.ToString();
+                if (this.totalWebCount > 0)
+                {
+                    this.currentWebPage = 1;
+                }
+                else
+                {
+                    this.currentWebPage = 0;
+                }
+                ShowWebListView();
+            }
+            else
+            {
+                this.ErrorListView();
+            }
+        }
+
+        private void ReadWebText_DoWork(object sender, DoWorkEventArgs e)
+        {
+            string textFilename = (string)e.Argument;
+            YTWebRequest ytReq = new YTWebRequest(textFilename);
+            string content = ytReq.Request();
+
+            if (!string.IsNullOrEmpty(content))
+            {
+                GetText = content;
+                e.Result = true;
+            }
+            else
+            {
+                e.Result = false;
+            }
+        }
+
+        private void ReadWebText_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if ((bool)e.Result)
+            {
+                ComText();
+            }
+            else
+            {
+                this.rtbShowText.Text = "警告：没有获取到文章内容！";
+                this.DiffcultyLabel.Text = "难度";
+            }
+            this.listViewWebArticle.Enabled = true;
+        }
+
         #endregion
 
         private void ConditionSettingsButton_Click(object sender, EventArgs e)

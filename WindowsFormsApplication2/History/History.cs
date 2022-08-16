@@ -65,6 +65,7 @@ namespace WindowsFormsApplication2.History
         private void History_Load(object sender, EventArgs e)
         {
             this.gridHandler = new HistoryDataGridHandler(this.dataGridView1);
+            this.MonthCalendar.BoldedDates = Glob.ScoreHistory.GetAllScoreDates();
             ShowDataFromDate(DateTime.Now);
         }
 

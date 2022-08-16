@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
+using System.Globalization;
 
 namespace WindowsFormsApplication2.Storage
 {
@@ -379,6 +380,25 @@ namespace WindowsFormsApplication2.Storage
             this.cmd.CommandText = "DELETE FROM sqlite_sequence WHERE name='segment';";
             this.cmd.ExecuteNonQuery();
             this.CleanDisk();
+        }
+
+        /// <summary>
+        /// 获取所有成绩的日期值
+        /// </summary>
+        /// <returns></returns>
+        public DateTime[] GetAllScoreDates()
+        {
+            CultureInfo provider = CultureInfo.InvariantCulture;
+            List<DateTime> dates = new List<DateTime>();
+            this.cmd.CommandText = "SELECT DISTINCT date(score_time) FROM score";
+            SQLiteDataReader reader = this.cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                string dStr = reader.GetString(0);
+                dates.Add(DateTime.ParseExact(dStr, "yyyy-MM-dd", provider));
+            }
+            reader.Close();
+            return dates.ToArray();
         }
     }
 

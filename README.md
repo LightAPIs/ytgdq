@@ -5,7 +5,7 @@
     <img src="https://img.shields.io/github/v/release/LightAPIs/ytgdq.svg?color=orange" alt="Release" />
   </a>
   <a href="./LICENSE">
-    <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="MIT License" />
+    <img src="https://img.shields.io/github/license/LightAPIs/ytgdq" alt="Apache License 2.0" />
   </a>
 </p>
 
@@ -41,4 +41,4 @@
 
 ## 许可证
 
-[MIT](/LICENSE) License
+[Apache License 2.0](/LICENSE.txt)

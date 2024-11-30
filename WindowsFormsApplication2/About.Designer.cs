@@ -88,7 +88,7 @@
             this.linkLabel2.Size = new System.Drawing.Size(144, 20);
             this.linkLabel2.TabIndex = 9;
             this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "源代码 (MIT License)";
+            this.linkLabel2.Text = "源代码 (Apache License 2.0)";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel2Clicked);
             // 
             // button1

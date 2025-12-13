@@ -2259,23 +2259,19 @@ namespace WindowsFormsApplication2
                     if (Glob.SpeedGradeCount > 100)
                     {
                         double ratio = TextLen / ((double)Glob.TextLenAll / Glob.jjAllC);
+                        double valGrade = Glob.Difficulty * ratio;
+                        if (valGrade > Glob.SpeedGrade * 0.5)
+                        { // 限定最大幅度不超过 50%
+                            valGrade = Glob.SpeedGrade * 0.5;
+                        }
+
                         if (nowValue > Glob.SpeedGrade)
                         {
-                            double val1 = Glob.Difficulty * ratio;
-                            if (val1 > Glob.SpeedGrade * 0.5)
-                            { // 限定最大增幅不超过 50%
-                                val1 = Glob.SpeedGrade * 0.5;
-                            }
-                            Glob.SpeedGrade += val1;
+                            Glob.SpeedGrade += valGrade;
                         }
                         else if (nowValue < Glob.SpeedGrade)
                         {
-                            double val2 = 1 / (Glob.Difficulty * ratio);
-                            if (val2 > Glob.SpeedGrade * 0.1)
-                            { // 限定最大减幅不超过 10%
-                                val2 = Glob.SpeedGrade * 0.1;
-                            }
-                            Glob.SpeedGrade -= val2;
+                            Glob.SpeedGrade -= valGrade;
                         }
                         Glob.SpeedGradeCount++;
                     }

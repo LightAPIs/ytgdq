@@ -10,7 +10,9 @@ namespace WindowsFormsApplication2.Difficulty
     {
         private Dictionary<string, double> ranks = new Dictionary<string, double>();
 
-        private readonly string numberAndLitterChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        private readonly string lowLitterChars = @"abcdefghijklmnopqrstuvwxyz";
+        private readonly string upLitterChars = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        private readonly string numberChars = @"0123456789";
         private readonly string simpleSymbolChars = @",，.。;；";
         private readonly string symbolChars = @"!！`~@#$￥%^…&*()（）-_—=+[]{}'‘’""“”\、|·:：<>《》?？/";
 
@@ -82,9 +84,17 @@ namespace WindowsFormsApplication2.Difficulty
                     {
                         accumulator += this.ranks[nowIt];
                     }
-                    else if (numberAndLitterChars.Contains(nowIt))
-                    {   //* 字母数字
+                    else if (lowLitterChars.Contains(nowIt))
+                    {   //* 小写字母
                         accumulator += 1;
+                    }
+                    else if (upLitterChars.Contains(nowIt))
+                    {   //* 大写字母
+                        accumulator += 2;
+                    }
+                    else if (numberChars.Contains(nowIt))
+                    {   //* 数字
+                        accumulator += 3;
                     }
                     else if (simpleSymbolChars.Contains(nowIt))
                     {   //* 简单符号
@@ -92,7 +102,7 @@ namespace WindowsFormsApplication2.Difficulty
                     }
                     else if (symbolChars.Contains(nowIt))
                     { //* 其他标点符号
-                        accumulator += 2;
+                        accumulator += 3;
                     }
                     else
                     {

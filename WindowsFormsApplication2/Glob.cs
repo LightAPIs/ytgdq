@@ -50,7 +50,7 @@ namespace WindowsFormsApplication2
         /// <summary>
         /// 成绩版本
         /// </summary>
-        public static string Instration = "s13";
+        public static string Instration = "s14";
 
         public static string DownloadUrl = "http://dogegg.ysepan.com/";
         public static string HomeUrl = "https://github.com/LightAPIs/ytgdq";

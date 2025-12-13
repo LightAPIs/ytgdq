@@ -1890,10 +1890,15 @@ namespace WindowsFormsApplication2
                         toXY = this.richTextBox1.PointToScreen(rbbbox);
                         if (rbox.X < rbbox.Width && rbox.Y < rbbox.Height)
                             SetCursorPos(toXY.X + 30, toXY.Y);
-                        if (richTextBox1.Text.Substring(0, 1) == richTextBox2.Text.Substring(0, 1))
+                        try
                         {
-                            RecTextTypeCount(richTextBox2.TextLength);
+                            if (richTextBox1.Text.Substring(0, 1) == richTextBox2.Text.Substring(0, 1))
+                            {
+                                RecTextTypeCount(richTextBox2.TextLength);
+                            }
                         }
+                        catch { }
+
                         HisSave[1] = TextLenNow;
                         Glob.StartTextLen = TextLenNow;
                         Glob.StartKeyLen = Glob.TextJs; // 不置空 Glob.TextJs，而是记录，用于后续计算击键等减去

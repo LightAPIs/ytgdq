@@ -126,5 +126,10 @@ namespace WindowsFormsApplication2.Condition
             }
             this.Close();
         }
+
+        private void GetScoreButotn_Click(object sender, EventArgs e)
+        {
+            this.GradeTextBox.Text = Glob.SpeedGrade.ToString("f2");
+        }
     }
 }

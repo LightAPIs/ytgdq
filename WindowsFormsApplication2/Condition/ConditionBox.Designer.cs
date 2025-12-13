@@ -65,6 +65,7 @@
             this.SpeedTextBox = new System.Windows.Forms.TextBox();
             this.OKButton = new WindowsFormsApplication2.NewButton();
             this.CloseButton = new WindowsFormsApplication2.NewButton();
+            this.GetScoreButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,9 +73,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(3, 5);
+            this.label1.Location = new System.Drawing.Point(4, 8);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 14);
+            this.label1.Size = new System.Drawing.Size(157, 21);
             this.label1.TabIndex = 0;
             this.label1.Text = "自动发文条件：";
             // 
@@ -117,30 +119,32 @@
             this.tableLayoutPanel1.Controls.Add(this.EffciencyComboBox, 1, 9);
             this.tableLayoutPanel1.Controls.Add(this.GradeComboBox, 1, 10);
             this.tableLayoutPanel1.Controls.Add(this.SpeedTextBox, 2, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(13, 27);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(20, 40);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 11;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(243, 278);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(364, 417);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // GradeTextBox
             // 
             this.GradeTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GradeTextBox.Enabled = false;
-            this.GradeTextBox.Location = new System.Drawing.Point(164, 253);
+            this.GradeTextBox.Location = new System.Drawing.Point(246, 384);
+            this.GradeTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GradeTextBox.Name = "GradeTextBox";
-            this.GradeTextBox.Size = new System.Drawing.Size(76, 21);
+            this.GradeTextBox.Size = new System.Drawing.Size(114, 28);
             this.GradeTextBox.TabIndex = 32;
             this.GradeTextBox.Text = "0";
             this.GradeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -150,9 +154,10 @@
             // 
             this.EffciencyTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EffciencyTextBox.Enabled = false;
-            this.EffciencyTextBox.Location = new System.Drawing.Point(164, 228);
+            this.EffciencyTextBox.Location = new System.Drawing.Point(246, 346);
+            this.EffciencyTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.EffciencyTextBox.Name = "EffciencyTextBox";
-            this.EffciencyTextBox.Size = new System.Drawing.Size(76, 21);
+            this.EffciencyTextBox.Size = new System.Drawing.Size(114, 28);
             this.EffciencyTextBox.TabIndex = 31;
             this.EffciencyTextBox.Text = "0";
             this.EffciencyTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -162,9 +167,10 @@
             // 
             this.WordsRateTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WordsRateTextBox.Enabled = false;
-            this.WordsRateTextBox.Location = new System.Drawing.Point(164, 203);
+            this.WordsRateTextBox.Location = new System.Drawing.Point(246, 308);
+            this.WordsRateTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.WordsRateTextBox.Name = "WordsRateTextBox";
-            this.WordsRateTextBox.Size = new System.Drawing.Size(76, 21);
+            this.WordsRateTextBox.Size = new System.Drawing.Size(114, 28);
             this.WordsRateTextBox.TabIndex = 30;
             this.WordsRateTextBox.Text = "0";
             this.WordsRateTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -174,9 +180,10 @@
             // 
             this.TypeWordsTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TypeWordsTextBox.Enabled = false;
-            this.TypeWordsTextBox.Location = new System.Drawing.Point(164, 178);
+            this.TypeWordsTextBox.Location = new System.Drawing.Point(246, 270);
+            this.TypeWordsTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TypeWordsTextBox.Name = "TypeWordsTextBox";
-            this.TypeWordsTextBox.Size = new System.Drawing.Size(76, 21);
+            this.TypeWordsTextBox.Size = new System.Drawing.Size(114, 28);
             this.TypeWordsTextBox.TabIndex = 29;
             this.TypeWordsTextBox.Text = "0";
             this.TypeWordsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -186,9 +193,10 @@
             // 
             this.BackRateTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BackRateTextBox.Enabled = false;
-            this.BackRateTextBox.Location = new System.Drawing.Point(164, 153);
+            this.BackRateTextBox.Location = new System.Drawing.Point(246, 232);
+            this.BackRateTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BackRateTextBox.Name = "BackRateTextBox";
-            this.BackRateTextBox.Size = new System.Drawing.Size(76, 21);
+            this.BackRateTextBox.Size = new System.Drawing.Size(114, 28);
             this.BackRateTextBox.TabIndex = 28;
             this.BackRateTextBox.Text = "0";
             this.BackRateTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -198,9 +206,10 @@
             // 
             this.ErrorTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ErrorTextBox.Enabled = false;
-            this.ErrorTextBox.Location = new System.Drawing.Point(164, 128);
+            this.ErrorTextBox.Location = new System.Drawing.Point(246, 194);
+            this.ErrorTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ErrorTextBox.Name = "ErrorTextBox";
-            this.ErrorTextBox.Size = new System.Drawing.Size(76, 21);
+            this.ErrorTextBox.Size = new System.Drawing.Size(114, 28);
             this.ErrorTextBox.TabIndex = 27;
             this.ErrorTextBox.Text = "0";
             this.ErrorTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -210,9 +219,10 @@
             // 
             this.BackChangeTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BackChangeTextBox.Enabled = false;
-            this.BackChangeTextBox.Location = new System.Drawing.Point(164, 103);
+            this.BackChangeTextBox.Location = new System.Drawing.Point(246, 156);
+            this.BackChangeTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BackChangeTextBox.Name = "BackChangeTextBox";
-            this.BackChangeTextBox.Size = new System.Drawing.Size(76, 21);
+            this.BackChangeTextBox.Size = new System.Drawing.Size(114, 28);
             this.BackChangeTextBox.TabIndex = 26;
             this.BackChangeTextBox.Text = "0";
             this.BackChangeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -222,9 +232,10 @@
             // 
             this.AccuracyRateTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AccuracyRateTextBox.Enabled = false;
-            this.AccuracyRateTextBox.Location = new System.Drawing.Point(164, 78);
+            this.AccuracyRateTextBox.Location = new System.Drawing.Point(246, 118);
+            this.AccuracyRateTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AccuracyRateTextBox.Name = "AccuracyRateTextBox";
-            this.AccuracyRateTextBox.Size = new System.Drawing.Size(76, 21);
+            this.AccuracyRateTextBox.Size = new System.Drawing.Size(114, 28);
             this.AccuracyRateTextBox.TabIndex = 25;
             this.AccuracyRateTextBox.Text = "0";
             this.AccuracyRateTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -234,9 +245,10 @@
             // 
             this.CodeLenTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CodeLenTextBox.Enabled = false;
-            this.CodeLenTextBox.Location = new System.Drawing.Point(164, 53);
+            this.CodeLenTextBox.Location = new System.Drawing.Point(246, 80);
+            this.CodeLenTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CodeLenTextBox.Name = "CodeLenTextBox";
-            this.CodeLenTextBox.Size = new System.Drawing.Size(76, 21);
+            this.CodeLenTextBox.Size = new System.Drawing.Size(114, 28);
             this.CodeLenTextBox.TabIndex = 24;
             this.CodeLenTextBox.Text = "0";
             this.CodeLenTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -246,9 +258,10 @@
             // 
             this.KeystrokeTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.KeystrokeTextBox.Enabled = false;
-            this.KeystrokeTextBox.Location = new System.Drawing.Point(164, 28);
+            this.KeystrokeTextBox.Location = new System.Drawing.Point(246, 42);
+            this.KeystrokeTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.KeystrokeTextBox.Name = "KeystrokeTextBox";
-            this.KeystrokeTextBox.Size = new System.Drawing.Size(76, 21);
+            this.KeystrokeTextBox.Size = new System.Drawing.Size(114, 28);
             this.KeystrokeTextBox.TabIndex = 23;
             this.KeystrokeTextBox.Text = "0";
             this.KeystrokeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -258,9 +271,10 @@
             // 
             this.SpeedCheckBox.AutoSize = true;
             this.SpeedCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SpeedCheckBox.Location = new System.Drawing.Point(3, 3);
+            this.SpeedCheckBox.Location = new System.Drawing.Point(4, 4);
+            this.SpeedCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SpeedCheckBox.Name = "SpeedCheckBox";
-            this.SpeedCheckBox.Size = new System.Drawing.Size(74, 19);
+            this.SpeedCheckBox.Size = new System.Drawing.Size(113, 30);
             this.SpeedCheckBox.TabIndex = 0;
             this.SpeedCheckBox.Text = "速度";
             this.SpeedCheckBox.UseVisualStyleBackColor = true;
@@ -270,9 +284,10 @@
             // 
             this.KeystrokeCheckBox.AutoSize = true;
             this.KeystrokeCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.KeystrokeCheckBox.Location = new System.Drawing.Point(3, 28);
+            this.KeystrokeCheckBox.Location = new System.Drawing.Point(4, 42);
+            this.KeystrokeCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.KeystrokeCheckBox.Name = "KeystrokeCheckBox";
-            this.KeystrokeCheckBox.Size = new System.Drawing.Size(74, 19);
+            this.KeystrokeCheckBox.Size = new System.Drawing.Size(113, 30);
             this.KeystrokeCheckBox.TabIndex = 1;
             this.KeystrokeCheckBox.Text = "击键";
             this.KeystrokeCheckBox.UseVisualStyleBackColor = true;
@@ -282,9 +297,10 @@
             // 
             this.CodeLenCheckBox.AutoSize = true;
             this.CodeLenCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CodeLenCheckBox.Location = new System.Drawing.Point(3, 53);
+            this.CodeLenCheckBox.Location = new System.Drawing.Point(4, 80);
+            this.CodeLenCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CodeLenCheckBox.Name = "CodeLenCheckBox";
-            this.CodeLenCheckBox.Size = new System.Drawing.Size(74, 19);
+            this.CodeLenCheckBox.Size = new System.Drawing.Size(113, 30);
             this.CodeLenCheckBox.TabIndex = 2;
             this.CodeLenCheckBox.Text = "码长";
             this.CodeLenCheckBox.UseVisualStyleBackColor = true;
@@ -294,9 +310,10 @@
             // 
             this.AccuracyRateCheckBox.AutoSize = true;
             this.AccuracyRateCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AccuracyRateCheckBox.Location = new System.Drawing.Point(3, 78);
+            this.AccuracyRateCheckBox.Location = new System.Drawing.Point(4, 118);
+            this.AccuracyRateCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AccuracyRateCheckBox.Name = "AccuracyRateCheckBox";
-            this.AccuracyRateCheckBox.Size = new System.Drawing.Size(74, 19);
+            this.AccuracyRateCheckBox.Size = new System.Drawing.Size(113, 30);
             this.AccuracyRateCheckBox.TabIndex = 3;
             this.AccuracyRateCheckBox.Text = "键准";
             this.AccuracyRateCheckBox.UseVisualStyleBackColor = true;
@@ -306,9 +323,10 @@
             // 
             this.BackChangeCheckBox.AutoSize = true;
             this.BackChangeCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BackChangeCheckBox.Location = new System.Drawing.Point(3, 103);
+            this.BackChangeCheckBox.Location = new System.Drawing.Point(4, 156);
+            this.BackChangeCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BackChangeCheckBox.Name = "BackChangeCheckBox";
-            this.BackChangeCheckBox.Size = new System.Drawing.Size(74, 19);
+            this.BackChangeCheckBox.Size = new System.Drawing.Size(113, 30);
             this.BackChangeCheckBox.TabIndex = 4;
             this.BackChangeCheckBox.Text = "回改";
             this.BackChangeCheckBox.UseVisualStyleBackColor = true;
@@ -318,9 +336,10 @@
             // 
             this.ErrorCheckBox.AutoSize = true;
             this.ErrorCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ErrorCheckBox.Location = new System.Drawing.Point(3, 128);
+            this.ErrorCheckBox.Location = new System.Drawing.Point(4, 194);
+            this.ErrorCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ErrorCheckBox.Name = "ErrorCheckBox";
-            this.ErrorCheckBox.Size = new System.Drawing.Size(74, 19);
+            this.ErrorCheckBox.Size = new System.Drawing.Size(113, 30);
             this.ErrorCheckBox.TabIndex = 5;
             this.ErrorCheckBox.Text = "错字";
             this.ErrorCheckBox.UseVisualStyleBackColor = true;
@@ -330,9 +349,10 @@
             // 
             this.BackRateCheckBox.AutoSize = true;
             this.BackRateCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BackRateCheckBox.Location = new System.Drawing.Point(3, 153);
+            this.BackRateCheckBox.Location = new System.Drawing.Point(4, 232);
+            this.BackRateCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BackRateCheckBox.Name = "BackRateCheckBox";
-            this.BackRateCheckBox.Size = new System.Drawing.Size(74, 19);
+            this.BackRateCheckBox.Size = new System.Drawing.Size(113, 30);
             this.BackRateCheckBox.TabIndex = 6;
             this.BackRateCheckBox.Text = "回改率";
             this.BackRateCheckBox.UseVisualStyleBackColor = true;
@@ -342,9 +362,10 @@
             // 
             this.TypeWordsCheckBox.AutoSize = true;
             this.TypeWordsCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TypeWordsCheckBox.Location = new System.Drawing.Point(3, 178);
+            this.TypeWordsCheckBox.Location = new System.Drawing.Point(4, 270);
+            this.TypeWordsCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TypeWordsCheckBox.Name = "TypeWordsCheckBox";
-            this.TypeWordsCheckBox.Size = new System.Drawing.Size(74, 19);
+            this.TypeWordsCheckBox.Size = new System.Drawing.Size(113, 30);
             this.TypeWordsCheckBox.TabIndex = 7;
             this.TypeWordsCheckBox.Text = "打词";
             this.TypeWordsCheckBox.UseVisualStyleBackColor = true;
@@ -354,9 +375,10 @@
             // 
             this.WordsRateCheckBox.AutoSize = true;
             this.WordsRateCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.WordsRateCheckBox.Location = new System.Drawing.Point(3, 203);
+            this.WordsRateCheckBox.Location = new System.Drawing.Point(4, 308);
+            this.WordsRateCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.WordsRateCheckBox.Name = "WordsRateCheckBox";
-            this.WordsRateCheckBox.Size = new System.Drawing.Size(74, 19);
+            this.WordsRateCheckBox.Size = new System.Drawing.Size(113, 30);
             this.WordsRateCheckBox.TabIndex = 8;
             this.WordsRateCheckBox.Text = "打词率";
             this.WordsRateCheckBox.UseVisualStyleBackColor = true;
@@ -366,9 +388,10 @@
             // 
             this.EffciencyCheckBox.AutoSize = true;
             this.EffciencyCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EffciencyCheckBox.Location = new System.Drawing.Point(3, 228);
+            this.EffciencyCheckBox.Location = new System.Drawing.Point(4, 346);
+            this.EffciencyCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.EffciencyCheckBox.Name = "EffciencyCheckBox";
-            this.EffciencyCheckBox.Size = new System.Drawing.Size(74, 19);
+            this.EffciencyCheckBox.Size = new System.Drawing.Size(113, 30);
             this.EffciencyCheckBox.TabIndex = 9;
             this.EffciencyCheckBox.Text = "效率";
             this.EffciencyCheckBox.UseVisualStyleBackColor = true;
@@ -378,9 +401,10 @@
             // 
             this.GradeCheckBox.AutoSize = true;
             this.GradeCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GradeCheckBox.Location = new System.Drawing.Point(3, 253);
+            this.GradeCheckBox.Location = new System.Drawing.Point(4, 384);
+            this.GradeCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GradeCheckBox.Name = "GradeCheckBox";
-            this.GradeCheckBox.Size = new System.Drawing.Size(74, 22);
+            this.GradeCheckBox.Size = new System.Drawing.Size(113, 30);
             this.GradeCheckBox.TabIndex = 10;
             this.GradeCheckBox.Text = "速度评级";
             this.GradeCheckBox.UseVisualStyleBackColor = true;
@@ -397,9 +421,10 @@
             "大于等于",
             "小于",
             "小于等于"});
-            this.SpeedComboBox.Location = new System.Drawing.Point(83, 3);
+            this.SpeedComboBox.Location = new System.Drawing.Point(125, 4);
+            this.SpeedComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SpeedComboBox.Name = "SpeedComboBox";
-            this.SpeedComboBox.Size = new System.Drawing.Size(75, 20);
+            this.SpeedComboBox.Size = new System.Drawing.Size(113, 26);
             this.SpeedComboBox.TabIndex = 11;
             // 
             // KeystrokeComboBox
@@ -413,9 +438,10 @@
             "大于等于",
             "小于",
             "小于等于"});
-            this.KeystrokeComboBox.Location = new System.Drawing.Point(83, 28);
+            this.KeystrokeComboBox.Location = new System.Drawing.Point(125, 42);
+            this.KeystrokeComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.KeystrokeComboBox.Name = "KeystrokeComboBox";
-            this.KeystrokeComboBox.Size = new System.Drawing.Size(75, 20);
+            this.KeystrokeComboBox.Size = new System.Drawing.Size(113, 26);
             this.KeystrokeComboBox.TabIndex = 12;
             // 
             // CodeLenComboBox
@@ -429,9 +455,10 @@
             "大于等于",
             "小于",
             "小于等于"});
-            this.CodeLenComboBox.Location = new System.Drawing.Point(83, 53);
+            this.CodeLenComboBox.Location = new System.Drawing.Point(125, 80);
+            this.CodeLenComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CodeLenComboBox.Name = "CodeLenComboBox";
-            this.CodeLenComboBox.Size = new System.Drawing.Size(75, 20);
+            this.CodeLenComboBox.Size = new System.Drawing.Size(113, 26);
             this.CodeLenComboBox.TabIndex = 13;
             // 
             // AccuracyRateComboBox
@@ -445,9 +472,10 @@
             "大于等于",
             "小于",
             "小于等于"});
-            this.AccuracyRateComboBox.Location = new System.Drawing.Point(83, 78);
+            this.AccuracyRateComboBox.Location = new System.Drawing.Point(125, 118);
+            this.AccuracyRateComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AccuracyRateComboBox.Name = "AccuracyRateComboBox";
-            this.AccuracyRateComboBox.Size = new System.Drawing.Size(75, 20);
+            this.AccuracyRateComboBox.Size = new System.Drawing.Size(113, 26);
             this.AccuracyRateComboBox.TabIndex = 14;
             // 
             // BackChangeComboBox
@@ -461,9 +489,10 @@
             "大于等于",
             "小于",
             "小于等于"});
-            this.BackChangeComboBox.Location = new System.Drawing.Point(83, 103);
+            this.BackChangeComboBox.Location = new System.Drawing.Point(125, 156);
+            this.BackChangeComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BackChangeComboBox.Name = "BackChangeComboBox";
-            this.BackChangeComboBox.Size = new System.Drawing.Size(75, 20);
+            this.BackChangeComboBox.Size = new System.Drawing.Size(113, 26);
             this.BackChangeComboBox.TabIndex = 15;
             // 
             // ErrorComboBox
@@ -477,9 +506,10 @@
             "大于等于",
             "小于",
             "小于等于"});
-            this.ErrorComboBox.Location = new System.Drawing.Point(83, 128);
+            this.ErrorComboBox.Location = new System.Drawing.Point(125, 194);
+            this.ErrorComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ErrorComboBox.Name = "ErrorComboBox";
-            this.ErrorComboBox.Size = new System.Drawing.Size(75, 20);
+            this.ErrorComboBox.Size = new System.Drawing.Size(113, 26);
             this.ErrorComboBox.TabIndex = 16;
             // 
             // BackRateComboBox
@@ -493,9 +523,10 @@
             "大于等于",
             "小于",
             "小于等于"});
-            this.BackRateComboBox.Location = new System.Drawing.Point(83, 153);
+            this.BackRateComboBox.Location = new System.Drawing.Point(125, 232);
+            this.BackRateComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BackRateComboBox.Name = "BackRateComboBox";
-            this.BackRateComboBox.Size = new System.Drawing.Size(75, 20);
+            this.BackRateComboBox.Size = new System.Drawing.Size(113, 26);
             this.BackRateComboBox.TabIndex = 17;
             // 
             // TypeWordsComboBox
@@ -509,9 +540,10 @@
             "大于等于",
             "小于",
             "小于等于"});
-            this.TypeWordsComboBox.Location = new System.Drawing.Point(83, 178);
+            this.TypeWordsComboBox.Location = new System.Drawing.Point(125, 270);
+            this.TypeWordsComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TypeWordsComboBox.Name = "TypeWordsComboBox";
-            this.TypeWordsComboBox.Size = new System.Drawing.Size(75, 20);
+            this.TypeWordsComboBox.Size = new System.Drawing.Size(113, 26);
             this.TypeWordsComboBox.TabIndex = 18;
             // 
             // WordsRateComboBox
@@ -525,9 +557,10 @@
             "大于等于",
             "小于",
             "小于等于"});
-            this.WordsRateComboBox.Location = new System.Drawing.Point(83, 203);
+            this.WordsRateComboBox.Location = new System.Drawing.Point(125, 308);
+            this.WordsRateComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.WordsRateComboBox.Name = "WordsRateComboBox";
-            this.WordsRateComboBox.Size = new System.Drawing.Size(75, 20);
+            this.WordsRateComboBox.Size = new System.Drawing.Size(113, 26);
             this.WordsRateComboBox.TabIndex = 19;
             // 
             // EffciencyComboBox
@@ -541,9 +574,10 @@
             "大于等于",
             "小于",
             "小于等于"});
-            this.EffciencyComboBox.Location = new System.Drawing.Point(83, 228);
+            this.EffciencyComboBox.Location = new System.Drawing.Point(125, 346);
+            this.EffciencyComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.EffciencyComboBox.Name = "EffciencyComboBox";
-            this.EffciencyComboBox.Size = new System.Drawing.Size(75, 20);
+            this.EffciencyComboBox.Size = new System.Drawing.Size(113, 26);
             this.EffciencyComboBox.TabIndex = 20;
             // 
             // GradeComboBox
@@ -557,18 +591,20 @@
             "大于等于",
             "小于",
             "小于等于"});
-            this.GradeComboBox.Location = new System.Drawing.Point(83, 253);
+            this.GradeComboBox.Location = new System.Drawing.Point(125, 384);
+            this.GradeComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GradeComboBox.Name = "GradeComboBox";
-            this.GradeComboBox.Size = new System.Drawing.Size(75, 20);
+            this.GradeComboBox.Size = new System.Drawing.Size(113, 26);
             this.GradeComboBox.TabIndex = 21;
             // 
             // SpeedTextBox
             // 
             this.SpeedTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SpeedTextBox.Enabled = false;
-            this.SpeedTextBox.Location = new System.Drawing.Point(164, 3);
+            this.SpeedTextBox.Location = new System.Drawing.Point(246, 4);
+            this.SpeedTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SpeedTextBox.Name = "SpeedTextBox";
-            this.SpeedTextBox.Size = new System.Drawing.Size(76, 21);
+            this.SpeedTextBox.Size = new System.Drawing.Size(114, 28);
             this.SpeedTextBox.TabIndex = 22;
             this.SpeedTextBox.Text = "0";
             this.SpeedTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -577,9 +613,10 @@
             // OKButton
             // 
             this.OKButton.BackColor = System.Drawing.Color.Gray;
-            this.OKButton.Location = new System.Drawing.Point(203, 310);
+            this.OKButton.Location = new System.Drawing.Point(304, 465);
+            this.OKButton.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.OKButton.Name = "OKButton";
-            this.OKButton.Size = new System.Drawing.Size(62, 23);
+            this.OKButton.Size = new System.Drawing.Size(93, 34);
             this.OKButton.SS = System.Drawing.ContentAlignment.MiddleRight;
             this.OKButton.TabIndex = 3;
             this.OKButton.Text = "确定";
@@ -591,9 +628,10 @@
             // CloseButton
             // 
             this.CloseButton.BackColor = System.Drawing.Color.Gray;
-            this.CloseButton.Location = new System.Drawing.Point(225, 2);
+            this.CloseButton.Location = new System.Drawing.Point(338, 3);
+            this.CloseButton.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(41, 19);
+            this.CloseButton.Size = new System.Drawing.Size(62, 28);
             this.CloseButton.SS = System.Drawing.ContentAlignment.MiddleRight;
             this.CloseButton.TabIndex = 2;
             this.CloseButton.Text = "关闭";
@@ -602,18 +640,32 @@
             this.CloseButton.默认背景色 = System.Drawing.Color.Gray;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
+            // GetScoreButton
+            // 
+            this.GetScoreButton.AutoSize = true;
+            this.GetScoreButton.ForeColor = System.Drawing.Color.Black;
+            this.GetScoreButton.Location = new System.Drawing.Point(20, 469);
+            this.GetScoreButton.Name = "GetScoreButton";
+            this.GetScoreButton.Size = new System.Drawing.Size(126, 28);
+            this.GetScoreButton.TabIndex = 4;
+            this.GetScoreButton.Text = "获取速度评级";
+            this.GetScoreButton.UseVisualStyleBackColor = true;
+            this.GetScoreButton.Click += new System.EventHandler(this.GetScoreButotn_Click);
+            // 
             // ConditionBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(268, 336);
+            this.ClientSize = new System.Drawing.Size(402, 504);
+            this.Controls.Add(this.GetScoreButton);
             this.Controls.Add(this.OKButton);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ConditionBox";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -666,5 +718,6 @@
         private System.Windows.Forms.TextBox CodeLenTextBox;
         private System.Windows.Forms.TextBox KeystrokeTextBox;
         private System.Windows.Forms.TextBox SpeedTextBox;
+        private System.Windows.Forms.Button GetScoreButton;
     }
 }

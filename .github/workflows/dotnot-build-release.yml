@@ -11,22 +11,22 @@ env:
 jobs:
   build:
     name: Build
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - name: Checkout Code
-        uses: actions/checkout/@v3
+        uses: actions/checkout@v4
       - name: Get Version
         id: get_version
+        shell: pwsh
         run: |
-          echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-          echo ::set-output name=VERSION2::${GITHUB_REF#refs/tags/v}
-        shell: bash
+          $version = $env:GITHUB_REF -replace 'refs/tags/', ''
+          echo "version=$version" >> $env:GITHUB_OUTPUT
       - name: Create ChangeLog Text
         id: changelog_text
-        uses: loopwerk/tag-changelog@v1
+        uses: dragonish/tag-changelog@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          config_file: .github/scripts/tag-changelog-config.js
+          config_file: .github/scripts/tag-changelog-config.cjs
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -39,37 +39,74 @@ jobs:
           draft: false
           prerelease: false
       - name: Setup MSBuild Path
-        uses: microsoft/setup-msbuild@v1.1
+        uses: microsoft/setup-msbuild@v2
+      - name: Install .NET 4.0 Targeting Pack
+        shell: pwsh
+        run: |
+          $targetDir = "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0"
+          if (-not (Test-Path $targetDir)) {
+            $url = "https://www.nuget.org/api/v2/package/Microsoft.NETFramework.ReferenceAssemblies.net40/1.0.3"
+            $pkg = "net40.nupkg"
+            Invoke-WebRequest -Uri $url -OutFile $pkg
+            & 7z x $pkg -o"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\" build/net40/
+            Remove-Item $pkg
+          }
       - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1
+        uses: NuGet/setup-nuget@v2
       - name: NuGet Restore
         run: nuget restore $env:SLN_NAME
       - name: Build Release_x86
-        run: msbuild $env:SLN_NAME -p:Configuration=Release -p:Platform=x86
+        run: msbuild $env:SLN_NAME /p:Configuration=Release /p:Platform=x86 /t:Rebuild /m /verbosity:minimal
       - name: Build Release_x64
-        run: msbuild $env:SLN_NAME -p:Configuration=Release -p:Platform=x64
+        run: msbuild $env:SLN_NAME /p:Configuration=Release /p:Platform=x64 /t:Rebuild /m /verbosity:minimal
+      - name: Ensure Release Directory
+        shell: pwsh
+        run: |
+          $releaseDir = "./Release"
+          if (-not (Test-Path $releaseDir)) {
+            New-Item -ItemType Directory -Path $releaseDir -Force
+          }
       - name: Package Release_x86
-        run: ./Tools/7-Zip/7zr.exe a -r ./Release/ytgdq_x86_${{ steps.get_version.outputs.VERSION }}.zip ./Release/x86/*
+        id: package_x86
+        shell: pwsh
+        run: |
+          $version = "${{ steps.get_version.outputs.version }}"
+          $zipPath = "./Release/ytgdq_x86_${version}.zip"
+          $sourcePath = "./Release/x86/*"
+          
+          if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
+          
+          Compress-Archive -Path $sourcePath -DestinationPath $zipPath -CompressionLevel Optimal -Force
+          Write-Host "Created x86 package: $zipPath"
+          echo "zip_path=$zipPath" >> $env:GITHUB_OUTPUT
       - name: Package Release_x64
-        run: ./Tools/7-Zip/7zr.exe a -r ./Release/ytgdq_x64_${{ steps.get_version.outputs.VERSION }}.zip ./Release/x64/*
+        id: package_x64
+        shell: pwsh
+        run: |
+          $version = "${{ steps.get_version.outputs.version }}"
+          $zipPath = "./Release/ytgdq_x64_${version}.zip"
+          $sourcePath = "./Release/x64/*"
+          
+          if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
+          
+          Compress-Archive -Path $sourcePath -DestinationPath $zipPath -CompressionLevel Optimal -Force
+          Write-Host "Created x64 package: $zipPath"
+          echo "zip_path=$zipPath" >> $env:GITHUB_OUTPUT
       - name: Upload Release_x86
-        id: upload_release_x86
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Release/ytgdq_x86_${{ steps.get_version.outputs.VERSION }}.zip
-          asset_name: ytgdq_x86_${{ steps.get_version.outputs.VERSION }}.zip
+          asset_path: ${{ steps.package_x86.outputs.zip_path }}
+          asset_name: ytgdq_x86_${{ steps.get_version.outputs.version }}.zip
           asset_content_type: application/zip
       - name: Upload Release_x64
-        id: upload_release_x64
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Release/ytgdq_x64_${{ steps.get_version.outputs.VERSION }}.zip
-          asset_name: ytgdq_x64_${{ steps.get_version.outputs.VERSION }}.zip
+          asset_path: ${{ steps.package_x64.outputs.zip_path }}
+          asset_name: ytgdq_x64_${{ steps.get_version.outputs.version }}.zip
           asset_content_type: application/zip
-

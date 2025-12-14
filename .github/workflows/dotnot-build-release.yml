@@ -48,8 +48,11 @@ jobs:
             $url = "https://www.nuget.org/api/v2/package/Microsoft.NETFramework.ReferenceAssemblies.net40/1.0.3"
             $pkg = "net40.nupkg"
             Invoke-WebRequest -Uri $url -OutFile $pkg
-            & 7z x $pkg -o"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\" "build/.NETFramework/v4.0/*"
-            Remove-Item $pkg
+            $temp = "$env:TEMP\net40"
+            & 7z x $pkg -o"$temp"
+            Copy-Item "$temp\build\.NETFramework\v4.0\" $targetDir -Recurse -Force
+            Remove-Item $pkg, $temp -Recurse -Force
+            Write-Host "Installed to $targetDir"
           }
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v2

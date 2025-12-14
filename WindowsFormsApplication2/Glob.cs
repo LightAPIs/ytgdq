@@ -323,10 +323,6 @@ namespace WindowsFormsApplication2
         /// </summary>
         public static int FWordsSkip = -1;
 
-        //拖动条
-        public static int p1;
-        public static int p2;
-
         /// <summary>
         /// 曲线界面
         /// 默认显示

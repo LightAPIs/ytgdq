@@ -3923,7 +3923,10 @@ namespace WindowsFormsApplication2
                     //}
 
                     IniWrite("拖动条", "高1", p11H.ToString());
-                    IniWrite("拖动条", "高2", p31H.ToString());
+                    if (!this.splitContainer3.Panel2Collapsed)
+                    {
+                        IniWrite("拖动条", "高2", p31H.ToString());
+                    }
                 }
             }
 
@@ -5190,33 +5193,12 @@ namespace WindowsFormsApplication2
                 this.toolStripButton4.Checked = true;
             }
         }
+
         private void toolStripButton4_CheckedChanged(object sender, EventArgs e)
         {
             bool temp = (sender as ToolStripButton).Checked;
-            CloseDetail(temp);
+            this.splitContainer3.Panel2Collapsed = !temp;
             IniWrite("程序控制", "详细信息", temp.ToString());
-        }
-
-        private void CloseDetail(bool temp)
-        {
-            switch (temp)
-            {
-                case false:
-                    Glob.p1 = this.splitContainer1.SplitterDistance;
-                    Glob.p2 = this.splitContainer3.SplitterDistance;
-
-                    this.splitContainer3.Panel2Collapsed = true;
-                    //this.toolStripButton4.Checked = false;
-                    this.splitContainer1.SplitterDistance = Glob.p1 + Glob.p2;
-                    this.splitContainer3.SplitterDistance = 100;
-                    break;
-                case true:
-                    this.splitContainer3.Panel2Collapsed = false;
-                    //this.toolStripButton4.Checked = true;
-                    this.splitContainer1.SplitterDistance = Glob.p1;
-                    this.splitContainer3.SplitterDistance = 100;
-                    break;
-            }
         }
         #endregion
 

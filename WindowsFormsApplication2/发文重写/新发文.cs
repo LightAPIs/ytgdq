@@ -217,7 +217,16 @@ namespace WindowsFormsApplication2
             NewSendText.SentId = -1;
             ConditionSettingsButton.Enabled = false;
             AutoNoComboBox.SelectedIndex = 0;
-            ReadAll(Application.StartupPath);
+            // 实现读取上次目录
+            string lastDir = ReadSendDir();
+            if (Directory.Exists(lastDir))
+            {
+                ReadAll(lastDir, false);
+            }
+            else
+            {
+                ReadAll(Application.StartupPath, false);
+            }
             ReadSavedArticle();
             ReadSavedSent();
             ReadTempConfig();
@@ -749,7 +758,7 @@ namespace WindowsFormsApplication2
         /// 本地文章读取方法
         /// </summary>
         /// <param name="path"></param>
-        private void ReadAll(string path)
+        private void ReadAll(string path, bool saveDirPath = true)
         {
             if (Directory.Exists(path))
             { //* 存在目录
@@ -776,6 +785,11 @@ namespace WindowsFormsApplication2
                         }
                     }
                     this.lblFindTXTCount.Text = findCount.ToString();//找到文章数量
+
+                    if (saveDirPath)
+                    {
+                        WriteSendDir(path);
+                    }
                 }
                 catch (Exception err) { MessageBox.Show(err.Message, "跟打器提示！"); }
             }
@@ -2057,6 +2071,20 @@ namespace WindowsFormsApplication2
         }
 
         #region 面板中的配置
+        /// <summary>
+        /// 读取保存的本地发文目录
+        /// </summary>
+        /// <returns></returns>
+        private string ReadSendDir()
+        {
+            return _t.IniReadValue("发文面板配置", "本地发文目录", Application.StartupPath);
+        }
+
+        private void WriteSendDir(string dir)
+        {
+            _t.IniWriteValue("发文面板配置", "本地发文目录", dir);
+        }
+
         /// <summary>
         /// 读取文件编码
         /// </summary>

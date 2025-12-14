@@ -234,6 +234,13 @@ namespace WindowsFormsApplication2
                 });
                 t1.Start();
             }
+
+            //? 由于不可见控件的消息会被延迟处理，这会导致在初始无布局计算时，richTextBox2 上的文本变更消息无法触发
+            if (!this.toolStripButton4.Checked)
+            {
+                this.toolStripButton4.PerformClick();
+                this.toolStripButton4.PerformClick();
+            }
         }
 
 

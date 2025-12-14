@@ -105,9 +105,19 @@ namespace WindowsFormsApplication2
         private DelayActionModel delayActionModel = new DelayActionModel();
 
         /// <summary>
-        /// 判断是否为汉字或数字
+        /// 判断是否为汉字、字母或数字
         /// </summary>
-        public static Regex IsCN = new Regex(@"[\u4e00-\u9fa5]|\d");
+        private readonly static Regex IsCN = new Regex(@"[\u4e00-\u9fa5]|[0-9a-aA-Z]");
+
+        /// <summary>
+        /// 结束符号字符串列表
+        /// </summary>
+        private readonly static string EndChars = "。！？”…";
+
+        /// <summary>
+        /// 开符号字符串列表
+        /// </summary>
+        private readonly static string LeftChars = "“‘<《〈(（[［【〖{｛「『";
 
         /// <summary>
         /// 当前成绩数据
@@ -1248,33 +1258,90 @@ namespace WindowsFormsApplication2
                     if (NewSendText.标记 < TextLen)
                     {  //标记必须小于长度
                         int now = NewSendText.标记 + NewSendText.字数;
-                        if (now < TextLen && ((double)(TextLen - now) / NewSendText.字数) > 0.1)
-                        { // 当前小于总字数，且距末尾的距离大于发文字数的 10%
+                        if (now < TextLen && ((double)(TextLen - now) / NewSendText.字数) > 0.15)
+                        { // 当前小于总字数，且距末尾的距离大于发文字数的 15%
                             int textlength = NewSendText.字数;
-                            int findIndex = now - 1;
+                            int startFindIndex = now - ((int)(NewSendText.字数 * 0.05) + 1); // 往回取发文字数的 5% 开始查询
+                            int endFindIndex = now + (int)(NewSendText.字数 * 0.1);
                             bool isLastFind = false;
                             bool isCurFind = false;
                             char[] textChars = NewSendText.文章全文.ToCharArray();
 
-                            for (; findIndex < now + 50 && findIndex < TextLen; findIndex++)
+                            bool findOnce = false;
+                            int leftQuoteIndex = -1;
+                            //* 先查询已取文段是否包含开引号
+                            for (int o = startFindIndex; o > NewSendText.标记; o--)
+                            {
+                                string oldIt = textChars[o].ToString();
+                                if (oldIt == "“")
+                                {
+                                    leftQuoteIndex = o;
+                                    break;
+                                }
+                                else if (oldIt == "”")
+                                {
+                                    break;
+                                }
+                            }
+
+
+                            for (int fi = startFindIndex; fi < endFindIndex && fi < TextLen; fi++)
                             { //* 寻找潜在的符号
-                                string nowIt = textChars[findIndex].ToString();
-                                isCurFind = !IsCN.IsMatch(nowIt);
+                                string nowIt = textChars[fi].ToString();
+                                isCurFind = leftQuoteIndex > 0 ? nowIt == "”" : (findOnce ? !IsCN.IsMatch(nowIt) : EndChars.Contains(nowIt));
 
                                 if (isCurFind)
                                 {
-                                    if (nowIt == "“" || nowIt == "‘")
-                                    { //? 不包括开引号
-                                        textlength = findIndex - NewSendText.标记;
-                                        break;
-                                    }
-                                    isLastFind = true;
-                                }
-                                else
-                                { //? 一并处理连续符号
-                                    if (isLastFind)
+                                    if (leftQuoteIndex > 0)
                                     {
-                                        textlength = findIndex - NewSendText.标记;
+                                        if (fi - leftQuoteIndex > 4)
+                                        { //? 若引号间内容过短，则会忽略并继续向后查询位置
+                                            findOnce = true;
+                                            isLastFind = true;
+                                        }
+                                        leftQuoteIndex = -1;
+                                    }
+                                    else
+                                    {
+                                        findOnce = true;
+                                        if (LeftChars.Contains(nowIt))
+                                        { //? 不包括开符号，直接从开符号前面截断
+                                            textlength = fi - NewSendText.标记;
+                                            break;
+                                        }
+                                        isLastFind = true;
+                                    }
+                                }
+                                else if (isLastFind)
+                                { //? 一并处理连续符号
+                                    textlength = fi - NewSendText.标记;
+                                    break;
+                                }
+
+                                if (nowIt == "“")
+                                { //* 查询过程中出现开引号
+                                    leftQuoteIndex = fi;
+                                }
+                            }
+
+                            if (!findOnce)
+                            { //? 没有找到完美的分段位置，尝试使用任意标点符号分段
+                                for (int fi = startFindIndex; fi < endFindIndex && fi < TextLen; fi++)
+                                {
+                                    string nowIt = textChars[fi].ToString();
+                                    isCurFind = !IsCN.IsMatch(nowIt);
+                                    if (isCurFind)
+                                    {
+                                        if (LeftChars.Contains(nowIt))
+                                        { //? 不包括开符号，直接从开符号前面截断
+                                            textlength = fi - NewSendText.标记;
+                                            break;
+                                        }
+                                        isLastFind = true;
+                                    }
+                                    else if (isLastFind)
+                                    { //? 一并处理连续符号
+                                        textlength = fi - NewSendText.标记;
                                         break;
                                     }
                                 }

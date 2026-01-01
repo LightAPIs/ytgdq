@@ -1270,7 +1270,7 @@ namespace WindowsFormsApplication2
                             bool findOnce = false;
                             int leftQuoteIndex = -1;
                             //* 先查询已取文段是否包含开引号
-                            for (int o = startFindIndex; o > NewSendText.标记; o--)
+                            for (int o = startFindIndex - 1; o > NewSendText.标记; o--)
                             {
                                 string oldIt = textChars[o].ToString();
                                 if (oldIt == "“")

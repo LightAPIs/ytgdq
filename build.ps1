@@ -1,4 +1,37 @@
 # Build And Package PowerShell Script
+
+# 函数：检测命令是否存在
+function Test-CommandExists {
+    param($command)
+    $oldPreference = $ErrorActionPreference
+    $ErrorActionPreference = 'stop'
+    try {
+        if (Get-Command $command) { return $true }
+    }
+    catch {
+        return $false
+    }
+    finally {
+        $ErrorActionPreference = $oldPreference
+    }
+}
+
+# 函数：使用 7z 压缩
+function Compress-With7z {
+    param($sourcePath, $destinationPath)
+    Write-Host "Using 7z LZMA2 for compression..." -ForegroundColor Cyan
+    & 7z a -r -mx=9 "$destinationPath" "$sourcePath\*" | Out-Null
+    return $LASTEXITCODE -eq 0
+}
+
+# 函数：使用 Compress-Archive 压缩
+function Compress-WithBuiltin {
+    param($sourcePath, $destinationPath)
+    Write-Host "Using built-in Compress-Archive for compression..." -ForegroundColor Cyan
+    Compress-Archive -Path "$sourcePath\*" -DestinationPath $destinationPath -CompressionLevel Optimal -Force
+    return $true
+}
+
 Write-Host "********** Build And Package PowerShell. **********" -ForegroundColor Green
 
 Write-Host "********** Build... **********" -ForegroundColor Yellow
@@ -30,14 +63,22 @@ Write-Host "********** Package Release_x86 **********" -ForegroundColor Yellow
 $zip86 = Join-Path $releaseDir "ytgdq_x86.zip"
 $x86Source = Join-Path $releaseDir "x86"
 if (Test-Path $zip86) { Remove-Item $zip86 -Force }
-Compress-Archive -Path "$x86Source\*" -DestinationPath $zip86 -CompressionLevel Optimal -Force
+if (Test-CommandExists "7z") {
+    Compress-With7z "$x86Source" "$zip86"
+} else {
+    Compress-WithBuiltin "$x86Source" "$zip86"
+}
 Write-Host "Created: $zip86" -ForegroundColor Green
 
 Write-Host "********** Package Release_x64 **********" -ForegroundColor Yellow
 $zip64 = Join-Path $releaseDir "ytgdq_x64.zip"
 $x64Source = Join-Path $releaseDir "x64"
 if (Test-Path $zip64) { Remove-Item $zip64 -Force }
-Compress-Archive -Path "$x64Source\*" -DestinationPath $zip64 -CompressionLevel Optimal -Force
+if (Test-CommandExists "7z") {
+    Compress-With7z "$x64Source" "$zip64"
+} else {
+    Compress-WithBuiltin "$x64Source" "$zip64"
+}
 Write-Host "Created: $zip64" -ForegroundColor Green
 
 Write-Host "********** Package Done. **********" -ForegroundColor Green

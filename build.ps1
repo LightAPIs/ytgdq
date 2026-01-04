@@ -16,12 +16,26 @@ function Test-CommandExists {
     }
 }
 
-# 函数：使用 7z 压缩
+# 函数：使用 7zr 或 7z 压缩（优先 7zr）
 function Compress-With7z {
     param($sourcePath, $destinationPath)
-    Write-Host "Using 7z LZMA2 for compression..." -ForegroundColor Cyan
-    & 7z a -r -mx=9 "$destinationPath" "$sourcePath\*" | Out-Null
-    return $LASTEXITCODE -eq 0
+    
+    # 优先尝试 7zr (从环境变量获取路径)
+    $sevenZrPath = $env:7ZR_PATH
+    if ($sevenZrPath -and (Test-Path $sevenZrPath)) {
+        Write-Host "Using 7zr LZMA2 for compression (path: $sevenZrPath)..." -ForegroundColor Cyan
+        & $sevenZrPath a -r -mx=9 "$destinationPath" "$sourcePath\*" | Out-Null
+        if ($LASTEXITCODE -eq 0) { return $true }
+        Write-Host "7zr failed (exit code: $LASTEXITCODE), falling back to 7z..." -ForegroundColor Yellow
+    }
+    
+    # 回退到 7z
+    Write-Host "Using 7z LZMA for compression..." -ForegroundColor Cyan
+    if (Test-CommandExists "7z") {
+        & 7z a -r -mx=9 "$destinationPath" "$sourcePath\*" | Out-Null
+        return $LASTEXITCODE -eq 0
+    }
+    return $false
 }
 
 # 函数：使用 Compress-Archive 压缩
@@ -63,23 +77,25 @@ Write-Host "********** Package Release_x86 **********" -ForegroundColor Yellow
 $zip86 = Join-Path $releaseDir "ytgdq_x86.zip"
 $x86Source = Join-Path $releaseDir "x86"
 if (Test-Path $zip86) { Remove-Item $zip86 -Force }
-if (Test-CommandExists "7z") {
-    Compress-With7z "$x86Source" "$zip86"
+if (Compress-With7z "$x86Source" "$zip86") {
+    Write-Host "Created: $zip86" -ForegroundColor Green
 } else {
+    Write-Host "7z/7zr failed, trying built-in Compress-Archive..." -ForegroundColor Yellow
     Compress-WithBuiltin "$x86Source" "$zip86"
+    Write-Host "Created: $zip86 (using built-in)" -ForegroundColor Green
 }
-Write-Host "Created: $zip86" -ForegroundColor Green
 
 Write-Host "********** Package Release_x64 **********" -ForegroundColor Yellow
 $zip64 = Join-Path $releaseDir "ytgdq_x64.zip"
 $x64Source = Join-Path $releaseDir "x64"
 if (Test-Path $zip64) { Remove-Item $zip64 -Force }
-if (Test-CommandExists "7z") {
-    Compress-With7z "$x64Source" "$zip64"
+if (Compress-With7z "$x64Source" "$zip64") {
+    Write-Host "Created: $zip64" -ForegroundColor Green
 } else {
+    Write-Host "7z/7zr failed, trying built-in Compress-Archive..." -ForegroundColor Yellow
     Compress-WithBuiltin "$x64Source" "$zip64"
+    Write-Host "Created: $zip64 (using built-in)" -ForegroundColor Green
 }
-Write-Host "Created: $zip64" -ForegroundColor Green
 
 Write-Host "********** Package Done. **********" -ForegroundColor Green
 

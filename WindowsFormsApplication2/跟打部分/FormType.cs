@@ -1294,8 +1294,8 @@ namespace WindowsFormsApplication2
                                 {
                                     if (leftQuoteIndex > 0)
                                     {
-                                        if (fi - leftQuoteIndex > 4)
-                                        { //? 若引号间内容过短，则会忽略并继续向后查询位置
+                                        if (fi - leftQuoteIndex > 5)
+                                        { //? 若引号间内容过短，则会忽略并继续向后查询位置；取大于 4 字以上
                                             findOnce = true;
                                             isLastFind = true;
                                         }

@@ -2396,6 +2396,12 @@ namespace WindowsFormsApplication2
                         Glob.Per_Speed += speed2; // 用的惩罚错字后的速度
                         Glob.Per_Jj += jj;
                         Glob.Per_Mc += mc;
+                        Glob.Per_Nd += Glob.Difficulty;
+                        Glob.Per_Pj += (Glob.Difficulty * speed2);
+                        Glob.Per_Hgl += Glob.TextHg_;
+                        Glob.Per_Jz += UserJz;
+                        Glob.Per_Xl += Glob.效率;
+                        Glob.Per_Dcl += Glob.TextDc_;
 
                         double touse = Glob.TotalUse;
                         if (dataGridView1.RowCount > 1)
@@ -2482,7 +2488,7 @@ namespace WindowsFormsApplication2
                             dis = dt.ToString("HH:mm:ss");
                         }
                         // 成绩栏总计行
-                        dataGridView1.Rows.Add("", dis, Glob.HaveTypeCount + "#", (Glob.Per_Speed / Glob.HaveTypeCount).ToString("0.00"), jjPer_.ToString("0.00"), (Glob.Per_Mc / Glob.HaveTypeCount).ToString("0.00"), "", "", "", "", "", "", "", "", "", "", "", "", ((double)Glob.Total_Type / Glob.HaveTypeCount).ToString("0.00"), "", "", (touse / Glob.HaveTypeCount).ToString("0.00"), "", "");
+                        dataGridView1.Rows.Add("", dis, Glob.HaveTypeCount + "#", (Glob.Per_Speed / Glob.HaveTypeCount).ToString("0.00"), jjPer_.ToString("0.00"), (Glob.Per_Mc / Glob.HaveTypeCount).ToString("0.00"), "", (Glob.Per_Nd / Glob.HaveTypeCount).ToString("0.00"), (Glob.Per_Pj / Glob.HaveTypeCount).ToString("0.00"), "", "", "", "", "", (Glob.Per_Hgl / Glob.HaveTypeCount).ToString("0.00") + "%", (Glob.Per_Jz / Glob.HaveTypeCount).ToString("0.00") + "%", (Glob.Per_Xl / Glob.HaveTypeCount).ToString("0") + "%", "", ((double)Glob.Total_Type / Glob.HaveTypeCount).ToString("0.00"), "", (Glob.Per_Dcl / Glob.HaveTypeCount).ToString("0.00") + "%", (touse / Glob.HaveTypeCount).ToString("0.00"), "", "");
                         dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
                         dataGridView1.ClearSelection();
                         DataGridViewRow dgr = dataGridView1.Rows[dataGridView1.RowCount - 1];

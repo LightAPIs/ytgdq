@@ -299,6 +299,12 @@ namespace WindowsFormsApplication2
         public static double Per_Speed = 0;//平均速度
         public static double Per_Jj = 0;//平均击键
         public static double Per_Mc = 0;//平均码长
+        public static double Per_Nd = 0; // 平均难度
+        public static double Per_Pj = 0; // 平均评级
+        public static double Per_Hgl = 0; // 平均回改率
+        public static double Per_Jz = 0; // 平均键准
+        public static double Per_Xl = 0; // 平均效率
+        public static double Per_Dcl = 0; // 平均打词率
         public static int Total_Type = 0;//跟打总字数
 
         //今日已跟打

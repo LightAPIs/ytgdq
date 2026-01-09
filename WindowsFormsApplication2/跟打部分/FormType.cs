@@ -1285,6 +1285,7 @@ namespace WindowsFormsApplication2
                             }
 
 
+                            bool found = false;
                             for (int fi = startFindIndex; fi < endFindIndex && fi < TextLen; fi++)
                             { //* 寻找潜在的符号
                                 string nowIt = textChars[fi].ToString();
@@ -1307,6 +1308,7 @@ namespace WindowsFormsApplication2
                                         if (LeftChars.Contains(nowIt))
                                         { //? 不包括开符号，直接从开符号前面截断
                                             textlength = fi - NewSendText.标记;
+                                            found = true;
                                             break;
                                         }
                                         isLastFind = true;
@@ -1315,6 +1317,7 @@ namespace WindowsFormsApplication2
                                 else if (isLastFind)
                                 { //? 一并处理连续符号
                                     textlength = fi - NewSendText.标记;
+                                    found = true;
                                     break;
                                 }
 
@@ -1324,7 +1327,7 @@ namespace WindowsFormsApplication2
                                 }
                             }
 
-                            if (!findOnce)
+                            if (!found)
                             { //? 没有找到完美的分段位置，尝试使用任意标点符号分段
                                 for (int fi = startFindIndex; fi < endFindIndex && fi < TextLen; fi++)
                                 {

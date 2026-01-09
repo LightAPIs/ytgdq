@@ -2482,7 +2482,7 @@ namespace WindowsFormsApplication2
                             dis = dt.ToString("HH:mm:ss");
                         }
                         // 成绩栏总计行
-                        dataGridView1.Rows.Add("", dis, Glob.HaveTypeCount + "#", (Glob.Per_Speed / Glob.HaveTypeCount).ToString("0.00"), jjPer_.ToString("0.00"), (Glob.Per_Mc / Glob.HaveTypeCount).ToString("0.00"), "", "", "", "", "", "", "", "", "", "", "", "", (Glob.Total_Type / Glob.HaveTypeCount).ToString("0.00"), "", "", (touse / Glob.HaveTypeCount).ToString("0.00"), "", "");
+                        dataGridView1.Rows.Add("", dis, Glob.HaveTypeCount + "#", (Glob.Per_Speed / Glob.HaveTypeCount).ToString("0.00"), jjPer_.ToString("0.00"), (Glob.Per_Mc / Glob.HaveTypeCount).ToString("0.00"), "", "", "", "", "", "", "", "", "", "", "", "", ((double)Glob.Total_Type / Glob.HaveTypeCount).ToString("0.00"), "", "", (touse / Glob.HaveTypeCount).ToString("0.00"), "", "");
                         dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
                         dataGridView1.ClearSelection();
                         DataGridViewRow dgr = dataGridView1.Rows[dataGridView1.RowCount - 1];

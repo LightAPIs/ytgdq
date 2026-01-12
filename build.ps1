@@ -16,6 +16,28 @@ function Test-CommandExists {
     }
 }
 
+# 函数：获取当前Git仓库的最新tag
+function Get-LatestGitTag {
+    try {
+        $latestTag = git describe --tags $(git rev-list --tags --max-count=1) 2>$null
+        if ($latestTag -and $latestTag -notmatch '^fatal|error') {
+            return $latestTag.Trim()
+        }
+        
+        $latestTag = git tag --sort=committerdate | Select-Object -Last 1
+        if ($latestTag) {
+            return $latestTag.Trim()
+        }
+        
+        Write-Warning "Unable to get Git latest tag, default filename used"
+        return $null
+    }
+    catch {
+        Write-Warning "Git command execution failed: $($_.Exception.Message)"
+        return $null
+    }
+}
+
 # 函数：使用 7zr 或 7z 压缩（优先 7zr）
 function Compress-With7z {
     param($sourcePath, $destinationPath)
@@ -48,6 +70,16 @@ function Compress-WithBuiltin {
 
 Write-Host "********** Build And Package PowerShell. **********" -ForegroundColor Green
 
+Write-Host "********** Get latest git tag... **********" -ForegroundColor Cyan
+$latestTag = Get-LatestGitTag
+if ($latestTag) {
+    Write-Host "latest tag: $latestTag" -ForegroundColor Green
+    $versionSuffix = "_$latestTag"
+} else {
+    Write-Host "Tag not found, default filename used" -ForegroundColor Yellow
+    $versionSuffix = ""
+}
+
 Write-Host "********** Build... **********" -ForegroundColor Yellow
 
 # 自动查找 MSBuild.exe（优先使用最新 Visual Studio 版本）
@@ -74,7 +106,7 @@ $releaseDir = "./Release"
 if (-not (Test-Path $releaseDir)) { New-Item -ItemType Directory -Path $releaseDir -Force }
 
 Write-Host "********** Package Release_x86 **********" -ForegroundColor Yellow
-$zip86 = Join-Path $releaseDir "ytgdq_x86.zip"
+$zip86 = Join-Path $releaseDir "ytgdq_x86$versionSuffix.zip"
 $x86Source = Join-Path $releaseDir "x86"
 if (Test-Path $zip86) { Remove-Item $zip86 -Force }
 if (Compress-With7z "$x86Source" "$zip86") {
@@ -86,7 +118,7 @@ if (Compress-With7z "$x86Source" "$zip86") {
 }
 
 Write-Host "********** Package Release_x64 **********" -ForegroundColor Yellow
-$zip64 = Join-Path $releaseDir "ytgdq_x64.zip"
+$zip64 = Join-Path $releaseDir "ytgdq_x64$versionSuffix.zip"
 $x64Source = Join-Path $releaseDir "x64"
 if (Test-Path $zip64) { Remove-Item $zip64 -Force }
 if (Compress-With7z "$x64Source" "$zip64") {

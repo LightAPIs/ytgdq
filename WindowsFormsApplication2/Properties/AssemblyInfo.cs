@@ -11,7 +11,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Light")]
 [assembly: AssemblyProduct("雨天跟打器")]
-[assembly: AssemblyCopyright("Copyright © 2021-2025 Light")]
+[assembly: AssemblyCopyright("Copyright © 2021-2026 Light")]
 [assembly: AssemblyTrademark("雨天跟打器")]
 [assembly: AssemblyCulture("")]
 
@@ -33,6 +33,6 @@ using System.Resources;
 // 可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.13.0.0")]
-[assembly: AssemblyFileVersion("1.13.0.0")]
+[assembly: AssemblyVersion("1.13.1.0")]
+[assembly: AssemblyFileVersion("1.13.1.0")]
 [assembly: NeutralResourcesLanguageAttribute("zh-CN")]

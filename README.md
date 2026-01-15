@@ -11,6 +11,8 @@
   </a>
 </p>
 
+> **Note**: 本分支所有改动由Claude完成（仅这句话除外）
+
 > **Note**: This is a .NET 8 fork of [LightAPIs/ytgdq](https://github.com/LightAPIs/ytgdq)
 
 ## 简介

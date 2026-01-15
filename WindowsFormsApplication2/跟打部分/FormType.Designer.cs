@@ -2674,7 +2674,7 @@
             this.MainMenuStrip = this.mS1;
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(3, 26, 3, 3);
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "雨天跟打器";
             this.Activated += new System.EventHandler(this.Form_Action);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CloseTyping);

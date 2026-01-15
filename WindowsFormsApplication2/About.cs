@@ -33,7 +33,7 @@ namespace WindowsFormsApplication2
         {
             try
             {
-                Process.Start(str);
+                Process.Start(new ProcessStartInfo(str) { UseShellExecute = true });
             }
             catch (Exception)
             {

@@ -251,6 +251,9 @@ namespace WindowsFormsApplication2
                 this.toolStripButton4.PerformClick();
                 this.toolStripButton4.PerformClick();
             }
+
+            // 启动时最大化窗口
+            this.WindowState = FormWindowState.Maximized;
         }
 
 
@@ -4267,12 +4270,12 @@ namespace WindowsFormsApplication2
 
         private void 打开下载地址ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(Glob.DownloadUrl);
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(Glob.DownloadUrl) { UseShellExecute = true });
         }
 
         private void 访问官方网站ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(Glob.HomeUrl);
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(Glob.HomeUrl) { UseShellExecute = true });
         }
         #endregion
 
@@ -4894,10 +4897,9 @@ namespace WindowsFormsApplication2
         /// </summary>
         private void QueryWordCode()
         {
-            var bianMa = new BianMaCheck(CodeCheck);
             var s =
                 Glob.TypeText[Glob.TypeTextCount == Glob.TextLen ? Glob.TypeTextCount - 1 : Glob.TypeTextCount].ToString();
-            bianMa.BeginInvoke(s, 0, null, null);
+            Task.Run(() => CodeCheck(s, 0));
         }
 
         private void 查询当前编码ToolStripMenuItem2_Click(object sender, EventArgs e)
@@ -4932,9 +4934,8 @@ namespace WindowsFormsApplication2
         /// <param name="e"></param>
         private void tsmiFindSelectionBm_Click(object sender, EventArgs e)
         {
-            var bianMa = new BianMaCheck(CodeCheck);
             var s = this.richTextBox1.SelectedText;
-            bianMa.BeginInvoke(s, 1, null, null);
+            Task.Run(() => CodeCheck(s, 1));
         }
         #endregion
 
@@ -6319,7 +6320,7 @@ namespace WindowsFormsApplication2
 
         private void UsageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(Glob.UsageUrl);
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(Glob.UsageUrl) { UseShellExecute = true });
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication2.检查更新
@@ -61,24 +62,20 @@ namespace WindowsFormsApplication2.检查更新
             btnSeeContext.Enabled = false;
             this.btnCheckUpgrade.Text = "正在检测更新";
             panel1.Invalidate();
-            Action action = () => UpgradeModel.GetWebRequest();
-            action.BeginInvoke(GetCompleted, null);
+            Task.Run(() => UpgradeModel.GetWebRequest()).ContinueWith(_ => GetCompleted());
         }
 
-        private void GetCompleted(IAsyncResult iResult)
+        private void GetCompleted()
         {
-            if (iResult.IsCompleted)
-            {
-                this.Invoke(new MethodInvoker(() =>
-                    {
-                        btnCheckUpgrade.Enabled = true;
-                        _start = true; //显示
-                        this.btnCheckUpgrade.Text = "检查更新";
-                        panel1.Invalidate();
-                        this.rtbInfo.Text = UpgradeModel.ToString();
-                        this.rtbInfo.AppendText("下载地址：" + Glob.DownloadUrl);
-                    }));
-            }
+            this.Invoke(new MethodInvoker(() =>
+                {
+                    btnCheckUpgrade.Enabled = true;
+                    _start = true; //显示
+                    this.btnCheckUpgrade.Text = "检查更新";
+                    panel1.Invalidate();
+                    this.rtbInfo.Text = UpgradeModel.ToString();
+                    this.rtbInfo.AppendText("下载地址：" + Glob.DownloadUrl);
+                }));
         }
 
         private void btnSeeContext_Click(object sender, EventArgs e)
@@ -89,7 +86,7 @@ namespace WindowsFormsApplication2.检查更新
         //点击链接
         private void rtbInfo_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start(e.LinkText);
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(e.LinkText) { UseShellExecute = true });
         }
 
         private void UpgradePro_FormClosed(object sender, FormClosedEventArgs e)

@@ -15,8 +15,8 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.Reflection;
 using System.Drawing.Text;
+using MethodInvoker = System.Windows.Forms.MethodInvoker;
 //秒表
-using IWshRuntimeLibrary;
 using WindowsFormsApplication2.检查更新;
 using WindowsFormsApplication2.编码提示;
 using WindowsFormsApplication2.Storage;
@@ -6116,17 +6116,13 @@ namespace WindowsFormsApplication2
             FileInfo fileDesktop = new FileInfo(desktopPath + "\\雨天跟打器.lnk");
             if (!fileDesktop.Exists)
             {
-                WshShell shell = new WshShell();
-                IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(
-                      Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) +
-                      "\\雨天跟打器.lnk");
-
-                shortcut.TargetPath = Application.ExecutablePath; // 启动程序路径
-                shortcut.WorkingDirectory = System.Environment.CurrentDirectory;
-                shortcut.WindowStyle = 1;
-                shortcut.Description = "雨天跟打器";
-                shortcut.IconLocation = Application.ExecutablePath;
-                shortcut.Save();
+                ShortcutHelper.CreateShortcut(
+                    Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\雨天跟打器.lnk",
+                    Application.ExecutablePath,
+                    System.Environment.CurrentDirectory,
+                    "雨天跟打器",
+                    Application.ExecutablePath,
+                    1);
             }
             // 开机启动的方法
             /*

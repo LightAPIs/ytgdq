@@ -19,7 +19,7 @@ namespace WindowsFormsApplication2
     /// </summary>
     public class Glob
     {
-        public static string Ver = "1.14.0";
+        public static string Ver = "1.14.2";
 
         public static string Form = "雨天跟打器" + Bit + " v" + Ver + Project;
 

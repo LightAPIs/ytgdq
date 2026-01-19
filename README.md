@@ -59,8 +59,8 @@ dotnet publish -c Release -r win-x86 --self-contained false
 
 ## 致谢
 
-- [LightAPIs/ytgdq](https://github.com/LightAPIs/ytgdq) - 原项目 ([Apache-2.0 License](https://github.com/LightAPIs/ytgdq/blob/main/LICENSE.txt))
-- [taliove/tygdq](https://github.com/taliove/tygdq) - 添雨跟打器 ([Apache-2.0 License](https://github.com/taliove/tygdq/blob/master/LICENSE))
+- [LightAPIs/ytgdq](https://github.com/LightAPIs/ytgdq) - Fork自：雨天跟打器 ([Apache-2.0 License](https://github.com/LightAPIs/ytgdq/blob/main/LICENSE.txt))
+- [taliove/tygdq](https://github.com/taliove/tygdq) - 源项目：添雨跟打器 ([Apache-2.0 License](https://github.com/taliove/tygdq/blob/master/LICENSE))
 
 ## 相关项目
 

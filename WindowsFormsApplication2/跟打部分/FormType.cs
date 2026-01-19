@@ -15,8 +15,8 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.Reflection;
 using System.Drawing.Text;
+using MethodInvoker = System.Windows.Forms.MethodInvoker;
 //秒表
-using IWshRuntimeLibrary;
 using WindowsFormsApplication2.检查更新;
 using WindowsFormsApplication2.编码提示;
 using WindowsFormsApplication2.Storage;
@@ -251,6 +251,9 @@ namespace WindowsFormsApplication2
                 this.toolStripButton4.PerformClick();
                 this.toolStripButton4.PerformClick();
             }
+
+            // 启动时最大化窗口
+            this.WindowState = FormWindowState.Maximized;
         }
 
 
@@ -4267,12 +4270,12 @@ namespace WindowsFormsApplication2
 
         private void 打开下载地址ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(Glob.DownloadUrl);
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(Glob.DownloadUrl) { UseShellExecute = true });
         }
 
         private void 访问官方网站ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(Glob.HomeUrl);
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(Glob.HomeUrl) { UseShellExecute = true });
         }
         #endregion
 
@@ -4894,10 +4897,9 @@ namespace WindowsFormsApplication2
         /// </summary>
         private void QueryWordCode()
         {
-            var bianMa = new BianMaCheck(CodeCheck);
             var s =
                 Glob.TypeText[Glob.TypeTextCount == Glob.TextLen ? Glob.TypeTextCount - 1 : Glob.TypeTextCount].ToString();
-            bianMa.BeginInvoke(s, 0, null, null);
+            Task.Run(() => CodeCheck(s, 0));
         }
 
         private void 查询当前编码ToolStripMenuItem2_Click(object sender, EventArgs e)
@@ -4932,9 +4934,8 @@ namespace WindowsFormsApplication2
         /// <param name="e"></param>
         private void tsmiFindSelectionBm_Click(object sender, EventArgs e)
         {
-            var bianMa = new BianMaCheck(CodeCheck);
             var s = this.richTextBox1.SelectedText;
-            bianMa.BeginInvoke(s, 1, null, null);
+            Task.Run(() => CodeCheck(s, 1));
         }
         #endregion
 
@@ -6116,17 +6117,13 @@ namespace WindowsFormsApplication2
             FileInfo fileDesktop = new FileInfo(desktopPath + "\\雨天跟打器.lnk");
             if (!fileDesktop.Exists)
             {
-                WshShell shell = new WshShell();
-                IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(
-                      Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) +
-                      "\\雨天跟打器.lnk");
-
-                shortcut.TargetPath = Application.ExecutablePath; // 启动程序路径
-                shortcut.WorkingDirectory = System.Environment.CurrentDirectory;
-                shortcut.WindowStyle = 1;
-                shortcut.Description = "雨天跟打器";
-                shortcut.IconLocation = Application.ExecutablePath;
-                shortcut.Save();
+                ShortcutHelper.CreateShortcut(
+                    Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\雨天跟打器.lnk",
+                    Application.ExecutablePath,
+                    System.Environment.CurrentDirectory,
+                    "雨天跟打器",
+                    Application.ExecutablePath,
+                    1);
             }
             // 开机启动的方法
             /*
@@ -6323,7 +6320,7 @@ namespace WindowsFormsApplication2
 
         private void UsageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(Glob.UsageUrl);
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(Glob.UsageUrl) { UseShellExecute = true });
         }
     }
 }

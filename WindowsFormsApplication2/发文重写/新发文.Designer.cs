@@ -121,6 +121,9 @@
             this.SentCountLabel = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.cbxTickOut = new System.Windows.Forms.CheckBox();
+            this.cbxConvertPunctuation = new System.Windows.Forms.CheckBox();
+            this.rbnToFullWidth = new System.Windows.Forms.RadioButton();
+            this.rbnToHalfWidth = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnExit = new System.Windows.Forms.Button();
@@ -1410,14 +1413,50 @@
             this.cbxTickOut.Checked = true;
             this.cbxTickOut.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbxTickOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbxTickOut.Location = new System.Drawing.Point(24, 61);
+            this.cbxTickOut.Location = new System.Drawing.Point(6, 30);
             this.cbxTickOut.Name = "cbxTickOut";
             this.cbxTickOut.Size = new System.Drawing.Size(129, 16);
             this.cbxTickOut.TabIndex = 1;
             this.cbxTickOut.Text = "自动剔除空格及换行";
             this.cbxTickOut.UseVisualStyleBackColor = true;
             this.cbxTickOut.CheckedChanged += new System.EventHandler(this.cbxTickOut_CheckedChanged);
-            // 
+            //
+            // cbxConvertPunctuation
+            //
+            this.cbxConvertPunctuation.AutoSize = true;
+            this.cbxConvertPunctuation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbxConvertPunctuation.Location = new System.Drawing.Point(6, 52);
+            this.cbxConvertPunctuation.Name = "cbxConvertPunctuation";
+            this.cbxConvertPunctuation.Size = new System.Drawing.Size(69, 16);
+            this.cbxConvertPunctuation.TabIndex = 2;
+            this.cbxConvertPunctuation.Text = "标点转换";
+            this.cbxConvertPunctuation.UseVisualStyleBackColor = true;
+            this.cbxConvertPunctuation.CheckedChanged += new System.EventHandler(this.cbxConvertPunctuation_CheckedChanged);
+            //
+            // rbnToFullWidth
+            //
+            this.rbnToFullWidth.AutoSize = true;
+            this.rbnToFullWidth.Checked = true;
+            this.rbnToFullWidth.Location = new System.Drawing.Point(75, 52);
+            this.rbnToFullWidth.Name = "rbnToFullWidth";
+            this.rbnToFullWidth.Size = new System.Drawing.Size(53, 16);
+            this.rbnToFullWidth.TabIndex = 3;
+            this.rbnToFullWidth.TabStop = true;
+            this.rbnToFullWidth.Text = "转全角";
+            this.rbnToFullWidth.UseVisualStyleBackColor = true;
+            this.rbnToFullWidth.CheckedChanged += new System.EventHandler(this.rbnPunctuationDirection_CheckedChanged);
+            //
+            // rbnToHalfWidth
+            //
+            this.rbnToHalfWidth.AutoSize = true;
+            this.rbnToHalfWidth.Location = new System.Drawing.Point(134, 52);
+            this.rbnToHalfWidth.Name = "rbnToHalfWidth";
+            this.rbnToHalfWidth.Size = new System.Drawing.Size(53, 16);
+            this.rbnToHalfWidth.TabIndex = 4;
+            this.rbnToHalfWidth.Text = "转半角";
+            this.rbnToHalfWidth.UseVisualStyleBackColor = true;
+            this.rbnToHalfWidth.CheckedChanged += new System.EventHandler(this.rbnPunctuationDirection_CheckedChanged);
+            //
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
@@ -1711,8 +1750,8 @@
             this.nudSendTimer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudSendTimer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.nudSendTimer.Enabled = false;
-            this.nudSendTimer.Location = new System.Drawing.Point(100, 154);
-            this.nudSendTimer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 3);
+            this.nudSendTimer.Location = new System.Drawing.Point(100, 150);
+            this.nudSendTimer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
             this.nudSendTimer.Maximum = new decimal(new int[] {
             1800,
             0,
@@ -1943,11 +1982,14 @@
             this.rbnOutOrder.Text = "乱序";
             this.toolTip1.SetToolTip(this.rbnOutOrder, "默认乱序无限发文\r\n可勾选\"乱序不重复\"限制字数");
             this.rbnOutOrder.UseVisualStyleBackColor = true;
-            // 
+            //
             // tabPage6
-            // 
+            //
             this.tabPage6.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage6.Controls.Add(this.rbnToHalfWidth);
+            this.tabPage6.Controls.Add(this.rbnToFullWidth);
+            this.tabPage6.Controls.Add(this.cbxConvertPunctuation);
             this.tabPage6.Controls.Add(this.label13);
             this.tabPage6.Controls.Add(this.cbxTickOut);
             this.tabPage6.ForeColor = System.Drawing.Color.Black;
@@ -1957,16 +1999,16 @@
             this.tabPage6.Size = new System.Drawing.Size(209, 87);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "文章";
-            // 
+            //
             // label13
-            // 
+            //
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label13.Location = new System.Drawing.Point(22, 10);
+            this.label13.Location = new System.Drawing.Point(6, 6);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(161, 48);
+            this.label13.Size = new System.Drawing.Size(161, 24);
             this.label13.TabIndex = 0;
-            this.label13.Text = "文章发文始终以一句话结束，\r\n即发文内容以标点符号结尾。\r\n若需要固定每一段发文字数，\r\n可以选择使用单字顺序发文。";
+            this.label13.Text = "文章发文始终以一句话结束，\r\n即发文内容以标点符号结尾。";
             // 
             // tabPage7
             // 
@@ -2170,6 +2212,9 @@
         private System.Windows.Forms.TextBox tbxTitle;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.CheckBox cbxTickOut;
+        private System.Windows.Forms.CheckBox cbxConvertPunctuation;
+        private System.Windows.Forms.RadioButton rbnToFullWidth;
+        private System.Windows.Forms.RadioButton rbnToHalfWidth;
         private System.Windows.Forms.Button btnAllText;
         private System.Windows.Forms.Label lblspeed;
         private System.Windows.Forms.Panel panel1;

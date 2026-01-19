@@ -1,0 +1,77 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version tag (e.g., v1.14.0)'
+        required: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET 8
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build x64
+      run: |
+        dotnet publish WindowsFormsApplication2/FollowingTypingApplication.csproj `
+          -c Release -r win-x64 --self-contained false `
+          -o publish/x64
+
+    - name: Build x86
+      run: |
+        dotnet publish WindowsFormsApplication2/FollowingTypingApplication.csproj `
+          -c Release -r win-x86 --self-contained false `
+          -o publish/x86
+
+    - name: Create x64 zip
+      run: Compress-Archive -Path publish/x64/* -DestinationPath ytgdq_x64.zip
+
+    - name: Create x86 zip
+      run: Compress-Archive -Path publish/x86/* -DestinationPath ytgdq_x86.zip
+
+    - name: Get version
+      id: version
+      run: |
+        if ("${{ github.event_name }}" -eq "workflow_dispatch") {
+          echo "VERSION=${{ github.event.inputs.version }}" >> $env:GITHUB_OUTPUT
+        } else {
+          $tag = "${{ github.ref_name }}"
+          echo "VERSION=$tag" >> $env:GITHUB_OUTPUT
+        }
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: ${{ steps.version.outputs.VERSION }}
+        name: 雨天跟打器 ${{ steps.version.outputs.VERSION }}
+        body: |
+          ## 雨天跟打器 (.NET 8) ${{ steps.version.outputs.VERSION }}
+
+          ### 运行要求
+          - .NET 8.0 Desktop Runtime
+
+          ### 下载说明
+          - `ytgdq_x64.zip` - 64位版本
+          - `ytgdq_x86.zip` - 32位版本
+        files: |
+          ytgdq_x64.zip
+          ytgdq_x86.zip
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

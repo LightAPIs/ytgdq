@@ -60,6 +60,8 @@ namespace WindowsFormsApplication2
                 throw ex;
             }
 
+            // Enable High DPI support for clear text rendering
+            Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

@@ -16,7 +16,7 @@ function Test-CommandExists {
     }
 }
 
-# 函数：获取当前Git仓库的最新tag
+# 函数：获取当前 Git 仓库的最新 tag
 function Get-LatestGitTag {
     try {
         $latestTag = git describe --tags $(git rev-list --tags --max-count=1) 2>$null

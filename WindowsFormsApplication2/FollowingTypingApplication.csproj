@@ -38,12 +38,4 @@
     <Content Include="rain.ico" />
     <None Include="Resources\*.png" />
   </ItemGroup>
-
-  <!-- Assets - copy to output directory -->
-  <ItemGroup>
-    <Content Include="Assets\**\*" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="Assets_x64\**\*" CopyToOutputDirectory="PreserveNewest" Condition="'$(Platform)' == 'x64' Or '$(RuntimeIdentifier)' == 'win-x64'" />
-    <Content Include="Assets_x86\**\*" CopyToOutputDirectory="PreserveNewest" Condition="'$(Platform)' == 'x86' Or '$(RuntimeIdentifier)' == 'win-x86' Or '$(Platform)' == 'AnyCPU'" />
-  </ItemGroup>
-
 </Project>

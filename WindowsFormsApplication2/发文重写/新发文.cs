@@ -380,6 +380,12 @@ namespace WindowsFormsApplication2
                     tickText = TickBlock(GetText, "");
                 }
 
+                // 应用标点符号转换
+                if (this.tabControl2.SelectedIndex == (int)NewSendText.ContentTypeValue.Article && this.cbxConvertPunctuation.Checked)
+                {
+                    tickText = ConvertPunctuation(tickText, this.rbnToFullWidth.Checked);
+                }
+
                 int tickTextLen = tickText.Length;
                 if (tickTextLen > 0)
                 {
@@ -927,6 +933,59 @@ namespace WindowsFormsApplication2
         private string TickBlock(string text, string target)
         {
             return Regex.Replace(text, @"[\s\u3000]", target);
+        }
+
+        /// <summary>
+        /// 标点符号转换（全角与半角互转）
+        /// </summary>
+        /// <param name="text">输入文本</param>
+        /// <param name="toFullWidth">true=转换为全角，false=转换为半角</param>
+        /// <returns>转换后的文本</returns>
+        private string ConvertPunctuation(string text, bool toFullWidth)
+        {
+            if (string.IsNullOrEmpty(text))
+                return text;
+
+            StringBuilder result = new StringBuilder(text.Length);
+
+            // 定义全角和半角标点符号的对应关系
+            string fullWidth = "，。！？：；" + '\u201c' + '\u201d' + "''《》（）【】—…";
+            string halfWidth = ",.!?:;\"\"''<>()[]--";
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                char c = text[i];
+                int index = -1;
+
+                if (toFullWidth)
+                {
+                    // 半角转全角
+                    index = halfWidth.IndexOf(c);
+                    if (index >= 0 && index < fullWidth.Length)
+                    {
+                        result.Append(fullWidth[index]);
+                    }
+                    else
+                    {
+                        result.Append(c);
+                    }
+                }
+                else
+                {
+                    // 全角转半角
+                    index = fullWidth.IndexOf(c);
+                    if (index >= 0 && index < halfWidth.Length)
+                    {
+                        result.Append(halfWidth[index]);
+                    }
+                    else
+                    {
+                        result.Append(c);
+                    }
+                }
+            }
+
+            return result.ToString();
         }
         #endregion
 
@@ -1916,6 +1975,32 @@ namespace WindowsFormsApplication2
                 ComText();
             }
         }
+
+        /// <summary>
+        /// 标点符号转换变动事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbxConvertPunctuation_CheckedChanged(object sender, EventArgs e)
+        {
+            if (NewSendText.SentId < 0)
+            {
+                ComText();
+            }
+        }
+
+        /// <summary>
+        /// 标点符号转换方向变动事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rbnPunctuationDirection_CheckedChanged(object sender, EventArgs e)
+        {
+            if (NewSendText.SentId < 0 && this.cbxConvertPunctuation.Checked)
+            {
+                ComText();
+            }
+        }
         #endregion
 
         #region 编辑发文内容
@@ -1969,6 +2054,11 @@ namespace WindowsFormsApplication2
                 if (this.tabControl2.SelectedIndex == (int)NewSendText.ContentTypeValue.Single || (this.tabControl2.SelectedIndex == (int)NewSendText.ContentTypeValue.Article && this.cbxTickOut.Checked))
                 { // 自动清除空格和换行
                     GetText = TickBlock(GetText, "");
+                }
+                // 应用标点符号转换
+                if (this.tabControl2.SelectedIndex == (int)NewSendText.ContentTypeValue.Article && this.cbxConvertPunctuation.Checked)
+                {
+                    GetText = ConvertPunctuation(GetText, this.rbnToFullWidth.Checked);
                 }
                 if (GetText.Length == 0)
                 {
@@ -2109,6 +2199,12 @@ namespace WindowsFormsApplication2
         {
             // 自动剔除空格
             this.cbxTickOut.Checked = bool.Parse(_t.IniReadValue("发文面板配置", "自动剔除空格", "True"));
+            // 标点符号转换
+            this.cbxConvertPunctuation.Checked = bool.Parse(_t.IniReadValue("发文面板配置", "标点符号转换", "False"));
+            // 标点转换方向 (true=全角, false=半角)
+            bool toFullWidth = bool.Parse(_t.IniReadValue("发文面板配置", "标点转全角", "True"));
+            this.rbnToFullWidth.Checked = toFullWidth;
+            this.rbnToHalfWidth.Checked = !toFullWidth;
             // 乱序不重复
             this.cbx乱序全段不重复.Checked = bool.Parse(_t.IniReadValue("发文面板配置", "乱序全段不重复", "True"));
 
@@ -2152,6 +2248,10 @@ namespace WindowsFormsApplication2
         {
             // 自动剔除空格
             _t.IniWriteValue("发文面板配置", "自动剔除空格", this.cbxTickOut.Checked.ToString());
+            // 标点符号转换
+            _t.IniWriteValue("发文面板配置", "标点符号转换", this.cbxConvertPunctuation.Checked.ToString());
+            // 标点转换方向
+            _t.IniWriteValue("发文面板配置", "标点转全角", this.rbnToFullWidth.Checked.ToString());
             // 乱序不重复
             _t.IniWriteValue("发文面板配置", "乱序全段不重复", this.cbx乱序全段不重复.Checked.ToString());
 

@@ -9,8 +9,8 @@ namespace WindowsFormsApplication2.DelayAction
 {
     public class DelayActionModel
     {
-        private Timer _timerDbc;
-        private Timer _timerTrt;
+        private System.Timers.Timer _timerDbc;
+        private System.Timers.Timer _timerTrt;
 
         /// <summary>
         /// 延迟 timeMs 后执行。 在此期间如果再次调用，则重新计时

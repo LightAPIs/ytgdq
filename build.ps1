@@ -1,4 +1,4 @@
-# Build And Package PowerShell Script
+# Build And Package PowerShell Script for .NET 8
 
 # 函数：检测命令是否存在
 function Test-CommandExists {
@@ -23,12 +23,12 @@ function Get-LatestGitTag {
         if ($latestTag -and $latestTag -notmatch '^fatal|error') {
             return $latestTag.Trim()
         }
-        
+
         $latestTag = git tag --sort=committerdate | Select-Object -Last 1
         if ($latestTag) {
             return $latestTag.Trim()
         }
-        
+
         Write-Warning "Unable to get Git latest tag, default filename used"
         return $null
     }
@@ -41,7 +41,7 @@ function Get-LatestGitTag {
 # 函数：使用 7zr 或 7z 压缩（优先 7zr）
 function Compress-With7z {
     param($sourcePath, $destinationPath)
-    
+
     # 优先尝试 7zr (从环境变量获取路径)
     $sevenZrPath = $env:7ZR_PATH
     if ($sevenZrPath -and (Test-Path $sevenZrPath)) {
@@ -50,7 +50,7 @@ function Compress-With7z {
         if ($LASTEXITCODE -eq 0) { return $true }
         Write-Host "7zr failed (exit code: $LASTEXITCODE), falling back to 7z..." -ForegroundColor Yellow
     }
-    
+
     # 回退到 7z
     Write-Host "Using 7z LZMA for compression..." -ForegroundColor Cyan
     if (Test-CommandExists "7z") {
@@ -68,7 +68,7 @@ function Compress-WithBuiltin {
     return $true
 }
 
-Write-Host "********** Build And Package PowerShell. **********" -ForegroundColor Green
+Write-Host "********** Build And Package PowerShell (.NET 8) **********" -ForegroundColor Green
 
 Write-Host "********** Get latest git tag... **********" -ForegroundColor Cyan
 $latestTag = Get-LatestGitTag
@@ -82,50 +82,42 @@ if ($latestTag) {
 
 Write-Host "********** Build... **********" -ForegroundColor Yellow
 
-# 自动查找 MSBuild.exe（优先使用最新 Visual Studio 版本）
-$msbuild = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\VSWhere.exe" -latest -products * -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | Select-Object -First 1
-if (-not $msbuild -or -not (Test-Path $msbuild)) {
-    Write-Error "MSBuild.exe not found. Please ensure Visual Studio is installed."
-    exit 1
-}
-Write-Host "Using MSBuild: $msbuild" -ForegroundColor Cyan
+# 确保 Release 目录存在
+$releaseDir = "./Release"
+if (-not (Test-Path $releaseDir)) { New-Item -ItemType Directory -Path $releaseDir -Force }
 
 Write-Host "********** Build Release_x86 **********" -ForegroundColor Yellow
-& $msbuild "ytgdq.sln" /p:Configuration=Release /p:Platform=x86 /t:Rebuild /m
+$x86Output = Join-Path $releaseDir "x86"
+dotnet publish "WindowsFormsApplication2/FollowingTypingApplication.csproj" -c Release -r win-x86 --self-contained false -o $x86Output
 if ($LASTEXITCODE -ne 0) { Write-Error "x86 build failed"; exit $LASTEXITCODE }
 
 Write-Host "********** Build Release_x64 **********" -ForegroundColor Yellow
-& $msbuild "ytgdq.sln" /p:Configuration=Release /p:Platform=x64 /t:Rebuild /m
+$x64Output = Join-Path $releaseDir "x64"
+dotnet publish "WindowsFormsApplication2/FollowingTypingApplication.csproj" -c Release -r win-x64 --self-contained false -o $x64Output
 if ($LASTEXITCODE -ne 0) { Write-Error "x64 build failed"; exit $LASTEXITCODE }
 
 Write-Host "********** Build Done. **********" -ForegroundColor Green
 Write-Host "********** Package... **********" -ForegroundColor Yellow
 
-# 确保 Release 目录存在
-$releaseDir = "./Release"
-if (-not (Test-Path $releaseDir)) { New-Item -ItemType Directory -Path $releaseDir -Force }
-
 Write-Host "********** Package Release_x86 **********" -ForegroundColor Yellow
 $zip86 = Join-Path $releaseDir "ytgdq_x86$versionSuffix.zip"
-$x86Source = Join-Path $releaseDir "x86"
 if (Test-Path $zip86) { Remove-Item $zip86 -Force }
-if (Compress-With7z "$x86Source" "$zip86") {
+if (Compress-With7z "$x86Output" "$zip86") {
     Write-Host "Created: $zip86" -ForegroundColor Green
 } else {
     Write-Host "7z/7zr failed, trying built-in Compress-Archive..." -ForegroundColor Yellow
-    Compress-WithBuiltin "$x86Source" "$zip86"
+    Compress-WithBuiltin "$x86Output" "$zip86"
     Write-Host "Created: $zip86 (using built-in)" -ForegroundColor Green
 }
 
 Write-Host "********** Package Release_x64 **********" -ForegroundColor Yellow
 $zip64 = Join-Path $releaseDir "ytgdq_x64$versionSuffix.zip"
-$x64Source = Join-Path $releaseDir "x64"
 if (Test-Path $zip64) { Remove-Item $zip64 -Force }
-if (Compress-With7z "$x64Source" "$zip64") {
+if (Compress-With7z "$x64Output" "$zip64") {
     Write-Host "Created: $zip64" -ForegroundColor Green
 } else {
     Write-Host "7z/7zr failed, trying built-in Compress-Archive..." -ForegroundColor Yellow
-    Compress-WithBuiltin "$x64Source" "$zip64"
+    Compress-WithBuiltin "$x64Output" "$zip64"
     Write-Host "Created: $zip64 (using built-in)" -ForegroundColor Green
 }
 

@@ -251,9 +251,6 @@ namespace WindowsFormsApplication2
                 this.toolStripButton4.PerformClick();
                 this.toolStripButton4.PerformClick();
             }
-
-            // 启动时最大化窗口
-            this.WindowState = FormWindowState.Maximized;
         }
 
 

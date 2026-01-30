@@ -421,7 +421,7 @@ namespace TyDll
             //绘制标题文字
             if (!string.IsNullOrEmpty(this.Text))
             {
-                using (Font scaledFont = new Font("宋体", 9f * DpiScaleFactor, FontStyle.Bold))
+                using (Font scaledFont = new Font("微软雅黑", 7f * DpiScaleFactor, FontStyle.Bold))
                 {
                     TextRenderer.DrawText(g, this.Text, scaledFont, this.TextRect, this.ForeColor, TextFormatFlags.VerticalCenter);
                 }

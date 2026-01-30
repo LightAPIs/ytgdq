@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +14,11 @@ namespace TyDll
     public class FormBase:Form
     {
         #region 变量
+        /// <summary>
+        /// 当前 DPI 缩放比例
+        /// </summary>
+        protected float DpiScaleFactor { get; private set; } = 1.0f;
+
         /// <summary>
         /// 系统按钮
         /// </summary>
@@ -71,6 +76,7 @@ namespace TyDll
                ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.Opaque, false);
             this.UpdateStyles();
+            this.DpiScaleFactor = (float)DeviceDpi / 96.0f; // Initialize DPI scale factor
             this.Initialize();
         }
         #endregion
@@ -196,7 +202,7 @@ namespace TyDll
         /// </summary>
         protected virtual Rectangle TitleBarRect
         {
-            get { return new Rectangle(0, 0, this.Width, 30); }
+            get { return new Rectangle(0, 0, this.Width, (int)(30 * DpiScaleFactor)); }
         }
         /// <summary>
         /// 关闭按钮区域
@@ -224,7 +230,7 @@ namespace TyDll
         /// </summary>
         protected virtual Rectangle IconRect
         {
-            get { return new Rectangle(4, 4, 16, 16); }
+            get { return new Rectangle((int)(4 * DpiScaleFactor), (int)(4 * DpiScaleFactor), (int)(16 * DpiScaleFactor), (int)(16 * DpiScaleFactor)); }
         }
         /// <summary>
         /// 标题文本显示区域
@@ -233,11 +239,11 @@ namespace TyDll
         {
             get
             {
-                int width = this.TitleBarRect.Width - this.IconRect.Width - 15;
-                int height = this.TitleBarRect.Height - 10;
-                Rectangle textRect = new Rectangle(8, 2, width, height);
+                int width = this.TitleBarRect.Width - this.IconRect.Width - (int)(15 * DpiScaleFactor);
+                int height = this.TitleBarRect.Height - (int)(10 * DpiScaleFactor);
+                Rectangle textRect = new Rectangle((int)(8 * DpiScaleFactor), (int)(2 * DpiScaleFactor), width, height);
                 if (this.ShowIcon)
-                    textRect.X = this.IconRect.Width + 8;
+                    textRect.X = this.IconRect.Width + (int)(8 * DpiScaleFactor);
                 return textRect;
             }
         }
@@ -415,7 +421,10 @@ namespace TyDll
             //绘制标题文字
             if (!string.IsNullOrEmpty(this.Text))
             {
-                TextRenderer.DrawText(g, this.Text, new Font("宋体", 9f, FontStyle.Bold), this.TextRect, this.ForeColor, TextFormatFlags.VerticalCenter);
+                using (Font scaledFont = new Font("宋体", 9f * DpiScaleFactor, FontStyle.Bold))
+                {
+                    TextRenderer.DrawText(g, this.Text, scaledFont, this.TextRect, this.ForeColor, TextFormatFlags.VerticalCenter);
+                }
             }
         }
         /// <summary>
@@ -453,7 +462,14 @@ namespace TyDll
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
-            base.Padding = new Padding(3, 26, 3, 3);
+            base.Padding = new Padding((int)(3 * DpiScaleFactor), (int)(26 * DpiScaleFactor), (int)(3 * DpiScaleFactor), (int)(3 * DpiScaleFactor));
+        }
+
+        protected override void OnDpiChanged(DpiChangedEventArgs e)
+        {
+            base.OnDpiChanged(e);
+            this.DpiScaleFactor = (float)e.DeviceDpiNew / 96.0f;
+            this.Invalidate(); // Redraw the form to apply new scaling
         }
         /// <summary>
         /// 处理 Windows 消息。

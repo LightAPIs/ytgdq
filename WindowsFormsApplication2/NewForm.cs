@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
@@ -14,13 +14,6 @@ namespace WindowsFormsApplication2
 {
     public class NewForm:FormBase
     {
-        #region 变量
-        /// <summary>
-        /// 边框图片
-        /// </summary>
-        private Image _borderImage = GetResources.GetImage("Resources.QQ.FormFrame.fringe_bkg.png");
-        #endregion
-
         #region 构造函数
         /// <summary>
         /// 
@@ -39,7 +32,7 @@ namespace WindowsFormsApplication2
         /// </summary>
         protected override Rectangle MaxRect
         {
-            get { return new Rectangle(this.Width - this.CloseRect.Width - 28, -1, 28, 20); }
+            get { return new Rectangle((int)(this.Width - this.CloseRect.Width - 28 * DpiScaleFactor), (int)(-1 * DpiScaleFactor), (int)(28 * DpiScaleFactor), (int)(20 * DpiScaleFactor)); }
         }
         /// <summary>
         /// 
@@ -48,8 +41,8 @@ namespace WindowsFormsApplication2
         {
             get
             {
-                int x = this.Width - this.CloseRect.Width - this.MaxRect.Width - 28;
-                Rectangle rect = new Rectangle(x, -1, 28, 20);
+                int x = (int)(this.Width - this.CloseRect.Width - this.MaxRect.Width - 28 * DpiScaleFactor);
+                Rectangle rect = new Rectangle(x, (int)(-1 * DpiScaleFactor), (int)(28 * DpiScaleFactor), (int)(20 * DpiScaleFactor));
                 return rect;
                 //return new Rectangle(this.Width - this.CloseRect.Width - 28, -1, 28, 20);
             }
@@ -62,9 +55,9 @@ namespace WindowsFormsApplication2
             get
             {
                 if (base._sysButton == ESysButton.Normal)
-                    return new Rectangle(this.Width - 28 * 2 - 39, 0, 39 + 28 + 28, 20);
+                    return new Rectangle((int)(this.Width - 28 * DpiScaleFactor * 2 - 39 * DpiScaleFactor), 0, (int)(39 * DpiScaleFactor + 28 * DpiScaleFactor + 28 * DpiScaleFactor), (int)(20 * DpiScaleFactor));
                 else if (base._sysButton == ESysButton.Close_Mini)
-                    return new Rectangle(this.Width - 28 - 39, 0, 39 + 28, 20);
+                    return new Rectangle((int)(this.Width - 28 * DpiScaleFactor - 39 * DpiScaleFactor), 0, (int)(39 * DpiScaleFactor + 28 * DpiScaleFactor), (int)(20 * DpiScaleFactor));
                 else
                     return this.CloseRect;
             }
@@ -74,7 +67,7 @@ namespace WindowsFormsApplication2
         /// </summary>
         protected override Rectangle CloseRect
         {
-            get { return new Rectangle(this.Width - 39, -1, 39, 20); }
+            get { return new Rectangle((int)(this.Width - 39 * DpiScaleFactor), (int)(-1 * DpiScaleFactor), (int)(39 * DpiScaleFactor), (int)(20 * DpiScaleFactor)); }
         }
         
         #endregion
@@ -134,16 +127,7 @@ namespace WindowsFormsApplication2
                     break;
             }
 
-            //绘画边框
-            g.DrawImage(this._borderImage, new Rectangle(0, 0, 10, 10), new Rectangle(5, 5, 10, 10), GraphicsUnit.Pixel);//左上角
-            g.DrawImage(this._borderImage, new Rectangle(0, -5, 10, this.Height + 10), new Rectangle(5, 5, 10, this._borderImage.Height - 10), GraphicsUnit.Pixel);//左边框
-            g.DrawImage(this._borderImage, new Rectangle(-5, this.Height - 10, 10, 10), new Rectangle(0, this._borderImage.Height - 15, 10, 10), GraphicsUnit.Pixel);//左下角
-            g.DrawImage(this._borderImage, new Rectangle(this.Width - 9, -5, 10, 10), new Rectangle(20, 0, 10, 10), GraphicsUnit.Pixel);//右上角
-            g.DrawImage(this._borderImage, new Rectangle(this.Width - 9, -5, 10, this.Height + 10), new Rectangle(20, 5, 10, this._borderImage.Height - 10), GraphicsUnit.Pixel);//右边框
-            g.DrawImage(this._borderImage, new Rectangle(this.Width - 9, this.Height - 10, 10, 10), new Rectangle(20, this._borderImage.Height - 15, 10, 10), GraphicsUnit.Pixel);//右下角
 
-            g.DrawImage(this._borderImage, new Rectangle(5, -5, this.Width - 10, 18), new Rectangle(12, 0, 6, 18), GraphicsUnit.Pixel);
-            g.DrawImage(this._borderImage, new Rectangle(5, this.Height - 6, this.Width - 10, 18), new Rectangle(12, 0, 6, 18), GraphicsUnit.Pixel);
 
             base.OnPaint(e);
         }
